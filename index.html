@@ -22,6 +22,7 @@
   --radius:18px;--shadow:0 3px 16px rgba(60,80,140,0.10);
 }
 *{box-sizing:border-box;margin:0;padding:0}
+html{font-size:17px}
 body{font-family:'Varela Round','Heebo',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 
 /* HEADER */
@@ -242,6 +243,22 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
   <div style="font-size:.65rem;color:#889;margin-top:.3rem">נוצר ע"י גלי 💚</div>
 </header>
 
+<!-- חיפוש גלובלי -->
+<div style="background:white;border-bottom:2px solid #e8f0e8;padding:.6rem .8rem .5rem">
+  <div style="position:relative;max-width:600px;margin:0 auto">
+    <span style="position:absolute;right:.75rem;top:50%;transform:translateY(-50%);font-size:1.1rem;pointer-events:none">🔍</span>
+    <input id="globalSearchInput" type="text"
+      placeholder="כתבו שם חיה, מזון, או שניהם ביחד — למשל: גרביל בטטה"
+      oninput="handleGlobalSearch(this.value)"
+      style="width:100%;box-sizing:border-box;padding:.55rem 2.4rem .55rem 2.4rem;border:2px solid #c8e0c8;border-radius:50px;font-size:.88rem;font-family:inherit;outline:none;transition:border-color .15s;background:#fafff8"
+      onfocus="this.style.borderColor='#3aaa6e'"
+      onblur="this.style.borderColor='#c8e0c8'">
+    <button id="globalSearchClear" onclick="clearGlobalSearch()" style="display:none;position:absolute;left:2.2rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:.9rem;color:#999">✕</button>
+    <button onclick="startVoiceSearch('globalSearchInput',this)" title="חיפוש קולי" style="position:absolute;left:.3rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:1.1rem;color:#666;padding:.1rem .3rem">🎤</button>
+  </div>
+  <div id="globalSearchResult" style="max-width:600px;margin:.4rem auto 0;font-size:.85rem"></div>
+</div>
+
 <div id="adminBar" style="display:none" class="admin-bar">
   <span>🔓 מצב עריכה פעיל</span>
   <button onclick="adminLogout()">🔒 יציאה</button>
@@ -421,8 +438,12 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
 </div>
 
 <div class="tab-panel" id="tab-search">
-  <div class="section-hero"><span class="hero-emoji">🔍</span><h2>חיפוש</h2><p>מזון, חיה, קטגוריה - הכל בחיפוש אחד</p><button onclick="speakTabAll('tab-search',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.78rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button>
+  <div class="section-hero"><span class="hero-emoji">🔍</span><h2>חיפוש מורחב</h2><p>מזון, חיה, קטגוריה - הכל בחיפוש אחד</p><button onclick="speakTabAll('tab-search',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.78rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button>
     <button class="expand-all-btn" onclick="expandAllFoods()" id="expandAllFoodsBtn">📖 פתח הכל</button>
+  </div>
+  <div style="background:#f0f8ff;border-radius:12px;border-right:4px solid #4a90d9;padding:.6rem .9rem;margin-bottom:.7rem;font-size:.82rem;color:#1a3a6a;line-height:1.65">
+    <strong>💡 מה יש כאן שלא מופיע בחיפוש הרגיל?</strong><br>
+    כרטיסי מזון מלאים עם כל הפרטים, סינון לפי קטגוריה (כל הירקות, כל הפירות...), חיפוש בתרומות ובפינת החי שלנו, וחיפוש קולי 🎤 — שמועיל אם הידיים עסוקות בהכנת האוכל.
   </div>
   <div class="search-wrap"><span class="search-icon">🔍</span><input type="text" id="searchInput" placeholder="גזר, ארנבון, פרי, שוקולד, קרטון, גרביים..." oninput="doSearch()"><button id="searchClearBtn" onclick="document.getElementById('searchInput').value='';doSearch()" style="display:none;background:none;border:none;cursor:pointer;font-size:.85rem;color:#999;padding:.2rem .4rem;position:absolute;left:2rem">✕</button><button onclick="startVoiceSearch('searchInput',this)" title="חיפוש קולי" style="background:none;border:none;cursor:pointer;font-size:1.1rem;padding:.2rem .4rem;position:absolute;left:.2rem;color:#666">🎤</button></div>
   <div class="filter-row" id="catBar"></div>
@@ -850,7 +871,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
 // ============================================================
 const ANIMALS = [
 // ── שלנו ──────────────────────────────────────────────────
-{id:'jacko',ours:true,name:'תוכי ג׳אקו',en:'African Grey Parrot',sciname:'Psittacus erithacus',animalClass:'עוף',emoji:'🦜',hebrew:'אפרור אפריקאי',
+{id:'jacko',ours:true,name:'תוכי ג׳אקו',en:'African Grey Parrot',sciname:'Psittacus erithacus',animalClass:'עוף',animalSubClass:'תוכאים',animalClass:'עוף',emoji:'🦜',hebrew:'אפרור אפריקאי',
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Psittacus_erithacus_erithacus_sitting_4.JPG/320px-Psittacus_erithacus_erithacus_sitting_4.JPG',
  origin:'יערות גשם מרכז-מערב אפריקה',lifespan:'40-60 שנה (חלקם 70+)',
  size:'כ-33 ס"מ, 400-650 גרם',active:'יום',
@@ -862,7 +883,7 @@ const ANIMALS = [
  tags:['פעיל יום','חברותי','מדבר!','דורש הרבה'],tagColors:['day','social','easy','hard'],
  funfact:'🧠 ג׳אקו חכם כמו ילד בן 5 - מבין מילים, לא רק חוזר עליהן! <a href="https://www.yardbirds.org.il/birds_sounds" target="_blank" rel="noopener" title="🐦 סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">🐦</a>'},
 
-{id:'lovebird',ours:true,name:'ציפור אהבה',en:'Lovebird',sciname:'Agapornis spp.',animalClass:'עוף',emoji:'💚',
+{id:'lovebird',ours:true,name:'ציפור אהבה',en:'Lovebird',sciname:'Agapornis spp.',animalClass:'עוף',animalSubClass:'תוכאים',animalClass:'עוף',emoji:'💚',
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Agapornis_roseicollis_%28Vieillot%2C_1818%29.jpg/320px-Agapornis_roseicollis_%28Vieillot%2C_1818%29.jpg',
  origin:'אפריקה ומדגסקר',lifespan:'10-15 שנה',
  size:'כ-15 ס"מ, 40-60 גרם',active:'יום',
@@ -873,7 +894,7 @@ const ANIMALS = [
  tags:['פעיל יום','חיים בזוג או להקה','קטן וחמוד'],tagColors:['day','social','easy'],
  funfact:'❤️ מאכילים זה את זה כסימן אהבה! <a href="#" onclick="event.preventDefault();spawnHeartConfetti()" title="💕 סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">💕</a>'},
 
-{id:'sibhamster',ours:true,name:'אוגר סיבירי',en:'Siberian Dwarf Hamster',sciname:'Phodopus sungorus',animalClass:'יונק',emoji:'🐹',
+{id:'sibhamster',ours:true,name:'אוגר סיבירי',en:'Siberian Dwarf Hamster',sciname:'Phodopus sungorus',animalClass:'יונק',animalSubClass:'מכרסם',animalClass:'יונק',emoji:'🐹',
  photo:'',
  origin:'ערבות סיביר ומרכז אסיה',lifespan:'1.5-3 שנה',
  size:'7-10 ס"מ, 30-45 גרם',active:'לילה',
@@ -884,7 +905,7 @@ const ANIMALS = [
  tags:['פעיל לילה','אוהב לחפור','רגיש לחום'],tagColors:['night','easy','hard'],
  funfact:'❄️ בחורף, כתגובה לימים המתקצרים, הפרווה הופכת לבהירה יותר להסוואה בשלג! 🌨️🐹'},
 
-{id:'sulcata',ours:true,name:'צב סודני (דרבני)',en:'Sulcata Tortoise',sciname:'Centrochelys sulcata',animalClass:'זוחל',emoji:'🐢',
+{id:'sulcata',ours:true,name:'צב סודני (דרבני)',en:'Sulcata Tortoise',sciname:'Centrochelys sulcata',animalClass:'זוחל',animalSubClass:'צבים',animalClass:'זוחל',emoji:'🐢',
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Geochelone_sulcata_%28Tortoise%29.jpg/320px-Geochelone_sulcata_%28Tortoise%29.jpg',
  origin:'שולי הסהרה - סודן, ניגריה',lifespan:'60-100 שנה (נדיר: 100+)',
  size:'עד 83 ס"מ, 60-105 ק"ג בבגרות!',active:'יום',
@@ -895,7 +916,7 @@ const ANIMALS = [
  tags:['פעיל יום','חובב חום','גדול מאוד','אריך חיים'],tagColors:['day','warm','hard','hard'],
  funfact:'🐢 הזכרים הגדולים יכולים להגיע ל-105 ק"ג! ומה שמפתיע עוד יותר: לצב סודני יש זיכרון ארוך טווח מרשים, יכולת לזהות את המטפלים שלו, וזיכרון מרחבי מצוין למיקומי מזון ומסתור, לפעמים אפילו לאחר שנים רבות. <a href="https://www.google.com/fbx?fbx=memory_game&fbxga=0&hl=id&origin=www.google.com" target="_blank" rel="noopener" title="🧠 סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">🧠</a>'},
 
-{id:'vietstick',ours:true,name:'מקלון ויאטנמי',en:'Vietnamese Stick Insect',sciname:'Medauroidea extradentata',animalClass:'חרק',emoji:'🌿',
+{id:'vietstick',ours:true,name:'מקלון ויאטנמי',en:'Vietnamese Stick Insect',sciname:'Medauroidea extradentata',animalClass:'חרק',animalSubClass:'מקלוניים',animalClass:'חרק',emoji:'🌿',
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Stabschrecke.jpg/320px-Stabschrecke.jpg',
  origin:'יערות ויאטנם',lifespan:'8-12 חודשים (מתוכם ~2 חודשים כביצה)',
  size:'12-15 ס"מ',active:'לילה',
@@ -906,7 +927,7 @@ const ANIMALS = [
  tags:['פעיל לילה','הסוואה מושלמת','מרתק'],tagColors:['night','easy','easy'],
  funfact:'🥢 מתרבה בפרתנוגנזה - נקבות מטילות ביצים פוריות ללא זכר!'},
 
-{id:'beardie',ours:true,name:'חרדון מזוקן',en:'Bearded Dragon',sciname:'Pogona vitticeps',animalClass:'זוחל',emoji:'🐉',
+{id:'beardie',ours:true,name:'חרדון מזוקן',en:'Bearded Dragon',sciname:'Pogona vitticeps',animalClass:'זוחל',animalSubClass:'קשקשאים',animalClass:'זוחל',emoji:'🐉',
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Pogona_vitticeps_2009.jpg/320px-Pogona_vitticeps_2009.jpg',
  origin:'אוסטרליה',lifespan:'10-15 שנה',
  size:'40-60 ס"מ, 400-600 גרם',active:'יום',
@@ -917,7 +938,7 @@ const ANIMALS = [
  tags:['פעיל יום','זקוק לקרינת UVB','ידידותי'],tagColors:['day','warm','easy'],
  funfact:'🦎 חרדון מזוקן משנה צבע בהתאם לרגשות - כהה יותר כשהוא מודאג, בהיר כשמרגיש בנוח!'},
 
-{id:'chinchilla',ours:true,name:'צ׳ינצ׳ילה',en:'Chinchilla',sciname:'Chinchilla lanigera',animalClass:'יונק',emoji:'🐿️',aliases:["צ'ינצ'ילה",'chinchilla','שינשילה'],
+{id:'chinchilla',ours:true,name:'צ׳ינצ׳ילה',en:'Chinchilla',sciname:'Chinchilla lanigera',animalClass:'יונק',animalSubClass:'מכרסם',animalClass:'יונק',emoji:'🐿️',aliases:["צ'ינצ'ילה",'chinchilla','שינשילה'],
  photo:'',
  origin:'הרי אנדים, דרום אמריקה',lifespan:'10-20 שנה',
  size:'25-35 ס"מ, 400-600 גרם',active:'לילה',
@@ -928,7 +949,7 @@ const ANIMALS = [
  tags:['פעיל לילה','רגיש לחום','פרווה מדהימה'],tagColors:['night','hard','easy'],
  funfact:'60 שערות יוצאות מכל זקיק - מה שנותן להן פרווה הכי צפופה בעולם!'},
 
-{id:'leopardgecko',ours:true,name:'שממית מנומרת',en:'Leopard Gecko',sciname:'Eublepharis macularius',animalClass:'זוחל',emoji:'🦎',
+{id:'leopardgecko',ours:true,name:'שממית מנומרת',en:'Leopard Gecko',sciname:'Eublepharis macularius',animalClass:'זוחל',animalSubClass:'קשקשאים',animalClass:'זוחל',emoji:'🦎',
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Leopard_Gecko_%28Eublepharis_macularius%29.jpg/320px-Leopard_Gecko_%28Eublepharis_macularius%29.jpg',
  origin:'פקיסטן, אפגניסטן, הודו',lifespan:'15-20 שנה',
  size:'18-25 ס"מ, 45-65 גרם',active:'לילה',
@@ -939,7 +960,7 @@ const ANIMALS = [
  tags:['פעיל לילה','ידידותי','מתחיל'],tagColors:['night','easy','easy'],
  funfact:'🦎 מאחסן שומן בזנב - כשרזה, הזנב דק. כששמן, הזנב עגול!'},
 
-{id:'rabbit',ours:true,name:'ארנבון',en:'Rabbit',sciname:'Oryctolagus cuniculus',animalClass:'יונק',emoji:'🐰',hebrew:'ארנבון מצוי',
+{id:'rabbit',ours:true,name:'ארנבון',en:'Rabbit',sciname:'Oryctolagus cuniculus',animalClass:'יונק',animalSubClass:'ארנבי',animalClass:'יונק',emoji:'🐰',hebrew:'ארנבון מצוי',
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/320px-Oryctolagus_cuniculus_Rcdo.jpg',
  origin:'מתורבת',lifespan:'8-12 שנה',
  size:'1-8 ק"ג (תלוי גזע)',active:'שחר ודמדומים (פעיל בין יום ללילה)',
@@ -950,7 +971,7 @@ const ANIMALS = [
  tags:['פעיל דמדומים','חברותי','השחזה חובה'],tagColors:['day','social','hard'],
  funfact:'🐰 שיני הארנבון גדלות כל החיים - בלי חומרי השחזה, יכולות להפריע לאכילה!'},
 
-{id:'sharkhan',ours:true,name:'שרקן',en:'Guinea Pig',sciname:'Cavia porcellus',animalClass:'יונק',emoji:'🐹',hebrew:'קביה / חזיר ים',
+{id:'sharkhan',ours:true,name:'שרקן',en:'Guinea Pig',sciname:'Cavia porcellus',animalClass:'יונק',animalSubClass:'מכרסם',animalClass:'יונק',emoji:'🐹',hebrew:'קביה / חזיר ים',
  photo:'',
  origin:'דרום אמריקה (מתורבת)',lifespan:'5-8 שנה',
  size:'20-35 ס"מ, 700-1200 גרם',active:'יום',
@@ -960,7 +981,7 @@ const ANIMALS = [
  needs:'בן או בת זוג, מסתורים, חומרי השחזה',
  tags:['פעיל יום','חיים בזוג או להקה','שורק'],tagColors:['day','social','easy'],
  funfact:'🐾 שרקנים שורקים לתקשורת - שריקה אחת = שמחה, שריקות מהירות = התרגשות!'},
-{id:'syrianhamster',ours:true,name:'אוגר סורי',en:'Syrian Hamster',sciname:'Mesocricetus auratus',animalClass:'יונק',emoji:'🐹',
+{id:'syrianhamster',ours:true,name:'אוגר סורי',en:'Syrian Hamster',sciname:'Mesocricetus auratus',animalClass:'יונק',animalSubClass:'מכרסם',animalClass:'יונק',emoji:'🐹',
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Syrian_hamster_feeding.jpg/320px-Syrian_hamster_feeding.jpg',
  origin:'סוריה, טורקיה',lifespan:'2-3 שנה',
  size:'13-18 ס"מ, 85-150 גרם',active:'לילה',
@@ -971,7 +992,7 @@ const ANIMALS = [
  tags:['פעיל לילה','יחידאי','אוהב לחפור'],tagColors:['night','solo','easy'],
  funfact:'🐹 שקיות לחי מגיעות עד לכתפיים - יכול לשאת עד מחצית ממשקלו!'},
 
-{id:'gerbil',ours:true,name:'גרביל מונגולי',en:'Mongolian Gerbil',sciname:'Meriones unguiculatus',animalClass:'יונק',emoji:'🐭',
+{id:'gerbil',ours:true,name:'גרביל מונגולי',en:'Mongolian Gerbil',sciname:'Meriones unguiculatus',animalClass:'יונק',animalSubClass:'מכרסם',animalClass:'יונק',emoji:'🐭',
  photo:'',
  origin:'מדבריות מרכז אסיה',lifespan:'3-5 שנה',
  size:'10-13 ס"מ + זנב, 55-100 גרם',active:'יום',
@@ -982,7 +1003,7 @@ const ANIMALS = [
  tags:['פעיל יום','חיים בזוג או להקה','סקרן'],tagColors:['day','social','easy'],
  funfact:'🐭 לעולם לא לתפוס גרביל בזנב! הזנב שביר ועלול להינתק - דבר כואב ובלתי הפיך. <a href="https://thisissand.com/" target="_blank" rel="noopener" title="🏖️ סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">🏖️</a>'},
 
-{id:'cockatiel',ours:true,name:'תוכי קוקטייל',en:'Cockatiel',sciname:'Nymphicus hollandicus',animalClass:'עוף',emoji:'🦜',hebrew:'נימפית מצויצת',
+{id:'cockatiel',ours:true,name:'תוכי קוקטייל',en:'Cockatiel',sciname:'Nymphicus hollandicus',animalClass:'עוף',animalSubClass:'תוכאים',animalClass:'עוף',emoji:'🦜',hebrew:'נימפית מצויצת',
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Nymphicus_hollandicus_-_Peach_faced_mutation.jpg/320px-Nymphicus_hollandicus_-_Peach_faced_mutation.jpg',
  origin:'אוסטרליה',lifespan:'15-25 שנה',
  size:'30-33 ס"מ, 70-120 גרם',active:'יום',
@@ -993,7 +1014,7 @@ const ANIMALS = [
  tags:['פעיל יום','מוזיקלי','חברותי'],tagColors:['day','easy','social'],
  funfact:'🎵 קוקטיילים שרים ומחקים קולות - לעיתים לומדים מנגינות שלמות! <a href="https://artsandculture.google.com/experiment/blob-opera/AAHWrq360NcGbw?hl=en&cp=e30." target="_blank" rel="noopener" title="🎭 סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">🎭</a>'},
 
-{id:'mealworms',ours:true,name:'זחל קמח',en:'Mealworms',sciname:'Tenebrio molitor',animalClass:'חרק',emoji:'🐛',
+{id:'mealworms',ours:true,name:'זחל קמח',en:'Mealworms',sciname:'Tenebrio molitor',animalClass:'חרק',animalSubClass:'חיפושיתאים',animalClass:'חרק',emoji:'🐛',
  photo:'',
  origin:'מתורבת (מקור: אירופה)',lifespan:'~1 שנה סה"כ: ביצה 1-2 שב׳, זחל 3-4 חו׳, גולם 1-3 שב׳, חיפושית 3-6 חו׳',
  size:'2-3.5 ס"מ',active:'כל הזמן',
@@ -1004,7 +1025,7 @@ const ANIMALS = [
  tags:['מזון לחיות אחרות','קל לגידול'],tagColors:['easy','easy'],
  funfact:'🐛 זחלי קמח הם מזון חי מצוין לחרדונים, שממיות ועופות!'},
 
-{id:'hissingcockroach',ours:true,name:'תיקן לוחש (מדגסקר)',en:'Madagascar Hissing Cockroach',sciname:'Gromphadorhina portentosa',animalClass:'חרק',emoji:'🦗',
+{id:'hissingcockroach',ours:true,name:'תיקן לוחש (מדגסקר)',en:'Madagascar Hissing Cockroach',sciname:'Gromphadorhina portentosa',animalClass:'חרק',animalSubClass:'תיקנאים',animalClass:'חרק',emoji:'🦗',
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Madagascar_hissing_cockroach.jpg/320px-Madagascar_hissing_cockroach.jpg',
  origin:'מדגסקר',lifespan:'2-5 שנה',
  size:'5-7.5 ס"מ',active:'לילה',
@@ -1015,7 +1036,7 @@ const ANIMALS = [
  tags:['פעיל לילה','מרתק','קל לטיפול'],tagColors:['night','easy','easy'],
  funfact:'🦗 משמיע "לחישה" על ידי דחיפת אוויר דרך נקבי נשימה!'},
 
-{id:'fish',ours:true,name:'דגים (מים מתוקים)',en:'Freshwater Fish',sciname:'Teleostei',animalClass:'דג',emoji:'🐠',
+{id:'fish',ours:true,name:'דגים (מים מתוקים)',en:'Freshwater Fish',sciname:'Teleostei',animalClass:'דג',animalClass:'דג',emoji:'🐠',
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Goldfish03.jpg/320px-Goldfish03.jpg',
  origin:'מגוון - אפריקה, דרום אמריקה, אסיה',lifespan:'3-15 שנה (תלוי במין)',
  size:'3-40 ס"מ (תלוי במין)',active:'יום ולילה',
@@ -1026,7 +1047,7 @@ const ANIMALS = [
  tags:['מים מתוקים','מגוון מינים','מים נקיים תמיד'],tagColors:['cool','easy','day'],
  funfact:'🐠 דגים זוכרים יותר מ-3 שניות! זיכרון ממוצע הוא כמה חודשים. ⚠️ עודף מזון מרעיל את המים - להאכיל רק בכמות שנאכלת תוך 2 דקות. <a href="https://www.youtube.com/watch?v=Zr_nvOU8dd0" target="_blank" rel="noopener" title="🎬 סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">🎬</a>'},
 
-{id:'dog',ours:true,name:'כלב',en:'Dog',sciname:'Canis lupus familiaris',animalClass:'יונק',emoji:'🐕',
+{id:'dog',ours:true,name:'כלב',en:'Dog',sciname:'Canis lupus familiaris',animalClass:'יונק',animalSubClass:'טורפים',animalClass:'יונק',emoji:'🐕',
  photo:'',
  origin:'מתורבת',lifespan:'8-15 שנה',
  size:'משתנה לפי גזע (כ-15 עד 90 ס"מ), כ-1.5 עד 90 ק"ג',active:'יום',
@@ -1038,32 +1059,32 @@ const ANIMALS = [
  funfact:'🐕 אף הכלב יכול להריח פי 40 אלף יותר מאף האדם!'},
 
 // ── חיות נפוצות בפינות חי ────────────────────────────────
-{id:'mouse',ours:false,name:'עכבר נוי',en:'Fancy Mouse',sciname:'Mus musculus',animalClass:'יונק',emoji:'🐭',gender:'m',photo:'',
+{id:'mouse',ours:false,name:'עכבר נוי',en:'Fancy Mouse',sciname:'Mus musculus',animalClass:'יונק',animalSubClass:'מכרסם',animalClass:'יונק',emoji:'🐭',gender:'m',photo:'',
  origin:'מתורבת',lifespan:'1.5-3 שנה',size:'7-10 ס"מ',active:'לילה',social:'קבוצת נקבות - חייבות בחברה',
  housing:'כלוב רחב עם מצע',temp:'18-25°C',special:'לבד → עצבות. קבוצה מומלצת.',needs:'מסתורים, גלגל',
  tags:['פעיל לילה','קבוצה'],tagColors:['night','social'],funfact:'🐭 עכברים מצחקקים בתדר על-שמיעתי כשמשחקים! <a href="https://www.cbc.ca/kids/games/play/paws-and-claws" target="_blank" rel="noopener" title="🐱 סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">🐱</a>'},
 
-{id:'rat',ours:false,name:'חולדת מחמד',en:'Fancy Rat',sciname:'Rattus norvegicus',animalClass:'יונק',emoji:'🐀',photo:'',
+{id:'rat',ours:false,name:'חולדת מחמד',en:'Fancy Rat',sciname:'Rattus norvegicus',animalClass:'יונק',animalSubClass:'מכרסם',animalClass:'יונק',emoji:'🐀',photo:'',
  origin:'מתורבת',lifespan:'2-3 שנה',size:'20-27 ס"מ',active:'שחר ודמדומים (פעיל בין יום ללילה)',social:'זוגות/קבוצות - חייבות',
  housing:'כלוב גדול ורב-קומות',temp:'18-24°C',special:'אינטליגנטיות מאוד, ניתן ללמד טריקים.',needs:'חברה, גירוי, צעצועים',
  tags:['חכמות','חייבות בחברה'],tagColors:['easy','social'],funfact:'🐀 חולדות מחמד צוחקות ומשחקות ממש כמו כלבים!'},
 
-{id:'iguana',ours:false,name:'איגואנה',en:'Green Iguana',sciname:'Iguana iguana',animalClass:'זוחל',emoji:'🦎',photo:'',
+{id:'iguana',ours:false,name:'איגואנה',en:'Green Iguana',sciname:'Iguana iguana',animalClass:'זוחל',animalSubClass:'קשקשאים',animalClass:'זוחל',emoji:'🦎',photo:'',
  origin:'מרכז ודרום אמריקה',lifespan:'10-15 שנה',size:'גדלה לגודל ענק - עד 1.8 מטר!',active:'יום',social:'לבד',
  housing:'טרריום ענק - זקוקה למקום רב',temp:'32-38°C בצד חם, UVB חובה',special:'צמחונית בלבד בבגרות. דורשת מחויבות גדולה.',needs:'UVB, חום, שמש',
  tags:['פעיל יום','גדלה ענק','זקוק לקרינת UVB'],tagColors:['day','hard','hard'],funfact:'🦎 איגואנות שוחות מעולה - בטבע קופצות למים כדי להימלט מטורפים!'},
 
-{id:'cornsnake',ours:false,name:'כרכן תירס',en:'Corn Snake',sciname:'Pantherophis guttatus',animalClass:'זוחל',emoji:'🐍',photo:'',
+{id:'cornsnake',ours:false,name:'כרכן תירס',en:'Corn Snake',sciname:'Pantherophis guttatus',animalClass:'זוחל',animalSubClass:'קשקשאים',animalClass:'זוחל',emoji:'🐍',photo:'',
  origin:'דרום-מזרח ארה"ב',lifespan:'15-20 שנה',size:'90-150 ס"מ',active:'שחר ודמדומים (פעיל בין יום ללילה)',social:'לבד',
  housing:'טרריום 90×45 עם מכסה',temp:'28-30°C בצד חם, 22-24°C בצד קריר',special:'אוכל עכברים מופשרים - לא חי. <a href="https://www.google.com/fbx?fbx=snake_arcade" target="_blank" rel="noopener" title="🐍 סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">🐍</a>',needs:'מסתורים, ענפים, תא לחות לפני התנשלות',
  tags:['דמדומים','מתחיל',''],tagColors:['night','easy','easy'],funfact:'🐍 כרכן התירס הוא אחד הנחשים הכי מומלצים למתחילים - רגוע וידידותי!'},
 
-{id:'budgie',ours:false,name:'תוכון מצוי',en:'Budgerigar',sciname:'Melopsittacus undulatus',animalClass:'עוף',emoji:'🦜',hebrew:'תוכי גמדי',gender:'m',photo:'',
+{id:'budgie',ours:false,name:'תוכון מצוי',en:'Budgerigar',sciname:'Melopsittacus undulatus',animalClass:'עוף',animalSubClass:'תוכאים',animalClass:'עוף',emoji:'🦜',hebrew:'תוכי גמדי',gender:'m',photo:'',
  origin:'אוסטרליה',lifespan:'5-10 שנה',size:'18 ס"מ, 25-35 גרם',active:'יום',social:'זוגות - אוהב חברה',
  housing:'כלוב רחב, ענפים',temp:'18-26°C',special:'ציפור קטנה עם אישיות גדולה - יודע מילים! מחקה קולות ואפילו משפטים שלמים.',needs:'ענפים, צעצועים, חברה',
  tags:['פעיל יום','יודע מילים','קטן וחמוד'],tagColors:['day','easy','easy'],funfact:'🦜 תוכי גמדי יכולים ללמוד מאות מילים - שיאן העולם דיבר 1,728 מילים!'},
 
-{id:'quail',ours:true,name:'שלו (סיני ויפני)',en:'Button Quail / Japanese Quail',sciname:'Coturnix chinensis / Coturnix japonica',animalClass:'עוף',emoji:'🐦',
+{id:'quail',ours:true,name:'שלו (סיני ויפני)',en:'Button Quail / Japanese Quail',sciname:'Coturnix chinensis / Coturnix japonica',animalClass:'עוף',animalSubClass:'תרנגולאים',animalClass:'עוף',emoji:'🐦',
  photo:'',
  origin:'אסיה',lifespan:'3-5 שנה',size:'10-20 ס"מ',active:'יום',
  social:'זוגות או קבוצות קטנות',
@@ -1072,7 +1093,7 @@ const ANIMALS = [
  needs:'קש לחפירה, חול לאמבטיה, מים נקיים תמיד',
  tags:['ציפור','זרעים','חרקים'],tagColors:['cool','easy','medium'],
  funfact:'🐦 שלו יפני היה אחת מחיות המחמד הראשונות בהיסטוריה! הזכרים מצייצים בעוצמה ובקול ייחודי.'}
-,{id:'hamster_gen',ours:false,name:'חמוס',en:'Ferret',sciname:'Mustela putorius furo',animalClass:'יונק',emoji:'🦡',gender:'m',photo:'',
+,{id:'hamster_gen',ours:false,name:'חמוס',en:'Ferret',sciname:'Mustela putorius furo',animalClass:'יונק',animalSubClass:'מכרסם',animalClass:'יונק',emoji:'🦡',gender:'m',photo:'',
  origin:'צאצא מבוית של הסמור האירופי',lifespan:'6-10 שנים',size:'35-50 ס"מ (כולל זנב), 0.7-2 ק"ג',active:'דמדומים',
  social:'חברותי מאוד, נהנה מחברת חמוסים אחרים ובני אדם',
  housing:'כלוב מרווח עם כמה קומות וערסלים + לפחות שעתיים חופש בבית ממוגן',temp:'15-24°C (מעל 27°C מסוכן!)',
@@ -1081,13 +1102,13 @@ const ANIMALS = [
  tags:['פעיל דמדומים','חברותי מאוד','שובב!'],tagColors:['night','social','easy'],
  funfact:'🧠 חמוס הוא "גנב" קטן וסקרן, מסוגל לפתור בעיות כדי להגיע לאוכל או לצעצועים מוחבאים!'},
 
-{id:'degu',ours:false,name:'דגו',en:'Degu',sciname:'Octodon degus',animalClass:'יונק',emoji:'🐿️',gender:'m',photo:'',
+{id:'degu',ours:false,name:'דגו',en:'Degu',sciname:'Octodon degus',animalClass:'יונק',animalSubClass:'מכרסם',animalClass:'יונק',emoji:'🐿️',gender:'m',photo:'',
  origin:'ערבות מרכז צ׳ילה',lifespan:'6-8 שנה',size:'25-30 ס"מ, 170-400 גרם',active:'יום',
  social:'להקה - חייב בחברה, לבד יסבול',
  housing:'כלוב גדול עם מצע לחפירה ומדפים לקפיצות',temp:'18-24°C',
  special:'⚠️ רגיש מאוד לסוכר - נוטה לפתח סוכרת! אסור פירות, ירקות עתירי סוכר וחטיפים. חובה חומרי השחזה.',needs:'חברה, גלגל, חומרי השחזה',
  tags:['פעיל יום','להקה חובה','ללא סוכר!'],tagColors:['day','social','hard'],funfact:'🐿️ הדגו מסוגל לשחרר את זנבו אם נתפס - בדיוק כמו גרביל, גם כאן זה כואב ובלתי הפיך!'},
-{id:'ball_python',ours:false,name:'פיתון מתכדר',en:'Ball Python',sciname:'Python regius',animalClass:'זוחל',emoji:'🐍',photo:'',
+{id:'ball_python',ours:false,name:'פיתון מתכדר',en:'Ball Python',sciname:'Python regius',animalClass:'זוחל',animalSubClass:'קשקשאים',animalClass:'זוחל',emoji:'🐍',photo:'',
  origin:'מרכז ומערב אפריקה',lifespan:'20-30 שנה',
  size:'90-150 ס"מ, 1-2 ק"ג (נקבות גדולות יותר)',active:'ערב ולילה',
  social:'לבד',
@@ -1096,9 +1117,11 @@ const ANIMALS = [
  needs:'מסתורים, מיכל מים גדול, לחות גבוהה, טמפרטורה יציבה',
  tags:['טורף','מתחיל יחסית','חשוב: הידות נכונה'],tagColors:['warm','easy','warm'],
  funfact:'🐍 מתכדר לכדור כשנבהל - בשונה מנחשים אחרים!'}
+,
 ];
 
 // ============================================================
+// FOODS==================================
 // FOODS - parts: [{name, rawOk, cookNote?}]
 // rawOk: 'ok'|'no'|'lim'
 // cookNote: אם מבושל שונה
@@ -1852,6 +1875,7 @@ const SEARCH_SYNONYMS = {
   'ציפור': ['תוכי','קוקטייל','ציפור אהבה'], 'ציפורים': ['תוכי','קוקטייל','ציפור אהבה'],
   'עוף': ['תוכי','קוקטייל','ציפור'], 'עופות': ['תוכי','קוקטייל','ציפור'],
   'תוכים': ['תוכי','קוקטייל','ג׳אקו'],
+  // מחלקות מטופלות דינמית ב-doSearch לפי animalClass
   // צורות נקבה → זכר
   'אוגרת': ['אוגר'], 'תוכית': ['תוכי'], 'צבה': ['צב'],
   'ארנבת': ['ארנבון'], 'גרבילית': ['גרביל'], 'חרדונית': ['חרדון'],
@@ -1997,14 +2021,28 @@ function doSearch(){
 
   // ── חיות תואמות ──
   if(animalDiv){
+    // מיפוי מחלקות לחיפוש
+    const CLASS_TERMS = {
+      'יונק':['יונק','יונקים'], 'זוחל':['זוחל','זוחלים'],
+      'עוף':['עוף','עופות','ציפור','ציפורים'], 'דג':['דג','דגים'],
+      'חרק':['חרק','חרקים'], 'מכרסם':['מכרסם','מכרסמים'],
+      'שפנאי':['שפנאי','שפנאים'],
+    };
+    const matchedClass = Object.entries(CLASS_TERMS).find(([cls, terms]) =>
+      terms.some(t => t === q)
+    )?.[0];
+
     if(q.length>=2){
-      const matched=ANIMALS.filter(a=>
-        searchMatchName(a.name, q)||
-        searchMatch(a.en||'', q)||
-        searchMatch(a.sciname||'', q)||
-        (a.tags||[]).some(t=>searchMatch(t, q))||
-        (a.aliases||[]).some(al=>searchMatchName(al, q))
-      );
+      const matched=ANIMALS.filter(a=>{
+        if(matchedClass) {
+          return a.animalClass===matchedClass || a.animalSubClass===matchedClass;
+        }
+        return searchMatchName(a.name, q)||
+          searchMatch(a.en||'', q)||
+          searchMatch(a.sciname||'', q)||
+          (a.tags||[]).some(t=>searchMatch(t, q))||
+          (a.aliases||[]).some(al=>searchMatchName(al, q));
+      });
       if(matched.length){
         window._searchAnimalIds = matched.map(a=>a.id);
         animalDiv.innerHTML=`<div style="font-size:.78rem;font-weight:700;color:#5060a0;margin-bottom:.35rem;padding:.1rem .2rem">🐾 חיות תואמות:</div>`+
@@ -2053,6 +2091,8 @@ function expandAllAnimals(){
   let html='<div style="padding:.5rem 0">';
   list.forEach(a=>{
     const rows=[
+      ['🔬 מחלקה', a.animalClass||null],
+      ['🔢 סדרה', a.animalSubClass||null],
       ['🌍 מוצא',a.origin],['🎂 תוחלת חיים',a.lifespan],['📐 גודל',a.size],
       ['⏰ פעיל',a.active],['👥 חברה',a.social],['🌡️ טמפרטורה',a.temp],
       ['🏠 מגורים',a.housing],['🎮 צרכים מיוחדים',a.special],['💧 טיפול נוסף',a.needs],
@@ -2339,6 +2379,8 @@ function renderAnimalGrid(){
     const tagsHtml=(a.tags||[]).slice(0,3).map((t,i)=>`<span class="tag tag-${a.tagColors?.[i]||'easy'}">${t}</span>`).join('');
     const ph=a.photo?`<img src="${a.photo}" class="ac-photo" alt="${a.name}" onerror="this.outerHTML='<div class=\\'ac-photo-ph\\'>${a.emoji}</div>'">`:`<div class="ac-photo-ph">${a.emoji}</div>`;
     const rows=[
+      ['🔬','מחלקה', a.animalClass||null],
+      ['🔢','סדרה', a.animalSubClass||null],
       ['🌍','מוצא',a.origin],['🎂','תוחלת חיים',a.lifespan],['📐','גודל',a.size],
       ['⏰','פעיל',a.active],['👥','חברה',a.social],['🌡️','טמפרטורה',a.temp],
       ['🏠','דיור',a.housing],['🍽️','תזונה',a.diet]
@@ -2347,7 +2389,7 @@ function renderAnimalGrid(){
     return `<div class="animal-card" id="acard_${a.id}" data-aid="${a.id}">
       ${ph}
       <div class="ac-head" data-toggle="${a.id}" style="cursor:pointer">
-        <div><div class="ac-name">${a.name}</div><div class="ac-sciname">${a.sciname}</div>${a.animalClass?`<div style="font-size:.68rem;background:#e8f4ff;color:#3060a0;border-radius:50px;padding:.05rem .4rem;display:inline-block;margin-top:.1rem;font-weight:700">${a.animalClass}</div>`:""}
+        <div><div class="ac-name">${a.name}</div><div class="ac-sciname">${a.sciname}</div>${a.animalClass?`<div style="font-size:.68rem;background:#e8f4ff;color:#3060a0;border-radius:50px;padding:.05rem .4rem;display:inline-block;margin-top:.1rem;font-weight:700">${a.animalClass}${a.animalSubClass?" | "+a.animalSubClass:""}</div>`:""}
           <span class="${a.ours?'ac-ours-badge':'ac-other-badge'}">${a.ours?'🏠 יש לנו':'🌍 נפוצה'}</span>
         </div>
         <div style="display:flex;align-items:center;gap:.3rem">
@@ -2408,6 +2450,8 @@ function openAnimalModal(id, list){
   const ph=a.photo?`<img src="${a.photo}" style="width:100%;height:200px;object-fit:cover;border-radius:12px;display:block;margin-bottom:.7rem" onerror="this.style.display='none'">`:
     `<div style="height:120px;display:flex;align-items:center;justify-content:center;font-size:5rem;background:linear-gradient(135deg,var(--mint),var(--sky));border-radius:12px;margin-bottom:.7rem">${a.emoji}</div>`;
   const rows=[
+    ['🔬','מחלקה', a.animalClass||null],
+    ['🔢','סדרה', a.animalSubClass||null],
     ['🌍','מוצא',a.origin],['🎂','תוחלת חיים',a.lifespan],
     ['📐','גודל',a.size],
     [a.active?.includes('לילה')?'🌙':a.active?.includes('דמדומים')?'🌅':'☀️','פעיל',a.active],
@@ -3199,6 +3243,7 @@ function startVoiceSearch(targetId, btn) {
       el.value = text;
       el.dispatchEvent(new Event('input'));
       if(targetId === 'searchInput') doSearch();
+      if(targetId === 'globalSearchInput') handleGlobalSearch(text);
     }
     btn.dataset.listening = '0';
     btn.textContent = '🎤'; btn.style.color = '';
@@ -3809,9 +3854,349 @@ function dmRenderBasket() {
 function initDailyMenu() {
   dmInit();
 }
+
 // ============================================================
-// 🎉 EFFECTS & EASTER EGGS
+// 🔍 חיפוש גלובלי — כולל זיהוי חיה + מזון ביחד
 // ============================================================
+
+// רשימת חיות שאין לנו — לתצוגה בחיפוש בלבד
+const NOT_OURS_LIST = [
+  // כל ערך: name = שם לתצוגה, forms = צורות דקדוקיות תקינות בלבד
+  {emoji:'🪿', forms:['אווז','אווזה','אווזים','אווזות','אוז']},
+  {emoji:'🦧', forms:['אורנגאוטן','אורנגאוטנים']},
+  {emoji:'🦁', forms:['אריה','אריות','לביא','לביאה','לביאות']},
+  {emoji:'🫏', forms:['אתון','אתונות']},
+  {emoji:'🦨', forms:['בואש','בואשים']},
+  {emoji:'🦫', forms:['בונה','בונים','בונות']},
+  {emoji:'🦅', forms:['בז','בזים']},
+  {emoji:'🦆', forms:['ברווז','ברווזה','ברווזים','ברווזות']},
+  {emoji:'🦢', forms:['ברבור','ברבורים','ברבורות']},
+  {emoji:'🐆', forms:['ברדלס','ברדלסים']},
+  {emoji:'🦒', forms:["ג'ירפה","ג'ירפות"]},
+  {emoji:'🦬', forms:["ג'מוס","ג'מוסים","ג'מוסות",'תאו','תאוים','ראם','ראמים']},
+  {emoji:'🐫', forms:['גמל','גמלים','גמלות','נאקה','נאקות']},
+  {emoji:'🦡', forms:['גירית','גיריות']},
+  {emoji:'🐻', forms:['דוב','דובה','דובים','דובות']},
+  {emoji:'🦝', forms:['דביבון','דביבונים','דביבונות']},
+  {emoji:'🪺', forms:['דוכיפת','דוכיפתות']},
+  {emoji:'🐬', forms:['דולפין','דולפינים','דולפינות']},
+  {emoji:'🦑', forms:['דיונון','דיונונים']},
+  {emoji:'🦕', forms:['דינוזאור','דינוזאורים']},
+  {emoji:'🐦', forms:['דרור','דרורים']},
+  {emoji:'🦛', forms:['היפופוטם','היפופוטמים']},
+  {emoji:'🐺', forms:['זאב','זאבה','זאבים','זאבות']},
+  {emoji:'🦓', forms:['זברה','זברות']},
+  {emoji:'🦎', forms:['זיקית','זיקיות']},
+  {emoji:'🐦', forms:['חוחית','חוחיות']},
+  {emoji:'🐷', forms:['חזיר','חזירה','חזירים','חזירות','חזרזיר','חזרזירים']},
+  {emoji:'🐢', forms:['חומט','חומטים','חמט','חמטים']},
+  {emoji:'🫏', forms:['חמור','חמורים','חמורון']},
+  {emoji:'🦢', forms:['חסידה','חסידות']},
+  {emoji:'🪲', forms:['חיפושית','חיפושיות']},
+  {emoji:'🐀', forms:['חפרפרת','חפרפרות']},
+  {emoji:'🦗', forms:['חרגול','חרגולים','ארבה']},
+  {emoji:'🐱', forms:['חתול','חתולה','חתולים','חתולות','חתלתול','חתלתולים','חתחתול']},
+  {emoji:'🐯', forms:['טיגריס','טיגריסים','טיגריסות']},
+  {emoji:'🐑', forms:['טלה','טלאים','כבש','כבשה','כבשים','כבשות','סיח','סייח','סיחים']},
+  {emoji:'🦏', forms:['טפיר','טפירים']},
+  {emoji:'🐟', forms:['טרוטה','טרוטות','פורל']},
+  {emoji:'🦟', forms:['יבחוש','יבחושים']},
+  {emoji:'🐆', forms:['יגואר','יגוארים']},
+  {emoji:'🕊️', forms:['יונה','יונים','יונות']},
+  {emoji:'🦌', forms:['יחמור','יחמורים','יחמורות']},
+  {emoji:'🦉', forms:['ינשוף','ינשופים']},
+  {emoji:'🐐', forms:['יעל','יעלים','עז','עיזים','עז בר']},
+  {emoji:'🦤', forms:['יען','יענים']},
+  {emoji:'🦈', forms:['כריש','כרישים','כרישות']},
+  {emoji:'🦦', forms:['לוטרה','לוטרות']},
+  {emoji:'🐋', forms:['לוויתן','לוויתנים']},
+  {emoji:'🐊', forms:['לגב','לגבים']},
+  {emoji:'🦣', forms:['ממותה','ממותות']},
+  {emoji:'🐛', forms:['מרבה רגלים','מרבה-רגלים']},
+  {emoji:'🦡', forms:['נמיה','נמיות']},
+  {emoji:'🐜', forms:['נמלה','נמלים','נמלות']},
+  {emoji:'🐆', forms:['נמר','נמרה','נמרים','נמרות']},
+  {emoji:'🦅', forms:['נץ','נצים']},
+  {emoji:'🦅', forms:['נשר','נשרים','נשרות']},
+  {emoji:'🐴', forms:['סוס','סוסה','סוסים','סוסות','סוסון','פוני','פוניים']},
+  {emoji:'🐠', forms:['סוסון ים','סוסוני ים']},
+  {emoji:'🦎', forms:['סלמנדרה','סלמנדרות']},
+  {emoji:'🐿️', forms:['סנאי','סנאים','סנאיות']},
+  {emoji:'🦦', forms:['סמור','סמורים']},
+  {emoji:'🐄', forms:['עגל','עגלה','עגלים','עגלות']},
+  {emoji:'🐄', forms:['פרה','פרות','פר','פרים']},
+  {emoji:'🐂', forms:['שור','שוורים']},
+  {emoji:'🐦‍⬛', forms:['עורב','עורבים']},
+  {emoji:'🕷️', forms:['עכביש','עכבישים','עכבישות']},
+  {emoji:'🐀', forms:['עכברוש','עכברושים']},
+  {emoji:'🦂', forms:['עקרב','עקרבים','עקרבות']},
+  {emoji:'🦩', forms:['פלמינגו','פלמינגואים']},
+  {emoji:'🐼', forms:['פנדה','פנדות']},
+  {emoji:'🦚', forms:['פסיון','פסיונים','טווס','טווסים','טווסות']},
+  {emoji:'🐦', forms:['פשוש','פשושים']},
+  {emoji:'🦌', forms:['צבי','צבאים','צביה','אייל','אילה','איילים']},
+  {emoji:'🐝', forms:['צרעה','צרעות']},
+  {emoji:'🐨', forms:['קואלה','קואלות']},
+  {emoji:'🐒', forms:['קוף','קופה','קופים','קופות','קופיף','קופיפים','גורילה','שימפנזה']},
+  {emoji:'🦔', forms:['קיפוד','קיפודים','קפוד','קפודים']},
+  {emoji:'🦘', forms:['קנגורו','קנגורואים']},
+  {emoji:'🦜', forms:['קקדו','קקדואים']},
+  {emoji:'🐊', forms:['קרוקודיל','קרוקודילים','תנין','תנינים','תנינות']},
+  {emoji:'🐸', forms:['קרפדה','קרפדות','צפרדע','צפרדעים','קרפד','קרפדים']},
+  {emoji:'🐟', forms:['קרפיון','קרפיונים']},
+  {emoji:'🐈', forms:['קרקל','קרקלים']},
+  {emoji:'🐚', forms:['רכיכה','רכיכות','צדפה','צדפות']},
+  {emoji:'🐌', forms:['שבלול','שבלולים','שבלולות']},
+  {emoji:'🐦', forms:['שחף','שחפים','שחפות']},
+  {emoji:'🐍', forms:['שפיפון','שפיפונים']},
+  {emoji:'🦋', forms:['שפירית','שפיריות','שפרירית','שפרירים','שפריריות']},
+  {emoji:'🐇', forms:['שפן','שפנים','שפן סלע']},
+  {emoji:'🦩', forms:['שקנאי','שקנאים']},
+  {emoji:'🦐', forms:['שרימפס','שרימפסים']},
+  {emoji:'🦦', forms:['תחש','תחשים']},
+  {emoji:'🦉', forms:['תנשמת','תנשמות']},
+  // לשמחתנו אין לנו
+  {emoji:'🪰', forms:['זבוב','זבובים','זבובות'], glad:true},
+  {emoji:'🦟', forms:['יתוש','יתושים','יתושות'], glad:true},
+  {emoji:'🪼', forms:['מדוזה','מדוזות'], glad:true},
+  {emoji:'🦟', forms:['פרעוש','פרעושים'], glad:true},
+  {emoji:'🐍', forms:['צפע','צפעים','צפעון','צפעונים'], glad:true},
+  {emoji:'🕷️', forms:['קרציה','קרציות','קרצייה'], glad:true},
+  {emoji:'🐛', forms:['פשפש','פשפשים'], glad:true},
+];
+
+// הפניות — מילות מפתח כלליות שמפנות לחיות שיש לנו
+const REDIRECT_LIST = [
+  {
+    forms: ['נחש','נחשים','נחשות'],
+    ours: [], // אין נחשים בפינת החי עצמה
+    extra: ['cornsnake','ball_python'],
+    msg: '🐍 אין לנו נחשים בפינת החי, אבל ברשימת החיות הנוספות:'
+  },
+  {
+    forms: ['לטאה','לטאות'],
+    ours: ['beardie','leopardgecko'],
+    extra: ['iguana'],
+    msg: '🦎 יש לנו כמה סוגים של לטאות:'
+  },
+  {
+    forms: ['ציפור','ציפורים','עוף','עופות','תוכי','תוכים'],
+    ours: ['jacko','cockatiel','lovebird'],
+    extra: ['budgie','quail'],
+    msg: '🦜 יש לנו כמה סוגים של ציפורים:'
+  },
+];
+
+function findInRedirectList(word) {
+  const w = word.toLowerCase().trim();
+  return REDIRECT_LIST.find(entry => entry.forms.some(f => f.toLowerCase() === w));
+}
+
+function renderRedirectResult(entry) {
+  const oursAnimals = entry.ours.map(id => ANIMALS.find(a=>a.id===id)).filter(Boolean);
+  const extraAnimals = entry.extra.map(id => ANIMALS.find(a=>a.id===id)).filter(Boolean);
+  let html = `<div style="background:#f0f8ff;border-radius:12px;padding:.55rem .85rem;display:grid;gap:.4rem">
+    <div style="font-size:.85rem;font-weight:700;color:#3050a0">${entry.msg}</div>`;
+  if (oursAnimals.length) {
+    html += `<div style="display:flex;flex-wrap:wrap;gap:.35rem">`;
+    oursAnimals.forEach(a => {
+      html += `<a href="#" onclick="event.preventDefault();openAnimalModal('${a.id}')" style="background:#e8f4ff;border-radius:50px;padding:.25rem .7rem;font-size:.82rem;font-weight:700;color:#3050a0;text-decoration:none">${a.emoji} ${a.name} ✅</a>`;
+    });
+    html += `</div>`;
+  }
+  if (extraAnimals.length) {
+    html += `<div style="font-size:.78rem;color:#888;margin-top:.1rem">חיות נוספות (לא אצלנו בפינה):</div>`;
+    html += `<div style="display:flex;flex-wrap:wrap;gap:.35rem">`;
+    extraAnimals.forEach(a => {
+      html += `<a href="#" onclick="event.preventDefault();switchTab('animals')" style="background:#f0f0f8;border-radius:50px;padding:.25rem .7rem;font-size:.82rem;font-weight:700;color:#666;text-decoration:none">${a.emoji} ${a.name}</a>`;
+    });
+    html += `</div>`;
+  }
+  html += `</div>`;
+  return html;
+}
+
+function findInNotOursList(word) {
+  const w = word.toLowerCase().trim();
+  return NOT_OURS_LIST.find(entry =>
+    entry.forms.some(f => f.toLowerCase() === w)
+  );
+}
+
+
+function clearGlobalSearch() {
+  document.getElementById('globalSearchInput').value = '';
+  document.getElementById('globalSearchResult').innerHTML = '';
+  document.getElementById('globalSearchClear').style.display = 'none';
+}
+
+function handleGlobalSearch(val) {
+  const q = val.trim();
+  const res = document.getElementById('globalSearchResult');
+  const clr = document.getElementById('globalSearchClear');
+  clr.style.display = q ? 'block' : 'none';
+  if (!q || q.length < 2) { res.innerHTML = ''; return; }
+
+  const words = q.toLowerCase().split(/\s+/);
+
+  // בדוק REDIRECT_LIST קודם — מילות מפתח כלליות כמו ציפור/נחש/לטאה
+  // אבל לא אם השאילתה המלאה מתאימה לחיה ספציפית (למשל "ציפור אהבה")
+  const fullQuery = q.toLowerCase().trim();
+  const exactAnimal = ANIMALS.find(a =>
+    a.name.toLowerCase() === fullQuery ||
+    (a.aliases||[]).some(al => al.toLowerCase() === fullQuery)
+  );
+  if (!exactAnimal) {
+    for (const w of words) {
+      const redirect = findInRedirectList(w);
+      if (redirect) {
+        res.innerHTML = renderRedirectResult(redirect);
+        return;
+      }
+    }
+    // בדוק מחלקה (יונק/זוחל/עוף/מכרסם וכו')
+    const CLASS_TERMS_G = {
+      'יונק':['יונק','יונקים'], 'זוחל':['זוחל','זוחלים'],
+      'עוף':['עוף','עופות'], 'דג':['דג','דגים'],
+      'חרק':['חרק','חרקים'], 'מכרסם':['מכרסם','מכרסמים'],
+      'שפנאי':['שפנאי','שפנאים'],
+    };
+    for (const w of words) {
+      const matchedClass = Object.entries(CLASS_TERMS_G).find(([cls,terms])=>terms.includes(w))?.[0];
+      if (matchedClass) {
+        const classAnimals = ANIMALS.filter(a => a.ours && (a.animalClass===matchedClass||a.animalSubClass===matchedClass));
+        const extraAnimals = ANIMALS.filter(a => !a.ours && (a.animalClass===matchedClass||a.animalSubClass===matchedClass));
+        const emoji = {יונק:'🐾',זוחל:'🦎',עוף:'🦜',דג:'🐟',חרק:'🪲',מכרסם:'🐹',שפנאי:'🐰'}[matchedClass]||'🐾';
+        const rabbitNote = matchedClass === 'מכרסם'
+          ? '<div style="font-size:.78rem;color:#888;margin-top:.3rem;font-style:italic">💡 ארנבון הוא לא מכרסם אלא ממשפחת הארנביים — אבל אולי הוא מה שחיפשת?</div>'
+          : '';
+        const entry = {
+          ours: classAnimals.map(a=>a.id),
+          extra: extraAnimals.map(a=>a.id),
+          msg: `${emoji} ${matchedClass}ים שיש לנו:`
+        };
+        res.innerHTML = renderRedirectResult(entry) + rabbitNote;
+        return;
+      }
+    }
+  }
+
+  const foundAnimals = [], foundFoods = [];
+  const usedWords = new Set();
+
+  // מצא את כל החיות והמזונות בשאילתה
+  for (const w of words) {
+    const a = ANIMALS.find(a =>
+      searchMatchName(a.name, w) ||
+      (a.aliases||[]).some(al => searchMatchName(al, w))
+    );
+    if (a && !foundAnimals.find(x=>x.id===a.id)) {
+      foundAnimals.push(a); usedWords.add(w); continue;
+    }
+    const f = FOODS.find(f =>
+      searchMatchName(f.name, w) ||
+      (f.aliases||[]).some(al => searchMatchName(al, w))
+    );
+    if (f && !foundFoods.find(x=>x.id===f.id)) {
+      foundFoods.push(f); usedWords.add(w);
+    }
+  }
+
+  const parts = [];
+
+  // חיות + מזונות — כל שילוב
+  if (foundAnimals.length && foundFoods.length) {
+    for (const food of foundFoods) {
+      for (const animal of foundAnimals) {
+        const status = food.animals?.[animal.id]?.s;
+        const amt = food.animals?.[animal.id]?.a || '';
+        const note = food.animals?.[animal.id]?.n || '';
+        let badge, color, bg;
+        if (status === 'ok')       { badge='✅ מותר';          color='#1a7a40'; bg='#e8fff3'; }
+        else if (status === 'lim') { badge='⚠️ במידה';         color='#7a5500'; bg='#fffbe0'; }
+        else if (status === 'no')  { badge='❌ אסור';           color='#b02020'; bg='#ffe8e8'; }
+        else if (status === 'nr')  { badge='➖ לא רלוונטי';    color='#888';    bg='#f4f4f4'; }
+        else                       { badge='❓ אין מידע';       color='#888';    bg='#f4f4f4'; }
+        parts.push(`
+          <div style="background:${bg};border-radius:10px;padding:.45rem .75rem;display:flex;align-items:center;gap:.45rem;flex-wrap:wrap">
+            <span>${food.emoji} <strong>${food.name}</strong></span>
+            <span style="color:#bbb">+</span>
+            <span>${animal.emoji} <strong>${animal.name}</strong></span>
+            <span style="font-weight:900;color:${color}">${badge}</span>
+            ${amt?`<span style="font-size:.75rem;color:#666">${amt}</span>`:''}
+            ${note?`<span style="font-size:.75rem;color:#888;font-style:italic">${note}</span>`:''}
+            <a href="#" onclick="event.preventDefault();openFoodModal('${food.id}')" style="font-size:.72rem;color:#3aaa6e;text-decoration:underline dotted">פרטים ←</a>
+          </div>`);
+      }
+      // גם כרטיסיית המזון עצמו אם יש כמה חיות
+      if (foundAnimals.length > 1) {
+        parts.push(`
+          <div style="background:#f4fff8;border-radius:10px;padding:.35rem .75rem;display:flex;align-items:center;gap:.4rem">
+            <span>${food.emoji} <strong>${food.name}</strong> — כל הפרטים:</span>
+            <a href="#" onclick="event.preventDefault();openFoodModal('${food.id}')" style="font-size:.72rem;color:#3aaa6e;text-decoration:underline dotted">פתח כרטיסייה ←</a>
+          </div>`);
+      }
+    }
+    res.innerHTML = `<div style="display:grid;gap:.35rem">${parts.join('')}</div>`;
+    return;
+  }
+
+  // רק חיות
+  if (foundAnimals.length && !foundFoods.length) {
+    for (const a of foundAnimals) {
+      const notInCorner = !a.ours;
+      const notInCornerBadge = notInCorner
+        ? `<span style="font-size:.7rem;background:#fff3d0;color:#7a5500;border-radius:50px;padding:.05rem .4rem;font-weight:700">לא בפינת החי שלנו</span>`
+        : '';
+      parts.push(`
+        <div style="background:${notInCorner?'#fafafa':'#f0f4ff'};border-radius:10px;padding:.4rem .75rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap">
+          <span>${a.emoji} <strong>${a.name}</strong></span>
+          ${notInCornerBadge}
+          <a href="#" onclick="event.preventDefault();switchTab('animals');setTimeout(()=>{const el=document.getElementById('acard_${a.id}');if(el)el.scrollIntoView({behavior:'smooth',block:'center'})},200)" style="font-size:.75rem;color:#3aaa6e;text-decoration:underline dotted">כרטיסיית מידע ←</a>
+          ${!notInCorner?`<a href="#" onclick="event.preventDefault();switchTab('byanimal');setTimeout(()=>selectByAnimal('${a.id}'),100)" style="font-size:.75rem;color:#3aaa6e;text-decoration:underline dotted">רשימת מזון ←</a>`:''}
+          <a href="#" onclick="event.preventDefault();openAnimalModal('${a.id}')" style="font-size:.75rem;color:#5060a0;text-decoration:underline dotted">מידע ←</a>
+        </div>`);
+    }
+    res.innerHTML = `<div style="display:grid;gap:.35rem">${parts.join('')}</div>`;
+    return;
+  }
+
+  // רק מזונות
+  if (foundFoods.length && !foundAnimals.length) {
+    for (const f of foundFoods) {
+      parts.push(`
+        <div style="background:#f4fff8;border-radius:10px;padding:.4rem .75rem;display:flex;align-items:center;gap:.4rem">
+          <span>${f.emoji} <strong>${f.name}</strong></span>
+          <a href="#" onclick="event.preventDefault();openFoodModal('${f.id}')" style="font-size:.75rem;color:#3aaa6e;text-decoration:underline dotted">מה אומרת כל חיה ←</a>
+        </div>`);
+    }
+    res.innerHTML = `<div style="display:grid;gap:.35rem">${parts.join('')}</div>`;
+    return;
+  }
+
+  // בדוק אם זו חיה שאין לנו
+  for (const w of words) {
+    const found = findInNotOursList(w);
+    if (found) {
+      const displayName = w; // המילה שהמשתמש כתב
+      const msg = found.glad
+        ? `${found.emoji} לשמחתנו אין לנו ${displayName} בפינת החי 😅`
+        : `${found.emoji} לצערנו אין לנו ${displayName} בפינת החי 🙏`;
+      res.innerHTML = `<div style="background:#fff8e8;border-radius:12px;padding:.45rem .85rem;font-size:.85rem;color:#7a5000">${msg}</div>`;
+      return;
+    }
+  }
+
+  // לא נמצא כלום
+  res.innerHTML = `
+    <div style="color:#888;font-size:.82rem">
+      לא נמצא.
+      <a href="#" onclick="event.preventDefault();switchTab('search');setTimeout(()=>{const el=document.getElementById('searchInput');el.value='${q.replace(/'/g,"\\'")}';doSearch()},100)" style="color:#3aaa6e;text-decoration:underline dotted">חיפוש מורחב ←</a>
+    </div>`;
+}
+
+
+
 
 // --- קונפטי ---
 function launchConfetti() {
