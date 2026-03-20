@@ -4103,6 +4103,18 @@ function handleGlobalSearch(val) {
   }
 
   const parts = [];
+  const notOursParts = [];
+
+  // אסוף "לצערנו אין לנו" — יוצג בסוף
+  for (const w of words) {
+    const notOurs = findInNotOursList(w);
+    if (notOurs) {
+      const msg = notOurs.glad
+        ? `${notOurs.emoji} לשמחתנו אין לנו ${w} בפינת החי 😅`
+        : `${notOurs.emoji} לצערנו אין לנו ${w} בפינת החי 🙏`;
+      notOursParts.push(`<div style="background:#fff8e8;border-radius:10px;padding:.4rem .75rem;font-size:.85rem;color:#7a5000">${msg}</div>`);
+    }
+  }
 
   // חיות + מזונות — כל שילוב
   if (foundAnimals.length && foundFoods.length) {
@@ -4128,7 +4140,6 @@ function handleGlobalSearch(val) {
             <a href="#" onclick="event.preventDefault();openFoodModal('${food.id}')" style="font-size:.72rem;color:#3aaa6e;text-decoration:underline dotted">פרטים ←</a>
           </div>`);
       }
-      // גם כרטיסיית המזון עצמו אם יש כמה חיות
       if (foundAnimals.length > 1) {
         parts.push(`
           <div style="background:#f4fff8;border-radius:10px;padding:.35rem .75rem;display:flex;align-items:center;gap:.4rem">
@@ -4137,12 +4148,8 @@ function handleGlobalSearch(val) {
           </div>`);
       }
     }
-    res.innerHTML = `<div style="display:grid;gap:.35rem">${parts.join('')}</div>`;
-    return;
-  }
-
-  // רק חיות
-  if (foundAnimals.length && !foundFoods.length) {
+  } else if (foundAnimals.length) {
+    // רק חיות
     for (const a of foundAnimals) {
       const notInCorner = !a.ours;
       const notInCornerBadge = notInCorner
@@ -4157,22 +4164,8 @@ function handleGlobalSearch(val) {
           <a href="#" onclick="event.preventDefault();openAnimalModal('${a.id}')" style="font-size:.75rem;color:#5060a0;text-decoration:underline dotted">מידע ←</a>
         </div>`);
     }
-    res.innerHTML = `<div style="display:grid;gap:.35rem">${parts.join('')}</div>`;
-    return;
-  }
-
-  // רק מזונות — אבל גם בדוק אם יש חיה שאין לנו בשאילתה
-  if (foundFoods.length && !foundAnimals.length) {
-    // בדוק גם חיות שאין לנו
-    for (const w of words) {
-      const notOurs = findInNotOursList(w);
-      if (notOurs) {
-        const msg = notOurs.glad
-          ? `${notOurs.emoji} לשמחתנו אין לנו ${w} בפינת החי 😅`
-          : `${notOurs.emoji} לצערנו אין לנו ${w} בפינת החי 🙏`;
-        parts.push(`<div style="background:#fff8e8;border-radius:10px;padding:.4rem .75rem;font-size:.85rem;color:#7a5000">${msg}</div>`);
-      }
-    }
+  } else if (foundFoods.length) {
+    // רק מזונות
     for (const f of foundFoods) {
       parts.push(`
         <div style="background:#f4fff8;border-radius:10px;padding:.4rem .75rem;display:flex;align-items:center;gap:.4rem">
@@ -4180,25 +4173,10 @@ function handleGlobalSearch(val) {
           <a href="#" onclick="event.preventDefault();openFoodModal('${f.id}')" style="font-size:.75rem;color:#3aaa6e;text-decoration:underline dotted">מי אוכל את זה? ←</a>
         </div>`);
     }
-    res.innerHTML = `<div style="display:grid;gap:.35rem">${parts.join('')}</div>`;
-    return;
   }
 
-  // בדוק אם יש חיות שאין לנו (אפשר כמה)
-  const notOursParts = [];
-  for (const w of words) {
-    const found = findInNotOursList(w);
-    if (found) {
-      const msg = found.glad
-        ? `${found.emoji} לשמחתנו אין לנו ${w} בפינת החי 😅`
-        : `${found.emoji} לצערנו אין לנו ${w} בפינת החי 🙏`;
-      notOursParts.push(msg);
-    }
-  }
-  if (notOursParts.length) {
-    res.innerHTML = notOursParts.map(msg =>
-      `<div style="background:#fff8e8;border-radius:12px;padding:.45rem .85rem;font-size:.85rem;color:#7a5000">${msg}</div>`
-    ).join('');
+  if (parts.length || notOursParts.length) {
+    res.innerHTML = `<div style="display:grid;gap:.35rem">${[...parts,...notOursParts].join('')}</div>`;
     return;
   }
 
