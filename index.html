@@ -4786,11 +4786,7 @@ function doSurprise() {
 // --- 🔢 42 Easter Egg ---
 function check42(val) {
   if (val.trim() === '42') {
-    const res = document.getElementById('globalSearchResult');
-    res.innerHTML = `<div style="background:#f0f4ff;border-radius:12px;padding:.6rem .85rem;font-size:.85rem;color:#3050a0;line-height:1.6">
-      🌌 <strong>42</strong> — התשובה לשאלה על החיים, היקום, והכל.<br>
-      <span style="font-size:.78rem;color:#888">השאלה עצמה עדיין לא ברורה. (מדריך הטרמפיסט לגלקסיה, דאגלס אדמס)</span>
-    </div>`;
+    document.getElementById('globalSearchResult').innerHTML = '';
     spawnStars(window.innerWidth/2, window.innerHeight/3);
   }
 }
