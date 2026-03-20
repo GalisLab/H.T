@@ -4,10 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🌿 מה אוכלים היום בפינת החי?</title>
-<meta name="description" content="המדריך המלא לפינת החי של בית ספר שז"ר באר שבע, מה מותר לתת לחיות, תפריט יומי לפי מה שהתרמתם, ומידע על כל בעלי החיים שלנו.">
-<meta name="keywords" content="פינת חי שז"ר, בית ספר שז"ר באר שבע, שז"ר חיות, שז"ר בעלי חיים, פינת החי בית ספר, מה לתת לחיות, האכלת בעלי חיים, ארנבון שרקן תוכי צ'ינצ'ילה אוגר גרביל צב חרדון, גלי זייצ'יק, gali zaychik">
-<meta name="author" content="גלי זייצ'יק — פינת החי בית ספר שז&quot;ר">
-<meta name="keywords" content="פינת חי שז"ר, בית ספר שז"ר באר שבע, שז"ר חיות, שז"ר בעלי חיים, פינת החי בית ספר, מה לתת לחיות, האכלת בעלי חיים, ארנבון שרקן תוכי צ'ינצ'ילה אוגר גרביל צב חרדון, גלי זייצ'יק, גלי זייציק, גלי זיצ'יק, גלי זיציק, gali zaychik, גלי מטפלת בעלי חיים, גלי חיות, גלי טיפול, טיפול בעזרת בעלי חיים שז"ר">
+<meta name="description" content="המדריך המלא לפינת החי של בית ספר שז&quot;ר באר שבע. מה מותר לתת לחיות, תפריט יומי לפי מה שהתרמתם, ומידע על כל בעלי החיים שלנו.">
+<meta name="keywords" content="פינת חי שז&quot;ר, בית ספר שז&quot;ר באר שבע, שז&quot;ר חיות, שז&quot;ר בעלי חיים, פינת החי בית ספר, פינת חי באר שבע, מה לתת לחיות, האכלת בעלי חיים, ארנבון שרקן תוכי קוקטייל ציפור אהבה צ&apos;ינצ&apos;ילה אוגר גרביל צב חרדון שממית, גלי זייצ&apos;יק, גלי זייציק, גלי זיצ&apos;יק, גלי חיות, גלי מטפלת בעלי חיים, gali zaychik, gali zaichik, טיפול בעזרת בעלי חיים, פינת חי בית ספר">
+<meta name="author" content="גלי זייצ&apos;יק, פינת החי בית ספר שז&quot;ר">
 <meta property="og:title" content="🌿 מה אוכלים היום בפינת החי?">
 <meta property="og:description" content="מדריך מזון לחיות, תפריט יומי חכם, ומידע על כל בעלי החיים שלנו.">
 <meta property="og:type" content="website">
@@ -235,7 +234,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
 <div class="loader" id="loader"><div class="spin">🌿</div><div>בעלי החיים מתארגנים ובאים...</div></div>
 
 <header>
-  <div class="ticker">🦜🐹🐢🦎🐛🐰🐕🐟🦎🐱🐹🐰🦜🐢🐛🐕🐟🦜🐹🐢🦎🐛🐰🐕🐟🦎🐱🐹🐰🦜🐢🐛🐕🐟</div>
+  <div class="ticker" onclick="spawnPawTrail()" style="cursor:pointer" title="🐾">🦜🐹🐢🦎🐛🐰🐕🐟🦎🐱🐹🐰🦜🐢🐛🐕🐟🦜🐹🐢🦎🐛🐰🐕🐟🦎🐱🐹🐰🦜🐢🐛🐕🐟</div>
   <div style="font-size:.75rem;color:#557;font-weight:700;margin-bottom:.2rem">🏫 בית ספר שז"ר - פינת החי</div>
   <h1>🌿 מה אוכלים היום בפינת החי?</h1>
   <p>המדריך לכל מה שצריך!</p>
@@ -248,7 +247,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
   <div style="position:relative;max-width:600px;margin:0 auto">
     <span style="position:absolute;right:.75rem;top:50%;transform:translateY(-50%);font-size:1.1rem;pointer-events:none">🔍</span>
     <input id="globalSearchInput" type="text"
-      placeholder="כתבו שם חיה, מזון, או שניהם ביחד — למשל: גרביל בטטה"
+      placeholder="כתבו שם חיה, מזון, או שניהם ביחד, למשל: גרביל בטטה"
       oninput="handleGlobalSearch(this.value)"
       style="width:100%;box-sizing:border-box;padding:.55rem 2.4rem .55rem 2.4rem;border:2px solid #c8e0c8;border-radius:50px;font-size:.88rem;font-family:inherit;outline:none;transition:border-color .15s;background:#fafff8"
       onfocus="this.style.borderColor='#3aaa6e'"
@@ -257,7 +256,9 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
     <button onclick="startVoiceSearch('globalSearchInput',this)" title="חיפוש קולי" style="position:absolute;left:.3rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:1.1rem;color:#666;padding:.1rem .3rem">🎤</button>
   </div>
   <div id="globalSearchResult" style="max-width:600px;margin:.4rem auto 0;font-size:.85rem"></div>
-</div>
+  <div style="text-align:center;margin-top:.4rem">
+    <button onclick="doSurprise()" style="background:none;border:none;cursor:pointer;font-size:.75rem;color:#aaa;font-family:inherit;padding:.2rem .5rem;border-radius:50px;transition:color .2s" onmouseover="this.style.color='#3aaa6e'" onmouseout="this.style.color='#aaa'">🎲 הפתיעו אותי</button>
+  </div>
 
 <div id="adminBar" style="display:none" class="admin-bar">
   <span>🔓 מצב עריכה פעיל</span>
@@ -267,7 +268,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
 
 <div class="tabs">
   <button class="tab-btn active" data-tab="quickguide">📝 בקיצור <button onclick="event.stopPropagation();speakText('בקיצור. רשימת קניות מהירה.',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .15rem;line-height:1" title="הקראה">🔊</button></button>
-  <button class="tab-btn" data-tab="search">🔍 חיפוש <button onclick="event.stopPropagation();speakText('חיפוש. מזון, חיה, קטגוריה.',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .15rem;line-height:1" title="הקראה">🔊</button></button>
+  <button class="tab-btn" data-tab="search">🔍 חיפוש מורחב <button onclick="event.stopPropagation();speakText('חיפוש מורחב. מזון, חיה, קטגוריה.',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .15rem;line-height:1" title="הקראה">🔊</button></button>
   <button class="tab-btn" data-tab="byanimal">🐾 מה אוכלת כל חיה? <button onclick="event.stopPropagation();speakText('מה אוכלת כל חיה? בחרי חיה וראי מה מותר ומה אסור.',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .15rem;line-height:1" title="הקראה">🔊</button></button>
   <button class="tab-btn" data-tab="allfoods">📋 כל המזונות <button onclick="event.stopPropagation();speakText('כל המזונות. רשימה מלאה של מה מותר לכל חיה.',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .15rem;line-height:1" title="הקראה">🔊</button></button>
   <button class="tab-btn" data-tab="animals">🐾 מידע על החיות <button onclick="event.stopPropagation();speakText('מידע על החיות. מידע על כל החיות בפינת החי.',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .15rem;line-height:1" title="הקראה">🔊</button></button>
@@ -293,6 +294,17 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
 
 <div class="tab-panel active" id="tab-quickguide">
   <div class="section-hero"><span class="hero-emoji">📝</span><h2>בקיצור</h2><p>רשימת קניות מהירה - מה להביא ומה לא</p><button onclick="speakTabAll('tab-quickguide',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.78rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
+  <!-- חיפוש מהיר בבקיצור -->
+  <div style="position:relative;margin-bottom:.6rem">
+    <input id="qgSearchInput" type="text"
+      placeholder="כתבו שם מזון לבדוק אם מותר..."
+      oninput="qgSearch(this.value)"
+      style="width:100%;box-sizing:border-box;padding:.45rem 2rem .45rem .7rem;border:2px solid #dde;border-radius:50px;font-size:.85rem;font-family:inherit;outline:none;transition:border-color .15s"
+      onfocus="this.style.borderColor='#3aaa6e'"
+      onblur="this.style.borderColor='#dde'">
+    <button onclick="document.getElementById('qgSearchInput').value='';qgSearch('')" style="position:absolute;left:.6rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:.85rem;color:#aaa">✕</button>
+  </div>
+  <div id="qgSearchResult" style="margin-bottom:.5rem;font-size:.85rem"></div>
 
   <div style="display:grid;gap:1rem;padding:.2rem">
 
@@ -310,7 +322,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
         <div id="qg-vegfruits">
           <div style="font-size:.7rem;font-weight:800;color:#2a7a50;margin-bottom:.3rem;letter-spacing:.04em">🥦🍎 ירקות ופירות</div>
           <div id="qg-vegfruits-chips" style="display:flex;flex-wrap:wrap;gap:.28rem">
-            <span class="qg-chip qg-yes" onclick="openFoodModal('carrot')" style="cursor:pointer">🥕 גזר 🥗 <button onclick="event.stopPropagation();speakText('גזר',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+            <span class="qg-chip qg-yes" onclick="spawnCarrots(event.clientX,event.clientY);setTimeout(()=>openFoodModal('carrot'),300)" style="cursor:pointer">🥕 גזר 🥗 <button onclick="event.stopPropagation();speakText('גזר',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('cucumber')" style="cursor:pointer">🥒 מלפפון 🥗 <button onclick="event.stopPropagation();speakText('מלפפון',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('tomato')" style="cursor:pointer">🍅 עגבנייה 🥗 <button onclick="event.stopPropagation();speakText('עגבנייה',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('sweet_pepper')" style="cursor:pointer">🌶️ פלפל מתוק 🥗 <button onclick="event.stopPropagation();speakText('פלפל מתוק',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
@@ -417,7 +429,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
           <div style="font-weight:900;font-size:.9rem;color:#1a6640;flex:1">עייף = מעולה! 💚</div>
           <button onclick="speakText('עייף זה מעולה! ירק רך קצת, שעבר את שיאו, שנראה עייף - החיות לא מפחדות ממנו בכלל. שאריות חיתוך, קליפות, גבעולים - יתקבלו בברכה!',this)" title="הקראה" style="background:#d0f5e0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.8rem;flex-shrink:0">🔊</button>
         </div>
-        <div style="font-size:.8rem;color:#2a5535;line-height:1.6">ירק רך קצת, שעבר את שיאו, שנראה עייף - החיות לא מפחדות ממנו בכלל. שאריות חיתוך, קליפות, גבעולים - יתקבלו בברכה!</div>
+        <div onclick="spawnThankYouEffect(this.closest('div[style*=border-radius]'))" style="font-size:.8rem;color:#2a5535;line-height:1.6;cursor:pointer">ירק רך קצת, שעבר את שיאו, שנראה עייף - החיות לא מפחדות ממנו בכלל. שאריות חיתוך, קליפות, גבעולים - יתקבלו בברכה!</div>
       </div>
     </div>
 
@@ -429,7 +441,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
           <div style="font-weight:900;font-size:.9rem;color:#7a4000;flex:1">רקוב או מעופש? לזבל בחיבה 🙏</div>
           <button onclick="speakText('רקוב או מעופש? לזבל בחיבה. עובש מייצר רעלים שחודרים לכל הפרי, גם לחלקים שנראים בריאים. יש ספק? תנו לו לנוח בפח. החיות שלנו יודו לכם.',this)" title="הקראה" style="background:#ffe8c0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.8rem;flex-shrink:0">🔊</button>
         </div>
-        <div style="font-size:.8rem;color:#8a5520;line-height:1.6">עובש מייצר רעלים (מיקוטוקסינים) שחודרים לכל הפרי - גם לחלקים שנראים בריאים. יש ספק? תנו לו לנוח בפח. החיות שלנו יודו לכם 💚</div>
+        <div onclick="spawnMoldEffect(this.closest('div[style*=border-radius]'))" style="font-size:.8rem;color:#8a5520;line-height:1.6;cursor:pointer">עובש מייצר רעלים (מיקוטוקסינים) שחודרים לכל הפרי - גם לחלקים שנראים בריאים. יש ספק? תנו לו לנוח בפח. החיות שלנו יודו לכם 💚</div>
       </div>
     </div>
 
@@ -443,7 +455,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
   </div>
   <div style="background:#f0f8ff;border-radius:12px;border-right:4px solid #4a90d9;padding:.6rem .9rem;margin-bottom:.7rem;font-size:.82rem;color:#1a3a6a;line-height:1.65">
     <strong>💡 מה יש כאן שלא מופיע בחיפוש הרגיל?</strong><br>
-    כרטיסי מזון מלאים עם כל הפרטים, סינון לפי קטגוריה (כל הירקות, כל הפירות...), חיפוש בתרומות ובפינת החי שלנו, וחיפוש קולי 🎤 — שמועיל אם הידיים עסוקות בהכנת האוכל.
+    כרטיסי מזון מלאים עם כל הפרטים, סינון לפי קטגוריה (כל הירקות, כל הפירות...), חיפוש בתרומות ובפינת החי שלנו, וחיפוש קולי 🎤 שמועיל אם הידיים עסוקות בהכנת האוכל.
   </div>
   <div class="search-wrap"><span class="search-icon">🔍</span><input type="text" id="searchInput" placeholder="גזר, ארנבון, פרי, שוקולד, קרטון, גרביים..." oninput="doSearch()"><button id="searchClearBtn" onclick="document.getElementById('searchInput').value='';doSearch()" style="display:none;background:none;border:none;cursor:pointer;font-size:.85rem;color:#999;padding:.2rem .4rem;position:absolute;left:2rem">✕</button><button onclick="startVoiceSearch('searchInput',this)" title="חיפוש קולי" style="background:none;border:none;cursor:pointer;font-size:1.1rem;padding:.2rem .4rem;position:absolute;left:.2rem;color:#666">🎤</button></div>
   <div class="filter-row" id="catBar"></div>
@@ -457,6 +469,16 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
 <div class="tab-panel" id="tab-allfoods">
   <div class="section-hero"><span class="hero-emoji">📋</span><h2>כל המזונות</h2><p>רשימה מלאה - לחיצה על שורה לפרטים · <span style="color:#1a7a40;font-weight:700">כן</span> / <span style="color:#8a5500;font-weight:700">מעט</span> / <span style="color:#c02020;font-weight:700">לא</span></p><button onclick="speakTabAll('tab-allfoods',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.78rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
   <div class="filter-row" id="allCatBar"></div>
+  <!-- חיפוש מרובה מזונות -->
+  <div style="position:relative;margin-bottom:.6rem">
+    <input id="allFoodsSearch" type="text"
+      placeholder="סנן לפי מזון, אפשר כמה: גזר, ביצה קשה, חובזה"
+      oninput="filterAllFoodsTable(this.value)"
+      style="width:100%;box-sizing:border-box;padding:.5rem 2.2rem .5rem .7rem;border:2px solid #dde;border-radius:50px;font-size:.85rem;font-family:inherit;outline:none;transition:border-color .15s"
+      onfocus="this.style.borderColor='#3aaa6e'"
+      onblur="this.style.borderColor='#dde'">
+    <button onclick="document.getElementById('allFoodsSearch').value='';filterAllFoodsTable('')" style="position:absolute;left:.6rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:.85rem;color:#aaa">✕</button>
+  </div>
   <div id="allFoodsTable"></div>
   <div style="background:#e8f4ff;border-right:4px solid #4a90d9;border-radius:10px;padding:.5rem .85rem;font-size:.82rem;color:#1a4a7a;margin-top:.7rem;display:flex;align-items:center;gap:.5rem">
     <span class="water-reminder" style="flex:1;cursor:pointer" onclick="spawnWaterBubbles(this)" title="💧">💧 <strong>מים נקיים תמיד!</strong> לכל החיות בפינה, יש לוודא שיש מים טריים ונקיים בכל עת, ללא קשר למזון.</span>
@@ -531,17 +553,17 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
       <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.5rem">
         <span style="font-size:2.2rem">🦎🦎</span>
         <div>
-          <div style="display:flex;align-items:center;gap:.3rem"><button onclick="speakText('סויה ופפאיה. שממיות מנומרות. כשקריר בחוץ - אוהבות להשתכשך באמבטיה חמימה. מתרגלות לפינת החי לאט לאט.',this)" title="הקראה" style="background:#c8f0d0;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.82rem;flex-shrink:0">🔊</button><div style="font-size:1.15rem;font-weight:900;color:#1a5c35">סויה ופפאיה</div></div>
+          <div style="display:flex;align-items:center;gap:.3rem"><button onclick="speakText('סויה ופפאיה. שממיות שקטות שאוהבות את הפינה שלהן. כשקריר בחוץ הן נהנות מאמבטיה חמימה, ובשאר הזמן הן נחות במסתור.',this)" title="הקראה" style="background:#c8f0d0;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.82rem;flex-shrink:0">🔊</button><div style="font-size:1.15rem;font-weight:900;color:#1a5c35">סויה ופפאיה</div></div>
           <div style="font-size:.78rem;color:#aaa;display:flex;gap:.6rem;flex-wrap:wrap">
             <a href="#" onclick="event.preventDefault();openAnimalModal('leopardgecko')" style="color:#2a8c50;text-decoration:underline dotted">שממיות מנומרות</a>
             <a href="#" onclick="event.preventDefault();document.querySelector('[data-tab=byanimal]').click();setTimeout(()=>{const el=document.querySelector('[data-aid=leopardgecko]');if(el)el.click()},250)" style="color:#3aaa6e;text-decoration:underline dotted">🥗 העדפות מזון</a>
           </div>
         </div>
       </div>
-      <div style="font-size:.88rem;color:#1a3a20;line-height:1.65">כשקריר בחוץ - אוהבות להשתכשך באמבטיה חמימה. 🛁 מתרגלות לפינת החי <strong>לאט לאט</strong>.
+      <div style="font-size:.88rem;color:#1a3a20;line-height:1.65">🥗 שממיות שקטות, שאוהבות את הפינה שלהן. כשקריר בחוץ, הן נהנות מאמבטיה חמימה, ובשאר הזמן הן נחות במסתור. לפעמים יחד, ולפעמים כל אחת לחוד. 🦎💚
       <div style="text-align:center;margin-top:.8rem;font-size:1.3rem">🦎💚</div>
       <div style="max-width:260px;margin:.4rem auto"><div class="rainbow-frame"><img src="https://i.imgur.com/oHY27zT.jpeg" style="width:100%;height:260px;border-radius:14px;object-fit:contain;display:block;background:#4caf7d" onerror="this.parentElement.style.display='none'"></div></div>
-      <div style="text-align:center;font-size:.88rem;color:#666;font-weight:700;margin-bottom:.3rem">סויה ופפאיה מתרגלות 🛁</div>
+      <div onclick="spawnRainbow(this)" style="text-align:center;font-size:.88rem;color:#666;font-weight:700;margin-bottom:.3rem;cursor:pointer">סויה ופפאיה ביחד 🦎🦎</div>
       <div style="text-align:center;font-size:1.3rem">💚🦎</div></div>
     </div>
 
@@ -598,7 +620,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
           </div>
         </div>
       </div>
-      <div style="font-size:.88rem;color:#3a1060;line-height:1.65">שלושה זוגות - שני זוגות <strong>קוקטייל</strong> ואחד <strong>מעורב</strong> (ציפור אהבה + קוקטייל): טאקו וקשת · וניל וגשם · ששי ונור. 💜</div>
+      <div style="font-size:.88rem;color:#3a1060;line-height:1.65">שלושה זוגות, שני זוגות <strong>קוקטייל</strong> ואחד <strong>מעורב</strong> (ציפור אהבה + קוקטייל): טאקו וקשת · וניל וגשם · ששי ונור. 💜</div>
       <div style="text-align:center;margin-top:.8rem;font-size:1.3rem">💚🦜<a href="https://www.yardbirds.org.il/birds_sounds" target="_blank" rel="noopener" title="🐦 סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">🎵</a>💛</div>
       <div style="display:flex;gap:.7rem;justify-content:center;align-items:flex-start;flex-wrap:wrap">
         <div style="flex:1;min-width:140px;text-align:center"><div class="rainbow-frame"><img src="https://i.imgur.com/vRLkJZw.jpeg" style="width:100%;height:260px;border-radius:14px;object-fit:cover;object-position:center center;display:block;box-shadow:0 2px 10px rgba(0,0,0,.15)"></div>
@@ -624,7 +646,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
           </div>
         </div>
       </div>
-      <div style="font-size:.88rem;color:#4a2800;line-height:1.65">הצ'ינצ'ילה הוותיק שלנו. פעם ברח מבית הספר, הגיע לכביש ו<strong>נורא נבהל מהמכוניות</strong>. מאז הוא הבין שהכי בטוח ונעים פה איתנו — אין כמו בבית! 🏠💚
+      <div style="font-size:.88rem;color:#4a2800;line-height:1.65">הצ'ינצ'ילה הוותיק שלנו. פעם ברח מבית הספר, הגיע לכביש ו<strong>נורא נבהל מהמכוניות</strong>. מאז הוא הבין שהכי בטוח ונעים פה איתנו, אין כמו בבית! 🏠💚
       <div style="text-align:center;margin-top:.8rem;font-size:1.3rem">🐿️💛</div>
       <div style="max-width:260px;margin:.4rem auto"><div class="rainbow-frame"><img src="https://i.imgur.com/rOlTAAS.jpeg" style="width:100%;height:260px;border-radius:14px;object-fit:cover;display:block;box-shadow:0 2px 10px rgba(0,0,0,.15)" onerror="this.parentElement.style.display='none'"></div></div>
       <div style="text-align:center;font-size:.88rem;color:#666;font-weight:700;margin-bottom:.3rem">יוגי מדגמן! 😎</div>
@@ -637,14 +659,14 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
       <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.5rem">
         <span style="font-size:2.2rem">🐿️</span>
         <div>
-          <div style="display:flex;align-items:center;gap:.3rem"><button onclick="speakText('צ׳יטה. צ׳ינצ׳ילה. הבן של יוגי! מאוד שובב ומאוד מהיר - אם לא מוצאים אותו, כנראה שהוא שוב מתחבא על הרשת העליונה.',this)" title="הקראה" style="background:#ffe8b0;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.82rem;flex-shrink:0">🔊</button><div style="font-size:1.15rem;font-weight:900;color:#6a4000">צ׳יטה</div></div>
+          <div style="display:flex;align-items:center;gap:.3rem"><button onclick="speakText('צ׳יטה. צ׳ינצ׳ילה. הבן של יוגי! מאוד שובב ומאוד מהיר, אם לא מוצאים אותו, כנראה שהוא שוב מתחבא על הרשת העליונה.',this)" title="הקראה" style="background:#ffe8b0;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.82rem;flex-shrink:0">🔊</button><div style="font-size:1.15rem;font-weight:900;color:#6a4000">צ׳יטה</div></div>
           <div style="font-size:.78rem;color:#aaa;display:flex;gap:.6rem;flex-wrap:wrap">
             <a href="#" onclick="event.preventDefault();openAnimalModal('chinchilla')" style="color:#a06020;text-decoration:underline dotted">צ׳ינצ׳ילה</a>
             <a href="#" onclick="event.preventDefault();document.querySelector('[data-tab=byanimal]').click();setTimeout(()=>{const el=document.querySelector('[data-aid=chinchilla]');if(el)el.click()},250)" style="color:#3aaa6e;text-decoration:underline dotted">🥗 העדפות מזון</a>
           </div>
         </div>
       </div>
-      <div style="font-size:.88rem;color:#4a2800;line-height:1.65">הבן של יוגי! מאוד שובב ומאוד מהיר - אם לא מוצאים אותו, כנראה שהוא שוב מתחבא על הרשת העליונה. 😄 <a href="https://bomomo.com/" target="_blank" rel="noopener" title="🖌️ סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">🖌️</a>
+      <div style="font-size:.88rem;color:#4a2800;line-height:1.65">הבן של יוגי! מאוד שובב ומאוד מהיר, אם לא מוצאים אותו, כנראה שהוא שוב מתחבא על הרשת העליונה. 😄 <a href="https://bomomo.com/" target="_blank" rel="noopener" title="🖌️ סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">🖌️</a>
       <div style="text-align:center;margin-top:.8rem;font-size:1.3rem">🐿️🕸️</div>
       <div style="max-width:260px;margin:.4rem auto"><div class="rainbow-frame"><img src="https://i.imgur.com/XxEYAXL.jpeg" style="width:100%;height:260px;border-radius:14px;object-fit:cover;display:block;box-shadow:0 2px 10px rgba(0,0,0,.15)" onerror="this.parentElement.style.display='none'"></div></div>
       <div style="text-align:center;font-size:.88rem;color:#666;font-weight:700;margin-bottom:.3rem">צ'יטה משחק מחבואים 🙈</div>
@@ -666,7 +688,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
           </div>
         </div>
       </div>
-      <div style="font-size:.88rem;color:#1a4020;line-height:1.65">הארנבונת המבוגרת והסקרנית שלנו. כל פעם שהגדרה פתוחה - היא יוצאת לטייל בפינת החי. <strong>אבל תמיד חוזרת הביתה לחברות.</strong> 🐾
+      <div style="font-size:.88rem;color:#1a4020;line-height:1.65">הארנבונת המבוגרת והסקרנית שלנו. כל פעם שהגדרה פתוחה, היא יוצאת לטייל בפינת החי. <strong>אבל תמיד חוזרת הביתה לחברות.</strong> 🐾
       <div style="text-align:center;margin-top:.8rem;font-size:1.3rem">🐰🌿</div>
       <div style="max-width:260px;margin:.4rem auto"><div class="rainbow-frame"><img src="https://i.imgur.com/KrsXxG2.jpeg" style="width:100%;height:260px;border-radius:14px;object-fit:cover;display:block;box-shadow:0 2px 10px rgba(0,0,0,.15)" onerror="this.parentElement.style.display='none'"></div></div>
       <div style="text-align:center;font-size:.88rem;color:#666;font-weight:700;margin-bottom:.3rem">כוכב משתזפת ☀️</div>
@@ -691,15 +713,15 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
   </div>
 
   <div style="display:grid;gap:.6rem;margin-bottom:.9rem">
-    <div style="background:linear-gradient(135deg,#e8fff3,#f0fff8);border-radius:12px;border:2px solid #a0e8c0;padding:.75rem 1rem;display:flex;gap:.5rem;align-items:center">
+    <div onclick="spawnThankYouEffect(this)" style="background:linear-gradient(135deg,#e8fff3,#f0fff8);border-radius:12px;border:2px solid #a0e8c0;padding:.75rem 1rem;display:flex;gap:.5rem;align-items:center;cursor:pointer" title="לחצו להודות!">
       <span style="font-size:1.3rem;flex-shrink:0">🥦</span>
       <div style="font-size:.82rem;color:#1a6640;line-height:1.5;flex:1"><strong>ירק עייף, רך קצת, שעבר את שיאו?</strong> מושלם! החיות לא מפחדות ממנו בכלל. גם שאריות חיתוך, קליפות וגבעולים - יתקבלו בברכה.</div>
-      <button onclick="speakText('ירק עייף, רך קצת, שעבר את שיאו? מושלם! החיות לא מפחדות ממנו בכלל. גם שאריות חיתוך, קליפות וגבעולים יתקבלו בברכה.',this)" title="הקראה" style="background:#d0f5e0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.8rem;flex-shrink:0">🔊</button>
+      <button onclick="event.stopPropagation();speakText('ירק עייף, רך קצת, שעבר את שיאו? מושלם! החיות לא מפחדות ממנו בכלל. גם שאריות חיתוך, קליפות וגבעולים יתקבלו בברכה.',this)" title="הקראה" style="background:#d0f5e0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.8rem;flex-shrink:0">🔊</button>
     </div>
-    <div style="background:linear-gradient(135deg,#fff3e0,#fff8f0);border-radius:12px;border:2px dashed #f0a030;padding:.75rem 1rem;display:flex;gap:.5rem;align-items:center">
+    <div onclick="spawnMoldEffect(this)" style="background:linear-gradient(135deg,#fff3e0,#fff8f0);border-radius:12px;border:2px dashed #f0a030;padding:.75rem 1rem;display:flex;gap:.5rem;align-items:center;cursor:pointer">
       <span style="font-size:1.3rem;flex-shrink:0">🚫</span>
       <div style="font-size:.82rem;color:#7a4000;line-height:1.5;flex:1"><strong>רקוב או מעופש? אם יש ספק - עדיף לזרוק!</strong> 🙏 עובש מייצר רעלים שחודרים לכל הפרי גם כשלא רואים.</div>
-      <button onclick="speakText('רקוב או מעופש? אם יש ספק, עדיף לזרוק. עובש מייצר רעלים שחודרים לכל הפרי גם כשלא רואים.',this)" title="הקראה" style="background:#ffe8c0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.8rem;flex-shrink:0">🔊</button>
+      <button onclick="event.stopPropagation();speakText('רקוב או מעופש? אם יש ספק, עדיף לזרוק. עובש מייצר רעלים שחודרים לכל הפרי גם כשלא רואים.',this)" title="הקראה" style="background:#ffe8c0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.8rem;flex-shrink:0">🔊</button>
     </div>
   </div>
 
@@ -757,7 +779,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
 </div>
 
 <div class="tab-panel" id="tab-dailymenu">
-  <div class="section-hero"><span class="hero-emoji">🥗</span><h2>תפריט יומי</h2><p>סמן מה קיבלת היום — וקבל תפריט מותאם לכל מתחם וחיה</p><button onclick="dmSpeakAll()" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.78rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
+  <div class="section-hero"><span class="hero-emoji">🥗</span><h2>תפריט יומי</h2><p>סמן מה קיבלת היום, וקבל תפריט מותאם לכל מתחם וחיה</p><button onclick="dmSpeakAll()" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.78rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
 
   <div style="display:grid;gap:1rem">
 
@@ -765,7 +787,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
     <div style="background:white;border-radius:14px;box-shadow:var(--shadow);overflow:hidden">
       <div style="background:#fff3e0;padding:.7rem 1rem;border-bottom:2px solid #f0c878;display:flex;align-items:center;gap:.5rem">
         <span style="font-size:1.3rem">🧺</span>
-        <div style="font-weight:900;font-size:.95rem;color:#7a4000;flex:1">שלב 1 — מה קיבלנו היום?</div>
+        <div style="font-weight:900;font-size:.95rem;color:#7a4000;flex:1">שלב 1: מה קיבלנו היום?</div>
         <button onclick="speakText('שלב אחד. מה קיבלנו היום? לחצי על שם המזון כדי להוסיף אותו לסל. לאחר מכן בחרי כמות: מעט, בינוני, או הרבה.',this)" style="background:#ffe0b0;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.85rem;flex-shrink:0">🔊</button>
         <button onclick="dmClearAll()" style="background:#ffe0b0;border:none;border-radius:50px;padding:.2rem .65rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7a4000">נקה הכל</button>
       </div>
@@ -788,7 +810,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
     <div style="background:white;border-radius:14px;box-shadow:var(--shadow);overflow:hidden">
       <div style="background:#e8f0ff;padding:.7rem 1rem;border-bottom:2px solid #c0d0f0;display:flex;align-items:center;gap:.5rem">
         <span style="font-size:1.3rem">🐾</span>
-        <div style="font-weight:900;font-size:.95rem;color:#3050a0;flex:1">שלב 2 — כמה חיות מכל סוג?</div>
+        <div style="font-weight:900;font-size:.95rem;color:#3050a0;flex:1">שלב 2: כמה חיות מכל סוג?</div>
         <button onclick="speakText('שלב שניים. כמה חיות מכל סוג? המתחמים הגדרה, הווילה וזוג אוגרים סיביריים קבועים. לשאר החיות אפשר לשנות את המספר עם כפתורי פלוס ומינוס.',this)" style="background:#d0d8f8;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.85rem;flex-shrink:0">🔊</button>
       </div>
       <div style="padding:.8rem 1rem">
@@ -797,13 +819,13 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
         <!-- מתחמים קבועים -->
         <div style="font-size:.7rem;font-weight:800;color:#888;margin-bottom:.4rem;letter-spacing:.05em">🏘️ מתחמים קבועים</div>
         <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.9rem">
-          <div style="background:#f0f4ff;border-radius:10px;padding:.4rem .75rem;font-size:.82rem;font-weight:700;color:#3050a0">🏡 הגדרה — 2 שרקנים + 2 ארנבונים</div>
-          <div style="background:#f0f4ff;border-radius:10px;padding:.4rem .75rem;font-size:.82rem;font-weight:700;color:#3050a0">🏠 הווילה — 5 קוקטיילים + ציפור אהבה</div>
+          <div style="background:#f0f4ff;border-radius:10px;padding:.4rem .75rem;font-size:.82rem;font-weight:700;color:#3050a0">🏡 הגדרה: 2 שרקנים + 2 ארנבונים</div>
+          <div style="background:#f0f4ff;border-radius:10px;padding:.4rem .75rem;font-size:.82rem;font-weight:700;color:#3050a0">🏠 הווילה: 5 קוקטיילים + ציפור אהבה</div>
           <div style="background:#f0f4ff;border-radius:10px;padding:.4rem .75rem;font-size:.82rem;font-weight:700;color:#3050a0">🐹 זוג אוגרים סיביריים</div>
         </div>
 
         <!-- חיות בודדות עם +/- -->
-        <div style="font-size:.7rem;font-weight:800;color:#888;margin-bottom:.5rem;letter-spacing:.05em">🐾 חיות — בחר כמה פרטים</div>
+        <div style="font-size:.7rem;font-weight:800;color:#888;margin-bottom:.5rem;letter-spacing:.05em">🐾 חיות, בחר כמה פרטים</div>
         <div id="dm-animal-counters" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.5rem"></div>
       </div>
     </div>
@@ -820,7 +842,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
     <div style="background:#fde8e8;border-radius:14px;border:2px solid #f0b8b8;padding:.7rem 1rem;display:flex;align-items:flex-start;gap:.6rem">
       <span style="font-size:1.3rem;flex-shrink:0">⚠️</span>
       <div style="flex:1">
-        <div style="font-weight:900;font-size:.88rem;color:#8b1c1c;margin-bottom:.3rem">תזכורת — אסור לתת לבעלי החיים!</div>
+        <div style="font-weight:900;font-size:.88rem;color:#8b1c1c;margin-bottom:.3rem">תזכורת: אסור לתת לבעלי החיים!</div>
         <div style="font-size:.9rem;line-height:1.7">🧅 בצל &nbsp;🧄 שום &nbsp;🥑 אבוקדו &nbsp;🍫 שוקולד &nbsp;🍟🍬 חטיפים מלוחים ומתוקים &nbsp;🍆 חציל &nbsp;🍋 לימון &nbsp;🥛 מוצרי חלב</div>
       </div>
       <button onclick="speakText('תזכורת. אסור לתת לבעלי החיים: בצל, שום, אבוקדו, שוקולד, חטיפים מלוחים ומתוקים, חציל, לימון, מוצרי חלב.',this)" style="background:#f8d0d0;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.85rem;flex-shrink:0">🔊</button>
@@ -836,27 +858,27 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
       <div style="padding:.8rem 1rem;display:grid;gap:.55rem">
         <div style="display:flex;align-items:flex-start;gap:.7rem;font-size:.83rem;padding:.35rem 0;border-bottom:1px dashed #eee">
           <span style="font-size:1.3rem;flex-shrink:0">🤏</span>
-          <div><strong>קומץ</strong> — כמות שמרימים בין שלוש אצבעות. בערך 5-10 גרם של ירק עלים, כמו כמה עלי חסה.</div>
+          <div><strong>קומץ</strong>: כמות שמרימים בין שלוש אצבעות. בערך 5-10 גרם של ירק עלים, כמו כמה עלי חסה.</div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:.7rem;font-size:.83rem;padding:.35rem 0;border-bottom:1px dashed #eee">
           <span style="font-size:1.3rem;flex-shrink:0">✋</span>
-          <div><strong>חופן</strong> — כמות שנכנסת לכף יד אחת כשהיא קעורה. בערך 40-60 גרם של ירק חתוך לחתיכות.</div>
+          <div><strong>חופן</strong>: כמות שנכנסת לכף יד אחת כשהיא קעורה. בערך 40-60 גרם של ירק חתוך לחתיכות.</div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:.7rem;font-size:.83rem;padding:.35rem 0;border-bottom:1px dashed #eee">
           <span style="font-size:1.3rem;flex-shrink:0">🔪</span>
-          <div><strong>פרוסה דקה</strong> — עובי של 2-3 מילימטר, כמו שקל. <strong>פרוסה</strong> — עובי של 3-5 מילימטר, כמו שני שקלים. <strong>פרוסה עבה</strong> — חצי סנטימטר.</div>
+          <div><strong>פרוסה דקה</strong>: עובי של 2-3 מילימטר, כמו שקל. <strong>פרוסה</strong>: עובי של 3-5 מילימטר, כמו שני שקלים. <strong>פרוסה עבה</strong>: חצי סנטימטר.</div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:.7rem;font-size:.83rem;padding:.35rem 0;border-bottom:1px dashed #eee">
           <span style="font-size:1.3rem;flex-shrink:0">🥄</span>
-          <div><strong>כפית</strong> — כ-5 מיליליטר, בערך גודל ציפורן גדולה. <strong>כף</strong> — שלוש כפיות, כ-15 מיליליטר.</div>
+          <div><strong>כפית</strong>: כ-5 מיליליטר, בערך גודל ציפורן גדולה. <strong>כף</strong>: שלוש כפיות, כ-15 מיליליטר.</div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:.7rem;font-size:.83rem;padding:.35rem 0;border-bottom:1px dashed #eee">
           <span style="font-size:1.3rem;flex-shrink:0">🍱</span>
-          <div><strong>קערית</strong> — קערת שולחן קטנה, כ-50-80 גרם. בעיקר לצב שצריך כמות גדולה יותר.</div>
+          <div><strong>קערית</strong>: קערת שולחן קטנה, כ-50-80 גרם. בעיקר לצב שצריך כמות גדולה יותר.</div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:.7rem;font-size:.83rem;padding:.35rem 0">
           <span style="font-size:1.3rem;flex-shrink:0">🧀</span>
-          <div><strong>חתיכה</strong> — קוביה של כ-1×1 סנטימטר. <strong>חתיכה קטנה</strong> — חצי סנטימטר. <strong>פירור</strong> — כמה מילימטרים, לחיות הכי קטנות.</div>
+          <div><strong>חתיכה</strong>: קוביה של כ-1×1 סנטימטר. <strong>חתיכה קטנה</strong>: חצי סנטימטר. <strong>פירור</strong>: כמה מילימטרים, לחיות הכי קטנות.</div>
         </div>
       </div>
     </div>
@@ -875,19 +897,19 @@ const ANIMALS = [
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Psittacus_erithacus_erithacus_sitting_4.JPG/320px-Psittacus_erithacus_erithacus_sitting_4.JPG',
  origin:'יערות גשם מרכז-מערב אפריקה',lifespan:'40-60 שנה (חלקם 70+)',
  size:'כ-33 ס"מ, 400-650 גרם',active:'יום',
- social:'חברותי מאוד - זקוק לבילוי יומיומי עם אנשים',
- housing:'כלוב גדול מאוד (לפחות 90 ס"מ) + זמן תעופה חופשי מדי יום',
+ social:'חברותי מאוד וזקוק לבילוי יומיומי עם אנשים',
+ housing:'כלוב גדול מאוד של 90 ס"מ לפחות, בתוספת זמן תעופה חופשי מדי יום',
  temp:'18-26°C, ללא רוח פרצים',
- special:'צעצועים וחידות מחשבה. בלי גירוי - ינשיר נוצות. אסור לחשוף לעשן או בישום - מערכת הנשימה של ציפורים רגישה מאוד ואפילו אדי בישול מטפלון עלולים להרוג.',
- needs:'ניתן להציע אמבטיית מים - אבל רק אם התוכי רוצה',
+ special:'צעצועים וחידות מחשבה. בלי גירוי, הוא עלול להנשיר נוצות. אסור לחשוף לעשן או בישום - מערכת הנשימה של ציפורים רגישה מאוד, אפילו אדי בישול מטפלון עלולים להרוג.',
+ needs:'ניתן להציע אמבטיית מים, בתנאי שהתוכי מעוניין בכך',
  tags:['פעיל יום','חברותי','מדבר!','דורש הרבה'],tagColors:['day','social','easy','hard'],
- funfact:'🧠 ג׳אקו חכם כמו ילד בן 5 - מבין מילים, לא רק חוזר עליהן! <a href="https://www.yardbirds.org.il/birds_sounds" target="_blank" rel="noopener" title="🐦 סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">🐦</a>'},
+ funfact:'🧠 ג׳אקו חכם כמו ילד בן 5, הוא מבין מילים, לא רק חוזר עליהן! <a href="https://www.yardbirds.org.il/birds_sounds" target="_blank" rel="noopener" title="🐦 סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">🐦</a>'},
 
 {id:'lovebird',ours:true,name:'ציפור אהבה',en:'Lovebird',sciname:'Agapornis spp.',animalClass:'עוף',animalSubClass:'תוכאים',animalClass:'עוף',emoji:'💚',
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Agapornis_roseicollis_%28Vieillot%2C_1818%29.jpg/320px-Agapornis_roseicollis_%28Vieillot%2C_1818%29.jpg',
  origin:'אפריקה ומדגסקר',lifespan:'10-15 שנה',
  size:'כ-15 ס"מ, 40-60 גרם',active:'יום',
- social:'חברותי מאוד - זקוק לחברה. בדרך כלל בזוג, אבל יכול להסתדר עם ציפורים אחרות',
+ social:'חברותי מאוד, לכן הוא זקוק לחברה. בדרך כלל בזוג, אבל יכול להסתדר עם ציפורים אחרות',
  housing:'כלוב רחב לטיסה קצרה',temp:'18-28°C',
  special:'ענפים לכרסם, נייר לקרוע (בונים קן). אסור לחשוף לעשן או בישום.',
  needs:'אמבטיית מים',
@@ -900,14 +922,14 @@ const ANIMALS = [
  size:'7-10 ס"מ, 30-45 גרם',active:'לילה',
  social:'לבד או זוג המכיר מגיל צעיר',
  housing:'כלוב רחב ונמוך עם מצע לחפירה עמוק (20+ ס"מ)',temp:'15-22°C',
- special:'גלגל (14+ ס"מ), מנהרות. קריר יחסית - לא מעל 22°C.',
+ special:'גלגל (14+ ס"מ), מנהרות. קריר יחסית, רצוי לא מעל 22°C.',
  needs:'מסתורים, חומרי קן, מחילות',
  tags:['פעיל לילה','אוהב לחפור','רגיש לחום'],tagColors:['night','easy','hard'],
  funfact:'❄️ בחורף, כתגובה לימים המתקצרים, הפרווה הופכת לבהירה יותר להסוואה בשלג! 🌨️🐹'},
 
 {id:'sulcata',ours:true,name:'צב סודני (דרבני)',en:'Sulcata Tortoise',sciname:'Centrochelys sulcata',animalClass:'זוחל',animalSubClass:'צבים',animalClass:'זוחל',emoji:'🐢',
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Geochelone_sulcata_%28Tortoise%29.jpg/320px-Geochelone_sulcata_%28Tortoise%29.jpg',
- origin:'שולי הסהרה - סודן, ניגריה',lifespan:'60-100 שנה (נדיר: 100+)',
+ origin:'שולי הסהרה, באזורי סודן וניגריה',lifespan:'60-100 שנה (נדיר: 100+)',
  size:'עד 83 ס"מ, 60-105 ק"ג בבגרות!',active:'יום',
  social:'לבד. זוג רק במתחם ענק <a href="#" onclick="event.preventDefault();event.stopPropagation();openTreasureMap()" title="מפת האוצר הסודית" style="text-decoration:none;font-size:.9rem">🏴‍☠️</a>',
  housing:'מתחם גדול, גדל לאחד הצבים הגדולים בעולם',temp:'28-35°C ביום, לא מתחת ל-15°C בלילה',
@@ -920,34 +942,34 @@ const ANIMALS = [
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Stabschrecke.jpg/320px-Stabschrecke.jpg',
  origin:'יערות ויאטנם',lifespan:'8-12 חודשים (מתוכם ~2 חודשים כביצה)',
  size:'12-15 ס"מ',active:'לילה',
- social:'רבייה בתולית (פרתנוגנזה) - נקבות בלבד',
+ social:'רבייה בתולית (פרתנוגנזה), שזה אומר נקבות בלבד',
  housing:'טרריום גבוה (פי 3 מאורך הגוף), ענפים',temp:'20-28°C, ריסוס מים כל יומיים-שלושה',
  special:'רק צמחים טריים: עלי ורדים או עלי היביסקוס בלבד. אין להאכיל בצמחים אחרים!',
  needs:'ריסוס מים, ענפים טריים להחלפה',
  tags:['פעיל לילה','הסוואה מושלמת','מרתק'],tagColors:['night','easy','easy'],
- funfact:'🥢 מתרבה בפרתנוגנזה - נקבות מטילות ביצים פוריות ללא זכר!'},
+ funfact:'🥢 מתרבה בפרתנוגנזה, תהליך שבו נקבות מטילות ביצים פוריות ללא זכר!'},
 
 {id:'beardie',ours:true,name:'חרדון מזוקן',en:'Bearded Dragon',sciname:'Pogona vitticeps',animalClass:'זוחל',animalSubClass:'קשקשאים',animalClass:'זוחל',emoji:'🐉',
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Pogona_vitticeps_2009.jpg/320px-Pogona_vitticeps_2009.jpg',
  origin:'אוסטרליה',lifespan:'10-15 שנה',
  size:'40-60 ס"מ, 400-600 גרם',active:'יום',
- social:'לבד, זכר ונקבה, או שתי נקבות. שני זכרים - אסור!',
+ social:'לבד, זכר ונקבה, או שתי נקבות. לגבי שני זכרים, זה אסור!',
  housing:'טרריום 120×60 ס"מ לפחות',temp:'38-42°C בצד חם, 25-28°C בצד קריר',
- special:'חייב UVB! אמבטיית מים חמים פעמיים בשבוע. בחורף: מאט את פעילותו - אוכל פחות, זז פחות, ישן יותר. תופעה טבעית, לא מחלה!',
+ special:'חייב UVB! אמבטיית מים חמים פעמיים בשבוע. בחורף הוא מאט את פעילותו, אוכל פחות, זז פחות, ישן יותר. תופעה טבעית, לא מחלה!',
  needs:'אזור חימום, מסתור בצד קריר',
  tags:['פעיל יום','זקוק לקרינת UVB','ידידותי'],tagColors:['day','warm','easy'],
- funfact:'🦎 חרדון מזוקן משנה צבע בהתאם לרגשות - כהה יותר כשהוא מודאג, בהיר כשמרגיש בנוח!'},
+ funfact:'🦎 חרדון מזוקן משנה צבע בהתאם לרגשות, הוא נהיה כהה יותר כשהוא מודאג, בהיר כשמרגיש בנוח!'},
 
 {id:'chinchilla',ours:true,name:'צ׳ינצ׳ילה',en:'Chinchilla',sciname:'Chinchilla lanigera',animalClass:'יונק',animalSubClass:'מכרסם',animalClass:'יונק',emoji:'🐿️',aliases:["צ'ינצ'ילה",'chinchilla','שינשילה'],
  photo:'',
  origin:'הרי אנדים, דרום אמריקה',lifespan:'10-20 שנה',
  size:'25-35 ס"מ, 400-600 גרם',active:'לילה',
  social:'זוגות / קבוצות של אותו מין',
- housing:'כלוב גבוה עם מדפים רבים לקפיצות',temp:'15-24°C - רגיש מאוד לחום!',
+ housing:'כלוב גבוה עם מדפים רבים לקפיצות',temp:'15-24°C, היא רגישה מאוד לחום!',
  special:'אמבטיית חול (מיוחד לצ׳ינצ׳ילות) כמה פעמים בשבוע (לא מים!). לא מעל 25°C.',
  needs:'אמבטיית חול, מסתורים, גלגל, חומרי קן וחפירה',
  tags:['פעיל לילה','רגיש לחום','פרווה מדהימה'],tagColors:['night','hard','easy'],
- funfact:'60 שערות יוצאות מכל זקיק - מה שנותן להן פרווה הכי צפופה בעולם!'},
+ funfact:'60 שערות יוצאות מכל זקיק, וזה מה שנותן להן פרווה הכי צפופה בעולם!'},
 
 {id:'leopardgecko',ours:true,name:'שממית מנומרת',en:'Leopard Gecko',sciname:'Eublepharis macularius',animalClass:'זוחל',animalSubClass:'קשקשאים',animalClass:'זוחל',emoji:'🦎',
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Leopard_Gecko_%28Eublepharis_macularius%29.jpg/320px-Leopard_Gecko_%28Eublepharis_macularius%29.jpg',
@@ -955,18 +977,18 @@ const ANIMALS = [
  size:'18-25 ס"מ, 45-65 גרם',active:'לילה',
  social:'לבד או נקבות ביחד (זכרים - לא!)',
  housing:'טרריום 60×30 ס"מ לפחות',temp:'32-35°C בצד חם, 24-26°C בצד קריר',
- special:'⚠️ ניזונת מחרקים בלבד - חרקים חיים (קמח, צרצרים, תיקנים נצמדים) + תוספי סידן. אין להאכיל בירקות, פירות או מזון צמחי.',
+ special:'⚠️ ניזונת מחרקים בלבד, שהם חרקים חיים (קמח, צרצרים, תיקנים נצמדים) + תוספי סידן. אין להאכיל בירקות, פירות או מזון צמחי.',
  needs:'מסתורים, מצע לחפירה, תא לחות (לפני התנשלות)',
  tags:['פעיל לילה','ידידותי','מתחיל'],tagColors:['night','easy','easy'],
- funfact:'🦎 מאחסן שומן בזנב - כשרזה, הזנב דק. כששמן, הזנב עגול!'},
+ funfact:'🦎 מאחסן שומן בזנב, כשרזה, הזנב דק. כששמן, הזנב עגול!'},
 
-{id:'rabbit',ours:true,name:'ארנבון',en:'Rabbit',sciname:'Oryctolagus cuniculus',animalClass:'יונק',animalSubClass:'ארנבי',animalClass:'יונק',emoji:'🐰',hebrew:'ארנבון מצוי',
+{id:'rabbit',ours:true,name:'ארנבון',en:'Rabbit',sciname:'Oryctolagus cuniculus',animalClass:'יונק',animalSubClass:'ארנבאים',animalClass:'יונק',emoji:'🐰',hebrew:'ארנבון מצוי',
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/320px-Oryctolagus_cuniculus_Rcdo.jpg',
  origin:'מתורבת',lifespan:'8-12 שנה',
  size:'1-8 ק"ג (תלוי גזע)',active:'שחר ודמדומים (פעיל בין יום ללילה)',
- social:'חייב חברה - חי עם בני אותו מין',
- housing:'מתחם גדול עם מקום לריצה חופשית - ארנבונים צריכים לנוע הרבה',temp:'15-22°C, לא מעל 28°C',
- special:'שיני הארנבון גדלות כל החיים - חומרי השחזה חובה! גם חופר מנהרות - מצע עמוק מאפשר לו להתבטא טבעית.',
+ social:'חייב חברה, חי עם בני אותו מין',
+ housing:'מתחם גדול עם מקום לריצה חופשית, כי ארנבונים צריכים לנוע הרבה',temp:'15-22°C, לא מעל 28°C',
+ special:'שיני הארנבון גדלות כל החיים, חומרי השחזה חובה! גם חופר מנהרות - מצע עמוק מאפשר לו להתבטא טבעית.',
  needs:'מסתורים, מקום ריצה, חומרי השחזה, מצע לחפירה',
  tags:['פעיל דמדומים','חברותי','השחזה חובה'],tagColors:['day','social','hard'],
  funfact:'🐰 שיני הארנבון גדלות כל החיים - בלי חומרי השחזה, יכולות להפריע לאכילה!'},
@@ -975,22 +997,22 @@ const ANIMALS = [
  photo:'',
  origin:'דרום אמריקה (מתורבת)',lifespan:'5-8 שנה',
  size:'20-35 ס"מ, 700-1200 גרם',active:'יום',
- social:'זוגי - רע מאוד לבד!',
+ social:'חיים בזוג, כי רע להם מאוד לבד!',
  housing:'כלוב גדול (120×60 ס"מ לפחות), מצע עמוק',temp:'18-24°C, לא מעל 26°C',
  special:'ציפורניים ושיניים גדלות ללא הפסקה, חומרי השחזה לשיניים חובה.',
  needs:'בן או בת זוג, מסתורים, חומרי השחזה',
  tags:['פעיל יום','חיים בזוג או להקה','שורק'],tagColors:['day','social','easy'],
- funfact:'🐾 שרקנים שורקים לתקשורת - שריקה אחת = שמחה, שריקות מהירות = התרגשות!'},
+ funfact:'🐾 שרקנים שורקים לתקשורת, שריקה אחת מסמלת שמחה, שריקות מהירות = התרגשות!'},
 {id:'syrianhamster',ours:true,name:'אוגר סורי',en:'Syrian Hamster',sciname:'Mesocricetus auratus',animalClass:'יונק',animalSubClass:'מכרסם',animalClass:'יונק',emoji:'🐹',
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Syrian_hamster_feeding.jpg/320px-Syrian_hamster_feeding.jpg',
  origin:'סוריה, טורקיה',lifespan:'2-3 שנה',
  size:'13-18 ס"מ, 85-150 גרם',active:'לילה',
- social:'חייב לגור לבד - גם בטבע הוא מין יחידאי ושומרת טריטוריה. פגישה עם אוגר אחר עלולה להסתיים בקרב',
+ social:'חייב לגור לבד, שכן גם בטבע הוא מין יחידאי ושומרת טריטוריה. פגישה עם אוגר אחר עלולה להסתיים בקרב',
  housing:'כלוב 80×50 ס"מ לפחות, מצע עמוק',temp:'18-24°C',
  special:'גלגל גדול (28+ ס"מ). חובה מגורים לבד!',
  needs:'מסתורים, גלגל, מצע לחפירה',
  tags:['פעיל לילה','יחידאי','אוהב לחפור'],tagColors:['night','solo','easy'],
- funfact:'🐹 שקיות לחי מגיעות עד לכתפיים - יכול לשאת עד מחצית ממשקלו!'},
+ funfact:'🐹 שקיות לחי מגיעות עד לכתפיים, הוא יכול לשאת עד מחצית ממשקלו!'},
 
 {id:'gerbil',ours:true,name:'גרביל מונגולי',en:'Mongolian Gerbil',sciname:'Meriones unguiculatus',animalClass:'יונק',animalSubClass:'מכרסם',animalClass:'יונק',emoji:'🐭',
  photo:'',
@@ -998,10 +1020,10 @@ const ANIMALS = [
  size:'10-13 ס"מ + זנב, 55-100 גרם',active:'יום',
  social:'לא אוהבים לחיות לבד, מעדיפים בזוגות או בלהקה קטנה',
  housing:'טרריום עם מצע עמוק לחפירה',temp:'18-24°C',
- special:'זנב שביר - לא לתפוס!',
+ special:'זנב שביר, לא לתפוס!',
  needs:'מצע לחפירה, מסתורים, גלגל',
  tags:['פעיל יום','חיים בזוג או להקה','סקרן'],tagColors:['day','social','easy'],
- funfact:'🐭 לעולם לא לתפוס גרביל בזנב! הזנב שביר ועלול להינתק - דבר כואב ובלתי הפיך. <a href="https://thisissand.com/" target="_blank" rel="noopener" title="🏖️ סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">🏖️</a>'},
+ funfact:'🐭 לעולם לא לתפוס גרביל בזנב! הזנב שביר ועלול להינתק, וזה דבר כואב ובלתי הפיך. <a href="https://thisissand.com/" target="_blank" rel="noopener" title="🏖️ סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">🏖️</a>'},
 
 {id:'cockatiel',ours:true,name:'תוכי קוקטייל',en:'Cockatiel',sciname:'Nymphicus hollandicus',animalClass:'עוף',animalSubClass:'תוכאים',animalClass:'עוף',emoji:'🦜',hebrew:'נימפית מצויצת',
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Nymphicus_hollandicus_-_Peach_faced_mutation.jpg/320px-Nymphicus_hollandicus_-_Peach_faced_mutation.jpg',
@@ -1009,10 +1031,10 @@ const ANIMALS = [
  size:'30-33 ס"מ, 70-120 גרם',active:'יום',
  social:'בזוג או להקה, ניתן לבד עם הרבה תשומת לב',
  housing:'כלוב גדול יחסית לגודלו, ענפים',temp:'18-26°C',
- special:'ציצית - מראה מצב רוח. רגיש לעשן ובישום.',
+ special:'הציצית מראה את מצב הרוח שלהם. רגיש לעשן ובישום.',
  needs:'אמבטיית מים, צעצועים, שיחה',
  tags:['פעיל יום','מוזיקלי','חברותי'],tagColors:['day','easy','social'],
- funfact:'🎵 קוקטיילים שרים ומחקים קולות - לעיתים לומדים מנגינות שלמות! <a href="https://artsandculture.google.com/experiment/blob-opera/AAHWrq360NcGbw?hl=en&cp=e30." target="_blank" rel="noopener" title="🎭 סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">🎭</a>'},
+ funfact:'🎵 קוקטיילים שרים ומחקים קולות, לעיתים הם לומדים מנגינות שלמות! <a href="https://artsandculture.google.com/experiment/blob-opera/AAHWrq360NcGbw?hl=en&cp=e30." target="_blank" rel="noopener" title="🎭 סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">🎭</a>'},
 
 {id:'mealworms',ours:true,name:'זחל קמח',en:'Mealworms',sciname:'Tenebrio molitor',animalClass:'חרק',animalSubClass:'חיפושיתאים',animalClass:'חרק',emoji:'🐛',
  photo:'',
@@ -1020,7 +1042,7 @@ const ANIMALS = [
  size:'2-3.5 ס"מ',active:'כל הזמן',
  social:'קבוצות גדולות',
  housing:'קופסה עם מצע (סובין, קמח) ופירות וירקות',temp:'20-28°C',
- special:'🌿 צריכים פירות וירקות טריים כמקור לחות וויטמינים - גזר, תפוח, קישוא, תפוח אדמה מבושל, ועלים ירוקים. ⚠️ לא לשמור במקרר.',
+ special:'🌿 צריכים פירות וירקות טריים כמקור לחות וויטמינים, כמו גזר או תפוח, קישוא, תפוח אדמה מבושל, ועלים ירוקים. ⚠️ לא לשמור במקרר.',
  needs:'מצע, ירקות, אוורור',
  tags:['מזון לחיות אחרות','קל לגידול'],tagColors:['easy','easy'],
  funfact:'🐛 זחלי קמח הם מזון חי מצוין לחרדונים, שממיות ועופות!'},
@@ -1030,8 +1052,8 @@ const ANIMALS = [
  origin:'מדגסקר',lifespan:'2-5 שנה',
  size:'5-7.5 ס"מ',active:'לילה',
  social:'קבוצות',
- housing:'טרריום עם מכסה מאובטח (מטפסים!)',temp:'24-28°C',
- special:'מטפסים על כל משטח - מכסה עם תפס חובה. לחות גבוהה.',
+ housing:'טרריום עם מכסה מאובטח, הם מטפסים!',temp:'24-28°C',
+ special:'מטפסים על כל משטח, מכסה עם תפס חובה. לחות גבוהה.',
  needs:'מסתורים, לחות, מקום טיפוס',
  tags:['פעיל לילה','מרתק','קל לטיפול'],tagColors:['night','easy','easy'],
  funfact:'🦗 משמיע "לחישה" על ידי דחיפת אוויר דרך נקבי נשימה!'},
@@ -1042,16 +1064,16 @@ const ANIMALS = [
  size:'3-40 ס"מ (תלוי במין)',active:'יום ולילה',
  social:'רוב הזנים זקוקים לחברים - כדאי לשאול לפני קנייה',
  housing:'אקווריום עם סינון, אוורור ותאורה מתאימה. גודל תלוי במין.',temp:'20-27°C (מים מתוקים טרופיים)',
- special:'ניזונים ממזון ייעודי לדגים בלבד - פתיתי דגים, גרנולות, מזון קפוא. אין לתת שאריות מהמטבח! שינוי מים חלקי שבועי חובה.',
+ special:'ניזונים ממזון ייעודי לדגים בלבד, כמו פתיתי דגים, גרנולות, מזון קפוא. אין לתת שאריות מהמטבח! שינוי מים חלקי שבועי חובה.',
  needs:'מים נקיים, סינון פעיל, תאורה 8-10 שעות ביום, pH מתאים למין',
  tags:['מים מתוקים','מגוון מינים','מים נקיים תמיד'],tagColors:['cool','easy','day'],
- funfact:'🐠 דגים זוכרים יותר מ-3 שניות! זיכרון ממוצע הוא כמה חודשים. ⚠️ עודף מזון מרעיל את המים - להאכיל רק בכמות שנאכלת תוך 2 דקות. <a href="https://www.youtube.com/watch?v=Zr_nvOU8dd0" target="_blank" rel="noopener" title="🎬 סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">🎬</a>'},
+ funfact:'🐠 דגים זוכרים יותר מ-3 שניות, והזיכרון הממוצע שלהם הוא כמה חודשים. ⚠️ עודף מזון מרעיל את המים, לכן יש להאכיל רק בכמות שנאכלת תוך 2 דקות. <a href="https://www.youtube.com/watch?v=Zr_nvOU8dd0" target="_blank" rel="noopener" title="🎬 סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">🎬</a>'},
 
 {id:'dog',ours:true,name:'כלב',en:'Dog',sciname:'Canis lupus familiaris',animalClass:'יונק',animalSubClass:'טורפים',animalClass:'יונק',emoji:'🐕',
  photo:'',
  origin:'מתורבת',lifespan:'8-15 שנה',
  size:'משתנה לפי גזע (כ-15 עד 90 ס"מ), כ-1.5 עד 90 ק"ג',active:'יום',
- social:'חברותי - בן משפחה',
+ social:'חברותי, ממש בן משפחה',
  housing:'מקום שינה נוח, טיולים יומיים',temp:'מסתגל',
  special:'אילוף, גירוי מחשבתי, פעילות יומית. חיסונים! <a href="https://explore.org/livecams/dog-bless-you" target="_blank" rel="noopener" title="📹 סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">📹</a>',
  needs:'טיולים, משחקים, קשר עין',
@@ -1060,27 +1082,27 @@ const ANIMALS = [
 
 // ── חיות נפוצות בפינות חי ────────────────────────────────
 {id:'mouse',ours:false,name:'עכבר נוי',en:'Fancy Mouse',sciname:'Mus musculus',animalClass:'יונק',animalSubClass:'מכרסם',animalClass:'יונק',emoji:'🐭',gender:'m',photo:'',
- origin:'מתורבת',lifespan:'1.5-3 שנה',size:'7-10 ס"מ',active:'לילה',social:'קבוצת נקבות - חייבות בחברה',
+ origin:'מתורבת',lifespan:'1.5-3 שנה',size:'7-10 ס"מ',active:'לילה',social:'קבוצת נקבות, חייבות בחברה',
  housing:'כלוב רחב עם מצע',temp:'18-25°C',special:'לבד → עצבות. קבוצה מומלצת.',needs:'מסתורים, גלגל',
  tags:['פעיל לילה','קבוצה'],tagColors:['night','social'],funfact:'🐭 עכברים מצחקקים בתדר על-שמיעתי כשמשחקים! <a href="https://www.cbc.ca/kids/games/play/paws-and-claws" target="_blank" rel="noopener" title="🐱 סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">🐱</a>'},
 
 {id:'rat',ours:false,name:'חולדת מחמד',en:'Fancy Rat',sciname:'Rattus norvegicus',animalClass:'יונק',animalSubClass:'מכרסם',animalClass:'יונק',emoji:'🐀',photo:'',
- origin:'מתורבת',lifespan:'2-3 שנה',size:'20-27 ס"מ',active:'שחר ודמדומים (פעיל בין יום ללילה)',social:'זוגות/קבוצות - חייבות',
+ origin:'מתורבת',lifespan:'2-3 שנה',size:'20-27 ס"מ',active:'שחר ודמדומים (פעיל בין יום ללילה)',social:'זוגות/קבוצות, חייבות',
  housing:'כלוב גדול ורב-קומות',temp:'18-24°C',special:'אינטליגנטיות מאוד, ניתן ללמד טריקים.',needs:'חברה, גירוי, צעצועים',
  tags:['חכמות','חייבות בחברה'],tagColors:['easy','social'],funfact:'🐀 חולדות מחמד צוחקות ומשחקות ממש כמו כלבים!'},
 
 {id:'iguana',ours:false,name:'איגואנה',en:'Green Iguana',sciname:'Iguana iguana',animalClass:'זוחל',animalSubClass:'קשקשאים',animalClass:'זוחל',emoji:'🦎',photo:'',
- origin:'מרכז ודרום אמריקה',lifespan:'10-15 שנה',size:'גדלה לגודל ענק - עד 1.8 מטר!',active:'יום',social:'לבד',
- housing:'טרריום ענק - זקוקה למקום רב',temp:'32-38°C בצד חם, UVB חובה',special:'צמחונית בלבד בבגרות. דורשת מחויבות גדולה.',needs:'UVB, חום, שמש',
+ origin:'מרכז ודרום אמריקה',lifespan:'10-15 שנה',size:'גדלה לגודל ענק, עד 1.8 מטר!',active:'יום',social:'לבד',
+ housing:'טרריום ענק, זקוקה למקום רב',temp:'32-38°C בצד חם, UVB חובה',special:'צמחונית בלבד בבגרות. דורשת מחויבות גדולה.',needs:'UVB, חום, שמש',
  tags:['פעיל יום','גדלה ענק','זקוק לקרינת UVB'],tagColors:['day','hard','hard'],funfact:'🦎 איגואנות שוחות מעולה - בטבע קופצות למים כדי להימלט מטורפים!'},
 
 {id:'cornsnake',ours:false,name:'כרכן תירס',en:'Corn Snake',sciname:'Pantherophis guttatus',animalClass:'זוחל',animalSubClass:'קשקשאים',animalClass:'זוחל',emoji:'🐍',photo:'',
  origin:'דרום-מזרח ארה"ב',lifespan:'15-20 שנה',size:'90-150 ס"מ',active:'שחר ודמדומים (פעיל בין יום ללילה)',social:'לבד',
- housing:'טרריום 90×45 עם מכסה',temp:'28-30°C בצד חם, 22-24°C בצד קריר',special:'אוכל עכברים מופשרים - לא חי. <a href="https://www.google.com/fbx?fbx=snake_arcade" target="_blank" rel="noopener" title="🐍 סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">🐍</a>',needs:'מסתורים, ענפים, תא לחות לפני התנשלות',
+ housing:'טרריום 90×45 עם מכסה',temp:'28-30°C בצד חם, 22-24°C בצד קריר',special:'אוכל עכברים מופשרים, לא חי. <a href="https://www.google.com/fbx?fbx=snake_arcade" target="_blank" rel="noopener" title="🐍 סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">🐍</a>',needs:'מסתורים, ענפים, תא לחות לפני התנשלות',
  tags:['דמדומים','מתחיל',''],tagColors:['night','easy','easy'],funfact:'🐍 כרכן התירס הוא אחד הנחשים הכי מומלצים למתחילים - רגוע וידידותי!'},
 
 {id:'budgie',ours:false,name:'תוכון מצוי',en:'Budgerigar',sciname:'Melopsittacus undulatus',animalClass:'עוף',animalSubClass:'תוכאים',animalClass:'עוף',emoji:'🦜',hebrew:'תוכי גמדי',gender:'m',photo:'',
- origin:'אוסטרליה',lifespan:'5-10 שנה',size:'18 ס"מ, 25-35 גרם',active:'יום',social:'זוגות - אוהב חברה',
+ origin:'אוסטרליה',lifespan:'5-10 שנה',size:'18 ס"מ, 25-35 גרם',active:'יום',social:'זוגות, אוהב חברה',
  housing:'כלוב רחב, ענפים',temp:'18-26°C',special:'ציפור קטנה עם אישיות גדולה - יודע מילים! מחקה קולות ואפילו משפטים שלמים.',needs:'ענפים, צעצועים, חברה',
  tags:['פעיל יום','יודע מילים','קטן וחמוד'],tagColors:['day','easy','easy'],funfact:'🦜 תוכי גמדי יכולים ללמוד מאות מילים - שיאן העולם דיבר 1,728 מילים!'},
 
@@ -1088,8 +1110,8 @@ const ANIMALS = [
  photo:'',
  origin:'אסיה',lifespan:'3-5 שנה',size:'10-20 ס"מ',active:'יום',
  social:'זוגות או קבוצות קטנות',
- housing:'כלוב נמוך עם קש - אוהבים לחפור',temp:'18-25°C',
- special:'🐦 שלו סיני (Button Quail): קטן יותר (10 ס"מ), שקט מאוד, מעדיף לחיות בזוג. | 🐦 שלו יפני (Japanese Quail): גדול יותר (15-20 ס"מ), מצייץ בקול, הזכרים שרים בעוצמה. שניהם ניזונים מזרעים קטנים, ירקות ירוקים וחרקים.',
+ housing:'כלוב נמוך עם קש, אוהבים לחפור',temp:'18-25°C',
+ special:'🐦 שלו סיני (Button Quail): קטן יותר גודלו כ-10 ס"מ, שקט מאוד ומעדיף לחיות בזוג. | 🐦 שלו יפני (Japanese Quail): גדול יותר גודלו כ-15-20 ס"מ, מצייץ בקול, הזכרים שרים בעוצמה. שניהם ניזונים מזרעים קטנים, ירקות ירוקים וחרקים.',
  needs:'קש לחפירה, חול לאמבטיה, מים נקיים תמיד',
  tags:['ציפור','זרעים','חרקים'],tagColors:['cool','easy','medium'],
  funfact:'🐦 שלו יפני היה אחת מחיות המחמד הראשונות בהיסטוריה! הזכרים מצייצים בעוצמה ובקול ייחודי.'}
@@ -1104,9 +1126,9 @@ const ANIMALS = [
 
 {id:'degu',ours:false,name:'דגו',en:'Degu',sciname:'Octodon degus',animalClass:'יונק',animalSubClass:'מכרסם',animalClass:'יונק',emoji:'🐿️',gender:'m',photo:'',
  origin:'ערבות מרכז צ׳ילה',lifespan:'6-8 שנה',size:'25-30 ס"מ, 170-400 גרם',active:'יום',
- social:'להקה - חייב בחברה, לבד יסבול',
+ social:'להקה, חייב בחברה, לבד יסבול',
  housing:'כלוב גדול עם מצע לחפירה ומדפים לקפיצות',temp:'18-24°C',
- special:'⚠️ רגיש מאוד לסוכר - נוטה לפתח סוכרת! אסור פירות, ירקות עתירי סוכר וחטיפים. חובה חומרי השחזה.',needs:'חברה, גלגל, חומרי השחזה',
+ special:'⚠️ רגיש מאוד לסוכר, נוטה לפתח סוכרת! אסור פירות, ירקות עתירי סוכר וחטיפים. חובה חומרי השחזה.',needs:'חברה, גלגל, חומרי השחזה',
  tags:['פעיל יום','להקה חובה','ללא סוכר!'],tagColors:['day','social','hard'],funfact:'🐿️ הדגו מסוגל לשחרר את זנבו אם נתפס - בדיוק כמו גרביל, גם כאן זה כואב ובלתי הפיך!'},
 {id:'ball_python',ours:false,name:'פיתון מתכדר',en:'Ball Python',sciname:'Python regius',animalClass:'זוחל',animalSubClass:'קשקשאים',animalClass:'זוחל',emoji:'🐍',photo:'',
  origin:'מרכז ומערב אפריקה',lifespan:'20-30 שנה',
@@ -1116,7 +1138,7 @@ const ANIMALS = [
  special:'ניזון ממכרסמים מוקפאים (עכברים/חולדות). לא מחיות חיות! ⚠️ אין להאכיל בירקות, פירות או מזון לא ייעודי.',
  needs:'מסתורים, מיכל מים גדול, לחות גבוהה, טמפרטורה יציבה',
  tags:['טורף','מתחיל יחסית','חשוב: הידות נכונה'],tagColors:['warm','easy','warm'],
- funfact:'🐍 מתכדר לכדור כשנבהל - בשונה מנחשים אחרים!'}
+ funfact:'🐍 מתכדר לכדור כשנבהל, בשונה מנחשים אחרים!'}
 ,
 ];
 
@@ -1128,7 +1150,7 @@ const ANIMALS = [
 // ============================================================
 const DEFAULT_FOODS = [
 {id:'watermelon',name:'אבטיח',emoji:'🍉',cookStatus:'raw',category:'פרי',aliases:['קליפת אבטיח'],
- why:'98% מים - מצוין להידרציה בקיץ. מכיל ליקופן (נוגד חמצון), ויטמין A ו-C. הקליפה הלבנה בטוחה ועשירה בציטרולין. ⚠️ לא לתת גרעינים שחורים.',
+ why:'98% מים, מצוין להידרציה בקיץ. מכיל ליקופן (נוגד חמצון), ויטמין A ו-C. הקליפה הלבנה בטוחה ועשירה בציטרולין. ⚠️ לא לתת גרעינים שחורים.',
  parts:[{name:'החלק האדום',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'ok','sulcata':'ok','beardie':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'ok','gerbil':'ok','chinchilla':'lim','mealworms':'ok'}},{name:'קליפה לבנה',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sulcata':'ok','beardie':'ok','rabbit':'ok','sibhamster':'lim','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','chinchilla':'no','mealworms':'ok'}},{name:'קליפה ירוקה',rawOk:'ok',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'ok','beardie':'no','rabbit':'lim','sharkhan':'no','syrianhamster':'no','gerbil':'no','chinchilla':'no','mealworms':'ok'}},{name:'גרעינים שחורים',rawOk:'no',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}}],
  animals:{jacko:{s:'ok',a:'חתיכה',f:'כמה פעמים בשבוע',leopardgecko:{s:'no',rabbit:{s:'ok',a:'פרוסה',f:'לעיתים',n:'ללא גרעינים',sharkhan:{s:'ok',a:'חתיכה',f:'לעיתים',n:'ללא גרעינים',jacko:{s:'lim',a:'פרוסה',f:'לעיתים',n:'סוכר גבוה',beardie:{s:'ok',a:'חתיכה',f:'לעיתים',n:'10% מהתפריט',syrianhamster:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'מימי מדי בכמות גדולה',gerbil:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'מימי מאוד',mealworms:{s:'ok',a:'חתיכה',f:'לעיתים',n:'מקור מים מצוין',hissingcockroach:{s:'ok',a:'חתיכה',f:'לעיתים',n:'מקור מים מצוין',mouse:{s:'lim',a:'פירור קטן',f:'לעיתים נדירות',n:'מימי מדי - עלול לגרום לשלשול',rat:{s:'ok',a:'חתיכה קטנה',f:'לעיתים נדירות',budgie:{s:'ok',a:'חתיכה קטנה',f:'לעיתים נדירות',n:'ללא זרעים',hamster_gen:{s:'lim',a:'פירור',f:'לעיתים נדירות',degu:{s:'no',n:'סוכר גבוה - דגו רגיש לסוכרת',iguana:{s:'lim',a:'חתיכה קטנה',f:'לעיתים נדירות',n:'סוכר גבוה',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'ok',a:'חתיכה קטנה',f:'לעיתים נדירות',n:'ללא זרעים',quail:{s:'ok',a:'חתיכה קטנה',f:'לעיתים נדירות',n:'ללא זרעים'},hamster_gen:{s:'lim',a:'פירור',f:'לעיתים נדירות',degu:{s:'no',n:'סוכר גבוה - דגו רגיש לסוכרת',iguana:{s:'lim',a:'חתיכה קטנה',f:'לעיתים נדירות',n:'סוכר גבוה',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},lovebird:{s:'lim',a:'פרוסה',f:'לעיתים',n:'סוכר גבוה'},cockatiel:{s:'lim',a:'פרוסה',f:'לעיתים',n:'סוכר גבוה'}}}},vietstick:{s:'no'},sulcata:{s:'lim',a:'חתיכה קטנה',f:'לעיתים נדירות',n:'פחות מ-5% מהתזונה'},chinchilla:{s:'no'},mealworms:{s:'lim',a:'מעט',f:'לעיתים'},hissingcockroach:{s:'lim',a:'מעט',f:'לעיתים'},sibhamster:{s:'lim',a:'זעיר',f:'לעיתים'},syrianhamster:{s:'lim',a:'זעיר',f:'לעיתים'},gerbil:{s:'lim',a:'זעיר',f:'לעיתים'}},lovebird:{s:'ok',a:'חתיכה',f:'כמה פעמים בשבוע'},sibhamster:{s:'lim',a:'קוביה קטנה',f:'פעם בשבוע',n:'מימי - שלשול'},sulcata:{s:'lim',a:'חתיכה גדולה',f:'כמה פעמים בשבוע'},vietstick:{s:'no'},beardie:{s:'ok',a:'חתיכה',f:'לעיתים'},chinchilla:{s:'lim',a:'זעיר',f:'לעיתים'},leopardgecko:{s:'no'},rabbit:{s:'ok',a:'חתיכה',f:'כמה פעמים בשבוע'},syrianhamster:{s:'lim',a:'קטן',f:'לעיתים'},sharkhan:{s:'ok',a:'חתיכה',f:'כמה פעמים בשבוע'},gerbil:{s:'lim',a:'מעט',f:'לעיתים'},cockatiel:{s:'ok',a:'חתיכה',f:'כמה פעמים בשבוע'},mealworms:{s:'ok',a:'חתיכה',f:'לעיתים'},hissingcockroach:{s:'ok',a:'חתיכה',f:'כמה פעמים בשבוע'},fish:{s:'nr'},dog:{s:'ok',a:'חתיכה',f:'לעיתים'},quail:{s:'ok',a:'חתיכה קטנה',f:'לעיתים נדירות',n:'ללא זרעים',quail:{s:'ok',a:'חתיכה קטנה',f:'לעיתים נדירות',n:'ללא זרעים'},hamster_gen:{s:'lim',a:'פירור',f:'לעיתים נדירות',degu:{s:'no',n:'סוכר גבוה - דגו רגיש לסוכרת',iguana:{s:'lim',a:'חתיכה קטנה',f:'לעיתים נדירות',n:'סוכר גבוה',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
 
@@ -1148,7 +1170,7 @@ const DEFAULT_FOODS = [
 
 
 {id:'pineapple',name:'אננס',emoji:'🍍',cookStatus:'raw',category:'פרי',aliases:['פינאפל','אנניס'],
- why:'עשיר בברומלין - אנזים עיכול ייחודי שמסייע לפירוק חלבון. ויטמין C, מנגן וסיבים. ⭐ מצוין לתוכים ולחרדון מזוקן.',
+ why:'עשיר בברומלין, אנזים עיכול ייחודי שמסייע לפירוק חלבון. ויטמין C, מנגן וסיבים. ⭐ מצוין לתוכים ולחרדון מזוקן.',
  whyNot:'חומציות גבוהה וסוכר גבוה - לא לכמויות גדולות. הקצה של הלב מר יותר. ליונקים קטנים - מעט מאוד.',
  parts:[
    {name:'בשר הפרי',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'ok','vietstick':'lim','beardie':'ok','chinchilla':'lim','leopardgecko':'ok','rabbit':'lim','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}},
@@ -1303,7 +1325,7 @@ const DEFAULT_FOODS = [
 
 // ── לחם ────────────────────────────────────────────────────────
 {id:'bread',name:'לחם יבש',emoji:'🍞',cookStatus:'na',category:'מזון מעובד ומבושל',aliases:['לחם','פיתה','בגט'],
- why:'פחמימות. ⚠️ לחם לבן - ריק מתזונה. לחם מחיטה מלאה - מעט יותר ערך. בכל מקרה, מינימלי בלבד.',
+ why:'פחמימות. ⚠️ לחם לבן, ריק מתזונה. לחם מחיטה מלאה - מעט יותר ערך. בכל מקרה, מינימלי בלבד.',
  whyNot:'עמילן גבוה ללא ערך תזונתי משמעותי לחיות. עלול לגרום לתסיסה ונפיחות. שמרים בלחם לא יציב - לא לתת לחם טרי/שמרי.',
  parts:[{name:'לחם יבש לחלוטין',rawOk:'lim',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'lim','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'lim','leopardgecko':'lim','rabbit':'lim','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'no','hissingcockroach':'no'}},{name:'לחם טרי / שמרי',rawOk:'no',cookNote:'שמרים - גורם לתסיסה',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}}],
  animals:{jacko:{s:'no',leopardgecko:{s:'no',rabbit:{s:'no',sharkhan:{s:'no',jacko:{s:'no',beardie:{s:'no',syrianhamster:{s:'no',gerbil:{s:'no',mealworms:{s:'lim',a:'פירורים',f:'לעיתים',n:'יבש בלבד',hissingcockroach:{s:'lim',a:'פירורים',f:'לעיתים',n:'יבש בלבד',mouse:{s:'lim',a:'פירור זעיר',f:'לעיתים נדירות',n:'ריק תזונתית',rat:{s:'lim',a:'פירור',f:'לעיתים נדירות',n:'ריק תזונתית',budgie:{s:'no',n:'עמילן ריק',hamster_gen:{s:'lim',a:'פירור זעיר',f:'לעיתים נדירות',degu:{s:'no',n:'פחמימות וסוכר',iguana:{s:'no',n:'לא מתאים',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'no',n:'עמילן ריק',quail:{s:'no',n:'עמילן ריק'},hamster_gen:{s:'lim',a:'פירור זעיר',f:'לעיתים נדירות',degu:{s:'no',n:'פחמימות וסוכר',iguana:{s:'no',n:'לא מתאים',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},lovebird:{s:'no'},cockatiel:{s:'no'}}}},vietstick:{s:'no'},chinchilla:{s:'no'}},lovebird:{s:'no'},sibhamster:{s:'lim',a:'פירור זעיר',f:'לעיתים נדירות'},sulcata:{s:'no',n:'אין ערך תזונתי'},vietstick:{s:'no'},beardie:{s:'no'},chinchilla:{s:'no'},leopardgecko:{s:'no'},rabbit:{s:'no'},syrianhamster:{s:'lim',a:'פירור',f:'לעיתים נדירות'},sharkhan:{s:'no'},gerbil:{s:'lim',a:'פירור',f:'לעיתים נדירות'},cockatiel:{s:'no'},mealworms:{s:'ok',a:'מנה',f:'לעיתים'},hissingcockroach:{s:'ok',a:'מנה',f:'לעיתים'},fish:{s:'nr'},dog:{s:'lim',a:'פיסה',f:'לעיתים נדירות'},quail:{s:'no',n:'עמילן ריק',quail:{s:'no',n:'עמילן ריק'},hamster_gen:{s:'lim',a:'פירור זעיר',f:'לעיתים נדירות',degu:{s:'no',n:'פחמימות וסוכר',iguana:{s:'no',n:'לא מתאים',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
@@ -1311,7 +1333,7 @@ const DEFAULT_FOODS = [
 
 {id:'lemon',name:'לימון',emoji:'🍋',cookStatus:'raw',category:'פרי',aliases:['לימונים','מיץ לימון'],
  why:'ויטמין C גבוה מאוד. בעיקר לשימוש בישול, לא לחיות.',
- whyNot:'חמוץ מאוד - לא מתאים כמעט לאף חיית מחמד. השמנים האתריים בקליפה רעילים. לא לתת.',
+ whyNot:'חמוץ מאוד, לא מתאים כמעט לאף חיית מחמד. השמנים האתריים בקליפה רעילים. לא לתת.',
  parts:[{name:'הכל',rawOk:'no',cookNote:'חמוץ מדי וקליפה רעילה',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}}],
  animals:{jacko:{s:'no',leopardgecko:{s:'no',rabbit:{s:'no',sharkhan:{s:'no',jacko:{s:'no',beardie:{s:'no',syrianhamster:{s:'no',gerbil:{s:'no',mealworms:{s:'no',hissingcockroach:{s:'no',mouse:{s:'no',n:'חומצי מדי',rat:{s:'no',n:'חומצי מדי',budgie:{s:'no',n:'חומצי - רעיל לציפורים',hamster_gen:{s:'no',n:'חומצי',degu:{s:'no',n:'חומצי וסוכר',iguana:{s:'no',n:'חומצי מאוד',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'no',n:'חומצי - רעיל לציפורים',quail:{s:'no',n:'חומצי - רעיל לציפורים'},hamster_gen:{s:'no',n:'חומצי',degu:{s:'no',n:'חומצי וסוכר',iguana:{s:'no',n:'חומצי מאוד',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},lovebird:{s:'no'},cockatiel:{s:'no'}}}},vietstick:{s:'no'},chinchilla:{s:'no'},mealworms:{s:'no'},hissingcockroach:{s:'no'},sibhamster:{s:'no'},syrianhamster:{s:'no'},gerbil:{s:'no'}},lovebird:{s:'no'},sibhamster:{s:'no'},sulcata:{s:'no'},vietstick:{s:'no'},beardie:{s:'no'},chinchilla:{s:'no'},leopardgecko:{s:'no'},rabbit:{s:'no'},syrianhamster:{s:'no'},sharkhan:{s:'no'},gerbil:{s:'no'},cockatiel:{s:'no'},mealworms:{s:'lim',a:'קצת',f:'לעיתים',n:'חומצי - מעט'},hissingcockroach:{s:'no'},fish:{s:'nr'},dog:{s:'no'},quail:{s:'no',n:'חומצי - רעיל לציפורים',quail:{s:'no',n:'חומצי - רעיל לציפורים'},hamster_gen:{s:'no',n:'חומצי',degu:{s:'no',n:'חומצי וסוכר',iguana:{s:'no',n:'חומצי מאוד',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
 
@@ -1330,7 +1352,7 @@ const DEFAULT_FOODS = [
 
 // ── ירקות ───────────────────────────────────────────────────
 {id:'cucumber',name:'מלפפון',emoji:'🥒',cookStatus:'raw',category:'ירק',aliases:['מלפפונים','קליפת מלפפון'],
- why:'96% מים - מצוין להידרציה. ויטמין K, מגנזיום ואשלגן. קל לעיכול ואהוב כמעט על כל חיה. אפשר לתת כל יום.',
+ why:'96% מים, מצוין להידרציה. ויטמין K, מגנזיום ואשלגן. קל לעיכול ואהוב כמעט על כל חיה. אפשר לתת כל יום.',
  parts:[{name:'פרי',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'ok','sulcata':'ok','vietstick':'ok','beardie':'ok','chinchilla':'ok','leopardgecko':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'ok','gerbil':'ok','mealworms':'ok','hissingcockroach':'ok'}},{name:'קליפה',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sulcata':'ok','beardie':'ok','rabbit':'ok','sharkhan':'ok','sibhamster':'lim','syrianhamster':'lim','gerbil':'lim','chinchilla':'lim','mealworms':'ok'}},{name:'זרעים',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sulcata':'ok','beardie':'ok','rabbit':'ok','sharkhan':'ok','sibhamster':'ok','syrianhamster':'ok','gerbil':'ok','chinchilla':'ok','mealworms':'ok'}}],
  animals:{jacko:{s:'ok',a:'פרוסות',f:'כל יום',leopardgecko:{s:'no',rabbit:{s:'ok',a:'פרוסות',f:'לעיתים',sharkhan:{s:'ok',a:'פרוסות',f:'לעיתים',jacko:{s:'ok',a:'פרוסה',f:'לעיתים',beardie:{s:'lim',a:'פרוסה',f:'לעיתים',n:'מים בלבד',syrianhamster:{s:'ok',a:'פרוסה',f:'לעיתים',gerbil:{s:'ok',a:'פרוסה',f:'לעיתים',mealworms:{s:'ok',a:'פרוסה',f:'לעיתים',n:'מקור מים מצוין',hissingcockroach:{s:'ok',a:'פרוסה',f:'לעיתים',n:'מקור מים מצוין',mouse:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',rat:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',budgie:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',hamster_gen:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',quail:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע'},hamster_gen:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},lovebird:{s:'ok',a:'פרוסה',f:'לעיתים'},cockatiel:{s:'ok',a:'פרוסה',f:'לעיתים'}}}},vietstick:{s:'no'},sulcata:{s:'ok',a:'מנה',f:'כמה פעמים בשבוע'},chinchilla:{s:'no'},mealworms:{s:'ok',a:'חתיכה',f:'לעיתים'},hissingcockroach:{s:'ok',a:'חתיכה',f:'לעיתים'},sibhamster:{s:'ok',a:'מעט',f:'לעיתים'},syrianhamster:{s:'ok',a:'מעט',f:'לעיתים'},gerbil:{s:'ok',a:'מעט',f:'לעיתים'}},lovebird:{s:'ok',a:'פרוסה',f:'כל יום'},sibhamster:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',n:'לא יתר - שלשול'},sulcata:{s:'ok',a:'מנה',f:'כל יום'},vietstick:{s:'no'},beardie:{s:'ok',a:'פרוסות',f:'כל יום'},chinchilla:{s:'lim',a:'פרוסה',f:'לעיתים'},leopardgecko:{s:'no'},rabbit:{s:'ok',a:'פרוסות',f:'כל יום'},syrianhamster:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע'},sharkhan:{s:'ok',a:'חתיכה',f:'כמה פעמים בשבוע'},gerbil:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע'},cockatiel:{s:'ok',a:'פרוסה',f:'כל יום'},mealworms:{s:'ok',a:'פרוסה',f:'כל יום'},hissingcockroach:{s:'ok',a:'פרוסה',f:'כל יום'},fish:{s:'nr'},dog:{s:'ok',a:'פרוסות',f:'לעיתים'},quail:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',quail:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע'},hamster_gen:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
 
@@ -1355,7 +1377,7 @@ const DEFAULT_FOODS = [
 
 
 {id:'sprouts_mung',name:'נבטים סיניים',emoji:'🌱',cookStatus:'raw',category:'נבטים',aliases:['נבטי שעועית','שעועית מאש'],
- why:'נבטי שעועית מאש - עשיר בחלבון, פולאט וויטמין C. קל לעיכול.',
+ why:'נבטי שעועית מאש, עשיר בחלבון, פולאט וויטמין C. קל לעיכול.',
  parts:[{name:'נבטים טריים',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'ok','sulcata':'ok','vietstick':'ok','beardie':'ok','chinchilla':'lim','leopardgecko':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'ok','gerbil':'ok','mealworms':'ok','hissingcockroach':'ok'}}],
  animals:{jacko:{s:'ok',a:'מעט',f:'לעיתים',leopardgecko:{s:'no',rabbit:{s:'ok',a:'נבטים',f:'לעיתים',sharkhan:{s:'ok',a:'נבטים',f:'לעיתים',jacko:{s:'ok',a:'נבטים',f:'לעיתים',beardie:{s:'ok',a:'נבטים',f:'לעיתים',syrianhamster:{s:'ok',a:'נבטים',f:'לעיתים',gerbil:{s:'ok',a:'נבטים',f:'לעיתים',mealworms:{s:'ok',a:'נבטים',f:'לעיתים',hissingcockroach:{s:'ok',a:'נבטים',f:'לעיתים',mouse:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',rat:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',budgie:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',hamster_gen:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',quail:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע'},hamster_gen:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},lovebird:{s:'ok',a:'נבטים',f:'לעיתים'},cockatiel:{s:'ok',a:'נבטים',f:'לעיתים'}}}},vietstick:{s:'no'},sulcata:{s:'ok',a:'מנה',f:'כמה פעמים בשבוע'},chinchilla:{s:'no'},mealworms:{s:'ok',a:'חתיכה',f:'לעיתים'},hissingcockroach:{s:'ok',a:'חתיכה',f:'לעיתים'},sibhamster:{s:'ok',a:'מעט',f:'לעיתים'},syrianhamster:{s:'ok',a:'מעט',f:'לעיתים'},gerbil:{s:'ok',a:'מעט',f:'לעיתים'}},lovebird:{s:'ok',a:'מעט',f:'לעיתים'},sibhamster:{s:'lim',a:'קטן',f:'לעיתים'},sulcata:{s:'ok',a:'מנה',f:'לעיתים'},vietstick:{s:'no'},beardie:{s:'ok',a:'מנה',f:'לעיתים'},chinchilla:{s:'lim',a:'מעט',f:'לעיתים'},leopardgecko:{s:'no'},rabbit:{s:'ok',a:'חופן',f:'לעיתים'},syrianhamster:{s:'lim',a:'קטן',f:'לעיתים'},sharkhan:{s:'ok',a:'חתיכה',f:'כמה פעמים בשבוע'},gerbil:{s:'lim',a:'מעט',f:'לעיתים'},cockatiel:{s:'ok',a:'מעט',f:'לעיתים'},mealworms:{s:'no'},hissingcockroach:{s:'ok',a:'מנה',f:'לעיתים'},fish:{s:'nr'},dog:{s:'ok',a:'מעט',f:'לעיתים'},quail:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',quail:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע'},hamster_gen:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
 
@@ -1367,7 +1389,7 @@ const DEFAULT_FOODS = [
 
 
 {id:'beetroot',name:'סלק',emoji:'🍇',cookStatus:'raw',category:'ירק שורש',aliases:['סלק אדום','סלק מבושל','עלי סלק'],
- why:'עשיר בנייטרטים (מטיבים לזרימת דם), פולאט, מגנזיום ואנתוציאנינים - פיגמנט אדום שהוא נוגד חמצון. העלים הירוקים עשירים בסידן ובויטמין K. ⚠️ צובע סגול-אדום - לא לדאוג!',
+ why:'עשיר בנייטרטים (מטיבים לזרימת דם), פולאט, מגנזיום ואנתוציאנינים - פיגמנט אדום שהוא נוגד חמצון. העלים הירוקים עשירים בסידן ובויטמין K. ⚠️ צובע סגול-אדום, לא לדאוג!',
  whyNot:'עשיר בסוכר ואוקסלאטים - לא לכמויות גדולות. לצ\'ינצ\'ילה וארנבון - מוגבל בלבד. לכלב - בזהירות, בכמות קטנה.',
  parts:[
    {name:'בשר הסלק (טרי)',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'ok','vietstick':'ok','beardie':'ok','chinchilla':'lim','leopardgecko':'ok','rabbit':'lim','sharkhan':'ok','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}},
@@ -1421,14 +1443,14 @@ const DEFAULT_FOODS = [
    ball_python:{s:'no',a:'',f:'',n:'נחש - מזון חי בלבד'}
  }}
 ,{id:'tomato',name:'עגבנייה',emoji:'🍅',cookStatus:'raw',category:'ירק',aliases:['עגבניות','שרי'],
- why:'ליקופן - נוגד חמצון חזק. ויטמין C ואשלגן. ⚠️ רק הפרי הבשל! עלים, גבעול ופרי ירוק - רעילים.',
+ why:'ליקופן, נוגד חמצון חזק. ויטמין C ואשלגן. ⚠️ רק הפרי הבשל! עלים, גבעול ופרי ירוק - רעילים.',
  whyNot:'עלים, גבעול וחלקים ירוקים מכילים סולנין וטומטין - אלקלואידים רעילים. לא מומלץ ליונקים בכלל (אוגרים, ארנבים, צ׳ינצ׳ילה) גם אם הפרי בשל.',
  parts:[{name:'בשר הפרי הבשל',rawOk:'ok',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'lim','sulcata':'no','vietstick':'ok','beardie':'lim','chinchilla':'no','leopardgecko':'lim','rabbit':'no','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'lim','hissingcockroach':'lim'}},{name:'עלים',rawOk:'no',cookNote:'גם מבושל - רעיל!',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},{name:'גבעול',rawOk:'no',cookNote:'גם מבושל - רעיל!',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}}],
  animals:{jacko:{s:'ok',a:'חתיכה',f:'כמה פעמים בשבוע',n:'רק הפרי הבשל!',leopardgecko:{s:'no',rabbit:{s:'lim',a:'חתיכה',f:'לעיתים',n:'חומצי',sharkhan:{s:'lim',a:'חתיכה',f:'לעיתים',n:'חומצי - ללא עלים',jacko:{s:'lim',a:'בשר בלבד',f:'לעיתים',n:'ללא עלים/גבעולים!',beardie:{s:'lim',a:'חתיכה',f:'לעיתים',n:'חומצי - לעיתים',syrianhamster:{s:'lim',a:'בשר בלבד',f:'לעיתים',n:'ללא עלים/גבעולים',gerbil:{s:'lim',a:'בשר בלבד',f:'לעיתים',n:'ללא עלים/גבעולים',mealworms:{s:'ok',a:'חתיכה',f:'לעיתים',hissingcockroach:{s:'ok',a:'חתיכה',f:'לעיתים',mouse:{s:'lim',a:'פירור בשר בלבד',f:'לעיתים נדירות',n:'ללא עלים/גבעולים - סולנין',rat:{s:'ok',a:'פרוסה בשר',f:'לעיתים נדירות',n:'ללא עלים/גבעולים',budgie:{s:'lim',a:'פרוסה בשר',f:'לעיתים נדירות',n:'ללא עלים/גבעולים',hamster_gen:{s:'lim',a:'פירור בשר',f:'לעיתים נדירות',n:'ללא עלים',degu:{s:'no',n:'חומצי וסוכר',iguana:{s:'lim',a:'פרוסה',f:'לעיתים נדירות',n:'חומצי - מעט מאוד',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'lim',a:'פרוסה בשר',f:'לעיתים נדירות',n:'ללא עלים/גבעולים',quail:{s:'lim',a:'פרוסה בשר',f:'לעיתים נדירות',n:'ללא עלים/גבעולים'},hamster_gen:{s:'lim',a:'פירור בשר',f:'לעיתים נדירות',n:'ללא עלים',degu:{s:'no',n:'חומצי וסוכר',iguana:{s:'lim',a:'פרוסה',f:'לעיתים נדירות',n:'חומצי - מעט מאוד',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},lovebird:{s:'lim',a:'בשר בלבד',f:'לעיתים',n:'ללא עלים/גבעולים!'},cockatiel:{s:'lim',a:'בשר בלבד',f:'לעיתים',n:'ללא עלים/גבעולים!'}}}},vietstick:{s:'no'},sulcata:{s:'lim',a:'מעט',f:'לעיתים'},chinchilla:{s:'no'},mealworms:{s:'lim',a:'מעט',f:'לעיתים'},hissingcockroach:{s:'lim',a:'מעט',f:'לעיתים'}},lovebird:{s:'ok',a:'חתיכה',f:'כמה פעמים בשבוע',n:'רק הפרי הבשל!'},sibhamster:{s:'no',n:'לא מומלץ ליונקים'},sulcata:{s:'lim',a:'חתיכה',f:'לעיתים'},vietstick:{s:'no'},beardie:{s:'ok',a:'חתיכות',f:'כמה פעמים בשבוע'},chinchilla:{s:'no',n:'לא מומלץ ליונקים'},leopardgecko:{s:'no'},rabbit:{s:'no',n:'לא מומלץ ליונקים'},syrianhamster:{s:'no',n:'לא מומלץ ליונקים'},sharkhan:{s:'no'},gerbil:{s:'no',n:'לא מומלץ ליונקים'},cockatiel:{s:'ok',a:'חתיכה',f:'כמה פעמים בשבוע'},mealworms:{s:'ok',a:'חתיכה',f:'לעיתים'},hissingcockroach:{s:'ok',a:'חתיכה',f:'כמה פעמים בשבוע'},fish:{s:'nr'},dog:{s:'lim',a:'מעט',f:'לעיתים',n:'רק הפרי הבשל'},quail:{s:'lim',a:'פרוסה בשר',f:'לעיתים נדירות',n:'ללא עלים/גבעולים'}}},
 
 
 {id:'babyleaves',name:'עלי בייבי',emoji:'🥬',cookStatus:'raw',category:'עלים ועשבי תיבול',aliases:['מיקס עלים','עלי בייבי ספינץ'],
- why:'מגוון עלים צעירים - מכיל ויטמינים A, C, K וברזל. גיוון טבעי שמספק מגוון תזונתי. אידיאלי לתת כמזון יומי בסיסי.',
+ why:'מגוון עלים צעירים, מכיל ויטמינים A, C, K וברזל. גיוון טבעי שמספק מגוון תזונתי. אידיאלי לתת כמזון יומי בסיסי.',
  parts:[{name:'עלים שונים',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'ok','vietstick':'ok','beardie':'ok','chinchilla':'lim','leopardgecko':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}}],
  animals:{jacko:{s:'ok',a:'חופן',f:'כל יום',leopardgecko:{s:'no',rabbit:{s:'ok',a:'עלים',f:'יומי',sharkhan:{s:'ok',a:'עלים',f:'יומי',jacko:{s:'ok',a:'עלים',f:'לעיתים',beardie:{s:'ok',a:'עלים',f:'לעיתים',syrianhamster:{s:'ok',a:'עלים',f:'לעיתים',gerbil:{s:'ok',a:'עלים',f:'לעיתים',mealworms:{s:'ok',a:'עלים',f:'לעיתים',hissingcockroach:{s:'ok',a:'עלים',f:'לעיתים',mouse:{s:'ok',a:'עלה',f:'כמה פעמים בשבוע',rat:{s:'ok',a:'עלה',f:'כמה פעמים בשבוע',budgie:{s:'ok',a:'עלה',f:'כמה פעמים בשבוע',hamster_gen:{s:'ok',a:'עלה',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'עלה',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'עלה',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'ok',a:'עלה',f:'כמה פעמים בשבוע',quail:{s:'ok',a:'עלה',f:'כמה פעמים בשבוע'},hamster_gen:{s:'ok',a:'עלה',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'עלה',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'עלה',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},lovebird:{s:'ok',a:'עלים',f:'לעיתים'},cockatiel:{s:'ok',a:'עלים',f:'לעיתים'}}}},vietstick:{s:'no'},sulcata:{s:'ok',a:'מנה',f:'כמה פעמים בשבוע'},chinchilla:{s:'no'},mealworms:{s:'ok',a:'חתיכה',f:'לעיתים'},hissingcockroach:{s:'ok',a:'חתיכה',f:'לעיתים'},sibhamster:{s:'ok',a:'מעט',f:'לעיתים'},syrianhamster:{s:'ok',a:'מעט',f:'לעיתים'},gerbil:{s:'ok',a:'מעט',f:'לעיתים'}},lovebird:{s:'ok',a:'עלים',f:'כל יום'},sibhamster:{s:'ok',a:'עלה',f:'כמה פעמים בשבוע'},sulcata:{s:'ok',a:'חופן',f:'כל יום'},vietstick:{s:'no'},beardie:{s:'ok',a:'עלים',f:'כל יום'},chinchilla:{s:'lim',a:'מעט',f:'לעיתים'},leopardgecko:{s:'no'},rabbit:{s:'ok',a:'עלים',f:'כל יום'},syrianhamster:{s:'ok',a:'עלה',f:'כמה פעמים בשבוע'},sharkhan:{s:'ok',a:'חתיכה',f:'כמה פעמים בשבוע'},gerbil:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע'},cockatiel:{s:'ok',a:'עלים',f:'כל יום'},mealworms:{s:'no'},hissingcockroach:{s:'ok',a:'עלים',f:'כל יום'},fish:{s:'nr'},dog:{s:'ok',a:'עלים',f:'לעיתים'},quail:{s:'ok',a:'עלה',f:'כמה פעמים בשבוע',quail:{s:'ok',a:'עלה',f:'כמה פעמים בשבוע'},hamster_gen:{s:'ok',a:'עלה',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'עלה',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'עלה',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
 
@@ -1453,8 +1475,8 @@ const DEFAULT_FOODS = [
 
 
 {id:'pomelo',name:'פומלה',emoji:'🍈',cookStatus:'raw',category:'פרי',aliases:['פומלית','פומלו'],
- why:'ויטמין C ואשלגן. הכי פחות חמוץ מפירות ההדר. לציפורים - אפשרי בכמות קטנה.',
- whyNot:'כמו שאר פירות ההדר - קליפה עם שמנים אתריים, ולרוב היונקים - לא מומלץ.',
+ why:'ויטמין C ואשלגן. הכי פחות חמוץ מפירות ההדר. לציפורים, אפשרי בכמות קטנה.',
+ whyNot:'כמו שאר פירות ההדר, קליפה עם שמנים אתריים, ולרוב היונקים - לא מומלץ.',
  parts:[{name:'בשר הפרי',rawOk:'lim',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'no','sulcata':'no','vietstick':'ok','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},{name:'קליפה',rawOk:'no',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}}],
  animals:{jacko:{s:'lim',a:'חתיכה',f:'לעיתים',leopardgecko:{s:'no',rabbit:{s:'no',sharkhan:{s:'no',jacko:{s:'no',beardie:{s:'no',syrianhamster:{s:'no',gerbil:{s:'no',mealworms:{s:'no',hissingcockroach:{s:'no',mouse:{s:'no',n:'הדרים - חומצי מדי',rat:{s:'no',n:'הדרים',budgie:{s:'no',n:'הדרים - חומצי',hamster_gen:{s:'no',n:'הדרים',degu:{s:'no',n:'הדרים וסוכר',iguana:{s:'no',n:'חומצי',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'no',n:'הדרים - חומצי',quail:{s:'no',n:'הדרים - חומצי'},hamster_gen:{s:'no',n:'הדרים',degu:{s:'no',n:'הדרים וסוכר',iguana:{s:'no',n:'חומצי',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},lovebird:{s:'no'},cockatiel:{s:'no'}}}},vietstick:{s:'no'},sulcata:{s:'lim',a:'חתיכה קטנה',f:'לעיתים נדירות',n:'פחות מ-5% מהתזונה'},chinchilla:{s:'no'},mealworms:{s:'no'},hissingcockroach:{s:'no'},sibhamster:{s:'no'},syrianhamster:{s:'no'},gerbil:{s:'no'}},lovebird:{s:'lim',a:'קטן',f:'לעיתים'},sibhamster:{s:'no'},sulcata:{s:'lim',a:'מעט',f:'לעיתים'},vietstick:{s:'no'},beardie:{s:'lim',a:'מעט',f:'לעיתים'},chinchilla:{s:'no'},leopardgecko:{s:'no'},rabbit:{s:'no'},syrianhamster:{s:'no'},sharkhan:{s:'no'},gerbil:{s:'no'},cockatiel:{s:'lim',a:'קטן',f:'לעיתים'},mealworms:{s:'lim',a:'מעט',f:'לעיתים',n:'חומצי'},hissingcockroach:{s:'lim',a:'מעט',f:'לעיתים'},fish:{s:'nr'},dog:{s:'lim',a:'מעט',f:'לעיתים'},quail:{s:'no',n:'הדרים - חומצי',quail:{s:'no',n:'הדרים - חומצי'},hamster_gen:{s:'no',n:'הדרים',degu:{s:'no',n:'הדרים וסוכר',iguana:{s:'no',n:'חומצי',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
 
@@ -1470,7 +1492,7 @@ const DEFAULT_FOODS = [
 
 
 {id:'parsley',name:'פטרוזיליה',emoji:'🌿',cookStatus:'raw',category:'עלים ועשבי תיבול',aliases:['פטרוזיה','עלי פטרוזיליה'],
- why:'ויטמין K וסידן - נפלאים לבריאות העצמות. ויטמין C וברזל. פעיל נגד חיידקים ומסייע לעיכול. אחד הצמחים הנפוצים ביותר בתזונת חיות.',
+ why:'ויטמין K וסידן, נפלאים לבריאות העצמות. ויטמין C וברזל. פעיל נגד חיידקים ומסייע לעיכול. אחד הצמחים הנפוצים ביותר בתזונת חיות.',
  parts:[{name:'עלים',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'ok','sulcata':'ok','vietstick':'ok','beardie':'ok','chinchilla':'ok','leopardgecko':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'ok','gerbil':'ok','mealworms':'ok','hissingcockroach':'ok'}},{name:'גבעולים',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'ok','vietstick':'lim','beardie':'ok','chinchilla':'lim','leopardgecko':'ok','rabbit':'lim','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}},{name:'שורש',rawOk:'ok',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'lim','sulcata':'lim','vietstick':'no','beardie':'lim','chinchilla':'lim','leopardgecko':'lim','rabbit':'lim','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'no','hissingcockroach':'no'}}],
  animals:{jacko:{s:'ok',a:'ענפים',f:'כמה פעמים בשבוע',leopardgecko:{s:'no',rabbit:{s:'ok',a:'עלים',f:'לעיתים',sharkhan:{s:'ok',a:'עלים',f:'יומי',jacko:{s:'ok',a:'עלים',f:'לעיתים',beardie:{s:'ok',a:'עלים',f:'לעיתים',syrianhamster:{s:'ok',a:'עלים',f:'לעיתים',gerbil:{s:'ok',a:'עלים',f:'לעיתים',mealworms:{s:'ok',a:'עלים',f:'לעיתים',hissingcockroach:{s:'ok',a:'עלים',f:'לעיתים',mouse:{s:'lim',a:'ענף קטן',f:'לעיתים נדירות',n:'אוקסלאטים - לא הרבה',rat:{s:'lim',a:'ענף קטן',f:'לעיתים נדירות',n:'אוקסלאטים',budgie:{s:'lim',a:'ענף קטן',f:'לעיתים נדירות',n:'אוקסלאטים',hamster_gen:{s:'lim',a:'ענף קטן',f:'לעיתים נדירות',n:'אוקסלאטים',degu:{s:'lim',a:'ענף קטן',f:'לעיתים נדירות',n:'אוקסלאטים',iguana:{s:'lim',a:'ענף',f:'לעיתים נדירות',n:'אוקסלאטים',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'lim',a:'ענף קטן',f:'לעיתים נדירות',n:'אוקסלאטים',quail:{s:'lim',a:'ענף קטן',f:'לעיתים נדירות',n:'אוקסלאטים'},hamster_gen:{s:'lim',a:'ענף קטן',f:'לעיתים נדירות',n:'אוקסלאטים',degu:{s:'lim',a:'ענף קטן',f:'לעיתים נדירות',n:'אוקסלאטים',iguana:{s:'lim',a:'ענף',f:'לעיתים נדירות',n:'אוקסלאטים',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},lovebird:{s:'ok',a:'עלים',f:'לעיתים'},cockatiel:{s:'ok',a:'עלים',f:'לעיתים'}}}},vietstick:{s:'no'},sulcata:{s:'ok',a:'מנה',f:'כמה פעמים בשבוע'},chinchilla:{s:'lim',a:'פיסה זעירה',f:'לעיתים נדירות',n:'מיובש/קטן מאוד בלבד'},mealworms:{s:'ok',a:'חתיכה',f:'לעיתים'},hissingcockroach:{s:'ok',a:'חתיכה',f:'לעיתים'},sibhamster:{s:'ok',a:'מעט',f:'לעיתים'},syrianhamster:{s:'ok',a:'מעט',f:'לעיתים'},gerbil:{s:'ok',a:'מעט',f:'לעיתים'}},lovebird:{s:'ok',a:'ענף',f:'כמה פעמים בשבוע'},sibhamster:{s:'ok',a:'ענף',f:'כמה פעמים בשבוע'},sulcata:{s:'ok',a:'ענפים',f:'כמה פעמים בשבוע'},vietstick:{s:'no'},beardie:{s:'ok',a:'ענפים',f:'כמה פעמים בשבוע'},chinchilla:{s:'lim',a:'ענף',f:'לעיתים'},leopardgecko:{s:'no'},rabbit:{s:'ok',a:'ענפים',f:'כמה פעמים בשבוע'},syrianhamster:{s:'ok',a:'ענף',f:'כמה פעמים בשבוע'},sharkhan:{s:'ok',a:'חתיכה',f:'כמה פעמים בשבוע'},gerbil:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע'},cockatiel:{s:'ok',a:'ענפים',f:'כמה פעמים בשבוע'},mealworms:{s:'ok',a:'עלים',f:'לעיתים'},hissingcockroach:{s:'ok',a:'ענף',f:'כמה פעמים בשבוע'},fish:{s:'nr'},dog:{s:'ok',a:'מעט',f:'לעיתים'},quail:{s:'lim',a:'ענף קטן',f:'לעיתים נדירות',n:'אוקסלאטים',quail:{s:'lim',a:'ענף קטן',f:'לעיתים נדירות',n:'אוקסלאטים'},hamster_gen:{s:'lim',a:'ענף קטן',f:'לעיתים נדירות',n:'אוקסלאטים',degu:{s:'lim',a:'ענף קטן',f:'לעיתים נדירות',n:'אוקסלאטים',iguana:{s:'lim',a:'ענף',f:'לעיתים נדירות',n:'אוקסלאטים',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
 
@@ -1489,7 +1511,7 @@ const DEFAULT_FOODS = [
 
 
 {id:'radish',name:'צנונית',emoji:'🥬',cookStatus:'raw',category:'ירק שורש',aliases:['צנוניות','עלי צנונית'],
- why:'צובע סגול-אדום - לא לדאוג! חתוך קטן, שטוף. רק מעט (סוכר ואוקסלאטים גבוהים). אזהרה: גלוקוזינולאטים - השפעה קלה על בלוטת התריס.',
+ why:'צובע סגול-אדום, לא לדאוג! חתוך קטן, שטוף. רק מעט (סוכר ואוקסלאטים גבוהים). אזהרה: גלוקוזינולאטים - השפעה קלה על בלוטת התריס.',
  parts:[{name:'פקעת',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'ok','vietstick':'ok','beardie':'ok','chinchilla':'lim','leopardgecko':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}},{name:'עלים',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'ok','vietstick':'ok','beardie':'ok','chinchilla':'lim','leopardgecko':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}},{name:'גבעול',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'ok','vietstick':'ok','beardie':'ok','chinchilla':'lim','leopardgecko':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}}],
  animals:{jacko:{s:'ok',a:'פרוסה',f:'לעיתים',leopardgecko:{s:'no',rabbit:{s:'lim',a:'פרוסה',f:'לעיתים',sharkhan:{s:'ok',a:'פרוסה',f:'לעיתים',jacko:{s:'lim',a:'פרוסה',f:'לעיתים',beardie:{s:'lim',a:'פרוסה',f:'לעיתים',syrianhamster:{s:'lim',a:'פרוסה',f:'לעיתים',gerbil:{s:'lim',a:'פרוסה',f:'לעיתים',mealworms:{s:'ok',a:'פרוסה',f:'לעיתים',hissingcockroach:{s:'ok',a:'פרוסה',f:'לעיתים',beardie:{s:'lim',a:'פרוסה קטנה',f:'לעיתים נדירות',n:'חריף - עלול לגרות מעיים',mouse:{s:'lim',a:'פרוסה דקה',f:'לעיתים נדירות',n:'חריף',rat:{s:'lim',a:'פרוסה',f:'לעיתים נדירות',n:'חריף',budgie:{s:'lim',a:'פרוסה דקה',f:'לעיתים נדירות',n:'חריף',hamster_gen:{s:'lim',a:'פרוסה דקה',f:'לעיתים נדירות',n:'חריף',degu:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'lim',a:'פרוסה דקה',f:'לעיתים נדירות',n:'חריף',quail:{s:'lim',a:'פרוסה דקה',f:'לעיתים נדירות',n:'חריף'},hamster_gen:{s:'lim',a:'פרוסה דקה',f:'לעיתים נדירות',n:'חריף',degu:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}}},lovebird:{s:'lim',a:'פרוסה',f:'לעיתים'},cockatiel:{s:'lim',a:'פרוסה',f:'לעיתים'}}}},vietstick:{s:'no'},sulcata:{s:'ok',a:'מנה',f:'כמה פעמים בשבוע'},chinchilla:{s:'no'},mealworms:{s:'ok',a:'חתיכה',f:'לעיתים'},hissingcockroach:{s:'ok',a:'חתיכה',f:'לעיתים'},sibhamster:{s:'ok',a:'מעט',f:'לעיתים'},syrianhamster:{s:'ok',a:'מעט',f:'לעיתים'},gerbil:{s:'ok',a:'מעט',f:'לעיתים'}},lovebird:{s:'ok',a:'פרוסה',f:'לעיתים'},sibhamster:{s:'lim',a:'מעט',f:'לעיתים',n:'חריף'},sulcata:{s:'ok',a:'פרוסות',f:'לעיתים'},vietstick:{s:'no'},beardie:{s:'lim',a:'מעט',f:'לעיתים'},chinchilla:{s:'lim',a:'מעט',f:'לעיתים'},leopardgecko:{s:'no'},rabbit:{s:'ok',a:'פרוסה',f:'לעיתים'},syrianhamster:{s:'lim',a:'זעיר',f:'לעיתים'},sharkhan:{s:'ok',a:'חתיכה',f:'כמה פעמים בשבוע'},gerbil:{s:'lim',a:'מעט',f:'לעיתים'},cockatiel:{s:'ok',a:'פרוסה',f:'לעיתים'},mealworms:{s:'ok',a:'פרוסה',f:'לעיתים'},hissingcockroach:{s:'ok',a:'פרוסה',f:'לעיתים'},fish:{s:'nr'},dog:{s:'ok',a:'פרוסות',f:'לעיתים'},quail:{s:'lim',a:'פרוסה דקה',f:'לעיתים נדירות',n:'חריף',quail:{s:'lim',a:'פרוסה דקה',f:'לעיתים נדירות',n:'חריף'},hamster_gen:{s:'lim',a:'פרוסה דקה',f:'לעיתים נדירות',n:'חריף',degu:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
 
@@ -1501,27 +1523,27 @@ const DEFAULT_FOODS = [
 
 
 {id:'zucchini',name:'קישוא',emoji:'🥒',cookStatus:'raw',category:'ירק',aliases:['זוקיני','קישואים','קליפות קישוא'],
- why:'פרחים אכילים ומתוקים - חתוך קטן. מעולה להידרציה! עשיר במים, ויטמין C ואשלגן.',
+ why:'פרחים אכילים ומתוקים, חתוך קטן. מעולה להידרציה! עשיר במים, ויטמין C ואשלגן.',
  parts:[{name:'פרי',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'ok','sulcata':'ok','vietstick':'ok','beardie':'ok','chinchilla':'ok','leopardgecko':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'ok','gerbil':'ok','mealworms':'ok','hissingcockroach':'ok'}},{name:'קליפה',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'ok','vietstick':'ok','beardie':'ok','chinchilla':'lim','leopardgecko':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}},{name:'זרעים',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'ok','sulcata':'ok','vietstick':'ok','beardie':'ok','chinchilla':'lim','leopardgecko':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'ok','gerbil':'ok','mealworms':'ok','hissingcockroach':'ok'}},{name:'פרח',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'ok','vietstick':'ok','beardie':'ok','chinchilla':'lim','leopardgecko':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}}],
  animals:{jacko:{s:'ok',a:'פרוסות',f:'כל יום',leopardgecko:{s:'no',rabbit:{s:'ok',a:'פרוסה',f:'לעיתים',sharkhan:{s:'ok',a:'פרוסה',f:'לעיתים',jacko:{s:'ok',a:'פרוסה',f:'לעיתים',beardie:{s:'ok',a:'פרוסה',f:'לעיתים',syrianhamster:{s:'ok',a:'פרוסה',f:'לעיתים',gerbil:{s:'ok',a:'פרוסה',f:'לעיתים',mealworms:{s:'ok',a:'פרוסה',f:'לעיתים',hissingcockroach:{s:'ok',a:'פרוסה',f:'לעיתים',jacko:{s:'ok',a:'פרוסות',f:'כמה פעמים בשבוע',lovebird:{s:'ok',a:'פרוסות',f:'כמה פעמים בשבוע',cockatiel:{s:'ok',a:'פרוסות',f:'כמה פעמים בשבוע',mouse:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',rat:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',budgie:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',hamster_gen:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',quail:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע'},hamster_gen:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}}}}},lovebird:{s:'ok',a:'פרוסה',f:'לעיתים'},cockatiel:{s:'ok',a:'פרוסה',f:'לעיתים'}}}},vietstick:{s:'no'},sulcata:{s:'ok',a:'מנה',f:'כמה פעמים בשבוע'},chinchilla:{s:'no'},mealworms:{s:'ok',a:'חתיכה',f:'לעיתים'},hissingcockroach:{s:'ok',a:'חתיכה',f:'לעיתים'},sibhamster:{s:'ok',a:'מעט',f:'לעיתים'},syrianhamster:{s:'ok',a:'מעט',f:'לעיתים'},gerbil:{s:'ok',a:'מעט',f:'לעיתים'}},lovebird:{s:'ok',a:'פרוסה',f:'כל יום'},sibhamster:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע'},sulcata:{s:'ok',a:'מנה',f:'כל יום'},vietstick:{s:'no'},beardie:{s:'ok',a:'פרוסות',f:'כל יום'},chinchilla:{s:'lim',a:'פרוסה',f:'לעיתים'},leopardgecko:{s:'no'},rabbit:{s:'ok',a:'פרוסות',f:'כל יום'},syrianhamster:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע'},sharkhan:{s:'ok',a:'חתיכה',f:'כמה פעמים בשבוע'},gerbil:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע'},cockatiel:{s:'ok',a:'פרוסה',f:'כל יום'},mealworms:{s:'ok',a:'פרוסה',f:'כל יום'},hissingcockroach:{s:'ok',a:'פרוסה',f:'כל יום'},fish:{s:'nr'},dog:{s:'ok',a:'פרוסות',f:'לעיתים'},quail:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',quail:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע'},hamster_gen:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'פרוסה',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
 
 
 {id:'clementine',name:'קלמנטינה',emoji:'🍊',cookStatus:'raw',category:'פרי',aliases:['מנדרינה','קלמנטינות'],
- why:'הסר קליפה - רק הבשר. חמוץ - מעט מאוד! ויטמין C גבוה.',
+ why:'הסר קליפה, רק הבשר. חמוץ, מעט מאוד! ויטמין C גבוה.',
  whyNot:'חומציות עדיין גבוהה יחסית, שמנים בקליפה.',
  parts:[{name:'בשר הפרי',rawOk:'lim',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'no','sulcata':'no','vietstick':'ok','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},{name:'קליפה',rawOk:'no',cookNote:'שמנים אתריים',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},{name:'זרעים',rawOk:'no',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}}],
  animals:{jacko:{s:'lim',a:'חתיכה',f:'לעיתים',leopardgecko:{s:'no',rabbit:{s:'no',sharkhan:{s:'lim',a:'פרוסה',f:'לעיתים',n:'חומצי - לא יותר מדי',jacko:{s:'no',beardie:{s:'no',syrianhamster:{s:'no',gerbil:{s:'no',mealworms:{s:'no',hissingcockroach:{s:'no',beardie:{s:'lim',a:'מעט מאוד',f:'לעיתים נדירות',n:'חומציות גבוהה - ללא קליפה',mouse:{s:'no',n:'הדרים - חומצי',rat:{s:'no',n:'הדרים',budgie:{s:'no',n:'הדרים',hamster_gen:{s:'no',n:'הדרים',degu:{s:'no',n:'הדרים וסוכר',iguana:{s:'no',n:'הדרים - חומצי',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'no',n:'הדרים',quail:{s:'no',n:'הדרים'},hamster_gen:{s:'no',n:'הדרים',degu:{s:'no',n:'הדרים וסוכר',iguana:{s:'no',n:'הדרים - חומצי',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}}},lovebird:{s:'no'},cockatiel:{s:'no'}}}},vietstick:{s:'no'},sulcata:{s:'lim',a:'חתיכה קטנה',f:'לעיתים נדירות',n:'פחות מ-5% מהתזונה'},chinchilla:{s:'no'},mealworms:{s:'no'},hissingcockroach:{s:'no'},sibhamster:{s:'no'},syrianhamster:{s:'no'},gerbil:{s:'no'}},lovebird:{s:'lim',a:'קטן',f:'לעיתים'},sibhamster:{s:'no'},sulcata:{s:'lim',a:'מעט',f:'לעיתים'},vietstick:{s:'no'},beardie:{s:'lim',a:'מעט',f:'לעיתים'},chinchilla:{s:'no'},leopardgecko:{s:'no'},rabbit:{s:'lim',a:'פלח',f:'לעיתים',n:'ויטמין C - בזהירות'},syrianhamster:{s:'no'},sharkhan:{s:'lim',a:'פלח',f:'לעיתים',n:'ויטמין C - בזהירות'},gerbil:{s:'no'},cockatiel:{s:'lim',a:'קטן',f:'לעיתים'},mealworms:{s:'lim',a:'פלח',f:'לעיתים',n:'חומצי'},hissingcockroach:{s:'lim',a:'מעט',f:'לעיתים'},fish:{s:'nr'},dog:{s:'lim',a:'מעט',f:'לעיתים'},quail:{s:'no',n:'הדרים',quail:{s:'no',n:'הדרים'},hamster_gen:{s:'no',n:'הדרים',degu:{s:'no',n:'הדרים וסוכר',iguana:{s:'no',n:'הדרים - חומצי',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
 
 
 {id:'crackers',name:'קרקרים ומצות',emoji:'🍘',cookStatus:'na',category:'מזון מעובד ומבושל',aliases:['מצה','ביסקוויט','קרקר'],
- why:'פחמימות. מצה פשוטה - אפשרית בכמות זעירה לחרקים. ⚠️ רוב הקרקרים מכילים מלח ושמן - לא מתאים.',
+ why:'פחמימות. מצה פשוטה, אפשרית בכמות זעירה לחרקים. ⚠️ רוב הקרקרים מכילים מלח ושמן - לא מתאים.',
  whyNot:'עמילן גבוה, כמעט ללא ערך תזונתי. לא קרקרים עם מלח או שמן - אם בכלל, רק מצה פשוטה.',
  parts:[{name:'מצה פשוטה / קרקר ללא מלח',rawOk:'lim',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'lim','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'lim','leopardgecko':'lim','rabbit':'lim','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'no','hissingcockroach':'no'}},{name:'קרקר מלוח / עם תבלינים',rawOk:'no',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}}],
  animals:{jacko:{s:'no',leopardgecko:{s:'no',rabbit:{s:'no',sharkhan:{s:'no',jacko:{s:'no',beardie:{s:'no',syrianhamster:{s:'no',gerbil:{s:'no',mealworms:{s:'lim',a:'פירורים',f:'לעיתים',n:'ללא מלח',hissingcockroach:{s:'lim',a:'פירורים',f:'לעיתים',n:'ללא מלח',syrianhamster:{s:'lim',a:'פירור זעיר',f:'לעיתים נדירות',n:'רק מצה פשוטה ללא תוספות',gerbil:{s:'lim',a:'פירור זעיר',f:'לעיתים נדירות',n:'רק מצה פשוטה ללא תוספות',mouse:{s:'lim',a:'פירור',f:'לעיתים נדירות',n:'רק מצה פשוטה',rat:{s:'lim',a:'פירור',f:'לעיתים נדירות',n:'רק מצה פשוטה',budgie:{s:'no',n:'ריק תזונתית',hamster_gen:{s:'lim',a:'פירור',f:'לעיתים נדירות',n:'רק מצה פשוטה',degu:{s:'no',n:'עמילן וסוכר',iguana:{s:'no',n:'לא מתאים',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'no',n:'ריק תזונתית',quail:{s:'no',n:'ריק תזונתית'},hamster_gen:{s:'lim',a:'פירור',f:'לעיתים נדירות',n:'רק מצה פשוטה',degu:{s:'no',n:'עמילן וסוכר',iguana:{s:'no',n:'לא מתאים',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}}}},lovebird:{s:'no'},cockatiel:{s:'no'}}}},vietstick:{s:'no'},chinchilla:{s:'no'}},lovebird:{s:'no'},sibhamster:{s:'lim',a:'פירור',f:'לעיתים נדירות'},sulcata:{s:'no'},vietstick:{s:'no'},beardie:{s:'no'},chinchilla:{s:'no'},leopardgecko:{s:'no'},rabbit:{s:'no'},syrianhamster:{s:'lim',a:'פירור',f:'לעיתים נדירות'},sharkhan:{s:'no'},gerbil:{s:'lim',a:'פירור',f:'לעיתים נדירות'},cockatiel:{s:'no'},mealworms:{s:'ok',a:'מנה',f:'לעיתים'},hissingcockroach:{s:'ok',a:'מנה',f:'לעיתים'},fish:{s:'nr'},dog:{s:'lim',a:'מעט',f:'לעיתים נדירות'},quail:{s:'no',n:'ריק תזונתית',quail:{s:'no',n:'ריק תזונתית'},hamster_gen:{s:'lim',a:'פירור',f:'לעיתים נדירות',n:'רק מצה פשוטה',degu:{s:'no',n:'עמילן וסוכר',iguana:{s:'no',n:'לא מתאים',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
 
 
 {id:'fennel',name:'שומר',emoji:'🌱',cookStatus:'raw',category:'עלים ועשבי תיבול',aliases:['עלי שומר','פקעת שומר'],
- why:'פקעת/עלים/זרעים - חתוך קטן. ריח חזק - מעט כדי לא להרתיע. טוב לעיכול!',
+ why:'פקעת/עלים/זרעים, חתוך קטן. ריח חזק - מעט כדי לא להרתיע. טוב לעיכול!',
  parts:[{name:'עלים',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'ok','sulcata':'ok','vietstick':'ok','beardie':'ok','chinchilla':'ok','leopardgecko':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'ok','gerbil':'ok','mealworms':'ok','hissingcockroach':'ok'}},{name:'פקעת',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'ok','vietstick':'ok','beardie':'ok','chinchilla':'lim','leopardgecko':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}},{name:'זרעים',rawOk:'lim',cookNote:'בכמות קטנה בלבד',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'lim','sulcata':'lim','vietstick':'lim','beardie':'lim','chinchilla':'lim','leopardgecko':'lim','rabbit':'lim','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'lim','hissingcockroach':'lim'}}],
  animals:{jacko:{s:'ok',a:'ענפים',f:'כמה פעמים בשבוע',leopardgecko:{s:'no',rabbit:{s:'ok',a:'עלים',f:'לעיתים',sharkhan:{s:'ok',a:'עלים',f:'לעיתים',jacko:{s:'ok',a:'עלים',f:'לעיתים',beardie:{s:'ok',a:'עלים',f:'לעיתים',syrianhamster:{s:'ok',a:'עלים',f:'לעיתים',gerbil:{s:'ok',a:'עלים',f:'לעיתים',mealworms:{s:'ok',a:'עלים',f:'לעיתים',hissingcockroach:{s:'ok',a:'עלים',f:'לעיתים',mouse:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',rat:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',budgie:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',hamster_gen:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',quail:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע'},hamster_gen:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},lovebird:{s:'ok',a:'עלים',f:'לעיתים'},cockatiel:{s:'ok',a:'עלים',f:'לעיתים'}}}},vietstick:{s:'no'},sulcata:{s:'ok',a:'מנה',f:'כמה פעמים בשבוע'},chinchilla:{s:'no'},mealworms:{s:'ok',a:'חתיכה',f:'לעיתים'},hissingcockroach:{s:'ok',a:'חתיכה',f:'לעיתים'},sibhamster:{s:'ok',a:'מעט',f:'לעיתים'},syrianhamster:{s:'ok',a:'מעט',f:'לעיתים'},gerbil:{s:'ok',a:'מעט',f:'לעיתים'}},lovebird:{s:'ok',a:'ענף',f:'כמה פעמים בשבוע'},sibhamster:{s:'lim',a:'מעט',f:'לעיתים'},sulcata:{s:'ok',a:'עלים ופקעת',f:'כמה פעמים בשבוע'},vietstick:{s:'no'},beardie:{s:'ok',a:'ענף',f:'לעיתים'},chinchilla:{s:'lim',a:'מעט',f:'לעיתים'},leopardgecko:{s:'no'},rabbit:{s:'ok',a:'ענפים',f:'כמה פעמים בשבוע'},syrianhamster:{s:'lim',a:'מעט',f:'לעיתים'},sharkhan:{s:'ok',a:'חתיכה',f:'כמה פעמים בשבוע'},gerbil:{s:'lim',a:'מעט',f:'לעיתים'},cockatiel:{s:'ok',a:'ענף',f:'כמה פעמים בשבוע'},mealworms:{s:'ok',a:'עלים',f:'לעיתים'},hissingcockroach:{s:'ok',a:'ענף',f:'לעיתים'},fish:{s:'nr'},dog:{s:'ok',a:'מעט',f:'לעיתים'},quail:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',quail:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע'},hamster_gen:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'מעט',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
 
@@ -1544,7 +1566,7 @@ const DEFAULT_FOODS = [
 
 // ── פירות הדר ──────────────────────────────────────────────────
 {id:'orange',name:'תפוז',emoji:'🍊',cookStatus:'raw',category:'פרי',aliases:['תפוזים','מיץ תפוזים'],
- why:'הסר קליפה - רק הבשר. חמוץ - מעט מאוד! ויטמין C גבוה.',
+ why:'הסר קליפה, רק הבשר. חמוץ, מעט מאוד! ויטמין C גבוה.',
  whyNot:'חומציות גבוהה - עלולה לגרות את מערכת העיכול של יונקים. הקליפה מכילה שמנים אתריים שמזיקים לחיות.',
  parts:[{name:'בשר הפרי',rawOk:'lim',cookNote:'לציפורים בסדר, ליונקים - להימנע',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'no','sulcata':'no','vietstick':'ok','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},{name:'קליפה',rawOk:'no',cookNote:'שמנים אתריים - אסור',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},{name:'זרעים',rawOk:'no',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}}],
  animals:{jacko:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',leopardgecko:{s:'no',rabbit:{s:'no',sharkhan:{s:'lim',a:'פרוסה',f:'לעיתים',n:'חומצי - לא יותר מדי',jacko:{s:'no',beardie:{s:'no',syrianhamster:{s:'no',gerbil:{s:'no',mealworms:{s:'no',hissingcockroach:{s:'no',beardie:{s:'lim',a:'מעט מאוד',f:'לעיתים נדירות',n:'חומציות גבוהה - ללא קליפה',mouse:{s:'no',n:'הדרים - חומצי',rat:{s:'no',n:'הדרים',budgie:{s:'no',n:'הדרים',hamster_gen:{s:'no',n:'הדרים',degu:{s:'no',n:'הדרים וסוכר',iguana:{s:'no',n:'הדרים - חומצי',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}}},lovebird:{s:'no'},cockatiel:{s:'no'}}}},vietstick:{s:'no'},sulcata:{s:'lim',a:'חתיכה קטנה',f:'לעיתים נדירות',n:'פחות מ-5% מהתזונה'},chinchilla:{s:'no'},mealworms:{s:'no'},hissingcockroach:{s:'no'},sibhamster:{s:'no'},syrianhamster:{s:'no'},gerbil:{s:'no'}},lovebird:{s:'lim',a:'קטן',f:'לעיתים'},sibhamster:{s:'no',n:'חומצי מדי'},sulcata:{s:'lim',a:'מעט',f:'לעיתים'},vietstick:{s:'no'},beardie:{s:'lim',a:'מעט',f:'לעיתים'},chinchilla:{s:'no',n:'חומצי'},leopardgecko:{s:'no'},rabbit:{s:'lim',a:'פרוסה קטנה',f:'לעיתים',n:'ויטמין C - בזהירות'},syrianhamster:{s:'no',n:'חומצי'},sharkhan:{s:'lim',a:'פרוסה',f:'לעיתים',n:'ויטמין C - בזהירות'},gerbil:{s:'no',n:'חומצי'},cockatiel:{s:'lim',a:'קטן',f:'לעיתים'},mealworms:{s:'lim',a:'פלח',f:'לעיתים',n:'חומצי'},hissingcockroach:{s:'lim',a:'מעט',f:'לעיתים'},fish:{s:'nr'},dog:{s:'lim',a:'מעט',f:'לעיתים',n:'ללא קליפה'},quail:{s:'no',n:'חומצי מדי לשלו'}}},
@@ -2185,12 +2207,12 @@ function qgSpeakAll(btn){
 
 const CORNER_SPEAKS = {
   kiko:    'קיקו. תוכי ג׳אקו. כבר בן 18! תמיד יש לו משהו מעניין להגיד, אוהב לשיר ולרקוד.',
-  soya:    'סויה ופפאיה. שממיות מנומרות. כשקריר בחוץ - אוהבות להשתכשך באמבטיה חמימה. מתרגלות לפינת החי לאט לאט.',
+  soya:    'סויה ופפאיה. שממיות שקטות שאוהבות את הפינה שלהן. כשקריר בחוץ הן נהנות מאמבטיה חמימה, ובשאר הזמן הן נחות במסתור.',
   donna:   'דונה. צב סודני. מאוד אוהבת לצאת לשמש ולנשנש עשבים טריים.',
   zeus:    'זאוס. חרדון מזוקן. הכי אוהב לנמנם מתחת למנורת החימום. אל תפריעו לזאוס בשנתו.',
   flock:   'בלהקת התוכים שלנו. ציפור אהבה ותוכי קוקטייל. שלושה זוגות: טאקו וקשת, וניל וגשם, ששי ונור.',
   yogi:    'יוגי. צ\'ינצ\'ילה. הצ\'ינצ\'ילה הוותיק שלנו. פעם ברח מבית הספר, הגיע לכביש ונורא נבהל מהמכוניות. מאז הוא הבין שהכי בטוח ונעים פה איתנו, אין כמו בבית!',
-  chita:   'צ׳יטה. צ׳ינצ׳ילה. הבן של יוגי. מאוד שובב ומאוד מהיר - אם לא מוצאים אותו, כנראה שהוא שוב מתחבא על הרשת העליונה.',
+  chita:   'צ׳יטה. צ׳ינצ׳ילה. הבן של יוגי. מאוד שובב ומאוד מהיר, אם לא מוצאים אותו, כנראה שהוא שוב מתחבא על הרשת העליונה.',
   kochav:  'כוכב. ארנבון. הארנבונת המבוגרת והסקרנית שלנו. כל פעם שהגדרה פתוחה, היא יוצאת לטייל בפינת החי. אבל תמיד חוזרת הביתה לחברות.',
 };
 function speakCorner(key, btn){ speakText(CORNER_SPEAKS[key]||'', btn); }
@@ -2233,13 +2255,13 @@ function speakTabAll(tabId, btn){
     'tab-mycorner': ()=>[
       'פינת החי שלנו.',
       'קיקו. תוכי ג׳אקו. כבר בן 18! תמיד יש לו משהו מעניין להגיד, אוהב לשיר ולרקוד.',
-      'סויה ופפאיה. שממיות מנומרות. כשקריר בחוץ - אוהבות להשתכשך באמבטיה חמימה. מתרגלות לפינת החי לאט לאט.',
+      'סויה ופפאיה. שממיות שקטות שאוהבות את הפינה שלהן. כשקריר בחוץ הן נהנות מאמבטיה חמימה, ובשאר הזמן הן נחות במסתור.',
       'דונה. צב סודני. מאוד אוהבת לצאת לשמש ולנשנש עשבים טריים.',
       'זאוס. חרדון מזוקן. הכי אוהב לנמנם מתחת למנורת החימום. אל תפריעו לזאוס בשנתו.',
       'בלהקת התוכים שלנו. ציפור אהבה ותוכי קוקטייל. שלושה זוגות - שני זוגות קוקטייל ואחד מעורב: טאקו וקשת, וניל וגשם, ששי ונור.',
       'יוגי. צ\'ינצ\'ילה. הצ\'ינצ\'ילה הוותיק שלנו. פעם ברח מבית הספר, הגיע לכביש ונורא נבהל מהמכוניות. מאז הוא הבין שהכי בטוח ונעים פה איתנו, אין כמו בבית!',
-      'צ׳יטה. צ׳ינצ׳ילה. הבן של יוגי! מאוד שובב ומאוד מהיר - אם לא מוצאים אותו, כנראה שהוא שוב מתחבא על הרשת העליונה.',
-      'כוכב. ארנבון. הארנבונת המבוגרת והסקרנית שלנו. כל פעם שהגדרה פתוחה - היא יוצאת לטייל בפינת החי. אבל תמיד חוזרת הביתה לחברות.',
+      'צ׳יטה. צ׳ינצ׳ילה. הבן של יוגי! מאוד שובב ומאוד מהיר, אם לא מוצאים אותו, כנראה שהוא שוב מתחבא על הרשת העליונה.',
+      'כוכב. ארנבון. הארנבונת המבוגרת והסקרנית שלנו. כל פעם שהגדרה פתוחה, היא יוצאת לטייל בפינת החי. אבל תמיד חוזרת הביתה לחברות.',
       'ויש עוד הרבה! בואו לבקר.',
     ].join(' '),
     'tab-donate': ()=>{
@@ -2896,6 +2918,31 @@ function renderMyCorner(){
 // ── ALL FOODS TABLE ──────────────────────────────────────────
 let allFoodsCatFilter = '';
 
+function filterAllFoodsTable(val) {
+  const terms = val.split(/[,،\s]+/).map(t => t.trim().toLowerCase()).filter(Boolean);
+  const rows = document.querySelectorAll('.af-table tbody tr');
+  rows.forEach(row => {
+    if (!terms.length) { row.style.display = ''; return; }
+    // קטגוריה (colspan) תמיד נראית
+    if (row.querySelector('td[colspan]')) { row.style.display = ''; return; }
+    const foodName = row.querySelector('td')?.textContent?.toLowerCase() || '';
+    const match = terms.some(t => searchMatch(foodName, t) || searchMatchName(foodName, t));
+    row.style.display = match ? '' : 'none';
+  });
+  // הסתר קטגוריות ריקות
+  rows.forEach(row => {
+    if (!row.querySelector('td[colspan]')) return;
+    let next = row.nextElementSibling;
+    let hasVisible = false;
+    while (next && !next.querySelector('td[colspan]')) {
+      if (next.style.display !== 'none') { hasVisible = true; break; }
+      next = next.nextElementSibling;
+    }
+    row.style.display = hasVisible ? '' : 'none';
+  });
+}
+
+
 function initAllFoodsTab(){
   const cats=[...new Set(FOODS.map(f=>f.category).filter(Boolean))];
   const c=document.getElementById('allCatBar');
@@ -2941,10 +2988,10 @@ function renderAllFoodsTable(){
   };
 
   const animalHeader=(a)=>{
-    const img=a.photo?`<img src="${a.photo}" style="width:24px;height:24px;border-radius:50%;object-fit:cover;display:block;margin:0 auto .15rem" onerror="this.style.display='none'">`:
-      `<div style="font-size:1.2rem;text-align:center">${a.emoji}</div>`;
     const shortName=a.name.replace('תוכי ','').replace(' מנומרת','').replace(' ויאטנמי','').replace(' לוחש (מדגסקר)','').replace(' סיבירי','').replace(' סורי','').replace(' מונגולי','').split(' ')[0];
-    return `<th style="text-align:center;font-size:.82rem;white-space:nowrap;padding:.35rem .2rem">${img}<span onclick="event.stopPropagation();openAnimalModal('${a.id}')" style="cursor:pointer;text-decoration:underline dotted;color:#446">${shortName}</span></th>`;
+    return `<th style="text-align:center;font-size:.82rem;white-space:nowrap;padding:.35rem .2rem">
+      <div style="font-size:1.2rem;text-align:center">${a.emoji}</div>
+      <span onclick="event.stopPropagation();openAnimalModal('${a.id}')" style="cursor:pointer;text-decoration:underline dotted;color:#446">${shortName}</span></th>`;
   };
 
   let html='<div style="overflow-x:auto"><table class="af-table"><thead><tr><th style="font-size:.95rem;min-width:90px">מזון</th>';
@@ -3023,10 +3070,12 @@ function deleteFood(id){if(!confirm('למחוק?'))return;FOODS=FOODS.filter(f=>
 
 // ── TABS ─────────────────────────────────────────────────────
 document.querySelectorAll('.tab-btn').forEach(btn=>{
-  btn.onclick=()=>{
+  btn.onclick=(e)=>{
     document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
     document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
     btn.classList.add('active');
+    // אפקטים מיוחדים לטאבים
+    if(btn.dataset.tab==='mycorner') spawnStars(e.clientX, e.clientY);
     document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
     if(btn.dataset.tab==='dailymenu') dmInit();
   };
@@ -3856,134 +3905,166 @@ function initDailyMenu() {
 }
 
 // ============================================================
-// 🔍 חיפוש גלובלי — כולל זיהוי חיה + מזון ביחד
+// 🔍 חיפוש גלובלי, כולל זיהוי חיה + מזון ביחד
 // ============================================================
 
-// רשימת חיות שאין לנו — לתצוגה בחיפוש בלבד
+// רשימת חיות שאין לנו, לתצוגה בחיפוש בלבד
 const NOT_OURS_LIST = [
-  // כל ערך: name = שם לתצוגה, forms = צורות דקדוקיות תקינות בלבד
-  {emoji:'🪿', forms:['אווז','אווזה','אווזים','אווזות','אוז']},
-  {emoji:'🦧', forms:['אורנגאוטן','אורנגאוטנים']},
-  {emoji:'🦁', forms:['אריה','אריות','לביא','לביאה','לביאות']},
-  {emoji:'🫏', forms:['אתון','אתונות']},
-  {emoji:'🦨', forms:['בואש','בואשים']},
-  {emoji:'🦫', forms:['בונה','בונים','בונות']},
-  {emoji:'🦅', forms:['בז','בזים']},
-  {emoji:'🦆', forms:['ברווז','ברווזה','ברווזים','ברווזות']},
-  {emoji:'🦢', forms:['ברבור','ברבורים','ברבורות']},
-  {emoji:'🐆', forms:['ברדלס','ברדלסים']},
-  {emoji:'🦒', forms:["ג'ירפה","ג'ירפות"]},
-  {emoji:'🦬', forms:["ג'מוס","ג'מוסים","ג'מוסות",'תאו','תאוים','ראם','ראמים']},
-  {emoji:'🐫', forms:['גמל','גמלים','גמלות','נאקה','נאקות']},
-  {emoji:'🦡', forms:['גירית','גיריות']},
-  {emoji:'🐻', forms:['דוב','דובה','דובים','דובות']},
-  {emoji:'🦝', forms:['דביבון','דביבונים','דביבונות']},
-  {emoji:'🪺', forms:['דוכיפת','דוכיפתות']},
-  {emoji:'🐬', forms:['דולפין','דולפינים','דולפינות']},
-  {emoji:'🦑', forms:['דיונון','דיונונים']},
-  {emoji:'🦕', forms:['דינוזאור','דינוזאורים']},
-  {emoji:'🐦', forms:['דרור','דרורים']},
-  {emoji:'🦛', forms:['היפופוטם','היפופוטמים']},
-  {emoji:'🐺', forms:['זאב','זאבה','זאבים','זאבות']},
-  {emoji:'🦓', forms:['זברה','זברות']},
-  {emoji:'🦎', forms:['זיקית','זיקיות']},
-  {emoji:'🐦', forms:['חוחית','חוחיות']},
-  {emoji:'🐷', forms:['חזיר','חזירה','חזירים','חזירות','חזרזיר','חזרזירים']},
-  {emoji:'🐢', forms:['חומט','חומטים','חמט','חמטים']},
-  {emoji:'🫏', forms:['חמור','חמורים','חמורון']},
-  {emoji:'🦢', forms:['חסידה','חסידות']},
-  {emoji:'🪲', forms:['חיפושית','חיפושיות']},
-  {emoji:'🐀', forms:['חפרפרת','חפרפרות']},
-  {emoji:'🦗', forms:['חרגול','חרגולים','ארבה']},
-  {emoji:'🐱', forms:['חתול','חתולה','חתולים','חתולות','חתלתול','חתלתולים','חתחתול']},
-  {emoji:'🐯', forms:['טיגריס','טיגריסים','טיגריסות']},
-  {emoji:'🐑', forms:['טלה','טלאים','כבש','כבשה','כבשים','כבשות','סיח','סייח','סיחים']},
-  {emoji:'🦏', forms:['טפיר','טפירים']},
-  {emoji:'🐟', forms:['טרוטה','טרוטות','פורל']},
-  {emoji:'🦟', forms:['יבחוש','יבחושים']},
-  {emoji:'🐆', forms:['יגואר','יגוארים']},
-  {emoji:'🕊️', forms:['יונה','יונים','יונות']},
-  {emoji:'🦌', forms:['יחמור','יחמורים','יחמורות']},
-  {emoji:'🦉', forms:['ינשוף','ינשופים']},
-  {emoji:'🐐', forms:['יעל','יעלים','עז','עיזים','עז בר']},
-  {emoji:'🦤', forms:['יען','יענים']},
-  {emoji:'🦈', forms:['כריש','כרישים','כרישות']},
-  {emoji:'🦦', forms:['לוטרה','לוטרות']},
-  {emoji:'🐋', forms:['לוויתן','לוויתנים']},
-  {emoji:'🐊', forms:['לגב','לגבים']},
-  {emoji:'🦣', forms:['ממותה','ממותות']},
-  {emoji:'🐛', forms:['מרבה רגלים','מרבה-רגלים']},
-  {emoji:'🦡', forms:['נמיה','נמיות']},
-  {emoji:'🐜', forms:['נמלה','נמלים','נמלות']},
-  {emoji:'🐆', forms:['נמר','נמרה','נמרים','נמרות']},
-  {emoji:'🦅', forms:['נץ','נצים']},
-  {emoji:'🦅', forms:['נשר','נשרים','נשרות']},
-  {emoji:'🐴', forms:['סוס','סוסה','סוסים','סוסות','סוסון','פוני','פוניים']},
-  {emoji:'🐠', forms:['סוסון ים','סוסוני ים']},
-  {emoji:'🦎', forms:['סלמנדרה','סלמנדרות']},
-  {emoji:'🐿️', forms:['סנאי','סנאים','סנאיות']},
-  {emoji:'🦦', forms:['סמור','סמורים']},
-  {emoji:'🐄', forms:['עגל','עגלה','עגלים','עגלות']},
-  {emoji:'🐄', forms:['פרה','פרות','פר','פרים']},
-  {emoji:'🐂', forms:['שור','שוורים']},
-  {emoji:'🐦‍⬛', forms:['עורב','עורבים']},
-  {emoji:'🕷️', forms:['עכביש','עכבישים','עכבישות']},
-  {emoji:'🐀', forms:['עכברוש','עכברושים']},
-  {emoji:'🦂', forms:['עקרב','עקרבים','עקרבות']},
-  {emoji:'🦩', forms:['פלמינגו','פלמינגואים']},
-  {emoji:'🐼', forms:['פנדה','פנדות']},
-  {emoji:'🦚', forms:['פסיון','פסיונים','טווס','טווסים','טווסות']},
-  {emoji:'🐦', forms:['פשוש','פשושים']},
-  {emoji:'🦌', forms:['צבי','צבאים','צביה','אייל','אילה','איילים']},
-  {emoji:'🐝', forms:['צרעה','צרעות']},
-  {emoji:'🐨', forms:['קואלה','קואלות']},
-  {emoji:'🐒', forms:['קוף','קופה','קופים','קופות','קופיף','קופיפים','גורילה','שימפנזה']},
-  {emoji:'🦔', forms:['קיפוד','קיפודים','קפוד','קפודים']},
-  {emoji:'🦘', forms:['קנגורו','קנגורואים']},
-  {emoji:'🦜', forms:['קקדו','קקדואים']},
-  {emoji:'🐊', forms:['קרוקודיל','קרוקודילים','תנין','תנינים','תנינות']},
-  {emoji:'🐸', forms:['קרפדה','קרפדות','צפרדע','צפרדעים','קרפד','קרפדים']},
-  {emoji:'🐟', forms:['קרפיון','קרפיונים']},
-  {emoji:'🐈', forms:['קרקל','קרקלים']},
-  {emoji:'🐚', forms:['רכיכה','רכיכות','צדפה','צדפות']},
-  {emoji:'🐌', forms:['שבלול','שבלולים','שבלולות']},
-  {emoji:'🐦', forms:['שחף','שחפים','שחפות']},
-  {emoji:'🐍', forms:['שפיפון','שפיפונים']},
-  {emoji:'🦋', forms:['שפירית','שפיריות','שפרירית','שפרירים','שפריריות']},
-  {emoji:'🐇', forms:['שפן','שפנים','שפן סלע']},
-  {emoji:'🦩', forms:['שקנאי','שקנאים']},
-  {emoji:'🦐', forms:['שרימפס','שרימפסים']},
-  {emoji:'🦦', forms:['תחש','תחשים']},
-  {emoji:'🦉', forms:['תנשמת','תנשמות']},
-  // לשמחתנו אין לנו
-  {emoji:'🪰', forms:['זבוב','זבובים','זבובות'], glad:true},
-  {emoji:'🦟', forms:['יתוש','יתושים','יתושות'], glad:true},
-  {emoji:'🪼', forms:['מדוזה','מדוזות'], glad:true},
-  {emoji:'🦟', forms:['פרעוש','פרעושים'], glad:true},
-  {emoji:'🐍', forms:['צפע','צפעים','צפעון','צפעונים'], glad:true},
-  {emoji:'🕷️', forms:['קרציה','קרציות','קרצייה'], glad:true},
-  {emoji:'🐛', forms:['פשפש','פשפשים'], glad:true},
+  // ── 🚫 מסוכנות וטורפות — "אין לנו" ──
+  {emoji:'🦁', msg:'אין לנו', forms:['אריה','אריות','לביא','לביאה','לביאות']},
+  {emoji:'🐆', msg:'אין לנו', forms:['ברדלס','ברדלסים']},
+  {emoji:'🐻', msg:'אין לנו', forms:['דוב','דב','דובה','דובים','דובות']},
+  {emoji:'🐺', msg:'אין לנו', forms:['זאב','זאבה','זאבים','זאבות']},
+  {emoji:'🐷', msg:'אין לנו', forms:['חזיר','חזירה','חזירים','חזירות','חזרזיר','חזרזירים']},
+  {emoji:'🐯', msg:'אין לנו', forms:['טיגריס','טיגריסים','טיגריסות']},
+  {emoji:'🐆', msg:'אין לנו', forms:['יגואר','יגוארים']},
+  {emoji:'🦈', msg:'אין לנו', forms:['כריש','כרישים','כרישות']},
+  {emoji:'🐆', msg:'אין לנו', forms:['נמר','נמרה','נמרים','נמרות']},
+  {emoji:'🦅', msg:'אין לנו', forms:['נץ','נצים']},
+  {emoji:'🦅', msg:'אין לנו', forms:['נשר','נשרים','נשרות']},
+  {emoji:'🐊', msg:'אין לנו', forms:['קרוקודיל','קרוקודילים','תנין','תנינים','תנינות']},
+  {emoji:'🐈', msg:'אין לנו', forms:['קרקל','קרקלים']},
+  {emoji:'🐍', msg:'אין לנו', forms:['שפיפון','שפיפונים']},
+  // ── 🦒 לצערנו אין לנו — שאר החיות ──
+  {emoji:'🦧', msg:'לצערנו אין לנו', forms:['אורנגאוטן','אורנגאוטנים']},
+  {emoji:'🦔', msg:'לצערנו אין לנו', forms:['ארמדיל','ארמדילים']},
+  {emoji:'🪿', msg:'לצערנו אין לנו', forms:['אווז','אווזה','אווזים','אווזות','אוז']},
+  {emoji:'🫏', msg:'לצערנו אין לנו', forms:['אתון','אתונות']},
+  {emoji:'🦨', msg:'לצערנו אין לנו', forms:['בואש','בואשים']},
+  {emoji:'🦫', msg:'לצערנו אין לנו', forms:['בונה','בונים','בונות']},
+  {emoji:'🦆', msg:'לצערנו אין לנו', forms:['ברווז','ברווזה','ברווזים','ברווזות','ברוז','ברוזן','ברווזן','ברווזנים']},
+  {emoji:'🦢', msg:'לצערנו אין לנו', forms:['ברבור','ברבורים','ברבורות']},
+  {emoji:'🦬', msg:'לצערנו אין לנו', forms:["ג'מוס","ג'מוסים","ג'מוסות",'תאו','תאואים','ראם','ראמים']},
+  {emoji:'🐫', msg:'לצערנו אין לנו', forms:['גמל','גמלים','גמלות','נאקה','נאקות']},
+  {emoji:'🦦', msg:'לצערנו אין לנו', forms:['גירית','גיריות']},
+  {emoji:'🐻', msg:'לצערנו אין לנו', forms:['דביבון','דביבונים','דביבונות']},
+  {emoji:'🪺', msg:'לצערנו אין לנו', forms:['דוכיפת','דוכיפתות']},
+  {emoji:'🐬', msg:'לצערנו אין לנו', forms:['דולפין','דולפינים','דולפינות']},
+  {emoji:'🦑', msg:'לצערנו אין לנו', forms:['דיונון','דיונונים']},
+  {emoji:'🦕', msg:'לצערנו אין לנו', forms:['דינוזאור','דינוזאורים']},
+  {emoji:'🐦', msg:'לצערנו אין לנו', forms:['דרור','דרורים']},
+  {emoji:'🐉', msg:'לצערנו אין לנו', special:'dragon', forms:['דרקון','דרקונים']},
+  {emoji:'🦛', msg:'לצערנו אין לנו', forms:['היפופוטם','היפופוטמים']},
+  {emoji:'🐦', msg:'לצערנו אין לנו', forms:['חוחית','חוחיות']},
+  {emoji:'🦢', msg:'לצערנו אין לנו', forms:['חסידה','חסידות']},
+  {emoji:'🦌', msg:'לצערנו אין לנו', forms:['יחמור','יחמורים','יחמורות']},
+  {emoji:'🦉', msg:'לצערנו אין לנו', forms:['ינשוף','ינשופים','תנשמת','תנשמות']},
+  {emoji:'🐐', msg:'לצערנו אין לנו', forms:['יעל','יעלים','עז','עיזים']},
+  {emoji:'🦤', msg:'לצערנו אין לנו', forms:['יען','יענים']},
+  {emoji:'🐑', msg:'לצערנו אין לנו', forms:['כבש','כבשה','כבשים','כבשות','טלה','טלאים','סיח','סייח','סיחים']},
+  {emoji:'🐋', msg:'לצערנו אין לנו', forms:['לוויתן','לוויתנים','לויתן','לויתנים']},
+  {emoji:'🐊', msg:'לצערנו אין לנו', forms:['לגב','לגבים']},
+  {emoji:'🦣', msg:'לצערנו אין לנו', forms:['ממותה','ממותות']},
+  {emoji:'🐛', msg:'לצערנו אין לנו', forms:['מרבה רגלים','מרבה-רגלים','מרבי רגלים']},
+  {emoji:'🦡', msg:'לצערנו אין לנו', forms:['נמיה','נמיות']},
+  {emoji:'🦅', msg:'לצערנו אין לנו', forms:['נשר','נשרים','נשרות']},
+  {emoji:'🐴', msg:'לצערנו אין לנו', forms:['סוס','סוסה','סוסים','סוסות','סוסון','פוני','פונים']},
+  {emoji:'🐠', msg:'לצערנו אין לנו', forms:['סוסון ים','סוסוני ים']},
+  {emoji:'🦎', msg:'לצערנו אין לנו', forms:['סלמנדרה','סלמנדרות']},
+  {emoji:'🐿️', msg:'לצערנו אין לנו', forms:['סנאי','סנאים','סנאיות']},
+  {emoji:'🦦', msg:'לצערנו אין לנו', forms:['סמור','סמורים']},
+  {emoji:'🐄', msg:'לצערנו אין לנו', forms:['עגל','עגלה','עגלים','עגלות']},
+  {emoji:'🐦‍⬛', msg:'לצערנו אין לנו', forms:['עורב','עורבים']},
+  {emoji:'🦩', msg:'לצערנו אין לנו', forms:['פלמינגו','פלמינגואים']},
+  {emoji:'🐼', msg:'לצערנו אין לנו', forms:['פנדה','פנדות']},
+  {emoji:'🦚', msg:'לצערנו אין לנו', forms:['פסיון','פסיונים','טווס','טווסים','טווסות']},
+  {emoji:'🐦', msg:'לצערנו אין לנו', forms:['פשוש','פשושים','פשושיות']},
+  {emoji:'🐄', msg:'לצערנו אין לנו', forms:['פרה','פרות','פר','פרים']},
+  {emoji:'🦌', msg:'לצערנו אין לנו', forms:['צבי','צבאים','צביה','אייל','אילה','איילים']},
+  {emoji:'🐝', msg:'לצערנו אין לנו', forms:['צרעה','צרעות']},
+  {emoji:'🐨', msg:'לצערנו אין לנו', forms:['קואלה','קואלות']},
+  {emoji:'🐒', msg:'לצערנו אין לנו', forms:['קוף','קופה','קופים','קופות','קופיף','קופיפים','גורילה','שימפנזה']},
+  {emoji:'🦔', msg:'לצערנו אין לנו', forms:['קיפוד','קיפודים','קפוד','קפודים']},
+  {emoji:'🦘', msg:'לצערנו אין לנו', forms:['קנגורו','קנגורואים']},
+  {emoji:'🦜', msg:'לצערנו אין לנו', forms:['קקדו','קקדואים']},
+  {emoji:'🐸', msg:'לצערנו אין לנו', forms:['קרפדה','קרפדות','צפרדע','צפרדעים','קרפד','קרפדים']},
+  {emoji:'🐟', msg:'לצערנו אין לנו', forms:['קרפיון','קרפיונים','טרוטה','טרוטות','פורל']},
+  {emoji:'🦏', msg:'לצערנו אין לנו', forms:['קרנף','קרנפים','קרנפות']},
+  {emoji:'🐚', msg:'לצערנו אין לנו', forms:['רכיכה','רכיכות','צדפה','צדפות','שבלול','שבלולים']},
+  {emoji:'🐂', msg:'לצערנו אין לנו', forms:['שור','שוורים']},
+  {emoji:'🐦', msg:'לצערנו אין לנו', forms:['שחף','שחפים','שחפות']},
+  {emoji:'🦋', msg:'לצערנו אין לנו', forms:['שפירית','שפיריות','שפרירית','שפרירים']},
+  {emoji:'🐇', msg:'לצערנו אין לנו', forms:['שפן','שפנים','שפן סלע']},
+  {emoji:'🦩', msg:'לצערנו אין לנו', forms:['שקנאי','שקנאים']},
+  {emoji:'🦐', msg:'לצערנו אין לנו', forms:['שרימפס','שרימפסים']},
+  {emoji:'🫏', msg:'לצערנו אין לנו', forms:['חמור','חמורים','חמורון']},
+  {emoji:'🦙', msg:'לצערנו אין לנו', forms:['אלפקה','אלפקות','למה','למות','לאמה','לאמות']},
+  {emoji:'🦦', msg:'לצערנו אין לנו', forms:['תחש','תחשים']},
+  {emoji:'🐓', msg:'לצערנו אין לנו', forms:['תרנגול','תרנגולת','תרנגולים','תרנגולות','תרנגלת','אפרוח','אפרוחים']},
+  {emoji:'🐟', msg:'לצערנו אין לנו', forms:['טרוטה','טרוטות']},
+  // ── 😅 לשמחתנו אין לנו ──
+  {emoji:'🪰', msg:'לשמחתנו אין לנו', glad:true, forms:['זבוב','זבובים','זבובות']},
+  {emoji:'🦟', msg:'לשמחתנו אין לנו', glad:true, forms:['יתוש','יתושים','יתושות']},
+  {emoji:'🪼', msg:'לשמחתנו אין לנו', glad:true, forms:['מדוזה','מדוזות']},
+  {emoji:'🦟', msg:'לשמחתנו אין לנו', glad:true, forms:['פרעוש','פרעושים']},
+  {emoji:'🐍', msg:'לשמחתנו אין לנו', glad:true, forms:['צפע','צפעים','צפעון','צפעונים']},
+  {emoji:'🕷️', msg:'לשמחתנו אין לנו', glad:true, forms:['קרציה','קרציות','קרצייה']},
+  {emoji:'🐛', msg:'לשמחתנו אין לנו', glad:true, forms:['פשפש','פשפשים']},
+  // ניקיון 🧹
+  {emoji:'🧹', msg:'', forms:['פיפי','קקי','שתן','צואה','אבק','לכלוך','בלגן','סירחון','גועל','זבל','סרחון','ריח','באסה','מבאיס','עובש'],
+   funnyNote:'', specialClean:true},
+  // חתול
+  {emoji:'🐱', msg:'אין לנו', forms:['חתול','חתולה','חתולים','חתולות','חתלתול','חתלתולים','חתחתול'],
+   funnyNote:'אם יש, כנראה שהוא נכנס מבחוץ. תזכורת לסגור את החלונות כמו שצריך! 🪟'},
+  // זיקית ויונה
+  {emoji:'🦎', msg:'אין לנו', forms:['זיקית','זיקיות'],
+   funnyNote:'אם יש זיקית בפינת החי, היא הגיעה בעצמה, אנחנו לא קשורים.'},
+  {emoji:'🕊️', msg:'אין לנו', forms:['יונה','יונים','יונות'],
+   funnyNote:'אם יש יונה, היא הגיעה בעצמה, אנחנו לא קשורים.'},
+  // עכברים/עכברושים/חולדות
+  {emoji:'🐀', msg:'אין לנו', forms:['עכבר','עכברים'],
+   funnyNote:'חיות אלו נפוצות בפינות חי, אבל אצלנו, אם הם שם, הם לא שלנו.'},
+  {emoji:'🐀', msg:'אין לנו', forms:['עכברוש','עכברושים'],
+   funnyNote:'חיות אלו נפוצות בפינות חי, אבל אצלנו, אם הם שם, הם לא שלנו.'},
+  {emoji:'🐀', msg:'אין לנו', forms:['חולדה','חולדות'],
+   funnyNote:'חיות אלו נפוצות בפינות חי, אבל אצלנו, אם הן שם, הן לא שלנו.'},
 ];
 
-// הפניות — מילות מפתח כלליות שמפנות לחיות שיש לנו
+// הפניות
+
+// הפניות, מילות מפתח כלליות שמפנות לחיות שיש לנו
 const REDIRECT_LIST = [
   {
     forms: ['נחש','נחשים','נחשות'],
-    ours: [], // אין נחשים בפינת החי עצמה
+    ours: [],
     extra: ['cornsnake','ball_python'],
-    msg: '🐍 אין לנו נחשים בפינת החי, אבל ברשימת החיות הנוספות:'
+    msg: '🐍 אין לנו נחשים בפינת החי, אבל ברשימת החיות הנוספות:',
+    funnyNote: 'אם יש נחש מסוג אחר בפינת החי, הוא הגיע עצמאית, אנחנו לא קשורים.'
   },
   {
     forms: ['לטאה','לטאות'],
     ours: ['beardie','leopardgecko'],
     extra: ['iguana'],
-    msg: '🦎 יש לנו כמה סוגים של לטאות:'
+    msg: '🦎 יש לנו כמה סוגים של לטאות:',
+    funnyNote: 'אם יש לטאה מסוג אחר, היא כנראה הגיעה בעצמה, אנחנו לא קשורים.'
+  },
+  {
+    forms: ['שממית','שממיות'],
+    ours: ['leopardgecko'],
+    extra: [],
+    msg: '🦎 יש לנו שממית מנומרת:',
+    funnyNote: 'אם יש שממית מסוג אחר, היא כנראה הגיעה בעצמה, אנחנו לא קשורים.'
+  },
+  {
+    forms: ['צב','צבים','צבה'],
+    ours: ['sulcata'],
+    extra: [],
+    msg: '🐢 יש לנו צב סודני:',
+    funnyNote: 'אם יש צב מסוג אחר בפינת החי, הוא לא שלנו. אולי ברח מהבית? 🐢'
   },
   {
     forms: ['ציפור','ציפורים','עוף','עופות','תוכי','תוכים'],
     ours: ['jacko','cockatiel','lovebird'],
     extra: ['budgie','quail'],
-    msg: '🦜 יש לנו כמה סוגים של ציפורים:'
+    msg: '🦜 יש לנו כמה סוגים של ציפורים:',
+    funnyNote: 'אם יש ציפורים מסוג אחר, הם כנראה הגיעו מבחוץ.'
+  },
+  {
+    forms: ["ג'וק","ג'וקים",'תיקן','תיקנים'],
+    ours: ['hissingcockroach'],
+    extra: [],
+    msg: '🦗 יש לנו תיקן לוחש:',
+    funnyNote: "אם יש פה ג'וקים מסוג אחר, הם לא שלנו."
   },
 ];
 
@@ -4012,6 +4093,9 @@ function renderRedirectResult(entry) {
     });
     html += `</div>`;
   }
+  if (entry.funnyNote) {
+    html += `<div style="font-size:.78rem;color:#999;margin-top:.3rem;font-style:italic">${entry.funnyNote}</div>`;
+  }
   html += `</div>`;
   return html;
 }
@@ -4037,9 +4121,12 @@ function handleGlobalSearch(val) {
   clr.style.display = q ? 'block' : 'none';
   if (!q || q.length < 2) { res.innerHTML = ''; return; }
 
+  // Easter egg: 42
+  if (q.trim() === '42') { check42(q); return; }
+
   const words = q.toLowerCase().split(/[\s,;.\/\-+|&]+/).filter(Boolean);
 
-  // בדוק REDIRECT_LIST קודם — מילות מפתח כלליות כמו ציפור/נחש/לטאה
+  // בדוק REDIRECT_LIST קודם, מילות מפתח כלליות כמו ציפור/נחש/לטאה
   // אבל לא אם השאילתה המלאה מתאימה לחיה ספציפית (למשל "ציפור אהבה")
   const fullQuery = q.toLowerCase().trim();
   const exactAnimal = ANIMALS.find(a =>
@@ -4068,7 +4155,9 @@ function handleGlobalSearch(val) {
         const extraAnimals = ANIMALS.filter(a => !a.ours && (a.animalClass===matchedClass||a.animalSubClass===matchedClass));
         const emoji = {יונק:'🐾',זוחל:'🦎',עוף:'🦜',דג:'🐟',חרק:'🪲',מכרסם:'🐹',שפנאי:'🐰'}[matchedClass]||'🐾';
         const rabbitNote = matchedClass === 'מכרסם'
-          ? '<div style="font-size:.78rem;color:#888;margin-top:.3rem;font-style:italic">💡 ארנבון הוא לא מכרסם אלא ממשפחת הארנביים — אבל אולי הוא מה שחיפשת?</div>'
+          ? '<div style="font-size:.78rem;color:#888;margin-top:.3rem;font-style:italic">💡 ארנבון הוא לא מכרסם אלא ממשפחת הארנבאים. אבל אולי הוא מה שחיפשת?</div>'
+          : matchedClass === 'חרק'
+          ? '<div style="font-size:.78rem;color:#999;margin-top:.3rem;font-style:italic">אם יש חרקים מסוג אחר בפינת החי, הם לא שייכים לנו.</div>'
           : '';
         const entry = {
           ours: classAnimals.map(a=>a.id),
@@ -4103,20 +4192,112 @@ function handleGlobalSearch(val) {
   }
 
   const parts = [];
+  const FUNNY_MAP = {
+    // חתול
+    'חתול':'הוא הגיע עצמאית, אנחנו לא קשורים.',
+    'חתולה':'היא הגיעה עצמאית, אנחנו לא קשורים.',
+    'חתולים':'הם הגיעו עצמאית, אנחנו לא קשורים.',
+    'חתולות':'הן הגיעו עצמאית, אנחנו לא קשורים.',
+    'חתלתול':'הוא הגיע עצמאית, אנחנו לא קשורים.',
+    'חתלתולים':'הם הגיעו עצמאית, אנחנו לא קשורים.',
+    'חתחתול':'הוא הגיע עצמאית, אנחנו לא קשורים.',
+    // עכביש
+    'עכביש':'הוא הגיע עצמאית, אנחנו לא קשורים.',
+    'עכבישים':'הם הגיעו עצמאית, אנחנו לא קשורים.',
+    'עכבישות':'הן הגיעו עצמאית, אנחנו לא קשורים.',
+    // נמלה
+    'נמלה':'היא הגיעה עצמאית, אנחנו לא קשורים.',
+    'נמלים':'הם הגיעו עצמאית, אנחנו לא קשורים.',
+    'נמלות':'הן הגיעו עצמאית, אנחנו לא קשורים.',
+    // עקרב
+    'עקרב':'הוא הגיע עצמאית, אנחנו לא קשורים.',
+    'עקרבים':'הם הגיעו עצמאית, אנחנו לא קשורים.',
+    'עקרבות':'הן הגיעו עצמאית, אנחנו לא קשורים.',
+    // חרגול
+    'חרגול':'הוא הגיע עצמאית, אנחנו לא קשורים.',
+    'חרגולים':'הם הגיעו עצמאית, אנחנו לא קשורים.',
+    // יבחוש
+    'יבחוש':'הוא הגיע עצמאית, אנחנו לא קשורים.',
+    'יבחושים':'הם הגיעו עצמאית, אנחנו לא קשורים.',
+    // מרבה רגלים
+    'מרבה רגלים':'הוא הגיע עצמאית, אנחנו לא קשורים.',
+    'מרבה-רגלים':'הוא הגיע עצמאית, אנחנו לא קשורים.',
+    'מרבי רגלים':'הם הגיעו עצמאית, אנחנו לא קשורים.',
+    // גמל שלמה
+    "גמל שלמה":'הוא הגיע עצמאית, אנחנו לא קשורים.',
+    "גמלי שלמה":'הם הגיעו עצמאית, אנחנו לא קשורים.',
+    // חיפושית
+    'חיפושית':'היא הגיעה עצמאית, אנחנו לא קשורים.',
+    'חיפושיות':'הן הגיעו עצמאית, אנחנו לא קשורים.',
+    // שפירית
+    'שפירית':'היא הגיעה עצמאית, אנחנו לא קשורים.',
+    'שפיריות':'הן הגיעו עצמאית, אנחנו לא קשורים.',
+    'שפרירית':'היא הגיעה עצמאית, אנחנו לא קשורים.',
+    'שפרירים':'הם הגיעו עצמאית, אנחנו לא קשורים.',
+    // ג'וק / תיקן
+    "ג'וק":'הוא הגיע עצמאית, אנחנו לא קשורים.',
+    "ג'וקים":'הם הגיעו עצמאית, אנחנו לא קשורים.',
+    'תיקן':'הוא הגיע עצמאית, אנחנו לא קשורים.',
+    'תיקנים':'הם הגיעו עצמאית, אנחנו לא קשורים.',
+    // שממית
+    'שממית':'היא הגיעה עצמאית, אנחנו לא קשורים. (יש לנו שממית מנומרת, אבל שממיות מסוג אחר הגיעו לבד)',
+    'שממיות':'הן הגיעו עצמאית, אנחנו לא קשורים. (יש לנו שממית מנומרת, אבל שממיות מסוג אחר הגיעו לבד)',
+    // זיקית
+    'זיקית':'היא הגיעה עצמאית, אנחנו לא קשורים.',
+    'זיקיות':'הן הגיעו עצמאית, אנחנו לא קשורים.',
+    // יונה
+    'יונה':'היא הגיעה עצמאית, אנחנו לא קשורים.',
+    'יונים':'הן הגיעו עצמאית, אנחנו לא קשורים.',
+    'יונות':'הן הגיעו עצמאית, אנחנו לא קשורים.',
+    // עכבר / עכברוש / חולדה
+    'עכבר':'הוא הגיע עצמאית, אנחנו לא קשורים. (חיות אלו נפוצות בפינות חי, אבל אצלנו הם לא שלנו)',
+    'עכברים':'הם הגיעו עצמאית, אנחנו לא קשורים. (חיות אלו נפוצות בפינות חי, אבל אצלנו הם לא שלנו)',
+    'עכברוש':'הוא הגיע עצמאית, אנחנו לא קשורים. (חיות אלו נפוצות בפינות חי, אבל אצלנו הם לא שלנו)',
+    'עכברושים':'הם הגיעו עצמאית, אנחנו לא קשורים. (חיות אלו נפוצות בפינות חי, אבל אצלנו הם לא שלנו)',
+    'חולדה':'היא הגיעה עצמאית, אנחנו לא קשורים. (חיות אלו נפוצות בפינות חי, אבל אצלנו הם לא שלנו)',
+    'חולדות':'הן הגיעו עצמאית, אנחנו לא קשורים. (חיות אלו נפוצות בפינות חי, אבל אצלנו הם לא שלנו)',
+    // נחש (שיש לנו בחיות נוספות)
+    'נחש':'הוא הגיע עצמאית, אנחנו לא קשורים. (אם כי יש לנו כרכן תירס ופיתון מתכדר ברשימת החיות הנוספות)',
+    'נחשים':'הם הגיעו עצמאית, אנחנו לא קשורים. (אם כי יש לנו כרכן תירס ופיתון מתכדר ברשימת החיות הנוספות)',
+    // רשימת "לשמחתנו"
+    'קרציה':'היא הגיעה עצמאית, אנחנו לא קשורים.',
+    'קרצייה':'היא הגיעה עצמאית, אנחנו לא קשורים.',
+    'קרציות':'הן הגיעו עצמאית, אנחנו לא קשורים.',
+    'פשפש':'הוא הגיע עצמאית, אנחנו לא קשורים.',
+    'פשפשים':'הם הגיעו עצמאית, אנחנו לא קשורים.',
+    'פרעוש':'הוא הגיע עצמאית, אנחנו לא קשורים.',
+    'פרעושים':'הם הגיעו עצמאית, אנחנו לא קשורים.',
+    'זבוב':'הוא הגיע עצמאית, אנחנו לא קשורים.',
+    'זבובים':'הם הגיעו עצמאית, אנחנו לא קשורים.',
+    'זבובות':'הן הגיעו עצמאית, אנחנו לא קשורים.',
+    'יתוש':'הוא הגיע עצמאית, אנחנו לא קשורים.',
+    'יתושים':'הם הגיעו עצמאית, אנחנו לא קשורים.',
+    'יתושות':'הן הגיעו עצמאית, אנחנו לא קשורים.',
+    'צפע':'הוא הגיע עצמאית, אנחנו לא קשורים.',
+    'צפעים':'הם הגיעו עצמאית, אנחנו לא קשורים.',
+    'צפעון':'הוא הגיע עצמאית, אנחנו לא קשורים.',
+  };
   const notOursParts = [];
 
-  // אסוף "לצערנו אין לנו" — יוצג בסוף
+  // אסוף "לצערנו אין לנו", יוצג בסוף
   for (const w of words) {
     const notOurs = findInNotOursList(w);
     if (notOurs) {
+      if (notOurs.specialClean) {
+        res.innerHTML = `<div style="background:#f0fff8;border-radius:12px;padding:.45rem .85rem;font-size:.85rem;color:#1a6640">🧹 נשמע שיש עבודה לעשות. פינת החי תודה לך! 💚</div>`;
+        return;
+      }
       const msg = notOurs.glad
         ? `${notOurs.emoji} לשמחתנו אין לנו ${w} בפינת החי 😅`
-        : `${notOurs.emoji} לצערנו אין לנו ${w} בפינת החי 🙏`;
-      notOursParts.push(`<div style="background:#fff8e8;border-radius:10px;padding:.4rem .75rem;font-size:.85rem;color:#7a5000">${msg}</div>`);
+        : `${notOurs.emoji} ${notOurs.msg||'אין לנו'} ${w} בפינת החי${notOurs.msg==='אין לנו'?'':' 🙏'}${notOurs.special==='dragon'?' (<a href="#" onclick="event.preventDefault();openAnimalModal(\'beardie\')" style="color:#c06000;text-decoration:underline dotted">דרקון מזוקן הוא חרדון מזוקן, ויש לנו! 🐉</a>)':''}`;
+      const funnyFromMap = FUNNY_MAP[w] ? `<div style="font-size:.78rem;color:#999;margin-top:.15rem;font-style:italic">ואם יש, ${FUNNY_MAP[w]}</div>` : '';
+      const funnyFromList = notOurs.funnyNote ? `<div style="font-size:.78rem;color:#999;margin-top:.15rem;font-style:italic">${notOurs.funnyNote}</div>` : '';
+      const funny = funnyFromList || funnyFromMap;
+      notOursParts.push(`<div style="background:#fff8e8;border-radius:10px;padding:.4rem .75rem;font-size:.85rem;color:#7a5000">${msg}${funny}</div>`);
     }
   }
 
-  // חיות + מזונות — כל שילוב
+  // חיות + מזונות, כל שילוב
   if (foundAnimals.length && foundFoods.length) {
     for (const food of foundFoods) {
       for (const animal of foundAnimals) {
@@ -4143,7 +4324,7 @@ function handleGlobalSearch(val) {
       if (foundAnimals.length > 1) {
         parts.push(`
           <div style="background:#f4fff8;border-radius:10px;padding:.35rem .75rem;display:flex;align-items:center;gap:.4rem">
-            <span>${food.emoji} <strong>${food.name}</strong> — כל הפרטים:</span>
+            <span>${food.emoji} <strong>${food.name}</strong>, כל הפרטים:</span>
             <a href="#" onclick="event.preventDefault();openFoodModal('${food.id}')" style="font-size:.72rem;color:#3aaa6e;text-decoration:underline dotted">פתח כרטיסייה ←</a>
           </div>`);
       }
@@ -4277,7 +4458,36 @@ function spawnButterflies(x, y) {
 }
 
 
-// --- ♻️ אפקט מחזור ---
+// --- 📱 Long press על הכותרת ---
+function initH1Effects() {
+  const h1 = document.querySelector('header h1');
+  if (!h1) return;
+  let pressTimer = null;
+  let clicks = 0;
+
+  h1.addEventListener('click', (e) => {
+    clicks++;
+    if (clicks >= 3) { clicks = 0; launchConfetti(); }
+    setTimeout(() => { if(clicks < 3) clicks = 0; }, 600);
+  });
+  h1.addEventListener('dblclick', () => {
+    spawnPawTrail();
+  });
+  h1.addEventListener('touchstart', () => {
+    pressTimer = setTimeout(() => {
+      spawnPawTrail();
+      navigator.vibrate && navigator.vibrate([50,30,50]);
+    }, 600);
+  }, {passive:true});
+  h1.addEventListener('touchend', () => clearTimeout(pressTimer));
+  h1.addEventListener('touchmove', () => clearTimeout(pressTimer));
+}
+// קרא אחרי שהכל נטען
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initH1Effects);
+} else {
+  initH1Effects();
+}
 function spawnRecycleEffect(el) {
   // spin the emoji
   const emoji = el.querySelector('#recycleEmoji');
@@ -4491,7 +4701,239 @@ function cancelRevealWarning(i) {
 }
 
 
-// --- 💕 קונפטי לבבות לציפור אהבה ---
+
+
+
+
+// --- 🔍 חיפוש מהיר בבקיצור ---
+function qgSearch(val) {
+  const q = val.trim().toLowerCase();
+  const res = document.getElementById('qgSearchResult');
+  if (!q || q.length < 2) { res.innerHTML = ''; return; }
+
+  const matched = FOODS.filter(f =>
+    searchMatchName(f.name, q) ||
+    (f.aliases||[]).some(a => searchMatchName(a, q))
+  );
+
+  if (!matched.length) {
+    res.innerHTML = `<div style="color:#aaa;font-size:.82rem">לא נמצא "${val}"</div>`;
+    return;
+  }
+
+  res.innerHTML = matched.map(f => {
+    // בדוק אם יש הגבלות בין החיות שלנו
+    const ours = ANIMALS.filter(a => a.ours);
+    const ok   = ours.filter(a => f.animals?.[a.id]?.s === 'ok');
+    const lim  = ours.filter(a => f.animals?.[a.id]?.s === 'lim');
+    const no   = ours.filter(a => f.animals?.[a.id]?.s === 'no');
+
+    let badge, bg, color;
+    if (no.length === 0 && lim.length === 0) {
+      badge = '✅ מותר לכולם'; bg = '#e8fff3'; color = '#1a7a40';
+    } else if (ok.length === 0 && lim.length === 0) {
+      badge = '❌ אסור לכולם'; bg = '#fff0f0'; color = '#b02020';
+    } else {
+      badge = '⚠️ תלוי חיה';   bg = '#fffbe0'; color = '#7a5500';
+    }
+
+    const limNames = lim.map(a=>a.name).join(', ');
+    const noNames  = no.map(a=>a.name).join(', ');
+
+    return `<div style="background:${bg};border-radius:10px;padding:.45rem .8rem;margin-bottom:.3rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;cursor:pointer" onclick="openFoodModal('${f.id}')">
+      <span>${f.emoji} <strong>${f.name}</strong></span>
+      <span style="font-weight:900;color:${color}">${badge}</span>
+      ${limNames ? `<span style="font-size:.75rem;color:#7a5500">⚠️ במידה: ${limNames}</span>` : ''}
+      ${noNames  ? `<span style="font-size:.75rem;color:#b02020">❌ אסור: ${noNames}</span>`  : ''}
+    </div>`;
+  }).join('');
+}
+
+
+const SURPRISE_OPTIONS = [
+  () => { // מזון אקראי
+    const foods = FOODS.filter(f=>f.category&&f.emoji);
+    const f = foods[Math.floor(Math.random()*foods.length)];
+    if(f) openFoodModal(f.id);
+  },
+  () => { // חיה אקראית מהפינה
+    const ours = ANIMALS.filter(a=>a.ours);
+    const a = ours[Math.floor(Math.random()*ours.length)];
+    if(a) openAnimalModal(a.id);
+  },
+  () => { // תרומה אקראית
+    switchTab('donate');
+    setTimeout(()=>{
+      const cards = document.querySelectorAll('#donateGrid .don-card');
+      if(cards.length){ const c=cards[Math.floor(Math.random()*cards.length)]; c.scrollIntoView({behavior:'smooth',block:'center'}); c.style.outline='3px solid #3aaa6e'; setTimeout(()=>c.style.outline='',2000); }
+    },300);
+  },
+  () => { // חיה מפינת החי שלנו
+    switchTab('mycorner');
+  },
+  () => { // מידע על חיה אקראית
+    const a = ANIMALS[Math.floor(Math.random()*ANIMALS.length)];
+    if(a) { switchTab('animals'); setTimeout(()=>{ const el=document.getElementById('acard_'+a.id); if(el){el.scrollIntoView({behavior:'smooth',block:'center'});spawnButterflies(el.getBoundingClientRect().left+50,el.getBoundingClientRect().top+50);} },300); }
+  },
+];
+
+function doSurprise() {
+  const fn = SURPRISE_OPTIONS[Math.floor(Math.random()*SURPRISE_OPTIONS.length)];
+  fn();
+  launchConfetti();
+}
+
+// --- 🔢 42 Easter Egg ---
+function check42(val) {
+  if (val.trim() === '42') {
+    const res = document.getElementById('globalSearchResult');
+    res.innerHTML = `<div style="background:#f0f4ff;border-radius:12px;padding:.6rem .85rem;font-size:.85rem;color:#3050a0;line-height:1.6">
+      🌌 <strong>42</strong> — התשובה לשאלה על החיים, היקום, והכל.<br>
+      <span style="font-size:.78rem;color:#888">השאלה עצמה עדיין לא ברורה. (מדריך הטרמפיסט לגלקסיה, דאגלס אדמס)</span>
+    </div>`;
+    spawnStars(window.innerWidth/2, window.innerHeight/3);
+  }
+}
+
+
+function spawnStars(x, y) {
+  const stars = ['🌟','⭐','✨','💫','🌠','🌙'];
+  for (let i = 0; i < 14; i++) {
+    const e = document.createElement('div');
+    e.textContent = stars[Math.floor(Math.random()*stars.length)];
+    const dx = (Math.random()-0.5)*180;
+    const dy = -(30 + Math.random()*100);
+    e.style.cssText = `position:fixed;left:${x}px;top:${y}px;font-size:${14+Math.random()*14}px;z-index:9999;pointer-events:none;user-select:none;`;
+    document.body.appendChild(e);
+    e.animate([
+      {transform:'translate(0,0) scale(1) rotate(0deg)',opacity:1},
+      {transform:`translate(${dx}px,${dy}px) scale(0.2) rotate(${(Math.random()-0.5)*360}deg)`,opacity:0}
+    ],{duration:900+Math.random()*500,easing:'ease-out',fill:'forwards'}).onfinish=()=>e.remove();
+  }
+}
+
+// --- 🐾 טביעות כפות על הטיקר ---
+function spawnPawTrail() {
+  const paws = ['🐾','🐾','🐾'];
+  for (let i = 0; i < 8; i++) {
+    setTimeout(() => {
+      const e = document.createElement('div');
+      e.textContent = '🐾';
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight;
+      e.style.cssText = `position:fixed;left:${x}px;top:${y}px;font-size:${20+Math.random()*16}px;z-index:9999;pointer-events:none;user-select:none;opacity:0.8;`;
+      document.body.appendChild(e);
+      e.animate([
+        {opacity:0.8,transform:'scale(0.5)'},
+        {opacity:0,transform:'scale(1.2)'}
+      ],{duration:1200,delay:i*80,easing:'ease-out',fill:'forwards'}).onfinish=()=>e.remove();
+    }, i * 60);
+  }
+}
+
+// --- 🌈 קשת על תמונות ---
+function spawnRainbow(el) {
+  const rect = el.getBoundingClientRect();
+  const colors = ['❤️','🧡','💛','💚','💙','💜','🌈'];
+  for (let i = 0; i < colors.length; i++) {
+    const e = document.createElement('div');
+    e.textContent = colors[i];
+    const angle = (i / (colors.length-1)) * Math.PI;
+    const r = 70;
+    const dx = Math.cos(angle) * r * (Math.random()*0.4+0.8);
+    const dy = -Math.abs(Math.sin(angle)) * r * (Math.random()*0.4+0.8);
+    e.style.cssText = `position:fixed;left:${rect.left+rect.width/2}px;top:${rect.top+rect.height/2}px;font-size:20px;z-index:9999;pointer-events:none;`;
+    document.body.appendChild(e);
+    e.animate([
+      {transform:'translate(0,0) scale(0.5)',opacity:1},
+      {transform:`translate(${dx}px,${dy}px) scale(1.2)`,opacity:0}
+    ],{duration:1000,delay:i*60,easing:'ease-out',fill:'forwards'}).onfinish=()=>e.remove();
+  }
+}
+
+// --- 🥕 גזרים נופלים ---
+function spawnCarrots(x, y) {
+  for (let i = 0; i < 10; i++) {
+    const e = document.createElement('div');
+    e.textContent = '🥕';
+    const startX = x + (Math.random()-0.5)*60;
+    const endX = startX + (Math.random()-0.5)*100;
+    e.style.cssText = `position:fixed;left:${startX}px;top:${y-20}px;font-size:${16+Math.random()*14}px;z-index:9999;pointer-events:none;`;
+    document.body.appendChild(e);
+    e.animate([
+      {transform:'translateY(0) rotate(0deg)',opacity:1},
+      {transform:`translateX(${endX-startX}px) translateY(${120+Math.random()*80}px) rotate(${(Math.random()-0.5)*180}deg)`,opacity:0}
+    ],{duration:800+Math.random()*400,delay:i*50,easing:'ease-in',fill:'forwards'}).onfinish=()=>e.remove();
+  }
+}
+
+
+function spawnThankYouEffect(el) {
+  // הודעת תודה גדולה
+  const msg = document.createElement('div');
+  msg.textContent = '🙏 תודה רבה!';
+  const rect = el.getBoundingClientRect();
+  msg.style.cssText = `position:fixed;left:50%;top:${rect.top-10}px;transform:translateX(-50%);
+    background:#1a7a40;color:white;font-size:1.3rem;font-weight:900;border-radius:50px;
+    padding:.5rem 1.4rem;z-index:9999;pointer-events:none;font-family:inherit;white-space:nowrap;`;
+  document.body.appendChild(msg);
+  msg.animate([
+    {transform:'translateX(-50%) translateY(0) scale(0.8)',opacity:0},
+    {transform:'translateX(-50%) translateY(-20px) scale(1)',opacity:1,offset:0.3},
+    {transform:'translateX(-50%) translateY(-40px) scale(1)',opacity:1,offset:0.7},
+    {transform:'translateX(-50%) translateY(-60px) scale(0.9)',opacity:0}
+  ],{duration:1800,easing:'ease-out',fill:'forwards'}).onfinish=()=>msg.remove();
+  const emojis = ['🥦','🥕','💚','✨','🌿','😊','🐰','🐹','🌱','🍎','🥬','🥒'];
+  const rect2 = el.getBoundingClientRect();
+  for (let i = 0; i < 12; i++) {
+    const e = document.createElement('div');
+    e.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    const x = rect2.left + Math.random()*rect2.width;
+    const y = rect2.top + rect2.height/2;
+    const dx = (Math.random()-0.5)*120;
+    const dy = -(40 + Math.random()*80);
+    const size = 14 + Math.random()*14;
+    e.style.cssText = `position:fixed;left:${x}px;top:${y}px;font-size:${size}px;z-index:9999;pointer-events:none;user-select:none;`;
+    document.body.appendChild(e);
+    e.animate([
+      {transform:'translate(0,0) scale(1)',opacity:1},
+      {transform:`translate(${dx}px,${dy}px) scale(0.3) rotate(${(Math.random()-0.5)*60}deg)`,opacity:0}
+    ],{duration:900+Math.random()*400,easing:'ease-out',fill:'forwards'}).onfinish=()=>e.remove();
+  }
+}
+
+// --- 🤢 עובש! ---
+function spawnMoldEffect(el) {
+  // הבהוב אדום
+  el.style.transition = 'background .1s';
+  const orig = el.style.background;
+  let flashes = 0;
+  const flash = setInterval(() => {
+    el.style.background = flashes%2===0
+      ? 'linear-gradient(135deg,#ffe0e0,#ffc0c0)'
+      : 'linear-gradient(135deg,#fff3e0,#fff8f0)';
+    if (++flashes >= 6) { clearInterval(flash); el.style.background = orig; el.style.transition = ''; }
+  }, 120);
+  // אמוג'ים גדולים
+  const emojis = ['🤢','🤮','☠️','🚫','💀','❌','⚠️','🤮'];
+  const rect = el.getBoundingClientRect();
+  for (let i = 0; i < 10; i++) {
+    const e = document.createElement('div');
+    e.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    const x = rect.left + Math.random()*rect.width;
+    const y = rect.top + rect.height/2;
+    const dx = (Math.random()-0.5)*140;
+    const dy = -(50 + Math.random()*80);
+    e.style.cssText = `position:fixed;left:${x}px;top:${y}px;font-size:${22+Math.random()*16}px;z-index:9999;pointer-events:none;user-select:none;`;
+    document.body.appendChild(e);
+    e.animate([
+      {transform:'translate(0,0) scale(1.3)',opacity:1},
+      {transform:`translate(${dx}px,${dy}px) scale(0.3) rotate(${(Math.random()-0.5)*90}deg)`,opacity:0}
+    ],{duration:900+Math.random()*400,easing:'ease-out',fill:'forwards'}).onfinish=()=>e.remove();
+  }
+}
+
+
 function spawnHeartConfetti() {
   const hearts = ['❤️','💕','💗','💖','💝','💓','🩷','💞'];
   for (let i = 0; i < 20; i++) {
@@ -4508,5 +4950,6 @@ function spawnHeartConfetti() {
 }
 
 </script>
+<footer style="text-align:center;font-size:10px;color:rgba(128,128,128,0.3);padding:.5rem;margin-top:1rem">נבנה באהבה עבור פינת החי של בית ספר שז"ר, באר שבע</footer>
 </body>
 </html>
