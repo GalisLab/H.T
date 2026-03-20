@@ -4037,7 +4037,7 @@ function handleGlobalSearch(val) {
   clr.style.display = q ? 'block' : 'none';
   if (!q || q.length < 2) { res.innerHTML = ''; return; }
 
-  const words = q.toLowerCase().split(/\s+/);
+  const words = q.toLowerCase().split(/[\s,;.\/\-+|&]+/).filter(Boolean);
 
   // בדוק REDIRECT_LIST קודם — מילות מפתח כלליות כמו ציפור/נחש/לטאה
   // אבל לא אם השאילתה המלאה מתאימה לחיה ספציפית (למשל "ציפור אהבה")
@@ -4161,30 +4161,45 @@ function handleGlobalSearch(val) {
     return;
   }
 
-  // רק מזונות
+  // רק מזונות — אבל גם בדוק אם יש חיה שאין לנו בשאילתה
   if (foundFoods.length && !foundAnimals.length) {
+    // בדוק גם חיות שאין לנו
+    for (const w of words) {
+      const notOurs = findInNotOursList(w);
+      if (notOurs) {
+        const msg = notOurs.glad
+          ? `${notOurs.emoji} לשמחתנו אין לנו ${w} בפינת החי 😅`
+          : `${notOurs.emoji} לצערנו אין לנו ${w} בפינת החי 🙏`;
+        parts.push(`<div style="background:#fff8e8;border-radius:10px;padding:.4rem .75rem;font-size:.85rem;color:#7a5000">${msg}</div>`);
+      }
+    }
     for (const f of foundFoods) {
       parts.push(`
         <div style="background:#f4fff8;border-radius:10px;padding:.4rem .75rem;display:flex;align-items:center;gap:.4rem">
           <span>${f.emoji} <strong>${f.name}</strong></span>
-          <a href="#" onclick="event.preventDefault();openFoodModal('${f.id}')" style="font-size:.75rem;color:#3aaa6e;text-decoration:underline dotted">מה אומרת כל חיה ←</a>
+          <a href="#" onclick="event.preventDefault();openFoodModal('${f.id}')" style="font-size:.75rem;color:#3aaa6e;text-decoration:underline dotted">מי אוכל את זה? ←</a>
         </div>`);
     }
     res.innerHTML = `<div style="display:grid;gap:.35rem">${parts.join('')}</div>`;
     return;
   }
 
-  // בדוק אם זו חיה שאין לנו
+  // בדוק אם יש חיות שאין לנו (אפשר כמה)
+  const notOursParts = [];
   for (const w of words) {
     const found = findInNotOursList(w);
     if (found) {
-      const displayName = w; // המילה שהמשתמש כתב
       const msg = found.glad
-        ? `${found.emoji} לשמחתנו אין לנו ${displayName} בפינת החי 😅`
-        : `${found.emoji} לצערנו אין לנו ${displayName} בפינת החי 🙏`;
-      res.innerHTML = `<div style="background:#fff8e8;border-radius:12px;padding:.45rem .85rem;font-size:.85rem;color:#7a5000">${msg}</div>`;
-      return;
+        ? `${found.emoji} לשמחתנו אין לנו ${w} בפינת החי 😅`
+        : `${found.emoji} לצערנו אין לנו ${w} בפינת החי 🙏`;
+      notOursParts.push(msg);
     }
+  }
+  if (notOursParts.length) {
+    res.innerHTML = notOursParts.map(msg =>
+      `<div style="background:#fff8e8;border-radius:12px;padding:.45rem .85rem;font-size:.85rem;color:#7a5000">${msg}</div>`
+    ).join('');
+    return;
   }
 
   // לא נמצא כלום
