@@ -237,7 +237,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
   <div class="ticker" onclick="spawnPawTrail()" style="cursor:pointer" title="🐾">🦜🐹🐢🦎🐛🐰🐕🐟🦎🐱🐹🐰🦜🐢🐛🐕🐟🦜🐹🐢🦎🐛🐰🐕🐟🦎🐱🐹🐰🦜🐢🐛🐕🐟</div>
   <div style="font-size:.75rem;color:#557;font-weight:700;margin-bottom:.2rem">🏫 בית ספר שז"ר - פינת החי</div>
   <h1>🌿 מה אוכלים היום בפינת החי?</h1>
-  <p>המדריך לכל מה שצריך!</p>
+  <p>המדריך לכל מה שצריך! <span onclick="openSecretsPopup()" title="?" style="cursor:pointer;opacity:.35;font-size:.8em;vertical-align:middle">✨</span></p>
   <div class="food-count" id="foodCount">טוען...</div>
   <div style="font-size:.65rem;color:#889;margin-top:.3rem">נוצר ע"י גלי 💚</div>
 </header>
@@ -375,6 +375,8 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
             <span class="qg-chip qg-yes" onclick="openFoodModal('spinach')" style="cursor:pointer">🥬 תרד 🥗 <button onclick="event.stopPropagation();speakText('תרד',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('cabbage')" style="cursor:pointer">🥬 כרוב 🥗 <button onclick="event.stopPropagation();speakText('כרוב',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('sunflower_seeds')" style="cursor:pointer">🌻 גרעיני חמנייה 🥗 <button onclick="event.stopPropagation();speakText('גרעיני חמנייה',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+            <span class="qg-chip qg-yes" onclick="openFoodModal('beetroot')" style="cursor:pointer">🫚 סלק <button onclick="event.stopPropagation();speakText('סלק',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+            <span class="qg-chip qg-yes" onclick="openFoodModal('artichoke')" style="cursor:pointer">🌿 ארטישוק <button onclick="event.stopPropagation();speakText('ארטישוק',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
           </div>
         </div>
 
@@ -395,6 +397,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
           <span class="qg-chip qg-warn" onclick="openFoodModal('orange',[])" style="cursor:pointer">🍊 פירות הדר</span>
           <span class="qg-chip qg-warn" onclick="openFoodModal('tomato',[])" style="cursor:pointer">🍅 עגבנייה</span>
           <span class="qg-chip qg-warn" onclick="openFoodModal('mushroom',[])" style="cursor:pointer">🍄 פטריות שמפיניון</span>
+          <span class="qg-chip qg-warn" onclick="openFoodModal('walnuts',[])" style="cursor:pointer">🌰 אגוז מלך (ובוטנים)</span>
         </div>
       </div>
     </div>
@@ -409,7 +412,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
       <div style="padding:.7rem 1rem">
         <div style="font-size:.78rem;color:#555;margin-bottom:.6rem">תודה רבה! אין צורך להביא, אלו רעילים ועלולים לפגוע בחיות שלנו 🙏</div>
         <div id="qg-no" style="display:flex;flex-wrap:wrap;gap:.3rem">
-          <span class="qg-chip qg-no" onclick="openFoodModal('onion',[])" style="cursor:pointer">🧅 בצל</span>
+          <span class="qg-chip qg-no" onclick="openFoodModal('onion',[])" style="cursor:pointer">🧅 בצל (כולל ירוק, שאלוט ועירית)</span>
           <span class="qg-chip qg-no" onclick="openFoodModal('garlic',[])" style="cursor:pointer">🧄 שום</span>
           <span class="qg-chip qg-no" onclick="openFoodModal('avocado',[])" style="cursor:pointer">🥑 אבוקדו</span>
           <span class="qg-chip qg-no" onclick="openFoodModal('chocolate',[])" style="cursor:pointer">🍫 שוקולד</span>
@@ -455,7 +458,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
   </div>
   <div style="background:#f0f8ff;border-radius:12px;border-right:4px solid #4a90d9;padding:.6rem .9rem;margin-bottom:.7rem;font-size:.82rem;color:#1a3a6a;line-height:1.65">
     <strong>💡 מה יש כאן שלא מופיע בחיפוש הרגיל?</strong><br>
-    כרטיסי מזון מלאים עם כל הפרטים, סינון לפי קטגוריה (כל הירקות, כל הפירות...), חיפוש בתרומות ובפינת החי שלנו, וחיפוש קולי 🎤 שמועיל אם הידיים עסוקות בהכנת האוכל.
+    כרטיסי מזון מלאים עם כל הפרטים, סינון לפי קטגוריה (כל הירקות, כל הפירות...), חיפוש בתרומות ובפינת החי שלנו, ואפשרות לסנן לפי קטגוריית מזון ספציפית.
   </div>
   <div class="search-wrap"><span class="search-icon">🔍</span><input type="text" id="searchInput" placeholder="גזר, ארנבון, פרי, שוקולד, קרטון, גרביים..." oninput="doSearch()"><button id="searchClearBtn" onclick="document.getElementById('searchInput').value='';doSearch()" style="display:none;background:none;border:none;cursor:pointer;font-size:.85rem;color:#999;padding:.2rem .4rem;position:absolute;left:2rem">✕</button><button onclick="startVoiceSearch('searchInput',this)" title="חיפוש קולי" style="background:none;border:none;cursor:pointer;font-size:1.1rem;padding:.2rem .4rem;position:absolute;left:.2rem;color:#666">🎤</button></div>
   <div class="filter-row" id="catBar"></div>
@@ -467,7 +470,13 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
 </div>
 
 <div class="tab-panel" id="tab-allfoods">
-  <div class="section-hero"><span class="hero-emoji">📋</span><h2>כל המזונות</h2><p>רשימה מלאה - לחיצה על שורה לפרטים · <span style="color:#1a7a40;font-weight:700">כן</span> / <span style="color:#8a5500;font-weight:700">מעט</span> / <span style="color:#c02020;font-weight:700">לא</span></p><button onclick="speakTabAll('tab-allfoods',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.78rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
+  <div class="section-hero"><span class="hero-emoji">📋</span><h2>כל המזונות</h2><p>רשימה מלאה - לחיצה על שורה לפרטים · <span style="color:#1a7a40;font-weight:700">כן</span> / <span style="color:#8a5500;font-weight:700">מעט</span> / <span style="color:#c02020;font-weight:700">לא</span></p>
+    <div style="display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center;margin-top:.35rem">
+      <button onclick="speakTabAll('tab-allfoods',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.78rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button>
+      <button onclick="expandAllFoodsFromTab(this)" id="expandAllFoodsTabBtn" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.78rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">📖 פתח הכל</button>
+      <button onclick="showAnimalsListOnly()" title="רשימת חיות להעתקה" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.78rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;opacity:.6">🐾 רשימת חיות</button>
+    </div>
+  </div>
   <div class="filter-row" id="allCatBar"></div>
   <!-- חיפוש מרובה מזונות -->
   <div style="position:relative;margin-bottom:.6rem">
@@ -480,6 +489,14 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
     <button onclick="document.getElementById('allFoodsSearch').value='';filterAllFoodsTable('')" style="position:absolute;left:.6rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:.85rem;color:#aaa">✕</button>
   </div>
   <div id="allFoodsTable"></div>
+
+  <!-- כפתורים נסתרים מתחת לטבלה — להעתקה ומידע מורחב -->
+  <div style="margin-top:1rem;text-align:center;opacity:.35" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='.35'">
+    <span style="font-size:.72rem;color:#aaa">כלים נוספים: </span>
+    <button onclick="showFoodListOnly()" style="background:none;border:1px solid #ccc;border-radius:50px;padding:.2rem .6rem;font-size:.72rem;cursor:pointer;font-family:inherit;color:#888;margin:.2rem">📋 רשימת שמות כל המזונות באתר</button>
+    <button onclick="expandAllFoodsFromTab(this)" id="expandAllFoodsTabBtn" style="background:none;border:1px solid #ccc;border-radius:50px;padding:.2rem .6rem;font-size:.72rem;cursor:pointer;font-family:inherit;color:#888;margin:.2rem">📖 מידע מורחב על כל המזונות</button>
+  </div>
+  <div id="allFoodsExpandedView" style="display:none"></div>
   <div style="background:#e8f4ff;border-right:4px solid #4a90d9;border-radius:10px;padding:.5rem .85rem;font-size:.82rem;color:#1a4a7a;margin-top:.7rem;display:flex;align-items:center;gap:.5rem">
     <span class="water-reminder" style="flex:1;cursor:pointer" onclick="spawnWaterBubbles(this)" title="💧">💧 <strong>מים נקיים תמיד!</strong> לכל החיות בפינה, יש לוודא שיש מים טריים ונקיים בכל עת, ללא קשר למזון.</span>
     <button onclick="speakText('מים נקיים תמיד! לכל החיות בפינה, יש לוודא שיש מים טריים ונקיים בכל עת, ללא קשר למזון.',this)" title="הקראה" style="background:#c8e8ff;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.8rem;flex-shrink:0">🔊</button>
@@ -498,6 +515,10 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
     <button class="btn-s" id="showAllBtn" onclick="setAnimalView('all')" style="font-size:.82rem;padding:.35rem .85rem;margin-right:.4rem">🌍 כל החיות</button>
   </div>
   <div class="animal-grid" id="animalInfoGrid"></div>
+  <!-- רשימת חיות להעתקה — נסתרת -->
+  <div style="margin-top:1.2rem;text-align:center;opacity:.3" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='.3'">
+    <button onclick="showAnimalsListOnly()" style="background:none;border:1px solid #ccc;border-radius:50px;padding:.2rem .7rem;font-size:.72rem;cursor:pointer;font-family:inherit;color:#888">🐾 רשימת החיות בפינת החי</button>
+  </div>
 </div>
 
 <div class="tab-panel" id="tab-byanimal">
@@ -1796,7 +1817,7 @@ function saveFoods(){
     // localStorage not available (file:// protocol) - that's ok, data stays in memory
   }
 }
-function updateCount(){document.getElementById('foodCount').textContent=FOODS.length+' מזונות במאגר';}
+function updateCount(){const el=document.getElementById('foodCount');if(el)el.textContent=FOODS.length+' מזונות במאגר';}
 function getAnimal(id){return ANIMALS.find(a=>a.id===id);}
 
 function statusBadge(s){
@@ -2148,6 +2169,87 @@ function expandAllAnimals(){
   }
   document.getElementById('expandAllAnimalsBtn').textContent='📕 סגור הכל';
   document.getElementById('animalExpandedView').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+
+// --- 📖 פתח הכל ממשק "כל המזונות" ---
+function expandAllFoodsFromTab(btn) {
+  const panel = document.getElementById('allFoodsExpandedView');
+  if (panel && panel.style.display !== 'none') {
+    panel.style.display = 'none';
+    btn.textContent = '📖 מידע מורחב על כל המזונות';
+    return;
+  }
+
+  // Get foods per current filter
+  let foods;
+  if (!allFoodsCatFilter) {
+    foods = [...FOODS].sort((a,b)=>a.name.localeCompare(b.name,'he'));
+  } else {
+    const ids = FOOD_CAT_MAP[allFoodsCatFilter] || [];
+    foods = [...FOODS.filter(f=>ids.includes(f.id))].sort((a,b)=>a.name.localeCompare(b.name,'he'));
+  }
+
+  const oursIds = ANIMALS.filter(a=>a.ours).map(a=>a.id);
+  let html = '<div style="padding:.5rem 0">';
+  foods.forEach(food => {
+    const parts = food.parts || [];
+    let partsHtml = '';
+    if (parts.length > 0) {
+      partsHtml = parts.map(p => {
+        const animalRows = oursIds.map(aid=>{
+          const a=getAnimal(aid), d=p.animals?.[aid] || food.animals?.[aid];
+          if(!a||!d||d.s==='nr') return '';
+          const label=d.s==='ok'?'✅':d.s==='no'?'❌':'⚠️';
+          return `<span style="font-size:.72rem;background:#f8f9ff;border-radius:50px;padding:.1rem .4rem;margin:.1rem;display:inline-block">${a.emoji} ${label}${d.a?' '+d.a:''}</span>`;
+        }).filter(Boolean).join('');
+        return `<div style="margin-right:1rem;margin-bottom:.3rem;padding:.3rem .5rem;background:#f8faff;border-radius:8px;border-right:3px solid #dde">
+          <div style="font-size:.78rem;font-weight:700;color:#444;margin-bottom:.2rem">↳ ${p.name}${p.rawOk==='no'?` <span style="font-size:.68rem;background:#fff0f0;color:#c02020;border-radius:50px;padding:.05rem .35rem">${p.cookNote||'אסור'}</span>`:p.cookNote?` <span style="font-size:.68rem;background:#fff8e0;color:#7a5500;border-radius:50px;padding:.05rem .35rem">${p.cookNote}</span>`:''}</div>
+          <div style="display:flex;flex-wrap:wrap;gap:.15rem">${animalRows}</div>
+        </div>`;
+      }).join('');
+    } else {
+      const animalRows = oursIds.map(aid=>{
+        const a=getAnimal(aid), d=food.animals?.[aid];
+        if(!a||!d||d.s==='nr') return '';
+        const col=d.s==='ok'?'#1a7a40':d.s==='no'?'#c02020':'#8a5500';
+        const label=d.s==='ok'?'✅ כן':d.s==='no'?'❌ לא':'⚠️ מעט';
+        return `<span style="display:inline-flex;align-items:center;gap:.2rem;background:#f8f9ff;border-radius:50px;padding:.15rem .5rem;font-size:.74rem;margin:.1rem">${a.emoji} ${a.name} <strong style="color:${col}">${label}</strong>${d.a?' · '+d.a:''}</span>`;
+      }).filter(Boolean).join('');
+      partsHtml = `<div style="display:flex;flex-wrap:wrap;gap:.2rem">${animalRows}</div>`;
+    }
+    html += `<div style="background:white;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:.8rem 1rem;margin-bottom:.6rem">
+      <div style="font-size:1.2rem;margin-bottom:.3rem">${food.emoji} <strong>${food.name}</strong> <span style="font-size:.7rem;color:#888;background:#f0f2ff;border-radius:50px;padding:.1rem .4rem">${food.category||''}</span></div>
+      ${food.why?`<div style="font-size:.79rem;color:#444;margin-bottom:.35rem;line-height:1.5">${food.why}</div>`:''}
+      ${food.whyNot?`<div style="font-size:.77rem;color:#b02020;margin-bottom:.35rem;line-height:1.5">⚠️ ${food.whyNot}</div>`:''}
+      ${partsHtml}
+    </div>`;
+  });
+  html += '</div>';
+
+  let panelEl = document.getElementById('allFoodsExpandedView');
+  if (!panelEl) {
+    panelEl = document.createElement('div');
+    panelEl.id = 'allFoodsExpandedView';
+    document.getElementById('allFoodsTable').after(panelEl);
+  }
+  panelEl.innerHTML = html;
+  panelEl.style.display = '';
+  btn.textContent = '📕 סגור מידע מורחב';
+}
+
+// --- 🐾 רשימת חיות להעתקה ---
+function showAnimalsListOnly() {
+  const ours = ANIMALS.filter(a=>a.ours);
+  const lines = ours.map(a=>`${a.emoji} ${a.name}${a.en?' ('+a.en+')':''}`).join('\n');
+  document.getElementById('modalTitle').textContent = '🐾 חיות בפינת החי (להעתקה)';
+  document.getElementById('modalBody').innerHTML = `
+    <div style="padding:.5rem">
+      <textarea readonly style="width:100%;height:280px;font-family:inherit;font-size:.85rem;border:1px solid #dde;border-radius:8px;padding:.5rem;box-sizing:border-box;direction:rtl;resize:vertical">${lines}</textarea>
+      <div style="font-size:.75rem;color:#aaa;margin-top:.3rem;text-align:center">בחרו הכל (Ctrl+A) והעתיקו</div>
+    </div>`;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
 }
 
 function expandAllFoods(){
@@ -2943,24 +3045,61 @@ function filterAllFoodsTable(val) {
 }
 
 
+// מיפוי מזונות לקטגוריות החדשות
+const FOOD_CAT_MAP = {
+  fruit:    ['watermelon','pear','pineapple','peach','banana','melon','mango','grapes','pomelo','raspberry','kiwi','clementine','strawberry','orange','apple'],
+  veg:      ['asparagus','peas','artichoke','sweetpotato','broccoli','carrot','pumpkin','cauliflower','beetroot','tomato','sweet_pepper','radish','zucchini','fennel','potato'],
+  greens:   ['lettuce_romaine','cilantro','cabbage','sprouts_alfalfa','sprouts_sunflower','sprouts_mung','mint','celery','babyleaves','parsley','kale','dill','spinach'],
+  wild:     ['hibiscus','rose_leaves','mallow','grapeleaves','mulberry_leaves'],
+  other:    ['walnuts','peanuts','boiled_egg','pumpkin_seeds','sunflower_seeds','cereal','bread','dried_fruit','mushroom','crackers','corn'],
+  forbidden:['onion','garlic','avocado','chocolate','chips','eggplant','lemon','dairy'],
+};
+function foodCatGroup(f) {
+  for (const [cat, ids] of Object.entries(FOOD_CAT_MAP)) {
+    if (ids.includes(f.id)) return cat;
+  }
+  return 'other';
+}
+const CAT_FRUIT_VEG = ['פרי','ירק','ירק שורש','נבטים','עלים ועשבי תיבול','עשב','צמחי גינה'];
 function initAllFoodsTab(){
-  const cats=[...new Set(FOODS.map(f=>f.category).filter(Boolean))];
-  const c=document.getElementById('allCatBar');
-  c.innerHTML='<span style="font-size:.76rem;color:#999;align-self:center">קטגוריה:</span>';
-  // All chip
-  const all=document.createElement('span');
-  all.className='cat-chip'+(allFoodsCatFilter===''?' sel':'');
-  all.textContent='הכל';
-  all.onclick=()=>{allFoodsCatFilter='';renderAllFoodsTable();initAllFoodsTab();};
-  c.appendChild(all);
-  cats.forEach(cat=>{
-    const ch=document.createElement('span');
-    ch.className='cat-chip'+(allFoodsCatFilter===cat?' sel':'');
-    ch.textContent=cat;
-    ch.onclick=()=>{allFoodsCatFilter=cat;renderAllFoodsTable();initAllFoodsTab();};
+  const c = document.getElementById('allCatBar');
+  const CAT_LABELS = [
+    {key:'',          label:'🌿 הכל'},
+    {key:'fruit',     label:'🍎 פירות'},
+    {key:'veg',       label:'🥕 ירקות'},
+    {key:'greens',    label:'🥬 עלים ועשבים'},
+    {key:'wild',      label:'🌿 צמחי בר ופרחים'},
+    {key:'other',     label:'🌾 כל השאר'},
+    {key:'forbidden', label:'🚫 אסורים'},
+  ];
+  c.innerHTML = '<span style="font-size:.76rem;color:#999;align-self:center;flex-shrink:0">סינון:</span>';
+  CAT_LABELS.forEach(({key, label}) => {
+    const ch = document.createElement('span');
+    ch.className = 'cat-chip' + (allFoodsCatFilter===key?' sel':'');
+    ch.textContent = label;
+    ch.onclick = ()=>{ allFoodsCatFilter=key; renderAllFoodsTable(); initAllFoodsTab(); };
     c.appendChild(ch);
   });
   renderAllFoodsTable();
+}
+
+function showFoodListOnly(){
+  let foods;
+  if (!allFoodsCatFilter) {
+    foods = [...FOODS].sort((a,b)=>a.name.localeCompare(b.name,'he'));
+  } else {
+    const ids = FOOD_CAT_MAP[allFoodsCatFilter] || [];
+    foods = [...FOODS.filter(f=>ids.includes(f.id))].sort((a,b)=>a.name.localeCompare(b.name,'he'));
+  }
+  const names = foods.map(f=>f.emoji+' '+f.name).join('\n');
+  document.getElementById('modalTitle').textContent = '📋 רשימת מזונות (להעתקה)';
+  document.getElementById('modalBody').innerHTML = `
+    <div style="padding:.5rem">
+      <textarea readonly style="width:100%;height:300px;font-family:inherit;font-size:.82rem;border:1px solid #dde;border-radius:8px;padding:.5rem;box-sizing:border-box;direction:rtl;resize:vertical">${names}</textarea>
+      <div style="font-size:.75rem;color:#aaa;margin-top:.3rem;text-align:center">בחרו הכל (Ctrl+A) והעתיקו</div>
+    </div>`;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
 }
 
 function renderAllFoodsTable(){
@@ -2971,14 +3110,29 @@ function renderAllFoodsTable(){
   const rest=ourAnimals.filter(a=>a.id!=='vietstick');
   const orderedAnimals=viet?[...rest,viet]:rest;
 
-  let foods=allFoodsCatFilter?FOODS.filter(f=>f.category===allFoodsCatFilter):FOODS;
-  // מיון א"ב בתוך כל קטגוריה
-  foods=[...foods].sort((a,b)=>a.name.localeCompare(b.name,'he'));
+  // סינון לפי קטגוריה חדשה
+  let foods;
+  if (!allFoodsCatFilter) {
+    foods = [...FOODS].sort((a,b)=>a.name.localeCompare(b.name,'he'));
+  } else {
+    const ids = FOOD_CAT_MAP[allFoodsCatFilter] || [];
+    foods = [...FOODS.filter(f=>ids.includes(f.id))].sort((a,b)=>a.name.localeCompare(b.name,'he'));
+  }
 
+  // חלוקה לקבוצות תצוגה
   const bycat={};
-  foods.forEach(f=>{const cat=f.category||'אחר'; if(!bycat[cat]) bycat[cat]=[]; bycat[cat].push(f);});
-  // מיון קטגוריות א"ב
-  const sortedCats=Object.keys(bycat).sort((a,b)=>a.localeCompare(b,'he'));
+  if (!allFoodsCatFilter) {
+    bycat['🍎 פירות'] = foods.filter(f=>FOOD_CAT_MAP.fruit.includes(f.id));
+    bycat['🥕 ירקות'] = foods.filter(f=>FOOD_CAT_MAP.veg.includes(f.id));
+    bycat['🥬 עלים ועשבים'] = foods.filter(f=>FOOD_CAT_MAP.greens.includes(f.id));
+    bycat['🌿 צמחי בר ופרחים'] = foods.filter(f=>FOOD_CAT_MAP.wild.includes(f.id));
+    bycat['🌾 כל השאר'] = foods.filter(f=>FOOD_CAT_MAP.other.includes(f.id));
+  } else {
+    const catLabel = {'fruit':'🍎 פירות','veg':'🥕 ירקות','greens':'🥬 עלים ועשבים',
+                      'wild':'🌿 צמחי בר','other':'🌾 כל השאר','forbidden':'🚫 אסורים'}[allFoodsCatFilter]||allFoodsCatFilter;
+    bycat[catLabel] = foods;
+  }
+  const sortedCats=Object.keys(bycat).filter(k=>bycat[k]&&bycat[k].length>0);
 
   const statusCell=(s)=>{
     if(s==='ok') return '<td style="text-align:center;color:#1a7a40;font-weight:800;font-size:.9rem;background:#edfff5;padding:.35rem .15rem">כן</td>';
@@ -4001,7 +4155,7 @@ const NOT_OURS_LIST = [
   {emoji:'🕷️', msg:'לשמחתנו אין לנו', glad:true, forms:['קרציה','קרציות','קרצייה']},
   {emoji:'🐛', msg:'לשמחתנו אין לנו', glad:true, forms:['פשפש','פשפשים']},
   // ניקיון 🧹
-  {emoji:'🧹', msg:'', forms:['פיפי','קקי','שתן','צואה','אבק','לכלוך','בלגן','סירחון','גועל','זבל','סרחון','ריח','באסה','מבאיס','עובש'],
+  {emoji:'🧹', msg:'', forms:['פיפי','קקי','שתן','צואה','אבק','לכלוך','בלגן','סירחון','גועל','זבל','אשפה','פח','פח אשפה','סרחון','ריח','באסה','מבאיס','עובש'],
    funnyNote:'', specialClean:true},
   // חתול
   {emoji:'🐱', msg:'אין לנו', forms:['חתול','חתולה','חתולים','חתולות','חתלתול','חתלתולים','חתחתול'],
@@ -4361,6 +4515,12 @@ function handleGlobalSearch(val) {
     return;
   }
 
+  // בדוק אם מחפשים סוד/אוצר
+  if (['סוד','אוצר','מפת אוצר','מפה','סודות','הפתעה','הפתעות'].some(w => q.includes(w))) {
+    res.innerHTML = `<div style="background:#f8f0ff;border-radius:12px;padding:.45rem .85rem;font-size:.85rem;color:#5a3a9a;cursor:pointer" onclick="switchTab('animals');setTimeout(()=>{const el=document.getElementById('acard_sulcata');if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.click();}},300)">🐢 יש לצב הסודני <strong>מפה</strong> שאולי תעניין אותך... ←</div>`;
+    return;
+  }
+
   // לא נמצא כלום
   res.innerHTML = `
     <div style="color:#888;font-size:.82rem">
@@ -4470,9 +4630,12 @@ function initH1Effects() {
     if (clicks >= 3) { clicks = 0; launchConfetti(); }
     setTimeout(() => { if(clicks < 3) clicks = 0; }, 600);
   });
-  h1.addEventListener('dblclick', () => {
-    spawnPawTrail();
-  });
+  // עקבות על תת-כותרת "המדריך לכל מה שצריך"
+  const subtitle = document.querySelector('header p');
+  if (subtitle) {
+    subtitle.style.cursor = 'default';
+    subtitle.addEventListener('dblclick', () => spawnPawTrail());
+  }
   h1.addEventListener('touchstart', () => {
     pressTimer = setTimeout(() => {
       spawnPawTrail();
@@ -4532,27 +4695,92 @@ document.addEventListener('DOMContentLoaded', () => {
 // 🗺️ מפת האוצר הסודית
 // ============================================================
 const TREASURE_MAP = [
-  {emoji:'💕', location:'ציפור האהבה',          hint:'לבבות נופלים',                   type:'אפקט',        url:null,    effect:'spawnHeartConfetti()'},
-  {emoji:'🎭', location:'קוקטייל',               hint:'אופרת בלובים',                   type:'כלי יצירה',   url:'https://artsandculture.google.com/experiment/blob-opera/AAHWrq360NcGbw?hl=en&cp=e30.'},
-  {emoji:'🐦', location:"ג'אקו",                 hint:'קולות ציפורים ישראליים',          type:'אתר',         url:'https://www.yardbirds.org.il/birds_sounds'},
-  {emoji:'🎵', location:'קיקו (פינת החי שלנו)',  hint:'שיר שכתבנו לו',                  type:'קליפ',        url:'https://www.youtube.com/watch?v=jXOdHfNpFgI'},
-  {emoji:'📱', location:'קיקו (פינת החי שלנו)',  hint:'סרטון שלו ממש',                   type:'קליפ',        url:'https://youtube.com/shorts/CAD0f4GFQOE'},
-  {emoji:'🧠', location:'צב סודני',              hint:'משחק זיכרון',                     type:'משחק',        url:'https://www.google.com/fbx?fbx=memory_game&fbxga=0&hl=id&origin=www.google.com'},
-  {emoji:'🖌️', location:"צ'יטה",                hint:'ציור חופשי',                      type:'כלי יצירה',   url:'https://bomomo.com/'},
-  {emoji:'🎨', location:'היביסקוס',              hint:'ציור משי',                        type:'כלי יצירה',   url:'http://weavesilk.com/'},
-  {emoji:'🏖️', location:'גרביל',                hint:'החול של הגרבילים',                type:'כלי יצירה',   url:'https://thisissand.com/'},
-  {emoji:'🎬', location:'דגים',                  hint:'הצצה לאוקיינוס',                  type:'קליפ',        url:'https://www.youtube.com/watch?v=Zr_nvOU8dd0'},
-  {emoji:'📹', location:'כלב',                   hint:'שידור חי מכלבייה',                type:'שידור חי',    url:'https://explore.org/livecams/dog-bless-you'},
-  {emoji:'🐱', location:'עכבר נוי',              hint:'משחק חתולים',                     type:'משחק',        url:'https://www.cbc.ca/kids/games/play/paws-and-claws'},
-  {emoji:'🐍', location:'כרכן תירס',             hint:'משחק נחש קלאסי',                  type:'משחק',        url:'https://www.google.com/fbx?fbx=snake_arcade'},
-  {emoji:'🥑', location:'תרומות, גרעיני אבוקדו', hint:'גרעין צומח',                     type:'קליפ',        url:'https://www.youtube.com/watch?v=ZMjV7Y3nSzQ'},
-  {emoji:'🍉', location:'תרומות, סכינים',        hint:'חיתוך פירות',                     type:'משחק',        url:'https://fruitninjagame.com/'},
-  {emoji:'🎹', location:'הגדרה, תפריט יומי',     hint:'פסנתר שיתופי',                    type:'כלי יצירה',   url:'https://musiclab.chromeexperiments.com/Shared-Piano/#TX730jCtz'},
-  {emoji:'🎉', location:'כותרת האתר',            hint:'לחצו שלוש פעמים על הכותרת',       type:'אפקט',        url:null, effect:'launchConfetti()'},
+  {emoji:'💕', location:'ציפור האהבה',          hint:'לחצו על ה-funfact שלה',              type:'אפקט',        url:null, effect:'spawnHeartConfetti()'},
+  {emoji:'🎭', location:'קוקטייל',               hint:'אופרת בלובים',                       type:'כלי יצירה',   url:'https://artsandculture.google.com/experiment/blob-opera/AAHWrq360NcGbw?hl=en&cp=e30.'},
+  {emoji:'🐦', location:"ג'אקו",                 hint:'קולות ציפורים ישראליים',             type:'אתר',         url:'https://www.yardbirds.org.il/birds_sounds'},
+  {emoji:'🎵', location:'קיקו (פינת החי שלנו)',  hint:'שיר שכתבנו לו',                      type:'קליפ',        url:'https://www.youtube.com/watch?v=jXOdHfNpFgI'},
+  {emoji:'📱', location:'קיקו (פינת החי שלנו)',  hint:'סרטון שלו ממש',                      type:'קליפ',        url:'https://youtube.com/shorts/CAD0f4GFQOE'},
+  {emoji:'🧠', location:'צב סודני',              hint:'משחק זיכרון',                        type:'משחק',        url:'https://www.google.com/fbx?fbx=memory_game&fbxga=0&hl=id&origin=www.google.com'},
+  {emoji:'🖌️', location:"צ'יטה",                hint:'ציור חופשי',                         type:'כלי יצירה',   url:'https://bomomo.com/'},
+  {emoji:'🎨', location:'היביסקוס',              hint:'ציור משי',                           type:'כלי יצירה',   url:'http://weavesilk.com/'},
+  {emoji:'🏖️', location:'גרביל',                hint:'החול של הגרבילים',                   type:'כלי יצירה',   url:'https://thisissand.com/'},
+  {emoji:'🎬', location:'דגים',                  hint:'הצצה לאוקיינוס',                     type:'קליפ',        url:'https://www.youtube.com/watch?v=Zr_nvOU8dd0'},
+  {emoji:'📹', location:'כלב',                   hint:'שידור חי מכלבייה',                      type:'קליפ',        url:'https://www.youtube.com/watch?v=dlP_vzAxX_8'},
+  {emoji:'🐱', location:'עכבר נוי',              hint:'משחק חתולים',                        type:'משחק',        url:'https://www.cbc.ca/kids/games/play/paws-and-claws'},
+  {emoji:'🐍', location:'כרכן תירס',             hint:'משחק נחש קלאסי',                     type:'משחק',        url:'https://www.google.com/fbx?fbx=snake_arcade'},
+  {emoji:'🥑', location:'תרומות, גרעיני אבוקדו', hint:'גרעין צומח',                        type:'קליפ',        url:'https://www.youtube.com/watch?v=ZMjV7Y3nSzQ'},
+  {emoji:'🍉', location:'תרומות, סכינים',        hint:'חיתוך פירות',                        type:'משחק',        url:'https://fruitninjagame.com/'},
+  {emoji:'🎹', location:'הגדרה, תפריט יומי',     hint:'פסנתר שיתופי',                       type:'כלי יצירה',   url:'https://musiclab.chromeexperiments.com/Shared-Piano/#TX730jCtz'},
+  {emoji:'🎉', location:'כותרת האתר',            hint:'לחצו שלוש פעמים על הכותרת הגדולה',  type:'אפקט',        url:null, effect:'launchConfetti()'},
+  {emoji:'🌟', location:'טאב פינת החי שלנו',     hint:'לחצו על הטאב',                       type:'אפקט',        url:null, effect:'spawnStars(window.innerWidth/2,200)'},
+  {emoji:'🥕', location:'גזר בבקיצור',           hint:'לחצו על הגזר',                       type:'אפקט',        url:null, effect:'spawnCarrots(window.innerWidth/2,300)'},
+  {emoji:'🌈', location:'סויה ופפאיה (פינת החי שלנו)', hint:'לחצו על הכיתוב מתחת לתמונה',         type:'אפקט',        url:null, effect:"spawnRainbow(document.querySelector('header'))"},
+  {emoji:'🐾', location:'תת-כותרת האתר',         hint:'לחצו פעמיים על "המדריך לכל מה שצריך"', type:'אפקט',     url:null, effect:'spawnPawTrail()'}
 ];
 
 // shownState: 0=location only, 1=hint shown, 2=revealed
 let treasureState = {};
+
+
+// --- ✨ פופ-אפ סודות האתר ---
+function openSecretsPopup() {
+  const overlay = document.getElementById('modalOverlay');
+  const body = document.getElementById('modalBody');
+  const title = document.getElementById('modalTitle');
+
+  title.innerHTML = '✨ ברוכים הבאים לפינת החי!';
+  title.style.fontSize = '1rem';
+
+  body.innerHTML = `
+    <div style="padding:1rem .5rem;text-align:center">
+      <div style="font-size:2.5rem;margin-bottom:.7rem">🌿🐾🌟</div>
+      <p style="font-size:.9rem;color:#333;line-height:1.75;margin:0 0 1.2rem;text-align:right">
+        הגעתם למקום שבו הכל אפשרי! האתר שלנו מלא בפינות נסתרות וסודות מפתיעים.
+        אנחנו מזמינים אתכם פשוט לנסות ללחוץ כאן ועל כל מה שאתם רואים.
+        אולי תגלו משהו שמתחבא בין הדפים?<br><br>
+        <strong>טיפ קטן מאיתנו:</strong> מסתובב כאן באתר חבר טוב שרוצה לעזור לכם, והוא זה שמחזיק את מפת האוצר. מצאתם אותו כבר? 🗺️
+      </p>
+      <div style="background:#f8f9ff;border-radius:16px;padding:1rem;margin-bottom:1rem">
+        <div style="font-size:.82rem;color:#666;margin-bottom:.6rem;font-weight:700">⬇️ נסו ללחוץ על הצב!</div>
+        <div onclick="secretsTurtleClick(this)" style="font-size:4rem;cursor:pointer;display:inline-block;transition:transform .2s;user-select:none" title="לחצו!">🐢</div>
+        <div id="secretsTurtleMsg" style="font-size:.78rem;color:#5a3a9a;margin-top:.4rem;min-height:1.4em;font-weight:700"></div>
+      </div>
+      <button onclick="closeModal()" style="background:linear-gradient(135deg,#3aaa6e,#2a8a5e);color:white;border:none;border-radius:50px;padding:.6rem 1.6rem;font-size:.9rem;font-weight:700;cursor:pointer;font-family:inherit">
+        יאללה, בואו נחקור! 🔍
+      </button>
+    </div>`;
+
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  _turtleClicks = 0;
+}
+
+let _turtleClicks = 0;
+const _turtleMsgs = [
+  'היי! איזה ליטוף נעים... בדיוק במקום הנכון 🐢',
+  'אל תפסיקו, זה מרגיע יותר מנמנום בשמש! ✨',
+  'אוי! זה כבר קצת מסחרר... 💫',
+  'ניצחתם! עם כזו התמדה, מגיע לכם פרס אמיתי 🏆',
+  'ידעתם שהחבאתי אצלי מפת אוצר? בואו איתי לגלות אותה! 🗺️',
+];
+function secretsTurtleClick(el) {
+  _turtleClicks++;
+  el.style.transform = `rotate(${_turtleClicks * 18}deg) scale(${Math.min(1 + _turtleClicks * 0.08, 1.5)})`;
+  const msg = document.getElementById('secretsTurtleMsg');
+  if (msg) msg.textContent = _turtleMsgs[(_turtleClicks - 1) % _turtleMsgs.length];
+  const r = el.getBoundingClientRect();
+  spawnStars(r.left + r.width/2, r.top + r.height/2);
+  if (_turtleClicks >= 5) {
+    setTimeout(() => {
+      closeModal();
+      switchTab('animals');
+      setTimeout(() => {
+        const sulcata = document.getElementById('acard_sulcata');
+        if (sulcata) { sulcata.scrollIntoView({behavior:'smooth',block:'center'}); sulcata.click(); }
+      }, 400);
+    }, 700);
+  }
+}
 
 function openTreasureMap() {
   const overlay = document.getElementById('modalOverlay');
