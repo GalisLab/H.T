@@ -4736,8 +4736,8 @@ function openSecretsPopup() {
       <div style="font-size:2.5rem;margin-bottom:.7rem">🌿🐾🌟</div>
       <p style="font-size:.9rem;color:#333;line-height:1.75;margin:0 0 1.2rem;text-align:right">
         הגעתם למקום שבו הכל אפשרי! האתר שלנו מלא בפינות נסתרות וסודות מפתיעים.
-        אנחנו מזמינים אתכם פשוט לנסות ללחוץ כאן ועל כל מה שאתם רואים.
-        אולי תגלו משהו שמתחבא בין הדפים?<br><br>
+        לפעמים יש דברים שנראים לגמרי רגילים — אימוג'י תמים, כיתוב קטן, תמונה של חיה —
+        אבל כשלוחצים עליהם קורים דברים לא צפויים. אנחנו מזמינים אתכם פשוט לנסות ללחוץ על כל מה שאתם רואים 🙂<br><br>
         <strong>טיפ קטן מאיתנו:</strong> מסתובב כאן באתר חבר טוב שרוצה לעזור לכם, והוא זה שמחזיק את מפת האוצר. מצאתם אותו כבר? 🗺️
       </p>
       <div style="background:#f8f9ff;border-radius:16px;padding:1rem;margin-bottom:1rem">
@@ -4771,14 +4771,12 @@ function secretsTurtleClick(el) {
   const r = el.getBoundingClientRect();
   spawnStars(r.left + r.width/2, r.top + r.height/2);
   if (_turtleClicks >= 5) {
-    setTimeout(() => {
-      closeModal();
-      switchTab('animals');
-      setTimeout(() => {
-        const sulcata = document.getElementById('acard_sulcata');
-        if (sulcata) { sulcata.scrollIntoView({behavior:'smooth',block:'center'}); sulcata.click(); }
-      }, 400);
-    }, 700);
+    const msg = document.getElementById('secretsTurtleMsg');
+    if (msg) msg.innerHTML = `ידעתם שהחבאתי אצלי מפת אוצר? 🗺️<br>
+      <div style="margin-top:.5rem;display:flex;gap:.4rem;justify-content:center;flex-wrap:wrap">
+        <button onclick="closeModal();switchTab('animals');setTimeout(()=>{const s=document.getElementById('acard_sulcata');if(s){s.scrollIntoView({behavior:'smooth',block:'center'});s.click();}},400)" style="background:#7c5cbf;color:white;border:none;border-radius:50px;padding:.35rem .9rem;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit">קח אותי לשם! 🗺️</button>
+        <button onclick="closeModal()" style="background:#eee;color:#555;border:none;border-radius:50px;padding:.35rem .9rem;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit">אני אמצא לבד 😏</button>
+      </div>`;
   }
 }
 
