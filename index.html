@@ -5001,6 +5001,7 @@ function openWelcomeGuide() {
 
   document.getElementById('modalBody').innerHTML = html;
   document.getElementById('modalOverlay').classList.add('open');
+  setTimeout(()=>{ document.getElementById('modalBody').scrollTop = 0; }, 10);
   document.body.style.overflow = 'hidden';
 }
 function openSecretsPopup() {
@@ -5027,7 +5028,7 @@ function openSecretsPopup() {
         <div style="margin-bottom:1rem;line-height:1.8;font-size:.85rem;color:#333">
           <strong>סודות בתוך מילים:</strong> לפעמים אלו מילים שנראות רגילות, אבל הן שער לעולם אחר. למשל, נסו ללחוץ על
           <a href="https://www.parks.org.il/animals-60seconds/" target="_blank" rel="noopener" style="color:#3aaa6e;font-weight:700;text-decoration:underline dotted;cursor:pointer">המילים האלה</a>.<br>
-          <span style="font-size:.76rem;color:#aaa">ראיתם כמה אפשר ללמוד תוך 60 שניות?!</span>
+          <span style="font-size:.76rem;color:#aaa">(ראיתם כמה אפשר ללמוד תוך 60 שניות?!)</span>
         </div>
         <div style="margin-bottom:1rem;line-height:1.8;font-size:.85rem;color:#333">
           <strong>משחק חבוי:</strong> ולפעמים בלחיצה יסתתר משחק.
@@ -5051,6 +5052,7 @@ function openSecretsPopup() {
 
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
+  setTimeout(()=>{ document.getElementById('modalBody').scrollTop = 0; }, 10);
   _turtleClicks = 0;
 }
 
