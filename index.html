@@ -256,8 +256,9 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
     <button onclick="startVoiceSearch('globalSearchInput',this)" title="חיפוש קולי" style="position:absolute;left:.3rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:1.1rem;color:#666;padding:.1rem .3rem">🎤</button>
   </div>
   <div id="globalSearchResult" style="max-width:600px;margin:.4rem auto 0;font-size:.85rem"></div>
-  <div style="text-align:center;margin-top:.4rem">
-    <button onclick="doSurprise()" style="background:none;border:none;cursor:pointer;font-size:.75rem;color:#aaa;font-family:inherit;padding:.2rem .5rem;border-radius:50px;transition:color .2s" onmouseover="this.style.color='#3aaa6e'" onmouseout="this.style.color='#aaa'">🎲 הפתיעו אותי</button>
+  <div style="text-align:center;margin-top:.3rem;display:flex;justify-content:center;gap:.3rem;flex-wrap:wrap">
+    <button onclick="openWelcomeGuide()" style="background:none;border:none;cursor:pointer;font-size:.75rem;color:#aaa;font-family:inherit;padding:.15rem .5rem;border-radius:50px;transition:color .15s" onmouseover="this.style.color='#3aaa6e'" onmouseout="this.style.color='#aaa'">🗺️ מדריך מהיר לאתר</button>
+    <button onclick="doSurprise()" style="background:none;border:none;cursor:pointer;font-size:.75rem;color:#aaa;font-family:inherit;padding:.15rem .5rem;border-radius:50px;transition:color .15s" onmouseover="this.style.color='#3aaa6e'" onmouseout="this.style.color='#aaa'">🎲 הפתיעו אותי</button>
   </div>
 
 <div id="adminBar" style="display:none" class="admin-bar">
@@ -460,6 +461,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
     <strong>💡 מה יש כאן שלא מופיע בחיפוש הרגיל?</strong><br>
     כרטיסי מזון מלאים עם כל הפרטים, סינון לפי קטגוריה (כל הירקות, כל הפירות...), חיפוש בתרומות ובפינת החי שלנו, ואפשרות לסנן לפי קטגוריית מזון ספציפית.
   </div>
+  <div id="smartSearchResult" style="margin-bottom:.5rem;font-size:.85rem"></div>
   <div class="search-wrap"><span class="search-icon">🔍</span><input type="text" id="searchInput" placeholder="גזר, ארנבון, פרי, שוקולד, קרטון, גרביים..." oninput="doSearch()"><button id="searchClearBtn" onclick="document.getElementById('searchInput').value='';doSearch()" style="display:none;background:none;border:none;cursor:pointer;font-size:.85rem;color:#999;padding:.2rem .4rem;position:absolute;left:2rem">✕</button><button onclick="startVoiceSearch('searchInput',this)" title="חיפוש קולי" style="background:none;border:none;cursor:pointer;font-size:1.1rem;padding:.2rem .4rem;position:absolute;left:.2rem;color:#666">🎤</button></div>
   <div class="filter-row" id="catBar"></div>
   <div class="filter-row" id="animalFilterRow"><span style="font-size:.77rem;color:#999;align-self:center">סינון לפי חיה:</span></div>
@@ -2006,6 +2008,13 @@ function doSearch(){
   // כפתור ניקוי
   const clrBtn = document.getElementById('searchClearBtn');
   if(clrBtn) clrBtn.style.display = q ? 'block' : 'none';
+
+  // הפעל גם לוגיקת חיפוש חכמה
+  const smartRes = document.getElementById('smartSearchResult');
+  if(smartRes) {
+    if(q.length >= 2) _handleGlobalSearchCore(q, smartRes);
+    else smartRes.innerHTML = '';
+  }
 
   const animalDiv=document.getElementById('animalSearchResults');
   const foodDiv=document.getElementById('searchResults');
@@ -4268,6 +4277,114 @@ function clearGlobalSearch() {
   document.getElementById('globalSearchClear').style.display = 'none';
 }
 
+// חיפוש גלובלי חכם עם יעד גמיש
+function handleGlobalSearchInto(val, targetEl) {
+  const origEl = document.getElementById('globalSearchResult');
+  // החלף זמנית
+  if (origEl) origEl._origDisplay = origEl.style.display;
+  const fakeEl = targetEl;
+  // שמור ref מקורי
+  const origGetEl = document.getElementById.bind(document);
+  // הפעל ישירות עם targetEl
+  _handleGlobalSearchCore(val, fakeEl);
+}
+
+function _handleGlobalSearchCore(val, res) {
+  if (!val || val.length < 2) { res.innerHTML = ''; return; }
+  const q = val.trim().toLowerCase();
+  const words = q.toLowerCase().split(/\s+/);
+
+  // בדוק REDIRECT_LIST קודם
+  const fullQuery = q.trim();
+  const exactAnimal = ANIMALS.find(a =>
+    a.name.toLowerCase() === fullQuery ||
+    (a.aliases||[]).some(al => al.toLowerCase() === fullQuery)
+  );
+  if (!exactAnimal) {
+    for (const w of words) {
+      const redirect = findInRedirectList(w);
+      if (redirect) { res.innerHTML = renderRedirectResult(redirect); return; }
+    }
+    const CLASS_TERMS_G = {
+      'יונק':['יונק','יונקים'],'זוחל':['זוחל','זוחלים'],
+      'עוף':['עוף','עופות'],'דג':['דג','דגים'],
+      'חרק':['חרק','חרקים'],'מכרסם':['מכרסם','מכרסמים'],'שפנאי':['שפנאי','שפנאים'],
+    };
+    for (const w of words) {
+      const matchedClass = Object.entries(CLASS_TERMS_G).find(([cls,terms])=>terms.includes(w))?.[0];
+      if (matchedClass) {
+        const classAnimals = ANIMALS.filter(a => a.ours && (a.animalClass===matchedClass||a.animalSubClass===matchedClass));
+        const extraAnimals = ANIMALS.filter(a => !a.ours && (a.animalClass===matchedClass||a.animalSubClass===matchedClass));
+        const emoji = {יונק:'🐾',זוחל:'🦎',עוף:'🦜',דג:'🐟',חרק:'🪲',מכרסם:'🐹',שפנאי:'🐰'}[matchedClass]||'🐾';
+        const entry = { ours: classAnimals.map(a=>a.id), extra: extraAnimals.map(a=>a.id), msg: `${emoji} ${matchedClass}ים שיש לנו:` };
+        res.innerHTML = renderRedirectResult(entry) + (matchedClass==='מכרסם'?'<div style="font-size:.78rem;color:#888;margin-top:.3rem;font-style:italic">💡 ארנבון הוא לא מכרסם אלא ממשפחת הארנבאים. אבל אולי הוא מה שחיפשת?</div>':matchedClass==='חרק'?'<div style="font-size:.78rem;color:#999;margin-top:.3rem;font-style:italic">אם יש חרקים מסוג אחר בפינת החי, הם לא שייכים לנו.</div>':'');
+        return;
+      }
+    }
+  }
+
+  // חיה + מזון
+  const foundAnimals=[], foundFoods=[];
+  for (const w of words) {
+    const a = ANIMALS.find(a => searchMatchName(a.name,w)||(a.aliases||[]).some(al=>searchMatchName(al,w)));
+    if (a && !foundAnimals.find(x=>x.id===a.id)) { foundAnimals.push(a); continue; }
+    const f = FOODS.find(f => searchMatchName(f.name,w)||(f.aliases||[]).some(al=>searchMatchName(al,w)));
+    if (f && !foundFoods.find(x=>x.id===f.id)) foundFoods.push(f);
+  }
+
+  const notOursParts = [];
+  const FUNNY_MAP_LOCAL = {'חתול':'הוא הגיע עצמאית, אנחנו לא קשורים.','חתולה':'היא הגיעה עצמאית, אנחנו לא קשורים.','חתולים':'הם הגיעו עצמאית, אנחנו לא קשורים.','חתולות':'הן הגיעו עצמאית, אנחנו לא קשורים.'};
+  for (const w of words) {
+    const notOurs = findInNotOursList(w);
+    if (notOurs) {
+      if (notOurs.specialClean) { res.innerHTML=`<div style="background:#f0fff8;border-radius:12px;padding:.45rem .85rem;font-size:.85rem;color:#1a6640">🧹 נשמע שיש עבודה לעשות. פינת החי תודה לך! 💚</div>`; return; }
+      const msg = notOurs.glad ? `${notOurs.emoji} לשמחתנו אין לנו ${w} בפינת החי 😅` : `${notOurs.emoji} ${notOurs.msg||'אין לנו'} ${w} בפינת החי${notOurs.msg==='אין לנו'?'':' 🙏'}${notOurs.special==='dragon'?` (<a href="#" onclick="event.preventDefault();openAnimalModal('beardie')" style="color:#c06000;text-decoration:underline dotted">דרקון מזוקן הוא חרדון מזוקן, ויש לנו! 🐉</a>)`:''}`;
+      const funnyFromMap = FUNNY_MAP_LOCAL[w] ? `<div style="font-size:.78rem;color:#999;margin-top:.15rem;font-style:italic">ואם יש, ${FUNNY_MAP_LOCAL[w]}</div>` : '';
+      const funnyFromList = notOurs.funnyNote ? `<div style="font-size:.78rem;color:#999;margin-top:.15rem;font-style:italic">${notOurs.funnyNote}</div>` : '';
+      notOursParts.push(`<div style="background:#fff8e8;border-radius:10px;padding:.4rem .75rem;font-size:.85rem;color:#7a5000">${msg}${funnyFromList||funnyFromMap}</div>`);
+    }
+  }
+
+  const parts = [];
+  if (foundAnimals.length && foundFoods.length) {
+    for (const food of foundFoods) {
+      for (const animal of foundAnimals) {
+        const status=food.animals?.[animal.id]?.s, amt=food.animals?.[animal.id]?.a||'', note=food.animals?.[animal.id]?.n||'';
+        let badge,color,bg;
+        if(status==='ok'){badge='✅ מותר';color='#1a7a40';bg='#e8fff3';}
+        else if(status==='lim'){badge='⚠️ במידה';color='#7a5500';bg='#fffbe0';}
+        else if(status==='no'){badge='❌ אסור';color='#b02020';bg='#ffe8e8';}
+        else if(status==='nr'){badge='➖ לא רלוונטי';color='#888';bg='#f4f4f4';}
+        else{badge='❓ אין מידע';color='#888';bg='#f4f4f4';}
+        parts.push(`<div style="background:${bg};border-radius:10px;padding:.45rem .75rem;display:flex;align-items:center;gap:.45rem;flex-wrap:wrap"><span>${food.emoji} <strong>${food.name}</strong></span><span style="color:#bbb">+</span><span>${animal.emoji} <strong>${animal.name}</strong></span><span style="font-weight:900;color:${color}">${badge}</span>${amt?`<span style="font-size:.75rem;color:#666">${amt}</span>`:''}${note?`<span style="font-size:.75rem;color:#888;font-style:italic">${note}</span>`:''}<a href="#" onclick="event.preventDefault();openFoodModal('${food.id}')" style="font-size:.72rem;color:#3aaa6e;text-decoration:underline dotted">פרטים ←</a></div>`);
+      }
+    }
+    if (notOursParts.length) parts.push(...notOursParts);
+    res.innerHTML = `<div style="display:grid;gap:.35rem">${parts.join('')}</div>`;
+    return;
+  }
+  if (foundAnimals.length && !foundFoods.length) {
+    for (const a of foundAnimals) {
+      const notInCorner=!a.ours;
+      parts.push(`<div style="background:${notInCorner?'#fafafa':'#f0f4ff'};border-radius:10px;padding:.4rem .75rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap"><span>${a.emoji} <strong>${a.name}</strong></span>${notInCorner?`<span style="font-size:.7rem;background:#fff3d0;color:#7a5500;border-radius:50px;padding:.05rem .4rem;font-weight:700">לא בפינת החי שלנו</span>`:''}${!notInCorner?`<a href="#" onclick="event.preventDefault();switchTab('byanimal');setTimeout(()=>selectByAnimal('${a.id}'),100)" style="font-size:.75rem;color:#3aaa6e;text-decoration:underline dotted">רשימת מזון ←</a>`:''}<a href="#" onclick="event.preventDefault();openAnimalModal('${a.id}')" style="font-size:.75rem;color:#5060a0;text-decoration:underline dotted">מידע ←</a></div>`);
+    }
+    if (notOursParts.length) parts.push(...notOursParts);
+    res.innerHTML = `<div style="display:grid;gap:.35rem">${parts.join('')}</div>`;
+    return;
+  }
+  if (foundFoods.length && !foundAnimals.length) {
+    for (const f of foundFoods) {
+      parts.push(`<div style="background:#f4fff8;border-radius:10px;padding:.4rem .75rem;display:flex;align-items:center;gap:.4rem"><span>${f.emoji} <strong>${f.name}</strong></span><a href="#" onclick="event.preventDefault();openFoodModal('${f.id}')" style="font-size:.75rem;color:#3aaa6e;text-decoration:underline dotted">מה אומרת כל חיה ←</a></div>`);
+    }
+    if (notOursParts.length) parts.push(...notOursParts);
+    res.innerHTML = `<div style="display:grid;gap:.35rem">${parts.join('')}</div>`;
+    return;
+  }
+  if (notOursParts.length) { res.innerHTML=`<div style="display:grid;gap:.35rem">${notOursParts.join('')}</div>`; return; }
+  res.innerHTML = '';
+}
+
+
 function handleGlobalSearch(val) {
   const q = val.trim();
   const res = document.getElementById('globalSearchResult');
@@ -4722,16 +4839,176 @@ const TREASURE_MAP = [
 let treasureState = {};
 
 
-// --- ✨ פופ-אפ סודות האתר ---
+
+// --- 👋 מדריך ברוכים הבאים ---
+function openWelcomeGuide() {
+  document.getElementById('modalTitle').innerHTML = '🐾 ברוכים הבאים למרכז המידע של פינת החי!';
+  document.getElementById('modalTitle').style.fontSize = '.93rem';
+
+  const sections = [
+    {
+      emoji:'🔍', title:'שורת החיפוש', color:'#3aaa6e', bg:'#e8fff3',
+      short:'הדרך המהירה ביותר למצוא מידע. פשוט מקלידים ומקבלים תשובה.',
+      long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.8rem;color:#444;line-height:1.7">
+        <li>מקלידים שם מזון, חיה, או גם וגם ביחד (למשל: "גרביל בטטה") ומקבלים תשובה מיידית.</li>
+        
+        <li>בכל מקום שמופיע 🎤 אפשר ללחוץ לחיפוש קולי.</li>
+        <li>שורת החיפוש נמצאת ממש בראש הדף.</li>
+      </ul>`,
+      action: ()=>{ closeModal(); document.getElementById('globalSearchInput')?.focus(); }
+    },
+    {
+      emoji:'📝', title:'בקיצור', color:'#1a7a40', bg:'#d8f5e8',
+      short:'"רשימת הקניות" של המזונות. מה להביא? מה להפריד? ומה בשום אופן לא.',
+      long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.8rem;color:#444;line-height:1.7">
+        <li>מה להביא מהבית? רשימה מסודרת של המזונות שנשמח לקבל.</li>
+        <li>איך לארוז? מה כדאי להפריד כי הוא מסוכן לחלק מהחיות, ומה בשום אופן לא להביא.</li>
+        <li>גם כאן יש חיפוש מהיר שמציג האם מזון מסוים מותר, במידה, או אסור.</li>
+      </ul>`,
+      tab:'quickguide'
+    },
+    {
+      emoji:'🔍', title:'חיפוש מורחב', color:'#5060a0', bg:'#eef0ff',
+      short:'חיפוש מלא עם כרטיסי מזון, סינון לפי קבוצות, ותוצאות מהתרומות ופינת החי.',
+      long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.8rem;color:#444;line-height:1.7">
+        <li>כרטיסי מזון מלאים: יתרונות, סיכונים, ואזהרות לכל מזון.</li>
+        <li>סינון לפי קבוצות: כל הירקות, כל הפירות, כל הדברים האסורים וכו'.</li>
+        <li>ממצא גם בתוך דפי התרומות ופינת החי שלנו.</li>
+        <li>גם כאן יש חיפוש קולי 🎤.</li>
+      </ul>`,
+      tab:'search'
+    },
+    {
+      emoji:'🐾', title:'מה אוכלת כל חיה?', color:'#1a6640', bg:'#e0f5ec',
+      short:'התפריט המותאם אישית לכל חיה בפינה שלנו.',
+      long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.8rem;color:#444;line-height:1.7">
+        <li>לארנבון, לשרקן ולצב יש תפריט שונה לחלוטין.</li>
+        <li>בוחרים חיה ורואים רשימה מלאה: מה מותר, מה מותר במידה, ומה אסור בהחלט.</li>
+      </ul>`,
+      tab:'byanimal'
+    },
+    {
+      emoji:'📋', title:'כל המזונות', color:'#3050a0', bg:'#e8f0ff',
+      short:'הרשימה המלאה. עשרות מזונות עם יתרונות, סיכונים, ואזהרות חשובות.',
+      long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.8rem;color:#444;line-height:1.7">
+        <li>אפשר לסנן לפי קבוצות: פירות, ירקות, עלים, צמחי בר, כל השאר, או רשימת האסורים.</li>
+        <li>כפתור "מידע מורחב" מתחת לטבלה פותח את כל הפרטים על כל מזון ברצף.</li>
+        <li>אפשר גם להעתיק רשימת שמות להדבקה במקום אחר.</li>
+      </ul>`,
+      tab:'allfoods'
+    },
+    {
+      emoji:'🐾', title:'מידע על החיות', color:'#7c5cbf', bg:'#f0e8ff',
+      short:'מאפיינים ביולוגיים ועובדות שימושיות על בעלי החיים.',
+      long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.8rem;color:#444;line-height:1.7">
+        <li>מידע מקצועי על מאפייני כל חיה, עם המלצות לגידול נכון.</li>
+        <li>לחיצה על כרטיסיית חיה פותחת מידע מלא: מוצא, תוחלת חיים, מגורים, צרכים מיוחדים ועוד.</li>
+        <li>אפשר לסנן בין \"החיות שלנו\" לבין \"כל החיות\", כולל חיות נפוצות בפינות חי אחרות שאין אצלנו.</li>
+      </ul>`,
+      tab:'animals'
+    },
+    {
+      emoji:'🎁', title:'לתרום', color:'#c06000', bg:'#fff3e0',
+      short:'דברים שפינת החי צריכה ונשמח לקבל מכם.',
+      long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.8rem;color:#444;line-height:1.7">
+        <li>מעבר לאוכל: פינת החי זקוקה גם לציוד ודברים נוספים.</li>
+        <li>הרשימה מחולקת לפי סוג הפריט, עם הסבר למה כל דבר שימושי.</li>\n          <li>בונוס: חוץ מזה שזה עוזר לנו, זה יכול לעזור גם לכם לסדר את הבית! 😊</li>
+      </ul>`,
+      tab:'donate'
+    },
+    {
+      emoji:'🌟', title:'פינת החי שלנו', color:'#b07000', bg:'#fff8e0',
+      short:'הכירו מקרוב את הדיירים שלנו.',
+      long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.8rem;color:#444;line-height:1.7">
+        <li>זאת טעימה מפינת החי שלנו 🙂</li>
+        <li>סיפורים קצרים ואנקדוטות על חלק מהחברים שחיים אצלנו בפינת החי.</li>
+        <li>תמונות, שמות, ודברים מפתיעים על כל אחת.</li>
+      </ul>`,
+      tab:'mycorner'
+    },
+    {
+      emoji:'🥗', title:'תפריט יומי', color:'#1a6070', bg:'#e0f8ff',
+      short:'מה וכמה להגיש היום מתוך מה שקיבלנו?',
+      long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.8rem;color:#444;line-height:1.7">
+        <li>בוחרים מה קיבלנו היום ומי עומד לאכול.</li>
+        <li>המערכת מחשבת בדיוק איזו כמות לתת לכל חיה ומה אסור לשים יחד.</li>
+      </ul>`,
+      tab:'dailymenu'
+    },
+    {
+      emoji:'✉️', title:'יצירת קשר', color:'#555', bg:'#f4f4f4',
+      short:'מצאתם טעות? יש לכם הצעה? אנחנו כאן.',
+      long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.8rem;color:#444;line-height:1.7">
+        <li>שלחו לנו הודעה ונענה בהקדם.</li>
+      </ul>`,
+      tab:'deploy'
+    },
+    {
+      emoji:'🎲', title:'הפתיעו אותי', color:'#8a2060', bg:'#fff0f8',
+      short:'לחיצה אחת ותקבלו פריט מידע אקראי ומעניין.',
+      long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.8rem;color:#444;line-height:1.7">
+        <li>דרך מצוינת לגלות דברים חדשים בלי לחפש.</li>
+        <li>כל לחיצה יכולה להוביל למזון, לחיה, לתרומה, ועוד.</li>
+      </ul>`,
+      action: ()=>{ closeModal(); doSurprise(); }
+    },
+    {
+      emoji:'✨', title:'סודות והפתעות', color:'#5a3a9a', bg:'#f8f0ff',
+      short:'האתר מלא בפינות נסתרות. לחצו בכל מקום ותגלו.',
+      long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.8rem;color:#444;line-height:1.7">
+        
+        <li>יש אימוג'ים שמסתירים סרטונים, משחקים ואפקטים מיוחדים.</li>
+        <li>מסתובב באתר חבר שמחזיק מפת אוצר. מצאתם אותו? 🗺️</li>
+      </ul>`,
+      action: ()=>{ closeModal(); openSecretsPopup(); }
+    },
+  ];
+
+  const speakText_welcome = () => {
+    const text = sections.map(s=>s.emoji+' '+s.title+': '+s.short).join('. ');
+    speakText(text, document.getElementById('welcomeSpeak'));
+  };
+
+  const html = `
+    <div style="padding:.5rem;direction:rtl">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem">
+        <p style="color:#555;font-size:.83rem;margin:0;line-height:1.6">האתר הזה נועד לעזור לכולנו לדעת יותר כיצד לשמור על בעלי החיים שלנו. הנה כל מה שאפשר לעשות כאן:</p>
+        <button id="welcomeSpeak" onclick="speakText([...document.querySelectorAll('.wg-title,.wg-short')].map(e=>e.textContent).join(', '),this)" style="background:#f0f0f0;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.85rem;flex-shrink:0;margin-right:.5rem">🔊</button>
+      </div>
+      <div style="display:grid;gap:.4rem">
+        ${sections.map((s,i)=>`
+          <div style="background:${s.bg};border-radius:10px;border-right:4px solid ${s.color};overflow:hidden">
+            <div style="padding:.5rem .8rem;display:flex;align-items:center;gap:.5rem;cursor:pointer" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.querySelector('.wg-arrow').textContent=this.nextElementSibling.style.display==='none'?'▸':'▾'">
+              <span style="font-size:1.1rem">${s.emoji}</span>
+              <div style="flex:1">
+                <div class="wg-title" style="font-weight:900;font-size:.85rem;color:${s.color}">${s.title}</div>
+                <div class="wg-short" style="font-size:.78rem;color:#555">${s.short}</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:.3rem">
+                <button onclick="event.stopPropagation();speakText('${s.title}. ${s.short}',this)" style="background:none;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:.72rem;opacity:.5;flex-shrink:0" title="הקרא">🔊</button>
+                ${s.tab ? `<button onclick="event.stopPropagation();closeModal();switchTab('${s.tab}')" style="background:${s.color};color:white;border:none;border-radius:50px;padding:.15rem .55rem;font-size:.72rem;font-weight:700;cursor:pointer;font-family:inherit">לכאן ←</button>` : s.action ? `<button onclick="event.stopPropagation();(${s.action.toString()})()" style="background:${s.color};color:white;border:none;border-radius:50px;padding:.15rem .55rem;font-size:.72rem;font-weight:700;cursor:pointer;font-family:inherit">נסו ←</button>` : ''}
+                <span class="wg-arrow" style="color:${s.color};font-size:.9rem">▸</span>
+              </div>
+            </div>
+            <div style="display:none;padding:.1rem .8rem .5rem 1.5rem;color:#444">${s.long}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div style="margin-top:.7rem;background:#f8f8f8;border-radius:10px;padding:.5rem .8rem;font-size:.78rem;color:#888;text-align:center">
+        💡 <strong>טיפ:</strong> בכל מקום שמופיע 🔊 שמעו את המידע בקול, ובכל מקום שמופיע 🎤 חפשו בקול
+      </div>
+    </div>`;
+
+  document.getElementById('modalBody').innerHTML = html;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
 function openSecretsPopup() {
   const overlay = document.getElementById('modalOverlay');
-  const body = document.getElementById('modalBody');
-  const title = document.getElementById('modalTitle');
+  document.getElementById('modalTitle').innerHTML = '✨ פינות נסתרות וסודות מפתיעים';
+  document.getElementById('modalTitle').style.fontSize = '1rem';
 
-  title.innerHTML = '✨ ברוכים הבאים לפינת החי!';
-  title.style.fontSize = '1rem';
-
-  body.innerHTML = `
+  document.getElementById('modalBody').innerHTML = `
     <div style="padding:1rem .5rem;text-align:center">
       <div style="font-size:2.5rem;margin-bottom:.7rem">🌿🐾🌟</div>
       <p style="font-size:.9rem;color:#333;line-height:1.75;margin:0 0 1.2rem;text-align:right">
@@ -4740,10 +5017,32 @@ function openSecretsPopup() {
         אבל כשלוחצים עליהם קורים דברים לא צפויים. אנחנו מזמינים אתכם פשוט לנסות ללחוץ על כל מה שאתם רואים 🙂<br><br>
         <strong>טיפ קטן מאיתנו:</strong> מסתובב כאן באתר חבר טוב שרוצה לעזור לכם, והוא זה שמחזיק את מפת האוצר. מצאתם אותו כבר? 🗺️
       </p>
-      <div style="background:#f8f9ff;border-radius:16px;padding:1rem;margin-bottom:1rem">
-        <div style="font-size:.82rem;color:#666;margin-bottom:.6rem;font-weight:700">⬇️ נסו ללחוץ על הצב!</div>
-        <div onclick="secretsTurtleClick(this)" style="font-size:4rem;cursor:pointer;display:inline-block;transition:transform .2s;user-select:none" title="לחצו!">🐢</div>
-        <div id="secretsTurtleMsg" style="font-size:.78rem;color:#5a3a9a;margin-top:.4rem;min-height:1.4em;font-weight:700"></div>
+      <div style="background:#f8f9ff;border-radius:16px;padding:1rem;margin-bottom:1rem;text-align:right">
+        <div style="font-size:.78rem;color:#888;margin-bottom:.8rem;text-align:center;font-weight:700">🎯 כמה דוגמאות לדברים שמחכים לכם באתר:</div>
+        <div style="margin-bottom:1rem;line-height:1.8;font-size:.85rem;color:#333">
+          <strong>הפתעה בתוך אימוג'י:</strong> לפעמים אימוג'י תמים מסתיר בתוכו סרטון שלם. למשל הזה, נסו ללחוץ עליו:
+          <a href="https://www.youtube.com/watch?v=Fx9NFmpx3-0" target="_blank" rel="noopener" style="text-decoration:none;font-size:1.9rem;vertical-align:middle;cursor:pointer" title="לחצו!">🍽️</a><br>
+          <span style="font-size:.76rem;color:#aaa">(ראיתם? זה סרטון חמוד של חיות אוכלות)</span>
+        </div>
+        <div style="margin-bottom:1rem;line-height:1.8;font-size:.85rem;color:#333">
+          <strong>סודות בתוך מילים:</strong> לפעמים אלו מילים שנראות רגילות, אבל הן שער לעולם אחר. למשל, נסו ללחוץ על
+          <a href="https://www.parks.org.il/animals-60seconds/" target="_blank" rel="noopener" style="color:#3aaa6e;font-weight:700;text-decoration:underline dotted;cursor:pointer">המילים האלה</a>.<br>
+          <span style="font-size:.76rem;color:#aaa">ראיתם כמה אפשר ללמוד תוך 60 שניות?!</span>
+        </div>
+        <div style="margin-bottom:1rem;line-height:1.8;font-size:.85rem;color:#333">
+          <strong>משחק חבוי:</strong> ולפעמים בלחיצה יסתתר משחק.
+          <a href="https://poki.com/il/g/pocket-zoo" target="_blank" rel="noopener" style="text-decoration:none;font-size:1.9rem;vertical-align:middle;cursor:pointer" title="משחק!">🐠</a>
+          לחצו על הדג כדי לראות מה קורה.<br>
+          <span style="font-size:.76rem;color:#aaa">(ראיתם? אנחנו יוצרים חיות ימיות משלנו)</span>
+        </div>
+        <div style="margin-bottom:.4rem;line-height:1.8;font-size:.85rem;color:#333">
+          <strong>קסם שקורה ממש כאן:</strong> ולפעמים זה לא קישור החוצה אלא אפקט שקורה ממש כאן בתוך האתר. כמו הצב המיוחד שלנו.<br>
+          <div style="text-align:center;margin-top:.5rem">
+            <div style="font-size:.78rem;color:#666;margin-bottom:.3rem;font-weight:700">נסו ללחוץ על הצב:</div>
+            <div onclick="secretsTurtleClick(this)" style="font-size:4rem;cursor:pointer;display:inline-block;transition:transform .2s;user-select:none" title="לחצו!">🐢</div>
+            <div id="secretsTurtleMsg" style="font-size:.78rem;color:#5a3a9a;margin-top:.4rem;min-height:1.4em;font-weight:700"></div>
+          </div>
+        </div>
       </div>
       <button onclick="closeModal()" style="background:linear-gradient(135deg,#3aaa6e,#2a8a5e);color:white;border:none;border-radius:50px;padding:.6rem 1.6rem;font-size:.9rem;font-weight:700;cursor:pointer;font-family:inherit">
         יאללה, בואו נחקור! 🔍
@@ -4754,6 +5053,7 @@ function openSecretsPopup() {
   document.body.style.overflow = 'hidden';
   _turtleClicks = 0;
 }
+
 
 let _turtleClicks = 0;
 const _turtleMsgs = [
