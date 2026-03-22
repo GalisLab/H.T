@@ -458,8 +458,8 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
     <button class="expand-all-btn" onclick="expandAllFoods()" id="expandAllFoodsBtn">📖 פתח הכל</button>
   </div>
   <div style="background:#f0f8ff;border-radius:12px;border-right:4px solid #4a90d9;padding:.6rem .9rem;margin-bottom:.7rem;font-size:.82rem;color:#1a3a6a;line-height:1.65">
-    <strong>💡 מה יש כאן שלא מופיע בחיפוש הרגיל?</strong><br>
-    כרטיסי מזון מלאים עם כל הפרטים, סינון לפי קטגוריה (כל הירקות, כל הפירות...), חיפוש בתרומות ובפינת החי שלנו, ואפשרות לסנן לפי קטגוריית מזון ספציפית.
+    <strong>💡 מה שונה כאן מהחיפוש בראש הדף?</strong><br>
+    אותה לוגיקה חכמה בדיוק, רק שהתוצאות מוצגות כ<strong>כרטיסי מזון מלאים</strong> עם כל הפרטים. בנוסף: סינון לפי קטגוריה (כל הירקות, כל הפירות...) וחיפוש גם בתרומות ובפינת החי שלנו.
   </div>
   <div id="smartSearchResult" style="margin-bottom:.5rem;font-size:.85rem"></div>
   <div class="search-wrap"><span class="search-icon">🔍</span><input type="text" id="searchInput" placeholder="גזר, ארנבון, פרי, שוקולד, קרטון, גרביים..." oninput="doSearch()"><button id="searchClearBtn" onclick="document.getElementById('searchInput').value='';doSearch()" style="display:none;background:none;border:none;cursor:pointer;font-size:.85rem;color:#999;padding:.2rem .4rem;position:absolute;left:2rem">✕</button><button onclick="startVoiceSearch('searchInput',this)" title="חיפוש קולי" style="background:none;border:none;cursor:pointer;font-size:1.1rem;padding:.2rem .4rem;position:absolute;left:.2rem;color:#666">🎤</button></div>
@@ -511,6 +511,12 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
   </div>
   <div class="filter-row" id="allCatBar"></div>
   <!-- חיפוש מרובה מזונות -->
+  <div style="font-size:.76rem;color:#888;margin-bottom:.35rem;line-height:1.6;padding:0 .2rem">
+    🔍 אפשר לחפש לפי <strong>שם מזון</strong>, <strong>שם חיה</strong>, או שניהם ביחד.
+    למשל: <span style="color:#3aaa6e;cursor:pointer" onclick="document.getElementById('allFoodsSearch').value='בטטה אוגר סורי';filterAllFoodsTable('בטטה אוגר סורי')">בטטה אוגר סורי</span> ·
+    <span style="color:#3aaa6e;cursor:pointer" onclick="document.getElementById('allFoodsSearch').value='קליפה תפוח ארנבון';filterAllFoodsTable('קליפה תפוח ארנבון')">קליפה תפוח ארנבון</span> ·
+    <span style="color:#3aaa6e;cursor:pointer" onclick="document.getElementById('allFoodsSearch').value='גרגרים תירס ציפור אהבה';filterAllFoodsTable('גרגרים תירס ציפור אהבה')">גרגרים תירס ציפור אהבה</span>
+  </div>
   <div style="position:relative;margin-bottom:.6rem">
     <input id="allFoodsSearch" type="text"
       placeholder="חפש מזון או חיה — גזר, ביצה קשה, אוגר..."
@@ -540,7 +546,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
     <button class="expand-all-btn" onclick="expandAllAnimals()" id="expandAllAnimalsBtn">📖 פתח הכל</button>
   </div>
   <div style="margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem">
-    <button onclick="switchTab('search')" style="background:#f0f7ff;border:2px solid #c0d8f0;border-radius:50px;padding:.4rem 1rem;font-size:.85rem;font-weight:700;cursor:pointer;color:#2a5a8a;font-family:'Varela Round',sans-serif">🔍 חפש חיה בדף החיפוש</button>
+    <button onclick="switchTab('search')" style="background:#f0f7ff;border:2px solid #c0d8f0;border-radius:50px;padding:.4rem 1rem;font-size:.85rem;font-weight:700;cursor:pointer;color:#2a5a8a;font-family:'Varela Round',sans-serif">🔍 חיפוש חיה בדף החיפוש המורחב</button>
   </div>
   <div style="margin-bottom:.6rem">
     <button class="btn-s" id="showOursBtn" onclick="setAnimalView('ours')" style="font-size:.82rem;padding:.35rem .85rem;background:var(--green);color:white;border-radius:50px;border:none;cursor:pointer;font-weight:700">🏠 החיות שלנו</button>
@@ -767,7 +773,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
   <div style="margin-top:1.2rem;background:linear-gradient(135deg,#fff3b0,#ffe066);border-radius:16px;padding:1.1rem 1.4rem;text-align:center;box-shadow:0 3px 12px rgba(0,0,0,.08)">
     <div style="font-size:1.6rem;margin-bottom:.35rem">🌟</div>
     <div style="font-weight:900;font-size:1.05rem;color:#7a5000;margin-bottom:.25rem">ויש עוד הרבה! בואו לבקר 🐾</div>
-    <div style="font-size:.82rem;color:#9a6800">עוד חיות, עוד סיפורים - הכי טוב לראות בעצמך</div>
+    <div style="font-size:.82rem;color:#9a6800">עוד חיות, עוד סיפורים, מחכים לך! 💚</div>
   </div>
 
 </div>
@@ -3217,32 +3223,69 @@ function filterAllFoodsTable(val) {
   // נקה hints ישנים
   document.querySelectorAll('.animal-filter-hint').forEach(el => el.remove());
 
-  const terms = val.split(/[,،\s]+/).map(t => t.trim().toLowerCase()).filter(Boolean);
+  const terms = val.split(/[,،]+/).map(t => t.trim().toLowerCase()).filter(Boolean);
   if (!terms.length) {
-    document.querySelectorAll('.af-table tbody tr').forEach(r => r.style.display = '');
-    return;
+    // בדוק גם אם אין פסיקים — פצל לפי רווחים
+    const spaceTerms = val.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    if (!spaceTerms.length) {
+      document.querySelectorAll('.af-table tbody tr').forEach(r => r.style.display = '');
+      return;
+    }
   }
 
-  // זיהוי חכם: מצא חיה, חלק ושם מזון מתוך המונחים
+  // זיהוי חכם: מצא חיה, חלק ושם מזון — תומך בשמות ממילות ("אוגר סורי", "ציפור אהבה")
   const allPartNames = [...new Set(FOODS.flatMap(f=>(f.parts||[]).map(p=>p.name.toLowerCase())))];
   let partFilter = null, animalFilter = null, foodTerms = [];
 
-  for (const t of terms) {
-    // האם זו חיה?
-    const animal = ANIMALS.find(a =>
-      searchMatchName(a.name, t) || (a.aliases||[]).some(al=>searchMatchName(al,t))
-    );
-    if (animal && !animalFilter) { animalFilter = animal; continue; }
+  // פצל לפי פסיקים קודם, ואם אין — לפי רווחים
+  const rawText = val.trim().toLowerCase();
+  const hasComas = /[,،]/.test(rawText);
+  const segments = hasComas
+    ? rawText.split(/[,،]/).map(t=>t.trim()).filter(Boolean)
+    : [rawText]; // כל הטקסט כסגמנט אחד לצורך זיהוי שמות ממילות
 
-    // האם זה חלק צמח?
-    const matchedPart = allPartNames.find(pn => {
-      if (t === pn) return true;
-      const pnNorm = normalizeHebrew(pn), tNorm = normalizeHebrew(t);
-      return tNorm === pnNorm || (pnNorm.length >= 2 && (tNorm.startsWith(pnNorm)||tNorm.endsWith(pnNorm)));
-    });
-    if (matchedPart && !partFilter) { partFilter = matchedPart; continue; }
+  for (const seg of segments) {
+    const words = seg.split(/\s+/).filter(Boolean);
 
-    foodTerms.push(t);
+    // נסה לזהות חיה בשם מלא (מרובה מילים) — קודם שלוש מילים, אחר כך שתיים, אחר כך אחת
+    let foundAnimalInSeg = null;
+    for (let len = Math.min(3, words.length); len >= 1 && !foundAnimalInSeg; len--) {
+      for (let start = 0; start <= words.length - len && !foundAnimalInSeg; start++) {
+        const phrase = words.slice(start, start + len).join(' ');
+        const a = ANIMALS.find(a =>
+          searchMatchName(a.name, phrase) || (a.aliases||[]).some(al=>searchMatchName(al, phrase))
+        );
+        if (a) foundAnimalInSeg = { animal: a, usedWords: words.slice(start, start + len) };
+      }
+    }
+
+    if (foundAnimalInSeg && !animalFilter) {
+      animalFilter = foundAnimalInSeg.animal;
+      // המילים שנותרו לאחר הסרת החיה
+      const usedSet = new Set(foundAnimalInSeg.usedWords);
+      const remaining = words.filter(w => !usedSet.has(w) || (usedSet.delete(w), false));
+      // בדוק אם הנותרים הם חלק או מזון
+      for (const w of remaining) {
+        const mp = allPartNames.find(pn => {
+          const pnN = normalizeHebrew(pn), wN = normalizeHebrew(w);
+          return wN === pnN || pnN.startsWith(wN.slice(0,3));
+        });
+        if (mp && !partFilter) { partFilter = mp; continue; }
+        foodTerms.push(w);
+      }
+      continue;
+    }
+
+    // נסה לזהות חלק צמח
+    let foundPartInSeg = false;
+    for (const w of words) {
+      const mp = allPartNames.find(pn => {
+        const pnN = normalizeHebrew(pn), wN = normalizeHebrew(w);
+        return wN === pnN || (pnN.length >= 3 && (wN.startsWith(pnN.slice(0,3)) || pnN.startsWith(wN.slice(0,3))));
+      });
+      if (mp && !partFilter) { partFilter = mp; foundPartInSeg = true; continue; }
+      foodTerms.push(w);
+    }
   }
 
   const rows = document.querySelectorAll('.af-table tbody tr');
@@ -5143,7 +5186,7 @@ function openWelcomeGuide() {
     },
     {
       emoji:'🔍', title:'חיפוש מורחב', color:'#5060a0', bg:'#eef0ff',
-      short:'חיפוש מלא עם כרטיסי מזון, סינון לפי קבוצות, ותוצאות מהתרומות ופינת החי.',
+      short:'כמו החיפוש הראשי, רק עם כרטיסי מזון מלאים, אפשרות סינון לפי קטגוריה, וחיפוש גם בתרומות ובפינת החי.',
       long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.8rem;color:#444;line-height:1.7">
         <li>כרטיסי מזון מלאים: יתרונות, סיכונים, ואזהרות לכל מזון.</li>
         <li>סינון לפי קבוצות: כל הירקות, כל הפירות, כל הדברים האסורים וכו'.</li>
@@ -5166,7 +5209,7 @@ function openWelcomeGuide() {
       short:'הרשימה המלאה. עשרות מזונות עם יתרונות, סיכונים, ואזהרות חשובות.',
       long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.8rem;color:#444;line-height:1.7">
         <li>אפשר לסנן לפי קבוצות: פירות, ירקות, עלים, צמחי בר, כל השאר, או רשימת האסורים.</li>
-        <li>כפתור "מידע מורחב" מתחת לטבלה פותח את כל הפרטים על כל מזון ברצף.</li>
+        <li        <li>אפשר לחפש לפי שם מזון, שם חיה, או שניהם ביחד. למשל \"בטטה אוגר סורי\" או \"קליפה תפוח ארנבון\".</li>\n>כפתור "מידע מורחב" מתחת לטבלה פותח את כל הפרטים על כל מזון ברצף.</li>
         <li>אפשר גם להעתיק רשימת שמות להדבקה במקום אחר.</li>
       </ul>`,
       tab:'allfoods'
