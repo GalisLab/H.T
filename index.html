@@ -519,7 +519,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
   </div>
   <div style="position:relative;margin-bottom:.6rem">
     <input id="allFoodsSearch" type="text"
-      placeholder="חפש מזון או חיה — גזר, ביצה קשה, אוגר..."
+      placeholder="חפש מזון או חיה: גזר, ביצה קשה, אוגר..."
       oninput="filterAllFoodsTable(this.value)"
       style="width:100%;box-sizing:border-box;padding:.5rem 2.2rem .5rem .7rem;border:2px solid #dde;border-radius:50px;font-size:.85rem;font-family:inherit;outline:none;transition:border-color .15s"
       onfocus="this.style.borderColor='#3aaa6e'"
@@ -1312,13 +1312,13 @@ const DEFAULT_FOODS = [
 
 // ── מבושל ────────────────────────────────────────────────────
 {id:'boiled_egg',name:'ביצה קשה',emoji:'🥚',cookStatus:'cooked',category:'מזון מעובד ומבושל',aliases:['ביצה','ביצה קשה'],
- why:'חלבון מלא עם כל חומצות האמינו החיוניות. ויטמין D, B12, כולין וסלניום. מצוין לחרדון מזוקן וחרקים כתוסף חלבון. 🥚 קליפת הביצה המבושלת — כתושה דק — היא מקור סידן מצוין לציפורים, חרדון, צב וחרקים. חשוב: רק קליפה מבושלת היטב (יחד עם הביצה), כתושה דק לאבקה כדי למנוע פציעות.',
+ why:'חלבון מלא עם כל חומצות האמינו החיוניות. ויטמין D, B12, כולין וסלניום. מצוין לחרדון מזוקן וחרקים כתוסף חלבון. 🥚 קליפת הביצה המבושלת, כתושה דק, היא מקור סידן מצוין לציפורים, חרדון, צב וחרקים. חשוב: רק קליפה מבושלת היטב (יחד עם הביצה), כתושה דק לאבקה כדי למנוע פציעות.',
  whyNot:'⚠️ ללא מלח, תבלין, או שמן! רק ביצה קשה/קשה פשוטה. לא ביצה חיה - סלמונלה. לא ביצת עין או מטוגן.',
- parts:[{name:'ביצה קשה - לבן',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'no','vietstick':'no','beardie':'ok','chinchilla':'no','leopardgecko':'ok','rabbit':'no','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}},{name:'ביצה קשה - חלמון',rawOk:'lim',cookNote:'שומן גבוה - מעט בלבד',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'lim','sulcata':'no','vietstick':'lim','beardie':'lim','chinchilla':'lim','leopardgecko':'lim','rabbit':'lim','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'lim','hissingcockroach':'lim'}},{name:'קליפת הביצה',rawOk:'lim',cookNote:'רק מבושלת היטב — מקור סידן!',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'no','sulcata':'ok','vietstick':'no','beardie':'ok','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'ok','hissingcockroach':'ok'}},{name:'ביצה חיה',rawOk:'no',cookNote:'סלמונלה!',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},{name:'ביצה מטוגנת',rawOk:'no',cookNote:'שמן ותבלינים',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}}],
+ parts:[{name:'ביצה קשה - לבן',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'no','vietstick':'no','beardie':'ok','chinchilla':'no','leopardgecko':'ok','rabbit':'no','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}},{name:'ביצה קשה - חלמון',rawOk:'lim',cookNote:'שומן גבוה - מעט בלבד',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'lim','sulcata':'no','vietstick':'lim','beardie':'lim','chinchilla':'lim','leopardgecko':'lim','rabbit':'lim','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'lim','hissingcockroach':'lim'}},{name:'קליפת הביצה',rawOk:'lim',cookNote:'רק מבושלת היטב, מקור סידן!',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'no','sulcata':'ok','vietstick':'no','beardie':'ok','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'ok','hissingcockroach':'ok'}},{name:'ביצה חיה',rawOk:'no',cookNote:'סלמונלה!',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},{name:'ביצה מטוגנת',rawOk:'no',cookNote:'שמן ותבלינים',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}}],
  animals:{jacko:{s:'lim',a:'חצי ביצה',f:'לעיתים',leopardgecko:{s:'no',rabbit:{s:'no',sharkhan:{s:'no',jacko:{s:'lim',beardie:{s:'no',syrianhamster:{s:'no',gerbil:{s:'no',mealworms:{s:'no',hissingcockroach:{s:'no',mouse:{s:'ok',a:'כפית',f:'פעם בשבוע',n:'חלבון בלבד - חלמון שומני',rat:{s:'ok',a:'2-3 פרוסות',f:'פעם-פעמיים בשבוע',n:'מקור חלבון מצוין',budgie:{s:'ok',a:'כפית',f:'פעם בשבוע',hamster_gen:{s:'ok',a:'כפית',f:'פעם בשבוע',degu:{s:'lim',a:'כפית',f:'לעיתים נדירות',iguana:{s:'no',n:'חלבון מן החי - לא לאיגואנות',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'ok',a:'רבע ביצה',f:'פעם בשבוע',quail:{s:'ok',a:'כפית',f:'פעם בשבוע'},hamster_gen:{s:'ok',a:'כפית',f:'פעם בשבוע',degu:{s:'lim',a:'כפית',f:'לעיתים נדירות',iguana:{s:'no',n:'חלבון מן החי - לא לאיגואנות',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},
-  lovebird:{s:'lim',a:'רבע ביצה',f:'לעיתים',n:'קליפה כתושה — מקור סידן מצוין! בתקופת הטלה במיוחד.'},
+  lovebird:{s:'lim',a:'רבע ביצה',f:'לעיתים',n:'קליפה כתושה, מקור סידן מצוין! בתקופת הטלה במיוחד.'},
   sibhamster:{s:'no',n:'מערכת עיכול צמחונית בלבד. הקליפה אינה מזון טבעי ועלולה לגרום לפציעות או חסימות.'},
-  sulcata:{s:'ok',a:'חתיכה',f:'כמה פעמים בשבוע',n:'מקור סידן חיוני לשריון. ניתן להגיש בחתיכות גדולות — הצב יכול לפצח.'},
+  sulcata:{s:'ok',a:'חתיכה',f:'כמה פעמים בשבוע',n:'מקור סידן חיוני לשריון. ניתן להגיש בחתיכות גדולות, הצב יכול לפצח.'},
   vietstick:{s:'no',n:'לא חלק מהתזונה הטבעית.'},
   beardie:{s:'ok',a:'אבקה על המזון',f:'כמה פעמים בשבוע',n:'להגיש כתוש לאבקה דקה בלבד על גבי המזון.'},
   chinchilla:{s:'no',n:'מערכת עיכול צמחונית בלבד. הקליפה אינה מזון טבעי ועלולה לגרום לפציעות או חסימות.'},
@@ -1327,7 +1327,7 @@ const DEFAULT_FOODS = [
   syrianhamster:{s:'no',n:'מערכת עיכול צמחונית בלבד. הקליפה אינה מזון טבעי ועלולה לגרום לפציעות או חסימות.'},
   sharkhan:{s:'no',n:'מערכת עיכול צמחונית בלבד. הקליפה אינה מזון טבעי ועלולה לגרום לפציעות או חסימות.'},
   gerbil:{s:'no',n:'מערכת עיכול צמחונית בלבד. הקליפה אינה מזון טבעי ועלולה לגרום לפציעות או חסימות.'},
-  cockatiel:{s:'ok',a:'רבע ביצה',f:'לעיתים',n:'קליפה כתושה — מקור סידן מצוין! בתקופת הטלה במיוחד.'},
+  cockatiel:{s:'ok',a:'רבע ביצה',f:'לעיתים',n:'קליפה כתושה, מקור סידן מצוין! בתקופת הטלה במיוחד.'},
   mealworms:{s:'ok',a:'רבע ביצה',f:'לעיתים',n:'להגיש כתוש לאבקה דקה על גבי המזון.'},
   hissingcockroach:{s:'ok',a:'רבע ביצה',f:'לעיתים',n:'להגיש כתוש לאבקה דקה על גבי המזון.'},
   fish:{s:'nr'},
@@ -1695,7 +1695,7 @@ const DEFAULT_FOODS = [
 
 {id:'potato',name:'תפוח אדמה',emoji:'🥔',cookStatus:'cooked',category:'ירק שורש',aliases:['תפוחי אדמה','קליפת תפוח אדמה'],
  why:'🪲 קליפות ופרוסות טריות הן מקור לחות מצוין לזחלי הקמח! להחליף כל 24-48 שעות כדי למנוע עובש. להגיש לזחלים תפוחי אדמה שטופים ומיובשים.',
- whyNot:'⚠️ תפוח אדמה טוב אך ורק עבור זחלי הקמח! לשאר כל החיות בפינת החי — מסוכן ואסור לחלוטין. תפוח אדמה ירוק או עם ניצנים מכיל סולנין, רעיל מאוד.',
+ whyNot:'⚠️ תפוח אדמה טוב אך ורק עבור זחלי הקמח! לשאר כל החיות בפינת החי: מסוכן ואסור לחלוטין. תפוח אדמה ירוק או עם ניצנים מכיל סולנין, רעיל מאוד.',
  parts:[
    {name:'קליפה (רגילה)',rawOk:'ok',cookNote:'מצוין לזחלי קמח - מקור לחות!',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'ok','hissingcockroach':'ok'}},
    {name:'בשר תפוח האדמה',rawOk:'ok',cookNote:'לזחלי קמח טרי מצוין. לשאר - רק מבושל',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'ok','hissingcockroach':'no'}},
@@ -1720,7 +1720,7 @@ const DEFAULT_FOODS = [
  animals:{jacko:{s:'no',leopardgecko:{s:'no',rabbit:{s:'no',sharkhan:{s:'no',jacko:{s:'no',beardie:{s:'no',syrianhamster:{s:'no',gerbil:{s:'no',mealworms:{s:'no',hissingcockroach:{s:'no',mouse:{s:'no',n:'סולנין - רעיל',rat:{s:'no',n:'סולנין',budgie:{s:'no',n:'סולנין',hamster_gen:{s:'no',n:'סולנין',degu:{s:'no',n:'סולנין',iguana:{s:'no',n:'סולנין',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},lovebird:{s:'no'},cockatiel:{s:'no'}}}},vietstick:{s:'no'},chinchilla:{s:'no'},mealworms:{s:'no'},hissingcockroach:{s:'no'},sibhamster:{s:'no'},syrianhamster:{s:'no'},gerbil:{s:'no'}},lovebird:{s:'no'},sibhamster:{s:'no'},sulcata:{s:'no'},vietstick:{s:'no'},beardie:{s:'no'},chinchilla:{s:'no'},leopardgecko:{s:'no'},rabbit:{s:'no'},syrianhamster:{s:'no'},sharkhan:{s:'no'},gerbil:{s:'no'},cockatiel:{s:'no'},mealworms:{s:'no',n:'סולנין, לא להביא לפינת החי'},hissingcockroach:{s:'no',n:'סולנין, לא להביא לפינת החי'},fish:{s:'nr'},dog:{s:'no'},quail:{s:'no',n:'סולנין - רעיל לשלו'}}},
 
 
-{id:'onion',name:'בצל (כל הסוגים)',emoji:'🧅',cookStatus:'na',category:'מסוכן',aliases:['בצלים','בצל לבן','בצל סגול','בצל צהוב','בצל אדום','שאלוט','עירית'],why:'⚠️ כל סוגי הבצל מסוכנים לבעלי חיים — גם מבושל! מכיל תרכובות אורגנוסולפיד שהורסות תאי דם אדומים. אל תביאו לפינת החי.',
+{id:'onion',name:'בצל (כל הסוגים)',emoji:'🧅',cookStatus:'na',category:'מסוכן',aliases:['בצלים','בצל לבן','בצל סגול','בצל צהוב','בצל אדום','שאלוט','עירית'],why:'⚠️ כל סוגי הבצל מסוכנים לבעלי חיים, גם מבושל! מכיל תרכובות אורגנוסולפיד שהורסות תאי דם אדומים. אל תביאו לפינת החי.',
  whyNot:'⚠️ כל סוגי הבצל - לבן, סגול, צהוב, שאלוט ועירית - מסוכנים! מכילים תרכובות אורגנוסולפיד שהורסות תאי דם אדומים (אנמיה המוליטית). גם מבושל! רעיל לציפורים, מכרסמים וכלבים.',
  parts:[{name:'הכל',rawOk:'no',cookNote:'גם מבושל - אסור לכל החיות בפינת החי!',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}}],
  animals:{jacko:{s:'no',leopardgecko:{s:'no',mouse:{s:'no',n:'רעיל - תיופרובנל',rat:{s:'no',n:'רעיל',budgie:{s:'no',n:'רעיל',hamster_gen:{s:'no',n:'רעיל',degu:{s:'no',n:'רעיל',iguana:{s:'no',n:'רעיל',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}},vietstick:{s:'no'},chinchilla:{s:'no'},mealworms:{s:'no'},hissingcockroach:{s:'no'},sibhamster:{s:'no'},syrianhamster:{s:'no'},gerbil:{s:'no'}},lovebird:{s:'no'},sibhamster:{s:'no'},sulcata:{s:'no'},vietstick:{s:'no'},beardie:{s:'no'},chinchilla:{s:'no'},leopardgecko:{s:'no'},rabbit:{s:'no'},syrianhamster:{s:'no'},sharkhan:{s:'no'},gerbil:{s:'no'},cockatiel:{s:'no'},mealworms:{s:'no'},hissingcockroach:{s:'no'},fish:{s:'no'},dog:{s:'no',n:'⚠️ רעיל לכלבים!'},quail:{s:'no',n:'רעיל לציפורים'}}},
@@ -1732,19 +1732,19 @@ const DEFAULT_FOODS = [
  animals:{jacko:{s:'no',leopardgecko:{s:'no',mouse:{s:'no',n:'רעיל',rat:{s:'no',n:'רעיל',budgie:{s:'no',n:'רעיל',hamster_gen:{s:'no',n:'רעיל',degu:{s:'no',n:'רעיל',iguana:{s:'no',n:'רעיל',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}},vietstick:{s:'no'},chinchilla:{s:'no'},mealworms:{s:'no'},hissingcockroach:{s:'no'},sibhamster:{s:'no'},syrianhamster:{s:'no'},gerbil:{s:'no'}},lovebird:{s:'no'},sibhamster:{s:'no'},sulcata:{s:'no'},vietstick:{s:'no'},beardie:{s:'no'},chinchilla:{s:'no'},leopardgecko:{s:'no'},rabbit:{s:'no'},syrianhamster:{s:'no'},sharkhan:{s:'no'},gerbil:{s:'no'},cockatiel:{s:'no'},mealworms:{s:'no'},hissingcockroach:{s:'no'},fish:{s:'no'},dog:{s:'no',n:'⚠️ רעיל לכלבים!'},quail:{s:'no',n:'רעיל לציפורים'}}},
 
 
-{id:'garlic',name:'שום',emoji:'🧄',cookStatus:'na',category:'מסוכן',aliases:['שני שום','שן שום'],why:'⚠️ פי 5 יותר רעיל מבצל. תיוסולפאט הורס תאי דם אדומים. גם מבושל — אסור לחלוטין.',
+{id:'garlic',name:'שום',emoji:'🧄',cookStatus:'na',category:'מסוכן',aliases:['שני שום','שן שום'],why:'⚠️ פי 5 יותר רעיל מבצל. תיוסולפאט הורס תאי דם אדומים. גם מבושל, אסור לחלוטין.',
  whyNot:'מכיל תיוסולפאט (thiosulfate) - פי 5 יותר רעיל מבצל. אפילו כמות קטנה גורמת להרס תאי דם אדומים ואנמיה קשה. גם מבושל - אסור!',
  parts:[{name:'הכל',rawOk:'no',cookNote:'גם מבושל - אסור!',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}}],
  animals:{jacko:{s:'no',leopardgecko:{s:'no',mouse:{s:'no',n:'רעיל',rat:{s:'no',n:'רעיל',budgie:{s:'no',n:'רעיל',hamster_gen:{s:'no',n:'רעיל',degu:{s:'no',n:'רעיל',iguana:{s:'no',n:'רעיל',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}},vietstick:{s:'no'},chinchilla:{s:'no'},mealworms:{s:'no'},hissingcockroach:{s:'no'},sibhamster:{s:'no'},syrianhamster:{s:'no'},gerbil:{s:'no'}},lovebird:{s:'no'},sibhamster:{s:'no'},sulcata:{s:'no'},vietstick:{s:'no'},beardie:{s:'no'},chinchilla:{s:'no'},leopardgecko:{s:'no'},rabbit:{s:'no'},syrianhamster:{s:'no'},sharkhan:{s:'no'},gerbil:{s:'no'},cockatiel:{s:'no'},mealworms:{s:'no'},hissingcockroach:{s:'no'},fish:{s:'no'},dog:{s:'no',n:'⚠️ רעיל לכלבים!'},quail:{s:'no',n:'רעיל לציפורים'}}},
 
 
-{id:'avocado',name:'אבוקדו',emoji:'🥑',cookStatus:'na',category:'מסוכן',aliases:['אבוקאדו'],why:'⚠️ מכיל פרסין (persin) בכל חלקיו — פרי, גרעין, עלים וקליפה. גורם לבצקות ריאות ואף מוות בציפורים. אל תביאו לפינת החי.',
+{id:'avocado',name:'אבוקדו',emoji:'🥑',cookStatus:'na',category:'מסוכן',aliases:['אבוקאדו'],why:'⚠️ מכיל פרסין (persin) בכל חלקיו: פרי, גרעין, עלים וקליפה. גורם לבצקות ריאות ואף מוות בציפורים. אל תביאו לפינת החי.',
  whyNot:'מכיל פרסין (persin) - רעלן המצוי בכל חלקי הצמח (פרי, גרעין, עלים, קליפה). גורם לבצקות ריאות, קשיי נשימה ואף מוות בציפורים. רעיל לרוב החיות.',
  parts:[{name:'הכל',rawOk:'no',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}}],
  animals:{jacko:{s:'no',n:'⚠️ יכול להרוג ציפורים!',leopardgecko:{s:'no',mouse:{s:'no',n:'פרסין - רעיל',rat:{s:'no',n:'פרסין - רעיל',budgie:{s:'no',n:'פרסין - רעיל',hamster_gen:{s:'no',n:'פרסין',degu:{s:'no',n:'פרסין',iguana:{s:'no',n:'פרסין',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}},vietstick:{s:'no'},chinchilla:{s:'no'},mealworms:{s:'no'},hissingcockroach:{s:'no'},sibhamster:{s:'no'},syrianhamster:{s:'no'},gerbil:{s:'no'}},lovebird:{s:'no'},sibhamster:{s:'no'},sulcata:{s:'no'},vietstick:{s:'no'},beardie:{s:'no'},chinchilla:{s:'no'},leopardgecko:{s:'no'},rabbit:{s:'no'},syrianhamster:{s:'no'},sharkhan:{s:'no'},gerbil:{s:'no'},cockatiel:{s:'no'},mealworms:{s:'no'},hissingcockroach:{s:'no'},fish:{s:'no'},dog:{s:'no',n:'⚠️ רעיל!'},quail:{s:'no',n:'פרסין - רעיל קטלני לציפורים'}}},
 
 
-{id:'chocolate',name:'שוקולד',emoji:'🍫',cookStatus:'na',category:'מסוכן',aliases:['קקאו','עוגיות'],why:'⚠️ תיאוברומין וקפאין — רעילים לכל בעלי החיים. לכלבים אפילו כמות קטנה עלולה להיות קטלנית. אל תביאו לפינת החי.',
+{id:'chocolate',name:'שוקולד',emoji:'🍫',cookStatus:'na',category:'מסוכן',aliases:['קקאו','עוגיות'],why:'⚠️ תיאוברומין וקפאין, רעילים לכל בעלי החיים. לכלבים אפילו כמות קטנה עלולה להיות קטלנית. אל תביאו לפינת החי.',
  whyNot:'תיאוברומין וקפאין - מעכבים ספיגת אדנוזין ומובילים לדפיקות לב מואצות, רעידות, עוויתות ומוות. לכלבים גם כמות קטנה עלולה להיות קטלנית.',
  parts:[{name:'הכל',rawOk:'no',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}}],
  animals:{jacko:{s:'no',leopardgecko:{s:'no',mouse:{s:'no',n:'רעיל',rat:{s:'no',n:'רעיל',budgie:{s:'no',n:'רעיל',hamster_gen:{s:'no',n:'רעיל',degu:{s:'no',n:'רעיל',iguana:{s:'no',n:'רעיל',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}},vietstick:{s:'no'},chinchilla:{s:'no'},mealworms:{s:'no'},hissingcockroach:{s:'no'},sibhamster:{s:'no'},syrianhamster:{s:'no'},gerbil:{s:'no'}},lovebird:{s:'no'},sibhamster:{s:'no'},sulcata:{s:'no'},vietstick:{s:'no'},beardie:{s:'no'},chinchilla:{s:'no'},leopardgecko:{s:'no'},rabbit:{s:'no'},syrianhamster:{s:'no'},sharkhan:{s:'no'},gerbil:{s:'no'},cockatiel:{s:'no'},mealworms:{s:'no'},hissingcockroach:{s:'no'},fish:{s:'no'},dog:{s:'no',n:'⚠️ רעיל מאוד לכלבים!'},quail:{s:'no',n:'תיאוברומין - רעיל קטלני לציפורים'}}},
@@ -1768,7 +1768,7 @@ const DEFAULT_FOODS = [
  quail:{s:'ok',a:'כפית',f:'לעיתים'},japanese_quail:{s:'ok',a:'2-3 יחידות',f:'לעיתים'},
  fish:{s:'no',n:'מלכלך את המים'},dog:{s:'ok',a:'כוס',f:'לעיתים',n:'גרגרים בלבד, לא קלח'}},
 
-{id:'chips',name:'חטיפים מלוחים ומתוקים',emoji:'🍟',category:'מסוכן',aliases:['חטיפים','סוכריות','ממתקים','שוקולד','חטיפים מלוחים','חטיפים מתוקים'],why:'⚠️ מלח, סוכר, שמן ותוספי מזון — לא מתאים לאף חיית מחמד. אל תביאו לפינת החי.',
+{id:'chips',name:'חטיפים מלוחים ומתוקים',emoji:'🍟',category:'מסוכן',aliases:['חטיפים','סוכריות','ממתקים','שוקולד','חטיפים מלוחים','חטיפים מתוקים'],why:'⚠️ מלח, סוכר, שמן ותוספי מזון. לא מתאים לאף חיית מחמד. אל תביאו לפינת החי.',
  whyNot:'🧂 חטיפים מלוחים: עודף נתרן גורם לצמא, לחץ דם גבוה ונזק לכליות. תיבולים (בצל, שום, פפריקה חריפה) עלולים להיות רעילים. ממתיקים מלאכותיים כמו קסיליטול, קטלניים לכלבים. 🍬 חטיפים מתוקים: סוכר גורם לעששת, השמנה וסוכרת בחיות מחמד, במיוחד במכרסמים ודגואים. גם "טיפה" עושה נזק לאורך זמן.',
  parts:[{name:'הכל',rawOk:'no',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}}],
  animals:{jacko:{s:'no',leopardgecko:{s:'no',mouse:{s:'no',n:'מלח ושומן - רעיל',rat:{s:'no',n:'מלח ושומן',budgie:{s:'no',n:'מלח ושומן',hamster_gen:{s:'no',n:'מלח ושומן',degu:{s:'no',n:'מלח ושומן',iguana:{s:'no',n:'מלח',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}},vietstick:{s:'no'},chinchilla:{s:'no'},mealworms:{s:'no'},hissingcockroach:{s:'no'},sibhamster:{s:'no'},syrianhamster:{s:'no'},gerbil:{s:'no'}},lovebird:{s:'no'},sibhamster:{s:'no'},sulcata:{s:'no'},vietstick:{s:'no'},beardie:{s:'no'},chinchilla:{s:'no'},leopardgecko:{s:'no'},rabbit:{s:'no'},syrianhamster:{s:'no'},sharkhan:{s:'no'},gerbil:{s:'no'},cockatiel:{s:'no'},mealworms:{s:'no'},hissingcockroach:{s:'no'},fish:{s:'no'},dog:{s:'no'},quail:{s:'no',n:'מלח ושומן - רעיל'}}},
@@ -2093,7 +2093,7 @@ function normalizeHebrew(s){
        .replace(/ות$/, '').replace(/ים$/, '');
   // סיומות יחיד: ה, ן, ת
   s = s.replace(/[הןת]$/, '');
-  // צורת סמיכות: גבעולי→גבעול, עלי→על, קליפי→קליפ — רק אם נשאר מינימום 2 תווים
+  // צורת סמיכות: גבעולי→גבעול, עלי→על, קליפי→קליפ, רק אם נשאר מינימום 2 תווים
   if(s.endsWith('י') && s.length >= 3) s = s.slice(0,-1);
   return s;
 }
@@ -3266,11 +3266,13 @@ function filterAllFoodsTable(val) {
       const remaining = words.filter(w => !usedSet.has(w) || (usedSet.delete(w), false));
       // בדוק אם הנותרים הם חלק או מזון
       for (const w of remaining) {
-        const mp = allPartNames.find(pn => {
-          const pnN = normalizeHebrew(pn), wN = normalizeHebrew(w);
-          return wN === pnN || pnN.startsWith(wN.slice(0,3));
+        const wNorm1 = normalizeHebrew(w);
+        const stem1 = wNorm1.replace(/ות$|ים$|י$|ת$|ה$/, '');
+        const mp1 = allPartNames.find(pn => {
+          const pnN = normalizeHebrew(pn);
+          return pnN === wNorm1 || pnN.includes(wNorm1) || (stem1.length >= 3 && pnN.includes(stem1));
         });
-        if (mp && !partFilter) { partFilter = mp; continue; }
+        if (mp1 && !partFilter) { partFilter = stem1.length >= 3 ? stem1 : wNorm1; continue; }
         foodTerms.push(w);
       }
       continue;
@@ -3279,11 +3281,13 @@ function filterAllFoodsTable(val) {
     // נסה לזהות חלק צמח
     let foundPartInSeg = false;
     for (const w of words) {
-      const mp = allPartNames.find(pn => {
-        const pnN = normalizeHebrew(pn), wN = normalizeHebrew(w);
-        return wN === pnN || (pnN.length >= 3 && (wN.startsWith(pnN.slice(0,3)) || pnN.startsWith(wN.slice(0,3))));
+      const wNorm2 = normalizeHebrew(w);
+      const stem2 = wNorm2.replace(/ות$|ים$|י$|ת$|ה$/, '');
+      const mp2 = allPartNames.find(pn => {
+        const pnN = normalizeHebrew(pn);
+        return pnN === wNorm2 || pnN.includes(wNorm2) || (stem2.length >= 3 && pnN.includes(stem2));
       });
-      if (mp && !partFilter) { partFilter = mp; foundPartInSeg = true; continue; }
+      if (mp2 && !partFilter) { partFilter = stem2.length >= 3 ? stem2 : wNorm2; foundPartInSeg = true; continue; }
       foodTerms.push(w);
     }
   }
@@ -3302,7 +3306,11 @@ function filterAllFoodsTable(val) {
 
     // סינון לפי חלק — האם יש לו את החלק הזה?
     if (partFilter && food) {
-      const hasPart = (food.parts||[]).some(p => normalizeHebrew(p.name.toLowerCase()) === normalizeHebrew(partFilter) || p.name.toLowerCase().includes(partFilter));
+      // partFilter is already a normalized stem
+      const hasPart = (food.parts||[]).some(p => {
+        const pnN = normalizeHebrew(p.name.toLowerCase());
+        return pnN.includes(partFilter) || partFilter.includes(pnN.split(' ')[0].slice(0,3));
+      });
       if (!hasPart) { row.style.display = 'none'; return; }
     }
 
@@ -3976,7 +3984,7 @@ function dmPortionText(size, foodId, amountKey, isLim) {
       עשב:  ['עלה אחד','כמה עלים','כמה עלים'],
       אחר:  ['כפית','כפית','כפית'],
     },
-    s: { // אוגר סורי, צ׳ינצ׳ילה, תוכים קטנים, מושבות — דרגה 2
+    s: { // אוגר סורי, צ׳ינצ׳ילה, תוכים קטנים, מושבות, דרגה 2
       ירק:  ['פרוסה אחת','פרוסה אחת','2-3 פרוסות'],
       פרי:  ['2-3 יחידות','2-3 יחידות','רבע כוס'],
       עשב:  ['כמה עלים','רבע כוס','רבע כוס'],
@@ -4392,9 +4400,9 @@ function initDailyMenu() {
 const NOT_OURS_LIST = [
   // ── 🚫 מסוכנות וטורפות — "אין לנו" ──
   {emoji:'🦁', msg:'אין לנו', forms:['אריה','אריות','לביא','לביאה','לביאות']},
-  {emoji:'🐆', msg:'אין לנו', forms:['ברדלס','ברדלסים']},
+  {emoji:'🐆', msg:'אין לנו', forms:['ברדלס','ברדלסים'], funnyNote:'נראה לנו שראינו אחד קודם, אבל הוא רץ מפה ממש מהר.'},
   {emoji:'🐻', msg:'אין לנו', forms:['דוב','דב','דובה','דובים','דובות']},
-  {emoji:'🐺', msg:'אין לנו', forms:['זאב','זאבה','זאבים','זאבות']},
+  {emoji:'🐺', msg:'אין לנו', forms:['זאב','זאבה','זאבים','זאבות'], funnyNote:'הוא ניסה להתחפש לסבתא של אחד התלמידים.'},
   {emoji:'🐷', msg:'אין לנו', forms:['חזיר','חזירה','חזירים','חזירות','חזרזיר','חזרזירים']},
   {emoji:'🐯', msg:'אין לנו', forms:['טיגריס','טיגריסים','טיגריסות']},
   {emoji:'🐆', msg:'אין לנו', forms:['יגואר','יגוארים']},
@@ -4412,7 +4420,7 @@ const NOT_OURS_LIST = [
   {emoji:'🫏', msg:'לצערנו אין לנו', forms:['אתון','אתונות']},
   {emoji:'🦨', msg:'לצערנו אין לנו', forms:['בואש','בואשים']},
   {emoji:'🦫', msg:'לצערנו אין לנו', forms:['בונה','בונים','בונות']},
-  {emoji:'🦆', msg:'לצערנו אין לנו', forms:['ברווז','ברווזה','ברווזים','ברווזות','ברוז','ברוזן','ברווזן','ברווזנים']},
+  {emoji:'🦆', msg:'לצערנו אין לנו', forms:['ברווז','ברווזה','ברווזים','ברווזות','ברוז','ברוזן','ברווזן','אוז','ברווזנים']},
   {emoji:'🦢', msg:'לצערנו אין לנו', forms:['ברבור','ברבורים','ברבורות']},
   {emoji:'🦬', msg:'לצערנו אין לנו', forms:["ג'מוס","ג'מוסים","ג'מוסות",'תאו','תאואים','ראם','ראמים']},
   {emoji:'🐫', msg:'לצערנו אין לנו', forms:['גמל','גמלים','גמלות','נאקה','נאקות']},
@@ -4421,7 +4429,7 @@ const NOT_OURS_LIST = [
   {emoji:'🪺', msg:'לצערנו אין לנו', forms:['דוכיפת','דוכיפתות']},
   {emoji:'🐬', msg:'לצערנו אין לנו', forms:['דולפין','דולפינים','דולפינות']},
   {emoji:'🦑', msg:'לצערנו אין לנו', forms:['דיונון','דיונונים']},
-  {emoji:'🦕', msg:'לצערנו אין לנו', forms:['דינוזאור','דינוזאורים']},
+  {emoji:'🦕', msg:'לצערנו אין לנו', forms:['דינוזאור','דינוזאורים'], funnyNote:'איחרנו ב-66 מיליון שנה.'},
   {emoji:'🐦', msg:'לצערנו אין לנו', forms:['דרור','דרורים']},
   {emoji:'🐉', msg:'לצערנו אין לנו', special:'dragon', forms:['דרקון','דרקונים']},
   {emoji:'🦛', msg:'לצערנו אין לנו', forms:['היפופוטם','היפופוטמים']},
@@ -4432,7 +4440,7 @@ const NOT_OURS_LIST = [
   {emoji:'🐐', msg:'לצערנו אין לנו', forms:['יעל','יעלים','עז','עיזים']},
   {emoji:'🦤', msg:'לצערנו אין לנו', forms:['יען','יענים']},
   {emoji:'🐑', msg:'לצערנו אין לנו', forms:['כבש','כבשה','כבשים','כבשות','טלה','טלאים','סיח','סייח','סיחים']},
-  {emoji:'🐋', msg:'לצערנו אין לנו', forms:['לוויתן','לוויתנים','לויתן','לויתנים']},
+  {emoji:'🐋', msg:'לצערנו אין לנו', forms:['לוויתן','לוויתנים','לויתן','לויתנים'], funnyNote:'אין לנו מקום באקווריום.'},
   {emoji:'🐊', msg:'לצערנו אין לנו', forms:['לגב','לגבים']},
   {emoji:'🦣', msg:'לצערנו אין לנו', forms:['ממותה','ממותות']},
   {emoji:'🐛', msg:'לצערנו אין לנו', forms:['מרבה רגלים','מרבה-רגלים','מרבי רגלים']},
@@ -4485,10 +4493,10 @@ const NOT_OURS_LIST = [
    funnyNote:'', specialClean:true},
   // חתול
   {emoji:'🐱', msg:'אין לנו', forms:['חתול','חתולה','חתולים','חתולות','חתלתול','חתלתולים','חתחתול'],
-   funnyNote:'אם יש, כנראה שהוא נכנס מבחוץ. תזכורת לסגור את החלונות כמו שצריך! 🪟'},
+   funnyNote:'אם יש, כנראה שהוא נכנס מבחוץ. תזכורת לסגור את החלונות כמו שצריך! 😸'},
   // זיקית ויונה
   {emoji:'🦎', msg:'אין לנו', forms:['זיקית','זיקיות'],
-   funnyNote:'אם יש זיקית בפינת החי, היא הגיעה בעצמה, אנחנו לא קשורים.'},
+   funnyNote:'לפחות נראה לנו שאין, הן ממש טובות במחבואים.'},
   {emoji:'🕊️', msg:'אין לנו', forms:['יונה','יונים','יונות'],
    funnyNote:'אם יש יונה, היא הגיעה בעצמה, אנחנו לא קשורים.'},
   // עכברים/עכברושים/חולדות
@@ -4498,6 +4506,41 @@ const NOT_OURS_LIST = [
    funnyNote:'חיות אלו נפוצות בפינות חי, אבל אצלנו, אם הם שם, הם לא שלנו.'},
   {emoji:'🐀', msg:'אין לנו', forms:['חולדה','חולדות'],
    funnyNote:'חיות אלו נפוצות בפינות חי, אבל אצלנו, אם הן שם, הן לא שלנו.'},
+  {emoji:'🦒', msg:'לצערנו אין לנו', forms:["ג'ירפה","ג'ירפות","ג'ירפה"],
+   funnyNote:'הלוואי, אבל לא מרשים לנו לקדוח בשבילה חור בתקרה.'},
+  {emoji:'🦓', msg:'לצערנו אין לנו', forms:['זברה','זברות'],
+   funnyNote:'לצערנו אין לנו זברה בפינת החי.'},
+  {emoji:'🐘', msg:'לצערנו אין לנו', forms:['פיל','פילים','פילה'],
+   funnyNote:'ממש רצינו פיל, אבל לא הצלחנו להכניס אותו לפינת החי.'},
+  {emoji:'🦅', msg:'לצערנו אין לנו', forms:['בז','בזים','בזות'],
+   funnyNote:'ציפור טורפת יפהפייה, אבל לא מתאימה לפינת חי בית ספר.'},
+  {emoji:'🦦', msg:'לצערנו אין לנו', forms:['לוטרה','לוטרות'],
+   funnyNote:'אחת החיות החמודות בעולם, אבל צריכה בריכה גדולה.'},
+  {emoji:'🐜', msg:'לצערנו אין לנו', forms:['נמלה','נמלים','נמלות'],
+   funnyNote:'הן חיות מרתקות, אבל אצלנו הן לא מוזמנות בתור דיירות.'},
+  {emoji:'🕷️', msg:'לצערנו אין לנו', forms:['עכביש','עכבישים','עכבישות'],
+   funnyNote:'אם יש כזה בפינת החי, הוא הגיע מיוזמתו.'},
+  {emoji:'🦂', msg:'לצערנו אין לנו', forms:['עקרב','עקרבים','עקרבות'],
+   funnyNote:'אנחנו לא מגדלים עקרבים בפינת החי. זה סופי.'},
+  {emoji:'🦗', msg:'לצערנו אין לנו', forms:['חרגול','חרגולים','ארבה','ארבות'],
+   funnyNote:'אם הגיעו, זה לא בהזמנה שלנו.'},
+  {emoji:'🦟', msg:'לשמחתנו אין לנו', forms:['יבחוש','יבחושים'], glad:true,
+   funnyNote:''},
+  {emoji:'🐞', msg:'יש לנו!', forms:['חיפושית','חיפושיות','חפושית','חפושיות'],
+   special:'redirect_mealworms',
+   funnyNote:'זחל הקמח הוא בעצם חיפושית בשלב הזחל! יש לנו 🐛', extraIds:['mealworms']},
+  {emoji:'🐭', msg:'לצערנו אין לנו', forms:['חפרפרת','חפרפרות','חולד','חולדים'],
+   funnyNote:'וגם כנראה לא התגנבה מבחוץ, כי אין כאלה בישראל.'},
+  {emoji:'🦎', msg:'לצערנו אין לנו', forms:['חומט','חומטים','חמט','חמטים'],
+   funnyNote:'לטאה חמודה, ואם יש כזו בפינת החי, היא כנראה הגיעה מיוזמתה.'},
+  {emoji:'🐾', msg:'לצערנו אין לנו', forms:['טפיר','טפירים'],
+   funnyNote:'חיה מרתקת, אבל ממש לא פרקטי לפינת חי.'},
+  {emoji:'🐸', msg:'לצערנו אין לנו', forms:['אילנית','אילניות'],
+   funnyNote:'הלוואי שהייתה לנו, אבל הרט"ג לא מרשים לנו לגדל אותה, לצערנו.'}
+  ,{emoji:'🐦', msg:'לצערנו אין לנו', forms:['דררה','דרדורות'],
+   funnyNote:'ציפורים יפות, אבל לא גרות אצלנו.'},
+  {emoji:'🐫', msg:'לצערנו אין לנו', forms:['גמל שלמה','גמלי שלמה','גמל שלמה'],aliases:['גמל שלמה','bactrian'],
+   funnyNote:'גמל שלמה הוא גמל עם שתי דבשות, אבל גם גמל רגיל לא נכנס לפינת החי.'},
 ];
 
 // הפניות
@@ -4583,7 +4626,14 @@ function renderRedirectResult(entry) {
 function findInNotOursList(word) {
   const w = word.toLowerCase().trim();
   return NOT_OURS_LIST.find(entry =>
-    entry.forms.some(f => f.toLowerCase() === w)
+    entry.forms.some(f => f.toLowerCase() === w || f.toLowerCase().includes(w) || w.includes(f.toLowerCase()))
+  );
+}
+
+function findInNotOursListMulti(phrase) {
+  const p = phrase.toLowerCase().trim();
+  return NOT_OURS_LIST.find(entry =>
+    entry.forms.some(f => f.toLowerCase() === p)
   );
 }
 
