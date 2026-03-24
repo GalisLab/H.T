@@ -4652,7 +4652,7 @@ function renderRedirectResult(entry) {
 function findInNotOursList(word) {
   const w = word.toLowerCase().trim();
   return NOT_OURS_LIST.find(entry =>
-    entry.forms.some(f => f.toLowerCase() === w || f.toLowerCase().includes(w) || w.includes(f.toLowerCase()))
+    entry.forms.some(f => f.toLowerCase() === w)
   );
 }
 
