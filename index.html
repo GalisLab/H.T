@@ -398,6 +398,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
           <span class="qg-chip qg-warn" onclick="openFoodModal('orange',[])" style="cursor:pointer">🍊 פירות הדר</span>
           <span class="qg-chip qg-warn" onclick="openFoodModal('tomato',[])" style="cursor:pointer">🍅 עגבנייה</span>
           <span class="qg-chip qg-warn" onclick="openFoodModal('walnuts',[])" style="cursor:pointer">🌰 אגוז מלך (ובוטנים)</span>
+          <span class="qg-chip qg-warn" onclick="openFoodModal('brussels_sprouts',[])" style="cursor:pointer">🥦 כרוב ניצנים</span>
         </div>
       </div>
     </div>
@@ -1024,7 +1025,7 @@ const ANIMALS = [
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Geochelone_sulcata_%28Tortoise%29.jpg/320px-Geochelone_sulcata_%28Tortoise%29.jpg',
  origin:'שולי הסהרה, באזורי סודן וניגריה',lifespan:'60-100 שנה (נדיר: 100+)',
  size:'עד 83 ס"מ, 60-105 ק"ג בבגרות!',active:'יום',
- social:'לבד. זוג רק במתחם ענק <a href="#" onclick="event.preventDefault();event.stopPropagation();openTreasureMap()" title="מפת האוצר הסודית" style="text-decoration:none;font-size:.9rem">🏴‍☠️</a>',
+ social:'לבד. זוג רק במתחם ענק <a href="#" onclick="event.preventDefault();event.stopPropagation();openTreasureMap()" title="🗺️ מצאתם משהו סודי!" style="text-decoration:none;font-size:.9rem;animation:bob 2s ease-in-out infinite;display:inline-block">🏴‍☠️</a>',
  housing:'מתחם גדול, גדל לאחד הצבים הגדולים בעולם',temp:'28-35°C ביום, לא מתחת ל-15°C בלילה',
  special:'חייב UVB חזק ושמש ישירה. חופר מחילות עמוקות - חובה לאפשר.',
  needs:'אמבטיית מים רדודה לפחות פעם בשבוע',
@@ -5336,7 +5337,10 @@ const TREASURE_MAP = [
   {emoji:'🌟', location:'טאב פינת החי שלנו',     hint:'לחצו על הטאב',                       type:'אפקט',        url:null, effect:'spawnStars(window.innerWidth/2,200)'},
   {emoji:'🥕', location:'גזר בבקיצור',           hint:'לחצו על הגזר',                       type:'אפקט',        url:null, effect:'spawnCarrots(window.innerWidth/2,300)'},
   {emoji:'🌈', location:'סויה ופפאיה (פינת החי שלנו)', hint:'לחצו על הכיתוב מתחת לתמונה',         type:'אפקט',        url:null, effect:"spawnRainbow(document.querySelector('header'))"},
-  {emoji:'🐾', location:'תת-כותרת האתר',         hint:'לחצו פעמיים על "המדריך לכל מה שצריך"', type:'אפקט',     url:null, effect:'spawnPawTrail()'}
+  {emoji:'🐾', location:'תת-כותרת האתר',         hint:'לחצו פעמיים על "המדריך לכל מה שצריך"', type:'אפקט',     url:null, effect:'spawnPawTrail()'},
+  {emoji:'🦓', location:'זברה (בחיפוש)',          hint:'חפשו "זברה" ולחצו על ✨✨✨ שמופיעות לצד התוצאה',  type:'קליפ',  url:'https://www.youtube.com/watch?v=QD0bgqg3P5s'},
+  {emoji:'🦊', location:'שועל (בחיפוש)',          hint:'חפשו "שועל" ולחצו על ✨✨✨ שמופיעות לצד התוצאה',  type:'קליפ',  url:'https://www.youtube.com/watch?v=jofNR_WkoCE'},
+  {emoji:'🦛', location:'קפיברה (בחיפוש)',        hint:'חפשו "קפיברה" ולחצו על ✨✨✨ שמופיעות לצד התוצאה', type:'קליפ',  url:'https://www.facebook.com/reel/1635040247208205'},
 ];
 
 // shownState: 0=location only, 1=hint shown, 2=revealed
@@ -5580,51 +5584,22 @@ function secretsTurtleClick(el) {
     const msg = document.getElementById('secretsTurtleMsg');
     if (msg) msg.innerHTML = `ידעתם שהחבאתי אצלי מפת אוצר? 🗺️<br>
       <div style="margin-top:.5rem;display:flex;gap:.4rem;justify-content:center;flex-wrap:wrap">
-        <button onclick="closeModal();switchTab('animals');setTimeout(()=>{const s=document.getElementById('acard_sulcata');if(s){s.scrollIntoView({behavior:'smooth',block:'center'});s.click();}},400)" style="background:#7c5cbf;color:white;border:none;border-radius:50px;padding:.35rem .9rem;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit">קח אותי לשם! 🗺️</button>
-        <button onclick="closeModal()" style="background:#eee;color:#555;border:none;border-radius:50px;padding:.35rem .9rem;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit">אני אמצא לבד 😏</button>
+        <button onclick="showTreasureMapFull()" style="background:#7c5cbf;color:white;border:none;border-radius:50px;padding:.35rem .9rem;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit">פתחו את המפה! 🗺️</button>
+        <button onclick="closeModal();switchTab('animals');setTimeout(()=>{const s=document.getElementById('acard_sulcata');if(s){s.scrollIntoView({behavior:'smooth',block:'center'});}},400)" style="background:#eee;color:#555;border:none;border-radius:50px;padding:.35rem .9rem;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit">קח אותי לצב 🐢</button>
       </div>`;
   }
 }
 
 function openTreasureMap() {
-  const overlay = document.getElementById('modalOverlay');
-  const body = document.getElementById('modalBody');
-  const title = document.getElementById('modalTitle');
-
-  title.innerHTML = '🗺️ מפת האוצר';
-  title.style.fontSize = '1rem';
-
-  body.innerHTML = `
-    <div style="text-align:center;padding:1.5rem 1rem 1rem">
-      <div style="font-size:3.5rem;margin-bottom:.6rem">🐢</div>
-      <h2 style="font-size:1.15rem;font-weight:900;color:#1a3a6a;margin:0 0 .7rem;line-height:1.4">
-        מצאתם את מפת האוצר של הצב ה<span style="color:#7c5cbf;font-style:italic">סוד</span>ני!
-      </h2>
-      <p style="font-size:.88rem;color:#666;line-height:1.6;margin:0 0 1.4rem">
-        מפה זו מגלה את המיקומים של כל ההפתעות הסודיות הפזורות באתר.<br>
-        <strong>רוצים לעבור אליה?</strong>
-      </p>
-      <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
-        <button onclick="showTreasureMapFull()"
-          style="background:linear-gradient(135deg,#7c5cbf,#5a3a9a);color:white;border:none;border-radius:50px;padding:.6rem 1.4rem;font-size:.9rem;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 4px 12px rgba(124,92,191,.3)">
-          🗺️ כן, קחו אותי לשם!
-        </button>
-        <button onclick="closeModal()"
-          style="background:#f0f0f0;color:#555;border:none;border-radius:50px;padding:.6rem 1.2rem;font-size:.9rem;font-weight:700;cursor:pointer;font-family:inherit">
-          אולי אחר כך
-        </button>
-      </div>
-    </div>`;
-
-  overlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
+  // קפיצה ישירה למפה המלאה — הצב כבר מספיק חבוי בעצמו
+  showTreasureMapFull();
 }
 
 function showTreasureMapFull() {
   const body = document.getElementById('modalBody');
   const title = document.getElementById('modalTitle');
 
-  title.innerHTML = '🗺️ מפת האוצר של הצב ה<strong style="font-size:1.15em;color:#7c5cbf;font-style:italic">סוד</strong>ני';
+  title.innerHTML = '🗺️✨ מפת האוצר של הצב ה<strong style="font-size:1.15em;color:#7c5cbf;font-style:italic">סוד</strong>ני';
   title.style.fontSize = '1rem';
 
   body.innerHTML = `
@@ -5739,8 +5714,8 @@ function cancelRevealWarning(i) {
 
 // --- 🔍 חיפוש מהיר בבקיצור ---
 // מיפוי מזונות לפי קטגוריות הבקיצור
-const QG_YES_IDS = ['carrot','cucumber','tomato','sweet_pepper','broccoli','cauliflower','zucchini','sweetpotato','turnip','radish','asparagus','apple','mango','peach','pear','strawberry','watermelon','melon','pineapple','kiwi','peas','pumpkin','raspberry','banana','grapes','corn','celery','cilantro','parsley','dill','mint','lettuce_romaine','babyleaves','fennel','sprouts_mung','sprouts_alfalfa','sprouts_sunflower','hibiscus','rose_leaves','mallow','mulberry_leaves','grapeleaves','boiled_egg','pumpkin_seeds','kale','spinach','cabbage','sunflower_seeds','beetroot','artichoke'];
-const QG_SEP_IDS = ['potato','orange','tomato','walnuts'];
+const QG_YES_IDS = ['carrot','cucumber','tomato','sweet_pepper','broccoli','cauliflower','zucchini','sweetpotato','turnip','radish','asparagus','apple','mango','peach','pear','strawberry','watermelon','melon','pineapple','kiwi','peas','pumpkin','raspberry','banana','grapes','corn','celery','cilantro','parsley','dill','mint','lettuce_romaine','babyleaves','fennel','sprouts_mung','sprouts_alfalfa','sprouts_sunflower','hibiscus','rose_leaves','mallow','mulberry_leaves','grapeleaves','boiled_egg','pumpkin_seeds','kale','spinach','cabbage','sunflower_seeds','beetroot','artichoke','arugula'];
+const QG_SEP_IDS = ['potato','orange','tomato','walnuts','brussels_sprouts','chard','grass','peanuts'];
 const QG_NO_IDS  = ['onion','green_onion','garlic','avocado','chocolate','chips','eggplant','lemon','dairy','mushroom'];
 
 function qgSearch(val) {
