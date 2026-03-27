@@ -228,6 +228,14 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
   .tab-btn{padding:.4rem .7rem;font-size:.86rem}
   .my-grid{grid-template-columns:repeat(3,1fr)}
 }
+/* LIGHTBOX */
+#lightbox-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .22s;padding:1rem}
+#lightbox-overlay.open{opacity:1;pointer-events:all}
+#lightbox-img{max-width:92vw;max-height:88vh;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.5);transform:scale(.93);transition:transform .22s;object-fit:contain}
+#lightbox-overlay.open #lightbox-img{transform:scale(1)}
+#lightbox-close{position:fixed;top:1rem;left:1rem;background:rgba(255,255,255,.2);border:none;border-radius:50%;width:38px;height:38px;font-size:1.2rem;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+#lightbox-close:hover{background:rgba(255,255,255,.35)}
+.zoomable{cursor:zoom-in!important}
 </style>
 </head>
 <body>
@@ -608,7 +616,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
       </div>
       <div style="text-align:center;margin-top:.8rem;font-size:1.3rem">🦜✨</div>
       <div style="display:flex;gap:.7rem;justify-content:center;align-items:flex-start;flex-wrap:wrap;margin-top:.4rem">
-        <div style="max-width:260px;margin:0 auto"><div class="rainbow-frame"><img src="https://i.imgur.com/jD1QP45.jpeg" style="width:100%;border-radius:14px;object-fit:cover;height:260px;display:block" onerror="this.parentElement.style.display='none'"></div>
+        <div style="max-width:260px;margin:0 auto"><div class="rainbow-frame"><img class="zoomable" onclick="openLightbox('https://i.imgur.com/jD1QP45.jpeg')" src="https://i.imgur.com/jD1QP45.jpeg" style="width:100%;border-radius:14px;object-fit:cover;height:260px;display:block" onerror="this.parentElement.style.display='none'"></div>
           <div style="text-align:center;margin-top:.5rem;font-size:.88rem;color:#666;font-weight:700">קיקו מקבל אורחים 🎉</div>
           <a href="https://youtube.com/shorts/CAD0f4GFQOE" target="_blank" style="text-decoration:none;display:block;margin-top:.5rem">
             <div class="rainbow-frame" style="border-radius:50px">
@@ -622,23 +630,23 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
       <div style="text-align:center;font-size:1.3rem;margin-top:.4rem">✨🦜</div>
     </div>
 
-    <!-- סויה ופפאיה -->
+    <!-- סויה -->
     <div style="background:linear-gradient(135deg,#e8f5e9,#f1f8e9);border-radius:16px;box-shadow:0 3px 12px rgba(0,0,0,.09);padding:1.1rem 1.2rem;position:relative;overflow:hidden">
       <div style="position:absolute;top:-8px;left:-8px;font-size:5rem;opacity:.07">🦎</div>
       <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.5rem">
-        <span style="font-size:2.2rem">🦎🦎</span>
+        <span style="font-size:2.2rem">🦎</span>
         <div>
-          <div style="display:flex;align-items:center;gap:.3rem"><button onclick="speakText('סויה ופפאיה. שממיות שקטות שאוהבות את הפינה שלהן. כשקריר בחוץ הן נהנות מאמבטיה חמימה, ובשאר הזמן הן נחות במסתור.',this)" title="הקראה" style="background:#c8f0d0;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.82rem;flex-shrink:0">🔊</button><div style="font-size:1.15rem;font-weight:900;color:#1a5c35">סויה ופפאיה</div></div>
+          <div style="display:flex;align-items:center;gap:.3rem"><button onclick="speakText('סויה. שממית שקטה שאוהבת את הפינה שלה. כשקריר בחוץ היא נהנית מאמבטיה חמימה, ובשאר הזמן היא נחה במסתור.',this)" title="הקראה" style="background:#c8f0d0;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.82rem;flex-shrink:0">🔊</button><div style="font-size:1.15rem;font-weight:900;color:#1a5c35">סויה</div></div>
           <div style="font-size:.78rem;color:#aaa;display:flex;gap:.6rem;flex-wrap:wrap">
             <a href="#" onclick="event.preventDefault();openAnimalModal('leopardgecko')" style="color:#2a8c50;text-decoration:underline dotted">שממיות מנומרות</a>
             <a href="#" onclick="event.preventDefault();document.querySelector('[data-tab=byanimal]').click();setTimeout(()=>{const el=document.querySelector('[data-aid=leopardgecko]');if(el)el.click()},250)" style="color:#3aaa6e;text-decoration:underline dotted">🥗 העדפות מזון</a>
           </div>
         </div>
       </div>
-      <div style="font-size:.88rem;color:#1a3a20;line-height:1.65">🥗 שממיות שקטות, שאוהבות את הפינה שלהן. כשקריר בחוץ, הן נהנות מאמבטיה חמימה, ובשאר הזמן הן נחות במסתור. לפעמים יחד, ולפעמים כל אחת לחוד. 🦎💚
+      <div style="font-size:.88rem;color:#1a3a20;line-height:1.65">🥗 שממית שקטה, שאוהבת את הפינה שלה. כשקריר בחוץ, היא נהנית מאמבטיה חמימה, ובשאר הזמן היא נחה במסתור. 🦎💚
       <div style="text-align:center;margin-top:.8rem;font-size:1.3rem">🦎💚</div>
-      <div style="max-width:260px;margin:.4rem auto"><div class="rainbow-frame"><img src="https://i.imgur.com/oHY27zT.jpeg" style="width:100%;height:260px;border-radius:14px;object-fit:contain;display:block;background:#4caf7d" onerror="this.parentElement.style.display='none'"></div></div>
-      <div onclick="spawnRainbow(this)" style="text-align:center;font-size:.88rem;color:#666;font-weight:700;margin-bottom:.3rem;cursor:pointer">סויה ופפאיה ביחד 🦎🦎</div>
+      <div style="max-width:260px;margin:.4rem auto"><div class="rainbow-frame"><img class="zoomable" onclick="openLightbox('https://i.imgur.com/TlKdjXW.jpeg')" src="https://i.imgur.com/TlKdjXW.jpeg" style="width:100%;height:260px;border-radius:14px;object-fit:contain;display:block;background:#4caf7d" onerror="this.parentElement.style.display='none'"></div></div>
+      <div onclick="spawnRainbow(this)" style="text-align:center;font-size:.88rem;color:#666;font-weight:700;margin-bottom:.3rem;cursor:pointer">סויה בספא 🦎</div>
       <div style="text-align:center;font-size:1.3rem">💚🦎</div></div>
     </div>
 
@@ -657,7 +665,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
       </div>
       <div style="font-size:.88rem;color:#1a2a4a;line-height:1.65">מאוד אוהבת <strong>לצאת לשמש</strong> ולנשנש עשבים טריים.
       <div style="text-align:center;margin-top:.8rem;font-size:1.3rem">🐢☀️</div>
-      <div style="max-width:260px;margin:.4rem auto"><div class="rainbow-frame"><img src="https://i.imgur.com/1DbWzCn.jpeg" style="width:100%;height:260px;border-radius:14px;object-fit:cover;display:block;box-shadow:0 2px 10px rgba(0,0,0,.15)" onerror="this.parentElement.style.display='none'"></div></div>
+      <div style="max-width:260px;margin:.4rem auto"><div class="rainbow-frame"><img class="zoomable" onclick="openLightbox('https://i.imgur.com/1DbWzCn.jpeg')" src="https://i.imgur.com/1DbWzCn.jpeg" style="width:100%;height:260px;border-radius:14px;object-fit:cover;display:block;box-shadow:0 2px 10px rgba(0,0,0,.15)" onerror="this.parentElement.style.display='none'"></div></div>
       <div style="text-align:center;font-size:.88rem;color:#666;font-weight:700;margin-bottom:.3rem">דונה אוכלת ☀️</div>
       <div style="text-align:center;font-size:1.3rem">☀️🐢</div></div>
     </div>
@@ -677,7 +685,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
       </div>
       <div style="font-size:.88rem;color:#5a1020;line-height:1.65">הכי אוהב <strong>לנמנם מתחת למנורת החימום</strong>. אל תפריעו לזאוס בשנתו.</div>
       <div style="text-align:center;margin-top:.8rem;font-size:1.3rem">🐉🔥</div>
-      <div style="max-width:260px;margin:.4rem auto"><div class="rainbow-frame"><img src="https://i.imgur.com/6PrIowH.jpeg" style="width:100%;height:260px;border-radius:14px;object-fit:cover;display:block;box-shadow:0 2px 10px rgba(0,0,0,.15)" onerror="this.parentElement.style.display='none'"></div></div>
+      <div style="max-width:260px;margin:.4rem auto"><div class="rainbow-frame"><img class="zoomable" onclick="openLightbox('https://i.imgur.com/6PrIowH.jpeg')" src="https://i.imgur.com/6PrIowH.jpeg" style="width:100%;height:260px;border-radius:14px;object-fit:cover;display:block;box-shadow:0 2px 10px rgba(0,0,0,.15)" onerror="this.parentElement.style.display='none'"></div></div>
       <div style="text-align:center;font-size:.88rem;color:#666;font-weight:700;margin-bottom:.3rem">זאוס נח 😴</div>
       <div style="text-align:center;font-size:1.3rem">🔥🐉</div>
     </div>
@@ -698,10 +706,10 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
       <div style="font-size:.88rem;color:#3a1060;line-height:1.65">שלושה זוגות, שני זוגות <strong>קוקטייל</strong> ואחד <strong>מעורב</strong> (ציפור אהבה + קוקטייל): טאקו וקשת · וניל וגשם · ששי ונור. 💜</div>
       <div style="text-align:center;margin-top:.8rem;font-size:1.3rem">💚🦜<a href="https://www.yardbirds.org.il/birds_sounds" target="_blank" rel="noopener" title="🐦 סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">🎵</a>💛</div>
       <div style="display:flex;gap:.7rem;justify-content:center;align-items:flex-start;flex-wrap:wrap">
-        <div style="flex:1;min-width:140px;text-align:center"><div class="rainbow-frame"><img src="https://i.imgur.com/vRLkJZw.jpeg" style="width:100%;height:260px;border-radius:14px;object-fit:cover;object-position:center center;display:block;box-shadow:0 2px 10px rgba(0,0,0,.15)"></div>
+        <div style="flex:1;min-width:140px;text-align:center"><div class="rainbow-frame"><img class="zoomable" onclick="openLightbox('https://i.imgur.com/vRLkJZw.jpeg')" src="https://i.imgur.com/vRLkJZw.jpeg" style="width:100%;height:260px;border-radius:14px;object-fit:cover;object-position:center center;display:block;box-shadow:0 2px 10px rgba(0,0,0,.15)"></div>
           <div style="font-size:.88rem;color:#666;font-weight:700;margin-top:.3rem">טאקו וקשת 💜</div>
         </div>
-        <div style="flex:1;min-width:140px;text-align:center"><div class="rainbow-frame"><img src="https://i.imgur.com/EeSrMB4.jpeg" style="width:100%;height:260px;border-radius:14px;object-fit:cover;display:block;box-shadow:0 2px 10px rgba(0,0,0,.15)"></div>
+        <div style="flex:1;min-width:140px;text-align:center"><div class="rainbow-frame"><img class="zoomable" onclick="openLightbox('https://i.imgur.com/EeSrMB4.jpeg')" src="https://i.imgur.com/EeSrMB4.jpeg" style="width:100%;height:260px;border-radius:14px;object-fit:cover;display:block;box-shadow:0 2px 10px rgba(0,0,0,.15)"></div>
           <div style="font-size:.88rem;color:#666;font-weight:700;margin-top:.3rem">זוגות זוגות 💕</div>
         </div>
       </div>
@@ -723,7 +731,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
       </div>
       <div style="font-size:.88rem;color:#4a2800;line-height:1.65">הצ׳ינצ׳ילה הוותיק שלנו. פעם ברח מבית הספר, הגיע לכביש ו<strong>נורא נבהל מהמכוניות</strong>. מאז הוא הבין שהכי בטוח ונעים פה איתנו, אין כמו בבית! 🏠💚
       <div style="text-align:center;margin-top:.8rem;font-size:1.3rem">🐿️💛</div>
-      <div style="max-width:260px;margin:.4rem auto"><div class="rainbow-frame"><img src="https://i.imgur.com/rOlTAAS.jpeg" style="width:100%;height:260px;border-radius:14px;object-fit:cover;display:block;box-shadow:0 2px 10px rgba(0,0,0,.15)" onerror="this.parentElement.style.display='none'"></div></div>
+      <div style="max-width:260px;margin:.4rem auto"><div class="rainbow-frame"><img class="zoomable" onclick="openLightbox('https://i.imgur.com/rOlTAAS.jpeg')" src="https://i.imgur.com/rOlTAAS.jpeg" style="width:100%;height:260px;border-radius:14px;object-fit:cover;display:block;box-shadow:0 2px 10px rgba(0,0,0,.15)" onerror="this.parentElement.style.display='none'"></div></div>
       <div style="text-align:center;font-size:.88rem;color:#666;font-weight:700;margin-bottom:.3rem">יוגי מדגמן! 😎</div>
       <div style="text-align:center;font-size:1.3rem">💛🐿️</div></div>
     </div>
@@ -743,7 +751,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
       </div>
       <div style="font-size:.88rem;color:#4a2800;line-height:1.65">הבן של יוגי! מאוד שובב ומאוד מהיר, אם לא מוצאים אותו, כנראה שהוא שוב מתחבא על הרשת העליונה. 😄 <a href="https://bomomo.com/" target="_blank" rel="noopener" title="🖌️ סוד..." style="text-decoration:none;opacity:.3;font-size:.75rem">🖌️</a>
       <div style="text-align:center;margin-top:.8rem;font-size:1.3rem">🐿️🕸️</div>
-      <div style="max-width:260px;margin:.4rem auto"><div class="rainbow-frame"><img src="https://i.imgur.com/XxEYAXL.jpeg" style="width:100%;height:260px;border-radius:14px;object-fit:cover;display:block;box-shadow:0 2px 10px rgba(0,0,0,.15)" onerror="this.parentElement.style.display='none'"></div></div>
+      <div style="max-width:260px;margin:.4rem auto"><div class="rainbow-frame"><img class="zoomable" onclick="openLightbox('https://i.imgur.com/XxEYAXL.jpeg')" src="https://i.imgur.com/XxEYAXL.jpeg" style="width:100%;height:260px;border-radius:14px;object-fit:cover;display:block;box-shadow:0 2px 10px rgba(0,0,0,.15)" onerror="this.parentElement.style.display='none'"></div></div>
       <div style="text-align:center;font-size:.88rem;color:#666;font-weight:700;margin-bottom:.3rem">צ'יטה משחק מחבואים 🙈</div>
       <div style="text-align:center;font-size:1.3rem">🕸️🐿️</div></div>
     </div>
@@ -765,7 +773,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
       </div>
       <div style="font-size:.88rem;color:#1a4020;line-height:1.65">הארנבונת המבוגרת והסקרנית שלנו. כל פעם שהגדרה פתוחה, היא יוצאת לטייל בפינת החי. <strong>אבל תמיד חוזרת הביתה לחברות.</strong> 🐾
       <div style="text-align:center;margin-top:.8rem;font-size:1.3rem">🐰🌿</div>
-      <div style="max-width:260px;margin:.4rem auto"><div class="rainbow-frame"><img src="https://i.imgur.com/KrsXxG2.jpeg" style="width:100%;height:260px;border-radius:14px;object-fit:cover;display:block;box-shadow:0 2px 10px rgba(0,0,0,.15)" onerror="this.parentElement.style.display='none'"></div></div>
+      <div style="max-width:260px;margin:.4rem auto"><div class="rainbow-frame"><img class="zoomable" onclick="openLightbox('https://i.imgur.com/KrsXxG2.jpeg')" src="https://i.imgur.com/KrsXxG2.jpeg" style="width:100%;height:260px;border-radius:14px;object-fit:cover;display:block;box-shadow:0 2px 10px rgba(0,0,0,.15)" onerror="this.parentElement.style.display='none'"></div></div>
       <div style="text-align:center;font-size:.88rem;color:#666;font-weight:700;margin-bottom:.3rem">כוכב משתזפת ☀️</div>
       <div style="text-align:center;font-size:1.3rem">🌿🐰</div></div>
     </div>
@@ -1065,7 +1073,7 @@ const ANIMALS = [
  tags:['פעיל לילה','רגיש לחום','פרווה מדהימה'],tagColors:['night','hard','easy'],
  funfact:'60 שערות יוצאות מכל זקיק, וזה מה שנותן להן פרווה הכי צפופה בעולם!'},
 
-{id:'leopardgecko',ours:true,name:'שממית מנומרת',en:'Leopard Gecko',sciname:'Eublepharis macularius',aliases:['שממית','לאופרד גקו','gecko','פפאיה','סויה'],animalClass:'זוחל',animalSubClass:'קשקשאים',animalClass:'זוחל',emoji:'🦎',
+{id:'leopardgecko',ours:true,name:'שממית מנומרת',en:'Leopard Gecko',sciname:'Eublepharis macularius',aliases:['שממית','לאופרד גקו','gecko','סויה'],animalClass:'זוחל',animalSubClass:'קשקשאים',animalClass:'זוחל',emoji:'🦎',
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Leopard_Gecko_%28Eublepharis_macularius%29.jpg/320px-Leopard_Gecko_%28Eublepharis_macularius%29.jpg',
  origin:'פקיסטן, אפגניסטן, הודו',lifespan:'15-20 שנה',
  size:'18-25 ס"מ, 45-65 גרם',active:'לילה',
@@ -2184,7 +2192,7 @@ function doSearch(){
   if(cornerDiv){
     const CORNER_CARDS = [
       {key:'kiko',  name:'קיקו',              emoji:'🦜', desc:'תוכי ג׳אקו. כבר בן 18! אוהב לשיר ולרקוד.'},
-      {key:'soya',  name:'סויה ופפאיה',        emoji:'🦎', desc:'שממיות מנומרות. אוהבות אמבטיה חמימה.'},
+      {key:'soya',  name:'סויה',        emoji:'🦎', desc:'שממית מנומרת. אוהבת אמבטיה חמימה.'},
       {key:'donna', name:'דונה',               emoji:'🐢', desc:'צב סודני. אוהבת שמש ועשבים טריים.'},
       {key:'zeus',  name:'זאוס',               emoji:'🐉', desc:'חרדון מזוקן. אוהב לנמנם מתחת למנורת החימום.'},
       {key:'flock', name:'בלהקת התוכים',       emoji:'🦜', desc:'טאקו וקשת, וניל וגשם, ששי ונור. שלושה זוגות.'},
@@ -2524,7 +2532,7 @@ function qgSpeakAll(btn){
 
 const CORNER_SPEAKS = {
   kiko:    'קיקו. תוכי ג׳אקו. כבר בן 18! תמיד יש לו משהו מעניין להגיד, אוהב לשיר ולרקוד.',
-  soya:    'סויה ופפאיה. שממיות שקטות שאוהבות את הפינה שלהן. כשקריר בחוץ הן נהנות מאמבטיה חמימה, ובשאר הזמן הן נחות במסתור.',
+  soya:    'סויה. שממית שקטה שאוהבת את הפינה שלה. כשקריר בחוץ היא נהנית מאמבטיה חמימה, ובשאר הזמן היא נחה במסתור.',
   donna:   'דונה. צב סודני. מאוד אוהבת לצאת לשמש ולנשנש עשבים טריים.',
   zeus:    'זאוס. חרדון מזוקן. הכי אוהב לנמנם מתחת למנורת החימום. אל תפריעו לזאוס בשנתו.',
   flock:   'בלהקת התוכים שלנו. ציפור אהבה ותוכי קוקטייל. שלושה זוגות: טאקו וקשת, וניל וגשם, ששי ונור.',
@@ -2572,7 +2580,7 @@ function speakTabAll(tabId, btn){
     'tab-mycorner': ()=>[
       'פינת החי שלנו.',
       'קיקו. תוכי ג׳אקו. כבר בן 18! תמיד יש לו משהו מעניין להגיד, אוהב לשיר ולרקוד.',
-      'סויה ופפאיה. שממיות שקטות שאוהבות את הפינה שלהן. כשקריר בחוץ הן נהנות מאמבטיה חמימה, ובשאר הזמן הן נחות במסתור.',
+      'סויה. שממית שקטה שאוהבת את הפינה שלה. כשקריר בחוץ היא נהנית מאמבטיה חמימה, ובשאר הזמן היא נחה במסתור.',
       'דונה. צב סודני. מאוד אוהבת לצאת לשמש ולנשנש עשבים טריים.',
       'זאוס. חרדון מזוקן. הכי אוהב לנמנם מתחת למנורת החימום. אל תפריעו לזאוס בשנתו.',
       'בלהקת התוכים שלנו. ציפור אהבה ותוכי קוקטייל. שלושה זוגות - שני זוגות קוקטייל ואחד מעורב: טאקו וקשת, וניל וגשם, ששי ונור.',
@@ -5336,7 +5344,7 @@ const TREASURE_MAP = [
   {emoji:'🎉', location:'כותרת האתר',            hint:'לחצו שלוש פעמים על הכותרת הגדולה',  type:'אפקט',        url:null, effect:'launchConfetti()'},
   {emoji:'🌟', location:'טאב פינת החי שלנו',     hint:'לחצו על הטאב',                       type:'אפקט',        url:null, effect:'spawnStars(window.innerWidth/2,200)'},
   {emoji:'🥕', location:'גזר בבקיצור',           hint:'לחצו על הגזר',                       type:'אפקט',        url:null, effect:'spawnCarrots(window.innerWidth/2,300)'},
-  {emoji:'🌈', location:'סויה ופפאיה (פינת החי שלנו)', hint:'לחצו על הכיתוב מתחת לתמונה',         type:'אפקט',        url:null, effect:"spawnRainbow(document.querySelector('header'))"},
+  {emoji:'🌈', location:'סויה (פינת החי שלנו)', hint:'לחצו על הכיתוב מתחת לתמונה',         type:'אפקט',        url:null, effect:"spawnRainbow(document.querySelector('header'))"},
   {emoji:'🐾', location:'תת-כותרת האתר',         hint:'לחצו פעמיים על "המדריך לכל מה שצריך"', type:'אפקט',     url:null, effect:'spawnPawTrail()'},
   {emoji:'🦓', location:'זברה (בחיפוש)',          hint:'חפשו "זברה" ולחצו על ✨✨✨ שמופיעות לצד התוצאה',  type:'קליפ',  url:'https://www.youtube.com/watch?v=QD0bgqg3P5s'},
   {emoji:'🦊', location:'שועל (בחיפוש)',          hint:'חפשו "שועל" ולחצו על ✨✨✨ שמופיעות לצד התוצאה',  type:'קליפ',  url:'https://www.youtube.com/watch?v=jofNR_WkoCE'},
@@ -5583,9 +5591,10 @@ function secretsTurtleClick(el) {
   if (_turtleClicks >= 5) {
     const msg = document.getElementById('secretsTurtleMsg');
     if (msg) msg.innerHTML = `ידעתם שהחבאתי אצלי מפת אוצר? 🗺️<br>
-      <div style="margin-top:.5rem;display:flex;gap:.4rem;justify-content:center;flex-wrap:wrap">
-        <button onclick="showTreasureMapFull()" style="background:#7c5cbf;color:white;border:none;border-radius:50px;padding:.35rem .9rem;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit">פתחו את המפה! 🗺️</button>
-        <button onclick="closeModal();switchTab('animals');setTimeout(()=>{const s=document.getElementById('acard_sulcata');if(s){s.scrollIntoView({behavior:'smooth',block:'center'});}},400)" style="background:#eee;color:#555;border:none;border-radius:50px;padding:.35rem .9rem;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit">קח אותי לצב 🐢</button>
+      <div style="margin-top:.6rem;display:flex;flex-direction:row;flex-wrap:wrap;gap:.35rem;align-items:center;justify-content:center">
+        <button onclick="showTreasureMapFull()" style="background:linear-gradient(135deg,#7c5cbf,#5a3a9a);color:white;border:none;border-radius:50px;padding:.42rem 1rem;font-size:.8rem;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 3px 10px rgba(124,92,191,.35)">🗺️ קחו אותי ישר למפת האוצר!</button>
+        <button onclick="closeModal();switchTab('animals');setTimeout(()=>{const s=document.getElementById('acard_sulcata');if(s){s.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>s.click(),400);}},400)" style="background:#f0f4ff;color:#4060b0;border:2px solid #c8d8f8;border-radius:50px;padding:.38rem 1rem;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit">🐢 היא מסתתרת אצל הצב... מצאו אותה!</button>
+        <button onclick="closeModal()" style="background:none;color:#bbb;border:1px dashed #ddd;border-radius:50px;padding:.32rem .9rem;font-size:.73rem;font-weight:600;cursor:pointer;font-family:inherit">🕵️ אני אמצא את ההפתעות לבד!</button>
       </div>`;
   }
 }
@@ -5986,5 +5995,22 @@ function spawnHeartConfetti() {
 
 </script>
 <footer style="text-align:center;font-size:10px;color:rgba(128,128,128,0.3);padding:.5rem;margin-top:1rem">נבנה באהבה עבור פינת החי של בית ספר שז"ר, באר שבע</footer>
+<!-- LIGHTBOX -->
+<div id="lightbox-overlay" onclick="closeLightbox()">
+  <button id="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+<script>
+function openLightbox(src){
+  document.getElementById('lightbox-img').src=src;
+  document.getElementById('lightbox-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){
+  document.getElementById('lightbox-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLightbox(); });
+</script>
 </body>
 </html>
