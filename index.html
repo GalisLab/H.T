@@ -228,6 +228,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
   .tab-btn{padding:.4rem .7rem;font-size:.86rem}
   .my-grid{grid-template-columns:repeat(3,1fr)}
 }
+@keyframes starPulse{0%,100%{transform:scale(1) rotate(0deg);opacity:.5}50%{transform:scale(1.4) rotate(15deg);opacity:1}}
 /* LIGHTBOX */
 #lightbox-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .22s;padding:1rem}
 #lightbox-overlay.open{opacity:1;pointer-events:all}
@@ -245,7 +246,10 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
   <div class="ticker" onclick="spawnPawTrail()" style="cursor:pointer" title="🐾">🦜🐹🐢🦎🐛🐰🐕🐟🦎🐱🐹🐰🦜🐢🐛🐕🐟🦜🐹🐢🦎🐛🐰🐕🐟🦎🐱🐹🐰🦜🐢🐛🐕🐟</div>
   <div style="font-size:.75rem;color:#557;font-weight:700;margin-bottom:.2rem">🏫 בית ספר שז"ר - פינת החי</div>
   <h1>🌿 מה אוכלים היום בפינת החי?</h1>
-  <p>המדריך לכל מה שצריך! <span onclick="openSecretsPopup()" title="?" style="cursor:pointer;opacity:.35;font-size:.8em;vertical-align:middle">✨</span></p>
+  <p>המדריך לכל מה שצריך! <span style="position:relative;display:inline-block;vertical-align:middle">
+    <span id="secretStar" onclick="openSecretsPopup();dismissStarTooltip()" title="סודות והפתעות 🌟" style="cursor:pointer;font-size:.9em;display:inline-block;animation:starPulse 2.2s ease-in-out infinite">✨</span>
+    <span id="starTooltip" style="position:absolute;top:-10%;right:120%;transform:translateY(-50%);background:#fff9e6;border:2px solid #f0d060;border-radius:50px;padding:.25rem .7rem;font-size:.72rem;font-weight:800;color:#7a5000;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,.15);font-family:'Varela Round',sans-serif;animation:starPulse 2.2s ease-in-out infinite;cursor:pointer" onclick="openSecretsPopup();dismissStarTooltip()">→ לחצו עליי!</span>
+  </span></p>
   <div class="food-count" id="foodCount">טוען...</div>
   <div style="font-size:.65rem;color:#889;margin-top:.3rem">נוצר ע"י גלי 💚</div>
 </header>
@@ -325,7 +329,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
       </div>
       <div style="padding:.75rem 1rem;display:grid;gap:.65rem">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:.5rem">
-          <div style="font-size:.78rem;color:#555">ירקות ופירות שלמים או חתוכים שכבר לא תעשו בהם שימוש - מושלם! גם שאריות חיתוך: קליפות, גבעולים, קצוות. <strong>אנחנו נמיין בעצמנו מה מגיע לאיזו חיה 🙂</strong></div>
+          <div style="font-size:.78rem;color:#555">ירקות ופירות שלמים או חתוכים שכבר לא תעשו בהם שימוש? מושלם! גם שאריות חיתוך: קליפות, גבעולים, קצוות. <strong>אנחנו נמיין בעצמנו מה מגיע לאיזו חיה 🙂</strong></div>
           <button id="qgReadAllBtn" onclick="qgSpeakAll(this)" title="הקראת כל הרשימה" style="background:#e8f4ff;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.78rem;cursor:pointer;white-space:nowrap;flex-shrink:0;font-weight:700;color:#1a4a7a">🔊 הקרא הכל</button>
         </div>
         <div id="qg-vegfruits">
@@ -440,9 +444,9 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
       <div style="flex:1">
         <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem">
           <div style="font-weight:900;font-size:.9rem;color:#1a6640;flex:1">עייף = מעולה! 💚</div>
-          <button onclick="speakText('עייף זה מעולה! ירק קצת רך, שעבר את שיאו, שנראה עייף - החיות לא מפחדות ממנו בכלל. שאריות חיתוך, קליפות, גבעולים - יתקבלו בברכה!',this)" title="הקראה" style="background:#d0f5e0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.8rem;flex-shrink:0">🔊</button>
+          <button onclick="speakText('עייף זה מעולה! ירק קצת רך, שעבר את שיאו, שנראה עייף, החיות לא מפחדות ממנו בכלל. שאריות חיתוך, קליפות, גבעולים יתקבלו בברכה!',this)" title="הקראה" style="background:#d0f5e0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.8rem;flex-shrink:0">🔊</button>
         </div>
-        <div onclick="spawnThankYouEffect(this.closest('div[style*=border-radius]'))" style="font-size:.8rem;color:#2a5535;line-height:1.6;cursor:pointer">ירק קצת רך, שעבר את שיאו, שנראה עייף - החיות לא מפחדות ממנו בכלל. שאריות חיתוך, קליפות, גבעולים - יתקבלו בברכה!</div>
+        <div onclick="spawnThankYouEffect(this.closest('div[style*=border-radius]'))" style="font-size:.8rem;color:#2a5535;line-height:1.6;cursor:pointer">ירק קצת רך, שעבר את שיאו, שנראה עייף, החיות לא מפחדות ממנו בכלל. שאריות חיתוך, קליפות, גבעולים יתקבלו בברכה!</div>
       </div>
     </div>
 
@@ -454,7 +458,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
           <div style="font-weight:900;font-size:.9rem;color:#7a4000;flex:1">רקוב או מעופש? נפרדים יפה וזורקים לפח או לקומפוסט 🗑️</div>
           <button onclick="speakText('רקוב או מעופש? נפרדים יפה וזורקים לפח או לקומפוסט. עובש מייצר רעלים שחודרים לכל הפרי, גם לחלקים שנראים בריאים. יש ספק? לא מסתכנים!',this)" title="הקראה" style="background:#ffe8c0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.8rem;flex-shrink:0">🔊</button>
         </div>
-        <div onclick="spawnMoldEffect(this.closest('div[style*=border-radius]'))" style="font-size:.8rem;color:#8a5520;line-height:1.6;cursor:pointer">עובש מייצר רעלים (מיקוטוקסינים) שחודרים לכל הפרי - גם לחלקים שנראים בריאים. יש ספק? לא מסתכנים! 💚</div>
+        <div onclick="spawnMoldEffect(this.closest('div[style*=border-radius]'))" style="font-size:.8rem;color:#8a5520;line-height:1.6;cursor:pointer">עובש מייצר רעלים (מיקוטוקסינים) שחודרים לכל הפרי, גם לחלקים שנראים בריאים. יש ספק? לא מסתכנים! 💚</div>
       </div>
     </div>
 
@@ -798,7 +802,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
   <div style="display:grid;gap:.6rem;margin-bottom:.9rem">
     <div onclick="spawnThankYouEffect(this)" style="background:linear-gradient(135deg,#e8fff3,#f0fff8);border-radius:12px;border:2px solid #a0e8c0;padding:.75rem 1rem;display:flex;gap:.5rem;align-items:center;cursor:pointer" title="לחצו להודות!">
       <span style="font-size:1.3rem;flex-shrink:0">🥦</span>
-      <div style="font-size:.82rem;color:#1a6640;line-height:1.5;flex:1"><strong>ירק עייף, קצת רך, שעבר את שיאו?</strong> מושלם! החיות לא מפחדות ממנו בכלל. גם שאריות חיתוך, קליפות וגבעולים - יתקבלו בברכה.</div>
+      <div style="font-size:.82rem;color:#1a6640;line-height:1.5;flex:1"><strong>ירק עייף, קצת רך, שעבר את שיאו?</strong> מושלם! החיות לא מפחדות ממנו בכלל. גם שאריות חיתוך, קליפות וגבעולים יתקבלו בברכה.</div>
       <button onclick="event.stopPropagation();speakText('ירק עייף, קצת רך, שעבר את שיאו? מושלם! החיות לא מפחדות ממנו בכלל. גם שאריות חיתוך, קליפות וגבעולים יתקבלו בברכה.',this)" title="הקראה" style="background:#d0f5e0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.8rem;flex-shrink:0">🔊</button>
     </div>
     <div onclick="spawnMoldEffect(this)" style="background:linear-gradient(135deg,#fff3e0,#fff8f0);border-radius:12px;border:2px dashed #f0a030;padding:.75rem 1rem;display:flex;gap:.5rem;align-items:center;cursor:pointer">
@@ -6011,6 +6015,58 @@ function closeLightbox(){
   document.body.style.overflow='';
 }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLightbox(); });
+</script>
+<script>
+function dismissStarTooltip(){
+  const t = document.getElementById('starTooltip');
+  if(t){ t.style.transition='opacity .4s'; t.style.opacity='0'; setTimeout(()=>t.style.display='none', 400); }
+}
+setTimeout(dismissStarTooltip, 8000);
+</script>
+
+<!-- ציפור שמצניחה את המדריך -->
+<style>
+#guideBird{position:fixed;top:5rem;left:50%;transform:translateX(-50%) translateX(120vw);z-index:8500;pointer-events:none;transition:transform 1.2s cubic-bezier(.22,1,.36,1)}
+#guideBird.fly-in{transform:translateX(-50%) translateX(0)}
+#guideBirdEmoji{font-size:2.4rem;display:block;text-align:center;animation:guideBob 1.6s ease-in-out infinite}
+@keyframes guideBob{0%,100%{transform:translateY(0) scaleX(-1)}50%{transform:translateY(-5px) scaleX(-1)}}
+#guideNote{background:linear-gradient(135deg,#fff8e1,#fff3cd);border:2px solid #f0c840;border-radius:12px;padding:.55rem .9rem;font-size:.82rem;font-weight:800;color:#5a3800;font-family:'Varela Round',sans-serif;box-shadow:0 4px 16px rgba(0,0,0,.18);cursor:pointer;pointer-events:all;text-align:center;direction:rtl;white-space:nowrap;margin-bottom:.15rem;position:relative;animation:noteDrop .5s .8s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes noteDrop{0%{opacity:0;transform:translateY(-18px) rotate(-6deg)}100%{opacity:1;transform:translateY(0) rotate(0deg)}}
+#guideNote::after{content:'';position:absolute;bottom:-9px;right:22px;border:5px solid transparent;border-top-color:#f0c840}
+#guideNoteClose{position:absolute;top:-.45rem;left:-.45rem;background:#ddd;border:none;border-radius:50%;width:17px;height:17px;font-size:.58rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#555;padding:0;pointer-events:all}
+</style>
+
+<div id="guideBird">
+  <div id="guideNote" onclick="guideNoteClick()">
+    🗺️ מדריך מהיר לאתר
+    <div style="font-size:.67rem;color:#a07030;font-weight:700;margin-top:.1rem">לחצו לסיור מודרך ✨</div>
+    <button id="guideNoteClose" onclick="event.stopPropagation();dismissGuideBird(true)" title="סגור">✕</button>
+  </div>
+  <span id="guideBirdEmoji">🐦</span>
+</div>
+
+<script>
+(function(){
+  if(sessionStorage.getItem('guideSeen')) return;
+  setTimeout(function(){
+    const bird = document.getElementById('guideBird');
+    bird.classList.add('fly-in');
+    setTimeout(()=>dismissGuideBird(false), 12000);
+  }, 2500);
+})();
+
+function guideNoteClick(){
+  dismissGuideBird(false);
+  openWelcomeGuide();
+}
+
+function dismissGuideBird(permanent){
+  const bird = document.getElementById('guideBird');
+  bird.style.transition = 'transform 0.8s cubic-bezier(.55,0,1,.45), opacity 0.8s';
+  bird.style.transform = 'translateX(-50%) translateX(120vw)';
+  bird.style.opacity = '0';
+  sessionStorage.setItem('guideSeen','1');
+}
 </script>
 </body>
 </html>
