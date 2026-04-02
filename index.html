@@ -1857,6 +1857,15 @@ const DEFAULT_FOODS = [
  animals:{'jacko':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'lovebird':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'cockatiel':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'japanese_quail':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'sulcata':{s:'ok',a:'כוס',f:'כמה פעמים בשבוע',n:'מומלץ מאוד!'},'beardie':{s:'ok',a:'רבע כוס',f:'כמה פעמים בשבוע',n:'מומלץ מאוד! עשיר בסידן'},'rabbit':{s:'ok',a:'רבע כוס',f:'כמה פעמים בשבוע'},'sharkhan':{s:'ok',a:'רבע כוס',f:'כמה פעמים בשבוע'},'sibhamster':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'syrianhamster':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'gerbil':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'dog':{s:'lim',a:'כמה עלים',f:'לעיתים',n:'טעם חריף'},'chinchilla':{s:'no'},'leopardgecko':{s:'nr'},'mealworms':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע',n:'מעולה לגאט-לואדינג!'},'hissingcockroach':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'vietstick':{s:'lim',a:'עלה אחד',f:'לעיתים'}}
 },
 
+{id:'hay',name:'חציר',emoji:'🌾',cookStatus:'raw',category:'עשב',
+ aliases:['חציר טימותי','חציר דשא','חציר דגנים','אספסת','hay','timothy'],
+ why:'מרכיב תזונתי חיוני לכמה מהחיות שלנו. החציר מספק סיבים, שוחק שיניים ומדמה תנאי טבע. יש לוודא שהחציר יבש, ללא עובש וריח טוב.',
+ whyNot:'חציר עם עובש מסוכן! לוודא שיבש לגמרי לפני שנותנים.',
+ parts:[
+   {name:'חציר יבש',rawOk:'ok',partAnimals:{'rabbit':'ok','sharkhan':'ok','chinchilla':'ok','sulcata':'ok','sibhamster':'lim','syrianhamster':'lim','gerbil':'lim','beardie':'no','leopardgecko':'nr','jacko':'no','lovebird':'no','cockatiel':'no','dog':'no'}}
+ ],
+ animals:{'rabbit':{s:'ok',a:'חופן גדול',f:'כל יום',n:'80% מהתפריט! חציר טימותי לבוגרים, אספסת לגורים'},'sharkhan':{s:'ok',a:'חופן',f:'כל יום',n:'חיוני לשחיקת שיניים ולעיכול'},'chinchilla':{s:'ok',a:'חופן גדול',f:'כל יום',n:'חציר דגנים איכותי (טימותי) — הכי חשוב בתזונה!'},'sulcata':{s:'ok',a:'2 חופנים',f:'כל יום',n:'חציר יבש וסיבי — מדמה תזונה בטבע'},'sibhamster':{s:'lim',a:'קצת',f:'לעיתים',n:'לא כמזון, בעיקר לריפוד הקן'},'syrianhamster':{s:'lim',a:'קצת',f:'לעיתים',n:'לא כמזון, בעיקר לריפוד הקן'},'gerbil':{s:'lim',a:'קצת',f:'לעיתים',n:'בעיקר לכרסם ולמחילות — לא כמזון עיקרי'},'beardie':{s:'no',n:'לא מזון טבעי לחרדון'},'leopardgecko':{s:'nr'},'jacko':{s:'no'},'lovebird':{s:'no'},'cockatiel':{s:'no'},'dog':{s:'no'}}
+},
 {id:'grass',name:'גזם דשא',emoji:'🌿',cookStatus:'raw',category:'עשב',
  aliases:['דשא','גזם','גזם דשא','grass','lawn grass'],
  why:'דשא טרי מהגינה — מקור מצוין לסיבים ולחות. אהוב על ידי צבים, ארנבונים, שרקנים ומקלון ויאטנמי.',
@@ -3232,8 +3241,8 @@ function renderByAnimal(){
     sharkhan:     {req:true,  text:'🌾 חציר חובה! לשחיקת שיניים ועיכול. חציר דגנים לבוגרים, אספסת לגורים ומניקות. חייב להיות זמין תמיד.'},
     chinchilla:   {req:true,  text:'🌾 חציר חובה! (חציר דגנים איכותי — טימותי). המרכיב הכי חשוב בתזונה, זמין בכל עת.'},
     sulcata:      {req:true,  text:'🌾 חציר יבש וסיבי חשוב מאוד (חציר דשא או דגנים). מרכיב מרכזי בתפריט היומי — מדמה את התזונה בטבע.'},
-    sibhamster:   {req:false, text:'🌾 חציר לא חייב, אבל מומלץ — לריפוד קן ולעידוד התנהגות טבעית.'},
-    syrianhamster:{req:false, text:'🌾 חציר לא חייב, אבל מומלץ — לריפוד קן ולעידוד התנהגות טבעית.'},
+    sibhamster:   {req:false, text:'🌾 חציר לא חובה, אבל מומלץ — לריפוד קן ולעידוד התנהגות טבעית.'},
+    syrianhamster:{req:false, text:'🌾 חציר לא חובה, אבל מומלץ — לריפוד קן ולעידוד התנהגות טבעית.'},
     gerbil:       {req:false, text:'🌾 חציר משמש בעיקר לכרסם ולבנות מחילות יציבות במצע — לא כמזון עיקרי.'},
   };
   const hayInfo = HAY_INFO[selectedBA];
@@ -3428,7 +3437,7 @@ const FOOD_CAT_MAP = {
   veg:      ['asparagus','peas','artichoke','sweetpotato','broccoli','carrot','pumpkin','cauliflower','beetroot','tomato','sweet_pepper','radish','zucchini','fennel','potato','brussels_sprouts'],
   greens:   ['lettuce_romaine','cilantro','cabbage','sprouts_alfalfa','sprouts_sunflower','sprouts_mung','mint','celery','babyleaves','parsley','kale','dill','spinach','chard','arugula'],
   wild:     ['hibiscus','rose_leaves','mallow','grapeleaves','mulberry_leaves'],
-  other:    ['walnuts','peanuts','boiled_egg','pumpkin_seeds','sunflower_seeds','cereal','bread','dried_fruit','mushroom','crackers','corn','grass'],
+  other:    ['walnuts','peanuts','boiled_egg','pumpkin_seeds','sunflower_seeds','cereal','bread','dried_fruit','mushroom','crackers','corn','grass','hay'],
   forbidden:['onion','green_onion','garlic','avocado','chocolate','chips','eggplant','lemon','dairy','mushroom'],
 };
 function foodCatGroup(f) {
@@ -3921,6 +3930,7 @@ const DM_FOODS = [
   {id:'artichoke',       name:'ארטישוק',         emoji:'🌿', category:'ירק'},
   {id:'chard',           name:'עלי מנגולד',      emoji:'🥬', category:'עשב'},
   {id:'arugula',         name:'רוקט',            emoji:'🥬', category:'עשב'},
+  {id:'hay',             name:'חציר',              emoji:'🌾', category:'עשב'},
   {id:'grass',           name:'גזם דשא',         emoji:'🌿', category:'עשב'},
   {id:'walnuts',         name:'אגוז מלך',        emoji:'🌰', category:'אחר'},
   {id:'peanuts',         name:'בוטנים',          emoji:'🥜', category:'אחר'},
@@ -6022,6 +6032,11 @@ function dismissStarTooltip(){
   if(t){ t.style.transition='opacity .4s'; t.style.opacity='0'; setTimeout(()=>t.style.display='none', 400); }
 }
 setTimeout(dismissStarTooltip, 8000);
+// הטולטיפ מופיע רק אחרי שהציפור נעלמת
+const _starT = document.getElementById('starTooltip');
+if(_starT) _starT.style.opacity='0';
+setTimeout(()=>{ const t=document.getElementById('starTooltip'); if(t){t.style.transition='opacity .6s';t.style.opacity='1';} }, 16000);
+setTimeout(dismissStarTooltip, 25000);
 </script>
 
 <!-- ציפור שמצניחה את המדריך -->
