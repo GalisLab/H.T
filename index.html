@@ -3,6 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#3aaa6e">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="פינת החי">
+<link rel="apple-touch-icon" href="icon-192.png">
 <title>🌿 מה אוכלים היום בפינת החי?</title>
 <meta name="description" content="המדריך המלא לפינת החי של בית ספר שז&quot;ר באר שבע. מה מותר לתת לחיות, תפריט יומי לפי מה שהתרמתם, ומידע על כל בעלי החיים שלנו.">
 <meta name="keywords" content="פינת חי שז&quot;ר, בית ספר שז&quot;ר באר שבע, שז&quot;ר חיות, שז&quot;ר בעלי חיים, פינת החי בית ספר, פינת חי באר שבע, מה לתת לחיות, האכלת בעלי חיים, ארנבון שרקן תוכי קוקטייל ציפור אהבה צ&apos;ינצ&apos;ילה אוגר גרביל צב חרדון שממית, גלי זייצ&apos;יק, גלי זייציק, גלי זיצ&apos;יק, גלי חיות, גלי מטפלת בעלי חיים, gali zaychik, gali zaichik, טיפול בעזרת בעלי חיים, פינת חי בית ספר">
@@ -248,7 +254,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
   <h1>🌿 מה אוכלים היום בפינת החי?</h1>
   <p>המדריך לכל מה שצריך! <span style="position:relative;display:inline-block;vertical-align:middle">
     <span id="secretStar" onclick="openSecretsPopup();dismissStarTooltip()" title="סודות והפתעות 🌟" style="cursor:pointer;font-size:.9em;display:inline-block;animation:starPulse 2.2s ease-in-out infinite">✨</span>
-    <span id="starTooltip" style="position:absolute;top:-10%;right:120%;transform:translateY(-50%);background:#fff9e6;border:2px solid #f0d060;border-radius:50px;padding:.25rem .7rem;font-size:.72rem;font-weight:800;color:#7a5000;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,.15);font-family:'Varela Round',sans-serif;animation:starPulse 2.2s ease-in-out infinite;cursor:pointer" onclick="openSecretsPopup();dismissStarTooltip()">→ לחצו עליי!</span>
+    <span id="starTooltip" style="position:absolute;top:-10%;right:120%;transform:translateY(-50%);background:#fff9e6;border:2px solid #f0d060;border-radius:50px;padding:.25rem .7rem;font-size:.72rem;font-weight:800;color:#7a5000;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,.15);font-family:'Varela Round',sans-serif;animation:starPulse 2.2s ease-in-out infinite;cursor:pointer;display:none" onclick="openSecretsPopup();dismissStarTooltip()">→ לחצו עליי!</span>
   </span></p>
   <div class="food-count" id="foodCount">טוען...</div>
   <div style="font-size:.65rem;color:#889;margin-top:.3rem">נוצר ע"י גלי 💚</div>
@@ -936,7 +942,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
     </div>
 
     <!-- מקרא אמות מידה -->
-    <div style="background:white;border-radius:14px;box-shadow:var(--shadow);overflow:hidden">
+    <div id="dm-legend" style="background:white;border-radius:14px;box-shadow:var(--shadow);overflow:hidden">
       <div style="background:#f0f0f8;padding:.7rem 1rem;border-bottom:2px solid #d0d0e8;display:flex;align-items:center;gap:.5rem">
         <span style="font-size:1.3rem">📏</span>
         <div style="font-weight:900;font-size:.95rem;color:#444;flex:1">מה המשמעות של כל אמת מידה?</div>
@@ -1421,7 +1427,7 @@ const DEFAULT_FOODS = [
 
 // ── עלים ירוקים ─────────────────────────────────────────────
 {id:'lettuce_romaine',name:'חסה (כל הסוגים)',emoji:'🥬',cookStatus:'raw',category:'עלים ועשבי תיבול',aliases:['חסה','חסה רומאית','חסה איסברג','חסה ירוקה','חסה אדומה','חסה גלילית'],
- why:'דגש: משמשת בעיקר להעשרת נוזלים (הידרציה), אך בעלת ערך תזונתי נמוך מאוד. אזהרה: חסה אינה תחליף לעלים כהים או לחציר! צריכה מוגברת עלולה לגרום לשלשולים בגלל תכולת מים גבוהה מאוד. חסת אייסברג (העגולה): להימנע ככל האפשר – אין בה ערך תזונתי בכלל. הנחיה: לתת רק כתוספת קטנה לגיוון, ולא כבסיס יומי.',
+ why:'דגש: משמשת בעיקר להעשרת נוזלים (הידרציה), אך בעלת ערך תזונתי נמוך מאוד. אזהרה: חסה אינה תחליף לעלים כהים או לחציר! צריכה מוגברת עלולה לגרום לשלשולים בגלל תכולת מים גבוהה מאוד. חסת אייסברג (העגולה): להימנע ככל האפשר – אין בה ערך תזונתי בכלל. לתת: לתת רק כתוספת קטנה לגיוון, ולא כבסיס יומי.',
  parts:[{name:'עלים',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'ok','sulcata':'ok','vietstick':'ok','beardie':'ok','chinchilla':'ok','leopardgecko':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'ok','gerbil':'ok','mealworms':'ok','hissingcockroach':'ok'}},{name:'גבעול',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'ok','vietstick':'ok','beardie':'ok','chinchilla':'lim','leopardgecko':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}}],
  animals:{jacko:{s:'ok',a:'רבע כוס',f:'כל יום',leopardgecko:{s:'no',rabbit:{s:'ok',a:'כוס',f:'יומי',sharkhan:{s:'ok',a:'רבע כוס',f:'יומי',jacko:{s:'lim',a:'רבע כוס',f:'לעיתים',n:'ערך נוטריציה נמוך',beardie:{s:'lim',a:'רבע כוס',f:'לעיתים',n:'ערך נוטריציה נמוך',syrianhamster:{s:'ok',a:'2-3 יחידות',f:'לעיתים',gerbil:{s:'ok',a:'יחידה אחת',f:'לעיתים',mealworms:{s:'ok',a:'2-3 יחידות',f:'לעיתים',hissingcockroach:{s:'ok',a:'2-3 יחידות',f:'לעיתים',mouse:{s:'ok',a:'עלה אחד',f:'כמה פעמים בשבוע',n:'לא חסה קרחת - כמעט ללא ערך',rat:{s:'ok',a:'עלה אחד',f:'כמה פעמים בשבוע',budgie:{s:'ok',a:'עלה אחד',f:'כמה פעמים בשבוע',hamster_gen:{s:'ok',a:'עלה אחד',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'עלה אחד',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'עלה אחד',f:'כמה פעמים בשבוע',n:'בסיס טוב',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'ok',a:'2-3 יחידות',f:'כמה פעמים בשבוע',quail:{s:'ok',a:'עלה אחד',f:'כמה פעמים בשבוע'},hamster_gen:{s:'ok',a:'עלה אחד',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'עלה אחד',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'עלה אחד',f:'כמה פעמים בשבוע',n:'בסיס טוב',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},lovebird:{s:'lim',a:'2-3 יחידות',f:'לעיתים',n:'ערך נוטריציה נמוך'},cockatiel:{s:'lim',a:'2-3 יחידות',f:'לעיתים',n:'ערך נוטריציה נמוך'}}}},vietstick:{s:'ok',a:'2-3 יחידות',f:'כמה פעמים בשבוע'},sulcata:{s:'ok',a:'כוס',f:'כמה פעמים בשבוע'},chinchilla:{s:'no'},mealworms:{s:'ok',a:'2-3 יחידות',f:'לעיתים'},hissingcockroach:{s:'ok',a:'2-3 יחידות',f:'לעיתים'},sibhamster:{s:'ok',a:'יחידה אחת',f:'לעיתים'},syrianhamster:{s:'ok',a:'2-3 יחידות',f:'לעיתים'},gerbil:{s:'ok',a:'יחידה אחת',f:'לעיתים'}},lovebird:{s:'ok',a:'2-3 יחידות',f:'כל יום'},sibhamster:{s:'ok',a:'יחידה אחת',f:'כמה פעמים בשבוע',n:'לא חסה בינה (מים בלבד)'},sulcata:{s:'ok',a:'כוס',f:'כל יום'},vietstick:{s:'no'},beardie:{s:'ok',a:'רבע כוס',f:'כל יום'},chinchilla:{s:'lim',a:'2-3 יחידות',f:'לעיתים'},leopardgecko:{s:'no'},rabbit:{s:'ok',a:'כוס',f:'כל יום'},syrianhamster:{s:'ok',a:'2-3 יחידות',f:'כמה פעמים בשבוע'},sharkhan:{s:'ok',a:'רבע כוס',f:'כמה פעמים בשבוע'},gerbil:{s:'ok',a:'יחידה אחת',f:'כמה פעמים בשבוע'},cockatiel:{s:'ok',a:'2-3 יחידות',f:'כל יום'},mealworms:{s:'no'},hissingcockroach:{s:'ok',a:'2-3 יחידות',f:'כל יום'},fish:{s:'nr'},dog:{s:'ok',a:'כוס',f:'לעיתים'},quail:{s:'ok',a:'עלה אחד',f:'כמה פעמים בשבוע',quail:{s:'ok',a:'עלה אחד',f:'כמה פעמים בשבוע'},hamster_gen:{s:'ok',a:'עלה אחד',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'עלה אחד',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'עלה אחד',f:'כמה פעמים בשבוע',n:'בסיס טוב',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
 
@@ -1858,13 +1864,32 @@ const DEFAULT_FOODS = [
 },
 
 {id:'hay',name:'חציר',emoji:'🌾',cookStatus:'raw',category:'עשב',
- aliases:['חציר טימותי','חציר דשא','חציר דגנים','אספסת','hay','timothy'],
- why:'מרכיב תזונתי חיוני לכמה מהחיות שלנו. החציר מספק סיבים, שוחק שיניים ומדמה תנאי טבע. יש לוודא שהחציר יבש, ללא עובש וריח טוב.',
- whyNot:'חציר עם עובש מסוכן! לוודא שיבש לגמרי לפני שנותנים.',
+ aliases:['חציר טימותי','חציר דשא','חציר דגנים','אספסת','hay','timothy','עשב'],
+ why:'מרכיב תזונתי חיוני לכמה מהחיות שלנו. החציר מספק סיבים, שוחק שיניים ומדמה תנאי טבע. יש לוודא שהחציר יבש, ללא עובש ומריח טוב. חציר דגנים (שיבולת שועל/טימותי): מזון בסיס לבוגרים, דל בסידן למניעת אבנים בכליות. אספסת (Alfalfa): עשירה בחלבון וסידן, מיועדת לגורים (עד חצי שנה), הרות ומניקות בלבד.',
+ whyNot:'חציר עם עובש מסוכן! יש לוודא שהחציר יבש לגמרי לפני שנותנים.',
  parts:[
-   {name:'חציר יבש',rawOk:'ok',partAnimals:{'rabbit':'ok','sharkhan':'ok','chinchilla':'ok','sulcata':'ok','sibhamster':'lim','syrianhamster':'lim','gerbil':'lim','beardie':'no','leopardgecko':'nr','jacko':'no','lovebird':'no','cockatiel':'no','dog':'no'}}
+   {name:'חציר יבש',rawOk:'ok',partAnimals:{'rabbit':'ok','sharkhan':'ok','chinchilla':'ok','sulcata':'ok','sibhamster':'lim','syrianhamster':'lim','gerbil':'lim','japanese_quail':'lim','jacko':'lim','lovebird':'lim','cockatiel':'lim','beardie':'no','leopardgecko':'no','vietstick':'no','mealworms':'no','hissingcockroach':'no','fish':'no','dog':'no'}}
  ],
- animals:{'rabbit':{s:'ok',a:'חופן גדול',f:'כל יום',n:'80% מהתפריט! חציר טימותי לבוגרים, אספסת לגורים'},'sharkhan':{s:'ok',a:'חופן',f:'כל יום',n:'חיוני לשחיקת שיניים ולעיכול'},'chinchilla':{s:'ok',a:'חופן גדול',f:'כל יום',n:'חציר דגנים איכותי (טימותי) — הכי חשוב בתזונה!'},'sulcata':{s:'ok',a:'2 חופנים',f:'כל יום',n:'חציר יבש וסיבי — מדמה תזונה בטבע'},'sibhamster':{s:'lim',a:'קצת',f:'לעיתים',n:'לא כמזון, בעיקר לריפוד הקן'},'syrianhamster':{s:'lim',a:'קצת',f:'לעיתים',n:'לא כמזון, בעיקר לריפוד הקן'},'gerbil':{s:'lim',a:'קצת',f:'לעיתים',n:'בעיקר לכרסם ולמחילות — לא כמזון עיקרי'},'beardie':{s:'no',n:'לא מזון טבעי לחרדון'},'leopardgecko':{s:'nr'},'jacko':{s:'no'},'lovebird':{s:'no'},'cockatiel':{s:'no'},'dog':{s:'no'}}
+ animals:{
+   'rabbit':       {s:'ok', a:'חופן גדול', f:'כל יום',  n:'80% מהתפריט! חציר טימותי לבוגרים, אספסת לגורים'},
+   'sharkhan':     {s:'ok', a:'חופן',       f:'כל יום',  n:'חיוני לשחיקת שיניים ולעיכול תקין. חציר דגנים לבוגרים, אספסת רק לגורים/הרות/מניקות (למניעת אבנים בשתן)'},
+   'chinchilla':   {s:'ok', a:'חופן גדול', f:'כל יום',  n:'חציר דגנים בסיסי (טימותי), המרכיב הכי חשוב בתזונה! אספסת רק לחיזוק או לגורים'},
+   'sulcata':      {s:'ok', a:'2 חופנים',  f:'כל יום',  n:'חציר דגנים סיבי בלבד. להימנע מאספסת (עודף חלבון פוגע בשריון). חיוני לפעילות מעיים תקינה'},
+   'sibhamster':   {s:'lim',a:'קצת',        f:'לעיתים', n:'לא כמזון, בעיקר לריפוד הקן'},
+   'syrianhamster':{s:'lim',a:'קצת',        f:'לעיתים', n:'לא כמזון, בעיקר לריפוד הקן'},
+   'gerbil':       {s:'lim',a:'קצת',        f:'לעיתים', n:'בעיקר לכרסם ולמחילות, לא כמזון עיקרי'},
+   'japanese_quail':{s:'lim',a:'קצת',       f:'לעיתים', n:'בעיקר לריפוד הקן או הסתתרות, לא כמזון'},
+   'jacko':        {s:'lim',a:'כמות קטנה', f:'לעיתים', n:'לא למאכל! רק בסלסלה תלויה כחומר קינון, חציר יבש ונקי בלבד'},
+   'lovebird':     {s:'lim',a:'כמות קטנה', f:'לעיתים', n:'לא למאכל! רק בסלסלה תלויה כחומר קינון, חציר יבש ונקי בלבד'},
+   'cockatiel':    {s:'lim',a:'כמות קטנה', f:'לעיתים', n:'לא למאכל! רק בסלסלה תלויה כחומר קינון, חציר יבש ונקי בלבד'},
+   'vietstick':    {s:'no', n:'לא מתאים למקלון ויאטנמי'},
+   'beardie':      {s:'no', n:'לא מזון טבעי לחרדון'},
+   'leopardgecko': {s:'no', n:'לא מתאים לשממית'},
+   'mealworms':    {s:'no'},
+   'hissingcockroach':{s:'no'},
+   'fish':         {s:'no'},
+   'dog':          {s:'no'}
+ }
 },
 {id:'grass',name:'גזם דשא',emoji:'🌿',cookStatus:'raw',category:'עשב',
  aliases:['דשא','גזם','גזם דשא','grass','lawn grass'],
@@ -1873,7 +1898,7 @@ const DEFAULT_FOODS = [
  parts:[
    {name:'דשא טרי',rawOk:'ok',partAnimals:{'sulcata':'ok','rabbit':'ok','sharkhan':'ok','mealworms':'ok','hissingcockroach':'ok','vietstick':'ok','chinchilla':'no','beardie':'no','leopardgecko':'no','jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','syrianhamster':'no','gerbil':'no','dog':'no'}}
  ],
- animals:{'sulcata':{s:'ok',a:'כמה חופנים',f:'כל יום',n:'מדמה את הסביבה הטבעית שלו'},'rabbit':{s:'ok',a:'חופן גדול',f:'כל יום',n:'לוודא שלא רוסס!'},'sharkhan':{s:'ok',a:'חופן',f:'כל יום',n:'לוודא שלא רוסס!'},'vietstick':{s:'ok',a:'קצת',f:'לעיתים',n:'מעדיף עלי ורד והיביסקוס'},'mealworms':{s:'lim',a:'קצת',f:'לעיתים'},'hissingcockroach':{s:'lim',a:'קצת',f:'לעיתים'},'chinchilla':{s:'no',n:'לא מתאים — צריך חציר יבש בלבד'},'beardie':{s:'no',n:'לא מזון טבעי לחרדון'},'jacko':{s:'no'},'lovebird':{s:'no'},'cockatiel':{s:'no'},'leopardgecko':{s:'nr'},'sibhamster':{s:'no'},'syrianhamster':{s:'no'},'gerbil':{s:'no'},'dog':{s:'no'}}
+ animals:{'sulcata':{s:'ok',a:'כמה חופנים',f:'כל יום',n:'מדמה את הסביבה הטבעית שלו'},'rabbit':{s:'ok',a:'חופן גדול',f:'כל יום',n:'לוודא שלא רוסס!'},'sharkhan':{s:'ok',a:'חופן',f:'כל יום',n:'לוודא שלא רוסס!'},'vietstick':{s:'ok',a:'קצת',f:'לעיתים',n:'מעדיף עלי ורד והיביסקוס'},'mealworms':{s:'lim',a:'קצת',f:'לעיתים'},'hissingcockroach':{s:'lim',a:'קצת',f:'לעיתים'},'chinchilla':{s:'no',n:'לא מתאים, צריך חציר יבש בלבד'},'beardie':{s:'no',n:'לא מזון טבעי לחרדון'},'jacko':{s:'no'},'lovebird':{s:'no'},'cockatiel':{s:'no'},'leopardgecko':{s:'nr'},'sibhamster':{s:'no'},'syrianhamster':{s:'no'},'gerbil':{s:'no'},'dog':{s:'no'}}
 }
 ];
 
@@ -3239,10 +3264,10 @@ function renderByAnimal(){
   const HAY_INFO = {
     rabbit:       {req:true,  text:'🌾 חציר חובה! (כ-80% מהתפריט). חציר טימותי או שיבולת שועל לבוגרים, אספסת לגורים ומניקות. חייב להיות זמין תמיד.'},
     sharkhan:     {req:true,  text:'🌾 חציר חובה! לשחיקת שיניים ועיכול. חציר דגנים לבוגרים, אספסת לגורים ומניקות. חייב להיות זמין תמיד.'},
-    chinchilla:   {req:true,  text:'🌾 חציר חובה! (חציר דגנים איכותי — טימותי). המרכיב הכי חשוב בתזונה, זמין בכל עת.'},
-    sulcata:      {req:true,  text:'🌾 חציר יבש וסיבי חשוב מאוד (חציר דשא או דגנים). מרכיב מרכזי בתפריט היומי — מדמה את התזונה בטבע.'},
-    sibhamster:   {req:false, text:'🌾 חציר לא חובה, אבל מומלץ — לריפוד קן ולעידוד התנהגות טבעית.'},
-    syrianhamster:{req:false, text:'🌾 חציר לא חובה, אבל מומלץ — לריפוד קן ולעידוד התנהגות טבעית.'},
+    chinchilla:   {req:true,  text:'🌾 חציר חובה! (חציר דגנים איכותי (טימותי)). המרכיב הכי חשוב בתזונה, זמין בכל עת.'},
+    sulcata:      {req:true,  text:'🌾 חציר יבש וסיבי חשוב מאוד (חציר דשא או דגנים). מרכיב מרכזי בתפריט היומי, מדמה את התזונה בטבע.'},
+    sibhamster:   {req:false, text:'🌾 חציר לא חובה, אבל מומלץ לריפוד קן ולעידוד התנהגות טבעית.'},
+    syrianhamster:{req:false, text:'🌾 חציר לא חובה, אבל מומלץ לריפוד קן ולעידוד התנהגות טבעית.'},
     gerbil:       {req:false, text:'🌾 חציר משמש בעיקר לכרסם ולבנות מחילות יציבות במצע — לא כמזון עיקרי.'},
   };
   const hayInfo = HAY_INFO[selectedBA];
@@ -4154,7 +4179,7 @@ function dmMultiplyPortion(portionText, count, foodId) {
 const HAY_DM_INFO = {
   rabbit:       {amount:'2 חופנים גדולים', note:'לנשנוש וכרסום סיבי'},
   sharkhan:     {amount:'חופן אחד גדול', note:'לשחיקת שיניים ועיכול'},
-  chinchilla:   {amount:'חופן אחד גדול', note:'חציר דגנים — חיוני!'},
+  chinchilla:   {amount:'חופן אחד גדול', note:'חציר דגנים, חיוני!'},
   sulcata:      {amount:'2 חופנים', note:'חציר יבש, לצד האוכל הרגיל'},
   sibhamster:   {amount:'חופן אחד קטן', note:'בעיקר לריפוד וקינון'},
   syrianhamster:{amount:'חופן אחד קטן', note:'בעיקר לריפוד וקינון'},
@@ -4255,6 +4280,11 @@ function dmGenerate() {
   // כפתור הקרא הכל
   html += `<div style="text-align:center;padding:.4rem 0">
     <button onclick="dmSpeakAll()" style="background:#f0f4ff;border:2px solid #c0d0f0;border-radius:50px;padding:.45rem 1.2rem;font-size:.88rem;font-weight:700;cursor:pointer;color:#3050a0;font-family:inherit">🔊 הקרא את כל התפריט</button>
+  </div>`;
+
+  // קישור למקרא
+  html += `<div style="text-align:center;padding:.2rem 0">
+    <a href="#" onclick="event.preventDefault();document.getElementById('dm-legend').scrollIntoView({behavior:'smooth',block:'center'})" style="font-size:.78rem;color:#888;text-decoration:underline dotted">📏 מה המשמעות של כל כמות?</a>
   </div>`;
 
   html += '</div>';
@@ -6031,12 +6061,12 @@ function dismissStarTooltip(){
   const t = document.getElementById('starTooltip');
   if(t){ t.style.transition='opacity .4s'; t.style.opacity='0'; setTimeout(()=>t.style.display='none', 400); }
 }
-setTimeout(dismissStarTooltip, 8000);
-// הטולטיפ מופיע רק אחרי שהציפור נעלמת
-const _starT = document.getElementById('starTooltip');
-if(_starT) _starT.style.opacity='0';
-setTimeout(()=>{ const t=document.getElementById('starTooltip'); if(t){t.style.transition='opacity .6s';t.style.opacity='1';} }, 16000);
-setTimeout(dismissStarTooltip, 25000);
+// הטולטיפ מופיע רק אחרי שהציפור נעלמת (16 שניות)
+setTimeout(()=>{
+  const t = document.getElementById('starTooltip');
+  if(t){ t.style.display='inline-block'; t.style.opacity='0'; t.style.transition='opacity .6s'; setTimeout(()=>t.style.opacity='1', 30); }
+  setTimeout(dismissStarTooltip, 9000);
+}, 16000);
 </script>
 
 <!-- ציפור שמצניחה את המדריך -->
@@ -6081,6 +6111,13 @@ function dismissGuideBird(permanent){
   bird.style.transform = 'translateX(-50%) translateX(120vw)';
   bird.style.opacity = '0';
   sessionStorage.setItem('guideSeen','1');
+}
+</script>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js');
+  });
 }
 </script>
 </body>
