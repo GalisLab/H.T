@@ -1871,9 +1871,9 @@ const DEFAULT_FOODS = [
    {name:'חציר יבש',rawOk:'ok',partAnimals:{'rabbit':'ok','sharkhan':'ok','chinchilla':'ok','sulcata':'ok','sibhamster':'lim','syrianhamster':'lim','gerbil':'lim','japanese_quail':'lim','jacko':'lim','lovebird':'lim','cockatiel':'lim','beardie':'no','leopardgecko':'no','vietstick':'no','mealworms':'no','hissingcockroach':'no','fish':'no','dog':'no'}}
  ],
  animals:{
-   'rabbit':       {s:'ok', a:'חופן גדול', f:'כל יום',  n:'80% מהתפריט! חציר טימותי לבוגרים, אספסת לגורים'},
-   'sharkhan':     {s:'ok', a:'חופן',       f:'כל יום',  n:'חיוני לשחיקת שיניים ולעיכול תקין. חציר דגנים לבוגרים, אספסת רק לגורים/הרות/מניקות (למניעת אבנים בשתן)'},
-   'chinchilla':   {s:'ok', a:'חופן גדול', f:'כל יום',  n:'חציר דגנים בסיסי (טימותי), המרכיב הכי חשוב בתזונה! אספסת רק לחיזוק או לגורים'},
+   'rabbit':       {s:'ok', a:'חופן גדול', f:'כל יום',  n:'בסיס התזונה, קריטי לשחיקת שיניים ולעיכול תקין. חציר דגנים (או טימותי) לבוגרים, אספסת לגורים או מניקות'},
+   'sharkhan':     {s:'ok', a:'חופן',       f:'כל יום',  n:'מרכיב מרכזי וחיוני, קריטי לשחיקת שיניים ולעיכול תקין. חציר דגנים (או טימותי) לבוגרים, אספסת לגורים או מניקות (למניעת אבנים בשתן)'},
+   'chinchilla':   {s:'ok', a:'חופן גדול', f:'כל יום',  n:'מרכיב מרכזי וחיוני, קריטי לשחיקת שיניים ולעיכול תקין. חציר דגנים (או טימותי) לבוגרים, אספסת לגורים או מניקות'},
    'sulcata':      {s:'ok', a:'2 חופנים',  f:'כל יום',  n:'חציר דגנים סיבי בלבד. להימנע מאספסת (עודף חלבון פוגע בשריון). חיוני לפעילות מעיים תקינה'},
    'sibhamster':   {s:'lim',a:'קצת',        f:'לעיתים', n:'לא כמזון, בעיקר לריפוד הקן'},
    'syrianhamster':{s:'lim',a:'קצת',        f:'לעיתים', n:'לא כמזון, בעיקר לריפוד הקן'},
@@ -2990,12 +2990,12 @@ function openFoodModal(foodId, list, autoPartIdx){
   const whyHtml = food.why ? `
     <div style="background:#f0fff8;border-right:4px solid #3aaa6e;border-radius:10px;padding:.5rem .75rem;font-size:.82rem;color:#1a5c35;margin-bottom:.7rem;line-height:1.55">
       <div style="font-weight:700;font-size:.76rem;color:#3aaa6e;margin-bottom:.18rem">🌱 למה כדאי?</div>
-      ${linkify(food.why)}
+      ${linkify(food.why, food.id)}
     </div>` : '';
   const whyNotHtml = food.whyNot ? `
     <div style="background:#fff0f0;border-right:4px solid #e05252;border-radius:10px;padding:.5rem .75rem;font-size:.82rem;color:#8b1c1c;margin-bottom:.7rem;line-height:1.55">
       <div style="font-weight:700;font-size:.76rem;color:#e05252;margin-bottom:.18rem">⚠️ למה להיזהר?</div>
-      ${linkify(food.whyNot)}
+      ${linkify(food.whyNot, food.id)}
     </div>` : '';
 
   // חלקי צמח
@@ -3130,7 +3130,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal(); if(e.k
 
 // ── קישוריות פנימית ───────────────────────────────────────────
 // הופך אזכורי מזון וחיות בטקסט לקישורים לחיצים
-function linkify(text){
+function linkify(text, selfId){
   if(!text||typeof text!=='string') return text;
   // החלף שמות חיות
   ANIMALS.forEach(a=>{
@@ -3138,8 +3138,9 @@ function linkify(text){
     const re = new RegExp(`(?<![\\w>])(${name})(?![\\w<])`, 'g');
     text = text.replace(re, `<a href="#" onclick="event.preventDefault();openAnimalModal('${a.id}')" style="color:var(--blue);text-decoration:underline dotted;cursor:pointer">$1</a>`);
   });
-  // החלף שמות מזונות
+  // החלף שמות מזונות (לא מקשרים מזון לעצמו)
   FOODS.forEach(f=>{
+    if(f.id === selfId) return;
     const name = f.name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
     const re = new RegExp(`(?<![\\w>])(${name})(?![\\w<])`, 'g');
     text = text.replace(re, `<a href="#" onclick="event.preventDefault();openFoodModal('${f.id}')" style="color:var(--green);text-decoration:underline dotted;cursor:pointer">$1</a>`);
@@ -3262,8 +3263,8 @@ function renderByAnimal(){
   const ph=animal.photo?`<img src="${animal.photo}" style="width:70px;height:70px;border-radius:var(--radius);object-fit:cover" onerror="this.style.display='none'">`:
     `<span style="font-size:3rem">${animal.emoji}</span>`;
   const HAY_INFO = {
-    rabbit:       {req:true,  text:'🌾 חציר חובה! (כ-80% מהתפריט). חציר טימותי או שיבולת שועל לבוגרים, אספסת לגורים ומניקות. חייב להיות זמין תמיד.'},
-    sharkhan:     {req:true,  text:'🌾 חציר חובה! לשחיקת שיניים ועיכול. חציר דגנים לבוגרים, אספסת לגורים ומניקות. חייב להיות זמין תמיד.'},
+    rabbit:       {req:true,  text:'🌾 חציר חובה! בסיס התזונה, קריטי לשחיקת שיניים ולעיכול תקין. חציר דגנים (או טימותי) לבוגרים, אספסת לגורים או מניקות. חייב להיות זמין תמיד.'},
+    sharkhan:     {req:true,  text:'🌾 חציר חובה! מרכיב מרכזי וחיוני, קריטי לשחיקת שיניים ולעיכול תקין. חציר דגנים (או טימותי) לבוגרים, אספסת לגורים או מניקות. חייב להיות זמין תמיד.'},
     chinchilla:   {req:true,  text:'🌾 חציר חובה! (חציר דגנים איכותי (טימותי)). המרכיב הכי חשוב בתזונה, זמין בכל עת.'},
     sulcata:      {req:true,  text:'🌾 חציר יבש וסיבי חשוב מאוד (חציר דשא או דגנים). מרכיב מרכזי בתפריט היומי, מדמה את התזונה בטבע.'},
     sibhamster:   {req:false, text:'🌾 חציר לא חובה, אבל מומלץ לריפוד קן ולעידוד התנהגות טבעית.'},
