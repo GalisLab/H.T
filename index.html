@@ -490,6 +490,23 @@ body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:#ddd}
   <span style="margin-right:auto;opacity:.7;font-size:.73rem">כפתורי ✏️ ועריכה גלויים כעת בכל המזונות</span>
 </div>
 
+
+<div id="updateBanner" style="display:none;background:linear-gradient(135deg,#fffbe6,#fff3cd);border:2px solid #f0c840;border-radius:16px;margin:1rem auto 0;max-width:480px;padding:1rem 1.2rem;font-family:'Varela Round',sans-serif;direction:rtl;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.10)">
+  <div style="font-size:1.6rem;margin-bottom:.35rem">🔄</div>
+  <div style="font-size:.95rem;font-weight:800;color:#5a3800;margin-bottom:.25rem">יש גרסה חדשה של האפליקציה?</div>
+  <div style="font-size:.8rem;color:#7a5500;margin-bottom:.75rem;line-height:1.5">כדי לוודא שיש לך את הגרסה המעודכנת ביותר,<br>לחץ על הכפתור ועקוב אחרי ההוראות להתקנה מחדש.</div>
+  <a href="https://galislab.github.io/H.T/" style="display:inline-block;background:linear-gradient(135deg,#3aaa6e,#4090d0);color:white;border-radius:50px;padding:.55rem 1.4rem;font-size:.88rem;font-weight:700;text-decoration:none;box-shadow:0 3px 12px rgba(58,170,110,.3)">✨ עבור לגרסה העדכנית</a>
+  <div style="margin-top:.6rem">
+    <button onclick="document.getElementById('updateBanner').style.display='none'" style="background:none;border:none;font-size:.75rem;color:#aaa;cursor:pointer;font-family:inherit">סגור</button>
+  </div>
+</div>
+<script>
+if(location.protocol === 'file:' || (location.hostname && location.hostname !== 'galislab.github.io')){
+  const b = document.getElementById('updateBanner');
+  if(b){ b.style.display = 'block'; }
+}
+</script>
+
 <div class="tabs">
   <button class="tab-btn active" data-tab="quickguide" onclick="switchTab('quickguide')">📝 בקיצור <span onclick="event.stopPropagation();speakText('בקיצור. רשימת קניות מהירה.',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .15rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
   <button class="tab-btn" data-tab="search" onclick="switchTab('search')">🔍 חיפוש מורחב <span onclick="event.stopPropagation();speakText('חיפוש מורחב. מזון, חיה, קטגוריה.',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .15rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
@@ -6889,6 +6906,8 @@ function spawnHeartConfetti() {
 
 </script>
 <footer style="text-align:center;font-size:10px;color:rgba(128,128,128,0.3);padding:.5rem;margin-top:1rem">נבנה באהבה עבור פינת החי של בית ספר שז"ר, באר שבע</footer>
+
+
 <!-- LIGHTBOX -->
 <div id="lightbox-overlay" onclick="closeLightbox()">
   <button id="lightbox-close" onclick="closeLightbox()">✕</button>
