@@ -6982,7 +6982,8 @@ let _pwaPrompt = null;
 window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
   _pwaPrompt = e;
-  document.getElementById('pwaInstallWrap').style.display = 'block';
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  if(isMobile) document.getElementById('pwaInstallWrap').style.display = 'block';
 });
 window.addEventListener('appinstalled', () => {
   document.getElementById('pwaInstallWrap').style.display = 'none';
