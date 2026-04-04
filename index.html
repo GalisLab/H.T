@@ -43,9 +43,82 @@ body.dark .part-detail{background:#1e2535;border-color:var(--blue)}
 body.dark .insight-item{background:var(--card)}
 body.dark #darkModeBtn{background:rgba(255,255,255,.12)}
 
+/* ═══ RAINBOW MODE ═══ */
+body.rainbow{
+  --card:rgba(255,255,255,0.88);--text:#222;--muted:#666;
+  --shadow:0 3px 16px rgba(0,0,0,.12);
+  background:
+    linear-gradient(180deg,
+      #ff6eb4 0%,
+      #ff9a3c 14%,
+      #ffe83c 28%,
+      #6be86b 42%,
+      #3cb8ff 57%,
+      #7b5ff5 71%,
+      #ff6eb4 85%,
+      #ff9a3c 100%
+    ) !important;
+  background-attachment:scroll !important;
+  min-height:100vh;
+  position:relative;
+}
+body.rainbow::before{
+  content:'🌈✨🌈💫🌈⭐🌈🌟🌈✨🌈💫🌈⭐🌈🌟🌈✨🌈💫🌈⭐🌈🌟🌈✨🌈💫🌈⭐🌈🌟🌈✨🌈💫🌈⭐🌈🌟🌈✨🌈💫🌈⭐🌈🌟🌈✨🌈💫🌈⭐🌈🌟🌈✨🌈💫🌈⭐🌈🌟🌈✨🌈💫🌈⭐🌈🌟🌈✨🌈💫🌈⭐🌈🌟🌈✨🌈💫🌈⭐🌈🌟';
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  font-size:2rem;line-height:2.2;
+  display:block;
+  opacity:.25;pointer-events:none;z-index:0;
+  overflow:hidden;
+  word-break:break-all;
+  letter-spacing:.2rem;
+  animation:rainbowShift 6s linear infinite;
+}
+body.rainbow > *{position:relative;z-index:1}
+body.rainbow::before{
+  content:'🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈';
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  font-size:6rem;line-height:1.1;
+  display:flex;flex-wrap:wrap;align-content:flex-start;
+  opacity:.07;pointer-events:none;z-index:0;
+  overflow:hidden;letter-spacing:-.5rem;
+  word-break:break-all;
+}
+body.rainbow > *{position:relative;z-index:1}
+body.rainbow header{background:linear-gradient(135deg,#ffb3d0,#ffd97a,#90e8b0,#80c8ff,#d0a8ff)}
+body.rainbow .tab-btn{background:rgba(255,255,255,.75)}
+body.rainbow .food-card,body.rainbow .animal-card,body.rainbow .don-card,body.rainbow .insight-card,body.rainbow .my-card{background:rgba(255,255,255,.82)}
+body.rainbow .tab-btn.active[data-tab="quickguide"]{background:linear-gradient(135deg,#3aaa6e,#40c070)}
+body.rainbow .tab-btn.active[data-tab="search"]{background:linear-gradient(135deg,#4090d0,#60b0f0)}
+body.rainbow .tab-btn.active[data-tab="allfoods"]{background:linear-gradient(135deg,#8060c0,#a080e0)}
+body.rainbow .tab-btn.active[data-tab="animals"]{background:linear-gradient(135deg,#d060a0,#f080c0)}
+body.rainbow .tab-btn.active[data-tab="byanimal"]{background:linear-gradient(135deg,#e07020,#f09040)}
+body.rainbow .tab-btn.active[data-tab="mycorner"]{background:linear-gradient(135deg,#20a0a0,#40c0c0)}
+body.rainbow .tab-btn.active[data-tab="donate"]{background:linear-gradient(135deg,#c04080,#e06090)}
+body.rainbow .tab-btn.active[data-tab="insight"]{background:linear-gradient(135deg,#7b5ea7,#9b7ec7)}
+body.rainbow .tab-btn.active[data-tab="dailymenu"]{background:linear-gradient(135deg,#e07820,#f09840)}
+body.rainbow .food-card:nth-child(5n+1){border-top:3px solid #ff6b9d}
+body.rainbow .food-card:nth-child(5n+2){border-top:3px solid #ffa94d}
+body.rainbow .food-card:nth-child(5n+3){border-top:3px solid #69db7c}
+body.rainbow .food-card:nth-child(5n+4){border-top:3px solid #4dabf7}
+body.rainbow .food-card:nth-child(5n+5){border-top:3px solid #cc5de8}
+body.rainbow .animal-card:nth-child(5n+1){border-top:3px solid #ff6b9d}
+body.rainbow .animal-card:nth-child(5n+2){border-top:3px solid #ffa94d}
+body.rainbow .animal-card:nth-child(5n+3){border-top:3px solid #69db7c}
+body.rainbow .animal-card:nth-child(5n+4){border-top:3px solid #4dabf7}
+body.rainbow .animal-card:nth-child(5n+5){border-top:3px solid #cc5de8}
+body.rainbow .insight-island.emotional{background:rgba(255,230,255,.7);border-color:#e0a0ff}
+body.rainbow .insight-island.nutrition{background:rgba(220,255,220,.7);border-color:#80e080}
+body.rainbow .insight-island.safety{background:rgba(255,240,220,.7);border-color:#ffa060}
+body.rainbow #darkModeBtn{background:rgba(255,255,255,.45)}
+body.rainbow #globalSearchBar{background:rgba(255,255,255,.5) !important;border-bottom-color:rgba(255,255,255,.4) !important;backdrop-filter:blur(4px)}
+body.rainbow .search-wrap input{background:rgba(255,255,255,.85)}
+body.rainbow .modal-box,body.rainbow .modal-top{background:rgba(255,255,255,.95)}
+@keyframes rainbowShift{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(360deg)}}
+body.rainbow header .ticker{animation:tick 28s linear infinite, rainbowShift 8s linear infinite}
+
 *{box-sizing:border-box;margin:0;padding:0}
 html{font-size:17px}
-body{font-family:'Varela Round','Heebo',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+body{font-family:'Varela Round','Heebo',sans-serif;background:var(--bg)!important;color:var(--text);min-height:100vh}
 
 /* HEADER */
 header{background:linear-gradient(135deg,#b8e8ff,#d8d0ff,#b8f0e0);padding:1.4rem 1rem 1rem;text-align:center;border-bottom:3px dashed #bdd6f0;overflow:hidden;position:relative}
@@ -466,7 +539,7 @@ body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:#ddd}
 </header>
 
 <!-- חיפוש גלובלי -->
-<div style="background:var(--card);border-bottom:2px solid #e8f0e8;padding:.6rem .8rem .5rem">
+<div id="globalSearchBar" style="background:var(--card);border-bottom:2px solid #e8f0e8;padding:.6rem .8rem .5rem">
   <div style="position:relative;max-width:600px;margin:0 auto">
     <span style="position:absolute;right:.75rem;top:50%;transform:translateY(-50%);font-size:1.1rem;pointer-events:none">🔍</span>
     <input id="globalSearchInput" type="text"
@@ -1548,18 +1621,42 @@ body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:#ddd}
 <script>
 // ── Dark Mode ──────────────────────────────────────────
 function toggleDark(){
-  const isDark = document.body.classList.toggle('dark');
-  localStorage.setItem('pina-dark', isDark ? '1' : '0');
-  document.getElementById('darkModeBtn').textContent = isDark ? '☀️' : '🌙';
+  const body = document.body;
+  const btn = document.getElementById('darkModeBtn');
+  if(body.classList.contains('rainbow')){
+    // קשת → בהיר
+    body.classList.remove('rainbow');
+    localStorage.setItem('pina-mode','light');
+    if(btn) btn.textContent='🌙';
+  } else if(body.classList.contains('dark')){
+    // כהה → קשת
+    body.classList.remove('dark');
+    body.classList.add('rainbow');
+    localStorage.setItem('pina-mode','rainbow');
+    if(btn) btn.textContent='🌈';
+  } else {
+    // בהיר → כהה
+    body.classList.add('dark');
+    localStorage.setItem('pina-mode','dark');
+    if(btn) btn.textContent='☀️';
+  }
 }
 (function(){
-  if(localStorage.getItem('pina-dark')==='1'){
-    document.body.classList.add('dark');
-    document.addEventListener('DOMContentLoaded',()=>{
-      const btn=document.getElementById('darkModeBtn');
+  const mode = localStorage.getItem('pina-mode') || (localStorage.getItem('pina-dark')==='1' ? 'dark' : 'light');
+  document.addEventListener('DOMContentLoaded',()=>{
+    const btn = document.getElementById('darkModeBtn');
+    if(mode==='dark'){
+      document.body.classList.add('dark');
       if(btn) btn.textContent='☀️';
-    });
-  }
+    } else if(mode==='rainbow'){
+      document.body.classList.add('rainbow');
+      if(btn) btn.textContent='🌈';
+    } else {
+      if(btn) btn.textContent='🌙';
+    }
+  });
+  if(mode==='dark') document.body.classList.add('dark');
+  if(mode==='rainbow') document.body.classList.add('rainbow');
 })();
 </script>
 <script>
