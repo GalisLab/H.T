@@ -132,7 +132,7 @@ body.dark .island-header{border-bottom-color:rgba(255,255,255,.1)}
 body.dark .island-title{color:#e0e4f0}
 .island-subtitle{font-size:.78rem;color:#777;font-weight:600;margin-top:.1rem}
 body.dark .island-subtitle{color:#9aa0b0}
-.island-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.9rem}
+.island-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:.9rem}
 /* ── Article Cards ── */
 .insight-card{background:var(--card);border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,.07);overflow:hidden;cursor:pointer;transition:transform .18s,box-shadow .18s;display:flex;flex-direction:column}
 .insight-card:hover{transform:translateY(-3px);box-shadow:0 6px 22px rgba(0,0,0,.13)}
@@ -324,13 +324,133 @@ body.dark .safety .insight-links{background:#2a1a10;border-right-color:#e08050}
 #lightbox-close{position:fixed;top:1rem;left:1rem;background:rgba(255,255,255,.2);border:none;border-radius:50%;width:38px;height:38px;font-size:1.2rem;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
 #lightbox-close:hover{background:rgba(255,255,255,.35)}
 .zoomable{cursor:zoom-in!important}
+
+.island-expand-all{display:block;margin:.5rem 0 .9rem auto;background:none;border:1.5px solid rgba(0,0,0,.15);border-radius:50px;padding:.28rem .85rem;font-size:.75rem;font-weight:700;cursor:pointer;font-family:inherit;color:#666;transition:all .15s;direction:rtl}
+
+/* ── Open-in-modal button ── */
+.ic-open-btn{background:none;border:1.5px solid #d0c8f0;border-radius:50%;width:26px;height:26px;font-size:.82rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;color:#9070c8;transition:all .18s;flex-shrink:0;padding:0;line-height:1}
+.ic-open-btn:hover{background:#ede8ff;border-color:#9070c8;transform:scale(1.12)}
+.nutrition .ic-open-btn{border-color:#a0d8b8;color:#2d7a4a}
+.nutrition .ic-open-btn:hover{background:#e0f7ec;border-color:#2d7a4a}
+.safety .ic-open-btn{border-color:#f0c0a0;color:#c05020}
+.safety .ic-open-btn:hover{background:#fff4ec;border-color:#c05020}
+body.dark .ic-open-btn{border-color:#4a3570;color:#c8a8f8}
+body.dark .ic-open-btn:hover{background:#2a1e40}
+/* ── Full-article modal ── */
+#articleModal{display:none;position:fixed;inset:0;z-index:9600;background:rgba(0,0,0,.6);overflow-y:auto;padding:1.2rem 1rem}
+#articleModal.open{display:block}
+#articleModalBox{background:var(--card);border-radius:22px;max-width:680px;margin:0 auto;box-shadow:0 20px 60px rgba(0,0,0,.3);direction:rtl;overflow:hidden}
+#articleModalHead{position:sticky;top:0;background:var(--card);padding:.9rem 1.1rem .6rem;display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid rgba(0,0,0,.08);z-index:2}
+#articleModalTag{font-size:.68rem;font-weight:700;padding:.12rem .5rem;border-radius:50px;display:inline-block;margin-bottom:.25rem}
+#articleModalTitle{font-size:1.05rem;font-weight:800;color:var(--text);line-height:1.35;direction:rtl}
+#articleModalContent{padding:1.3rem 1.5rem 2rem;line-height:1.85;color:var(--text);font-size:.93rem;direction:rtl;text-align:right}
+#articleModalContent h3{font-size:.95rem;font-weight:700;margin:1.1rem 0 .35rem;color:#5a3d8a}
+#articleModalContent.nutrition-modal h3{color:#1e6a38}
+#articleModalContent.safety-modal h3{color:#c05020}
+body.dark #articleModalContent h3{color:#c0a0f8}
+body.dark #articleModalContent.nutrition-modal h3{color:#80d4a0}
+body.dark #articleModalContent.safety-modal h3{color:#f0a878}
+#articleModalContent p{margin:.3rem 0 .75rem}
+#articleModalContent .insight-links{margin-top:1rem;padding:.85rem 1rem;background:#f8f5ff;border-radius:10px;border-right:3px solid #c3a8e8}
+#articleModalContent .insight-links p{font-size:.81rem;color:#666;margin:.22rem 0}
+#articleModalContent .insight-links a{color:#7b5ea7;font-weight:700;text-decoration:none}
+#articleModalContent .insight-links a:hover{text-decoration:underline}
+body.dark #articleModalContent .insight-links{background:#1e1a2e;border-right-color:#6a4aaa}
+body.dark #articleModalContent .insight-links p{color:#9098a8}
+#articleModalContent.nutrition-modal .insight-links{background:#f0faf4;border-right-color:#5ab870}
+#articleModalContent.safety-modal .insight-links{background:#fff6f0;border-right-color:#e08050}
+.am-close-btn{background:none;border:1.5px solid #ccc;border-radius:50%;width:34px;height:34px;font-size:1rem;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#888;transition:all .15s;margin-right:.5rem}
+.am-close-btn:hover{border-color:#888;color:#333}
+.island-expand-all:hover{border-color:#999;color:#333}
+body.dark .island-expand-all{border-color:rgba(255,255,255,.2);color:#aaa}
+body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:#ddd}
+#insightModal .insight-links{margin-top:1.1rem;padding:.9rem 1rem;border-radius:10px}
+#insightModal .insight-links p{font-size:.82rem;margin:.25rem 0}
+#insightModal .insight-links a{font-weight:700;text-decoration:none}
+#insightModal .insight-links a:hover{text-decoration:underline}
+
+/* ══ INSIGHT VISUAL EFFECTS ══ */
+
+/* fade-in + slide-up לאיים בכניסה */
+@keyframes islandReveal{
+  from{opacity:0;transform:translateY(22px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.insight-island{
+  opacity:0;
+  animation:islandReveal .55s ease forwards;
+}
+.insight-island:nth-child(1){animation-delay:.05s}
+.insight-island:nth-child(2){animation-delay:.22s}
+.insight-island:nth-child(3){animation-delay:.4s}
+
+/* זוהר על האי בhover */
+.insight-island.emotional:hover{box-shadow:0 0 0 2.5px #c8a8f8,0 6px 24px rgba(124,92,191,.13)}
+.insight-island.nutrition:hover{box-shadow:0 0 0 2.5px #8adaaa,0 6px 24px rgba(45,122,74,.12)}
+.insight-island.safety:hover{box-shadow:0 0 0 2.5px #f0b898,0 6px 24px rgba(192,80,32,.11)}
+.insight-island{transition:box-shadow .25s}
+
+/* pulse על כרטיסייה בפתיחה */
+@keyframes cardPulse{
+  0%{transform:scale(1)}
+  40%{transform:scale(1.025)}
+  100%{transform:scale(1)}
+}
+.insight-card.opening{animation:cardPulse .38s ease}
+
+/* ripple */
+.insight-card{position:relative;overflow:hidden}
+.insight-ripple{
+  position:absolute;border-radius:50%;
+  transform:scale(0);animation:rippleAnim .55s ease-out forwards;
+  pointer-events:none;z-index:0;opacity:.18
+}
+@keyframes rippleAnim{to{transform:scale(4);opacity:0}}
+
+/* h3 slide-in bar בhover */
+.insight-body h3{
+  position:relative;padding-right:.5rem;
+  transition:padding-right .2s;
+}
+.insight-body h3::before{
+  content:'';position:absolute;right:0;top:.1em;bottom:.1em;
+  width:3px;border-radius:2px;
+  background:var(--purple);
+  transform:scaleY(0);transform-origin:top;
+  transition:transform .22s ease;
+}
+.nutrition .insight-body h3::before{background:var(--teal)}
+.safety .insight-body h3::before{background:var(--orange)}
+.insight-body h3:hover::before{transform:scaleY(1)}
+.insight-body h3:hover{padding-right:1rem}
+
+/* אימוג'י מתפוצץ על כותרות אי */
+.island-emoji-pop{
+  display:inline-block;
+  transition:transform .18s;
+  cursor:pointer;
+}
+.island-emoji-pop:hover{transform:scale(1.25) rotate(-8deg)}
+@keyframes emojiPop{
+  0%{transform:scale(1)}
+  35%{transform:scale(1.5) rotate(12deg)}
+  65%{transform:scale(.9) rotate(-6deg)}
+  100%{transform:scale(1) rotate(0)}
+}
+.island-emoji-pop.popping{animation:emojiPop .45s ease}
+
+/* confetti ירוק לפתח-הכל */
+@keyframes confettiInsight{
+  0%{transform:translateY(-10px) rotate(0deg);opacity:1}
+  100%{transform:translateY(80px) rotate(360deg);opacity:0}
+}
 </style>
 </head>
 <body>
 <div class="loader" id="loader"><div class="spin">🌿</div><div>בעלי החיים מתארגנים ובאים...</div></div>
 
 <header>
-  <button id="darkModeBtn" onclick="toggleDark()" title="מצב כהה/בהיר" aria-label="מצב כהה/בהיר" style="position:absolute;left:.8rem;top:.8rem;background:rgba(255,255,255,.25);border:none;border-radius:50%;width:38px;height:38px;font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:10">🌙</button>
+  <button id="darkModeBtn" onclick="toggleDark()" title="מצב כהה/בהיר" aria-label="מצב כהה/בהיר" style="position:absolute;right:.8rem;top:.8rem;background:rgba(255,255,255,.25);border:none;border-radius:50%;width:38px;height:38px;font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:10">🌙</button>
   <div class="ticker" onclick="spawnPawTrail()" style="cursor:pointer" title="🐾">🦜🐹🐢🦎🐛🐰🐕🐟🦎🐱🐹🐰🦜🐢🐛🐕🐟🦜🐹🐢🦎🐛🐰🐕🐟🦎🐱🐹🐰🦜🐢🐛🐕🐟</div>
   <div style="font-size:.75rem;color:#557;font-weight:700;margin-bottom:.2rem">🏫 בית ספר שז"ר - פינת החי</div>
   <h1>🌿 מה אוכלים היום בפינת החי?</h1>
@@ -908,189 +1028,35 @@ body.dark .safety .insight-links{background:#2a1a10;border-right-color:#e08050}
 </div>
 
 <div class="tab-panel" id="tab-insight">
-  <div class="section-hero"><span class="hero-emoji">💡</span><h2>מבט מעמיק</h2><p>על פינת החי, על הקשר, על המזון ועל עצמנו</p></div>
+  <div class="section-hero"><span class="hero-emoji">💡</span><h2>מבט מעמיק <span onclick="event.stopPropagation();speakText('מבט מעמיק. בין הבית לפינת החי. המפגש שלנו עם בעלי החיים ועם עצמנו.',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0" aria-label="הקרא בקול">🔊</span></h2><p>בין הבית לפינת החי: המפגש שלנו עם בעלי החיים ועם עצמנו</p><button onclick="speakInsightAll(this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.78rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
+  <div style="text-align:center;margin:.5rem 0 .2rem">
+    <button id="insightExpandAllBtn" onclick="expandAllInsights()" style="background:none;border:1.5px solid rgba(0,0,0,.18);border-radius:50px;padding:.32rem 1.1rem;font-size:.8rem;font-weight:700;cursor:pointer;font-family:inherit;color:#666;transition:all .15s;direction:rtl">📖 פתח את כל הקטעים בכל הקטגוריות</button>
+  </div>
 
   <div class="insight-islands">
 
-    <section class="insight-island emotional">
-      <div class="island-header">
-        <span class="island-emoji">💜</span>
-        <div>
-          <div class="island-title">רגש וקהילה</div>
-          <div class="island-subtitle">על הקשר, השייכות והצמיחה</div>
-        </div>
-      </div>
-      <div class="island-grid">
-    <div class="insight-card" id="insight-card-0" onclick="toggleInsightCard('insight-body-0', this)" itemscope itemtype="https://schema.org/Article">
-      <div class="insight-card-top">
-        <span class="insight-card-tag">רגש וקהילה</span>
-        <div class="insight-card-title" itemprop="name">🌿 פינת החי שלנו: מקום של רגש, למידה והתפתחות</div>
-        <div class="insight-card-preview">פינת החי היא אחד המקומות המיוחדים בבית הספר. זה המקום שבו אפשר להירגע, לנשום ולהרגיש שאפשר פשוט להיות. מי שמגיע לפינת הח...</div>
-      </div>
-      <div class="insight-card-footer">
-        <span class="insight-card-cta">קראו עוד ←</span>
-        <span style="font-size:.85rem;opacity:.5">▼</span>
-      </div>
-      <div class="insight-body" id="insight-body-0" itemprop="articleBody">
-        <h2 style="display:none">פינת החי שלנו: מקום של רגש, למידה והתפתחות</h2>
-        <h2 style="display:none">פינת החי שלנו: מקום של רגש, למידה והתפתחות</h2>
-
-        <h3>מרחב של שקט בתוך יום הלימודים</h3>
-        <p>פינת החי היא אחד המקומות המיוחדים בבית הספר. זה המקום שבו אפשר להירגע, לנשום ולהרגיש שאפשר פשוט להיות. מי שמגיע לפינת החי מגלה מהר מאוד שזה מרחב אחר. בתוך יום לימודים עמוס ולא תמיד פשוט, פינת החי מעניקה לנו רגע של שקט, חיבור ומשמעות.</p>
-
-        <h3>לקיחת אחריות ופיתוח אמפתיה</h3>
-        <p>בפינת החי אנחנו לא רק נמצאים ליד בעלי חיים אלא גם אחראים עליהם. אנחנו לומדים להאכיל, לנקות את האקווריום של דגי המים המתוקים, להתבונן ולזהות צרכים. דרך האחריות הזו אנחנו מפתחים רגישות אמיתית. אנחנו לומדים לשים לב לאחר, בין אם זה ל<a href="#" onclick="switchTab('byanimal');return false">מקלון ויאטנמי על ענף</a> או לציפור אהבה, להבין מצבים ולהגיב אליהם בצורה מתאימה. מתוך זה מתפתחת אמפתיה והיכולת ליצור קשר משמעותי.</p>
-
-        <h3>טיפולים רגשיים דרך בעלי החיים</h3>
-        <p>מעבר לטיפול היומיומי, מתקיימים בפינת החי גם טיפולים רגשיים וקבוצות קטנות. בעלי החיים מאפשרים לנו לדבר על רגשות בצורה עקיפה ובטוחה. קל לנו יותר להתחיל מלדבר על מה שעובר על <a href="#" onclick="switchTab('animals');return false">הארנבון, על השממית המנומרת</a> או על האוגר הסיבירי ומתוך זה להבין משהו על עצמנו. דרך התהליך הזה אפשר לפתח ביטחון, ללמוד לווסת רגשות ולתקשר תסכול וכעס בצורה בטוחה ולא שיפוטית.</p>
-
-        <h3>חיזוק תחושת המסוגלות והערך</h3>
-        <p>העבודה המעשית בפינת החי מחזקת את תחושת המסוגלות שלנו. כשמאכילים בעל חיים כמו <a href="#" onclick="switchTab('byanimal');return false">החרדון המזוקן</a> ורואים אותו אוכל, כשמנקים והסביבה משתפרת, נוצרת תחושת הצלחה אמיתית. מי שמגיע לפינת החי חווה השפעה ויכולת לעשות טוב בעולם. עבור רבים מאיתנו זו חוויה משמעותית שמחזקת את תחושת הערך העצמי.</p>
-
-        <h3>מרחב למידה חי וחווייתי</h3>
-        <p>בנוסף, פינת החי היא גם מרחב למידה חי. השיעורים שמתקיימים בה משלבים ידע על טבע, אקולוגיה ובעלי חיים בצורה מוחשית. לא רק שומעים אלא גם חווים. אנחנו שואלים שאלות על הצ'ינצ'ילה או על <a href="#" onclick="switchTab('animals');return false">הגרביל המונגולי</a>, חוקרים, מנסים ומבינים איך הדברים עובדים באמת במציאות.</p>
-
-        <h3>מן המטופל אל המטפל: שינוי בזהות</h3>
-        <p>פינת החי מחברת בין רגשי, חברתי וקוגניטיבי. היא מאפשרת לעבור תהליך שבו לא רק מקבלים עזרה אלא גם נותנים. מי שנמצא בפינת החי מגלה שהוא יכול להיות גם מטפל ולא רק מטופל. זה שינוי עמוק בתחושת הזהות ובתחושת השייכות לקהילה שלנו.</p>
-
-        <div class="insight-links">
-          <p>רוצים לדעת מה בדיוק מותר לתת לכל חיה? <a href="#" onclick="switchTab('allfoods');return false">מדריך המזונות המלא לפינת החי</a></p>
-          <p>רוצים לראות מה מתאים לכל חיה לאכול? <a href="#" onclick="switchTab('byanimal');return false">תזונה מותאמת לפי בעל חיים</a></p>
-          <p>לא בטוחים מה להביא היום? <a href="#" onclick="switchTab('quickguide');return false">רשימת קניות מהירה לפינת החי</a></p>
-          <p>רוצים לבנות תפריט יומי נכון? <a href="#" onclick="switchTab('dailymenu');return false">מחשבון התפריט היומי</a></p>
-        </div>
-        <button class="insight-close-btn" onclick="event.stopPropagation();toggleInsightCard('insight-body-0', document.getElementById('insight-card-0'))">סגור ↑</button>
-      </div>
-    </div>
-    <div class="insight-card" id="insight-card-1" onclick="toggleInsightCard('insight-body-1', this)" itemscope itemtype="https://schema.org/Article">
-      <div class="insight-card-top">
-        <span class="insight-card-tag">רגש וקהילה</span>
-        <div class="insight-card-title" itemprop="name">🕊️ פשוט להיות: הקסם של השהייה החופשית בפינת החי</div>
-        <div class="insight-card-preview">במהלך ימי הלימודים יש רגעים מיוחדים שבהם פינת החי נפתחת למבקרים. זה קורה בהפסקות המיועדות לכל שכבה או בזמנים מיוחדים כמו...</div>
-      </div>
-      <div class="insight-card-footer">
-        <span class="insight-card-cta">קראו עוד ←</span>
-        <span style="font-size:.85rem;opacity:.5">▼</span>
-      </div>
-      <div class="insight-body" id="insight-body-1" itemprop="articleBody">
-        <h2 style="display:none">פשוט להיות: הקסם של השהייה החופשית בפינת החי</h2>
-        <h2 style="display:none">פשוט להיות: הקסם של השהייה החופשית בפינת החי</h2>
-
-        <p>במהלך ימי הלימודים יש רגעים מיוחדים שבהם פינת החי נפתחת למבקרים. זה קורה בהפסקות המיועדות לכל שכבה או בזמנים מיוחדים כמו "ראשון בהפתעה" כשהתלמידים בוחרים להגיע למרחב. מי שמגיע לפינת החי מגלה מיד שלא מדובר בעוד שיעור או במשימה שחייבים לבצע. זהו מקום שבו אפשר פשוט להיות.</p>
-
-        <h3>מרחב של בחירה בתוך יום עמוס</h3>
-        <p>עבור רבים מאיתנו עמידה בדרישות ובמסגרות לאורך כל היום היא אתגר לא פשוט. פינת החי מציעה הפוגה מסוג אחר, מרחב המאפשר הפחתת מתחים טבעית. כאן אין ציפיות להישגים ואין "נכון" או "לא נכון". מי שמגיע לפינת החי מחליט אם לגשת לכלובים, לעקוב אחרי התיקן הלוחש או לשבת בשקט על הספסל. הבחירה הזו היא לב העניין. כשאנחנו בוחרים בעצמנו איך לפעול אנחנו מחזקים את תחושת השליטה והביטחון הפנימי שלנו מול העומס היומיומי.</p>
-
-        <h3>בעלי החיים כשותפים לדרך</h3>
-        <p>בעלי החיים בפינת החי מקבלים אותנו בדיוק כפי שאנחנו. הם לא שופטים ולא מעבירים ביקורת על ההתנהגות שלנו אלא מגיבים לכאן ולעכשיו. המפגש השקט הזה הוא כלי עוצמתי לוויסות רגשי. הוא מאפשר לנו להירגע וללמוד על הרגשות שלנו דרך העיניים של החיה, בין אם זה <a href="#" onclick="switchTab('byanimal');return false">תוכי קוקטייל שמתבונן בנו</a> או שרקן שמכרסם בשלווה. כשאנחנו נמצאים לידן אנחנו מפתחים אמפתיה ורגישות בדרך הכי טבעית שיש, מתוך הקשבה לצרכים של יצור אחר.</p>
-
-        <h3>ממי שמקבל עזרה למי שמעניק עזרה</h3>
-        <p>אחד הדברים המרגשים ביותר שקורים בפינת החי הוא שינוי התפקיד. בתוך המרחב הזה, מי שבדרך כלל נתפס כזקוק לתמיכה מגלה שהוא יכול להיות זה שמעניק דאגה לאחרים. כשאנחנו דואגים לרווחת החיות אנחנו מגלים בתוכנו כוחות של אחריות ומסוגלות. החוויה הזו בונה את הזהות שלנו מחדש כדמויות משפיעות ומיטיבות בתוך הקהילה.</p>
-
-        <h3>המבט המקצועי על הרגעים שלנו בפינת החי</h3>
-        <p>היופי והעומק של הרגעים האלו בפינת החי זכו להכרה מקצועית נרחבת. <a href="https://www.hebpsy.net" target="_blank" rel="noopener">במאמר שכתבה גלי זייצ'יק באתר פסיכולוגיה עברית</a> מוסבר כיצד השהייה החופשית בפינת החי היא פרקטיקה טיפולית עוצמתית בפני עצמה. המאמר מתאר איך דווקא בתוך החופש והשקט שנוצרים בפינת החי מתרחשים תהליכים עמוקים של צמיחה וריפוי שמשפיעים על כל תחומי החיים בבית הספר.</p>
-
-        <div class="insight-links">
-          <p>מי מחכה לכם היום? <a href="#" onclick="switchTab('mycorner');return false">הכירו את החיות בפינת החי שלנו</a></p>
-          <p>איך שומרים על החברים שלנו? <a href="#" onclick="switchTab('animals');return false">מידע על בריאות ורווחת בעלי החיים</a></p>
-          <p>רוצים לקרוא על מזונות והשפעתם? <a href="#" onclick="switchTab('allfoods');return false">מדריך המזונות המלא לפינת החי</a></p>
-        </div>
-        <button class="insight-close-btn" onclick="event.stopPropagation();toggleInsightCard('insight-body-1', document.getElementById('insight-card-1'))">סגור ↑</button>
-      </div>
-    </div>
-    <div class="insight-card" id="insight-card-2" onclick="toggleInsightCard('insight-body-2', this)" itemscope itemtype="https://schema.org/Article">
-      <div class="insight-card-top">
-        <span class="insight-card-tag">רגש וקהילה</span>
-        <div class="insight-card-title" itemprop="name">🐾 הכוח שבקשר: איך בעלי החיים עוזרים לנו לדבר על עצמנו</div>
-        <div class="insight-card-preview">לפעמים קל לנו יותר לדבר על האחר מאשר על עצמנו. בפינת החי אנחנו פוגשים לא פעם חיות שמתמודדות עם קושי, פציעה או פשוט רגע ש...</div>
-      </div>
-      <div class="insight-card-footer">
-        <span class="insight-card-cta">קראו עוד ←</span>
-        <span style="font-size:.85rem;opacity:.5">▼</span>
-      </div>
-      <div class="insight-body" id="insight-body-2" itemprop="articleBody">
-        <h2 style="display:none">הכוח שבקשר: איך בעלי החיים עוזרים לנו לדבר על עצמנו</h2>
-        <h2 style="display:none">הכוח שבקשר: איך בעלי החיים עוזרים לנו לדבר על עצמנו</h2>
-
-        <p>לפעמים קל לנו יותר לדבר על האחר מאשר על עצמנו. בפינת החי אנחנו פוגשים לא פעם חיות שמתמודדות עם קושי, פציעה או פשוט רגע של פחד. המפגש הזה הוא לא רק שיעור בטיפול בבעלי חיים אלא הזדמנות עמוקה להבין מה עובר עלינו בפנים.</p>
-
-        <h3>החיה כמראה לרגשות שלנו</h3>
-        <p>כשילד רואה ארנבון שמתחבא בפינה החשוכה של הכלוב או <a href="#" onclick="switchTab('animals');return false">צב סודני שנכנס לשריונו</a>, הוא לא רואה רק התנהגות של חיה. לעיתים קרובות הוא רואה שם את הפגיעות שלו. כשאנחנו אומרים על חיה שהיא "בטח פוחדת" או "היא מרגישה לבד עכשיו", אנחנו בעצם מתחילים לבטא רגשות שלנו שקשה לנו להגיד בקול רם. זהו תהליך טבעי שבו אנחנו משליכים את החשש או הכאב שלנו על היצור השקט שמולנו.</p>
-
-        <h3>הטיפול באחר כדרך לריפוי עצמי</h3>
-        <p>בפינת החי אנחנו לומדים שגם רגעים של קושי יכולים לעבור. כשאנחנו דואגים לחיה שזקוקה לנו, <a href="#" onclick="switchTab('dailymenu');return false">מכינים לה תפריט יומי מותאם</a> או מגישים לה אוכל בשקט, אנחנו חווים את הכוח שלנו להיטיב. הטיפול המסור מעניק לנו תחושת מסוגלות וביטחון. אנחנו מגלים שפגיעות היא לא חולשה אלא חלק מהחיים, ושיש לנו את היכולת לעזור, לתמוך ולצמוח מתוך הקשר.</p>
-
-        <h3>מרחב בטוח ללא שיפוטיות</h3>
-        <p>בעלי החיים בפינת החי שלנו לא שופטים אותנו. הם לא צריכים שנדבר איתם במילים מורכבות כדי להרגיש אותנו. בתוך השקט של פינת החי אנחנו מוצאים מקום שבו מותר לחשוש ומותר פשוט להיות נוכחים. המפגש הזה מלמד אותנו חמלה כלפי האחר ובעיקר חמלה כלפי עצמנו. <a href="https://www.hebpsy.net" target="_blank" rel="noopener">הבסיס התיאורטי לתהליכים אלו מוסבר בהרחבה באתר פסיכולוגיה עברית</a>.</p>
-
-        <h3>לסיכום</h3>
-        <p>הקשר עם בעלי החיים בפינת החי הוא גשר לרגשות שלנו. הוא מאפשר לנו לעבד קשיים בצורה עקיפה ובטוחה ולגלות בתוכנו כוחות של נתינה. זו המהות של העבודה הרגשית בפינת החי שלנו: היכולת למצוא תקווה וחיבור דרך טיפול מסור ביצור חי אחר.</p>
-
-        <div class="insight-links">
-          <p>הכירו את <a href="#" onclick="switchTab('mycorner');return false">פינת החי שלנו ואת כל בעלי החיים</a></p>
-          <p>רוצים לדעת על צרכי כל חיה? <a href="#" onclick="switchTab('animals');return false">מידע על בריאות ורווחת בעלי החיים</a></p>
-          <p>לתכנון ארוחה מותאמת: <a href="#" onclick="switchTab('dailymenu');return false">מחשבון התפריט היומי</a></p>
-        </div>
-        <button class="insight-close-btn" onclick="event.stopPropagation();toggleInsightCard('insight-body-2', document.getElementById('insight-card-2'))">סגור ↑</button>
-      </div>
-    </div>
-    <div class="insight-card" id="insight-card-3" onclick="toggleInsightCard('insight-body-3', this)" itemscope itemtype="https://schema.org/Article">
-      <div class="insight-card-top">
-        <span class="insight-card-tag">רגש וקהילה</span>
-        <div class="insight-card-title" itemprop="name">🫶 בלי מסכות: למה בעלי חיים הם החברים הכי כנים שלנו</div>
-        <div class="insight-card-preview">בתוך פינת החי שלנו אנחנו לא צריכים לנחש מה הצד השני מרגיש. בניגוד לבני אדם, שיכולים להיות נחמדים גם כשלא מתחשק להם, בעלי...</div>
-      </div>
-      <div class="insight-card-footer">
-        <span class="insight-card-cta">קראו עוד ←</span>
-        <span style="font-size:.85rem;opacity:.5">▼</span>
-      </div>
-      <div class="insight-body" id="insight-body-3" itemprop="articleBody">
-        <h2 style="display:none">בלי מסכות: למה בעלי חיים הם החברים הכי כנים שלנו</h2>
-        <h2 style="display:none">בלי מסכות: למה בעלי חיים הם החברים הכי כנים שלנו</h2>
-
-        <h3>למה בעלי חיים אמיתיים כל כך</h3>
-        <p>בתוך פינת החי שלנו אנחנו לא צריכים לנחש מה הצד השני מרגיש. בניגוד לבני אדם, שיכולים להיות נחמדים גם כשלא מתחשק להם, בעלי החיים פועלים לפי מה שהם מרגישים באותו רגע. הם לא מנסים להרשים אף אחד, וזה מה שהופך את הקשר איתם למשהו שבאמת אפשר לסמוך עליו.</p>
-
-        <h3>ללמוד לקבל "לא"</h3>
-        <p>כש<a href="#" onclick="switchTab('animals');return false">צב סודני בוחר להיכנס לתוך השריון שלו</a> או כששממית מנומרת נשארת במחבוא, הם פשוט אומרים לנו שהם זקוקים לשקט. בתוך פינת החי אנחנו לומדים שלכל אחד יש רצון משלו. אנחנו לא מכריחים את האוגר הסורי לצאת מהמחילה או את <a href="#" onclick="switchTab('animals');return false">החרדון המזוקן</a> לזוז מהענף. כשאנחנו מכבדים את הגבול שלהם, אנחנו מגלים שאנחנו מספיק בוגרים כדי להבין שהעולם לא תמיד עובד לפי התוכניות שלנו, וזה בסדר גמור.</p>
-
-        <h3>היופי בכנות של ה"כן"</h3>
-        <p>כשקיקו הג'אקו בוחר בנו, גם ה"כן" שלו הוא אמיתי לגמרי. כשקיקו מתקרב או כשארנבון ניגש אלינו בשהייה חופשית, אנחנו יודעים שזה לא מתוך נימוס או אילוץ אלא כי הם באמת מרגישים אצלנו בטוחים. בתוך פינת החי, אנחנו אלו שדואגים להם. הם תלויים בנו כמו תינוקות, והעובדה שהם בוחרים בנו כשותפים לזמן שלהם היא ההוכחה הכי טובה לעבודה המסורה שלנו.</p>
-
-        <h3>מפגש עם החיים כמו שהם</h3>
-        <p>החוויה בפינת החי היא לא הצגה או פעילות משוחזרת. זה מפגש עם החיים כמו שהם. לפעמים זה דורש סבלנות, לפעמים מאכזב, אבל תמיד אמיתי. כשאנחנו דואגים לניקיון או <a href="#" onclick="switchTab('dailymenu');return false">מכינים תפריט יומי</a>, אנחנו בונים קשר חזק שמבוסס על אמת ועל אחריות גדולה.</p>
-
-        <div class="insight-links">
-          <p>רוצים לדעת מתי החיה זקוקה לשקט? <a href="#" onclick="switchTab('animals');return false">מידע על בריאות ורווחת בעלי החיים</a></p>
-          <p>מי מחכה לכם היום בפינת החי? <a href="#" onclick="switchTab('mycorner');return false">הכירו את כל בעלי החיים שלנו</a></p>
-          <p>רוצים לעזור בהכנת המזון? <a href="#" onclick="switchTab('dailymenu');return false">מחשבון התפריט היומי</a></p>
-        </div>
-        <button class="insight-close-btn" onclick="event.stopPropagation();toggleInsightCard('insight-body-3', document.getElementById('insight-card-3'))">סגור ↑</button>
-      </div>
-    </div>
-      </div>
-    </section>
-
     <section class="insight-island nutrition">
       <div class="island-header">
-        <span class="island-emoji">🥗</span>
+        <span class="island-emoji island-emoji-pop" onclick="popIslandEmoji(this)">🥗</span>
         <div>
-          <div class="island-title">תזונה ואחריות</div>
-          <div class="island-subtitle">על הטיפול הנכון וגיוון התפריט</div>
+          <div class="island-title">אחריות בצלחת: תזונה וטיפול <span onclick="event.stopPropagation();speakText('אחריות בצלחת, תזונה וטיפול. איך מה שקורה במטבח הביתי הופך למעגל של נתינה ובריאות בפינת החי.',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0" aria-label="הקרא בקול">🔊</span></div>
+          <div class="island-subtitle">איך מה שקורה במטבח הביתי הופך למעגל של נתינה ובריאות בפינת החי</div>
         </div>
       </div>
+      <button class="island-expand-all" onclick="expandAllInIsland(this)">📖 פתח את כל הקטעים</button>
       <div class="island-grid">
-    <div class="insight-card" id="insight-card-4" onclick="toggleInsightCard('insight-body-4', this)" itemscope itemtype="https://schema.org/Article">
+    <div class="insight-card" id="insight-card-4" onclick="toggleInsightCard('insight-body-4', this, event)" itemscope itemtype="https://schema.org/Article">
       <div class="insight-card-top">
         <span class="insight-card-tag">תזונה ואחריות</span>
-        <div class="insight-card-title" itemprop="name">🥦 יותר מחסה ומלפפון: למה גיוון בתפריט כל כך חשוב בפינת החי שלנו</div>
+        <div class="insight-card-title" itemprop="name">🥦 יותר מחסה ומלפפון: למה גיוון בתפריט כל כך חשוב בפינת החי שלנו <span onclick="event.stopPropagation();speakText('יותר מחסה ומלפפון: למה גיוון בתפריט כל כך חשוב בפינת החי שלנו',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0" aria-label="הקרא בקול">🔊</span></div>
         <div class="insight-card-preview">פינת החי היא מקום של חיבור עמוק בינינו לבין בעלי החיים. כשאנחנו מאכילים אותם, אנחנו לא רק ממלאים להם את הבטן. אנחנו משתת...</div>
       </div>
       <div class="insight-card-footer">
-        <span class="insight-card-cta">קראו עוד ←</span>
+        <a class="insight-card-cta" href="?article=4" onclick="event.preventDefault();event.stopPropagation();toggleInsightCard('insight-body-4', this.closest('.insight-card'), event)" title="קראו עוד">קראו עוד ←</a>
         <span style="font-size:.85rem;opacity:.5">▼</span>
       </div>
       <div class="insight-body" id="insight-body-4" itemprop="articleBody">
+        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-4')" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
         <h2 style="display:none">יותר מחסה ומלפפון: למה גיוון בתפריט כל כך חשוב בפינת החי שלנו</h2>
         <h2 style="display:none">יותר מחסה ומלפפון: למה גיוון בתפריט כל כך חשוב בפינת החי שלנו</h2>
 
@@ -1100,24 +1066,58 @@ body.dark .safety .insight-links{background:#2a1a10;border-right-color:#e08050}
         <p>ההאכלה היא לא רק פעולה טכנית אלא הזדמנות למפגש אמיתי. כשאנחנו מגישים מזון, אנחנו מתבוננים מקרוב. אנחנו מגלים יחד מי ניגש ראשון, מי מהסס ואיך כל חיה מגיבה למרקמים החדשים. הרגע הזה דורש מאיתנו נוכחות וסבלנות. דרך הקשר שנוצר סביב האוכל, אנחנו מפתחים יכולת לזהות סימנים דקים של מצוקה או של רווחה. זוהי למידה חווייתית של אמפתיה שמתרחשת באופן הכי ישיר ופשוט שיש.</p>
 
         <h3>איך אנחנו שומרים על הבריאות שלהן</h3>
-        <p>לכל חיה בפינת החי יש צרכים תזונתיים שונים ומדויקים. <a href="#" onclick="switchTab('byanimal');return false">שרקנים זקוקים לוויטמין C טרי</a> שיש בשפע בפלפל מתוק. תוכים וציפורי אהבה זקוקים לבטא-קרוטן שמופיע בגזר ובבטטה. <a href="#" onclick="switchTab('byanimal');return false">החרדון המזוקן זקוק לשילוב של ירקות וזחלי קמח</a>. כשניתן רק סוג אחד של מזון, החסרים יכולים להצטבר לאט ולהשפיע על האנרגיה ועל מצב הרוח של החיות. הגיוון העדין והעקבי שאנחנו מקפידים עליו עוזר לשמור עליהן חזקות ומלאות חיים.</p>
+        <p>לכל חיה בפינת החי יש צרכים תזונתיים שונים ומדויקים. שרקנים זקוקים לוויטמין C טרי שיש בשפע בפלפל מתוק. תוכים וציפורי אהבה זקוקים לבטא-קרוטן שמופיע בגזר ובבטטה. החרדון המזוקן זקוק לשילוב של ירקות וזחלי קמח. כשניתן רק סוג אחד של מזון, החסרים יכולים להצטבר לאט ולהשפיע על האנרגיה ועל מצב הרוח של החיות. הגיוון העדין והעקבי שאנחנו מקפידים עליו עוזר לשמור עליהן חזקות ומלאות חיים.</p>
 
         <h3>העשרה והנאה ביומיום של פינת החי</h3>
-        <p>מזונות במרקמים ובטעמים שונים הופכים את הארוחה לרגע מעניין ומשמעותי. קולורבי קשה שדורש לעיסה טובה לאוגר הסורי, סלרי סיבי ומרענן או פירות קיץ עסיסיים. כשאנחנו מגישים <a href="#" onclick="switchTab('allfoods');return false">מזון מגוון</a>, אנחנו מאפשרים לחיות לחקור, להריח ולהתעסק עם האוכל. הן משתעממות פחות ומבטאות התנהגויות טבעיות ובריאות. זהו סוג של עושר שאנחנו יכולים להעניק להן בכל יום מחדש.</p>
+        <p>מזונות במרקמים ובטעמים שונים הופכים את הארוחה לרגע מעניין ומשמעותי. קולורבי קשה שדורש לעיסה טובה לאוגר הסורי, סלרי סיבי ומרענן או פירות קיץ עסיסיים. כשאנחנו מגישים מזון מגוון, אנחנו מאפשרים לחיות לחקור, להריח ולהתעסק עם האוכל. הן משתעממות פחות ומבטאות התנהגויות טבעיות ובריאות. זהו סוג של עושר שאנחנו יכולים להעניק להן בכל יום מחדש.</p>
 
         <h3>בטיחות ואחריות כחלק מהטיפול</h3>
-        <p>גיוון נכון כולל גם את הידע הקריטי ממה כדאי לנו להימנע. יש מזונות שנראים לנו תמימים, כמו <a href="#" onclick="switchTab('allfoods');return false">אבוקדו או בצל</a>, אבל הם עלולים להיות רעילים ומסוכנים עבור רוב החברים שלנו בפינת החי. כשאנחנו לומדים ומקפידים יחד על הגיוון הנכון, אנחנו לוקחים אחריות אמיתית וזהירה כלפי האחר.</p>
+        <p>גיוון נכון כולל גם את הידע הקריטי ממה כדאי לנו להימנע. יש מזונות שנראים לנו תמימים, כמו אבוקדו או בצל, אבל הם עלולים להיות רעילים ומסוכנים עבור רוב החברים שלנו בפינת החי. כשאנחנו לומדים ומקפידים יחד על הגיוון הנכון, אנחנו לוקחים אחריות אמיתית וזהירה כלפי האחר.</p>
 
         <h3>שימוש מושכל בשאריות מהמטבח</h3>
         <p>אל תזלזלו בשאריות המטבח הנקיות והטריות שאתם מביאים. קליפות קישואים וקצוות של פלפלים יכולים להיות אוצרות תזונתיים קטנים ויקרים. ככל שהצלחת של החיות תהיה יותר צבעונית ומגוונת, כך מערכת העיכול שלהן תהיה חזקה יותר והן ירגישו טוב יותר לאורך זמן. בפינת החי שלנו אנחנו מאמינים שתזונה מגוונת היא לא רק עניין של בריאות פיזית. היא חלק מהמעטפת הרגשית והחינוכית של כולנו. היא הדרך שלנו לטפל בחיות בכבוד ובאהבה.</p>
 
         <div class="insight-links">
-          <p>רוצים לדעת מה מותר? <a href="#" onclick="switchTab('search');return false">חיפוש מזון לפי חיה וקטגוריה</a></p>
-          <p>לרשימה מלאה: <a href="#" onclick="switchTab('allfoods');return false">מדריך המזונות המלא לפינת החי</a></p>
-          <p>התאמה לפי חיה: <a href="#" onclick="switchTab('byanimal');return false">תזונה מותאמת לפי בעל חיים</a></p>
-          <p>תכנון ארוחה: <a href="#" onclick="switchTab('dailymenu');return false">מחשבון התפריט היומי</a></p>
+          <p>רוצים לדעת מה מותר? <a href="?tab=search" onclick="event.preventDefault();event.stopPropagation();switchTab('search')">חיפוש מזון לפי חיה וקטגוריה</a></p>
+          <p>לרשימה מלאה: <a href="?tab=allfoods" onclick="event.preventDefault();event.stopPropagation();switchTab('allfoods')">מדריך המזונות המלא לפינת החי</a></p>
+          <p>התאמה לפי חיה: <a href="?tab=byanimal" onclick="event.preventDefault();event.stopPropagation();switchTab('byanimal')">תזונה מותאמת לפי בעל חיים</a></p>
+          <p>תכנון ארוחה: <a href="?tab=dailymenu" onclick="event.preventDefault();event.stopPropagation();switchTab('dailymenu')">מחשבון התפריט היומי</a></p>
         </div>
+        <div style="margin-top:1.4rem;padding-top:.7rem;border-top:1px solid rgba(0,0,0,.07);text-align:left;font-size:.72rem;color:#bbb;font-style:italic;direction:rtl">נכתב על ידי גלי זייצ'יק</div>
         <button class="insight-close-btn" onclick="event.stopPropagation();toggleInsightCard('insight-body-4', document.getElementById('insight-card-4'))">סגור ↑</button>
+      </div>
+    </div>
+    <div class="insight-card" id="insight-card-7" onclick="toggleInsightCard('insight-body-7', this, event)" itemscope itemtype="https://schema.org/Article">
+      <div class="insight-card-top">
+        <span class="insight-card-tag">תזונה ואחריות</span>
+        <div class="insight-card-title" itemprop="name">♻️ מהמטבח שלנו לקערה שלהם: השאריות שיוצרות גשר בין הבית לפינת החי <span onclick="event.stopPropagation();speakText('מהמטבח שלנו לקערה שלהם: השאריות שיוצרות גשר בין הבית לפינת החי',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0" aria-label="הקרא בקול">🔊</span></div>
+        <div class="insight-card-preview">מה שבמטבח הביתי נחשב לפסולת, כמו קליפות גזר, גבעולי ברוקולי או עלים חיצוניים של חסה, הופך אצלנו לארוחה מזינה וחלק בלתי נפרד מהקשר שבין הבית לבית הספר.</div>
+      </div>
+      <div class="insight-card-footer">
+        <a class="insight-card-cta" href="?article=7" onclick="event.preventDefault();event.stopPropagation();toggleInsightCard('insight-body-7', this.closest('.insight-card'), event)" title="קראו עוד">קראו עוד ←</a>
+        <span style="font-size:.85rem;opacity:.5">▼</span>
+      </div>
+      <div class="insight-body" id="insight-body-7" itemprop="articleBody">
+        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-7')" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
+        <h2 style="display:none">מהמטבח שלנו לקערה שלהם: השאריות שיוצרות גשר בין הבית לפינת החי</h2>
+        <p>בפינת החי אנחנו רואים בירקות "שאריות" הזדמנות ליצור מעגל של נתינה. מה שבמטבח הביתי נחשב לפסולת, כמו קליפות גזר, גבעולי ברוקולי או עלים חיצוניים של חסה, הופך אצלנו לארוחה מזינה וחלק בלתי נפרד מהקשר שבין הבית לבית הספר. התפיסה הזו מאפשרת לנו להפוך את המטבח הביתי לשלוחה ישירה של הטיפול בבעלי החיים וליצור מעגל שבו כל חלק מהצמח מקבל משמעות חדשה. כשאנחנו בוחרים להביא את השאריות הללו לפינת החי, אנחנו לא רק חוסכים בפסולת אלא מעודדים חשיבה על קיימות ועל הדרך שבה הטבע פועל, שבו אין באמת "פסולת" אלא רק משאבים שעוברים מיד ליד ומזינים חיים אחרים.</p>
+
+        <h3>למה הקליפות והגבעולים הם החלקים הכי טובים</h3>
+        <p>לפעמים אנחנו נוטים לזרוק דווקא את החלקים הכי טובים. הקליפות והגבעולים עשירים בסיבים תזונתיים ובמינרלים שחיוניים למערכת העיכול של המכרסמים והזוחלים שלנו. השימוש בהם הוא לא חיסכון אלא הענקה של תזונה מגוונת וקרובה יותר למה שהם היו מוצאים בטבע. בעלי חיים רבים בפינה זקוקים לסיבים הגסים שנמצאים דווקא בקליפה החיצונית או בליבה של הירק, אותם חלקים שאנו נוטים להסיר כשאנחנו מכינים סלט לעצמנו. דרך ההבנה הזו אנחנו לומדים להעריך את הירק כולו על כל שכבותיו ומגלים שמה שנתפס בעינינו כפחות אסתטי הוא לעיתים המרכיב החשוב ביותר בתזונה המאוזנת של בעלי החיים.</p>
+
+        <h3>איך נזהה שאריות שראויות למאכל עבור החיות</h3>
+        <p>חשוב לנו להבין מה הופך שארית לראויה למאכל עבור דיירי פינת החי. הכלל המנחה הוא שכל ירק או פרי חייב להגיע במצבו הטרי והגולמי ביותר ללא כל מגע עם תיבול או עיבוד. ברגע שירק נכנס למגע עם מלח, שמן, לימון או רטבים שונים הוא עלול להפוך למסוכן עבור מערכות העיכול הרגישות של החיות. קצוות של זוקיני, עלי גזר ירוקים, גבעולי פלפל וקליפות מלפפון הם כולם אפשרויות מצוינות בתנאי שהם נקיים לחלוטין. האחריות שלנו היא לוודא שאנחנו מעניקים להם רק את מה שמיטיב איתם, תוך הקפדה על כך שמזונות כמו מאפים, לחמים או מוצרי חלב יישארו מחוץ לתחום לחלוטין בשל הנזק הבריאותי שהם עלולים לגרום.</p>
+
+        <h3>הגשר בין המטבח הביתי לאחריות בפינת החי</h3>
+        <p>מעבר להיבט התזונתי והסביבתי, כשאנחנו מביאים שאריות מהבית אנחנו בונים גשר משמעותי בין החיים שלנו בבית הספר לבין המשפחות שלנו. כשאנחנו אוספים בבוקר שקית עם קליפות תפוח או שאריות סלרי אנחנו לוקחים איתנו את הדאגה והאחריות מהמרחב הפרטי שלנו אל המרחב המשותף של פינת החי. התהליך הזה הופך את כולנו למודעים יותר לטבע ומעודד אותנו לחשוב על היצורים שתלויים בנו לצרכי המחיה שלהם. זוהי אחת הדרכים היפות שבהן פינת החי יוצאת מגבולות בית הספר וחודרת ליומיום שלנו, כשהיא הופכת פעולה פשוטה במטבח לשיעור מעשי בחמלה, באחריות ובקשר עמוק עם הסביבה שבה אנו חיים.</p>
+
+        <div class="insight-links">
+          <p>מה מותר להביא מהמטבח? <a href="?tab=donate" onclick="event.preventDefault();event.stopPropagation();switchTab('donate')">רשימת תרומות מהבית לפינת החי</a></p>
+          <p>לפירוט לפי חיה ספציפית: <a href="?tab=byanimal" onclick="event.preventDefault();event.stopPropagation();switchTab('byanimal')">תזונה מותאמת לפי בעל חיים</a></p>
+          <p>חיפוש מהיר לפי ירק או פרי: <a href="?tab=search" onclick="event.preventDefault();event.stopPropagation();switchTab('search')">חפשו מזון ספציפי</a></p>
+        </div>
+        <div style="margin-top:1.4rem;padding-top:.7rem;border-top:1px solid rgba(0,0,0,.07);text-align:left;font-size:.72rem;color:#bbb;font-style:italic;direction:rtl">נכתב על ידי גלי זייצ'יק</div>
+        <button class="insight-close-btn" onclick="event.stopPropagation();toggleInsightCard('insight-body-7', document.getElementById('insight-card-7'))">סגור ↑</button>
       </div>
     </div>
       </div>
@@ -1125,31 +1125,33 @@ body.dark .safety .insight-links{background:#2a1a10;border-right-color:#e08050}
 
     <section class="insight-island safety">
       <div class="island-header">
-        <span class="island-emoji">🛡️</span>
+        <span class="island-emoji island-emoji-pop" onclick="popIslandEmoji(this)">🛡️</span>
         <div>
-          <div class="island-title">בטיחות ומוגנות</div>
-          <div class="island-subtitle">מה חשוב לדעת כדי לשמור עליהם</div>
+          <div class="island-title">ברית של הגנה: מוגנות ובטיחות <span onclick="event.stopPropagation();speakText('ברית של הגנה, מוגנות ובטיחות. על האחריות שלנו לשמור על שלומם של בעלי החיים ועל המרחב הבטוח שלהם.',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0" aria-label="הקרא בקול">🔊</span></div>
+          <div class="island-subtitle">על האחריות שלנו לשמור על שלומם של בעלי החיים ועל המרחב הבטוח שלהם</div>
         </div>
       </div>
+      <button class="island-expand-all" onclick="expandAllInIsland(this)">📖 פתח את כל הקטעים</button>
       <div class="island-grid">
-    <div class="insight-card" id="insight-card-5" onclick="toggleInsightCard('insight-body-5', this)" itemscope itemtype="https://schema.org/Article">
+    <div class="insight-card" id="insight-card-5" onclick="toggleInsightCard('insight-body-5', this, event)" itemscope itemtype="https://schema.org/Article">
       <div class="insight-card-top">
         <span class="insight-card-tag">בטיחות ומוגנות</span>
-        <div class="insight-card-title" itemprop="name">🛡️ מוגנות ובטיחות: מה אסור להביא לפינת החי</div>
+        <div class="insight-card-title" itemprop="name">🛡️ מוגנות ובטיחות: מה אסור להביא לפינת החי <span onclick="event.stopPropagation();speakText('מוגנות ובטיחות: מה אסור להביא לפינת החי',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0" aria-label="הקרא בקול">🔊</span></div>
         <div class="insight-card-preview">כשאנחנו מטפלים בבעלי החיים בפינת החי, האחריות המרכזית שלנו היא שמירה על שלומם. בעלי החיים בפינת החי מתאפיינים בסקרנות רב...</div>
       </div>
       <div class="insight-card-footer">
-        <span class="insight-card-cta">קראו עוד ←</span>
+        <a class="insight-card-cta" href="?article=5" onclick="event.preventDefault();event.stopPropagation();toggleInsightCard('insight-body-5', this.closest('.insight-card'), event)" title="קראו עוד">קראו עוד ←</a>
         <span style="font-size:.85rem;opacity:.5">▼</span>
       </div>
       <div class="insight-body" id="insight-body-5" itemprop="articleBody">
+        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-5')" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
         <h2 style="display:none">מוגנות ובטיחות: מה אסור להביא לפינת החי</h2>
         <h2 style="display:none">מוגנות ובטיחות: מה אסור להביא לפינת החי</h2>
 
         <p>כשאנחנו מטפלים בבעלי החיים בפינת החי, האחריות המרכזית שלנו היא שמירה על שלומם. בעלי החיים בפינת החי מתאפיינים בסקרנות רבה, ולעיתים הם מזכירים תינוקות: הם חוקרים את סביבתם דרך הפה ומנסים לטעום או ללעוס חפצים ומזונות שנקלטים בדרכם. לכן, עלינו להכיר את הסיכונים ולשמור על סביבה בטוחה עבורם.</p>
 
         <h3>זהירות סביב קערת האוכל</h3>
-        <p>לא כל מזון שמתאים לבני אדם בטוח לצריכה עבור בעלי החיים. מזונות שנראים לנו טבעיים עלולים להיות רעילים עבורם. חשוב לדעת ש<a href="#" onclick="switchTab('allfoods');return false">אבוקדו, בצל ושום הם מחוץ לתחום בפינת החי</a>. גם מאכלים מעובדים המכילים סוכר, תבלינים או בצק עלולים להזיק מאוד למערכת העיכול העדינה של האוגר או <a href="#" onclick="switchTab('byanimal');return false">הגרביל המונגולי</a>. כשאנחנו בודקים כל מרכיב לפני ההגשה, אנחנו מתרגלים דחיית סיפוקים ולומדים להעמיד את צרכי בעל החיים לפני הרצון האישי שלנו לפנק אותו במזון שאינו מתאים לו.</p>
+        <p>לא כל מזון שמתאים לבני אדם בטוח לצריכה עבור בעלי החיים. מזונות שנראים לנו טבעיים עלולים להיות רעילים עבורם. חשוב לדעת שאבוקדו, בצל ושום הם מחוץ לתחום בפינת החי. גם מאכלים מעובדים המכילים סוכר, תבלינים או בצק עלולים להזיק מאוד למערכת העיכול העדינה של האוגר או הגרביל המונגולי. כשאנחנו בודקים כל מרכיב לפני ההגשה, אנחנו מתרגלים דחיית סיפוקים ולומדים להעמיד את צרכי בעל החיים לפני הרצון האישי שלנו לפנק אותו במזון שאינו מתאים לו.</p>
 
         <h3>הגנה על בעלי החיים המסתובבים חופשי</h3>
         <p>בפינת החי קיימים בעלי חיים שמסתובבים לעיתים באופן חופשי במרחב, כמו קיקו התוכי ג'אקו. בעלי חיים אלו נוטים ללעוס חפצים זרים מתוך סקרנות טבעית. שאריות פלסטיק, חפצים קטנים שנפלו מהכיס או חומרים כימיים שונים מהווים סכנה ממשית לבריאותם. השמירה על פינת החי נקייה מחפצים זרים היא הדרך שלנו להבטיח שכל בעל חיים במרחב יישאר מוגן.</p>
@@ -1161,18 +1163,207 @@ body.dark .safety .insight-links{background:#2a1a10;border-right-color:#e08050}
         <p>הכרת המזונות המסוכנים והחומרים האסורים היא חלק מהותי מהחיים בפינת החי. היא מאפשרת לנו ליצור סביבה בריאה שבה כל בעלי החיים מוגנים. כשאנחנו מקפידים על כללי הבטיחות, אנחנו בונים קהילה אחראית, מודעת ורגישה יותר בתוך בית הספר.</p>
 
         <div class="insight-links">
-          <p>רוצים לדעת מה בדיוק מותר לתת לכל חיה? <a href="#" onclick="switchTab('allfoods');return false">מדריך המזונות המלא לפינת החי</a></p>
-          <p>לרשימת המזונות הבטוחים לכל חיה: <a href="#" onclick="switchTab('byanimal');return false">תזונה מותאמת לפי בעל חיים</a></p>
-          <p>לתכנון ארוחה מאוזנת ובטוחה: <a href="#" onclick="switchTab('dailymenu');return false">מחשבון התפריט היומי</a></p>
-          <p>מה להביא מהבית? <a href="#" onclick="switchTab('quickguide');return false">רשימת קניות מהירה לפינת החי</a></p>
+          <p>רוצים לדעת מה בדיוק מותר לתת לכל חיה? <a href="?tab=allfoods" onclick="event.preventDefault();event.stopPropagation();switchTab('allfoods')">מדריך המזונות המלא לפינת החי</a></p>
+          <p>לרשימת המזונות הבטוחים לכל חיה: <a href="?tab=byanimal" onclick="event.preventDefault();event.stopPropagation();switchTab('byanimal')">תזונה מותאמת לפי בעל חיים</a></p>
+          <p>לתכנון ארוחה מאוזנת ובטוחה: <a href="?tab=dailymenu" onclick="event.preventDefault();event.stopPropagation();switchTab('dailymenu')">מחשבון התפריט היומי</a></p>
+          <p>מה להביא מהבית? <a href="?tab=quickguide" onclick="event.preventDefault();event.stopPropagation();switchTab('quickguide')">רשימת קניות מהירה לפינת החי</a></p>
         </div>
+        <div style="margin-top:1.4rem;padding-top:.7rem;border-top:1px solid rgba(0,0,0,.07);text-align:left;font-size:.72rem;color:#bbb;font-style:italic;direction:rtl">נכתב על ידי גלי זייצ'יק</div>
         <button class="insight-close-btn" onclick="event.stopPropagation();toggleInsightCard('insight-body-5', document.getElementById('insight-card-5'))">סגור ↑</button>
+      </div>
+    </div>
+    <div class="insight-card" id="insight-card-8" onclick="toggleInsightCard('insight-body-8', this, event)" itemscope itemtype="https://schema.org/Article">
+      <div class="insight-card-top">
+        <span class="insight-card-tag">בטיחות ומוגנות</span>
+        <div class="insight-card-title" itemprop="name">💛 כוונה טובה, תוצאה לא טובה: מה קורה כשמביאים מזון לא מתאים <span onclick="event.stopPropagation();speakText('כוונה טובה, תוצאה לא טובה: מה קורה כשמביאים מזון לא מתאים',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0" aria-label="הקרא בקול">🔊</span></div>
+        <div class="insight-card-preview">רוב הסיפורים על מזון לא מתאים בפינת החי לא מתחילים מרשלנות. הם מתחילים מאהבה.</div>
+      </div>
+      <div class="insight-card-footer">
+        <a class="insight-card-cta" href="?article=8" onclick="event.preventDefault();event.stopPropagation();toggleInsightCard('insight-body-8', this.closest('.insight-card'), event)" title="קראו עוד">קראו עוד ←</a>
+        <span style="font-size:.85rem;opacity:.5">▼</span>
+      </div>
+      <div class="insight-body" id="insight-body-8" itemprop="articleBody">
+        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-8')" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
+        <h2 style="display:none">כוונה טובה, תוצאה לא טובה: מה קורה כשמביאים מזון לא מתאים</h2>
+        <p>רוב הסיפורים על מזון לא מתאים בפינת החי לא מתחילים מרשלנות אלא דווקא מרגש חיובי של אהבה ורצון לשמח. כשאנחנו רואים את הארנבון ומגישים לו חתיכת שוקולד כי הוא אוהב מתוק, או כשאנחנו חולקים עם הציפורים מעט מהאוכל שיש לנו ביד, הכוונה שלנו היא תמיד טובה. זו בדיוק הסיבה שכל כך קשה לפעמים לומר לא, אבל בפינת החי אנחנו לומדים שדאגה אמיתית פירושה להבין מה נכון עבור הצד השני, גם אם זה אומר להציב גבול. האחריות הזו מגיעה מתוך הבנה שהחיות סומכות עלינו לחלוטין, והשמירה על הכללים היא המחווה הכי גדולה של אכפתיות שאנחנו יכולים להעניק להן.</p>
+
+        <h3>מה קורה בגוף של החיה כשהיא אוכלת מזון לא מתאים</h3>
+        <p>חשוב לנו להבין מה קורה בגוף של החיה כשהיא פוגשת מזון שלא מיועד לה. חיות קטנות כמו אוגרים, גרבילים או ציפורים אינן גרסאות מוקטנות של בני אדם ומערכות העיכול שלהן רגישות בצורה יוצאת דופן. כמות שנראית לנו זעירה וחסרת משמעות עלולה להיות גדולה מדי עבורן ולגרום לנזק מצטבר. מלח גורם לכליות שלהן לעבוד יתר על המידה, סוכר מעודד תסיסה וחיידקים מזיקים, ומזונות מסוימים כמו אבוקדו מכילים חומרים שפשוט רעילים עבור רוב דיירי הפינה. הסכנה הגדולה היא שלא תמיד רואים את ההשפעה באופן מיידי. החיה עשויה להיראות בסדר גמור כלפי חוץ בזמן שמשהו במערכות הפנימיות שלה כבר נפגע.</p>
+
+        <h3>למה אנחנו מביאים אוכל ואיך לתרגם את זה לנתינה נכונה</h3>
+        <p>כשאנחנו נתקלים במצב שבו מישהו מאיתנו מביא מזון לא מתאים, אנחנו מזכירים לעצמנו שהמניע הוא בדרך כלל רצון ליצור קשר, לתרום או פשוט לראות תגובה מהחיה. המניעים האלה לגיטימיים לחלוטין והתפקיד שלנו בפינת החי הוא לא לבייש או להעביר ביקורת אלא לתרגם את הרצון הטוב לפעולה נכונה. במקום לעצור באיסור, אנחנו שואלים את עצמנו איך אפשר לשמח את החיה בדרך שבאמת תיטיב איתה. זוהי הזדמנות עבורנו לפתח משמעת עצמית שאינה נובעת מפחד מסמכות חיצונית אלא מתוך מחויבות פנימית לבריאותם של היצורים שתחת חסותנו.</p>
+
+        <h3>מה עושים אם חיה אכלה משהו אסור בטעות</h3>
+        <p>במקרה שבו חיה כבר אכלה משהו שלא היה אמור להגיע אליה, הכלל המנחה שלנו הוא שקיפות מלאה. אנחנו לא מתעלמים, לא מסתירים ולא משאירים את החיה לבד עם הנזק האפשרי. הדבר הנכון לעשות הוא לבדוק מיד במדריך המזונות מהי דרגת הסכנה ובכל מקרה של ספק לפנות למי שאחראי על פינת החי. אנחנו מבינים שהסתרה אינה הגנה על החיה אלא רק עיכוב של הטיפול שהיא עשויה להזדקק לו. בפינת החי אנחנו בונים מרחב של אמון שבו מותר לטעות כל עוד אנחנו לוקחים אחריות ופועלים במהירות כדי לתקן ולשמור על החיים שסביבנו.</p>
+
+        <div class="insight-links">
+          <p>לרשימת המזונות האסורים לכל חיה: <a href="?tab=allfoods" onclick="event.preventDefault();event.stopPropagation();switchTab('allfoods')">מדריך המזונות המלא</a></p>
+          <p>לבדיקה לפי חיה ספציפית: <a href="?tab=byanimal" onclick="event.preventDefault();event.stopPropagation();switchTab('byanimal')">תזונה מותאמת לפי בעל חיים</a></p>
+          <p>מה בטוח להביא מהבית? <a href="?tab=donate" onclick="event.preventDefault();event.stopPropagation();switchTab('donate')">רשימת תרומות מהבית</a></p>
+        </div>
+        <div style="margin-top:1.4rem;padding-top:.7rem;border-top:1px solid rgba(0,0,0,.07);text-align:left;font-size:.72rem;color:#bbb;font-style:italic;direction:rtl">נכתב על ידי גלי זייצ'יק</div>
+        <button class="insight-close-btn" onclick="event.stopPropagation();toggleInsightCard('insight-body-8', document.getElementById('insight-card-8'))">סגור ↑</button>
       </div>
     </div>
       </div>
     </section>
 
-  </div><!-- end islands -->
+    <section class="insight-island emotional">
+      <div class="island-header">
+        <span class="island-emoji island-emoji-pop" onclick="popIslandEmoji(this)">🌱</span>
+        <div>
+          <div class="island-title">מעבר למילים: קשר, רגש וגילוי <span onclick="event.stopPropagation();speakText('מעבר למילים, קשר, רגש וגילוי. איך השהייה בפינת החי והכנות של בעלי החיים עוזרות לנו להכיר את עצמנו.',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0" aria-label="הקרא בקול">🔊</span></div>
+          <div class="island-subtitle">איך השהייה בפינת החי והכנות של בעלי החיים עוזרות לנו להכיר את עצמנו</div>
+        </div>
+      </div>
+      <button class="island-expand-all" onclick="expandAllInIsland(this)">📖 פתח את כל הקטעים</button>
+      <div class="island-grid">
+    <div class="insight-card" id="insight-card-0" onclick="toggleInsightCard('insight-body-0', this, event)" itemscope itemtype="https://schema.org/Article">
+      <div class="insight-card-top">
+        <span class="insight-card-tag">רגש וקהילה</span>
+        <div class="insight-card-title" itemprop="name">🌿 פינת החי שלנו: מקום של רגש, למידה והתפתחות <span onclick="event.stopPropagation();speakText('פינת החי שלנו: מקום של רגש, למידה והתפתחות',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0" aria-label="הקרא בקול">🔊</span></div>
+        <div class="insight-card-preview">פינת החי היא אחד המקומות המיוחדים בבית הספר. זה המקום שבו אפשר להירגע, לנשום ולהרגיש שאפשר פשוט להיות. מי שמגיע לפינת הח...</div>
+      </div>
+      <div class="insight-card-footer">
+        <a class="insight-card-cta" href="?article=0" onclick="event.preventDefault();event.stopPropagation();toggleInsightCard('insight-body-0', this.closest('.insight-card'), event)" title="קראו עוד">קראו עוד ←</a>
+        <span style="font-size:.85rem;opacity:.5">▼</span>
+      </div>
+      <div class="insight-body" id="insight-body-0" itemprop="articleBody">
+        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-0')" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
+        <h2 style="display:none">פינת החי שלנו: מקום של רגש, למידה והתפתחות</h2>
+        <h2 style="display:none">פינת החי שלנו: מקום של רגש, למידה והתפתחות</h2>
+
+        <h3>מרחב של שקט בתוך יום הלימודים</h3>
+        <p>פינת החי היא אחד המקומות המיוחדים בבית הספר. זה המקום שבו אפשר להירגע, לנשום ולהרגיש שאפשר פשוט להיות. מי שמגיע לפינת החי מגלה מהר מאוד שזה מרחב אחר. בתוך יום לימודים עמוס ולא תמיד פשוט, פינת החי מעניקה לנו רגע של שקט, חיבור ומשמעות.</p>
+
+        <h3>לקיחת אחריות ופיתוח אמפתיה</h3>
+        <p>בפינת החי אנחנו לא רק נמצאים ליד בעלי חיים אלא גם אחראים עליהם. אנחנו לומדים להאכיל, לנקות את האקווריום, להתבונן ולזהות מה כל אחד צריך. דרך האחריות הזו אנחנו מפתחים רגישות אמיתית. אנחנו לומדים לשים לב לאחר, בין אם זה למקלון שמתחבא על ענף או לציפור אהבה, להבין מצבים ולהגיב אליהם בצורה מתאימה. מתוך זה מתפתחת אמפתיה והיכולת ליצור קשר משמעותי.</p>
+
+        <h3>טיפולים רגשיים דרך בעלי החיים</h3>
+        <p>מעבר לטיפול היומיומי, מתקיימים בפינת החי גם טיפולים רגשיים וקבוצות קטנות. בעלי החיים מאפשרים לנו לדבר על רגשות בצורה עקיפה ובטוחה. קל לנו יותר להתחיל מלדבר על מה שעובר על הארנבון, על השממית המנומרת או על האוגר הסיבירי ומתוך זה להבין משהו על עצמנו. דרך התהליך הזה אפשר לפתח ביטחון, ללמוד לווסת רגשות ולתקשר תסכול וכעס בצורה בטוחה ולא שיפוטית.</p>
+
+        <h3>חיזוק תחושת המסוגלות והערך</h3>
+        <p>העבודה המעשית בפינת החי מחזקת את תחושת המסוגלות שלנו. כשמאכילים בעל חיים כמו החרדון המזוקן ורואים אותו אוכל, כשמנקים והסביבה משתפרת, נוצרת תחושת הצלחה אמיתית. מי שמגיע לפינת החי חווה השפעה ויכולת לעשות טוב בעולם. עבור רבים מאיתנו זו חוויה משמעותית שמחזקת את תחושת הערך העצמי.</p>
+
+        <h3>מרחב למידה חי וחווייתי</h3>
+        <p>בנוסף, פינת החי היא גם מרחב למידה חי. השיעורים שמתקיימים בה משלבים ידע על טבע, אקולוגיה ובעלי חיים בצורה מוחשית. לא רק שומעים אלא גם חווים. אנחנו שואלים שאלות על הצ'ינצ'ילה או על גרביל, חוקרים, מנסים ומבינים איך הדברים עובדים באמת במציאות.</p>
+
+        <h3>לגלות את היכולת להעניק</h3>
+        <p>פינת החי מחברת בין רגשי, חברתי וקוגניטיבי. היא מאפשרת לעבור תהליך שבו לא רק מקבלים עזרה אלא גם נותנים. מי שנמצא בפינת החי מגלה שהוא יכול להיות זה שדואג לאחרים ולא רק זה שדואגים לו. זה שינוי עמוק בתחושת הזהות ובתחושת השייכות לקהילה שלנו.</p>
+
+        <div class="insight-links">
+          <p>רוצים לדעת מה בדיוק מותר לתת לכל חיה? <a href="?tab=allfoods" onclick="event.preventDefault();event.stopPropagation();switchTab('allfoods')">מדריך המזונות המלא לפינת החי</a></p>
+          <p>רוצים לראות מה מתאים לכל חיה לאכול? <a href="?tab=byanimal" onclick="event.preventDefault();event.stopPropagation();switchTab('byanimal')">תזונה מותאמת לפי בעל חיים</a></p>
+          <p>לא בטוחים מה להביא היום? <a href="?tab=quickguide" onclick="event.preventDefault();event.stopPropagation();switchTab('quickguide')">רשימת קניות מהירה לפינת החי</a></p>
+          <p>רוצים לבנות תפריט יומי נכון? <a href="?tab=dailymenu" onclick="event.preventDefault();event.stopPropagation();switchTab('dailymenu')">מחשבון התפריט היומי</a></p>
+        </div>
+        <div style="margin-top:1.4rem;padding-top:.7rem;border-top:1px solid rgba(0,0,0,.07);text-align:left;font-size:.72rem;color:#bbb;font-style:italic;direction:rtl">נכתב על ידי גלי זייצ'יק</div>
+        <button class="insight-close-btn" onclick="event.stopPropagation();toggleInsightCard('insight-body-0', document.getElementById('insight-card-0'))">סגור ↑</button>
+      </div>
+    </div>
+    <div class="insight-card" id="insight-card-1" onclick="toggleInsightCard('insight-body-1', this, event)" itemscope itemtype="https://schema.org/Article">
+      <div class="insight-card-top">
+        <span class="insight-card-tag">רגש וקהילה</span>
+        <div class="insight-card-title" itemprop="name">🕊️ פשוט להיות: הקסם של השהייה החופשית בפינת החי <span onclick="event.stopPropagation();speakText('פשוט להיות: הקסם של השהייה החופשית בפינת החי',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0" aria-label="הקרא בקול">🔊</span></div>
+        <div class="insight-card-preview">במהלך ימי הלימודים יש רגעים מיוחדים שבהם פינת החי נפתחת למבקרים. זה קורה בהפסקות המיועדות לכל שכבה או בזמנים מיוחדים כמו...</div>
+      </div>
+      <div class="insight-card-footer">
+        <a class="insight-card-cta" href="?article=1" onclick="event.preventDefault();event.stopPropagation();toggleInsightCard('insight-body-1', this.closest('.insight-card'), event)" title="קראו עוד">קראו עוד ←</a>
+        <span style="font-size:.85rem;opacity:.5">▼</span>
+      </div>
+      <div class="insight-body" id="insight-body-1" itemprop="articleBody">
+        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-1')" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
+        <h2 style="display:none">פשוט להיות: הקסם של השהייה החופשית בפינת החי</h2>
+        <p>במהלך ימי הלימודים העמוסים יש רגעים מיוחדים שבהם פינת החי נפתחת למבקרים. זה קורה בהפסקות המיועדות לכל שכבה או בזמנים מיוחדים כמו "ראשון בהפתעה" כשהתלמידים בוחרים להגיע למרחב מתוך רצון אישי. מי שמגיע לפינת החי מגלה מיד שלא מדובר בעוד שיעור שצריך להקשיב בו או במשימה לימודית שחייבים לבצע אלא במקום שבו אפשר פשוט להיות. המרחב הזה מאפשר לנו להשאיר את הלחץ של הציונים והמבחנים מחוץ לשער ולהיכנס לקצב אחר לגמרי. זהו קצב רגוע שבו המטרה היחידה היא הנוכחות שלנו לצד בעלי החיים והיכולת שלנו להתחבר לשקט הפנימי בתוך המולת היום.</p>
+
+        <h3>מרחב של בחירה חופשית בתוך יום עמוס ואינטנסיבי</h3>
+        <p>עבור רבים מאיתנו עמידה בדרישות ובמסגרות נוקשות לאורך כל היום היא אתגר לא פשוט שגובה מאמץ רגשי רב. פינת החי מציעה הפוגה מסוג אחר ומאפשרת לנו להפחית מתחים בדרך טבעית ובלתי אמצעית. כאן בפינת החי אין ציפיות להישגים ואין הגדרות נוקשות של נכון או לא נכון. כשאנחנו נכנסים למרחב אנחנו אלו שמחליטים כיצד ייראה הזמן שלנו. אנחנו בוחרים אם לגשת קרוב לכלובים כדי להתבונן מקרוב, לעקוב בסקרנות אחרי התנועה של התיקן הלוחש או פשוט לשבת בשקט על הספסל ולתת למחשבות לנדוד. הבחירה הזו היא לב העניין כי כשאנחנו לוקחים את המושכות לידיים שלנו ומחליטים בעצמנו איך לפעול אנחנו מחזקים את תחושת השליטה והביטחון הפנימי שלנו מול העומס היומיומי שסביבנו.</p>
+
+        <h3>בעלי החיים כשותפים לדרך ללא תנאים וללא שיפוטיות</h3>
+        <p>בעלי החיים בפינת החי מקבלים אותנו בדיוק כפי שאנחנו ברגע הזה. הם לא שופטים את המראה שלנו ולא מעבירים ביקורת על ההתנהגות או על ההישגים שלנו אלא פשוט מגיבים לכאן ולעכשיו. המפגש השקט הזה הוא כלי עוצמתי לוויסות רגשי שעוזר לנו להירגע וללמוד על העולם הפנימי שלנו דרך העיניים של החיה. כשאנחנו נמצאים ליד קיקו הג׳אקו שמתבונן בנו בסבלנות או ליד שרקן שמכרסם בשלווה אנחנו מפתחים אמפתיה ורגישות בדרך הכי טבעית שיש. הלמידה הזו מתרחשת מתוך הקשבה אמיתית לצרכים של יצור אחר ומתוך הבנה שגם ללא מגע פיזי אפשר ליצור קשר עמוק ומשמעותי. ברגעים הללו אנחנו מגלים שהשקט הוא לא רק היעדר של רעש אלא מרחב פתוח של חיבור לעצמנו ולאחרים שמעניק לנו כוח להמשך היום.</p>
+
+        <h3>מהתבוננות לעשייה: לגלות את כוחות הנתינה שבנו</h3>
+        <p>אחד התהליכים המרגשים ביותר שמתרחשים בפינת החי הוא שינוי התפקיד שאנחנו חווים בתוך הקשר עם החיות. בתוך המרחב המוגן הזה אנחנו מגלים שאנחנו יכולים להיות אלו שמעניקים דאגה ותמיכה לאחרים במקום רק לקבל אותן. כשאנחנו דואגים לרווחת החיות ולצרכים שלהן אנחנו מוצאים בתוכנו כוחות של אחריות ומסוגלות שאולי לא תמיד מקבלים ביטוי בתוך הכיתה או בשיעורים הרגילים. החוויה הזו בונה את הזהות שלנו מחדש כדמויות משפיעות ומיטיבות שיש להן ערך רב בתוך הקהילה שלנו. דווקא בתוך החופש והשקט שנוצרים בשהייה החופשית בפינת החי מתרחשים תהליכים עמוקים של צמיחה אישית שמשפיעים לטובה על התחושה שלנו ועל היכולת שלנו להתמודד עם אתגרי החיים בבית הספר ומחוצה לו.</p>
+
+        <div class="insight-links">
+          <p>מי מחכה לכם היום בפינת החי? <a href="?tab=mycorner" onclick="event.preventDefault();event.stopPropagation();switchTab('mycorner')">הכירו את החיות שלנו</a></p>
+          <p>איך שומרים על החיות בריאות ושמחות? <a href="?tab=animals" onclick="event.preventDefault();event.stopPropagation();switchTab('animals')">מידע על בריאות ורווחת בעלי החיים</a></p>
+          <p>רוצים לדעת מה מותר להביא להן? <a href="?tab=allfoods" onclick="event.preventDefault();event.stopPropagation();switchTab('allfoods')">מדריך המזונות המלא לפינת החי</a></p>
+        </div>
+        <div style="margin-top:1.4rem;padding-top:.7rem;border-top:1px solid rgba(0,0,0,.07);text-align:left;font-size:.72rem;color:#bbb;font-style:italic;direction:rtl">נכתב על ידי גלי זייצ'יק</div>
+        <button class="insight-close-btn" onclick="event.stopPropagation();toggleInsightCard('insight-body-1', document.getElementById('insight-card-1'))">סגור ↑</button>
+      </div>
+    </div>
+    <div class="insight-card" id="insight-card-2" onclick="toggleInsightCard('insight-body-2', this, event)" itemscope itemtype="https://schema.org/Article">
+      <div class="insight-card-top">
+        <span class="insight-card-tag">רגש וקהילה</span>
+        <div class="insight-card-title" itemprop="name">🐾 הכוח שבקשר: איך בעלי החיים עוזרים לנו לדבר על עצמנו <span onclick="event.stopPropagation();speakText('הכוח שבקשר: איך בעלי החיים עוזרים לנו לדבר על עצמנו',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0" aria-label="הקרא בקול">🔊</span></div>
+        <div class="insight-card-preview">לפעמים קל לנו יותר לדבר על האחר מאשר על עצמנו. בפינת החי אנחנו פוגשים לא פעם חיות שמתמודדות עם קושי, פציעה או פשוט רגע ש...</div>
+      </div>
+      <div class="insight-card-footer">
+        <a class="insight-card-cta" href="?article=2" onclick="event.preventDefault();event.stopPropagation();toggleInsightCard('insight-body-2', this.closest('.insight-card'), event)" title="קראו עוד">קראו עוד ←</a>
+        <span style="font-size:.85rem;opacity:.5">▼</span>
+      </div>
+      <div class="insight-body" id="insight-body-2" itemprop="articleBody">
+        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-2')" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
+        <h2 style="display:none">הכוח שבקשר: איך בעלי החיים עוזרים לנו לדבר על עצמנו</h2>
+        <p>לפעמים קל לנו יותר לדבר על האחר מאשר על עצמנו. בפינת החי אנחנו פוגשים לא פעם חיות שמתמודדות עם קושי, פציעה או פשוט רגע של פחד, והמפגש הזה הוא הרבה מעבר לדאגה לצרכים הפיזיים שלהן. זוהי הזדמנות עמוקה להבין מה עובר עלינו בפנים. דרך השותפות עם יצור חי אחר אנחנו מצליחים לגעת בנושאים מורכבים בתוכנו וליצור מרחב בטוח שבו מותר להרגיש הכל. המרחב הזה מאפשר לנו לעבד חוויות בצורה עקיפה ובטוחה, למצוא מילים לרגשות שקשה לנו לבטא באופן ישיר ולגלות דרך המבט של החיה את הכוחות שטמונים בנו.</p>
+
+        <h3>החיה כמראה לעולם הרגשי ולפגיעות שלנו</h3>
+        <p>כשמישהו מאיתנו רואה ארנבון שמתחבא בפינה החשוכה של הכלוב או צב סודני שנכנס עמוק לתוך השריון שלו, הוא לא רואה רק התנהגות הישרדותית של חיה אלא לעיתים קרובות את הפגיעות כפי שהיא. כשאנחנו אומרים על חיה שהיא בטח פוחדת או שהיא מרגישה לבד עכשיו, אנחנו בעצם מתחילים לבטא רגשות שלנו שקשה לנו להגיד בקול רם. זהו תהליך טבעי של השלכה שבו אנחנו מניחים את החשש או הכאב שלנו על היצור השקט שמולנו. המפגש הזה מאפשר לנו להכיר ברגשות הללו בלי להרגיש חשופים מדי, ומתוך כך להתחיל תהליך של הבנה וקבלה עצמית שבו אנחנו מזהים שגם לאחרים יש רגעים של פחד וזה חלק טבעי מהחיים.</p>
+
+        <h3>הטיפול באחר כדרך לשינוי בזהות ולריפוי עצמי</h3>
+        <p>בפינת החי אנחנו לומדים שגם רגעים של קושי גדול הם חלק מהחיים ויש לנו את היכולת לצמוח מתוכם ולהיטיב עם הסביבה. כשאנחנו דואגים לחיה שזקוקה לנו, בין אם זה בסידור המצע בתוך הכלוב כדי שיהיה לה נעים או בניקוי האקווריום, אנחנו חווים את הכוח הממשי שלנו לחולל שינוי. הטיפול המסור מעניק לנו תחושת מסוגלות וביטחון פנימי שבונים את הזהות שלנו מחדש כדמויות משפיעות ומיטיבות. בתוך המרחב המוגן הזה אנחנו מגלים שפגיעות היא לא חולשה ושיש לנו את היכולת להפוך ממי שזקוק לתמיכה למי שמעניק אותה לאחרים. המעבר הזה בזהות האישית הוא אחד הרגעים העוצמתיים ביותר בתהליך שאנחנו עוברים בפינת החי, והוא מעניק לנו כוח גם מחוץ לגבולותיה.</p>
+
+        <h3>מרחב בטוח של חמלה ללא מילים ושיפוטיות</h3>
+        <p>בעלי החיים בפינת החי שלנו מקבלים אותנו ללא תנאים והם לא זקוקים למילים מורכבות כדי להרגיש אותנו ולהיות איתנו בקשר עמוק. בתוך השקט המיוחד של פינת החי אנחנו מוצאים מקום שבו מותר לחשוש ומותר פשוט להיות נוכחים כפי שאנחנו באותו רגע, ללא לחץ להישגים או לתוצאות. המפגש הזה מלמד אותנו לפתח חמלה אמיתית כלפי האחר ובעיקר ללמוד חמלה וסבלנות כלפי עצמנו, מתוך הבנה שכולנו זקוקים לרגעים של הגנה, שקט וחיבור. הקשר עם בעלי החיים הוא גשר ישיר לרגשות שלנו שמאפשר לנו לגלות בתוכנו כוחות של נתינה ותקווה, וזו המהות של העבודה הרגשית בפינת החי שלנו: למצוא חיבור עמוק ומשמעות דרך טיפול מסור ביצור חי אחר.</p>
+
+        <div class="insight-links">
+          <p>הכירו את החיות שמחכות לכם: <a href="?tab=mycorner" onclick="event.preventDefault();event.stopPropagation();switchTab('mycorner')">פינת החי שלנו</a></p>
+          <p>רוצים לדעת על צרכי כל חיה? <a href="?tab=animals" onclick="event.preventDefault();event.stopPropagation();switchTab('animals')">מידע על בריאות ורווחת בעלי החיים</a></p>
+          <p>לתכנון ארוחה מותאמת: <a href="?tab=dailymenu" onclick="event.preventDefault();event.stopPropagation();switchTab('dailymenu')">מחשבון התפריט היומי</a></p>
+        </div>
+        <div style="margin-top:1.4rem;padding-top:.7rem;border-top:1px solid rgba(0,0,0,.07);text-align:left;font-size:.72rem;color:#bbb;font-style:italic;direction:rtl">נכתב על ידי גלי זייצ'יק</div>
+        <button class="insight-close-btn" onclick="event.stopPropagation();toggleInsightCard('insight-body-2', document.getElementById('insight-card-2'))">סגור ↑</button>
+      </div>
+    </div>
+    <div class="insight-card" id="insight-card-3" onclick="toggleInsightCard('insight-body-3', this, event)" itemscope itemtype="https://schema.org/Article">
+      <div class="insight-card-top">
+        <span class="insight-card-tag">רגש וקהילה</span>
+        <div class="insight-card-title" itemprop="name">👀 בלי מסכות: למה בעלי חיים הם החברים הכי כנים שלנו <span onclick="event.stopPropagation();speakText('בלי מסכות: למה בעלי חיים הם החברים הכי כנים שלנו',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0" aria-label="הקרא בקול">🔊</span></div>
+        <div class="insight-card-preview">בתוך פינת החי שלנו אנחנו לא צריכים לנחש מה הצד השני מרגיש. בניגוד לבני אדם, שיכולים להיות נחמדים גם כשלא מתחשק להם, בעלי...</div>
+      </div>
+      <div class="insight-card-footer">
+        <a class="insight-card-cta" href="?article=3" onclick="event.preventDefault();event.stopPropagation();toggleInsightCard('insight-body-3', this.closest('.insight-card'), event)" title="קראו עוד">קראו עוד ←</a>
+        <span style="font-size:.85rem;opacity:.5">▼</span>
+      </div>
+      <div class="insight-body" id="insight-body-3" itemprop="articleBody">
+        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-3')" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
+        <h2 style="display:none">בלי מסכות: למה בעלי חיים הם החברים הכי כנים שלנו</h2>
+        <p>בתוך פינת החי שלנו אנחנו לא צריכים לנחש מה הצד השני מרגיש באמת. בניגוד לעולם האנושי שבו אנחנו יכולים להיות נחמדים גם כשלא ממש מתחשק לנו או להסתיר את מה שעובר עלינו, בעלי החיים פועלים תמיד לפי הרגש המיידי שלהם. הם לא מנסים להרשים אף אחד ולא עסוקים בציפיות של אחרים, וזה בדיוק מה שהופך את הקשר איתם למשהו יציב שאפשר לסמוך עליו בכל רגע. הכנות הזו מאפשרת לנו להוריד את המסכות של עצמנו ולהרגיש בטוחים בתוך מרחב שבו הדברים הם פשוט כפי שהם ללא הצמדות לכללים חברתיים מורכבים.</p>
+
+        <h3>ללמוד לקבל את ה"לא" כביטוי של כבוד הדדי</h3>
+        <p>כשצב סודני בוחר להיכנס לתוך השריון שלו או כששממית מנומרת נשארת עמוק בתוך המחבוא שלה, הם אומרים לנו בצורה הכי ישירה שהם זקוקים כרגע לשקט ולפרטיות. בתוך פינת החי אנחנו לומדים שלכל אחד מאיתנו ומהחיות יש רצון משלו וגבולות שצריך לכבד. אנחנו לא מכריחים את האוגר הסורי לצאת מהמחילה שלו כשהוא ישן ולא מנסים להזיז את החרדון המזוקן מהענף שלו רק כי רצינו לראות אותו זז. כשאנחנו מכבדים את הגבולות הברורים הללו אנחנו מגלים שאנחנו מספיק בוגרים כדי להבין שהעולם לא תמיד פועל לפי התוכניות שלנו. הלמידה הזו בונה בתוכנו סבלנות ואכפתיות אמיתית שהן הבסיס לכל קשר בריא ומשמעותי.</p>
+
+        <h3>היופי שבבחירה החופשית ובכנות של ה"כן"</h3>
+        <p>באותה מידה שה"לא" של בעלי החיים הוא מוחלט, כך גם ה"כן" שלהם הוא אמיתי לגמרי ונטול אינטרסים. כשכלב בוחר לגשת אלינו בשהייה חופשית בפינת החי או כשארנבון מתקרב אלינו מיוזמתו, אנחנו יודעים שזה לא קורה מתוך נימוס או אילוץ אלא כי הוא באמת מרגיש אצלנו בטוח ונינוח. בתוך פינת החי אנחנו אלו שדואגים לכל הצרכים שלהם והם תלויים בנו כמעט כמו תינוקות. העובדה שהם בוחרים בנו כשותפים לזמן שלהם ומרגישים בנוח בקרבתנו היא ההוכחה הטובה ביותר לעבודה המסורה שלנו ולביטחון שהצלחנו להעניק להם בתוך המרחב המשותף.</p>
+
+        <h3>מפגש עם החיים כמו שהם ללא פילטרים</h3>
+        <p>החוויה בפינת החי היא לא הצגה מתוכננת מראש או פעילות משוחזרת אלא מפגש חי עם המציאות כפי שהיא ברגע זה. לפעמים המפגש הזה דורש מאיתנו הרבה מאוד סבלנות ולפעמים הוא עשוי לאכזב כשהחיה לא מגיבה כפי שקיווינו, אבל הוא תמיד אמיתי ומלמד. כשאנחנו דואגים לניקיון של הסביבה שלהם או לסידור המצע בתוך הכלובים כדי שיהיה להם נעים, אנחנו בונים קשר חזק שמבוסס על אמת ועל אחריות גדולה. דרך הפעולות היומיומיות האלו אנחנו מבינים שהקשר הכי עמוק נוצר דווקא ברגעים הפשוטים והכנים שבהם אנחנו פשוט נמצאים שם בשבילם ללא מסכות וללא תנאים.</p>
+
+        <div class="insight-links">
+          <p>רוצים לדעת מתי החיה זקוקה לשקט? <a href="?tab=animals" onclick="event.preventDefault();event.stopPropagation();switchTab('animals')">מידע על בריאות ורווחת בעלי החיים</a></p>
+          <p>מי מחכה לכם היום בפינת החי? <a href="?tab=mycorner" onclick="event.preventDefault();event.stopPropagation();switchTab('mycorner')">הכירו את כל בעלי החיים שלנו</a></p>
+          <p>רוצים לעזור בהכנת המזון? <a href="?tab=dailymenu" onclick="event.preventDefault();event.stopPropagation();switchTab('dailymenu')">מחשבון התפריט היומי</a></p>
+        </div>
+        <div style="margin-top:1.4rem;padding-top:.7rem;border-top:1px solid rgba(0,0,0,.07);text-align:left;font-size:.72rem;color:#bbb;font-style:italic;direction:rtl">נכתב על ידי גלי זייצ'יק</div>
+        <button class="insight-close-btn" onclick="event.stopPropagation();toggleInsightCard('insight-body-3', document.getElementById('insight-card-3'))">סגור ↑</button>
+      </div>
+    </div>
+      </div>
+    </section>
+
+    </div><!-- end islands -->
 </div><!-- end tab-insight -->
 
 <div class="tab-panel" id="tab-deploy">
@@ -3262,7 +3453,263 @@ function switchTab(tabId){
 }
 
 
-function toggleInsightCard(bodyId, cardEl){
+
+
+// ── Insight Visual Effects ─────────────────────────────
+
+// Ripple על כרטיסייה + pulse
+function addCardRipple(cardEl, event){
+  const ripple = document.createElement('span');
+  ripple.className = 'insight-ripple';
+  const rect = cardEl.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height) * 1.5;
+  const x = (event?.clientX ?? rect.left + rect.width/2) - rect.left - size/2;
+  const y = (event?.clientY ?? rect.top + rect.height/2) - rect.top - size/2;
+  // Color by island
+  const island = cardEl.closest('.insight-island');
+  ripple.style.cssText = `width:${size}px;height:${size}px;left:${x}px;top:${y}px;background:${
+    island?.classList.contains('nutrition') ? '#3aaa6e' :
+    island?.classList.contains('safety')    ? '#f0874a' : '#7c5cbf'
+  }`;
+  cardEl.appendChild(ripple);
+  cardEl.classList.add('opening');
+  ripple.addEventListener('animationend', () => ripple.remove());
+  cardEl.addEventListener('animationend', () => cardEl.classList.remove('opening'), {once:true});
+}
+
+// אימוג'י pop על כותרת אי
+function popIslandEmoji(el){
+  el.classList.remove('popping');
+  void el.offsetWidth;
+  el.classList.add('popping');
+  // mini confetti
+  const emojis = ['🌿','🐾','💚','⭐','🥕'];
+  for(let i=0;i<6;i++){
+    const p = document.createElement('span');
+    p.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    const rect = el.getBoundingClientRect();
+    p.style.cssText = `position:fixed;left:${rect.left+rect.width/2+( Math.random()-0.5)*60}px;top:${rect.top}px;font-size:${12+Math.random()*10}px;pointer-events:none;z-index:9999;animation:confettiInsight ${.5+Math.random()*.4}s ease forwards`;
+    document.body.appendChild(p);
+    p.addEventListener('animationend',()=>p.remove());
+  }
+  el.addEventListener('animationend',()=>el.classList.remove('popping'),{once:true});
+}
+
+// confetti ירוק לפתח-הכל
+function spawnInsightConfetti(){
+  const colors=['💚','🌿','🐾','✨','🌱'];
+  for(let i=0;i<18;i++){
+    const p=document.createElement('span');
+    p.textContent=colors[Math.floor(Math.random()*colors.length)];
+    p.style.cssText=`position:fixed;left:${10+Math.random()*80}vw;top:${20+Math.random()*30}vh;font-size:${14+Math.random()*16}px;pointer-events:none;z-index:9999;animation:confettiInsight ${.6+Math.random()*.6}s ${Math.random()*.3}s ease forwards`;
+    document.body.appendChild(p);
+    p.addEventListener('animationend',()=>p.remove());
+  }
+}
+
+function openInsightModal(cardEl, event){
+  addCardRipple(cardEl, event);
+  const body = cardEl.querySelector('.insight-body');
+  const titleEl = cardEl.querySelector('.insight-card-title');
+  const tagEl = cardEl.querySelector('.insight-card-tag');
+  const island = cardEl.closest('.insight-island');
+  if(!body || !titleEl) return;
+
+  // Set tag
+  const tag = document.getElementById('insightModalTag');
+  tag.textContent = tagEl ? tagEl.textContent : '';
+  // Color tag by island type
+  tag.style.background = ''; tag.style.color = '';
+  if(island){
+    if(island.classList.contains('emotional')){ tag.style.background='#e8d8ff'; tag.style.color='#6a3da0'; }
+    if(island.classList.contains('nutrition')){ tag.style.background='#d0f0e0'; tag.style.color='#1e6a38'; }
+    if(island.classList.contains('safety')){ tag.style.background='#ffe0c8'; tag.style.color='#b04010'; }
+  }
+  // Set title (strip emoji prefix handled naturally)
+  document.getElementById('insightModalTitle').textContent = titleEl.textContent.trim();
+  // Set body (clone to avoid moving DOM)
+  const bodyClone = body.cloneNode(true);
+  bodyClone.style.display = 'block';
+  // Remove close button from clone
+  const closeBtn = bodyClone.querySelector('.insight-close-btn');
+  if(closeBtn) closeBtn.remove();
+  // Style insight-links inside modal based on island
+  if(island){
+    const links = bodyClone.querySelector('.insight-links');
+    if(links){
+      if(island.classList.contains('nutrition')){ links.style.background='#f0faf4'; links.style.borderRightColor='#5ab870'; }
+      if(island.classList.contains('safety')){ links.style.background='#fff6f0'; links.style.borderRightColor='#e08050'; }
+    }
+  }
+  document.getElementById('insightModalBody').innerHTML = bodyClone.innerHTML;
+  const modal = document.getElementById('insightModal');
+  modal.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function openArticleModal(bodyId){
+  const body = document.getElementById(bodyId);
+  if(!body) return;
+  // Get the parent card for title/tag info
+  const card = body.closest('.insight-card');
+  const island = card?.closest('.insight-island');
+  const title = card?.querySelector('.insight-card-title')?.cloneNode(true);
+  // Remove the 🔊 speak button from the cloned title
+  if(title) title.querySelectorAll('span[aria-label]').forEach(s=>s.remove());
+  const tag = card?.querySelector('.insight-card-tag')?.textContent || '';
+
+  // Set tag color based on island type
+  const tagEl = document.getElementById('articleModalTag');
+  tagEl.textContent = tag;
+  tagEl.style.cssText = '';
+  if(island?.classList.contains('nutrition')){
+    tagEl.style.cssText = 'background:#d0f0e0;color:#1e6a38;font-size:.68rem;font-weight:700;padding:.12rem .5rem;border-radius:50px;display:inline-block;margin-bottom:.25rem';
+  } else if(island?.classList.contains('safety')){
+    tagEl.style.cssText = 'background:#ffe0c8;color:#b04010;font-size:.68rem;font-weight:700;padding:.12rem .5rem;border-radius:50px;display:inline-block;margin-bottom:.25rem';
+  } else {
+    tagEl.style.cssText = 'background:#e8d8ff;color:#6a3da0;font-size:.68rem;font-weight:700;padding:.12rem .5rem;border-radius:50px;display:inline-block;margin-bottom:.25rem';
+  }
+
+  const titleEl = document.getElementById('articleModalTitle');
+  titleEl.textContent = title ? title.textContent.trim() : '';
+
+  // Clone body content (minus the close button and speak button)
+  const content = body.cloneNode(true);
+  content.querySelectorAll('.insight-close-btn, button[onclick*="speakInsightBody"]').forEach(el=>el.remove());
+  // Fix internal links to work from modal
+  content.querySelectorAll('a[onclick*="switchTab"]').forEach(a=>{
+    const match = a.getAttribute('onclick').match(/switchTab\('([^']+)'\)/);
+    if(match){
+      a.setAttribute('onclick', `event.stopPropagation();closeArticleModal();switchTab('${match[1]}');return false`);
+    }
+  });
+
+  const contentEl = document.getElementById('articleModalContent');
+  contentEl.innerHTML = '';
+  contentEl.className = island?.classList.contains('nutrition') ? 'nutrition-modal' :
+                        island?.classList.contains('safety')    ? 'safety-modal'    : '';
+  contentEl.appendChild(content);
+
+  const modal = document.getElementById('articleModal');
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.addEventListener('keydown', _articleModalEsc);
+}
+
+function closeArticleModal(){
+  document.getElementById('articleModal').classList.remove('open');
+  document.body.style.overflow = '';
+  document.removeEventListener('keydown', _articleModalEsc);
+}
+
+function _articleModalEsc(e){ if(e.key==='Escape') closeArticleModal(); }
+
+function closeInsightModal(){
+  document.getElementById('insightModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function expandAllInIsland(btn){
+  const grid = btn.closest('.insight-island').querySelector('.island-grid');
+  const cards = grid.querySelectorAll('.insight-card');
+  const allOpen = [...cards].every(c => c.querySelector('.insight-body')?.classList.contains('open'));
+  cards.forEach(card => {
+    const body = card.querySelector('.insight-body');
+    const arrow = card.querySelector('.insight-card-footer span:last-child');
+    if(allOpen){
+      body?.classList.remove('open');
+      if(arrow) arrow.textContent = '▼';
+    } else {
+      body?.classList.add('open');
+      if(arrow) arrow.textContent = '▲';
+    }
+  });
+  btn.textContent = allOpen ? '📖 פתח את כל הקטעים' : '📕 סגור את כל הקטעים';
+}
+
+// Override card click to open modal instead of inline expand
+function toggleInsightCard(bodyId, cardEl, event){
+  addCardRipple(cardEl, event);
+  const body = document.getElementById(bodyId);
+  if(!body) return;
+  const isOpen = body.classList.contains('open');
+  // סגור אחרים באותו גריד
+  const grid = cardEl.closest('.island-grid');
+  if(grid){
+    grid.querySelectorAll('.insight-body.open').forEach(b=>{
+      b.classList.remove('open');
+      const arrow = b.closest('.insight-card')?.querySelector('.insight-card-footer span:last-child');
+      if(arrow) arrow.textContent='▼';
+    });
+  }
+  if(!isOpen){
+    body.classList.add('open');
+    const arrow = cardEl.querySelector('.insight-card-footer span:last-child');
+    if(arrow) arrow.textContent='▲';
+    setTimeout(()=>cardEl.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
+  }
+}
+
+
+function expandAllInsights(){
+  const btn = document.getElementById('insightExpandAllBtn');
+  const allBodies = document.querySelectorAll('#tab-insight .insight-body');
+  const allOpen = [...allBodies].every(b => b.classList.contains('open'));
+  allBodies.forEach(body => {
+    const card = body.closest('.insight-card');
+    const arrow = card?.querySelector('.insight-card-footer span:last-child');
+    if(allOpen){
+      body.classList.remove('open');
+      if(arrow) arrow.textContent = '▼';
+    } else {
+      body.classList.add('open');
+      if(arrow) arrow.textContent = '▲';
+    }
+  });
+  // Update per-island buttons too
+  document.querySelectorAll('.island-expand-all').forEach(b => {
+    b.textContent = allOpen ? '📖 פתח את כל הקטעים' : '📕 סגור את כל הקטעים';
+  });
+  if(btn) btn.textContent = allOpen
+    ? '📖 פתח את כל הקטעים בכל הקטגוריות'
+    : '📕 סגור את כל הקטעים בכל הקטגוריות';
+  if(!allOpen) spawnInsightConfetti();
+}
+
+
+function speakInsightAll(btn){
+  let text = 'מבט מעמיק. בין הבית לפינת החי: המפגש שלנו עם בעלי החיים ועם עצמנו. ';
+  document.querySelectorAll('#tab-insight .insight-island').forEach(island => {
+    const title = island.querySelector('.island-title');
+    const sub = island.querySelector('.island-subtitle');
+    if(title) text += title.textContent.replace('🔊','').trim() + '. ';
+    if(sub)   text += sub.textContent.trim() + '. ';
+    island.querySelectorAll('.insight-card').forEach(card => {
+      const cardTitle = card.querySelector('.insight-card-title');
+      if(cardTitle) text += cardTitle.textContent.replace('🔊','').trim() + '. ';
+      const body = card.querySelector('.insight-body');
+      if(body && body.classList.contains('open')){
+        body.querySelectorAll('h3,p').forEach(el => {
+          text += el.textContent.trim() + '. ';
+        });
+      }
+    });
+  });
+  speakText(text.trim(), btn);
+}
+
+function speakInsightBody(bodyId){
+  const body = document.getElementById(bodyId);
+  if(!body) return;
+  // Extract text, skip buttons
+  let text = '';
+  body.querySelectorAll('h2,h3,p').forEach(el => {
+    if(el.style.display !== 'none') text += el.textContent.trim() + '. ';
+  });
+  speakText(text.trim(), document.querySelector(`[onclick*="${bodyId}"] .insight-card-title`) || document.body);
+}
+
+function toggleInsightCard_UNUSED(bodyId, cardEl){
   const body = document.getElementById(bodyId);
   if(!body) return;
   const isOpen = body.classList.contains('open');
@@ -6542,6 +6989,117 @@ function pwaInstall(){
     _pwaPrompt = null;
   });
 }
+</script>
+
+<!-- Article Full Modal -->
+<div id="articleModal" onclick="if(event.target===this)closeArticleModal()">
+  <div id="articleModalBox">
+    <div id="articleModalHead">
+      <div>
+        <span id="articleModalTag"></span>
+        <div id="articleModalTitle"></div>
+      </div>
+      <button class="am-close-btn" onclick="closeArticleModal()" title="סגור">✕</button>
+    </div>
+    <div id="articleModalContent"></div>
+  </div>
+</div>
+
+<!-- Insight Modal -->
+<div id="insightModal" style="display:none;position:fixed;inset:0;z-index:9500;background:rgba(0,0,0,.55);overflow-y:auto;padding:1.5rem 1rem" onclick="if(event.target===this)closeInsightModal()">
+  <div id="insightModalBox" style="background:var(--card);border-radius:22px;max-width:660px;margin:0 auto;box-shadow:0 16px 50px rgba(0,0,0,.28);direction:rtl;overflow:hidden">
+    <div id="insightModalTop" style="position:sticky;top:0;background:var(--card);padding:.85rem 1.1rem .55rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(0,0,0,.08);z-index:2">
+      <div>
+        <span id="insightModalTag" style="font-size:.68rem;font-weight:700;padding:.12rem .5rem;border-radius:50px;display:inline-block;margin-bottom:.2rem"></span>
+        <div id="insightModalTitle" style="font-size:1rem;font-weight:800;color:var(--text);line-height:1.35"></div>
+      </div>
+      <button onclick="closeInsightModal()" style="background:none;border:1.5px solid #ccc;border-radius:50%;width:34px;height:34px;font-size:1rem;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#888">✕</button>
+    </div>
+    <div id="insightModalBody" style="padding:1.2rem 1.4rem 1.8rem;line-height:1.85;color:var(--text);font-size:.93rem"></div>
+  </div>
+</div>
+
+<script>
+// ── Standalone article page (?article=N) ──────────────────
+(function(){
+  const params = new URLSearchParams(location.search);
+
+  // Handle ?tab=X — switch to that tab on load
+  const tabId = params.get('tab');
+  if(tabId){
+    document.addEventListener('DOMContentLoaded', ()=> switchTab(tabId));
+  }
+
+  const articleId = params.get('article');
+  if(!articleId) return;
+
+  // Wait for DOM to be ready, then render standalone
+  function renderStandalone(){
+    const body   = document.getElementById('insight-body-' + articleId);
+    const card   = body?.closest('.insight-card');
+    const island = card?.closest('.insight-island');
+    if(!body || !card) return;
+
+    const title  = card.querySelector('.insight-card-title')?.textContent.trim() || '';
+    const tag    = card.querySelector('.insight-card-tag')?.textContent.trim() || '';
+
+    // Island color theme
+    const isNutrition = island?.classList.contains('nutrition');
+    const isSafety    = island?.classList.contains('safety');
+    const accentColor = isNutrition ? '#2d7a4a' : isSafety ? '#c05020' : '#7b5ea7';
+    const tagBg       = isNutrition ? '#d0f0e0' : isSafety ? '#ffe0c8' : '#e8d8ff';
+
+    // Build standalone HTML
+    const bodyClone = body.cloneNode(true);
+    bodyClone.querySelectorAll('.insight-close-btn, button[onclick*="speakInsightBody"]').forEach(el=>el.remove());
+    // Fix internal links — open main app instead of navigating within standalone
+    bodyClone.querySelectorAll('a[onclick*="switchTab"]').forEach(a=>{
+      const match = a.getAttribute('onclick').match(/switchTab\('([^']+)'\)/);
+      if(match){
+        a.href = '?tab=' + match[1];
+        a.removeAttribute('onclick');
+        a.target = '_blank';
+      }
+    });
+
+    document.body.innerHTML = `
+      <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Varela Round','Heebo',sans-serif;background:#f4f8ff;color:#222;min-height:100vh;direction:rtl}
+        .sa-wrap{max-width:680px;margin:0 auto;padding:1.5rem 1.2rem 3rem}
+        .sa-back{display:inline-flex;align-items:center;gap:.4rem;font-size:.82rem;font-weight:700;color:${accentColor};text-decoration:none;margin-bottom:1.2rem;opacity:.8}
+        .sa-back:hover{opacity:1}
+        .sa-tag{font-size:.68rem;font-weight:700;padding:.12rem .55rem;border-radius:50px;background:${tagBg};color:${accentColor};display:inline-block;margin-bottom:.55rem}
+        .sa-title{font-size:1.35rem;font-weight:900;line-height:1.35;margin-bottom:1.2rem;color:#222}
+        .sa-body{background:#fff;border-radius:18px;padding:1.4rem 1.6rem 1.8rem;box-shadow:0 3px 16px rgba(60,80,140,.10);line-height:1.85;font-size:.95rem;color:#333}
+        .sa-body h3{font-size:.98rem;font-weight:700;color:${accentColor};margin:1.1rem 0 .35rem;padding-right:.5rem;border-right:3px solid ${accentColor}}
+        .sa-body p{margin:.3rem 0 .75rem}
+        .sa-body a{color:${accentColor};font-weight:700}
+        .sa-body .insight-links{margin-top:1.1rem;padding:.85rem 1rem;background:#f8f5ff;border-radius:10px;border-right:3px solid ${accentColor}}
+        .sa-body .insight-links p{font-size:.82rem;color:#666;margin:.22rem 0}
+        .sa-footer{text-align:center;margin-top:1.5rem;font-size:.78rem;color:#aaa}
+      </style>
+      <link href="https://fonts.bunny.net/css?family=varela-round:400|heebo:400,700,900" rel="stylesheet">
+      <div class="sa-wrap">
+        <a class="sa-back" href="${location.pathname}?tab=insight">← חזרה למבט מעמיק</a>
+        <div class="sa-tag">${tag}</div>
+        <div class="sa-title">${title}</div>
+        <div class="sa-body"></div>
+        <div class="sa-footer">פינת החי של בית ספר שז"ר, באר שבע</div>
+      </div>`;
+
+    document.querySelector('.sa-body').appendChild(bodyClone);
+    bodyClone.style.display = 'block';
+    document.title = title;
+  }
+
+  // Run after page load so all elements exist
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', renderStandalone);
+  } else {
+    renderStandalone();
+  }
+})();
 </script>
 </body>
 </html>
