@@ -1,4 +1,4 @@
-const CACHE = 'pina-hachai-v1';
+const CACHE = 'pina-hachai-v2';
 const FILES = [
   './index.html',
   './manifest.json'
@@ -22,8 +22,13 @@ self.addEventListener('activate', e => {
 
 self.addEventListener('fetch', e => {
   e.respondWith(
-    caches.match(e.request).then(cached => {
-      return cached || fetch(e.request).catch(() => caches.match('./index.html'));
-    })
+    fetch(e.request)
+      .then(response => {
+        // שמור את הגרסה החדשה במטמון
+        const clone = response.clone();
+        caches.open(CACHE).then(cache => cache.put(e.request, clone));
+        return response;
+      })
+      .catch(() => caches.match(e.request).then(cached => cached || caches.match('./index.html')))
   );
 });
