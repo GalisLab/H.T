@@ -23,7 +23,7 @@
   --green:#3aaa6e;--red:#e05252;--yellow:#f0c030;--orange:#f0874a;
   --blue:#4090d0;--purple:#7c5cbf;--teal:#30a8a0;--pink:#d060a0;
   --mint:#e0f7f0;--sky:#daeeff;--lavender:#ede8ff;
-  --bg:#f4f8ff;--card:#fff;--text:#222;--muted:#777;
+  --bg:#f5f1e8;--card:#fff;--text:#222;--muted:#777;
   --radius:18px;--shadow:0 3px 16px rgba(60,80,140,0.10);
 }
 /* ═══ DARK MODE ═══ */
@@ -6891,9 +6891,14 @@ function spawnHeartConfetti() {
 
 </script>
 <footer style="text-align:center;font-size:10px;color:rgba(128,128,128,0.3);padding:.5rem;margin-top:1rem">נבנה באהבה עבור פינת החי של בית ספר שז"ר, באר שבע</footer>
-<div style="text-align:center;padding:.6rem 1rem 1.5rem">
+<div id="updateBtn" style="display:none;text-align:center;padding:.6rem 1rem 1.5rem">
   <a href="https://galislab.github.io/H.T/" style="display:inline-flex;align-items:center;gap:.4rem;background:none;border:1.5px solid #ccd;border-radius:50px;padding:.35rem 1rem;font-size:.78rem;font-weight:700;color:#888;text-decoration:none;font-family:'Varela Round',sans-serif;transition:all .18s" onmouseover="this.style.borderColor='#3aaa6e';this.style.color='#3aaa6e'" onmouseout="this.style.borderColor='#ccd';this.style.color='#888'">🔄 התקנת הגרסה העדכנית</a>
 </div>
+<script>
+if(window.matchMedia('(display-mode: standalone)').matches){
+  document.getElementById('updateBtn').style.display = 'block';
+}
+</script>
 
 
 <!-- LIGHTBOX -->
