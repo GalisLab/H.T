@@ -28,20 +28,111 @@
 }
 /* ═══ DARK MODE ═══ */
 body.dark{
-  --bg:#181c22;--card:#242930;--text:#e8eaf0;--muted:#8a92a0;
-  --shadow:0 3px 16px rgba(0,0,0,0.35);
-  --mint:#1a2e28;--sky:#1a2535;--lavender:#22203a;
+  --bg:#18191a;--card:#252621;--text:#e8e6df;--muted:#a8a49a;
+  --shadow:0 3px 16px rgba(0,0,0,0.45);
+  --mint:#1c2a1e;--sky:#1e2328;--lavender:#232030;
 }
-body.dark header{background:linear-gradient(135deg,#1a2535,#22203a,#1a2e28)}
-body.dark .search-wrap input{background:var(--card);color:var(--text);border-color:#3a4050}
+/* ── dark mode: טקסטים בגוון אפור/כהה שאינם קריאים ── */
+body.dark [style*="color:#555"],
+body.dark [style*="color:#444"],
+body.dark [style*="color:#666"],
+body.dark [style*="color:#777"],
+body.dark [style*="color:#888"],
+body.dark [style*="color:#999"],
+body.dark [style*="color:#333"],
+body.dark [style*="color:#aaa"],
+body.dark [style*="color:#bbb"],
+body.dark [style*="color: #555"],
+body.dark [style*="color: #444"],
+body.dark [style*="color: #666"],
+body.dark [style*="color: #333"]{color:var(--muted)!important}
+body.dark [style*="color:#222"],
+body.dark [style*="color:#111"]{color:var(--text)!important}
+body.dark [style*="background:#fafafa"],
+body.dark [style*="background:#f8f9ff"],
+body.dark [style*="background:#f8faff"],
+body.dark [style*="background:#f0f4ff"],
+body.dark [style*="background:#f8f8f4"],
+body.dark [style*="background:#f5f5f0"]{background:#2a2b26!important}
+body.dark [style*="background:#fde8e8"],
+body.dark [style*="background:#fff0f0"],
+body.dark [style*="background:#ffe8e8"]{background:#3a1a1a!important}
+body.dark [style*="background:#e0f7ec"],
+body.dark [style*="background:#e8fff3"],
+body.dark [style*="background:#d4f5e4"]{background:#162a1e!important}
+body.dark [style*="background:#f0f8ff"],
+body.dark [style*="background:#e8f0ff"]{background:#1c2535!important}
+body.dark header{background:linear-gradient(135deg,#1e2328,#232030,#1c2a1e)}
+body.dark .search-wrap input{background:var(--card);color:var(--text);border-color:#3a3d35}
 body.dark .tab-btn{background:var(--card);color:var(--text)}
-body.dark .chip,body.dark .cat-chip,body.dark .part-chip,body.dark .ba-chip{background:var(--card);color:var(--text);border-color:#3a4050}
+body.dark .chip,body.dark .cat-chip,body.dark .part-chip,body.dark .ba-chip{background:var(--card);color:var(--text);border-color:#3a3d35}
 body.dark .modal-box,body.dark .modal-top{background:var(--card);color:var(--text)}
-body.dark .modal-top{border-bottom-color:#3a4050}
+body.dark .modal-top{border-bottom-color:#3a3d35}
 body.dark .funfact,body.dark .note-box{background:#2a2010;color:#d4b860;border-color:#8a6820}
-body.dark .part-detail{background:#1e2535;border-color:var(--blue)}
+body.dark .part-detail{background:#1e2520;border-color:var(--blue)}
 body.dark .insight-item{background:var(--card)}
-body.dark #darkModeBtn{background:rgba(255,255,255,.12)}
+body.dark #darkModeBtn{background:rgba(255,255,255,.18)}
+body.dark .arow{border-bottom-color:#35362f}
+body.dark .aname{color:var(--text)}
+body.dark .fc-seo{color:var(--muted);background:#2a2b26;border-top-color:#35362f}
+body.dark .tab-btn{color:var(--muted)}
+body.dark .my-card .ml{color:var(--muted)}
+/* ── dark mode: CSS classes עם צבעים קשיחים ── */
+body.dark .island-title{color:#e0ddd5}
+body.dark .island-subtitle{color:#9a9890}
+body.dark .insight-card-title{color:#e0ddd5}
+body.dark .insight-card-preview{color:#9a9890}
+body.dark .insight-body{color:#d8d4cc}
+body.dark .insight-body h3{color:#c0a0f8}
+body.dark .nutrition .insight-body h3{color:#80d4a0}
+body.dark .safety .insight-body h3{color:#f0a878}
+body.dark .insight-body a{color:#c0a0f8}
+body.dark .insight-links p{color:#9a9890}
+body.dark .insight-links a{color:#c0a0f8}
+body.dark .info-label{color:var(--muted)}
+body.dark .info-val{color:var(--text)}
+body.dark .don-body{color:var(--muted)}
+body.dark .tag-night{background:#2a2040;color:#c8b8f0}
+body.dark .tag-warm{background:#2a1800;color:#f0a060}
+body.dark .tag-day{background:#2a2200;color:#e0c050}
+body.dark .tag-solo{background:#2a1040;color:#d8a0ff}
+body.dark .past-badge{background:#3a2060;color:#d8b0ff}
+body.dark .funfact{color:#d4b860}
+body.dark .note-box{color:#d4b860}
+body.dark .dot-nr{background:#555}
+body.dark .stitle{color:var(--text)}
+body.dark .insight-close-btn{border-color:#4a4a40;color:var(--muted)}
+body.dark .insight-close-btn:hover{border-color:#777;color:var(--text)}
+/* ── dark mode: עוד classes עם צבעים קשיחים ── */
+body.dark header p{color:#c0bcb4}
+body.dark .section-hero p{color:var(--muted)}
+body.dark .cook-note{color:#a8a49a;background:#2a2b26}
+body.dark .don-note{color:var(--muted)}
+body.dark .af-table th{background:#2a2b26;color:var(--muted);border-bottom-color:#3a3d35}
+body.dark .af-table td{color:var(--text)}
+body.dark .loader{color:var(--text);background:rgba(30,30,28,.95)}
+body.dark .island-expand-all{border-color:rgba(255,255,255,.2);color:var(--muted)}
+body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:var(--text)}
+body.dark .am-close-btn{border-color:#4a4a40;color:var(--muted)}
+body.dark .am-close-btn:hover{border-color:#888;color:var(--text)}
+body.dark #articleModalContent .insight-links p{color:var(--muted)}
+/* ── dark mode: כל הרכיבים האמבריים/אזהרה ── */
+body.dark .b-lim{background:#3a2800;color:#f5cc60;border-color:#8a6010}
+body.dark .fp-lim{background:#3a2800;color:#f5cc60;border-color:#8a6010}
+body.dark .qg-warn{background:#3a2800;color:#f5cc60}
+body.dark .part-chip.lim-part{background:#3a2800;color:#f5cc60;border-color:#c09020}
+body.dark .funfact,body.dark .note-box{background:#2a2010;color:#f0cc58;border-color:#8a6820}
+/* ── dark mode: כותרת "שלמים בלבד" בבקיצור ── */
+body.dark .qg-sep-header{background:#3a2800!important;border-bottom-color:#8a6010!important}
+body.dark .qg-sep-title{color:#f5cc60!important}
+body.dark .qg-sep-speak{background:#3a2800!important}
+body.dark .qg-sep-desc{color:#a89880!important}
+body.dark .anote{color:#e8aa50!important}
+body.dark .cook-note span{color:#e8aa50!important}
+body.dark .star-tooltip-bubble{background:#3a2800!important;border-color:#8a6010!important;color:#f5cc60!important}
+body.dark .visit-banner{background:linear-gradient(135deg,#3a2800,#4a3400)!important}
+body.dark .visit-banner-title{color:#f5cc60!important}
+body.dark .visit-banner-sub{color:#c89840!important}
 
 /* ═══ RAINBOW MODE ═══ */
 body.rainbow{
@@ -60,31 +151,110 @@ body.rainbow{
     ) !important;
   background-attachment:scroll !important;
   min-height:100vh;
+}
+body.rainbow::before{content:none}
+body.rainbow header{
+  background:transparent !important;
+  overflow:visible;
   position:relative;
+  isolation:isolate;
+  min-height:180px;
 }
-body.rainbow::before{
-  content:'🌈✨🌈💫🌈⭐🌈🌟🌈✨🌈💫🌈⭐🌈🌟🌈✨🌈💫🌈⭐🌈🌟🌈✨🌈💫🌈⭐🌈🌟🌈✨🌈💫🌈⭐🌈🌟🌈✨🌈💫🌈⭐🌈🌟🌈✨🌈💫🌈⭐🌈🌟🌈✨🌈💫🌈⭐🌈🌟🌈✨🌈💫🌈⭐🌈🌟🌈✨🌈💫🌈⭐🌈🌟🌈✨🌈💫🌈⭐🌈🌟';
-  position:fixed;top:0;left:0;right:0;bottom:0;
-  font-size:2rem;line-height:2.2;
-  display:block;
-  opacity:.25;pointer-events:none;z-index:0;
-  overflow:hidden;
-  word-break:break-all;
-  letter-spacing:.2rem;
-  animation:rainbowShift 6s linear infinite;
+body.rainbow header > *:not(#rainbowCanvas):not(#rainbowBubbles){position:relative;z-index:3}
+body.rainbow #darkModeBtn{z-index:9000 !important}
+#rainbowCanvas{
+  display:none;
+  position:absolute;inset:0;width:100%;height:100%;
+  pointer-events:none;z-index:1;border-radius:0;
 }
-body.rainbow > *{position:relative;z-index:1}
-body.rainbow::before{
-  content:'🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈';
-  position:fixed;top:0;left:0;right:0;bottom:0;
-  font-size:6rem;line-height:1.1;
-  display:flex;flex-wrap:wrap;align-content:flex-start;
-  opacity:.07;pointer-events:none;z-index:0;
-  overflow:hidden;letter-spacing:-.5rem;
-  word-break:break-all;
+#rainbowBubbles{
+  display:none;
+  position:absolute;inset:0;overflow:hidden;
+  pointer-events:none;z-index:2;
 }
-body.rainbow > *{position:relative;z-index:1}
-body.rainbow header{background:linear-gradient(135deg,#ffb3d0,#ffd97a,#90e8b0,#80c8ff,#d0a8ff)}
+body.rainbow #rainbowCanvas{display:block}
+body.rainbow #rainbowBubbles{display:block}
+.rb-bubble,.rb-spark{pointer-events:none}
+/* כותרת הולכת משוגעת במצב קשת */
+body.rainbow header h1{
+  animation:rainbowTitle 2.8s ease-in-out infinite;
+  text-shadow:0 0 20px rgba(255,255,255,.8),0 0 40px rgba(255,150,255,.6);
+  position:relative;z-index:3;
+}
+body.rainbow header p{
+  animation:rainbowSubtitle 3.4s ease-in-out infinite;
+  position:relative;z-index:3;
+  color:#fff !important;text-shadow:0 1px 6px rgba(0,0,0,.55);
+}
+
+/* ── כוכבי לילה ── */
+#nightStars{
+  display:none;
+  position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0;
+}
+body.dark #nightStars{display:block}
+.ns{
+  position:absolute;
+  width:2px;height:2px;
+  background:#fff;
+  border-radius:50%;
+  animation:starTwinkle var(--dur,4s) var(--delay,0s) ease-in-out infinite;
+  opacity:0;
+}
+.ns.med{width:2.5px;height:2.5px;}
+.ns.big{width:3.5px;height:3.5px;}
+@keyframes starTwinkle{
+  0%,100%{opacity:0;transform:scale(1)}
+  50%{opacity:var(--peak,.7);transform:scale(1.4)}
+}
+body.rainbow header .ticker{
+  animation:tick 20s linear infinite, rainbowShift 3s linear infinite;
+  font-size:2rem;letter-spacing:8px;opacity:.85;
+}
+body.rainbow .food-count{
+  animation:badgeBounce 1.8s ease-in-out infinite;
+}
+@keyframes rainbowTitle{
+  0%{transform:scale(1) rotate(0deg);filter:hue-rotate(0deg)}
+  20%{transform:scale(1.05) rotate(-1.5deg);filter:hue-rotate(60deg)}
+  40%{transform:scale(.97) rotate(1deg);filter:hue-rotate(120deg)}
+  60%{transform:scale(1.04) rotate(-1deg);filter:hue-rotate(220deg)}
+  80%{transform:scale(.98) rotate(.8deg);filter:hue-rotate(300deg)}
+  100%{transform:scale(1) rotate(0deg);filter:hue-rotate(360deg)}
+}
+@keyframes rainbowSubtitle{
+  0%,100%{transform:translateX(0);opacity:1}
+  25%{transform:translateX(4px);opacity:.85}
+  75%{transform:translateX(-4px);opacity:.9}
+}
+@keyframes badgeBounce{
+  0%,100%{transform:scale(1) rotate(0deg)}
+  30%{transform:scale(1.15) rotate(-3deg)}
+  60%{transform:scale(.93) rotate(2deg)}
+}
+/* בועה עפה */
+@keyframes bubbleFloat{
+  0%{transform:translateY(0) scale(1) rotate(0deg);opacity:.9}
+  50%{transform:translateY(-60px) scale(1.1) rotate(180deg);opacity:.6}
+  100%{transform:translateY(-130px) scale(.8) rotate(360deg);opacity:0}
+}
+.rb-bubble{
+  position:absolute;border-radius:50%;
+  animation:bubbleFloat linear forwards;
+  font-size:1.5rem;line-height:1;
+  pointer-events:none;
+}
+/* כוכבים/ניצוצות */
+@keyframes sparkleFloat{
+  0%{transform:translateY(0) translateX(0) scale(0);opacity:1}
+  40%{opacity:.8;transform:translateY(-30px) translateX(var(--dx,15px)) scale(1.2)}
+  100%{transform:translateY(-80px) translateX(calc(var(--dx,15px)*2)) scale(0);opacity:0}
+}
+.rb-spark{
+  position:absolute;font-size:1.1rem;
+  animation:sparkleFloat ease-out forwards;
+  pointer-events:none;
+}
 body.rainbow .tab-btn{background:rgba(255,255,255,.75)}
 body.rainbow .food-card,body.rainbow .animal-card,body.rainbow .don-card,body.rainbow .insight-card,body.rainbow .my-card{background:rgba(255,255,255,.82)}
 body.rainbow .tab-btn.active[data-tab="quickguide"]{background:linear-gradient(135deg,#3aaa6e,#40c070)}
@@ -109,12 +279,13 @@ body.rainbow .animal-card:nth-child(5n+5){border-top:3px solid #cc5de8}
 body.rainbow .insight-island.emotional{background:rgba(255,230,255,.7);border-color:#e0a0ff}
 body.rainbow .insight-island.nutrition{background:rgba(220,255,220,.7);border-color:#80e080}
 body.rainbow .insight-island.safety{background:rgba(255,240,220,.7);border-color:#ffa060}
-body.rainbow #darkModeBtn{background:rgba(255,255,255,.45)}
+body.rainbow #darkModeBtn{background:rgba(255,255,255,.55)}
 body.rainbow #globalSearchBar{background:rgba(255,255,255,.5) !important;border-bottom-color:rgba(255,255,255,.4) !important;backdrop-filter:blur(4px)}
 body.rainbow .search-wrap input{background:rgba(255,255,255,.85)}
 body.rainbow .modal-box,body.rainbow .modal-top{background:rgba(255,255,255,.95)}
 @keyframes rainbowShift{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(360deg)}}
 body.rainbow header .ticker{animation:tick 28s linear infinite, rainbowShift 8s linear infinite}
+body.rainbow header .credit-line{color:#fff !important;text-shadow:0 1px 4px rgba(0,0,0,.5)}
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{font-size:17px}
@@ -204,7 +375,7 @@ body.dark .island-header{border-bottom-color:rgba(255,255,255,.1)}
 .island-title{font-size:1.05rem;font-weight:800;color:#333}
 body.dark .island-title{color:#e0e4f0}
 .island-subtitle{font-size:.78rem;color:#777;font-weight:600;margin-top:.1rem}
-body.dark .island-subtitle{color:#9aa0b0}
+body.dark .island-subtitle{color:#9a9890}
 .island-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:.9rem}
 /* ── Article Cards ── */
 .insight-card{background:var(--card);border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,.07);overflow:hidden;cursor:pointer;transition:transform .18s,box-shadow .18s;display:flex;flex-direction:column}
@@ -220,7 +391,7 @@ body.dark .safety .insight-card-tag{background:#3a1a08;color:#f0a878}
 .insight-card-title{font-size:.9rem;font-weight:700;color:#333;line-height:1.4;direction:rtl;text-align:right}
 body.dark .insight-card-title{color:#e0e4f0}
 .insight-card-preview{font-size:.78rem;color:#666;line-height:1.55;margin-top:.35rem;direction:rtl;text-align:right;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-body.dark .insight-card-preview{color:#8a92a0}
+body.dark .insight-card-preview{color:#9a9890}
 .insight-card-footer{padding:.5rem 1rem .7rem;border-top:1px solid rgba(0,0,0,.06);display:flex;align-items:center;justify-content:space-between}
 body.dark .insight-card-footer{border-top-color:rgba(255,255,255,.07)}
 .insight-card-cta{font-size:.75rem;font-weight:700;color:#7b5ea7;direction:rtl}
@@ -228,7 +399,7 @@ body.dark .insight-card-footer{border-top-color:rgba(255,255,255,.07)}
 .safety .insight-card-cta{color:#c05020}
 /* ── Expanded body ── */
 .insight-body{display:none;padding:1.1rem 1.2rem 1.3rem;direction:rtl;text-align:right;line-height:1.8;color:#333;font-size:.91rem;border-top:1px solid rgba(0,0,0,.07);background:var(--card)}
-body.dark .insight-body{color:#cdd0dc;border-top-color:rgba(255,255,255,.07)}
+body.dark .insight-body{color:#d8d4cc;border-top-color:rgba(255,255,255,.07)}
 .insight-body.open{display:block}
 .insight-body h3{font-size:.93rem;color:#5a3d8a;margin:1rem 0 .3rem;font-weight:700}
 .nutrition .insight-body h3{color:#1e6a38}
@@ -240,9 +411,9 @@ body.dark .safety .insight-body h3{color:#f0a878}
 .insight-body a{color:#7b5ea7;text-decoration:underline dotted;font-weight:700}
 .insight-body a:hover{text-decoration:underline solid}
 .insight-links{margin-top:1rem;padding:.85rem 1rem;background:#f8f5ff;border-radius:10px;border-right:3px solid #c3a8e8}
-body.dark .insight-links{background:#1e1a2e;border-right-color:#6a4aaa}
+body.dark .insight-links{background:#222318;border-right-color:#6a4aaa}
 .insight-links p{font-size:.8rem;color:#666;margin:.22rem 0}
-body.dark .insight-links p{color:#9098a8}
+body.dark .insight-links p{color:#9a9890}
 .insight-links a{color:#7b5ea7;font-weight:700;text-decoration:none}
 .insight-links a:hover{text-decoration:underline}
 .nutrition .insight-links{background:#f0faf4;border-right-color:#5ab870}
@@ -522,20 +693,23 @@ body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:#ddd}
 <body>
 <div class="loader" id="loader"><div class="spin">🌿</div><div>בעלי החיים מתארגנים ובאים...</div></div>
 
+<button id="darkModeBtn" onclick="toggleDark()" title="מצב כהה/בהיר" aria-label="מצב כהה/בהיר" style="position:fixed;right:.8rem;top:.8rem;background:rgba(255,255,255,.25);border:none;border-radius:50%;width:38px;height:38px;font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:9000">🌙</button>
+<div id="nightStars"></div>
 <header>
-  <button id="darkModeBtn" onclick="toggleDark()" title="מצב כהה/בהיר" aria-label="מצב כהה/בהיר" style="position:absolute;right:.8rem;top:.8rem;background:rgba(255,255,255,.25);border:none;border-radius:50%;width:38px;height:38px;font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:10">🌙</button>
+  <canvas id="rainbowCanvas"></canvas>
+  <div id="rainbowBubbles"></div>
   <div class="ticker" onclick="spawnPawTrail()" style="cursor:pointer" title="🐾">🦜🐹🐢🦎🐛🐰🐕🐟🦎🐱🐹🐰🦜🐢🐛🐕🐟🦜🐹🐢🦎🐛🐰🐕🐟🦎🐱🐹🐰🦜🐢🐛🐕🐟</div>
   <div style="font-size:.75rem;color:#557;font-weight:700;margin-bottom:.2rem">🏫 בית ספר שז"ר - פינת החי</div>
   <h1>🌿 מה אוכלים היום בפינת החי?</h1>
   <p>המדריך לכל מה שצריך! <span style="position:relative;display:inline-block;vertical-align:middle">
     <span id="secretStar" onclick="openSecretsPopup();dismissStarTooltip()" title="סודות והפתעות 🌟" style="cursor:pointer;font-size:.9em;display:inline-block;animation:starPulse 2.2s ease-in-out infinite">✨</span>
-    <span id="starTooltip" style="position:absolute;top:-10%;right:120%;transform:translateY(-50%);background:#fff9e6;border:2px solid #f0d060;border-radius:50px;padding:.25rem .7rem;font-size:.72rem;font-weight:800;color:#7a5000;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,.15);font-family:'Varela Round',sans-serif;animation:starPulse 2.2s ease-in-out infinite;cursor:pointer;display:none" onclick="openSecretsPopup();dismissStarTooltip()">→ לחצו עליי!</span>
+    <span id="starTooltip" class="star-tooltip-bubble" style="position:absolute;top:-10%;right:120%;transform:translateY(-50%);background:#fff9e6;border:2px solid #f0d060;border-radius:50px;padding:.25rem .7rem;font-size:.72rem;font-weight:800;color:#7a5000;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,.15);font-family:'Varela Round',sans-serif;animation:starPulse 2.2s ease-in-out infinite;cursor:pointer;display:none" onclick="openSecretsPopup();dismissStarTooltip()">→ לחצו עליי!</span>
   </span></p>
   <div class="food-count" id="foodCount">טוען...</div>
   <div id="pwaInstallWrap" style="display:none;margin-top:.45rem">
     <button id="pwaInstallBtn" onclick="pwaInstall()" style="background:var(--card);border:1.5px solid #b8e0cc;border-radius:50px;padding:.22rem .9rem;font-size:.78rem;font-weight:700;color:#2a7a50;cursor:pointer;font-family:inherit;box-shadow:0 1px 6px rgba(0,0,0,.08)">📲 הורדה כאפליקציה</button>
   </div>
-  <div style="font-size:.65rem;color:#889;margin-top:.3rem">נוצר ע"י גלי 💚</div>
+  <div class="credit-line" style="font-size:.65rem;color:#889;margin-top:.3rem">נוצר ע"י גלי 💚</div>
 </header>
 
 <!-- חיפוש גלובלי -->
@@ -685,13 +859,13 @@ body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:#ddd}
 
     <!-- שלמים בלבד -->
     <div style="background:var(--card);border-radius:14px;box-shadow:var(--shadow);overflow:hidden">
-      <div style="background:#fff8e0;padding:.7rem 1rem;border-bottom:2px solid #f0d860;display:flex;align-items:center;gap:.5rem">
+      <div class="qg-sep-header" style="background:#fff8e0;padding:.7rem 1rem;border-bottom:2px solid #f0d860;display:flex;align-items:center;gap:.5rem">
         <span style="font-size:1.4rem">⚠️</span>
-        <div style="font-weight:900;font-size:.95rem;color:#7a5500;flex:1">רק שלמים או מופרדים לגמרי</div>
-        <button onclick="speakText('רק שלמים בשקית נפרדת: תפוח אדמה, פירות הדר, עגבנייה.',this)" title="הקראה" style="background:#fff8e0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.8rem;flex-shrink:0">🔊</button>
+        <div class="qg-sep-title" style="font-weight:900;font-size:.95rem;color:#7a5500;flex:1">רק שלמים או מופרדים לגמרי</div>
+        <button onclick="speakText('רק שלמים בשקית נפרדת: תפוח אדמה, פירות הדר, עגבנייה.',this)" title="הקראה" class="qg-sep-speak" style="background:#fff8e0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.8rem;flex-shrink:0">🔊</button>
       </div>
       <div style="padding:.7rem 1rem">
-        <div style="font-size:.78rem;color:#555;margin-bottom:.6rem">אלה מותרים לחלק מהחיות אבל לא לאחרות - להביא שלמים או בשקית נפרדת מהשאר - ונמיין אנחנו.</div>
+        <div class="qg-sep-desc" style="font-size:.78rem;color:#555;margin-bottom:.6rem">אלה מותרים לחלק מהחיות אבל לא לאחרות - להביא שלמים או בשקית נפרדת מהשאר - ונמיין אנחנו.</div>
         <div id="qg-sep" style="display:flex;flex-wrap:wrap;gap:.3rem">
           <span class="qg-chip qg-warn" onclick="openFoodModal('potato',[])" style="cursor:pointer">🥔 תפוח אדמה</span>
           <span class="qg-chip qg-warn" onclick="openFoodModal('orange',[])" style="cursor:pointer">🍊 פירות הדר</span>
@@ -1070,10 +1244,10 @@ body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:#ddd}
     </div>
 
     <!-- באנר סיום -->
-  <div style="margin-top:1.2rem;background:linear-gradient(135deg,#fff3b0,#ffe066);border-radius:16px;padding:1.1rem 1.4rem;text-align:center;box-shadow:0 3px 12px rgba(0,0,0,.08)">
+  <div class="visit-banner" style="margin-top:1.2rem;background:linear-gradient(135deg,#fff3b0,#ffe066);border-radius:16px;padding:1.1rem 1.4rem;text-align:center;box-shadow:0 3px 12px rgba(0,0,0,.08)">
     <div style="font-size:1.6rem;margin-bottom:.35rem">🌟</div>
-    <div style="font-weight:900;font-size:1.05rem;color:#7a5000;margin-bottom:.25rem">ויש עוד הרבה! בואו לבקר 🐾</div>
-    <div style="font-size:.82rem;color:#9a6800">עוד חיות, עוד סיפורים, מחכים לך! 💚</div>
+    <div class="visit-banner-title" style="font-weight:900;font-size:1.05rem;color:#7a5000;margin-bottom:.25rem">ויש עוד הרבה! בואו לבקר 🐾</div>
+    <div class="visit-banner-sub" style="font-size:.82rem;color:#9a6800">עוד חיות, עוד סיפורים, מחכים לך! 💚</div>
   </div>
 
 </div>
@@ -1131,7 +1305,7 @@ body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:#ddd}
         <span style="font-size:.85rem;opacity:.5">▼</span>
       </div>
       <div class="insight-body" id="insight-body-4" itemprop="articleBody">
-        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-4')" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
+        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-4',this)" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
         <h2 style="display:none">יותר מחסה ומלפפון: למה גיוון בתפריט כל כך חשוב בפינת החי שלנו</h2>
         <h2 style="display:none">יותר מחסה ומלפפון: למה גיוון בתפריט כל כך חשוב בפינת החי שלנו</h2>
 
@@ -1173,9 +1347,9 @@ body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:#ddd}
         <span style="font-size:.85rem;opacity:.5">▼</span>
       </div>
       <div class="insight-body" id="insight-body-7" itemprop="articleBody">
-        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-7')" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
+        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-7',this)" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
         <h2 style="display:none">מהמטבח שלנו לקערה שלהם: השאריות שיוצרות גשר בין הבית לפינת החי</h2>
-        <p>בפינת החי אנחנו רואים בירקות "שאריות" הזדמנות ליצור מעגל של נתינה. מה שבמטבח הביתי נחשב לפסולת, כמו קליפות גזר, גבעולי ברוקולי או עלים חיצוניים של חסה, הופך אצלנו לארוחה מזינה וחלק בלתי נפרד מהקשר שבין הבית לבית הספר. התפיסה הזו מאפשרת לנו להפוך את המטבח הביתי לשלוחה ישירה של הטיפול בבעלי החיים וליצור מעגל שבו כל חלק מהצמח מקבל משמעות חדשה. כשאנחנו בוחרים להביא את השאריות הללו לפינת החי, אנחנו לא רק חוסכים בפסולת אלא מעודדים חשיבה על קיימות ועל הדרך שבה הטבע פועל, שבו אין באמת "פסולת" אלא רק משאבים שעוברים מיד ליד ומזינים חיים אחרים.</p>
+        <p>בפינת החי אנחנו רואים בשאריות ירקות הזדמנות ליצור מעגל של נתינה. מה שבמטבח הביתי נחשב לפסולת, כמו קליפות גזר, גבעולי ברוקולי או עלים חיצוניים של חסה, הופך אצלנו לארוחה מזינה וחלק בלתי נפרד מהקשר שבין הבית לבית הספר. התפיסה הזו מאפשרת לנו להפוך את המטבח הביתי לשלוחה ישירה של הטיפול בבעלי החיים וליצור מעגל שבו כל חלק מהצמח מקבל משמעות חדשה. כשאנחנו בוחרים להביא את השאריות הללו לפינת החי, אנחנו לא רק חוסכים בפסולת אלא מעודדים חשיבה על קיימות ועל הדרך שבה הטבע פועל, שבו אין באמת "פסולת" אלא רק משאבים שעוברים מיד ליד ומזינים חיים אחרים.</p>
 
         <h3>למה הקליפות והגבעולים הם החלקים הכי טובים</h3>
         <p>לפעמים אנחנו נוטים לזרוק דווקא את החלקים הכי טובים. הקליפות והגבעולים עשירים בסיבים תזונתיים ובמינרלים שחיוניים למערכת העיכול של המכרסמים והזוחלים שלנו. השימוש בהם הוא לא חיסכון אלא הענקה של תזונה מגוונת וקרובה יותר למה שהם היו מוצאים בטבע. בעלי חיים רבים בפינה זקוקים לסיבים הגסים שנמצאים דווקא בקליפה החיצונית או בליבה של הירק, אותם חלקים שאנו נוטים להסיר כשאנחנו מכינים סלט לעצמנו. דרך ההבנה הזו אנחנו לומדים להעריך את הירק כולו על כל שכבותיו ומגלים שמה שנתפס בעינינו כפחות אסתטי הוא לעיתים המרכיב החשוב ביותר בתזונה המאוזנת של בעלי החיים.</p>
@@ -1219,7 +1393,7 @@ body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:#ddd}
         <span style="font-size:.85rem;opacity:.5">▼</span>
       </div>
       <div class="insight-body" id="insight-body-5" itemprop="articleBody">
-        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-5')" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
+        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-5',this)" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
         <h2 style="display:none">מוגנות ובטיחות: מה אסור להביא לפינת החי</h2>
         <h2 style="display:none">מוגנות ובטיחות: מה אסור להביא לפינת החי</h2>
 
@@ -1258,7 +1432,7 @@ body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:#ddd}
         <span style="font-size:.85rem;opacity:.5">▼</span>
       </div>
       <div class="insight-body" id="insight-body-8" itemprop="articleBody">
-        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-8')" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
+        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-8',this)" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
         <h2 style="display:none">כוונה טובה, תוצאה לא טובה: מה קורה כשמביאים מזון לא מתאים</h2>
         <p>רוב הסיפורים על מזון לא מתאים בפינת החי לא מתחילים מרשלנות אלא דווקא מרגש חיובי של אהבה ורצון לשמח. כשאנחנו רואים את הארנבון ומגישים לו חתיכת שוקולד כי הוא אוהב מתוק, או כשאנחנו חולקים עם הציפורים מעט מהאוכל שיש לנו ביד, הכוונה שלנו היא תמיד טובה. זו בדיוק הסיבה שכל כך קשה לפעמים לומר לא, אבל בפינת החי אנחנו לומדים שדאגה אמיתית פירושה להבין מה נכון עבור הצד השני, גם אם זה אומר להציב גבול. האחריות הזו מגיעה מתוך הבנה שהחיות סומכות עלינו לחלוטין, והשמירה על הכללים היא המחווה הכי גדולה של אכפתיות שאנחנו יכולים להעניק להן.</p>
 
@@ -1304,7 +1478,7 @@ body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:#ddd}
         <span style="font-size:.85rem;opacity:.5">▼</span>
       </div>
       <div class="insight-body" id="insight-body-0" itemprop="articleBody">
-        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-0')" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
+        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-0',this)" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
         <h2 style="display:none">פינת החי שלנו: מקום של רגש, למידה והתפתחות</h2>
         <h2 style="display:none">פינת החי שלנו: מקום של רגש, למידה והתפתחות</h2>
 
@@ -1347,7 +1521,7 @@ body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:#ddd}
         <span style="font-size:.85rem;opacity:.5">▼</span>
       </div>
       <div class="insight-body" id="insight-body-1" itemprop="articleBody">
-        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-1')" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
+        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-1',this)" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
         <h2 style="display:none">פשוט להיות: הקסם של השהייה החופשית בפינת החי</h2>
         <p>במהלך ימי הלימודים העמוסים יש רגעים מיוחדים שבהם פינת החי נפתחת למבקרים. זה קורה בהפסקות המיועדות לכל שכבה או בזמנים מיוחדים כמו "ראשון בהפתעה" כשהתלמידים בוחרים להגיע למרחב מתוך רצון אישי. מי שמגיע לפינת החי מגלה מיד שלא מדובר בעוד שיעור שצריך להקשיב בו או במשימה לימודית שחייבים לבצע אלא במקום שבו אפשר פשוט להיות. המרחב הזה מאפשר לנו להשאיר את הלחץ של הציונים והמבחנים מחוץ לשער ולהיכנס לקצב אחר לגמרי. זהו קצב רגוע שבו המטרה היחידה היא הנוכחות שלנו לצד בעלי החיים והיכולת שלנו להתחבר לשקט הפנימי בתוך המולת היום.</p>
 
@@ -1380,7 +1554,7 @@ body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:#ddd}
         <span style="font-size:.85rem;opacity:.5">▼</span>
       </div>
       <div class="insight-body" id="insight-body-2" itemprop="articleBody">
-        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-2')" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
+        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-2',this)" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
         <h2 style="display:none">הכוח שבקשר: איך בעלי החיים עוזרים לנו לדבר על עצמנו</h2>
         <p>לפעמים קל לנו יותר לדבר על האחר מאשר על עצמנו. בפינת החי אנחנו פוגשים לא פעם חיות שמתמודדות עם קושי, פציעה או פשוט רגע של פחד, והמפגש הזה הוא הרבה מעבר לדאגה לצרכים הפיזיים שלהן. זוהי הזדמנות עמוקה להבין מה עובר עלינו בפנים. דרך השותפות עם יצור חי אחר אנחנו מצליחים לגעת בנושאים מורכבים בתוכנו וליצור מרחב בטוח שבו מותר להרגיש הכל. המרחב הזה מאפשר לנו לעבד חוויות בצורה עקיפה ובטוחה, למצוא מילים לרגשות שקשה לנו לבטא באופן ישיר ולגלות דרך המבט של החיה את הכוחות שטמונים בנו.</p>
 
@@ -1413,7 +1587,7 @@ body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:#ddd}
         <span style="font-size:.85rem;opacity:.5">▼</span>
       </div>
       <div class="insight-body" id="insight-body-3" itemprop="articleBody">
-        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-3')" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
+        <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-3',this)" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
         <h2 style="display:none">בלי מסכות: למה בעלי חיים הם החברים הכי כנים שלנו</h2>
         <p>בתוך פינת החי שלנו אנחנו לא צריכים לנחש מה הצד השני מרגיש באמת. בניגוד לעולם האנושי שבו אנחנו יכולים להיות נחמדים גם כשלא ממש מתחשק לנו או להסתיר את מה שעובר עלינו, בעלי החיים פועלים תמיד לפי הרגש המיידי שלהם. הם לא מנסים להרשים אף אחד ולא עסוקים בציפיות של אחרים, וזה בדיוק מה שהופך את הקשר איתם למשהו יציב שאפשר לסמוך עליו בכל רגע. הכנות הזו מאפשרת לנו להוריד את המסכות של עצמנו ולהרגיש בטוחים בתוך מרחב שבו הדברים הם פשוט כפי שהם ללא הצמדות לכללים חברתיים מורכבים.</p>
 
@@ -1620,25 +1794,210 @@ body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:#ddd}
 
 <script>
 // ── Dark Mode ──────────────────────────────────────────
+// ══ RAINBOW HEADER MADNESS ══════════════════════════════════
+(function(){
+  let raf = null, bubblesInterval = null, sparksInterval = null;
+  const EMOJIS = ['🌈','✨','🎉','💫','⭐','🌟','🎊','🦄','🎈','🌀','🍭','🎆','💥','🌺','🦜','🐾','🌸','🎇'];
+  const SPARK_EMOJIS = ['✨','💫','⭐','🌟','❇️','💥','🌈'];
+
+  function startRainbow(){
+    startCanvas();
+    startBubbles();
+    startSparks();
+  }
+
+  function stopRainbow(){
+    if(raf){ cancelAnimationFrame(raf); raf=null; }
+    clearInterval(bubblesInterval); bubblesInterval=null;
+    clearInterval(sparksInterval); sparksInterval=null;
+    const c = document.getElementById('rainbowCanvas');
+    if(c){ const ctx=c.getContext('2d'); ctx.clearRect(0,0,c.width,c.height); }
+    document.querySelectorAll('.rb-bubble,.rb-spark').forEach(el=>el.remove());
+  }
+
+  // ── Canvas: מערבולות צבעוניות חיות ──────────────────────
+  function startCanvas(){
+    const canvas = document.getElementById('rainbowCanvas');
+    if(!canvas) return;
+    const header = canvas.closest('header');
+
+    function resize(){
+      canvas.width  = header.offsetWidth;
+      canvas.height = header.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const ctx = canvas.getContext('2d');
+    let t = 0;
+    // נקודות מערבולת
+    const blobs = Array.from({length:8},(_,i)=>({
+      x: Math.random(), y: Math.random(),
+      vx:(Math.random()-.5)*.003, vy:(Math.random()-.5)*.003,
+      r: .32+Math.random()*.25,
+      hue: i*(360/8),
+      speed: .8+Math.random()*.8
+    }));
+
+    function draw(){
+      if(!document.body.classList.contains('rainbow')){ stopRainbow(); return; }
+      const W=canvas.width, H=canvas.height;
+      ctx.clearRect(0,0,W,H);
+
+      // רקע כהה שקוף לתת עומק
+      ctx.fillStyle='rgba(20,10,40,.55)';
+      ctx.fillRect(0,0,W,H);
+
+      // בלובים של צבע
+      blobs.forEach(b=>{
+        b.x += b.vx; b.y += b.vy;
+        if(b.x<-.1||b.x>1.1){ b.vx*=-1; }
+        if(b.y<-.1||b.y>1.1){ b.vy*=-1; }
+        b.hue = (b.hue + .35*b.speed) % 360;
+
+        const gx=b.x*W, gy=b.y*H, gr=b.r*Math.max(W,H);
+        const grad=ctx.createRadialGradient(gx,gy,0,gx,gy,gr);
+        grad.addColorStop(0,`hsla(${b.hue},100%,65%,.45)`);
+        grad.addColorStop(.5,`hsla(${(b.hue+60)%360},90%,55%,.2)`);
+        grad.addColorStop(1,`hsla(${(b.hue+120)%360},80%,50%,0)`);
+        ctx.fillStyle=grad;
+        ctx.beginPath();
+        ctx.arc(gx,gy,gr,0,Math.PI*2);
+        ctx.fill();
+      });
+
+      // גלי מערבולת מעל
+      for(let i=0;i<5;i++){
+        const waveY = H*(.15+i*.17);
+        const amp = 18+i*6;
+        const freq = .012-i*.0015;
+        const phase = t*.04+i*1.1;
+        const hue2 = (t*2+i*72)%360;
+        ctx.beginPath();
+        ctx.moveTo(0,waveY);
+        for(let x=0;x<W;x+=4){
+          const y=waveY+Math.sin(x*freq+phase)*amp+Math.sin(x*freq*.6+phase*1.3)*(amp*.5);
+          ctx.lineTo(x,y);
+        }
+        ctx.strokeStyle=`hsla(${hue2},100%,70%,.55)`;
+        ctx.lineWidth=2.5+i*.5;
+        ctx.stroke();
+      }
+
+      // ניצוצות קטנים על ה-canvas
+      for(let i=0;i<6;i++){
+        const sx = (Math.sin(t*.07+i*1.5)*.5+.5)*W;
+        const sy = (Math.cos(t*.05+i*2.1)*.5+.5)*H;
+        const sr = 2+Math.sin(t*.2+i)*1.5;
+        const sh = (t*5+i*60)%360;
+        ctx.beginPath();
+        ctx.arc(sx,sy,sr,0,Math.PI*2);
+        ctx.fillStyle=`hsla(${sh},100%,80%,.9)`;
+        ctx.fill();
+      }
+
+      t++;
+      raf=requestAnimationFrame(draw);
+    }
+    draw();
+  }
+
+  // ── בועות/אמוג'ים עפים ──────────────────────────────────
+  function spawnBubble(){
+    const header=document.querySelector('header');
+    if(!header||!document.body.classList.contains('rainbow')) return;
+    const el=document.createElement('span');
+    el.className='rb-bubble';
+    el.textContent=EMOJIS[Math.floor(Math.random()*EMOJIS.length)];
+    const left=5+Math.random()*90;
+    const dur=1.8+Math.random()*2;
+    const size=1+Math.random()*1.4;
+    el.style.cssText=`left:${left}%;bottom:0;font-size:${size}rem;animation-duration:${dur}s;`;
+    document.getElementById('rainbowBubbles')?.appendChild(el);
+    setTimeout(()=>el.remove(), dur*1000+100);
+  }
+
+  function startBubbles(){
+    clearInterval(bubblesInterval);
+    bubblesInterval=setInterval(spawnBubble, 280);
+  }
+
+  // ── ניצוצות/כוכבים ─────────────────────────────────────
+  function spawnSpark(){
+    const header=document.querySelector('header');
+    if(!header||!document.body.classList.contains('rainbow')) return;
+    const el=document.createElement('span');
+    el.className='rb-spark';
+    el.textContent=SPARK_EMOJIS[Math.floor(Math.random()*SPARK_EMOJIS.length)];
+    const left=Math.random()*100;
+    const top=20+Math.random()*60;
+    const dur=1+Math.random()*1.4;
+    const dx=(Math.random()-.5)*60;
+    el.style.cssText=`left:${left}%;top:${top}%;--dx:${dx}px;animation-duration:${dur}s;`;
+    document.getElementById('rainbowBubbles')?.appendChild(el);
+    setTimeout(()=>el.remove(), dur*1000+100);
+  }
+
+  function startSparks(){
+    clearInterval(sparksInterval);
+    sparksInterval=setInterval(spawnSpark, 180);
+  }
+
+  // הפעל/כבה בהתאם למצב
+  const obs = new MutationObserver(()=>{
+    if(document.body.classList.contains('rainbow')){
+      if(!raf) startRainbow();
+    } else {
+      stopRainbow();
+    }
+  });
+  obs.observe(document.body,{attributeFilter:['class']});
+
+  // הפעל אם כבר במצב קשת בטעינה
+  document.addEventListener('DOMContentLoaded',()=>{
+    if(document.body.classList.contains('rainbow')) startRainbow();
+  });
+})();
+// ── כוכבי לילה ─────────────────────────────────────────────
+(function(){
+  function buildStars(){
+    const el = document.getElementById('nightStars');
+    if(!el || el.children.length) return;
+    // 120 כוכבים על כל המסך
+    for(let i=0;i<120;i++){
+      const s = document.createElement('div');
+      const r = Math.random();
+      s.className = 'ns' + (r<.08 ? ' big' : r<.25 ? ' med' : '');
+      const x = Math.random()*100;
+      const y = Math.random()*100;
+      const dur = (3 + Math.random()*7).toFixed(1);
+      const delay = (Math.random()*12).toFixed(1);
+      const peak = (.15 + Math.random()*.55).toFixed(2);
+      s.style.cssText = `left:${x}%;top:${y}%;--dur:${dur}s;--delay:${delay}s;--peak:${peak}`;
+      el.appendChild(s);
+    }
+  }
+  document.addEventListener('DOMContentLoaded', buildStars);
+  if(document.readyState !== 'loading') buildStars();
+})();
+// ────────────────────────────────────────────────────────────
 function toggleDark(){
   const body = document.body;
   const btn = document.getElementById('darkModeBtn');
   if(body.classList.contains('rainbow')){
-    // קשת → בהיר
     body.classList.remove('rainbow');
     localStorage.setItem('pina-mode','light');
     if(btn) btn.textContent='🌙';
   } else if(body.classList.contains('dark')){
-    // כהה → קשת
     body.classList.remove('dark');
     body.classList.add('rainbow');
     localStorage.setItem('pina-mode','rainbow');
     if(btn) btn.textContent='🌈';
   } else {
-    // בהיר → כהה
     body.classList.add('dark');
     localStorage.setItem('pina-mode','dark');
     if(btn) btn.textContent='☀️';
+    setTimeout(()=>applyDarkToTree(document.body),50);
   }
 }
 (function(){
@@ -1658,6 +2017,48 @@ function toggleDark(){
   if(mode==='dark') document.body.classList.add('dark');
   if(mode==='rainbow') document.body.classList.add('rainbow');
 })();
+// ── helpers: צבעי אזהרה (amber) תלויי מצב לילה ──
+function isDark(){return document.body.classList.contains('dark');}
+function limBg(){return isDark()?'#3a2800':'#fff8e0';}
+function limColor(){return isDark()?'#f5cc60':'#7a5500';}
+function limBorder(){return isDark()?'#8a6010':'#f0c030';}
+function limBadgeBg(){return isDark()?'#3a2800':'#fff3d0';}
+function warnColor(){return isDark()?'#e8aa50':'#c06000';}
+
+// ── dark mode: תיקון אלמנטים דינמיים ──
+const DARK_TEXT_GRAYS = ['#555','#444','#666','#777','#888','#999','#333','#aaa','#bbb','#222','#111','#6a5600','#6a5200','#8a6a00'];
+const DARK_BG_LIGHTS  = ['#fafafa','#f8f9ff','#f8faff','#f0f4ff','#f8f8f4','#f5f5f0','#fafbff','#f8f9ff','#f5f5f5','#f0f0f0'];
+const DARK_BG_RED     = ['#fde8e8','#fff0f0','#ffe8e8'];
+const DARK_BG_GREEN   = ['#e0f7ec','#e8fff3','#d4f5e4'];
+function applyDarkToEl(el){
+  if(!isDark()) return;
+  const st = el.style;
+  if(!st) return;
+  const c = st.color;
+  const bg = st.background || st.backgroundColor;
+  if(c && DARK_TEXT_GRAYS.some(g=>c===g)) st.color='#a8a49a';
+  if(bg && DARK_BG_LIGHTS.some(g=>bg===g||bg.startsWith(g))) {st.background='#2a2b26'; st.backgroundColor='#2a2b26';}
+  if(bg && DARK_BG_RED.some(g=>bg===g))   {st.background='#3a1a1a'; st.backgroundColor='#3a1a1a';}
+  if(bg && DARK_BG_GREEN.some(g=>bg===g)) {st.background='#162a1e'; st.backgroundColor='#162a1e';}
+}
+function applyDarkToTree(root){
+  if(!isDark()) return;
+  root.querySelectorAll('[style]').forEach(applyDarkToEl);
+}
+// MutationObserver — רץ על כל שינוי ב-DOM
+const _darkObserver = new MutationObserver(muts=>{
+  if(!isDark()) return;
+  muts.forEach(m=>{
+    m.addedNodes.forEach(n=>{
+      if(n.nodeType===1){applyDarkToEl(n); applyDarkToTree(n);}
+    });
+    if(m.type==='attributes'&&m.attributeName==='style'&&m.target.nodeType===1) applyDarkToEl(m.target);
+  });
+});
+document.addEventListener('DOMContentLoaded',()=>{
+  _darkObserver.observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['style']});
+  if(isDark()) applyDarkToTree(document.body);
+});
 </script>
 <script>
 // ============================================================
@@ -2907,7 +3308,7 @@ function doSearch(){
       if(matched.length){
         cornerDiv.innerHTML=`<div style="font-size:.78rem;font-weight:700;color:#e08030;margin-bottom:.35rem;padding:.1rem .2rem">🌟 פינת החי שלנו:</div>`+
           `<div style="display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:.6rem">`+
-          matched.map(c=>`<div onclick="switchTab('mycorner')" style="display:flex;align-items:center;gap:.4rem;background:#fff8e0;border:1.5px solid #f0d060;border-radius:50px;padding:.3rem .85rem .3rem .5rem;cursor:pointer;font-size:.85rem;font-weight:700;color:#7a5000" onmouseover="this.style.background='#ffe8a0'" onmouseout="this.style.background='#fff8e0'">
+          matched.map(c=>`<div onclick="switchTab('mycorner')" style="display:flex;align-items:center;gap:.4rem;background:${limBg()};border:1.5px solid ${limBorder()};border-radius:50px;padding:.3rem .85rem .3rem .5rem;cursor:pointer;font-size:.85rem;font-weight:700;color:${limColor()}" onmouseover="this.style.background='${isDark()?'#503800':'#ffe8a0'}'" onmouseout="this.style.background='${limBg()}'">
             <span style="font-size:1.2rem">${c.emoji}</span><span>${c.name}</span>
           </div>`).join('')+`</div>`;
       } else { cornerDiv.innerHTML=''; }
@@ -3127,7 +3528,7 @@ function expandAllFoodsFromTab(btn) {
           return `<span style="font-size:.72rem;background:#f8f9ff;border-radius:50px;padding:.1rem .4rem;margin:.1rem;display:inline-block">${a.emoji} ${a.name} ${label}${d.a?' '+d.a:''}</span>`;
         }).filter(Boolean).join('');
         return `<div style="margin-right:1rem;margin-bottom:.3rem;padding:.3rem .5rem;background:#f8faff;border-radius:8px;border-right:3px solid #dde">
-          <div style="font-size:.78rem;font-weight:700;color:#444;margin-bottom:.2rem">↳ ${p.name}${p.rawOk==='no'?` <span style="font-size:.68rem;background:#fff0f0;color:#c02020;border-radius:50px;padding:.05rem .35rem">${p.cookNote||'אסור'}</span>`:p.cookNote?` <span style="font-size:.68rem;background:#fff8e0;color:#7a5500;border-radius:50px;padding:.05rem .35rem">${p.cookNote}</span>`:''}</div>
+          <div style="font-size:.78rem;font-weight:700;color:#444;margin-bottom:.2rem">↳ ${p.name}${p.rawOk==='no'?` <span style="font-size:.68rem;background:#fff0f0;color:#c02020;border-radius:50px;padding:.05rem .35rem">${p.cookNote||'אסור'}</span>`:p.cookNote?` <span style="font-size:.68rem;background:${limBg()};color:${limColor()};border-radius:50px;padding:.05rem .35rem">${p.cookNote}</span>`:''}</div>
           <div style="display:flex;flex-wrap:wrap;gap:.15rem">${animalRows}</div>
         </div>`;
       }).join('');
@@ -3432,7 +3833,7 @@ function renderAnimalGrid(){
       ['⏰','פעיל',a.active],['👥','חברה',a.social],['🌡️','טמפרטורה',a.temp],
       ['🏠','דיור',a.housing],['🍽️','תזונה',a.diet]
     ].filter(([,,v])=>v).map(([ic,lb,vl])=>`<div style="display:flex;gap:.45rem;padding:.28rem .45rem;background:#f8f9ff;border-radius:8px;font-size:.79rem"><span>${ic}</span><div><span style="font-weight:700;color:#666">${lb}:</span> ${vl}</div></div>`).join('');
-    const specialNote = a.special ? `<div style="background:#fff8e0;border-right:3px solid #f0c030;border-radius:8px;padding:.35rem .6rem;font-size:.78rem;color:#7a5500;margin:.3rem 0">${a.special}</div>` : '';
+    const specialNote = a.special ? `<div style="background:${limBg()};border-right:3px solid ${limBorder()};border-radius:8px;padding:.35rem .6rem;font-size:.78rem;color:${limColor()};margin:.3rem 0">${a.special}</div>` : '';
     return `<div class="animal-card" id="acard_${a.id}" data-aid="${a.id}">
       ${ph}
       <div class="ac-head" data-toggle="${a.id}" style="cursor:pointer">
@@ -3737,15 +4138,29 @@ function toggleInsightCard(bodyId, cardEl, event){
   if(grid){
     grid.querySelectorAll('.insight-body.open').forEach(b=>{
       b.classList.remove('open');
-      const arrow = b.closest('.insight-card')?.querySelector('.insight-card-footer span:last-child');
+      const sibCard = b.closest('.insight-card');
+      const arrow = sibCard?.querySelector('.insight-card-footer span:last-child');
       if(arrow) arrow.textContent='▼';
+      // הצג preview של הכרטיס שנסגר
+      const prev = sibCard?.querySelector('.insight-card-preview');
+      if(prev) prev.style.display='';
+      // הצג גם את ה-CTA footer
+      const footer = sibCard?.querySelector('.insight-card-footer');
+      if(footer) footer.style.display='';
     });
   }
   if(!isOpen){
     body.classList.add('open');
     const arrow = cardEl.querySelector('.insight-card-footer span:last-child');
     if(arrow) arrow.textContent='▲';
+    // הסתר את ה-preview כשהגוף פתוח — רציף בלי כפילות
+    const prev = cardEl.querySelector('.insight-card-preview');
+    if(prev) prev.style.display='none';
     setTimeout(()=>cardEl.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
+  } else {
+    // הצג שוב את ה-preview כשסוגרים
+    const prev = cardEl.querySelector('.insight-card-preview');
+    if(prev) prev.style.display='';
   }
 }
 
@@ -3757,12 +4172,15 @@ function expandAllInsights(){
   allBodies.forEach(body => {
     const card = body.closest('.insight-card');
     const arrow = card?.querySelector('.insight-card-footer span:last-child');
+    const prev = card?.querySelector('.insight-card-preview');
     if(allOpen){
       body.classList.remove('open');
       if(arrow) arrow.textContent = '▼';
+      if(prev) prev.style.display = '';
     } else {
       body.classList.add('open');
       if(arrow) arrow.textContent = '▲';
+      if(prev) prev.style.display = 'none';
     }
   });
   // Update per-island buttons too
@@ -3797,15 +4215,20 @@ function speakInsightAll(btn){
   speakText(text.trim(), btn);
 }
 
-function speakInsightBody(bodyId){
+function speakInsightBody(bodyId, btn){
   const body = document.getElementById(bodyId);
   if(!body) return;
-  // Extract text, skip buttons
+  // Toggle: if already speaking via this button, cancel
+  if(btn && btn.dataset.speaking==='1'){
+    window.speechSynthesis && window.speechSynthesis.cancel();
+    btn.dataset.speaking='0'; btn.textContent='🔊 הקרא מאמר'; return;
+  }
   let text = '';
   body.querySelectorAll('h2,h3,p').forEach(el => {
     if(el.style.display !== 'none') text += el.textContent.trim() + '. ';
   });
-  speakText(text.trim(), document.querySelector(`[onclick*="${bodyId}"] .insight-card-title`) || document.body);
+  speakText(text.trim(), btn || null);
+  if(btn){ setTimeout(()=>{ if(btn.dataset.speaking==='1') btn.textContent='⏸ עצור'; }, 50); }
 }
 
 function toggleInsightCard_UNUSED(bodyId, cardEl){
@@ -3890,15 +4313,15 @@ function buildAnimalRows(food, partIndex){
       extra=[d.a,d.f].filter(Boolean).join(', ');
     }
 
-    const bg=s==='ok'?'#e0f7ec':s==='no'?'#fde8e8':'#fff3d0';
-    const clr=s==='ok'?'#1a7a40':s==='no'?'#b02020':'#7a5500';
+    const bg=s==='ok'?'#e0f7ec':s==='no'?'#fde8e8':limBadgeBg();
+    const clr=s==='ok'?'#1a7a40':s==='no'?'#b02020':limColor();
     const lbl=s==='ok'?'✅ מותר':s==='no'?'❌ אסור':'⚠️ מוגבל';
     const aimg=a.photo?`<img src="${a.photo}" style="width:26px;height:26px;border-radius:50%;object-fit:cover;flex-shrink:0" onerror="this.style.display='none'">`:a.emoji;
     return `<div style="display:flex;align-items:flex-start;gap:.5rem;padding:.35rem .55rem;background:#fafafa;border-radius:9px;font-size:.82rem">
       ${aimg}
       <div style="flex:1"><span style="font-weight:700">${a.name}</span>
         ${extra?`<span style="color:#999;font-size:.74rem"> · ${extra}</span>`:''}
-        ${note?`<div style="color:#c06000;font-size:.73rem;margin-top:.08rem">💬 ${note}</div>`:''}
+        ${note?`<div style="color:${warnColor()};font-size:.73rem;margin-top:.08rem">💬 ${note}</div>`:''}
       </div>
       <span style="background:${bg};color:${clr};padding:.12rem .5rem;border-radius:50px;font-size:.72rem;font-weight:700;white-space:nowrap">${lbl}</span>
     </div>`;
@@ -3926,9 +4349,9 @@ function openFoodModal(foodId, list, autoPartIdx){
     } else if(noCount===0 && limCount===0){
       bannerHtml=`<div style="background:#e0f7ec;border-radius:12px;padding:.65rem 1rem;text-align:center;font-weight:800;font-size:.95rem;color:#1a7a40;margin-bottom:.8rem">✅ נשמח לקבל!</div>`;
     } else if(sepFoods.has(food.id)){
-      bannerHtml=`<div style="background:#fff8e0;border-radius:12px;padding:.65rem 1rem;text-align:center;font-weight:800;font-size:.95rem;color:#7a5500;margin-bottom:.8rem">⚠️ מותר לחלק מהחיות - הביאו בשקית נפרדת</div>`;
+      bannerHtml=`<div style="background:${limBg()};border-radius:12px;padding:.65rem 1rem;text-align:center;font-weight:800;font-size:.95rem;color:${limColor()};margin-bottom:.8rem">⚠️ מותר לחלק מהחיות - הביאו בשקית נפרדת</div>`;
     } else if(okCount>0 || limCount>0){
-      bannerHtml=`<div style="background:#fff8e0;border-radius:12px;padding:.65rem 1rem;text-align:center;font-weight:800;font-size:.95rem;color:#7a5500;margin-bottom:.8rem">⚠️ מותר לחלק מהחיות - נמיין אנחנו</div>`;
+      bannerHtml=`<div style="background:${limBg()};border-radius:12px;padding:.65rem 1rem;text-align:center;font-weight:800;font-size:.95rem;color:${limColor()};margin-bottom:.8rem">⚠️ מותר לחלק מהחיות - נמיין אנחנו</div>`;
     } else {
       bannerHtml=`<div style="background:#fde8e8;border-radius:12px;padding:.65rem 1rem;text-align:center;font-weight:800;font-size:.95rem;color:#b02020;margin-bottom:.8rem">❌ אין צורך להביא</div>`;
     }
@@ -3968,7 +4391,7 @@ function openFoodModal(foodId, list, autoPartIdx){
     if (QG_NO_IDS.includes(food.id)) {
       qgVerdict='❌ אין צורך להביא'; qgColor='#b02020'; qgNote='רעיל לחיות';
     } else if (QG_SEP_IDS.includes(food.id)) {
-      qgVerdict='⚠️ להביא בנפרד'; qgColor='#7a5500'; qgNote='מותר לחלק מהחיות, בשקית נפרדת';
+      qgVerdict='⚠️ להביא בנפרד'; qgColor=limColor(); qgNote='מותר לחלק מהחיות, בשקית נפרדת';
     } else if (QG_YES_IDS.includes(food.id)) {
       qgVerdict='✅ כן להביא!'; qgColor='#1a7a40'; qgNote='יתקבל בברכה';
     }
@@ -4190,8 +4613,8 @@ function renderByAnimal(){
       // סטטוס לחיה הספציפית
       const s = p.partAnimals?.[selectedBA] ?? p.rawOk;
       if(s==='nr') return '';
-      const bg=s==='ok'?'#d4f5e4':s==='no'?'#fde0e0':'#fff3cc';
-      const clr=s==='ok'?'#1a6640':s==='no'?'#8b1c1c':'#7a5000';
+      const bg=s==='ok'?'#d4f5e4':s==='no'?'#fde0e0':limBadgeBg();
+      const clr=s==='ok'?'#1a6640':s==='no'?'#8b1c1c':limColor();
       const icon=s==='ok'?'✅':s==='no'?'❌':'⚠️';
       return `<span style="font-size:.65rem;background:${bg};color:${clr};border-radius:50px;padding:.08rem .45rem;white-space:nowrap">${icon} ${p.name}</span>`;
     }).filter(Boolean).join('');
@@ -4220,7 +4643,7 @@ function renderByAnimal(){
     gerbil:       {req:false, text:'🌾 חציר משמש בעיקר לכרסם ולבנות מחילות יציבות במצע — לא כמזון עיקרי.'},
   };
   const hayInfo = HAY_INFO[selectedBA];
-  const haySectionHtml = hayInfo ? `<div style="background:${hayInfo.req?'#fff8e0':'#f8f8f4'};border-right:4px solid ${hayInfo.req?'#e8c030':'#b8b090'};border-radius:10px;padding:.55rem .85rem;margin-bottom:.8rem;font-size:.84rem;color:${hayInfo.req?'#6a4c00':'#666'};line-height:1.55">${hayInfo.text}</div>` : '';
+  const haySectionHtml = hayInfo ? `<div style="background:${hayInfo.req?limBg():'#f8f8f4'};border-right:4px solid ${hayInfo.req?limBorder():'#b8b090'};border-radius:10px;padding:.55rem .85rem;margin-bottom:.8rem;font-size:.84rem;color:${hayInfo.req?limColor():'#666'};line-height:1.55">${hayInfo.text}</div>` : '';
 
   c.innerHTML=`
     <div style="background:var(--card);border-radius:var(--radius);padding:.9rem;box-shadow:var(--shadow);margin-bottom:.9rem;display:flex;align-items:center;gap:.9rem">
@@ -4383,7 +4806,7 @@ function filterAllFoodsTable(val) {
         if (statusLabel && !nameCell.querySelector('.animal-filter-hint')) {
           const hint = document.createElement('span');
           hint.className = 'animal-filter-hint';
-          hint.style.cssText = `font-size:.68rem;font-weight:700;padding:.05rem .35rem;border-radius:50px;margin-right:.3rem;vertical-align:middle;background:${animalStatus==='ok'?'#e0f7ec':animalStatus==='lim'?'#fff3d0':'#fde8e8'};color:${animalStatus==='ok'?'#1a7a40':animalStatus==='lim'?'#7a5500':'#b02020'}`;
+          hint.style.cssText = `font-size:.68rem;font-weight:700;padding:.05rem .35rem;border-radius:50px;margin-right:.3rem;vertical-align:middle;background:${animalStatus==='ok'?'#e0f7ec':animalStatus==='lim'?limBadgeBg():'#fde8e8'};color:${animalStatus==='ok'?'#1a7a40':animalStatus==='lim'?limColor():'#b02020'}`;
           hint.textContent = statusLabel;
           nameCell.appendChild(hint);
         }
@@ -5153,7 +5576,7 @@ function dmGenerate() {
       enc.members.forEach(member => {
         const status = dmIsAllowed(member.animalId, foodId);
         if (status === 'no') {
-          warnings.push({text:`${food.emoji} <a href="#" onclick="event.preventDefault();openFoodModal('${foodId}')" style="color:#c06000;font-weight:700;text-decoration:underline dotted">${food.name}</a>, ❌ לא מתאים ל${member.label}`, raw:`${food.name} לא מתאים ל${member.label}`});
+          warnings.push({text:`${food.emoji} <a href="#" onclick="event.preventDefault();openFoodModal('${foodId}')" style="color:${warnColor()};font-weight:700;text-decoration:underline dotted">${food.name}</a>, ❌ לא מתאים ל${member.label}`, raw:`${food.name} לא מתאים ל${member.label}`});
           return;
         }
         if (status === 'nr') return;
@@ -5177,8 +5600,8 @@ function dmGenerate() {
     });
     const encFooter = encHayParts.length
       ? `<div style="border-top:1px dashed #e8e0d0;margin-top:.45rem;padding-top:.45rem;display:grid;gap:.2rem">
-          <div style="font-size:.75rem;font-weight:800;color:#8a6a00">🌾 חציר להוסיף לכלוב:</div>
-          ${encHayParts.map(p=>`<div style="font-size:.78rem;color:#6a5200;padding-right:.5rem">${p}</div>`).join('')}
+          <div style="font-size:.75rem;font-weight:800;color:${warnColor()}">🌾 חציר להוסיף לכלוב:</div>
+          ${encHayParts.map(p=>`<div style="font-size:.78rem;color:${warnColor()};padding-right:.5rem">${p}</div>`).join('')}
           <div style="font-size:.75rem;color:#4a90c8;font-weight:700;margin-top:.1rem">💧 מים נקיים ללא הגבלה</div>
         </div>`
       : `<div style="border-top:1px dashed #d0e8e0;margin-top:.4rem;padding-top:.35rem;font-size:.75rem;color:#4a90c8;font-weight:700">💧 מים נקיים ללא הגבלה</div>`;
@@ -5195,7 +5618,7 @@ function dmGenerate() {
       const food = DM_FOODS.find(f=>f.id===foodId);
       const amountKey = dmBasket[foodId];
       const status = dmIsAllowed(animal.id, foodId);
-      if (status === 'no') { warnings.push({text:`${food.emoji} <a href="#" onclick="event.preventDefault();openFoodModal('${foodId}')" style="color:#c06000;font-weight:700;text-decoration:underline dotted">${food.name}</a>, ❌ לא מתאים`, raw:`${food.name} לא מתאים`}); return; }
+      if (status === 'no') { warnings.push({text:`${food.emoji} <a href="#" onclick="event.preventDefault();openFoodModal('${foodId}')" style="color:${warnColor()};font-weight:700;text-decoration:underline dotted">${food.name}</a>, ❌ לא מתאים`, raw:`${food.name} לא מתאים`}); return; }
       if (status === 'nr') return;
       const base = dmPortionText(animal.size, foodId, amountKey, status==='lim');
       if (!base) return;
@@ -5209,7 +5632,7 @@ function dmGenerate() {
     const soloHayInfo = HAY_DM_INFO[animal.id];
     const soloFooter = soloHayInfo
       ? `<div style="border-top:1px dashed #e8e0d0;margin-top:.45rem;padding-top:.45rem">
-          <div style="font-size:.75rem;font-weight:800;color:#8a6a00;margin-bottom:.15rem">🌾 חציר: ${soloHayInfo.amount} <span style="font-weight:400;color:#aaa">(${soloHayInfo.note})</span></div>
+          <div style="font-size:.75rem;font-weight:800;color:${warnColor()};margin-bottom:.15rem">🌾 חציר: ${soloHayInfo.amount} <span style="font-weight:400;color:#aaa">(${soloHayInfo.note})</span></div>
           <div style="font-size:.75rem;color:#4a90c8;font-weight:700">💧 מים נקיים ללא הגבלה</div>
         </div>`
       : `<div style="border-top:1px dashed #d0e8e0;margin-top:.4rem;padding-top:.35rem;font-size:.75rem;color:#4a90c8;font-weight:700">💧 מים נקיים ללא הגבלה</div>`;
@@ -5252,7 +5675,7 @@ function dmEnclosureCard(emoji, label, subtitle, note, id, lines, warnings, secr
       <div style="flex:1">
         <div style="font-weight:900;font-size:.95rem">${label}</div>
         ${subtitle !== label ? `<div style="font-size:.72rem;color:#888">${subtitle}</div>` : ''}
-        ${note ? `<div style="font-size:.7rem;color:#c06000;margin-top:.05rem">⚠️ ${note}</div>` : ''}
+        ${note ? `<div style="font-size:.7rem;color:${warnColor()};margin-top:.05rem">⚠️ ${note}</div>` : ''}
         ${secretLink ? `<a href="${secretLink}" target="_blank" rel="noopener" title="🎹 סוד..." style="text-decoration:none;opacity:.25;font-size:.7rem">🎹</a>` : ''}
       </div>
       <button onclick="dmSpeakEnclosure('${id}')" style="background:#f0f4ff;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.85rem;flex-shrink:0">🔊</button>
@@ -5268,7 +5691,7 @@ function dmEnclosureCard(emoji, label, subtitle, note, id, lines, warnings, secr
         </div>`;
       portionsByType.forEach(({label, count, portion, isLim, isSeparate}) => {
         const prefix = count > 1 ? `<span style="font-size:.75rem;color:#888;font-weight:400;margin-left:.3rem">לכל ${count} ה${label}:</span> ` : '';
-        html += `<div style="font-size:.82rem;padding-right:1.5rem;color:#333;font-weight:700">${prefix}${portion}${isSeparate?' <span style="font-size:.68rem;background:#fff3d0;color:#7a5500;border-radius:50px;padding:.02rem .3rem;font-weight:700">⚠️ להביא בנפרד</span>':''}${isLim?' <span style="font-size:.68rem;background:#fff3d0;color:#7a5500;border-radius:50px;padding:.02rem .3rem;font-weight:700">⚠️ במידה</span>':''}</div>`;
+        html += `<div style="font-size:.82rem;padding-right:1.5rem;color:#333;font-weight:700">${prefix}${portion}${isSeparate?' <span style="font-size:.68rem;background:'+limBadgeBg()+';color:'+limColor()+';border-radius:50px;padding:.02rem .3rem;font-weight:700">⚠️ להביא בנפרד</span>':''}${isLim?' <span style="font-size:.68rem;background:'+limBadgeBg()+';color:'+limColor()+';border-radius:50px;padding:.02rem .3rem;font-weight:700">⚠️ במידה</span>':''}</div>`;
       });
       html += '</div>';
     });
@@ -5279,7 +5702,7 @@ function dmEnclosureCard(emoji, label, subtitle, note, id, lines, warnings, secr
   if (warnings.length) {
     warnings.forEach(w => {
       const txt = typeof w === 'object' ? w.text : w;
-      html += `<div style="font-size:.76rem;color:#c06000;background:#fff8e8;border-radius:8px;padding:.22rem .5rem;margin-top:.15rem">${txt}</div>`;
+      html += `<div style="font-size:.76rem;color:${limColor()};background:${limBg()};border-radius:8px;padding:.22rem .5rem;margin-top:.15rem">${txt}</div>`;
     });
   }
   if (extraFooter) {
@@ -5838,13 +6261,13 @@ function _handleGlobalSearchCore(val, res) {
     const notOurs = findInNotOursList(w);
     if (notOurs) {
       if (notOurs.specialClean) { res.innerHTML=`<div style="background:#f0fff8;border-radius:12px;padding:.45rem .85rem;font-size:.85rem;color:#1a6640">🧹 נשמע שיש עבודה לעשות. פינת החי תודה לך! 💚</div>`; return; }
-      const msg = notOurs.glad ? `${notOurs.emoji} לשמחתנו אין לנו ${w} בפינת החי 😅` : `${notOurs.emoji} ${notOurs.msg||'אין לנו'} ${w} בפינת החי${notOurs.msg==='אין לנו'?'':' 🙏'}${notOurs.special==='dragon'?` (<a href="#" onclick="event.preventDefault();openAnimalModal('beardie')" style="color:#c06000;text-decoration:underline dotted">דרקון מזוקן הוא חרדון מזוקן, ויש לנו! 🐉</a>)`:''}`;
+      const msg = notOurs.glad ? `${notOurs.emoji} לשמחתנו אין לנו ${w} בפינת החי 😅` : `${notOurs.emoji} ${notOurs.msg||'אין לנו'} ${w} בפינת החי${notOurs.msg==='אין לנו'?'':' 🙏'}${notOurs.special==='dragon'?` (<a href="#" onclick="event.preventDefault();openAnimalModal('beardie')" style="color:${warnColor()};text-decoration:underline dotted">דרקון מזוקן הוא חרדון מזוקן, ויש לנו! 🐉</a>)`:''}`;
       const funnyFromMap = FUNNY_MAP_LOCAL[w] ? `<div style="font-size:.78rem;color:#999;margin-top:.15rem;font-style:italic">ואם יש, ${FUNNY_MAP_LOCAL[w]}</div>` : '';
       const funnyFromList = notOurs.funnyNote ? `<div style="font-size:.78rem;color:#999;margin-top:.15rem;font-style:italic">${notOurs.funnyNote}</div>` : '';
       const linkTag = notOurs.link ? `<a href="${notOurs.link}" target="_blank" rel="noopener" title="${notOurs.linkText||'לחצו!'}" style="text-decoration:none;cursor:pointer;opacity:.55;font-size:1.1em" onclick="event.stopPropagation()">` : '';
       const closeLinkTag = notOurs.link ? '</a>' : '';
       const linkHtml = notOurs.link ? ` ${linkTag}✨✨✨${closeLinkTag}` : '';
-      notOursParts.push(`<div style="background:#fff8e8;border-radius:10px;padding:.4rem .75rem;font-size:.85rem;color:#7a5000">${msg}${funnyFromList||funnyFromMap}${linkHtml}</div>`);
+      notOursParts.push(`<div style="background:${limBg()};border-radius:10px;padding:.4rem .75rem;font-size:.85rem;color:${limColor()}">${msg}${funnyFromList||funnyFromMap}${linkHtml}</div>`);
     }
   }
 
@@ -5855,7 +6278,7 @@ function _handleGlobalSearchCore(val, res) {
         const status=food.animals?.[animal.id]?.s, amt=food.animals?.[animal.id]?.a||'', note=food.animals?.[animal.id]?.n||'';
         let badge,color,bg;
         if(status==='ok'){badge='✅ מותר';color='#1a7a40';bg='#e8fff3';}
-        else if(status==='lim'){badge='⚠️ במידה';color='#7a5500';bg='#fffbe0';}
+        else if(status==='lim'){badge='⚠️ במידה';color=limColor();bg=limBg();}
         else if(status==='no'){badge='❌ אסור';color='#b02020';bg='#ffe8e8';}
         else if(status==='nr'){badge='➖ לא רלוונטי';color='#888';bg='#f4f4f4';}
         else{badge='❓ אין מידע';color='#888';bg='#f4f4f4';}
@@ -5869,7 +6292,7 @@ function _handleGlobalSearchCore(val, res) {
   if (foundAnimals.length && !foundFoods.length) {
     for (const a of foundAnimals) {
       const notInCorner=!a.ours;
-      parts.push(`<div style="background:${notInCorner?'#fafafa':'#f0f4ff'};border-radius:10px;padding:.4rem .75rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap"><span>${a.emoji} <strong>${a.name}</strong></span>${notInCorner?`<span style="font-size:.7rem;background:#fff3d0;color:#7a5500;border-radius:50px;padding:.05rem .4rem;font-weight:700">לא בפינת החי שלנו</span>`:''}${!notInCorner?`<a href="#" onclick="event.preventDefault();switchTab('byanimal');setTimeout(()=>selectByAnimal('${a.id}'),100)" style="font-size:.75rem;color:#3aaa6e;text-decoration:underline dotted">רשימת מזון ←</a>`:''}<a href="#" onclick="event.preventDefault();openAnimalModal('${a.id}')" style="font-size:.75rem;color:#5060a0;text-decoration:underline dotted">מידע ←</a></div>`);
+      parts.push(`<div style="background:${notInCorner?'#fafafa':'#f0f4ff'};border-radius:10px;padding:.4rem .75rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap"><span>${a.emoji} <strong>${a.name}</strong></span>${notInCorner?`<span style="font-size:.7rem;background:${limBadgeBg()};color:${limColor()};border-radius:50px;padding:.05rem .4rem;font-weight:700">לא בפינת החי שלנו</span>`:''}${!notInCorner?`<a href="#" onclick="event.preventDefault();switchTab('byanimal');setTimeout(()=>selectByAnimal('${a.id}'),100)" style="font-size:.75rem;color:#3aaa6e;text-decoration:underline dotted">רשימת מזון ←</a>`:''}<a href="#" onclick="event.preventDefault();openAnimalModal('${a.id}')" style="font-size:.75rem;color:#5060a0;text-decoration:underline dotted">מידע ←</a></div>`);
     }
     if (notOursParts.length) parts.push(...notOursParts);
     res.innerHTML = `<div style="display:grid;gap:.35rem">${parts.join('')}</div>`;
@@ -6063,14 +6486,13 @@ function handleGlobalSearch(val) {
       }
       const msg = notOurs.glad
         ? `${notOurs.emoji} לשמחתנו אין לנו ${w} בפינת החי 😅`
-        : `${notOurs.emoji} ${notOurs.msg||'אין לנו'} ${w} בפינת החי${notOurs.msg==='אין לנו'?'':' 🙏'}${notOurs.special==='dragon'?' (<a href="#" onclick="event.preventDefault();openAnimalModal(\'beardie\')" style="color:#c06000;text-decoration:underline dotted">דרקון מזוקן הוא חרדון מזוקן, ויש לנו! 🐉</a>)':''}`;
-      const funnyFromMap = FUNNY_MAP[w] ? `<div style="font-size:.78rem;color:#999;margin-top:.15rem;font-style:italic">ואם יש, ${FUNNY_MAP[w]}</div>` : '';
+        : `${notOurs.emoji} ${notOurs.msg||'אין לנו'} ${w} בפינת החי${notOurs.msg==='אין לנו'?'':' 🙏'}${notOurs.special==='dragon'?' (<a href="#" onclick="event.preventDefault();openAnimalModal(\'beardie\')" style="color:'+warnColor()+';text-decoration:underline dotted">דרקון מזוקן הוא חרדון מזוקן, ויש לנו! 🐉</a>)':''}`;      const funnyFromMap = FUNNY_MAP[w] ? `<div style="font-size:.78rem;color:#999;margin-top:.15rem;font-style:italic">ואם יש, ${FUNNY_MAP[w]}</div>` : '';
       const funnyFromList = notOurs.funnyNote ? `<div style="font-size:.78rem;color:#999;margin-top:.15rem;font-style:italic">${notOurs.funnyNote}</div>` : '';
       const funny = funnyFromList || funnyFromMap;
       const linkTag2 = notOurs.link ? `<a href="${notOurs.link}" target="_blank" rel="noopener" title="${notOurs.linkText||'לחצו!'}" style="text-decoration:none;cursor:pointer;opacity:.55;font-size:1.1em" onclick="event.stopPropagation()">` : '';
       const closeLinkTag2 = notOurs.link ? '</a>' : '';
       const hint2 = notOurs.link ? ` ${linkTag2}✨✨✨${closeLinkTag2}` : '';
-      notOursParts.push(`<div style="background:#fff8e8;border-radius:10px;padding:.4rem .75rem;font-size:.85rem;color:#7a5000">${msg}${funny}${hint2}</div>`);
+      notOursParts.push(`<div style="background:${limBg()};border-radius:10px;padding:.4rem .75rem;font-size:.85rem;color:${limColor()}">${msg}${funny}${hint2}</div>`);
     }
   }
 
@@ -6083,7 +6505,7 @@ function handleGlobalSearch(val) {
         const note = food.animals?.[animal.id]?.n || '';
         let badge, color, bg;
         if (status === 'ok')       { badge='✅ מותר';          color='#1a7a40'; bg='#e8fff3'; }
-        else if (status === 'lim') { badge='⚠️ במידה';         color='#7a5500'; bg='#fffbe0'; }
+        else if (status === 'lim') { badge='⚠️ במידה';         color=limColor(); bg=limBg(); }
         else if (status === 'no')  { badge='❌ אסור';           color='#b02020'; bg='#ffe8e8'; }
         else if (status === 'nr')  { badge='➖ לא רלוונטי';    color='#888';    bg='#f4f4f4'; }
         else                       { badge='❓ אין מידע';       color='#888';    bg='#f4f4f4'; }
@@ -6111,7 +6533,7 @@ function handleGlobalSearch(val) {
     for (const a of foundAnimals) {
       const notInCorner = !a.ours;
       const notInCornerBadge = notInCorner
-        ? `<span style="font-size:.7rem;background:#fff3d0;color:#7a5500;border-radius:50px;padding:.05rem .4rem;font-weight:700">לא בפינת החי שלנו</span>`
+        ? `<span style="font-size:.7rem;background:${limBadgeBg()};color:${limColor()};border-radius:50px;padding:.05rem .4rem;font-weight:700">לא בפינת החי שלנו</span>`
         : '';
       parts.push(`
         <div style="background:${notInCorner?'#fafafa':'#f0f4ff'};border-radius:10px;padding:.4rem .75rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap">
@@ -6745,7 +7167,7 @@ function qgSearch(val) {
       note = 'רעיל לחיות, אין צורך להביא';
     } else if (QG_SEP_IDS.includes(f.id)) {
       verdictLabel = '⚠️ להביא בנפרד';
-      bg = '#fffbe0'; borderColor = '#f0c030'; color = '#7a5500';
+      bg = limBg(); borderColor = limBorder(); color = limColor();
       note = 'מותר לחלק מהחיות, יש להביא שלם ובשקית נפרדת';
     } else if (QG_YES_IDS.includes(f.id)) {
       verdictLabel = '✅ כן להביא!';
@@ -6759,7 +7181,7 @@ function qgSearch(val) {
       if (no.length === 0 && lim.length === 0) {
         verdictLabel = '✅ כן להביא!'; bg = '#e8fff3'; borderColor = '#3aaa6e'; color = '#1a7a40';
       } else if (lim.length > 0 || no.length < ours.length) {
-        verdictLabel = '⚠️ להביא בנפרד'; bg = '#fffbe0'; borderColor = '#f0c030'; color = '#7a5500';
+        verdictLabel = '⚠️ להביא בנפרד'; bg = limBg(); borderColor = limBorder(); color = limColor();
         note = 'מותר לחלק מהחיות בלבד';
       } else {
         verdictLabel = '❌ אין צורך להביא'; bg = '#fff0f0'; borderColor = '#e08080'; color = '#b02020';
@@ -6773,7 +7195,7 @@ function qgSearch(val) {
     const limNames = lim.map(a=>a.name).join(', ');
     const noNames  = no.map(a=>a.name).join(', ');
     const details = [
-      limNames ? `<span style="font-size:.74rem;color:#7a5500">⚠️ במידה: ${limNames}</span>` : '',
+      limNames ? `<span style="font-size:.74rem;color:${limColor()}">⚠️ במידה: ${limNames}</span>` : '',
       noNames  ? `<span style="font-size:.74rem;color:#b02020">❌ אסור: ${noNames}</span>` : '',
     ].filter(Boolean).join('');
 
