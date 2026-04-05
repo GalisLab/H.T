@@ -261,7 +261,32 @@ body.dark #nightStars{display:block}
   0%,100%{opacity:0;transform:scale(1)}
   50%{opacity:var(--peak,.7);transform:scale(1.4)}
 }
-/* ── שכבת לילה בתוך הheader ── */
+/* ── כוכבים בheader (מצב לילה) ── */
+.nl-star{
+  position:absolute;
+  width:2px;height:2px;
+  background:#fff;
+  border-radius:50%;
+  animation:starTwinkle var(--dur,4s) var(--delay,0s) ease-in-out infinite;
+  opacity:0;
+  pointer-events:none;
+}
+.nl-star.med{width:2.5px;height:2.5px;}
+.nl-star.big{width:3.5px;height:3.5px;}
+/* ── נקודות קשת בשוליים ── */
+#rainbowDots{
+  display:none;
+  position:fixed;inset:0;overflow:hidden;
+  pointer-events:none;z-index:0;
+}
+body.rainbow #rainbowDots{display:block}
+.rd{
+  position:absolute;
+  border-radius:50%;
+  animation:starTwinkle var(--dur,4s) var(--delay,0s) ease-in-out infinite;
+  opacity:0;
+  pointer-events:none;
+}
 #nightLayer{
   display:none;
   position:absolute;inset:0;overflow:hidden;
@@ -863,8 +888,9 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 <body>
 <div class="loader" id="loader"><div class="spin">🌿</div><div>בעלי החיים מתארגנים ובאים...</div></div>
 
-<button id="darkModeBtn" onclick="toggleDark()" title="מצב כהה/בהיר" aria-label="מצב כהה/בהיר" style="position:fixed;right:.8rem;top:.8rem;background:rgba(255,255,255,.25);border:none;border-radius:50%;width:38px;height:38px;font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:9000">🌙</button>
+<button id="darkModeBtn" onclick="toggleDark()" title="עבור למצב לילה" aria-label="עבור למצב לילה" style="position:fixed;right:.8rem;top:.8rem;background:rgba(255,255,255,.25);border:none;border-radius:50%;width:38px;height:38px;font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:9000">🌙</button>
 <div id="nightStars"></div>
+<div id="rainbowDots"></div>
 <header style="position:relative;overflow:hidden">
   <div id="dayLayer"></div>
   <div id="nightLayer"></div>
@@ -2173,44 +2199,97 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   document.addEventListener('DOMContentLoaded', buildStars);
   if(document.readyState !== 'loading') buildStars();
 })();
+// ── נקודות קשת בשוליים ─────────────────────────────────────
+(function(){
+  const COLORS = ['#ff6b9d','#ffa94d','#ffe066','#69db7c','#4dabf7','#cc5de8','#ff6b6b','#a9e34b','#38d9a9','#f783ac'];
+
+  function buildRainbowDots(){
+    const el = document.getElementById('rainbowDots');
+    if(!el || el.children.length) return;
+    // 50 נקודות דלילות — רק בשוליים הצדדיים: שמאל 0-8%, ימין 92-100%
+    for(let i=0;i<50;i++){
+      const d = document.createElement('div');
+      d.className = 'rd';
+      const size = (3 + Math.random()*4).toFixed(1);
+      const color = COLORS[Math.floor(Math.random()*COLORS.length)];
+      // רק שוליים צדדיים
+      const x = Math.random() < 0.5
+        ? Math.random()*8
+        : 92 + Math.random()*8;
+      const y = Math.random()*100;
+      const dur = (6+Math.random()*8).toFixed(1);
+      const delay = (Math.random()*15).toFixed(1);
+      const peak = (.1+Math.random()*.3).toFixed(2);
+      d.style.cssText = `left:${x}%;top:${y}%;width:${size}px;height:${size}px;background:${color};--dur:${dur}s;--delay:${delay}s;--peak:${peak}`;
+      el.appendChild(d);
+    }
+  }
+
+  // בנה בטעינה ועדכן כשנכנסים לקשת
+  document.addEventListener('DOMContentLoaded', buildRainbowDots);
+  if(document.readyState !== 'loading') buildRainbowDots();
+
+  const _rdObs = new MutationObserver(()=>{
+    if(document.body.classList.contains('rainbow')) buildRainbowDots();
+  });
+  document.addEventListener('DOMContentLoaded',()=>{
+    _rdObs.observe(document.body,{attributeFilter:['class']});
+  });
+})();
 // ────────────────────────────────────────────────────────────
+function syncModeBtn(){
+  const btn = document.getElementById('darkModeBtn');
+  if(!btn) return;
+  const b = document.body;
+  if(b.classList.contains('rainbow')){
+    btn.textContent='🌈';
+    btn.title='מצב קשת! 🌈';
+    btn.setAttribute('aria-label','מצב קשת');
+  } else if(b.classList.contains('dark')){
+    btn.textContent='☀️';
+    btn.title='עבור למצב בהיר';
+    btn.setAttribute('aria-label','עבור למצב בהיר');
+  } else {
+    btn.textContent='🌙';
+    btn.title='עבור למצב לילה';
+    btn.setAttribute('aria-label','עבור למצב לילה');
+  }
+}
 function toggleDark(){
   const body = document.body;
-  const btn = document.getElementById('darkModeBtn');
   if(body.classList.contains('rainbow')){
     // rainbow → light
     body.classList.remove('rainbow');
     stopRainbow && stopRainbow();
     localStorage.setItem('pina-mode','light');
-    if(btn) btn.textContent='🌙';
   } else if(body.classList.contains('dark')){
     // dark → rainbow (surprise!)
     body.classList.remove('dark');
     body.classList.add('rainbow');
     localStorage.setItem('pina-mode','rainbow');
-    if(btn) btn.textContent='🌈';
   } else {
     // light → dark
     body.classList.add('dark');
     localStorage.setItem('pina-mode','dark');
-    if(btn) btn.textContent='☀️';
     setTimeout(()=>applyDarkToTree(document.body),50);
   }
+  syncModeBtn();
 }
 (function(){
   // Always start on light mode — rainbow is a surprise, never restored from localStorage
   const savedMode = localStorage.getItem('pina-mode');
   const mode = (savedMode === 'dark') ? 'dark' : 'light';
   document.addEventListener('DOMContentLoaded',()=>{
-    const btn = document.getElementById('darkModeBtn');
-    if(mode==='dark'){
-      document.body.classList.add('dark');
-      if(btn) btn.textContent='☀️';
-    } else {
-      if(btn) btn.textContent='🌙';
-    }
+    if(mode==='dark') document.body.classList.add('dark');
+    syncModeBtn();
   });
   if(mode==='dark') document.body.classList.add('dark');
+  // MutationObserver כגיבוי — מסנכרן את הכפתור אם class השתנה מבחוץ (treasure map וכד')
+  const _btnSyncObs = new MutationObserver(syncModeBtn);
+  document.addEventListener('DOMContentLoaded',()=>{
+    _btnSyncObs.observe(document.body,{attributeFilter:['class']});
+    syncModeBtn();
+  });
 })();
 // ── helpers: צבעי אזהרה (amber) תלויי מצב לילה ──
 function isDark(){return document.body.classList.contains('dark');}
@@ -8137,10 +8216,28 @@ function pwaInstall(){
     _batTimer = setTimeout(spawnBat, 5000+Math.random()*9000);
   }
 
+  function buildHeaderStars(){
+    const el = layer(); if(!el) return;
+    // 40 כוכבים קטנים פזורים בheader
+    for(let i=0;i<40;i++){
+      const s = document.createElement('div');
+      const r = Math.random();
+      s.className = 'nl-star' + (r<.08?' big':r<.25?' med':'');
+      const x = Math.random()*100;
+      const y = Math.random()*100;
+      const dur = (3+Math.random()*6).toFixed(1);
+      const delay = (Math.random()*10).toFixed(1);
+      const peak = (.2+Math.random()*.6).toFixed(2);
+      s.style.cssText=`left:${x}%;top:${y}%;--dur:${dur}s;--delay:${delay}s;--peak:${peak}`;
+      el.appendChild(s);
+    }
+  }
+
   function startNight(){
     if(_active) return;
     _active = true;
     buildMoon();
+    buildHeaderStars();
     setTimeout(spawnCloud, 1500+Math.random()*3000);
     setTimeout(spawnBat,   3000+Math.random()*4000);
   }
