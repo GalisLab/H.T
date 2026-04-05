@@ -261,6 +261,71 @@ body.dark #nightStars{display:block}
   0%,100%{opacity:0;transform:scale(1)}
   50%{opacity:var(--peak,.7);transform:scale(1.4)}
 }
+/* ── שכבת לילה בתוך הheader ── */
+#nightLayer{
+  display:none;
+  position:absolute;inset:0;overflow:hidden;
+  pointer-events:none;z-index:1;
+}
+body.dark #nightLayer{display:block}
+
+/* ירח */
+.nl-moon{
+  position:absolute;
+  font-size:3.8rem;
+  top:30%;left:5%;
+  animation:moonGlow 6s ease-in-out infinite;
+  filter:drop-shadow(0 0 16px rgba(255,240,160,.55));
+  pointer-events:none;user-select:none;
+}
+/* עננים צמודים לירח */
+.nl-moon-cloud{
+  position:absolute;
+  pointer-events:none;user-select:none;
+  filter:brightness(.45) saturate(0);
+  animation:moonCloudDrift var(--mcdur,9s) ease-in-out infinite alternate;
+}
+@keyframes moonCloudDrift{
+  0%{transform:translateX(0) translateY(0)}
+  100%{transform:translateX(var(--mcx,8px)) translateY(var(--mcy,-4px))}
+}
+@keyframes moonGlow{
+  0%,100%{opacity:.7;transform:scale(1) rotate(-5deg)}
+  50%{opacity:1;transform:scale(1.08) rotate(5deg)}
+}
+
+/* ענן חולף */
+.nl-cloud{
+  position:absolute;
+  pointer-events:none;user-select:none;
+  font-size:1.6rem;
+  opacity:0;
+  animation:cloudDrift var(--cdur,18s) var(--cdel,0s) linear forwards;
+}
+@keyframes cloudDrift{
+  0%{opacity:0;transform:translateX(0)}
+  8%{opacity:var(--cpeak,.35)}
+  85%{opacity:var(--cpeak,.35)}
+  100%{opacity:0;transform:translateX(var(--cdx,-110vw))}
+}
+
+/* עטלף מתעופף */
+.nl-bat{
+  position:absolute;
+  pointer-events:none;user-select:none;
+  font-size:.9rem;
+  opacity:0;
+  animation:batFly var(--bdur,8s) var(--bdel,0s) ease-in-out forwards;
+}
+@keyframes batFly{
+  0%{opacity:0;transform:translateX(0) translateY(0) scaleX(1)}
+  5%{opacity:.75}
+  45%{transform:translateX(var(--bmx,40vw)) translateY(var(--bmy,-30px)) scaleX(1)}
+  50%{transform:translateX(calc(var(--bmx,40vw)*1.02)) translateY(calc(var(--bmy,-30px)+8px)) scaleX(-1)}
+  90%{opacity:.6}
+  100%{opacity:0;transform:translateX(var(--bdx,90vw)) translateY(var(--bdy,10px)) scaleX(-1)}
+}
+
 body.rainbow header .ticker{
   animation:tick 20s linear infinite, rainbowShift 3s linear infinite;
   font-size:2rem;letter-spacing:8px;opacity:.85;
@@ -802,6 +867,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 <div id="nightStars"></div>
 <header style="position:relative;overflow:hidden">
   <div id="dayLayer"></div>
+  <div id="nightLayer"></div>
   <canvas id="rainbowCanvas"></canvas>
   <div id="rainbowBubbles"></div>
   <div class="ticker" onclick="spawnPawTrail()" style="cursor:pointer" title="🐾">🦜🐹🐢🦎🐛🐰🐕🐟🦎🐱🐹🐰🦜🐢🐛🐕🐟🦜🐹🐢🦎🐛🐰🐕🐟🦎🐱🐹🐰🦜🐢🐛🐕🐟</div>
@@ -7935,6 +8001,184 @@ function pwaInstall(){
 
   window._dayLayerStart = startDay;
   window._dayLayerStop  = stopDay;
+})();
+// ── אנימציות מצב לילה (header) ──────────────────────────────
+(function(){
+  // ירח מחזורי: סהר → ירח מלא → סהר
+  const MOON_PHASES = ['🌑','🌒','🌓','🌔','🌕','🌖','🌗','🌘'];
+  // עננים לילה — אפורים/כהים
+  const NIGHT_CLOUDS = ['☁️','🌫️'];
+
+  let _cloudTimer, _batTimer;
+  let _moonEl = null;
+  let _moonPhaseIdx = 0;
+  let _moonTimer = null;
+  let _active = false;
+
+  function layer(){ return document.getElementById('nightLayer'); }
+  function isDark(){
+    return document.body.classList.contains('dark');
+  }
+
+  /* ── ירח ── */
+  function buildMoon(){
+    const el = layer(); if(!el) return;
+    if(_moonEl){ _moonEl.remove(); _moonEl=null; }
+    _moonPhaseIdx = Math.floor(Math.random() * MOON_PHASES.length);
+    _moonEl = document.createElement('div');
+    _moonEl.className = 'nl-moon';
+    _moonEl.textContent = MOON_PHASES[_moonPhaseIdx];
+    el.appendChild(_moonEl);
+
+    // עננים צמודים לירח — 2–3 עננים קטנים מסביבו
+    const cloudDefs = [
+      {top:'18%', left:'2%',  fs:'1.4rem', dur:'11s', mcx:'6px',  mcy:'-5px'},
+      {top:'52%', left:'10%', fs:'1.1rem', dur:'8s',  mcx:'-5px', mcy:'4px'},
+      {top:'65%', left:'0%',  fs:'1.6rem', dur:'14s', mcx:'9px',  mcy:'-3px'},
+    ];
+    cloudDefs.forEach(c=>{
+      const cd = document.createElement('div');
+      cd.className = 'nl-moon-cloud';
+      cd.textContent = '☁️';
+      cd.style.cssText = `top:${c.top};left:${c.left};font-size:${c.fs};--mcdur:${c.dur};--mcx:${c.mcx};--mcy:${c.mcy};opacity:.55`;
+      el.appendChild(cd);
+    });
+
+    tickMoonPhase();
+  }
+
+  function tickMoonPhase(){
+    clearTimeout(_moonTimer);
+    if(!isDark() || !_moonEl) return;
+    _moonTimer = setTimeout(()=>{
+      if(!isDark() || !_moonEl) return;
+      _moonPhaseIdx = (_moonPhaseIdx + 1) % MOON_PHASES.length;
+      // מעבר עדין
+      _moonEl.style.transition = 'opacity 1.8s';
+      _moonEl.style.opacity = '0';
+      setTimeout(()=>{
+        if(!_moonEl) return;
+        _moonEl.textContent = MOON_PHASES[_moonPhaseIdx];
+        _moonEl.style.opacity = '';
+        tickMoonPhase();
+      }, 1900);
+    }, 4500 + Math.random()*3000);
+  }
+
+  function removeMoon(){
+    clearTimeout(_moonTimer);
+    if(_moonEl){ _moonEl.remove(); _moonEl=null; }
+  }
+
+  /* ── ענן חולף ── */
+  function spawnCloud(){
+    if(!isDark()) return;
+    const el = layer(); if(!el) return;
+    const d = document.createElement('div');
+    d.className = 'nl-cloud';
+    const fromRight = Math.random() < 0.5;
+    const y = 5 + Math.random()*60;     // אחוז גובה בheader
+    const dur = (14 + Math.random()*14).toFixed(1);
+    const peak = (.12 + Math.random()*.18).toFixed(2);
+    const dx = fromRight ? '-110vw' : '110vw';
+    const startX = fromRight ? '110vw' : '-30px';
+    d.textContent = NIGHT_CLOUDS[Math.floor(Math.random()*NIGHT_CLOUDS.length)];
+    d.style.cssText = [
+      'top:'+y+'%',
+      fromRight ? 'right:-80px' : 'left:-80px',
+      'font-size:'+(1.2+Math.random()*.8).toFixed(1)+'rem',
+      '--cdur:'+dur+'s',
+      '--cdel:0s',
+      '--cpeak:'+peak,
+      '--cdx:'+dx,
+      'transform:translateX(0)',
+      'filter:brightness(.5) saturate(0)',
+    ].join(';');
+    el.appendChild(d);
+    setTimeout(()=>d.remove(), +dur*1000+500);
+    _cloudTimer = setTimeout(spawnCloud, 8000+Math.random()*14000);
+  }
+
+  /* ── עטלף ── */
+  function spawnBat(){
+    if(!isDark()) return;
+    const el = layer(); if(!el) return;
+    // לפעמים מגיע זוג
+    const count = Math.random() < 0.35 ? 2 : 1;
+    for(let i=0;i<count;i++){
+      const d = document.createElement('div');
+      d.className = 'nl-bat';
+      const fromRight = Math.random()<.5;
+      const y = 8 + Math.random()*70;
+      const dur = (6 + Math.random()*7).toFixed(1);
+      const mx = fromRight
+        ? (-(40+Math.random()*30)).toFixed(0)+'vw'
+        : (40+Math.random()*30).toFixed(0)+'vw';
+      const dx = fromRight ? '-105vw' : '105vw';
+      const my = ((Math.random()-.5)*40).toFixed(0)+'px';
+      const dy = ((Math.random()-.5)*25).toFixed(0)+'px';
+      const size = (.65+Math.random()*.35).toFixed(2);
+      d.textContent = '🦇';
+      d.style.cssText = [
+        'top:'+y+'%',
+        fromRight ? 'right:-40px' : 'left:-40px',
+        'font-size:'+size+'rem',
+        '--bdur:'+dur+'s',
+        '--bdel:'+(i*0.4).toFixed(1)+'s',
+        '--bmx:'+mx,
+        '--bmy:'+my,
+        '--bdx:'+dx,
+        '--bdy:'+dy,
+        fromRight ? 'transform:scaleX(-1)' : '',
+      ].filter(Boolean).join(';');
+      el.appendChild(d);
+      setTimeout(()=>d.remove(), +dur*1000+600);
+    }
+    _batTimer = setTimeout(spawnBat, 5000+Math.random()*9000);
+  }
+
+  function startNight(){
+    if(_active) return;
+    _active = true;
+    buildMoon();
+    setTimeout(spawnCloud, 1500+Math.random()*3000);
+    setTimeout(spawnBat,   3000+Math.random()*4000);
+  }
+
+  function stopNight(){
+    _active = false;
+    removeMoon();
+    clearTimeout(_cloudTimer);
+    clearTimeout(_batTimer);
+    const el = layer();
+    if(el) el.innerHTML='';
+  }
+
+  // patch toggleDark
+  const _patchNight = setInterval(()=>{
+    if(typeof window.toggleDark === 'function'){
+      clearInterval(_patchNight);
+      const orig = window.toggleDark;
+      window.toggleDark = function(){
+        orig.apply(this, arguments);
+        setTimeout(()=>{ isDark() ? startNight() : stopNight(); }, 50);
+      };
+    }
+  }, 100);
+
+  const obs2 = new MutationObserver(()=>{
+    if(isDark()){ if(!_active) startNight(); }
+    else stopNight();
+  });
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    obs2.observe(document.body, {attributeFilter:['class']});
+    if(isDark()) startNight();
+  });
+  if(document.readyState !== 'loading' && isDark()) startNight();
+
+  window._nightLayerStart = startNight;
+  window._nightLayerStop  = stopNight;
 })();
 // ────────────────────────────────────────────────────────────
 </script>
