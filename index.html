@@ -26,58 +26,132 @@
   --bg:#f5f1e8;--card:#fff;--text:#222;--muted:#777;
   --radius:18px;--shadow:0 3px 16px rgba(60,80,140,0.10);
 }
-/* ═══ DARK MODE ═══ */
+/* ═══════════════════════════════════════════════
+   DARK MODE — גישה: רקע חיצוני שחור, כרטיסים אטומים
+   ════════════════════════════════════════════════ */
 body.dark{
-  --bg:#18191a;--card:#252621;--text:#e8e6df;--muted:#a8a49a;
-  --shadow:0 3px 16px rgba(0,0,0,0.45);
+  --bg:#111110;--card:#252621;--text:#e8e6df;--muted:#a8a49a;
+  --shadow:0 3px 16px rgba(0,0,0,0.55);
   --mint:#1c2a1e;--sky:#1e2328;--lavender:#232030;
 }
-/* ── dark mode: טקסטים בגוון אפור/כהה שאינם קריאים ── */
-body.dark [style*="color:#555"],
-body.dark [style*="color:#444"],
-body.dark [style*="color:#666"],
-body.dark [style*="color:#777"],
-body.dark [style*="color:#888"],
-body.dark [style*="color:#999"],
-body.dark [style*="color:#333"],
-body.dark [style*="color:#aaa"],
-body.dark [style*="color:#bbb"],
-body.dark [style*="color: #555"],
-body.dark [style*="color: #444"],
-body.dark [style*="color: #666"],
-body.dark [style*="color: #333"]{color:var(--muted)!important}
-body.dark [style*="color:#222"],
-body.dark [style*="color:#111"]{color:var(--text)!important}
-body.dark [style*="background:#fafafa"],
-body.dark [style*="background:#f8f9ff"],
-body.dark [style*="background:#f8faff"],
-body.dark [style*="background:#f0f4ff"],
-body.dark [style*="background:#f8f8f4"],
-body.dark [style*="background:#f5f5f0"]{background:#2a2b26!important}
-body.dark [style*="background:#fde8e8"],
-body.dark [style*="background:#fff0f0"],
-body.dark [style*="background:#ffe8e8"]{background:#3a1a1a!important}
-body.dark [style*="background:#e0f7ec"],
-body.dark [style*="background:#e8fff3"],
-body.dark [style*="background:#d4f5e4"]{background:#162a1e!important}
-body.dark [style*="background:#f0f8ff"],
-body.dark [style*="background:#e8f0ff"]{background:#1c2535!important}
-body.dark header{background:linear-gradient(135deg,#1e2328,#232030,#1c2a1e)}
-body.dark .search-wrap input{background:var(--card);color:var(--text);border-color:#3a3d35}
-body.dark .tab-btn{background:var(--card);color:var(--text)}
-body.dark .chip,body.dark .cat-chip,body.dark .part-chip,body.dark .ba-chip{background:var(--card);color:var(--text);border-color:#3a3d35}
-body.dark .modal-box,body.dark .modal-top{background:var(--card);color:var(--text)}
-body.dark .modal-top{border-bottom-color:#3a3d35}
-body.dark .funfact,body.dark .note-box{background:#2a2010;color:#d4b860;border-color:#8a6820}
-body.dark .part-detail{background:#1e2520;border-color:var(--blue)}
-body.dark .insight-item{background:var(--card)}
-body.dark #darkModeBtn{background:rgba(255,255,255,.18)}
+
+/* ── 1. כל תיבות התוכן מקבלות רקע אטום (card) ── */
+/* כך הכוכבים לא "מציצים" דרך הרקע */
+body.dark .tab-panel,
+body.dark .section-hero,
+body.dark .food-card,
+body.dark .animal-card,
+body.dark .don-card,
+body.dark .insight-card,
+body.dark .my-card,
+body.dark .modal-box,
+body.dark .modal-top,
+body.dark .insight-island,
+body.dark #insightModalBox,
+body.dark #articleModalBox,
+body.dark #globalSearchBar,
+body.dark .tabs{
+  background:var(--card) !important;
+}
+
+/* ── 2. כל div עם background inline — אטום ── */
+/* זה מכסה כרטיסי "פינת החי שלנו", קופסאות בקיצור, וכו' */
+body.dark div[style*="background:#"],
+body.dark div[style*="background: #"],
+body.dark div[style*="background:linear-gradient"],
+body.dark div[style*="background: linear-gradient"]{
+  background:var(--card) !important;
+}
+/* חריגים: כפתורים, אלמנטים שצריך את הצבע שלהם */
+body.dark button[style*="background"],
+body.dark a[style*="background"],
+body.dark span[style*="background"],
+body.dark .fc-expand-bar,
+body.dark .expand-all-btn,
+body.dark .copy-site-btn,
+body.dark .rainbow-frame,
+body.dark .admin-bar,
+body.dark .loader{
+  background:unset;
+}
+body.dark .b-ok{background:#1a3a24 !important;color:#70d090 !important}
+body.dark .b-no{background:#3a1a1a !important;color:#f07070 !important}
+body.dark .b-lim{background:#3a2800 !important;color:#f5cc60 !important;border-color:#8a6010 !important}
+body.dark .fp-lim{background:#3a2800 !important;color:#f5cc60 !important;border-color:#8a6010 !important}
+body.dark .qg-yes{background:#1a3a24 !important;color:#70d090 !important}
+body.dark .qg-warn{background:#3a2800 !important;color:#f5cc60 !important}
+body.dark .qg-no{background:#3a1a1a !important;color:#f07070 !important}
+body.dark .badge.b-ok{background:#1a3a24 !important;color:#70d090 !important}
+body.dark .badge.b-no{background:#3a1a1a !important;color:#f07070 !important}
+body.dark .badge.b-lim{background:#3a2800 !important;color:#f5cc60 !important}
+body.dark .ac-ours-badge{background:var(--green) !important}
+body.dark .fc-expand-bar{background:var(--blue) !important;color:#fff !important}
+
+/* ── 3. כל inline text כהה — בהיר ── */
+/* צבעים כהים שנבלעים על רקע --card */
+body.dark [style*="color:#1"],
+body.dark [style*="color:#2"],
+body.dark [style*="color:#3"],
+body.dark [style*="color:#4"],
+body.dark [style*="color:#5"],
+body.dark [style*="color:#6"],
+body.dark [style*="color:#7"],
+body.dark [style*="color:#8"]{color:var(--text) !important}
+/* חריגים: צבעים בהירים שכבר קריאים / כפתורים לבנים */
+body.dark [style*="color:#fff"],
+body.dark [style*="color:white"],
+body.dark [style*="color:#ff"],
+body.dark [style*="color:#ee"],
+body.dark [style*="color:#dd"],
+body.dark [style*="color:#cc"],
+body.dark [style*="color:#bb"],
+body.dark [style*="color:#aa"],
+body.dark [style*="color:#9"]{color:unset !important}
+/* כפתורים לבנים - לא לשנות */
+body.dark button[style*="color:white"],
+body.dark button[style*="color:#fff"],
+body.dark a[style*="color:white"]{color:white !important}
+/* תגיות צבעוניות: ירוק/אדום/כתום — שמור אותן */
+body.dark [style*="color:#1a7a40"],
+body.dark [style*="color:#1a6640"]{color:#70d090 !important}
+body.dark [style*="color:#b02020"],
+body.dark [style*="color:#8b1c1c"],
+body.dark [style*="color:#c02020"]{color:#f07070 !important}
+body.dark [style*="color:#7a5500"],
+body.dark [style*="color:#6a5600"],
+body.dark [style*="color:#8a5500"]{color:#f5cc60 !important}
+body.dark [style*="color:#3aaa6e"]{color:#70d090 !important}
+
+/* ── 4. header כהה ── */
+body.dark header{background:linear-gradient(135deg,#1e2328,#232030,#1c2a1e) !important}
+body.dark header p{color:#c0bcb4}
+
+/* ── 5. אלמנטים ייחודיים ── */
+body.dark .search-wrap input{background:#1e1f1b;color:var(--text);border-color:#3a3d35}
+body.dark .tab-btn{background:#1e1f1b !important;color:var(--muted)}
+body.dark .tab-btn.active{color:white !important}
+body.dark .chip,body.dark .cat-chip,body.dark .part-chip,body.dark .ba-chip{background:#1e1f1b;color:var(--text);border-color:#3a3d35}
+body.dark .funfact,body.dark .note-box{background:#2a2010 !important;color:#f0cc58;border-color:#8a6820}
+body.dark .part-detail{background:#1e2520 !important;border-color:var(--blue)}
+body.dark #darkModeBtn{background:rgba(255,255,255,.18) !important}
 body.dark .arow{border-bottom-color:#35362f}
 body.dark .aname{color:var(--text)}
-body.dark .fc-seo{color:var(--muted);background:#2a2b26;border-top-color:#35362f}
-body.dark .tab-btn{color:var(--muted)}
+body.dark .fc-seo{color:var(--muted) !important;background:#1e1f1b !important;border-top-color:#35362f}
+body.dark .cook-note{color:#a8a49a !important;background:#1e1f1b !important}
+body.dark .don-note{color:var(--muted) !important}
+body.dark .af-table th{background:#1e1f1b !important;color:var(--muted);border-bottom-color:#3a3d35}
+body.dark .af-table td{color:var(--text)}
+body.dark .loader{color:var(--text);background:rgba(17,17,16,.97) !important}
+body.dark .island-expand-all{border-color:rgba(255,255,255,.2);color:var(--muted)}
+body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:var(--text)}
+body.dark .am-close-btn{border-color:#4a4a40;color:var(--muted)}
+body.dark .am-close-btn:hover{border-color:#888;color:var(--text)}
+body.dark .modal-top{border-bottom-color:#3a3d35 !important}
+body.dark .insight-close-btn{border-color:#4a4a40;color:var(--muted)}
+body.dark .insight-close-btn:hover{border-color:#777;color:var(--text)}
+body.dark .dot-nr{background:#555}
+body.dark .stitle{color:var(--text)}
 body.dark .my-card .ml{color:var(--muted)}
-/* ── dark mode: CSS classes עם צבעים קשיחים ── */
 body.dark .island-title{color:#e0ddd5}
 body.dark .island-subtitle{color:#9a9890}
 body.dark .insight-card-title{color:#e0ddd5}
@@ -92,47 +166,25 @@ body.dark .insight-links a{color:#c0a0f8}
 body.dark .info-label{color:var(--muted)}
 body.dark .info-val{color:var(--text)}
 body.dark .don-body{color:var(--muted)}
-body.dark .tag-night{background:#2a2040;color:#c8b8f0}
-body.dark .tag-warm{background:#2a1800;color:#f0a060}
-body.dark .tag-day{background:#2a2200;color:#e0c050}
-body.dark .tag-solo{background:#2a1040;color:#d8a0ff}
-body.dark .past-badge{background:#3a2060;color:#d8b0ff}
-body.dark .funfact{color:#d4b860}
-body.dark .note-box{color:#d4b860}
-body.dark .dot-nr{background:#555}
-body.dark .stitle{color:var(--text)}
-body.dark .insight-close-btn{border-color:#4a4a40;color:var(--muted)}
-body.dark .insight-close-btn:hover{border-color:#777;color:var(--text)}
-/* ── dark mode: עוד classes עם צבעים קשיחים ── */
-body.dark header p{color:#c0bcb4}
-body.dark .section-hero p{color:var(--muted)}
-body.dark .cook-note{color:#a8a49a;background:#2a2b26}
-body.dark .don-note{color:var(--muted)}
-body.dark .af-table th{background:#2a2b26;color:var(--muted);border-bottom-color:#3a3d35}
-body.dark .af-table td{color:var(--text)}
-body.dark .loader{color:var(--text);background:rgba(30,30,28,.95)}
-body.dark .island-expand-all{border-color:rgba(255,255,255,.2);color:var(--muted)}
-body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:var(--text)}
-body.dark .am-close-btn{border-color:#4a4a40;color:var(--muted)}
-body.dark .am-close-btn:hover{border-color:#888;color:var(--text)}
+body.dark .tag-night{background:#2a2040 !important;color:#c8b8f0 !important}
+body.dark .tag-warm{background:#2a1800 !important;color:#f0a060 !important}
+body.dark .tag-day{background:#2a2200 !important;color:#e0c050 !important}
+body.dark .tag-solo{background:#2a1040 !important;color:#d8a0ff !important}
+body.dark .past-badge{background:#3a2060 !important;color:#d8b0ff !important}
+body.dark .section-hero p{color:var(--muted) !important}
 body.dark #articleModalContent .insight-links p{color:var(--muted)}
-/* ── dark mode: כל הרכיבים האמבריים/אזהרה ── */
-body.dark .b-lim{background:#3a2800;color:#f5cc60;border-color:#8a6010}
-body.dark .fp-lim{background:#3a2800;color:#f5cc60;border-color:#8a6010}
-body.dark .qg-warn{background:#3a2800;color:#f5cc60}
-body.dark .part-chip.lim-part{background:#3a2800;color:#f5cc60;border-color:#c09020}
-body.dark .funfact,body.dark .note-box{background:#2a2010;color:#f0cc58;border-color:#8a6820}
-/* ── dark mode: כותרת "שלמים בלבד" בבקיצור ── */
-body.dark .qg-sep-header{background:#3a2800!important;border-bottom-color:#8a6010!important}
-body.dark .qg-sep-title{color:#f5cc60!important}
-body.dark .qg-sep-speak{background:#3a2800!important}
-body.dark .qg-sep-desc{color:#a89880!important}
-body.dark .anote{color:#e8aa50!important}
-body.dark .cook-note span{color:#e8aa50!important}
-body.dark .star-tooltip-bubble{background:#3a2800!important;border-color:#8a6010!important;color:#f5cc60!important}
-body.dark .visit-banner{background:linear-gradient(135deg,#3a2800,#4a3400)!important}
-body.dark .visit-banner-title{color:#f5cc60!important}
-body.dark .visit-banner-sub{color:#c89840!important}
+body.dark .part-chip.lim-part{background:#3a2800 !important;color:#f5cc60 !important;border-color:#c09020 !important}
+body.dark .qg-sep-header{background:#3a2800 !important;border-bottom-color:#8a6010 !important}
+body.dark .qg-sep-title{color:#f5cc60 !important}
+body.dark .qg-sep-speak{background:#3a2800 !important}
+body.dark .qg-sep-desc{color:#a89880 !important}
+body.dark .anote{color:#e8aa50 !important}
+body.dark .cook-note span{color:#e8aa50 !important}
+body.dark .star-tooltip-bubble{background:#3a2800 !important;border-color:#8a6010 !important;color:#f5cc60 !important}
+body.dark .visit-banner{background:linear-gradient(135deg,#3a2800,#4a3400) !important}
+body.dark .visit-banner-title{color:#f5cc60 !important}
+body.dark .visit-banner-sub{color:#c89840 !important}
+body.dark .arow{border-bottom-color:#35362f}
 
 /* ═══ RAINBOW MODE ═══ */
 body.rainbow{
@@ -149,19 +201,22 @@ body.rainbow{
       #ff6eb4 85%,
       #ff9a3c 100%
     ) !important;
-  background-attachment:scroll !important;
-  min-height:100vh;
+  background-attachment:fixed !important;
+  /* מניעת גלישה לצדדים במובייל */
+  overflow-x:hidden !important;
 }
 body.rainbow::before{content:none}
 body.rainbow header{
   background:transparent !important;
-  overflow:visible;
+  overflow:hidden;
   position:relative;
   isolation:isolate;
-  min-height:180px;
 }
+/* אנימציות הכותרת — transform-origin כדי לא לגרום לגלישה */
+body.rainbow header h1{transform-origin:center center}
+body.rainbow header p{transform-origin:center center}
 body.rainbow header > *:not(#rainbowCanvas):not(#rainbowBubbles){position:relative;z-index:3}
-body.rainbow #darkModeBtn{z-index:9000 !important}
+body.rainbow #darkModeBtn{z-index:9000 !important;position:fixed !important;right:.8rem !important;left:auto !important;top:.8rem !important}
 #rainbowCanvas{
   display:none;
   position:absolute;inset:0;width:100%;height:100%;
@@ -215,12 +270,12 @@ body.rainbow .food-count{
   animation:badgeBounce 1.8s ease-in-out infinite;
 }
 @keyframes rainbowTitle{
-  0%{transform:scale(1) rotate(0deg);filter:hue-rotate(0deg)}
-  20%{transform:scale(1.05) rotate(-1.5deg);filter:hue-rotate(60deg)}
-  40%{transform:scale(.97) rotate(1deg);filter:hue-rotate(120deg)}
-  60%{transform:scale(1.04) rotate(-1deg);filter:hue-rotate(220deg)}
-  80%{transform:scale(.98) rotate(.8deg);filter:hue-rotate(300deg)}
-  100%{transform:scale(1) rotate(0deg);filter:hue-rotate(360deg)}
+  0%{filter:hue-rotate(0deg)}
+  20%{filter:hue-rotate(60deg)}
+  40%{filter:hue-rotate(120deg)}
+  60%{filter:hue-rotate(220deg)}
+  80%{filter:hue-rotate(300deg)}
+  100%{filter:hue-rotate(360deg)}
 }
 @keyframes rainbowSubtitle{
   0%,100%{transform:translateX(0);opacity:1}
@@ -228,9 +283,9 @@ body.rainbow .food-count{
   75%{transform:translateX(-4px);opacity:.9}
 }
 @keyframes badgeBounce{
-  0%,100%{transform:scale(1) rotate(0deg)}
-  30%{transform:scale(1.15) rotate(-3deg)}
-  60%{transform:scale(.93) rotate(2deg)}
+  0%,100%{transform:scale(1)}
+  30%{transform:scale(1.12)}
+  60%{transform:scale(.95)}
 }
 /* בועה עפה */
 @keyframes bubbleFloat{
@@ -288,6 +343,7 @@ body.rainbow header .ticker{animation:tick 28s linear infinite, rainbowShift 8s 
 body.rainbow header .credit-line{color:#fff !important;text-shadow:0 1px 4px rgba(0,0,0,.5)}
 
 *{box-sizing:border-box;margin:0;padding:0}
+html,body{max-width:100%;overflow-x:hidden}
 html{font-size:17px}
 body{font-family:'Varela Round','Heebo',sans-serif;background:var(--bg)!important;color:var(--text);min-height:100vh}
 
@@ -1963,13 +2019,34 @@ body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:#ddd}
   function buildStars(){
     const el = document.getElementById('nightStars');
     if(!el || el.children.length) return;
-    // 120 כוכבים על כל המסך
-    for(let i=0;i<120;i++){
+    // 120 כוכבים — מרוכזים בשוליים כדי לא להפריע לקריאה
+    // אזורים: שמאל 0-18%, ימין 82-100%, למעלה 0-12%, למטה 88-100%
+    function randomEdgeX(){
+      return Math.random() < 0.5
+        ? Math.random() * 18          // שוליים שמאל
+        : 82 + Math.random() * 18;    // שוליים ימין
+    }
+    function randomEdgeY(){
+      // 60% בשוליים אנכיים, 40% בשוליים רוחביים
+      const r = Math.random();
+      if(r < 0.3) return Math.random() * 12;           // למעלה
+      if(r < 0.6) return 88 + Math.random() * 12;      // למטה
+      if(r < 0.8) return Math.random() * 18;           // שמאל (y כרנדום)
+      return 10 + Math.random() * 80;                   // על הצדדים, y חופשי
+    }
+    for(let i=0;i<130;i++){
       const s = document.createElement('div');
       const r = Math.random();
       s.className = 'ns' + (r<.08 ? ' big' : r<.25 ? ' med' : '');
-      const x = Math.random()*100;
-      const y = Math.random()*100;
+      // 75% בשוליים הצידיים, 25% בשורת שוליים עליון/תחתון
+      let x, y;
+      if(Math.random() < 0.75){
+        x = randomEdgeX();
+        y = Math.random() * 100;
+      } else {
+        x = Math.random() * 100;
+        y = Math.random() < 0.5 ? Math.random()*12 : 88+Math.random()*12;
+      }
       const dur = (3 + Math.random()*7).toFixed(1);
       const delay = (Math.random()*12).toFixed(1);
       const peak = (.15 + Math.random()*.55).toFixed(2);
@@ -1985,15 +2062,19 @@ function toggleDark(){
   const body = document.body;
   const btn = document.getElementById('darkModeBtn');
   if(body.classList.contains('rainbow')){
+    // rainbow → light
     body.classList.remove('rainbow');
+    stopRainbow && stopRainbow();
     localStorage.setItem('pina-mode','light');
     if(btn) btn.textContent='🌙';
   } else if(body.classList.contains('dark')){
+    // dark → rainbow (surprise!)
     body.classList.remove('dark');
     body.classList.add('rainbow');
     localStorage.setItem('pina-mode','rainbow');
     if(btn) btn.textContent='🌈';
   } else {
+    // light → dark
     body.classList.add('dark');
     localStorage.setItem('pina-mode','dark');
     if(btn) btn.textContent='☀️';
@@ -2001,21 +2082,19 @@ function toggleDark(){
   }
 }
 (function(){
-  const mode = localStorage.getItem('pina-mode') || (localStorage.getItem('pina-dark')==='1' ? 'dark' : 'light');
+  // Always start on light mode — rainbow is a surprise, never restored from localStorage
+  const savedMode = localStorage.getItem('pina-mode');
+  const mode = (savedMode === 'dark') ? 'dark' : 'light';
   document.addEventListener('DOMContentLoaded',()=>{
     const btn = document.getElementById('darkModeBtn');
     if(mode==='dark'){
       document.body.classList.add('dark');
       if(btn) btn.textContent='☀️';
-    } else if(mode==='rainbow'){
-      document.body.classList.add('rainbow');
-      if(btn) btn.textContent='🌈';
     } else {
       if(btn) btn.textContent='🌙';
     }
   });
   if(mode==='dark') document.body.classList.add('dark');
-  if(mode==='rainbow') document.body.classList.add('rainbow');
 })();
 // ── helpers: צבעי אזהרה (amber) תלויי מצב לילה ──
 function isDark(){return document.body.classList.contains('dark');}
