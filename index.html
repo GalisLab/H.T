@@ -208,7 +208,6 @@ body.rainbow{
 body.rainbow::before{content:none}
 body.rainbow header{
   background:transparent !important;
-  overflow:hidden;
   position:relative;
   isolation:isolate;
 }
@@ -335,6 +334,8 @@ body.rainbow .insight-island.emotional{background:rgba(255,230,255,.7);border-co
 body.rainbow .insight-island.nutrition{background:rgba(220,255,220,.7);border-color:#80e080}
 body.rainbow .insight-island.safety{background:rgba(255,240,220,.7);border-color:#ffa060}
 body.rainbow #darkModeBtn{background:rgba(255,255,255,.55)}
+body.rainbow .modal-overlay{position:fixed !important;inset:0 !important;top:0 !important;align-items:flex-start !important;padding-top:.5rem !important;z-index:99999 !important}
+body.rainbow .modal-overlay{position:fixed !important;inset:0 !important;top:0 !important;align-items:flex-start !important;padding-top:.5rem !important;z-index:99999 !important}
 body.rainbow #globalSearchBar{background:rgba(255,255,255,.5) !important;border-bottom-color:rgba(255,255,255,.4) !important;backdrop-filter:blur(4px)}
 body.rainbow .search-wrap input{background:rgba(255,255,255,.85)}
 body.rainbow .modal-box,body.rainbow .modal-top{background:rgba(255,255,255,.95)}
@@ -342,6 +343,11 @@ body.rainbow .modal-box,body.rainbow .modal-top{background:rgba(255,255,255,.95)
 body.rainbow header .ticker{animation:tick 28s linear infinite, rainbowShift 8s linear infinite}
 body.rainbow header .credit-line{color:#fff !important;text-shadow:0 1px 4px rgba(0,0,0,.5)}
 
+/* כפתורי עזר (מדריך / הפתיעו אותי) */
+body.rainbow .util-btn{color:#333 !important}
+body.rainbow .util-btn:hover{color:#000 !important}
+body.dark .util-btn{color:var(--muted) !important}
+body.dark .util-btn:hover{color:var(--text) !important}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{max-width:100%;overflow-x:hidden}
 html{font-size:17px}
@@ -744,6 +750,49 @@ body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:#ddd}
   0%{transform:translateY(-10px) rotate(0deg);opacity:1}
   100%{transform:translateY(80px) rotate(360deg);opacity:0}
 }
+
+/* ── אנימציות מצב יום ── */
+#dayLayer{
+  display:none;
+  position:absolute;left:0;right:0;top:2.4rem;bottom:0;overflow:hidden;pointer-events:none;z-index:3;
+}
+body:not(.dark):not(.rainbow) #dayLayer{display:block}
+
+/* עלה נופל */
+@keyframes leafFall{
+  0%  {transform:translateY(-60px) rotate(0deg);   opacity:0}
+  8%  {opacity:.85}
+  90% {opacity:.7}
+  100%{transform:translateY(105vh) rotate(var(--rot,340deg)); opacity:0}
+}
+/* פרפר עובר — מימין לשמאל */
+@keyframes butterflyFly{
+  0%  {transform:translateX(0)     translateY(0)   scaleX(1);  opacity:0}
+  5%  {opacity:1}
+  48% {transform:translateX(-42vw) translateY(var(--dy,-40px)) scaleX(1)}
+  50% {transform:translateX(-44vw) translateY(var(--dy,-40px)) scaleX(-1)}
+  95% {opacity:1}
+  100%{transform:translateX(-110vw) translateY(var(--dy2,20px)) scaleX(-1); opacity:0}
+}
+/* חיה מציצה מצד שמאל */
+@keyframes peekLeft{
+  0%  {transform:translateX(-100%); opacity:0}
+  12% {transform:translateX(0);     opacity:1}
+  80% {transform:translateX(0);     opacity:1}
+  100%{transform:translateX(-100%); opacity:0}
+}
+/* חיה מציצה מצד ימין */
+@keyframes peekRight{
+  0%  {transform:translateX(100%);  opacity:0}
+  12% {transform:translateX(0);     opacity:1}
+  80% {transform:translateX(0);     opacity:1}
+  100%{transform:translateX(100%);  opacity:0}
+}
+/* עלה מתנדנד */
+@keyframes sway{
+  0%,100%{margin-right:0}
+  50%{margin-right:var(--sw,18px)}
+}
 </style>
 </head>
 <body>
@@ -751,7 +800,8 @@ body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:#ddd}
 
 <button id="darkModeBtn" onclick="toggleDark()" title="מצב כהה/בהיר" aria-label="מצב כהה/בהיר" style="position:fixed;right:.8rem;top:.8rem;background:rgba(255,255,255,.25);border:none;border-radius:50%;width:38px;height:38px;font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:9000">🌙</button>
 <div id="nightStars"></div>
-<header>
+<header style="position:relative;overflow:hidden">
+  <div id="dayLayer"></div>
   <canvas id="rainbowCanvas"></canvas>
   <div id="rainbowBubbles"></div>
   <div class="ticker" onclick="spawnPawTrail()" style="cursor:pointer" title="🐾">🦜🐹🐢🦎🐛🐰🐕🐟🦎🐱🐹🐰🦜🐢🐛🐕🐟🦜🐹🐢🦎🐛🐰🐕🐟🦎🐱🐹🐰🦜🐢🐛🐕🐟</div>
@@ -783,8 +833,8 @@ body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:#ddd}
   </div>
   <div id="globalSearchResult" style="max-width:600px;margin:.4rem auto 0;font-size:.85rem"></div>
   <div style="text-align:center;margin-top:.3rem;display:flex;justify-content:center;gap:.3rem;flex-wrap:wrap">
-    <button onclick="openWelcomeGuide()" style="background:none;border:none;cursor:pointer;font-size:.75rem;color:#aaa;font-family:inherit;padding:.15rem .5rem;border-radius:50px;transition:color .15s" onmouseover="this.style.color='#3aaa6e'" onmouseout="this.style.color='#aaa'">🗺️ מדריך מהיר לאתר</button>
-    <button onclick="doSurprise()" style="background:none;border:none;cursor:pointer;font-size:.75rem;color:#aaa;font-family:inherit;padding:.15rem .5rem;border-radius:50px;transition:color .15s" onmouseover="this.style.color='#3aaa6e'" onmouseout="this.style.color='#aaa'">🎲 הפתיעו אותי</button>
+    <button onclick="openWelcomeGuide()" class="util-btn" style="background:none;border:none;cursor:pointer;font-size:.75rem;color:#555;font-family:inherit;padding:.15rem .5rem;border-radius:50px;transition:color .15s;font-weight:700" onmouseover="this.style.color='#3aaa6e'" onmouseout="this.style.color='#555'">🗺️ מדריך מהיר לאתר</button>
+    <button onclick="doSurprise()" class="util-btn" style="background:none;border:none;cursor:pointer;font-size:.75rem;color:#555;font-family:inherit;padding:.15rem .5rem;border-radius:50px;transition:color .15s;font-weight:700" onmouseover="this.style.color='#3aaa6e'" onmouseout="this.style.color='#555'">🎲 הפתיעו אותי</button>
   </div>
 
 <div id="adminBar" style="display:none" class="admin-bar">
@@ -2403,8 +2453,8 @@ const ANIMALS = [
 // ============================================================
 const DEFAULT_FOODS = [
 {id:'watermelon',name:'אבטיח',emoji:'🍉',cookStatus:'raw',category:'פרי',aliases:['קליפת אבטיח'],
- why:'אבטיח מורכב מכ-98% מים ומהווה מקור מצוין להידרציה בחודשי הקיץ. הוא מכיל ליקופן הפועל כנוגד חמצון, יחד עם ויטמין A וויטמין C. החלק הלבן שבין הבשר האדום לקליפה הירוקה בטוח לאכילה ועשיר בציטרולין. אזהרה: אין לתת את הגרעינים השחורים לאף אחת מהחיות.',
- parts:[{name:'החלק האדום',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'ok','sulcata':'ok','beardie':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'ok','gerbil':'ok','chinchilla':'lim','mealworms':'ok'}},{name:'החלק הלבן',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sulcata':'ok','beardie':'ok','rabbit':'ok','sibhamster':'lim','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','chinchilla':'no','mealworms':'ok'}},{name:'קליפה ירוקה',rawOk:'ok',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'ok','beardie':'no','rabbit':'lim','sharkhan':'no','syrianhamster':'no','gerbil':'no','chinchilla':'no','mealworms':'ok'}},{name:'גרעינים שחורים',rawOk:'no',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}}],
+ why:'אבטיח מורכב מכ-98% מים ומהווה מקור מצוין להידרציה בחודשי הקיץ. הוא מכיל ליקופן הפועל כנוגד חמצון, יחד עם ויטמין A וויטמין C. החלק הלבן שבין הבשר האדום לקליפה הירוקה בטוח לאכילה ועשיר בציטרולין. אזהרה: גרעינים שחורים — לציפורים ניתן בכמות קטנה. ליונקים קטנים ולזוחלים — לא לתת.',
+ parts:[{name:'החלק האדום',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'ok','sulcata':'ok','beardie':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'ok','gerbil':'ok','chinchilla':'lim','mealworms':'ok'}},{name:'החלק הלבן',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sulcata':'ok','beardie':'ok','rabbit':'ok','sibhamster':'lim','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','chinchilla':'no','mealworms':'ok'}},{name:'קליפה ירוקה',rawOk:'ok',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'ok','beardie':'no','rabbit':'lim','sharkhan':'no','syrianhamster':'no','gerbil':'no','chinchilla':'no','mealworms':'ok'}},{name:'גרעינים שחורים',rawOk:'lim',cookNote:'לציפורים מעט בלבד',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}}],
  animals:{jacko:{s:'ok',a:'פלח אחד',f:'כמה פעמים בשבוע',leopardgecko:{s:'no',rabbit:{s:'ok',a:'2-3 פלחים',f:'לעיתים',n:'ללא גרעינים',sharkhan:{s:'ok',a:'פלח אחד',f:'לעיתים',n:'ללא גרעינים',jacko:{s:'lim',a:'פלח אחד',f:'לעיתים',n:'סוכר גבוה',beardie:{s:'ok',a:'פלח אחד',f:'לעיתים',n:'10% מהתפריט',syrianhamster:{s:'lim',a:'פלח אחד',f:'לעיתים',n:'מימי מדי בכמות גדולה',gerbil:{s:'lim',a:'כפית',f:'לעיתים',n:'מימי מאוד',mealworms:{s:'ok',a:'פלח אחד',f:'לעיתים',n:'מקור מים מצוין',hissingcockroach:{s:'ok',a:'פלח אחד',f:'לעיתים',n:'מקור מים מצוין',mouse:{s:'lim',a:'כפית',f:'לעיתים נדירות',n:'מימי מדי - עלול לגרום לשלשול',rat:{s:'ok',a:'פרוסה אחת',f:'לעיתים נדירות',budgie:{s:'ok',a:'פרוסה אחת',f:'לעיתים נדירות',n:'ללא זרעים',hamster_gen:{s:'lim',a:'כפית',f:'לעיתים נדירות',degu:{s:'no',n:'סוכר גבוה - דגו רגיש לסוכרת',iguana:{s:'lim',a:'פרוסה אחת',f:'לעיתים נדירות',n:'סוכר גבוה',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'ok',a:'פלח אחד',f:'לעיתים נדירות',n:'ללא זרעים',quail:{s:'ok',a:'פרוסה אחת',f:'לעיתים נדירות',n:'ללא זרעים'},hamster_gen:{s:'lim',a:'כפית',f:'לעיתים נדירות',degu:{s:'no',n:'סוכר גבוה - דגו רגיש לסוכרת',iguana:{s:'lim',a:'פרוסה אחת',f:'לעיתים נדירות',n:'סוכר גבוה',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},lovebird:{s:'lim',a:'פלח אחד',f:'לעיתים',n:'סוכר גבוה'},cockatiel:{s:'lim',a:'פלח אחד',f:'לעיתים',n:'סוכר גבוה'}}}},vietstick:{s:'no'},sulcata:{s:'lim',a:'2-3 פלחים',f:'לעיתים נדירות',n:'פחות מ-5% מהתזונה'},chinchilla:{s:'no'},mealworms:{s:'lim',a:'פלח אחד',f:'לעיתים'},hissingcockroach:{s:'lim',a:'פלח אחד',f:'לעיתים'},sibhamster:{s:'lim',a:'כפית',f:'לעיתים'},syrianhamster:{s:'lim',a:'פלח אחד',f:'לעיתים'},gerbil:{s:'lim',a:'כפית',f:'לעיתים'}},lovebird:{s:'ok',a:'פלח אחד',f:'כמה פעמים בשבוע'},sibhamster:{s:'lim',a:'כפית',f:'פעם בשבוע',n:'מימי - שלשול'},sulcata:{s:'lim',a:'2-3 פלחים',f:'כמה פעמים בשבוע'},vietstick:{s:'no'},beardie:{s:'ok',a:'פלח אחד',f:'לעיתים'},chinchilla:{s:'lim',a:'פלח אחד',f:'לעיתים'},leopardgecko:{s:'no'},rabbit:{s:'ok',a:'2-3 פלחים',f:'כמה פעמים בשבוע'},syrianhamster:{s:'lim',a:'פלח אחד',f:'לעיתים'},sharkhan:{s:'ok',a:'פלח אחד',f:'כמה פעמים בשבוע'},gerbil:{s:'lim',a:'כפית',f:'לעיתים'},cockatiel:{s:'ok',a:'פלח אחד',f:'כמה פעמים בשבוע'},mealworms:{s:'ok',a:'פלח אחד',f:'לעיתים'},hissingcockroach:{s:'ok',a:'פלח אחד',f:'כמה פעמים בשבוע'},fish:{s:'nr'},dog:{s:'ok',a:'2-3 פלחים',f:'לעיתים'},quail:{s:'ok',a:'פרוסה אחת',f:'לעיתים נדירות',n:'ללא זרעים',quail:{s:'ok',a:'פרוסה אחת',f:'לעיתים נדירות',n:'ללא זרעים'},hamster_gen:{s:'lim',a:'כפית',f:'לעיתים נדירות',degu:{s:'no',n:'סוכר גבוה - דגו רגיש לסוכרת',iguana:{s:'lim',a:'פרוסה אחת',f:'לעיתים נדירות',n:'סוכר גבוה',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
 
 
@@ -2423,11 +2473,11 @@ const DEFAULT_FOODS = [
 
 
 {id:'pineapple',name:'אננס',emoji:'🍍',cookStatus:'raw',category:'פרי',aliases:['פינאפל','אנניס'],
- why:'אננס מכיל ברומלין, אנזים ייחודי שמסייע לפירוק חלבון ולתהליכי עיכול. בנוסף הוא מכיל ויטמין C, מנגן וסיבים. מתאים במיוחד לתוכים ולחרדון מזוקן. בשל חומציות וסוכר גבוהים יש לתת אותו בכמות קטנה בלבד. ליבת האננס קשה לעיכול ועדיף להימנע ממנה. אצל יונקים קטנים, יש להגביל את הכמות בגלל הסוכר.',
+ why:'אננס מכיל ברומלין, אנזים ייחודי שמסייע לפירוק חלבון ולתהליכי עיכול. בנוסף הוא מכיל ויטמין C, מנגן וסיבים. חטיף בלבד, לא מזון קבוע. בשל חומציות וסוכר גבוהים יש לתת אותו בכמות קטנה בלבד. ליבת האננס קשה לעיכול ועדיף להימנע ממנה. אצל יונקים קטנים, יש להגביל את הכמות בגלל הסוכר.',
  whyNot:'חומציות וסוכר גבוהים - לתת בכמות קטנה בלבד. ליבת האננס (החלק הקשה והלבנבן במרכז) - קשה לעיכול ועדיף להימנע. ליונקים קטנים - מעט מאוד בגלל הסוכר.',
  parts:[
    {name:'בשר הפרי',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'ok','vietstick':'lim','beardie':'ok','chinchilla':'lim','leopardgecko':'ok','rabbit':'lim','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}},
-   {name:'ליבה (קשה)',rawOk:'lim',cookNote:'קשה לעיכול - מעט',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'no','sulcata':'no','vietstick':'ok','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},
+   {name:'ליבה (קשה)',rawOk:'no',cookNote:'קשה לעיכול - לא לתת',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},
    {name:'קליפה',rawOk:'no',cookNote:'קשה ולא אכילה',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},
    {name:'עלים',rawOk:'no',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},
  ],
@@ -2440,13 +2490,13 @@ const DEFAULT_FOODS = [
 
 
 {id:'asparagus',name:'אספרגוס',emoji:'🥦',cookStatus:'raw',category:'ירק',aliases:['אספרגוסים'],
- why:'אספרגוס עשיר בפולאט, ויטמין K וויטמין C. הוא מכיל אינולין, סיב פרה-ביוטי התומך בחיידקי המעי ומסייע לבריאות מערכת העיכול. גם הגבעול וגם ראש הצמח אכילים ואין צורך לבשל אותו. מתאים למגוון רחב של חיות בפינת החי.',
+ why:'אספרגוס עשיר בפולאט, ויטמין K וויטמין C. הוא מכיל אינולין, סיב פרה-ביוטי התומך בחיידקי המעי ומסייע לבריאות מערכת העיכול. גם הגבעול וגם ראש הצמח אכילים ואין צורך לבשל אותו. להגיש טרי, חתוך קטן מאוד לחיות קטנות.',
  parts:[{name:'גבעול',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'ok','vietstick':'ok','beardie':'ok','chinchilla':'lim','leopardgecko':'ok','rabbit':'ok','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}},{name:'ראש',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'ok','vietstick':'ok','beardie':'ok','chinchilla':'lim','leopardgecko':'ok','rabbit':'ok','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}}],
  animals:{jacko:{s:'ok',a:'2-3 פרוסות',f:'לעיתים',leopardgecko:{s:'no',rabbit:{s:'ok',a:'4-5 פרוסות',f:'לעיתים',sharkhan:{s:'ok',a:'2-3 פרוסות',f:'לעיתים',jacko:{s:'ok',a:'2-3 פרוסות',f:'לעיתים',beardie:{s:'ok',a:'2-3 פרוסות',f:'לעיתים',syrianhamster:{s:'ok',a:'פרוסה אחת',f:'לעיתים',gerbil:{s:'ok',a:'חצי פרוסה',f:'לעיתים',mealworms:{s:'ok',a:'פרוסה אחת',f:'לעיתים',hissingcockroach:{s:'ok',a:'פרוסה אחת',f:'לעיתים',mouse:{s:'ok',a:'פרוסה אחת',f:'כמה פעמים בשבוע',rat:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',budgie:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',hamster_gen:{s:'ok',a:'פרוסה אחת',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'פרוסה אחת',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'ok',a:'פרוסה אחת',f:'כמה פעמים בשבוע',quail:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע'},hamster_gen:{s:'ok',a:'פרוסה אחת',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'פרוסה אחת',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},lovebird:{s:'ok',a:'פרוסה אחת',f:'לעיתים'},cockatiel:{s:'ok',a:'פרוסה אחת',f:'לעיתים'}}}},vietstick:{s:'no'},sulcata:{s:'lim',a:'4-5 פרוסות',f:'לעיתים'},chinchilla:{s:'no'},mealworms:{s:'lim',a:'פרוסה אחת',f:'לעיתים'},hissingcockroach:{s:'lim',a:'פרוסה אחת',f:'לעיתים'}},lovebird:{s:'ok',a:'פרוסה אחת',f:'לעיתים'},sibhamster:{s:'lim',a:'חצי פרוסה',f:'לעיתים'},sulcata:{s:'ok',a:'4-5 פרוסות',f:'לעיתים'},vietstick:{s:'no'},beardie:{s:'ok',a:'2-3 פרוסות',f:'לעיתים'},chinchilla:{s:'lim',a:'פרוסה אחת',f:'לעיתים'},leopardgecko:{s:'no'},rabbit:{s:'ok',a:'4-5 פרוסות',f:'לעיתים'},syrianhamster:{s:'lim',a:'פרוסה אחת',f:'לעיתים'},sharkhan:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע'},gerbil:{s:'lim',a:'חצי פרוסה',f:'לעיתים'},cockatiel:{s:'ok',a:'פרוסה אחת',f:'לעיתים'},mealworms:{s:'ok',a:'פרוסה אחת',f:'לעיתים'},hissingcockroach:{s:'ok',a:'פרוסה אחת',f:'לעיתים'},fish:{s:'nr'},dog:{s:'ok',a:'4-5 פרוסות',f:'לעיתים'},quail:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',quail:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע'},hamster_gen:{s:'ok',a:'פרוסה אחת',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'פרוסה אחת',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
 
 
 {id:'peas',name:'אפונה',emoji:'💚',cookStatus:'raw',category:'ירק',aliases:['אפונים','תרמיל אפונה'],
- why:'אפונה היא אחד הירקות העשירים ביותר בחלבון צמחי, ומכילה גם סיבים, ויטמין C וויטמין K. ניתן להגיש אותה טרייה לגמרי, כולל הגרגרים וגם התרמיל שלמים. מתאימה לרוב החיות בפינת החי ומהווה תוספת תזונתית מועילה לתפריט השבועי.',
+ why:'אפונה מכילה חלבון צמחי, סיבים, ויטמין C וויטמין K. ניתן להגיש אותה טרייה לגמרי, כולל הגרגרים וגם התרמיל שלמים. מתאימה לרוב החיות בפינת החי ומהווה תוספת תזונתית מועילה לתפריט השבועי.',
  parts:[{name:'גרגרים (טריים)',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'ok','vietstick':'ok','beardie':'ok','chinchilla':'lim','leopardgecko':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}},{name:'תרמיל',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'ok','vietstick':'ok','beardie':'ok','chinchilla':'lim','leopardgecko':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}}],
  animals:{jacko:{s:'ok',a:'רבע כוס',f:'כמה פעמים בשבוע',leopardgecko:{s:'no',rabbit:{s:'lim',a:'כוס',f:'לעיתים',n:'פחמימות גבוהות',sharkhan:{s:'lim',a:'רבע כוס',f:'לעיתים',n:'פחמימות גבוהות',jacko:{s:'ok',a:'רבע כוס',f:'לעיתים',beardie:{s:'ok',a:'רבע כוס',f:'לעיתים',syrianhamster:{s:'ok',a:'2-3 יחידות',f:'לעיתים',gerbil:{s:'ok',a:'יחידה אחת',f:'לעיתים',mealworms:{s:'ok',a:'2-3 יחידות',f:'לעיתים',hissingcockroach:{s:'ok',a:'2-3 יחידות',f:'לעיתים',mouse:{s:'ok',a:'2-3 יחידות',f:'כמה פעמים בשבוע',n:'טרי או קפוא מופשר',rat:{s:'ok',a:'2-3 גרגרים',f:'כמה פעמים בשבוע',budgie:{s:'ok',a:'2-3 יחידות',f:'כמה פעמים בשבוע',hamster_gen:{s:'ok',a:'2-3 יחידות',f:'כמה פעמים בשבוע',degu:{s:'lim',a:'2-3 יחידות',f:'לעיתים נדירות',n:'סוכר נמוך אבל להגביל',iguana:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'ok',a:'2-3 יחידות',f:'כמה פעמים בשבוע',quail:{s:'ok',a:'2-3 יחידות',f:'כמה פעמים בשבוע'},hamster_gen:{s:'ok',a:'2-3 יחידות',f:'כמה פעמים בשבוע',degu:{s:'lim',a:'2-3 יחידות',f:'לעיתים נדירות',n:'סוכר נמוך אבל להגביל',iguana:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},lovebird:{s:'ok',a:'2-3 יחידות',f:'לעיתים'},cockatiel:{s:'ok',a:'2-3 יחידות',f:'לעיתים'}}}},vietstick:{s:'no'},sulcata:{s:'ok',a:'כוס',f:'כמה פעמים בשבוע'},chinchilla:{s:'no'},mealworms:{s:'lim',a:'2-3 יחידות',f:'לעיתים'},hissingcockroach:{s:'lim',a:'2-3 יחידות',f:'לעיתים'},sibhamster:{s:'ok',a:'יחידה אחת',f:'לעיתים'},syrianhamster:{s:'ok',a:'2-3 יחידות',f:'לעיתים'},gerbil:{s:'ok',a:'יחידה אחת',f:'לעיתים'}},lovebird:{s:'ok',a:'2-3 יחידות',f:'כמה פעמים בשבוע'},sibhamster:{s:'ok',a:'יחידה אחת',f:'כמה פעמים בשבוע'},sulcata:{s:'ok',a:'כוס',f:'כמה פעמים בשבוע'},vietstick:{s:'no'},beardie:{s:'ok',a:'רבע כוס',f:'כמה פעמים בשבוע'},chinchilla:{s:'lim',a:'2-3 יחידות',f:'לעיתים'},leopardgecko:{s:'no'},rabbit:{s:'ok',a:'כוס',f:'כמה פעמים בשבוע'},syrianhamster:{s:'ok',a:'2-3 יחידות',f:'כמה פעמים בשבוע'},sharkhan:{s:'ok',a:'רבע כוס',f:'כמה פעמים בשבוע'},gerbil:{s:'ok',a:'יחידה אחת',f:'כמה פעמים בשבוע'},cockatiel:{s:'ok',a:'2-3 יחידות',f:'כמה פעמים בשבוע'},mealworms:{s:'no'},hissingcockroach:{s:'ok',a:'2-3 יחידות',f:'כמה פעמים בשבוע'},fish:{s:'nr'},dog:{s:'ok',a:'כוס',f:'לעיתים'},quail:{s:'ok',a:'2-3 יחידות',f:'כמה פעמים בשבוע',quail:{s:'ok',a:'2-3 יחידות',f:'כמה פעמים בשבוע'},hamster_gen:{s:'ok',a:'2-3 יחידות',f:'כמה פעמים בשבוע',degu:{s:'lim',a:'2-3 יחידות',f:'לעיתים נדירות',n:'סוכר נמוך אבל להגביל',iguana:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
 
@@ -2459,13 +2509,13 @@ const DEFAULT_FOODS = [
 
 
 {id:'artichoke',name:'ארטישוק',emoji:'🥬',cookStatus:'raw',category:'ירק',aliases:['ארטישוקים'],
- why:'ארטישוק עשיר בסיבים תזונתיים ובנוגדי חמצון, ובמיוחד בציניקול התומך בתפקוד תקין של הכבד. לב הארטישוק הוא החלק בעל הערך התזונתי הגבוה ביותר. מתאים בעיקר לארנבונים, לחרדון מזוקן ולחרקים. לא מתאים ליונקים קטנים כמו אוגרים וגרביל.',
+ why:'ארטישוק עשיר בסיבים תזונתיים ובנוגדי חמצון, ובמיוחד בציניקול התומך בתפקוד תקין של הכבד. מזון משני בלבד. לא מתאים למכרסמים קטנים.',
  parts:[{name:'עלים (חלק הנאכל)',rawOk:'ok',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'no','sulcata':'lim','vietstick':'ok','beardie':'lim','chinchilla':'no','leopardgecko':'lim','rabbit':'ok','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'lim','hissingcockroach':'lim'}},{name:'לב הארטישוק',rawOk:'ok',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'no','sulcata':'lim','vietstick':'ok','beardie':'lim','chinchilla':'no','leopardgecko':'lim','rabbit':'ok','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'lim','hissingcockroach':'lim'}}],
  animals:{jacko:{s:'lim',a:'2-3 פרוסות',f:'לעיתים',leopardgecko:{s:'no',rabbit:{s:'ok',a:'4-5 פרוסות',f:'לעיתים',sharkhan:{s:'ok',a:'2-3 פרוסות',f:'לעיתים',jacko:{s:'lim',a:'2-3 פרוסות',f:'לעיתים',beardie:{s:'ok',a:'2-3 פרוסות',f:'לעיתים',syrianhamster:{s:'lim',a:'פרוסה אחת',f:'לעיתים',gerbil:{s:'lim',a:'חצי פרוסה',f:'לעיתים',mealworms:{s:'ok',a:'פרוסה אחת',f:'לעיתים',hissingcockroach:{s:'ok',a:'פרוסה אחת',f:'לעיתים',mouse:{s:'lim',a:'כפית',f:'לעיתים נדירות',rat:{s:'ok',a:'לב ארטישוק',f:'לעיתים נדירות',budgie:{s:'ok',a:'2-3 פרוסות',f:'לעיתים נדירות',hamster_gen:{s:'lim',a:'כפית',f:'לעיתים נדירות',degu:{s:'ok',a:'2-3 פרוסות',f:'לעיתים נדירות',iguana:{s:'ok',a:'לב ארטישוק',f:'לעיתים נדירות',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'ok',a:'פרוסה אחת',f:'לעיתים נדירות',quail:{s:'ok',a:'2-3 פרוסות',f:'לעיתים נדירות'},hamster_gen:{s:'lim',a:'כפית',f:'לעיתים נדירות',degu:{s:'ok',a:'2-3 פרוסות',f:'לעיתים נדירות',iguana:{s:'ok',a:'לב ארטישוק',f:'לעיתים נדירות',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},lovebird:{s:'lim',a:'פרוסה אחת',f:'לעיתים'},cockatiel:{s:'lim',a:'פרוסה אחת',f:'לעיתים'}}}},vietstick:{s:'no'},sulcata:{s:'lim',a:'4-5 פרוסות',f:'לעיתים'},chinchilla:{s:'no'}},lovebird:{s:'lim',a:'פרוסה אחת',f:'לעיתים'},sibhamster:{s:'no'},sulcata:{s:'ok',a:'4-5 פרוסות',f:'לעיתים'},vietstick:{s:'no'},beardie:{s:'lim',a:'2-3 פרוסות',f:'לעיתים'},chinchilla:{s:'lim',a:'פרוסה אחת',f:'לעיתים'},leopardgecko:{s:'no'},rabbit:{s:'lim',a:'4-5 פרוסות',f:'לעיתים'},syrianhamster:{s:'no'},sharkhan:{s:'lim',a:'2-3 פרוסות',f:'לעיתים'},gerbil:{s:'no'},cockatiel:{s:'lim',a:'פרוסה אחת',f:'לעיתים'},mealworms:{s:'ok',a:'פרוסה אחת',f:'לעיתים'},hissingcockroach:{s:'lim',a:'פרוסה אחת',f:'לעיתים'},fish:{s:'nr'},dog:{s:'ok',a:'4-5 פרוסות',f:'לעיתים'},quail:{s:'ok',a:'2-3 פרוסות',f:'לעיתים נדירות',quail:{s:'ok',a:'2-3 פרוסות',f:'לעיתים נדירות'},hamster_gen:{s:'lim',a:'כפית',f:'לעיתים נדירות',degu:{s:'ok',a:'2-3 פרוסות',f:'לעיתים נדירות',iguana:{s:'ok',a:'לב ארטישוק',f:'לעיתים נדירות',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
 
 
 {id:'sweetpotato',name:'בטטה',emoji:'🍠',cookStatus:'both',category:'ירק שורש',aliases:['בטטות'],
- why:'בטטה עשירה בבטא-קרוטן, ויטמין A וויטמין C. הקליפה בטוחה לאכילה ועשירה בסיבים. ניתן להגיש אותה טרייה ללא הכנה מיוחדת. בטטה חיה מכילה חומרים המעכבים את עיכול החלבון, ולכן עדיף להגיש אותה מבושלת במים בלבד, ללא תוספות.',
+ why:'בטטה עשירה בבטא-קרוטן, ויטמין A וויטמין C. הקליפה בטוחה לאכילה ועשירה בסיבים. ניתן להגיש אותה טרייה ללא הכנה מיוחדת. בטטה עדיפה מבושלת (קלה יותר לעיכול). אם ניתנת חיה — יש לתת בכמות קטנה בלבד, חתוכה דק. לחלק מהחיות עדיף להימנע מבטטה חיה.',
  parts:[{name:'בשר הבטטה',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sulcata':'ok','beardie':'ok','rabbit':'ok','sibhamster':'lim','sharkhan':'ok','syrianhamster':'lim','gerbil':'lim','chinchilla':'lim','mealworms':'ok'}},{name:'קליפה',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sulcata':'ok','beardie':'ok','rabbit':'ok','sibhamster':'no','sharkhan':'lim','syrianhamster':'no','gerbil':'no','chinchilla':'no','mealworms':'ok'}},{name:'עלים',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sulcata':'ok','beardie':'ok','rabbit':'ok','sibhamster':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','chinchilla':'no','mealworms':'ok'}}],
  animals:{jacko:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',leopardgecko:{s:'no',rabbit:{s:'lim',a:'4-5 פרוסות',f:'לעיתים',n:'עמילן גבוה',sharkhan:{s:'lim',a:'2-3 פרוסות',f:'לעיתים',n:'עמילן גבוה',jacko:{s:'ok',a:'2-3 פרוסות',f:'לעיתים',beardie:{s:'ok',a:'2-3 פרוסות',f:'לעיתים',n:'ויטמין A',syrianhamster:{s:'ok',a:'פרוסה אחת',f:'לעיתים',gerbil:{s:'ok',a:'חצי פרוסה',f:'לעיתים',n:'מבושל',mealworms:{s:'ok',a:'פרוסה אחת',f:'לעיתים',hissingcockroach:{s:'ok',a:'פרוסה אחת',f:'לעיתים',mouse:{s:'ok',a:'פרוסה אחת',f:'כמה פעמים בשבוע',n:'מבושל בלבד',rat:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',n:'מבושל עדיף',budgie:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',n:'מבושל',hamster_gen:{s:'lim',a:'כפית',f:'לעיתים נדירות',n:'סוכר גבוה',degu:{s:'no',n:'סוכר גבוה',iguana:{s:'lim',a:'2-3 פרוסות',f:'לעיתים נדירות',n:'סוכר גבוה',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'ok',a:'פרוסה אחת',f:'כמה פעמים בשבוע',n:'מבושל',quail:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',n:'מבושל'},hamster_gen:{s:'lim',a:'כפית',f:'לעיתים נדירות',n:'סוכר גבוה',degu:{s:'no',n:'סוכר גבוה',iguana:{s:'lim',a:'2-3 פרוסות',f:'לעיתים נדירות',n:'סוכר גבוה',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},lovebird:{s:'ok',a:'פרוסה אחת',f:'לעיתים'},cockatiel:{s:'ok',a:'פרוסה אחת',f:'לעיתים'}}}},vietstick:{s:'no'},sulcata:{s:'ok',a:'4-5 פרוסות',f:'כמה פעמים בשבוע'},chinchilla:{s:'no'},mealworms:{s:'ok',a:'פרוסה אחת',f:'לעיתים'},hissingcockroach:{s:'ok',a:'פרוסה אחת',f:'לעיתים'}},lovebird:{s:'ok',a:'פרוסה אחת',f:'כמה פעמים בשבוע'},sibhamster:{s:'lim',a:'חצי פרוסה',f:'לעיתים',n:'הרבה עמילן'},sulcata:{s:'ok',a:'4-5 פרוסות',f:'כמה פעמים בשבוע'},vietstick:{s:'no'},beardie:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע'},chinchilla:{s:'lim',a:'פרוסה אחת',f:'לעיתים'},leopardgecko:{s:'no'},rabbit:{s:'lim',a:'4-5 פרוסות',f:'לעיתים',n:'עמילן גבוה'},syrianhamster:{s:'lim',a:'פרוסה אחת',f:'לעיתים'},sharkhan:{s:'lim',a:'2-3 פרוסות',f:'לעיתים'},gerbil:{s:'lim',a:'חצי פרוסה',f:'לעיתים'},cockatiel:{s:'ok',a:'פרוסה אחת',f:'כמה פעמים בשבוע'},mealworms:{s:'no'},hissingcockroach:{s:'ok',a:'פרוסה אחת',f:'כמה פעמים בשבוע'},fish:{s:'nr'},dog:{s:'ok',a:'4-5 פרוסות',f:'לעיתים'},quail:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',n:'מבושל',quail:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',n:'מבושל'},hamster_gen:{s:'lim',a:'כפית',f:'לעיתים נדירות',n:'סוכר גבוה',degu:{s:'no',n:'סוכר גבוה',iguana:{s:'lim',a:'2-3 פרוסות',f:'לעיתים נדירות',n:'סוכר גבוה',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
 
@@ -2473,7 +2523,7 @@ const DEFAULT_FOODS = [
 // ── מבושל ────────────────────────────────────────────────────
 {id:'boiled_egg',name:'ביצה קשה',emoji:'🥚',cookStatus:'cooked',category:'מזון מעובד ומבושל',aliases:['ביצה','ביצה קשה'],
  why:'ביצה קשה מכילה חלבון מלא עם כל חומצות האמינו החיוניות, יחד עם ויטמין D, B12, כולין וסלניום. היא מתאימה כתוסף חלבון לחרדון מזוקן ולחרקים. קליפת הביצה, לאחר בישול, כתושה לאבקה דקה, היא מקור סידן לציפורים, לחרדון, לצב ולחרקים. יש להגיש רק ביצה קשה פשוטה, ללא מלח, תיבול או שמן.',
- whyNot:'⚠️ ללא מלח, תבלין, או שמן! רק ביצה קשה/קשה פשוטה. לא ביצה חיה - סלמונלה. לא ביצת עין או מטוגן.',
+ whyNot:'⚠️ ללא מלח, תבלין, או שמן! רק ביצה קשה פשוטה. ביצה חיה — סלמונלה, אסור. ביצה מטוגנת — שמן ותבלינים, אסור.',
  parts:[{name:'ביצה קשה - לבן',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'no','vietstick':'no','beardie':'ok','chinchilla':'no','leopardgecko':'ok','rabbit':'no','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}},{name:'ביצה קשה - חלמון',rawOk:'lim',cookNote:'שומן גבוה - מעט בלבד',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'lim','sulcata':'no','vietstick':'lim','beardie':'lim','chinchilla':'lim','leopardgecko':'lim','rabbit':'lim','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'lim','hissingcockroach':'lim'}},{name:'קליפת הביצה',rawOk:'lim',cookNote:'רק מבושלת היטב, מקור סידן!',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'no','sulcata':'ok','vietstick':'no','beardie':'ok','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'ok','hissingcockroach':'ok'}},{name:'ביצה חיה',rawOk:'no',cookNote:'סלמונלה!',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},{name:'ביצה מטוגנת',rawOk:'no',cookNote:'שמן ותבלינים',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}}],
  animals:{jacko:{s:'lim',a:'חצי ביצה',f:'לעיתים',leopardgecko:{s:'no',rabbit:{s:'no',sharkhan:{s:'no',jacko:{s:'lim',beardie:{s:'no',syrianhamster:{s:'no',gerbil:{s:'no',mealworms:{s:'no',hissingcockroach:{s:'no',mouse:{s:'ok',a:'כפית',f:'פעם בשבוע',n:'חלבון בלבד - חלמון שומני',rat:{s:'ok',a:'2-3 פרוסות',f:'פעם-פעמיים בשבוע',n:'מקור חלבון מצוין',budgie:{s:'ok',a:'כפית',f:'פעם בשבוע',hamster_gen:{s:'ok',a:'כפית',f:'פעם בשבוע',degu:{s:'lim',a:'כפית',f:'לעיתים נדירות',iguana:{s:'no',n:'חלבון מן החי - לא לאיגואנות',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'ok',a:'רבע ביצה',f:'פעם בשבוע',quail:{s:'ok',a:'כפית',f:'פעם בשבוע'},hamster_gen:{s:'ok',a:'כפית',f:'פעם בשבוע',degu:{s:'lim',a:'כפית',f:'לעיתים נדירות',iguana:{s:'no',n:'חלבון מן החי - לא לאיגואנות',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},
   lovebird:{s:'lim',a:'רבע ביצה',f:'לעיתים',n:'קליפה כתושה, מקור סידן מצוין! בתקופת הטלה במיוחד.'},
@@ -2554,7 +2604,7 @@ const DEFAULT_FOODS = [
 
 {id:'rose_leaves',name:'ורד - עלים ופרחים',emoji:'🌹',cookStatus:'raw',category:'צמחי גינה',aliases:['עלי ורד','פרחי ורד','עלה ורד'],
  why:'עלי ורד ופרחיו מכילים ויטמין C, טאנינים וחומצה רוזמרינית הפועלים כנוגדי חמצון ונוגדי חיידקים. העלים, הפרחים והענפים כולם אכילים. ענפי ורד הם מזון עיקרי מצוין למקלון הויאטנמי. חשוב להשתמש אך ורק בצמחים שגדלו ללא ריסוסים.',
- parts:[{name:'עלים',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'ok','sulcata':'ok','vietstick':'ok','beardie':'ok','chinchilla':'ok','leopardgecko':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'ok','gerbil':'ok','mealworms':'ok','hissingcockroach':'ok'}},{name:'פרחים',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'ok','sulcata':'ok','vietstick':'ok','beardie':'ok','chinchilla':'ok','leopardgecko':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'ok','gerbil':'ok','mealworms':'ok','hissingcockroach':'ok'}},{name:'ענפים (עם קוצים)',rawOk:'ok',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'no','sulcata':'lim','vietstick':'ok','beardie':'lim','chinchilla':'no','leopardgecko':'lim','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}}],
+ parts:[{name:'עלים',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'ok','sulcata':'ok','vietstick':'ok','beardie':'ok','chinchilla':'ok','leopardgecko':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'ok','gerbil':'ok','mealworms':'ok','hissingcockroach':'ok'}},{name:'פרחים',rawOk:'ok',cookNote:'⚠️ לוויאטנמי — פרחים כתוספת בלבד, לא מזון עיקרי',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'ok','sulcata':'ok','vietstick':'lim','beardie':'ok','chinchilla':'ok','leopardgecko':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'ok','gerbil':'ok','mealworms':'ok','hissingcockroach':'ok'}},{name:'ענפים (עם קוצים)',rawOk:'ok',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'no','sulcata':'lim','vietstick':'ok','beardie':'lim','chinchilla':'no','leopardgecko':'lim','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}}],
  animals:{jacko:{s:'ok',a:'רבע כוס',f:'לעיתים',leopardgecko:{s:'no',rabbit:{s:'ok',a:'כוס',f:'לעיתים',sharkhan:{s:'ok',a:'רבע כוס',f:'לעיתים',jacko:{s:'ok',a:'רבע כוס',f:'לעיתים',beardie:{s:'ok',a:'רבע כוס',f:'לעיתים',syrianhamster:{s:'ok',a:'2-3 יחידות',f:'לעיתים',gerbil:{s:'ok',a:'יחידה אחת',f:'לעיתים',mealworms:{s:'ok',a:'2-3 יחידות',f:'לעיתים',hissingcockroach:{s:'ok',a:'2-3 יחידות',f:'לעיתים',mouse:{s:'ok',a:'עלה אחד',f:'כמה פעמים בשבוע',n:'ללא ריסוס',rat:{s:'ok',a:'עלה אחד',f:'כמה פעמים בשבוע',n:'ללא ריסוס',budgie:{s:'ok',a:'כמה עלים ופרחים',f:'כמה פעמים בשבוע',n:'ללא ריסוס',hamster_gen:{s:'ok',a:'עלה אחד',f:'כמה פעמים בשבוע',n:'ללא ריסוס',degu:{s:'ok',a:'עלה אחד',f:'כמה פעמים בשבוע',n:'ללא ריסוס',iguana:{s:'ok',a:'כמה עלים ופרחים',f:'כמה פעמים בשבוע',n:'ללא ריסוס',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'ok',a:'2-3 יחידות',f:'כמה פעמים בשבוע',n:'ללא ריסוס',quail:{s:'ok',a:'כמה עלים ופרחים',f:'כמה פעמים בשבוע',n:'ללא ריסוס'},hamster_gen:{s:'ok',a:'עלה אחד',f:'כמה פעמים בשבוע',n:'ללא ריסוס',degu:{s:'ok',a:'עלה אחד',f:'כמה פעמים בשבוע',n:'ללא ריסוס',iguana:{s:'ok',a:'כמה עלים ופרחים',f:'כמה פעמים בשבוע',n:'ללא ריסוס',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},lovebird:{s:'ok',a:'2-3 יחידות',f:'לעיתים'},cockatiel:{s:'ok',a:'2-3 יחידות',f:'לעיתים'}}}},vietstick:{s:'ok',a:'2-3 יחידות',f:'כמה פעמים בשבוע'},sulcata:{s:'ok',a:'כוס',f:'כמה פעמים בשבוע'},chinchilla:{s:'lim',a:'2-3 יחידות',f:'לעיתים נדירות',n:'מיובש/קטן מאוד בלבד'},mealworms:{s:'ok',a:'2-3 יחידות',f:'לעיתים'},hissingcockroach:{s:'ok',a:'2-3 יחידות',f:'לעיתים'},sibhamster:{s:'ok',a:'יחידה אחת',f:'לעיתים'},syrianhamster:{s:'ok',a:'2-3 יחידות',f:'לעיתים'},gerbil:{s:'ok',a:'יחידה אחת',f:'לעיתים'}},lovebird:{s:'ok',a:'2-3 יחידות',f:'לעיתים'},sibhamster:{s:'no'},sulcata:{s:'ok',a:'כוס',f:'לעיתים'},vietstick:{s:'ok',a:'2-3 יחידות',f:'כל יום',n:'⭐ מזון עיקרי!'},beardie:{s:'ok',a:'רבע כוס',f:'לעיתים'},chinchilla:{s:'ok',a:'2-3 יחידות',f:'לעיתים'},leopardgecko:{s:'no'},rabbit:{s:'ok',a:'כוס',f:'לעיתים'},syrianhamster:{s:'no'},sharkhan:{s:'ok',a:'רבע כוס',f:'כמה פעמים בשבוע'},gerbil:{s:'no'},cockatiel:{s:'ok',a:'2-3 יחידות',f:'לעיתים'},mealworms:{s:'no'},hissingcockroach:{s:'no'},fish:{s:'nr'},dog:{s:'lim',a:'כוס',f:'לעיתים'},quail:{s:'ok',a:'כמה עלים ופרחים',f:'כמה פעמים בשבוע',n:'ללא ריסוס',quail:{s:'ok',a:'כמה עלים ופרחים',f:'כמה פעמים בשבוע',n:'ללא ריסוס'},hamster_gen:{s:'ok',a:'עלה אחד',f:'כמה פעמים בשבוע',n:'ללא ריסוס',degu:{s:'ok',a:'עלה אחד',f:'כמה פעמים בשבוע',n:'ללא ריסוס',iguana:{s:'ok',a:'כמה עלים ופרחים',f:'כמה פעמים בשבוע',n:'ללא ריסוס',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
 
 
@@ -2999,9 +3049,9 @@ const DEFAULT_FOODS = [
  why:'רוקט מכיל יחס סידן-זרחן מועיל לחיזוק השלד ודל יחסית בחומצה אוקסלית. מומלץ במיוחד לחרדון ולצב. ניתן לתת כחלק ממגוון עלים יומיומי.',
  whyNot:'טעם חריף שעלול להרתיע חלק מהחיות.',
  parts:[
-   {name:'עלה וגבעול',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','japanese_quail':'ok','sulcata':'ok','beardie':'ok','rabbit':'ok','sharkhan':'ok','sibhamster':'ok','syrianhamster':'ok','gerbil':'ok','mealworms':'ok','hissingcockroach':'ok','vietstick':'lim','dog':'lim','chinchilla':'no','leopardgecko':'no'}}
+   {name:'עלה וגבעול',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','japanese_quail':'ok','sulcata':'ok','beardie':'ok','rabbit':'ok','sharkhan':'ok','sibhamster':'ok','syrianhamster':'ok','gerbil':'ok','mealworms':'ok','hissingcockroach':'ok','vietstick':'no','dog':'lim','chinchilla':'no','leopardgecko':'no'}}
  ],
- animals:{'jacko':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'lovebird':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'cockatiel':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'japanese_quail':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'sulcata':{s:'ok',a:'כוס',f:'כמה פעמים בשבוע',n:'מומלץ מאוד!'},'beardie':{s:'ok',a:'רבע כוס',f:'כמה פעמים בשבוע',n:'מומלץ מאוד! עשיר בסידן'},'rabbit':{s:'ok',a:'רבע כוס',f:'כמה פעמים בשבוע'},'sharkhan':{s:'ok',a:'רבע כוס',f:'כמה פעמים בשבוע'},'sibhamster':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'syrianhamster':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'gerbil':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'dog':{s:'lim',a:'כמה עלים',f:'לעיתים',n:'טעם חריף'},'chinchilla':{s:'no'},'leopardgecko':{s:'nr'},'mealworms':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע',n:'מעולה לגאט-לואדינג!'},'hissingcockroach':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'vietstick':{s:'lim',a:'עלה אחד',f:'לעיתים'}}
+ animals:{'jacko':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'lovebird':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'cockatiel':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'japanese_quail':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'sulcata':{s:'ok',a:'כוס',f:'כמה פעמים בשבוע',n:'מומלץ מאוד!'},'beardie':{s:'ok',a:'רבע כוס',f:'כמה פעמים בשבוע',n:'מומלץ מאוד! עשיר בסידן'},'rabbit':{s:'ok',a:'רבע כוס',f:'כמה פעמים בשבוע'},'sharkhan':{s:'ok',a:'רבע כוס',f:'כמה פעמים בשבוע'},'sibhamster':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'syrianhamster':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'gerbil':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'dog':{s:'lim',a:'כמה עלים',f:'לעיתים',n:'טעם חריף'},'chinchilla':{s:'no'},'leopardgecko':{s:'nr'},'mealworms':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע',n:'מעולה לגאט-לואדינג!'},'hissingcockroach':{s:'ok',a:'כמה עלים',f:'כמה פעמים בשבוע'},'vietstick':{s:'no',n:'אוכל רק עלי ורד, היביסקוס וחובזה'}}
 },
 
 {id:'hay',name:'חציר',emoji:'🌾',cookStatus:'raw',category:'עשב',
@@ -3034,12 +3084,12 @@ const DEFAULT_FOODS = [
 },
 {id:'grass',name:'גזם דשא',emoji:'🌿',cookStatus:'raw',category:'עשב',
  aliases:['דשא','גזם','גזם דשא','grass','lawn grass'],
- why:'גזם דשא טרי מהגינה הוא מקור טוב לסיבים ולחות ומתקבל היטב על ידי צבים, ארנבונים, שרקנים ומקלון ויאטנמי. יש לוודא שהדשא לא רוסס ולא טופל בכימיקלים.',
+ why:'גזם דשא טרי מהגינה הוא מקור טוב לסיבים ולחות ומתקבל היטב על ידי צבים, ארנבונים ושרקנים. יש לוודא שהדשא לא רוסס ולא טופל בכימיקלים. לתת מיד אחרי קציצה, לא להשאיר בערימה — עלול לתסוס ולהתקלקל. לתת בכמות מוגבלת.',
  whyNot:'חשוב לוודא שהדשא לא רוסס בחומרי הדברה או דשן כימי.',
  parts:[
-   {name:'דשא טרי',rawOk:'ok',partAnimals:{'sulcata':'ok','rabbit':'ok','sharkhan':'ok','mealworms':'ok','hissingcockroach':'ok','vietstick':'ok','chinchilla':'no','beardie':'no','leopardgecko':'no','jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','syrianhamster':'no','gerbil':'no','dog':'no'}}
+   {name:'דשא טרי',rawOk:'ok',partAnimals:{'sulcata':'ok','rabbit':'ok','sharkhan':'ok','mealworms':'ok','hissingcockroach':'ok','vietstick':'no','chinchilla':'no','beardie':'no','leopardgecko':'no','jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','syrianhamster':'no','gerbil':'no','dog':'no'}}
  ],
- animals:{'sulcata':{s:'ok',a:'כמה חופנים',f:'כל יום',n:'מדמה את הסביבה הטבעית שלו'},'rabbit':{s:'ok',a:'חופן גדול',f:'כל יום',n:'לוודא שלא רוסס!'},'sharkhan':{s:'ok',a:'חופן',f:'כל יום',n:'לוודא שלא רוסס!'},'vietstick':{s:'ok',a:'קצת',f:'לעיתים',n:'מעדיף עלי ורד והיביסקוס'},'mealworms':{s:'lim',a:'קצת',f:'לעיתים'},'hissingcockroach':{s:'lim',a:'קצת',f:'לעיתים'},'chinchilla':{s:'no',n:'לא מתאים, צריך חציר יבש בלבד'},'beardie':{s:'no',n:'לא מזון טבעי לחרדון'},'jacko':{s:'no'},'lovebird':{s:'no'},'cockatiel':{s:'no'},'leopardgecko':{s:'nr'},'sibhamster':{s:'no'},'syrianhamster':{s:'no'},'gerbil':{s:'no'},'dog':{s:'no'}}
+ animals:{'sulcata':{s:'ok',a:'כמה חופנים',f:'כל יום',n:'מדמה את הסביבה הטבעית שלו'},'rabbit':{s:'ok',a:'חופן גדול',f:'כל יום',n:'לוודא שלא רוסס!'},'sharkhan':{s:'ok',a:'חופן',f:'כל יום',n:'לוודא שלא רוסס!'},'vietstick':{s:'no',n:'אוכל רק עלי ורד, היביסקוס וחובזה - לא דשא'},'mealworms':{s:'lim',a:'קצת',f:'לעיתים'},'hissingcockroach':{s:'lim',a:'קצת',f:'לעיתים'},'chinchilla':{s:'no',n:'לא מתאים, צריך חציר יבש בלבד'},'beardie':{s:'no',n:'לא מזון טבעי לחרדון'},'jacko':{s:'no'},'lovebird':{s:'no'},'cockatiel':{s:'no'},'leopardgecko':{s:'nr'},'sibhamster':{s:'no'},'syrianhamster':{s:'no'},'gerbil':{s:'no'},'dog':{s:'no'}}
 }
 ];
 
@@ -6843,6 +6893,7 @@ const TREASURE_MAP = [
   {emoji:'🦓', location:'זברה (בחיפוש)',          hint:'חפשו "זברה" ולחצו על ✨✨✨ שמופיעות לצד התוצאה',  type:'קליפ',  url:'https://www.youtube.com/watch?v=QD0bgqg3P5s'},
   {emoji:'🦊', location:'שועל (בחיפוש)',          hint:'חפשו "שועל" ולחצו על ✨✨✨ שמופיעות לצד התוצאה',  type:'קליפ',  url:'https://www.youtube.com/watch?v=jofNR_WkoCE'},
   {emoji:'🦛', location:'קפיברה (בחיפוש)',        hint:'חפשו "קפיברה" ולחצו על ✨✨✨ שמופיעות לצד התוצאה', type:'קליפ',  url:'https://www.facebook.com/reel/1635040247208205'},
+  {emoji:'🌈', location:'מצב כהה / מצב בהיר', hint:'נסו ללחוץ על הכפתור יותר מפעם אחת... הוא מחביא עוד מצב', type:'הפתעה', url:null, effect:"(function(){document.body.classList.remove('dark');document.body.classList.add('rainbow');localStorage.setItem('pina-mode','rainbow');const b=document.getElementById('darkModeBtn');if(b)b.textContent='🌈';})()"},
 ];
 
 // shownState: 0=location only, 1=hint shown, 2=revealed
@@ -6952,6 +7003,24 @@ function openWelcomeGuide() {
         <li>שלחו לנו הודעה ונענה בהקדם.</li>
       </ul>`,
       tab:'deploy'
+    },
+    {
+      emoji:'🌙', title:'מצב כהה / מצב בהיר', color:'#444', bg:'#f0f0f8',
+      short:'הכפתור העגול בפינה הימנית העליונה מחליף בין מצב בהיר לכהה.',
+      long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.8rem;color:#444;line-height:1.7">
+        <li>מתאים לשימוש בחושך או לפי העדפה אישית.</li>
+        <li>האתר זוכר את הבחירה שלכם גם בפעם הבאה.</li>
+      </ul>`,
+      action: ()=>{ closeModal(); toggleDark(); }
+    },
+    {
+      emoji:'🌙', title:'מצב כהה / מצב בהיר', color:'#444', bg:'#f0f0f8',
+      short:'הכפתור העגול בפינה הימנית העליונה מחליף בין מצב בהיר לכהה.',
+      long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.8rem;color:#444;line-height:1.7">
+        <li>מתאים לשימוש בחושך או לפי העדפה אישית.</li>
+        <li>האתר זוכר את הבחירה שלכם גם בפעם הבאה.</li>
+      </ul>`,
+      action: ()=>{ closeModal(); toggleDark(); }
     },
     {
       emoji:'🎲', title:'הפתיעו אותי', color:'#8a2060', bg:'#fff0f8',
@@ -7711,6 +7780,163 @@ function pwaInstall(){
     renderStandalone();
   }
 })();
+
+// ── אנימציות מצב יום ─────────────────────────────────────
+(function(){
+  const LEAVES    = ['🍃','🌿','🍀','🌱','🌾','🍂'];
+  const BUTTERFLIES = ['🦋','🌸','🌺','🌼','✿'];
+  const PEEKERS   = [
+    {e:'🐰',s:'left'},  {e:'🐹',s:'right'}, {e:'🦎',s:'left'},
+    {e:'🐢',s:'right'}, {e:'🐇',s:'left'},  {e:'🦜',s:'right'},
+    {e:'🐱',s:'left'},  {e:'🐿️',s:'right'},
+  ];
+
+  let _leafTimer, _bfTimer, _peekTimer;
+  let _active = false;
+
+  function layer(){ return document.getElementById('dayLayer'); }
+
+  function isDay(){
+    return !document.body.classList.contains('dark') &&
+           !document.body.classList.contains('rainbow');
+  }
+
+  /* ── עלה נופל ── */
+  function spawnLeaf(){
+    if(!isDay()) return;
+    const el = layer(); if(!el) return;
+    const d = document.createElement('div');
+    // רק בשוליים: שמאל 0-14% או ימין 86-100%
+    const onLeft = Math.random() < 0.5;
+    const x = onLeft ? Math.random()*14 : 86+Math.random()*14;
+    const dur   = (6 + Math.random()*8).toFixed(1);
+    const rot   = (280 + Math.random()*140).toFixed(0);
+    const sw    = (8  + Math.random()*22).toFixed(0);
+    const size  = (0.55+ Math.random()*.3).toFixed(2);
+    d.textContent = LEAVES[Math.floor(Math.random()*LEAVES.length)];
+    d.style.cssText = [
+      'position:absolute',
+      'pointer-events:none',
+      'user-select:none',
+      'top:-50px',
+      'left:'+x+'%',
+      'font-size:'+size+'rem',
+      '--rot:'+rot+'deg',
+      '--sw:'+sw+'px',
+      'animation:leafFall '+dur+'s linear forwards, sway '+(dur/3).toFixed(1)+'s ease-in-out infinite',
+      'opacity:0',
+    ].join(';');
+    el.appendChild(d);
+    setTimeout(()=>d.remove(), +dur*1000+400);
+    // עלה הבא
+    _leafTimer = setTimeout(spawnLeaf, 800+Math.random()*1800);
+  }
+
+  /* ── פרפר עובר ── */
+  function spawnButterfly(){
+    if(!isDay()) return;
+    const el = layer(); if(!el) return;
+    const d = document.createElement('div');
+    const yStart = 2 + Math.random()*20;   // רק בגובה העליון 2-22%
+    const dy  = ((Math.random()-.5)*60).toFixed(0);
+    const dy2 = ((Math.random()-.5)*40).toFixed(0);
+    const dur = (9 + Math.random()*8).toFixed(1);
+    const size= (0.6+Math.random()*.3).toFixed(2);
+    d.textContent = BUTTERFLIES[Math.floor(Math.random()*BUTTERFLIES.length)];
+    d.style.cssText = [
+      'position:absolute',
+      'pointer-events:none',
+      'user-select:none',
+      'right:-60px',
+      'top:'+yStart+'%',
+      'font-size:'+size+'rem',
+      '--dy:'+dy+'px',
+      '--dy2:'+dy2+'px',
+      'animation:butterflyFly '+dur+'s ease-in-out forwards',
+      'opacity:0',
+    ].join(';');
+    el.appendChild(d);
+    setTimeout(()=>d.remove(), +dur*1000+400);
+    _bfTimer = setTimeout(spawnButterfly, 4000+Math.random()*7000);
+  }
+
+  /* ── חיה מציצה ── */
+  function spawnPeeker(){
+    if(!isDay()) return;
+    const el = layer(); if(!el) return;
+    const p = PEEKERS[Math.floor(Math.random()*PEEKERS.length)];
+    const d = document.createElement('div');
+    const y = 5 + Math.random()*80;    // בתוך ה-header
+    const dur = (3 + Math.random()*4).toFixed(1);
+    const size= (0.9+Math.random()*.4).toFixed(2);
+    const isLeft = p.s === 'left';
+    d.textContent = p.e;
+    d.style.cssText = [
+      'position:absolute',
+      'pointer-events:none',
+      'user-select:none',
+      isLeft ? 'left:0' : 'right:0',
+      'top:'+y+'%',
+      'font-size:'+size+'rem',
+      isLeft ? 'transform:translateX(-100%)' : 'transform:translateX(100%)',
+      'animation:'+( isLeft ? 'peekLeft' : 'peekRight' )+' '+dur+'s ease-in-out forwards',
+      'filter:drop-shadow(0 2px 4px rgba(0,0,0,.15))',
+    ].join(';');
+    el.appendChild(d);
+    setTimeout(()=>d.remove(), +dur*1000+400);
+    _peekTimer = setTimeout(spawnPeeker, 3500+Math.random()*5000);
+  }
+
+  function startDay(){
+    if(_active) return;
+    _active = true;
+    // התחלה מדורגת
+    spawnLeaf();
+    setTimeout(spawnButterfly, 1200);
+    setTimeout(spawnPeeker,   2500);
+  }
+
+  function stopDay(){
+    _active = false;
+    clearTimeout(_leafTimer);
+    clearTimeout(_bfTimer);
+    clearTimeout(_peekTimer);
+    const el = layer();
+    if(el) el.innerHTML = '';
+  }
+
+  // האזן למעברי מצב
+  const _origToggleDark = window.toggleDark;
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    if(isDay()) startDay();
+  });
+  if(document.readyState !== 'loading' && isDay()) startDay();
+
+  // patch toggleDark להפסיק/להתחיל
+  const _patchToggle = setInterval(()=>{
+    if(typeof window.toggleDark === 'function'){
+      clearInterval(_patchToggle);
+      const orig = window.toggleDark;
+      window.toggleDark = function(){
+        orig.apply(this, arguments);
+        setTimeout(()=>{ isDay() ? startDay() : stopDay(); }, 50);
+      };
+    }
+  }, 100);
+
+  // גם כשעוברים למצב קשת דרך מפת האוצר
+  const obs = new MutationObserver(()=>{
+    if(isDay()) startDay(); else stopDay();
+  });
+  document.addEventListener('DOMContentLoaded', ()=>{
+    obs.observe(document.body, {attributeFilter:['class']});
+  });
+
+  window._dayLayerStart = startDay;
+  window._dayLayerStop  = stopDay;
+})();
+// ────────────────────────────────────────────────────────────
 </script>
 </body>
 </html>
