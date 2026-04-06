@@ -139,11 +139,20 @@ body.dark .aname{color:var(--text)}
 body.dark .fc-seo{color:var(--muted) !important;background:#1e1f1b !important;border-top-color:#35362f}
 body.dark .cook-note{color:#a8a49a !important;background:#1e1f1b !important}
 body.dark .don-note{color:var(--muted) !important}
-body.dark .af-table th{background:#1e1f1b !important;color:var(--muted);border-bottom-color:#3a3d35}
-body.dark .af-table td{color:var(--text)}
+body.dark .af-table th{background:#1e2530 !important;color:#aab8cc;border-bottom-color:#2a3545}
+body.dark .af-table td{color:var(--text);border-bottom-color:#2a2d25}
+body.dark .af-table tr:hover td{background:#1e2535 !important}
+body.dark .af-table td[style*="#edfff5"]{background:#0d2a18 !important;color:#60c07a !important}
+body.dark .af-table td[style*="#fffbe8"]{background:#2a1e00 !important;color:#d4a030 !important}
+body.dark .af-table td[style*="#fff0f0"]{background:#2a0d0d !important;color:#d06060 !important}
+body.dark .af-table tr td[colspan]{background:#1a1e2e !important;color:#8898cc !important}
+body.dark .af-table tr[style*="#f8f8fc"] td{background:#181c28 !important;color:#7788aa !important}
 body.dark .loader{color:var(--text);background:rgba(17,17,16,.97) !important}
 body.dark .island-expand-all{border-color:rgba(255,255,255,.2);color:var(--muted)}
 body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:var(--text)}
+body.dark button[title="הקרא את כל הדף"],
+body.dark button[title="הקראת כל הרשימה"]{background:#2a3a4a !important;color:#c8e0ff !important}
+body.dark button[onclick="dmClearAll()"]{background:#3a2800 !important;color:#f5cc80 !important}
 body.dark .am-close-btn{border-color:#4a4a40;color:var(--muted)}
 body.dark .am-close-btn:hover{border-color:#888;color:var(--text)}
 body.dark .modal-top{border-bottom-color:#3a3d35 !important}
@@ -202,7 +211,6 @@ body.rainbow{
       #ff9a3c 100%
     ) !important;
   background-attachment:fixed !important;
-  /* מניעת גלישה לצדדים במובייל */
   overflow-x:hidden !important;
 }
 body.rainbow::before{content:none}
@@ -277,7 +285,7 @@ body.dark #nightStars{display:block}
 #rainbowDots{
   display:none;
   position:fixed;inset:0;overflow:hidden;
-  pointer-events:none;z-index:0;
+  pointer-events:none;z-index:500;
 }
 body.rainbow #rainbowDots{display:block}
 .rd{
@@ -376,31 +384,32 @@ body.rainbow .food-count{
   30%{transform:scale(1.12)}
   60%{transform:scale(.95)}
 }
-/* בועה עפה */
+/* בועה — הבהוב עדין בלבד */
 @keyframes bubbleFloat{
-  0%{transform:translateY(0) scale(1) rotate(0deg);opacity:.9}
-  50%{transform:translateY(-60px) scale(1.1) rotate(180deg);opacity:.6}
-  100%{transform:translateY(-130px) scale(.8) rotate(360deg);opacity:0}
+  0%,100%{opacity:0}
+  50%{opacity:.55}
 }
 .rb-bubble{
   position:absolute;border-radius:50%;
-  animation:bubbleFloat linear forwards;
-  font-size:1.5rem;line-height:1;
+  animation:bubbleFloat ease-in-out forwards;
+  font-size:1.1rem;line-height:1;
   pointer-events:none;
 }
-/* כוכבים/ניצוצות */
+/* ניצוץ — הבהוב עדין בלבד */
 @keyframes sparkleFloat{
-  0%{transform:translateY(0) translateX(0) scale(0);opacity:1}
-  40%{opacity:.8;transform:translateY(-30px) translateX(var(--dx,15px)) scale(1.2)}
-  100%{transform:translateY(-80px) translateX(calc(var(--dx,15px)*2)) scale(0);opacity:0}
+  0%,100%{opacity:0;transform:scale(.8)}
+  50%{opacity:.5;transform:scale(1.1)}
 }
 .rb-spark{
-  position:absolute;font-size:1.1rem;
-  animation:sparkleFloat ease-out forwards;
+  position:absolute;font-size:.9rem;
+  animation:sparkleFloat ease-in-out forwards;
   pointer-events:none;
 }
 body.rainbow .tab-btn{background:rgba(255,255,255,.75)}
 body.rainbow .food-card,body.rainbow .animal-card,body.rainbow .don-card,body.rainbow .insight-card,body.rainbow .my-card{background:rgba(255,255,255,.82)}
+body.rainbow .af-table tr td[colspan]{background:rgba(0,180,180,.18) !important;color:#006060 !important;border-bottom:2px solid rgba(0,180,180,.3) !important}
+body.rainbow .af-table tr[style*="#f8f8fc"] td{background:rgba(0,180,180,.08) !important;color:#007070 !important}
+body.rainbow .af-table tr[style*="#f8f8fc"] td span{color:#007070 !important}
 body.rainbow .tab-btn.active[data-tab="quickguide"]{background:linear-gradient(135deg,#3aaa6e,#40c070)}
 body.rainbow .tab-btn.active[data-tab="search"]{background:linear-gradient(135deg,#4090d0,#60b0f0)}
 body.rainbow .tab-btn.active[data-tab="allfoods"]{background:linear-gradient(135deg,#8060c0,#a080e0)}
@@ -2082,15 +2091,18 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
         ctx.stroke();
       }
 
-      // ניצוצות קטנים על ה-canvas
+      // ניצוצות קטנים על ה-canvas — תנועה עדינה בשוליים בלבד
       for(let i=0;i<6;i++){
-        const sx = (Math.sin(t*.07+i*1.5)*.5+.5)*W;
-        const sy = (Math.cos(t*.05+i*2.1)*.5+.5)*H;
-        const sr = 2+Math.sin(t*.2+i)*1.5;
-        const sh = (t*5+i*60)%360;
+        const sx = i < 3
+          ? (Math.sin(t*.008+i*1.5)*.5+.5)*W*.1          // שוליים שמאל
+          : W*.9 + (Math.sin(t*.006+i*2.1)*.5+.5)*W*.1;  // שוליים ימין
+        const sy = (Math.sin(t*.005+i*1.1)*.5+.5)*H;
+        const sr = 2+Math.sin(t*.02+i)*1;
+        const sh = (t*.8+i*60)%360;
+        const alpha = .3+Math.sin(t*.03+i*.7)*.25;
         ctx.beginPath();
         ctx.arc(sx,sy,sr,0,Math.PI*2);
-        ctx.fillStyle=`hsla(${sh},100%,80%,.9)`;
+        ctx.fillStyle=`hsla(${sh},100%,80%,${alpha})`;
         ctx.fill();
       }
 
@@ -2107,17 +2119,19 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     const el=document.createElement('span');
     el.className='rb-bubble';
     el.textContent=EMOJIS[Math.floor(Math.random()*EMOJIS.length)];
-    const left=5+Math.random()*90;
-    const dur=1.8+Math.random()*2;
-    const size=1+Math.random()*1.4;
-    el.style.cssText=`left:${left}%;bottom:0;font-size:${size}rem;animation-duration:${dur}s;`;
+    // רק בשוליים — שמאל 0-10% או ימין 90-100%
+    const left=Math.random()<.5 ? Math.random()*10 : 90+Math.random()*10;
+    const top=10+Math.random()*80;
+    const dur=3+Math.random()*4;
+    const size=.75+Math.random()*.6;
+    el.style.cssText=`left:${left}%;top:${top}%;font-size:${size}rem;animation-duration:${dur}s;position:absolute;`;
     document.getElementById('rainbowBubbles')?.appendChild(el);
     setTimeout(()=>el.remove(), dur*1000+100);
   }
 
   function startBubbles(){
     clearInterval(bubblesInterval);
-    bubblesInterval=setInterval(spawnBubble, 280);
+    bubblesInterval=setInterval(spawnBubble, 1800);
   }
 
   // ── ניצוצות/כוכבים ─────────────────────────────────────
@@ -2127,18 +2141,18 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     const el=document.createElement('span');
     el.className='rb-spark';
     el.textContent=SPARK_EMOJIS[Math.floor(Math.random()*SPARK_EMOJIS.length)];
-    const left=Math.random()*100;
-    const top=20+Math.random()*60;
-    const dur=1+Math.random()*1.4;
-    const dx=(Math.random()-.5)*60;
-    el.style.cssText=`left:${left}%;top:${top}%;--dx:${dx}px;animation-duration:${dur}s;`;
+    // רק בשוליים
+    const left=Math.random()<.5 ? Math.random()*10 : 90+Math.random()*10;
+    const top=5+Math.random()*90;
+    const dur=2.5+Math.random()*3.5;
+    el.style.cssText=`left:${left}%;top:${top}%;animation-duration:${dur}s;`;
     document.getElementById('rainbowBubbles')?.appendChild(el);
     setTimeout(()=>el.remove(), dur*1000+100);
   }
 
   function startSparks(){
     clearInterval(sparksInterval);
-    sparksInterval=setInterval(spawnSpark, 180);
+    sparksInterval=setInterval(spawnSpark, 2500);
   }
 
   // הפעל/כבה בהתאם למצב
@@ -2205,7 +2219,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 
   function buildRainbowDots(){
     const el = document.getElementById('rainbowDots');
-    if(!el || el.children.length) return;
+    if(!el) return;
     // 50 נקודות דלילות — רק בשוליים הצדדיים: שמאל 0-8%, ימין 92-100%
     for(let i=0;i<50;i++){
       const d = document.createElement('div');
@@ -2214,8 +2228,8 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       const color = COLORS[Math.floor(Math.random()*COLORS.length)];
       // רק שוליים צדדיים
       const x = Math.random() < 0.5
-        ? Math.random()*8
-        : 92 + Math.random()*8;
+        ? Math.random()*15
+        : 85 + Math.random()*15;
       const y = Math.random()*100;
       const dur = (6+Math.random()*8).toFixed(1);
       const delay = (Math.random()*15).toFixed(1);
@@ -2225,15 +2239,18 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     }
   }
 
-  // בנה בטעינה ועדכן כשנכנסים לקשת
-  document.addEventListener('DOMContentLoaded', buildRainbowDots);
-  if(document.readyState !== 'loading') buildRainbowDots();
-
   const _rdObs = new MutationObserver(()=>{
-    if(document.body.classList.contains('rainbow')) buildRainbowDots();
+    const el = document.getElementById('rainbowDots');
+    if(document.body.classList.contains('rainbow')){
+      if(el) el.innerHTML = '';
+      buildRainbowDots();
+    } else {
+      if(el) el.innerHTML = '';
+    }
   });
   document.addEventListener('DOMContentLoaded',()=>{
     _rdObs.observe(document.body,{attributeFilter:['class']});
+    if(document.body.classList.contains('rainbow')) buildRainbowDots();
   });
 })();
 // ────────────────────────────────────────────────────────────
@@ -4718,6 +4735,7 @@ function openFoodModal(foodId, list, autoPartIdx){
   document.getElementById('modalOverlay').classList.add('open');
   document.body.style.overflow='hidden';
   updateModalNav();
+  setTimeout(()=>document.querySelector('#modalOverlay .modal-box')?.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
   // פתיחה אוטומטית של חלק ספציפי (מחיפוש חלק)
   if (autoPartIdx !== undefined && autoPartIdx >= 0 && food.parts?.[autoPartIdx]) {
     setTimeout(() => filterByPart(foodId, autoPartIdx), 0);
@@ -5217,14 +5235,14 @@ function renderAllFoodsTable(){
     catFoods.forEach(food=>{
       html+=`<tr data-food-id="${food.id}" onclick="openFoodModal('${food.id}',window._tableFoodIds)" style="cursor:pointer">`;
       html+=`<td onclick="openFoodModal('${food.id}',window._tableFoodIds)" style="padding:.38rem .5rem;cursor:pointer"><span style="font-size:1.1rem;margin-left:.3rem">${food.emoji}</span><span style="font-size:.95rem;font-weight:700;color:#3060b0;text-decoration:underline dotted">${food.name}</span>${(()=>{const cs=food.cookStatus,l={raw:'<span style="font-size:.65rem;color:#1a6640;background:#e8f7ef;border-radius:50px;padding:.05rem .35rem;margin-right:.25rem;vertical-align:middle">🥗</span>',cooked:'<span style="font-size:.65rem;color:#7a4000;background:#fff3e0;border-radius:50px;padding:.05rem .35rem;margin-right:.25rem;vertical-align:middle">🍳</span>',both:'<span style="font-size:.65rem;color:#1a3380;background:#e8f0ff;border-radius:50px;padding:.05rem .35rem;margin-right:.25rem;vertical-align:middle">🔄</span>'};return cs&&l[cs]?l[cs]:'';})()}</td>`;
-      orderedAnimals.forEach(a=>{ html+=statusCell(food.animals?.[a.id]?.s||'nr'); });
+      orderedAnimals.forEach(a=>{ html+=statusCell(food.animals?.[a.id]?.s||'no'); });
       html+='</tr>';
     });
     // שורת חזרה לשמות חיות בתחתית כל קטגוריה
     html+=`<tr style="background:#f8f8fc"><td style="font-size:.72rem;color:#aaa;padding:.2rem .5rem">↑</td>`;
     orderedAnimals.forEach(a=>{
       const shortName=a.name.replace('תוכי ','').replace(' מנומרת','').replace(' ויאטנמי','').replace(' לוחש (מדגסקר)','').replace(' סיבירי','').replace(' סורי','').replace(' מונגולי','').split(' ')[0];
-      html+=`<td style="text-align:center;font-size:.68rem;color:#888;padding:.2rem .1rem;white-space:nowrap">${shortName}</td>`;
+      html+=`<td style="text-align:center;font-size:.68rem;color:#888;padding:.2rem .1rem;white-space:nowrap"><span onclick="event.stopPropagation();openAnimalModal('${a.id}')" style="cursor:pointer;text-decoration:underline dotted">${shortName}</span></td>`;
     });
     html+='</tr>';
   });
@@ -5233,7 +5251,6 @@ function renderAllFoodsTable(){
     <span style="color:#1a7a40;font-weight:700">כן</span> מותר ·
     <span style="color:#8a5500;font-weight:700">מעט</span> במידה ·
     <span style="color:#c02020;font-weight:700">לא</span> אסור ·
-    <span style="color:#ccc">-</span> לא רלוונטי ·
     לחיצה על שם חיה = כרטיסייה · לחיצה על שורה = פרטי מזון
   </div>`;
   document.getElementById('allFoodsTable').innerHTML=html;
