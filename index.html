@@ -212,6 +212,7 @@ body.rainbow{
     ) !important;
   background-attachment:fixed !important;
   overflow-x:hidden !important;
+  max-width:100vw !important;
 }
 body.rainbow::before{content:none}
 body.rainbow header{
@@ -2254,6 +2255,215 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   });
 })();
 // ────────────────────────────────────────────────────────────
+// 🎉 partyExplosion — MEGA edition
+function partyExplosion(){
+  var EMOJIS=["🎉","🎊","✨","🌈","⭐","💥","🎈","🦄","💫","🎆","🍭","🎀","💎","🌟","🔥","🎵","🦋","🌸","🎯","🍀","🎪","🪄","🎠","🪩","🎭","💃","🕺","🌊","🎨","🏆"];
+  var COLORS=["#ff3cac","#784ba0","#2b86c5","#ff6b6b","#ffd93d","#6bcb77","#4d96ff","#ff9a3c","#c77dff","#00f5d4"];
+
+  var overlay=document.createElement("div");
+  overlay.id="partyOverlay";
+  overlay.style.cssText="position:fixed;inset:0;pointer-events:none;z-index:99999;overflow:hidden";
+  document.body.appendChild(overlay);
+
+  // ── 1. גל קונפטי כבד (90 חלקיקים) ──
+  for(var i=0;i<90;i++){(function(idx){
+    var el=document.createElement("div");
+    var useEmoji=Math.random()<0.6;
+    var delay=Math.random()*1200;
+    var dur=1200+Math.random()*1400;
+    var x=Math.random()*100;
+    var size=(useEmoji?1.0:0.7)+Math.random()*1.4;
+    var spin=(Math.random()<.5?1:-1)*(200+Math.random()*520);
+    var drift=(Math.random()-.5)*200;
+    var startY=-40-Math.random()*200;
+    if(useEmoji){
+      el.textContent=EMOJIS[Math.floor(Math.random()*EMOJIS.length)];
+    } else {
+      // ריבוע/עיגול צבעוני
+      var shape=Math.random()<0.5?"50%":"4px";
+      var color=COLORS[Math.floor(Math.random()*COLORS.length)];
+      var w=(8+Math.random()*14)+"px";
+      el.style.width=w; el.style.height=w;
+      el.style.borderRadius=shape;
+      el.style.background=color;
+    }
+    el.style.position="absolute";
+    el.style.left=x+"%";
+    el.style.top=startY+"px";
+    el.style.fontSize=size+"rem";
+    el.style.opacity="1";
+    overlay.appendChild(el);
+    setTimeout(function(){
+      el.style.transition="transform "+dur+"ms cubic-bezier(.15,.8,.35,1), opacity "+dur+"ms ease-in";
+      el.style.transform="translate("+drift+"px,"+(window.innerHeight+180)+"px) rotate("+spin+"deg)";
+      el.style.opacity="0";
+      setTimeout(function(){el.remove();},dur+50);
+    },delay);
+  })(i);}
+
+  // ── 2. כדור דיסקו canvas ──
+  var discoWrap=document.createElement("div");
+  discoWrap.style.cssText="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);z-index:100000;pointer-events:none;transition:transform .4s cubic-bezier(.17,.67,.35,1.4);filter:drop-shadow(0 0 18px #fff) drop-shadow(0 0 35px #ff3cac)";
+  var discoCanvas=document.createElement("canvas");
+  discoCanvas.width=220; discoCanvas.height=220;
+  discoCanvas.style.cssText="display:block";
+  discoWrap.appendChild(discoCanvas);
+  document.body.appendChild(discoWrap);
+  var dctx=discoCanvas.getContext("2d");
+  var dcx=110,dcy=110,dR=95;
+  var DCOLS=["#ff3cac","#c77dff","#4d96ff","#ffd93d","#6bcb77","#ff9a3c","#00f5d4","#ff6b6b"];
+  var discoAngle=0, discoRaf, discoStopped=false;
+  function drawDisco(){
+    dctx.clearRect(0,0,220,220);
+    dctx.save();
+    dctx.beginPath();
+    dctx.arc(dcx,dcy,dR,0,Math.PI*2);
+    dctx.clip();
+    dctx.fillStyle="#111";
+    dctx.fillRect(0,0,220,220);
+    var rows=14,cols=18,tW=(dR*2)/cols,tH=(dR*2)/rows;
+    for(var row=0;row<rows;row++){
+      for(var col=0;col<cols;col++){
+        var tx=dcx-dR+col*tW+0.5, ty=dcy-dR+row*tH+0.5;
+        var dist=Math.sqrt(Math.pow(tx+tW/2-dcx,2)+Math.pow(ty+tH/2-dcy,2));
+        if(dist>dR) continue;
+        var ci=(row*3+col*2+Math.floor(discoAngle/15))%DCOLS.length;
+        var isWhite=(Math.sin(row*1.3+col*0.9+discoAngle*0.08)*0.5+0.5)>0.55;
+        dctx.fillStyle=isWhite?"#ffffff":DCOLS[ci];
+        dctx.globalAlpha=isWhite?0.95:0.8;
+        dctx.fillRect(tx+1,ty+1,tW-2,tH-2);
+      }
+    }
+    dctx.restore();
+    dctx.globalAlpha=1;
+    var shine=dctx.createRadialGradient(dcx-32,dcy-35,4,dcx,dcy,dR);
+    shine.addColorStop(0,"rgba(255,255,255,0.55)");
+    shine.addColorStop(0.3,"rgba(255,255,255,0.10)");
+    shine.addColorStop(1,"rgba(0,0,0,0.45)");
+    dctx.save();
+    dctx.beginPath();
+    dctx.arc(dcx,dcy,dR,0,Math.PI*2);
+    dctx.clip();
+    dctx.fillStyle=shine;
+    dctx.fillRect(0,0,220,220);
+    dctx.restore();
+    dctx.beginPath();
+    dctx.arc(dcx,dcy,dR,0,Math.PI*2);
+    dctx.strokeStyle="#333";
+    dctx.lineWidth=2;
+    dctx.stroke();
+    dctx.fillStyle="#777";
+    dctx.fillRect(dcx-3,dcy-dR-22,6,22);
+    dctx.fillStyle="#555";
+    dctx.fillRect(dcx-12,dcy-dR-26,24,7);
+    discoAngle+=1.5;
+    if(!discoStopped) discoRaf=requestAnimationFrame(drawDisco);
+  }
+  requestAnimationFrame(function(){
+    setTimeout(function(){
+      discoWrap.style.transform="translate(-50%,-50%) scale(1)";
+      drawDisco();
+      setTimeout(function(){
+        discoStopped=true;
+        cancelAnimationFrame(discoRaf);
+        discoWrap.style.transition="transform .5s ease-in, opacity .5s ease-in";
+        discoWrap.style.transform="translate(-50%,-50%) scale(0)";
+        discoWrap.style.opacity="0";
+        setTimeout(function(){discoWrap.remove();},550);
+      },2200);
+    },50);
+  });
+
+  // ── 3. קרני אור מסתובבות מהמרכז (canvas) ──
+  var canvas=document.createElement("canvas");
+  canvas.style.cssText="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:99997;opacity:0.55";
+  canvas.width=window.innerWidth; canvas.height=window.innerHeight;
+  document.body.appendChild(canvas);
+  var c2=canvas.getContext("2d");
+  var cx=canvas.width/2, cy=canvas.height/2;
+  var beamAngle=0, beamRaf;
+  var beamColors=["#ff3cac","#ffd93d","#6bcb77","#4d96ff","#c77dff","#ff9a3c","#00f5d4","#ff6b6b"];
+  function drawBeams(){
+    c2.clearRect(0,0,canvas.width,canvas.height);
+    var numBeams=8;
+    for(var b=0;b<numBeams;b++){
+      var angle=beamAngle+(b/numBeams)*Math.PI*2;
+      var grad=c2.createLinearGradient(cx,cy,
+        cx+Math.cos(angle)*canvas.width,
+        cy+Math.sin(angle)*canvas.height);
+      grad.addColorStop(0,beamColors[b]+"cc");
+      grad.addColorStop(0.4,beamColors[b]+"44");
+      grad.addColorStop(1,"transparent");
+      c2.beginPath();
+      c2.moveTo(cx,cy);
+      var spread=0.18;
+      c2.arc(cx,cy,Math.max(canvas.width,canvas.height)*1.5,angle-spread,angle+spread);
+      c2.closePath();
+      c2.fillStyle=grad;
+      c2.fill();
+    }
+    beamAngle+=0.03;
+    beamRaf=requestAnimationFrame(drawBeams);
+  }
+  drawBeams();
+  setTimeout(function(){
+    cancelAnimationFrame(beamRaf);
+    canvas.style.transition="opacity .6s";
+    canvas.style.opacity="0";
+    setTimeout(function(){canvas.remove();},700);
+  },3000);
+
+  // ── 4. מערבולת אימוג'ים מסתובבים סביב המרכז ──
+  var swirlEmojis=["⭐","💫","✨","🌟","💥","🎊"];
+  for(var s=0;s<12;s++){(function(si){
+    var el=document.createElement("div");
+    el.textContent=swirlEmojis[si%swirlEmojis.length];
+    el.style.cssText="position:fixed;top:50%;left:50%;font-size:"+(1.0+Math.random()*0.8)+"rem;pointer-events:none;z-index:100001;transform-origin:center";
+    document.body.appendChild(el);
+    var radius=80+Math.random()*120;
+    var startAngle=(si/12)*Math.PI*2;
+    var speed=0.04+Math.random()*0.04;
+    var angle=startAngle;
+    var startDelay=si*60;
+    var raf;
+    setTimeout(function(){
+      function spin(){
+        angle+=speed;
+        var x=Math.cos(angle)*radius-12;
+        var y=Math.sin(angle)*radius-12;
+        el.style.transform="translate("+x+"px,"+y+"px) rotate("+(angle*180/Math.PI)+"deg)";
+        raf=requestAnimationFrame(spin);
+      }
+      spin();
+      setTimeout(function(){
+        cancelAnimationFrame(raf);
+        el.style.transition="opacity .4s";
+        el.style.opacity="0";
+        setTimeout(function(){el.remove();},450);
+      },2400);
+    },startDelay);
+  })(s);}
+
+  // ── 5. פלאשים צבעוניים מרובים ──
+  var flashColors=["rgba(255,60,172,.35)","rgba(255,217,61,.35)","rgba(107,203,119,.3)","rgba(77,150,255,.35)"];
+  flashColors.forEach(function(col,fi){
+    setTimeout(function(){
+      var fl=document.createElement("div");
+      fl.style.cssText="position:fixed;inset:0;z-index:99996;pointer-events:none;background:"+col+";opacity:0;transition:opacity .08s";
+      document.body.appendChild(fl);
+      requestAnimationFrame(function(){
+        fl.style.opacity="1";
+        setTimeout(function(){fl.style.transition="opacity .3s";fl.style.opacity="0";setTimeout(function(){fl.remove();},350);},80);
+      });
+    },fi*180);
+  });
+
+  // ── פינוי כללי ──
+  setTimeout(function(){
+    var o=document.getElementById("partyOverlay");
+    if(o) o.remove();
+  },3500);
+}
 function syncModeBtn(){
   const btn = document.getElementById('darkModeBtn');
   if(!btn) return;
@@ -2284,6 +2494,7 @@ function toggleDark(){
     body.classList.remove('dark');
     body.classList.add('rainbow');
     localStorage.setItem('pina-mode','rainbow');
+    partyExplosion();
   } else {
     // light → dark
     body.classList.add('dark');
@@ -8295,6 +8506,86 @@ function pwaInstall(){
   window._nightLayerStop  = stopNight;
 })();
 // ────────────────────────────────────────────────────────────
+</script>
+
+<!-- 🐦 כפתור מוזיקה — ציפור בתחתית הדף -->
+<div style="position:relative;height:40px">
+  <button id="musicBtn" title="ציוץ ציפורים" onclick="toggleMusic()" style="
+    position:absolute;bottom:10px;left:12px;
+    background:none;border:none;cursor:pointer;
+    font-size:1rem;padding:2px 4px;
+    opacity:0.55;user-select:none;line-height:1;
+    transition:opacity .2s;
+  " aria-label="הפעל מוזיקת ציפורים">🐦<span id="musicIcon" style="font-size:.5rem;vertical-align:middle">▶</span></button>
+</div>
+
+<script>
+(function(){
+  var ctx = null, playing = false, loopTimer = null;
+  var btn = document.getElementById('musicBtn');
+  var icon = document.getElementById('musicIcon');
+
+  function setIcon(){
+    if(icon) icon.textContent = playing ? '⏸' : '▶';
+    if(btn) btn.style.opacity = playing ? '0.85' : '0.55';
+  }
+
+  // ציוץ ציפור סינתטי
+  function chirp(actx, startTime, freq1, freq2, dur, vol){
+    var osc = actx.createOscillator();
+    var gain = actx.createGain();
+    osc.connect(gain);
+    gain.connect(actx.destination);
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(freq1, startTime);
+    osc.frequency.exponentialRampToValueAtTime(freq2, startTime + dur * 0.6);
+    osc.frequency.exponentialRampToValueAtTime(freq1 * 0.95, startTime + dur);
+    gain.gain.setValueAtTime(0, startTime);
+    gain.gain.linearRampToValueAtTime(vol, startTime + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.001, startTime + dur);
+    osc.start(startTime);
+    osc.stop(startTime + dur + 0.01);
+  }
+
+  // רצף ציפורים שמשתנה
+  function playBirdLoop(){
+    if(!playing || !ctx) return;
+    var t = ctx.currentTime;
+    // ציפור ראשונה
+    chirp(ctx, t,       2800, 3400, 0.09, 0.18);
+    chirp(ctx, t+0.11,  3200, 2900, 0.07, 0.14);
+    chirp(ctx, t+0.21,  3000, 3600, 0.09, 0.16);
+    // ציפור שנייה — אחרי הפסקה
+    var gap = 0.9 + Math.random()*0.7;
+    chirp(ctx, t+gap,   1900, 2400, 0.12, 0.12);
+    chirp(ctx, t+gap+0.15, 2300, 2000, 0.10, 0.10);
+    // ציפור שלישית — רחוקה יותר
+    var gap2 = gap + 1.2 + Math.random()*0.8;
+    chirp(ctx, t+gap2,  2100, 2700, 0.08, 0.07);
+    chirp(ctx, t+gap2+0.12, 2600, 2200, 0.08, 0.08);
+
+    var nextIn = (gap2 + 1.5 + Math.random()*1.2) * 1000;
+    loopTimer = setTimeout(playBirdLoop, nextIn);
+  }
+
+  window.toggleMusic = function(){
+    if(!ctx){
+      try { ctx = new (window.AudioContext || window.webkitAudioContext)(); }
+      catch(e){ alert('הדפדפן שלך לא תומך בשמע'); return; }
+    }
+    if(ctx.state === 'suspended') ctx.resume();
+
+    playing = !playing;
+    setIcon();
+    if(playing){
+      playBirdLoop();
+    } else {
+      clearTimeout(loopTimer);
+    }
+  };
+
+  setIcon();
+})();
 </script>
 </body>
 </html>
