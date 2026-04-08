@@ -557,6 +557,24 @@ body.dark .island-header{border-bottom-color:rgba(255,255,255,.1)}
 body.dark .island-title{color:#e0e4f0}
 .island-subtitle{font-size:.85rem;color:#777;font-weight:600;margin-top:.1rem}
 body.dark .island-subtitle{color:#9a9890}
+/* ── מידע עונתי — dark mode ── */
+body.dark #tempGrp summary,
+body.dark #outdoorGrp summary,
+body.dark #fixedGrp summary{background:#2a2e38 !important;color:var(--text) !important}
+body.dark #outdoorGrp details > div,
+body.dark #fixedGrp details > div{background:#232520 !important}
+body.dark #tab-seasonal summary{color:var(--text) !important}
+body.dark #tab-seasonal summary span{color:var(--text) !important}
+body.dark #tab-seasonal details > div{color:var(--text) !important}
+body.dark #tab-seasonal details > div p{color:var(--text) !important}
+body.dark #tab-seasonal details > div strong{color:var(--text) !important}
+body.dark .season-month{background:var(--card) !important}
+body.dark .sm-name{color:var(--text) !important}
+body.dark .sm-fruits{color:var(--muted) !important}
+body.dark #tab-seasonal button[style*="color:#1a6a38"],
+body.dark #tab-seasonal button[style*="color:#8a6000"],
+body.dark #tab-seasonal button[style*="color:#3060a0"]{color:var(--text) !important;background:var(--card) !important;border-color:rgba(255,255,255,.2) !important}
+body.dark #currentSeasonFoods button{background:var(--card) !important;color:var(--text) !important;border-color:rgba(255,255,255,.2) !important}
 .island-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:.9rem}
 /* ── Article Cards ── */
 .insight-card{background:var(--card);border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,.07);overflow:hidden;cursor:pointer;transition:transform .18s,box-shadow .18s;display:flex;flex-direction:column}
@@ -2125,6 +2143,35 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
         </details>
 
       </div>
+    </div>
+  </div>
+
+  <!-- ══ רשימת בדיקה לפני יציאה ══ -->
+  <div style="background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:1.1rem 1.2rem 1.3rem;direction:rtl;margin-bottom:1rem">
+    <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.8rem">
+      <span style="font-size:1.5rem">🚪</span>
+      <div>
+        <div style="font-weight:900;font-size:1.0rem;color:var(--text)">לפני היציאה מפינת החי <button onclick="speakText('לפני היציאה מפינת החי. האם בדקת? לכולם יש אוכל ומים. החלונות סגורים, משאירים פתחי אוורור. כל הכלובים סגורים, למעלה ולמטה. הצבה חזרה לגדרה. קיקו בכלוב והוא סגור כמו שצריך מכל הצדדים. המחשב סגור ומוגן מכרסום. המזגן מכוון לפי העונה. כל האשפה בתוך הפח הגדול. השולחן פנוי ונקי. הרצפה נקייה, הכיסאות מורמים בימי שטיפה. מכבים אורות ונועלים את הדלתות. להתראות!',this)" title="הקרא הכל" style="background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa;padding:0;vertical-align:middle;line-height:1">🔊</button></div>
+        <div style="font-size:.82rem;color:var(--muted);font-weight:700">האם בדקת?</div>
+      </div>
+    </div>
+    <div id="exitChecklist" style="display:grid;gap:.38rem">
+      <label style="display:flex;align-items:center;gap:.7rem;cursor:pointer;padding:.42rem .6rem;border-radius:9px;transition:background .15s" onmouseover="this.style.background='var(--mint)'" onmouseout="this.style.background=''"><input type="checkbox" onchange="exitCheckUpdate()" style="width:1.1rem;height:1.1rem;accent-color:var(--green);flex-shrink:0;cursor:pointer"><span style="font-size:.87rem;color:var(--text)">🥗 לכולם יש אוכל ומים</span></label>
+      <label style="display:flex;align-items:center;gap:.7rem;cursor:pointer;padding:.42rem .6rem;border-radius:9px;transition:background .15s" onmouseover="this.style.background='var(--mint)'" onmouseout="this.style.background=''"><input type="checkbox" onchange="exitCheckUpdate()" style="width:1.1rem;height:1.1rem;accent-color:var(--green);flex-shrink:0;cursor:pointer"><span style="font-size:.87rem;color:var(--text)">🪟 החלונות סגורים <span style="font-size:.77rem;color:var(--muted)">(משאירים פתחי אוורור)</span></span></label>
+      <label style="display:flex;align-items:center;gap:.7rem;cursor:pointer;padding:.42rem .6rem;border-radius:9px;transition:background .15s" onmouseover="this.style.background='var(--mint)'" onmouseout="this.style.background=''"><input type="checkbox" onchange="exitCheckUpdate()" style="width:1.1rem;height:1.1rem;accent-color:var(--green);flex-shrink:0;cursor:pointer"><span style="font-size:.87rem;color:var(--text)">🔒 כל הכלובים סגורים, למעלה ולמטה</span></label>
+      <label style="display:flex;align-items:center;gap:.7rem;cursor:pointer;padding:.42rem .6rem;border-radius:9px;transition:background .15s" onmouseover="this.style.background='var(--mint)'" onmouseout="this.style.background=''"><input type="checkbox" onchange="exitCheckUpdate()" style="width:1.1rem;height:1.1rem;accent-color:var(--green);flex-shrink:0;cursor:pointer"><span style="font-size:.87rem;color:var(--text)">🐢 הצבה חזרה לגדרה</span></label>
+      <label style="display:flex;align-items:center;gap:.7rem;cursor:pointer;padding:.42rem .6rem;border-radius:9px;transition:background .15s" onmouseover="this.style.background='var(--mint)'" onmouseout="this.style.background=''"><input type="checkbox" onchange="exitCheckUpdate()" style="width:1.1rem;height:1.1rem;accent-color:var(--green);flex-shrink:0;cursor:pointer"><span style="font-size:.87rem;color:var(--text)">🦜 קיקו בכלוב וסגור כמו שצריך <span style="font-size:.77rem;color:var(--muted)">(מכל הצדדים!)</span></span></label>
+      <label style="display:flex;align-items:center;gap:.7rem;cursor:pointer;padding:.42rem .6rem;border-radius:9px;transition:background .15s" onmouseover="this.style.background='var(--mint)'" onmouseout="this.style.background=''"><input type="checkbox" onchange="exitCheckUpdate()" style="width:1.1rem;height:1.1rem;accent-color:var(--green);flex-shrink:0;cursor:pointer"><span style="font-size:.87rem;color:var(--text)">💻 המחשב סגור <span style="font-size:.77rem;color:var(--muted)">(ומוגן מכרסום)</span></span></label>
+      <label style="display:flex;align-items:center;gap:.7rem;cursor:pointer;padding:.42rem .6rem;border-radius:9px;transition:background .15s" onmouseover="this.style.background='var(--mint)'" onmouseout="this.style.background=''"><input type="checkbox" onchange="exitCheckUpdate()" style="width:1.1rem;height:1.1rem;accent-color:var(--green);flex-shrink:0;cursor:pointer"><span style="font-size:.87rem;color:var(--text)">❄️ המזגן מכוון לפי העונה</span></label>
+      <label style="display:flex;align-items:center;gap:.7rem;cursor:pointer;padding:.42rem .6rem;border-radius:9px;transition:background .15s" onmouseover="this.style.background='var(--mint)'" onmouseout="this.style.background=''"><input type="checkbox" onchange="exitCheckUpdate()" style="width:1.1rem;height:1.1rem;accent-color:var(--green);flex-shrink:0;cursor:pointer"><span style="font-size:.87rem;color:var(--text)">🗑️ כל האשפה בתוך הפח הגדול</span></label>
+      <label style="display:flex;align-items:center;gap:.7rem;cursor:pointer;padding:.42rem .6rem;border-radius:9px;transition:background .15s" onmouseover="this.style.background='var(--mint)'" onmouseout="this.style.background=''"><input type="checkbox" onchange="exitCheckUpdate()" style="width:1.1rem;height:1.1rem;accent-color:var(--green);flex-shrink:0;cursor:pointer"><span style="font-size:.87rem;color:var(--text)">🧹 השולחן פנוי ונקי</span></label>
+      <label style="display:flex;align-items:center;gap:.7rem;cursor:pointer;padding:.42rem .6rem;border-radius:9px;transition:background .15s" onmouseover="this.style.background='var(--mint)'" onmouseout="this.style.background=''"><input type="checkbox" onchange="exitCheckUpdate()" style="width:1.1rem;height:1.1rem;accent-color:var(--green);flex-shrink:0;cursor:pointer"><span style="font-size:.87rem;color:var(--text)">🪣 הרצפה נקייה <span style="font-size:.77rem;color:var(--muted)">(הכיסאות מורמים בימי שטיפה)</span></span></label>
+    </div>
+    <div id="exitCheckDone" style="display:none;margin-top:.9rem;padding:.6rem 1rem;background:#e8f7ef;border-radius:12px;border-right:3px solid var(--green);font-weight:800;font-size:.92rem;color:#1a6640;direction:rtl">
+      ✅ מעולה! מכבים אורות, נועלים את הדלתות — <span style="font-weight:400">להתראות! 👋</span>
+    </div>
+    <div style="display:flex;justify-content:flex-start;margin-top:.7rem">
+      <button onclick="document.querySelectorAll('#exitChecklist input[type=checkbox]').forEach(c=>c.checked=false);document.getElementById('exitCheckDone').style.display='none'" style="background:none;border:1px solid #ccc;border-radius:50px;padding:.22rem .75rem;font-size:.77rem;color:var(--muted);cursor:pointer;font-family:inherit">↺ איפוס</button>
     </div>
   </div>
 
@@ -4793,6 +4840,20 @@ function speakTabAll(tabId, btn){
   const fn = tabTexts[tabId];
   const text = fn ? fn() : '';
   if(text) speakText(text, btn);
+}
+
+function exitCheckUpdate(){
+  const boxes = document.querySelectorAll('#exitChecklist input[type=checkbox]');
+  const done = document.getElementById('exitCheckDone');
+  if(!done) return;
+  const allChecked = Array.from(boxes).every(b=>b.checked);
+  done.style.display = allChecked ? 'block' : 'none';
+  // cross out checked items
+  boxes.forEach(b=>{
+    const span = b.nextElementSibling;
+    if(span) span.style.textDecoration = b.checked ? 'line-through' : '';
+    if(span) span.style.opacity = b.checked ? '.5' : '1';
+  });
 }
 
 function speakText(text, btn){
