@@ -522,6 +522,25 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
 .fc-expand-bar:hover{background:#2a7ac0}
 .fc-seo{padding:.6rem .95rem .75rem;font-size:.79rem;color:#555;line-height:1.7;border-top:1px solid #eef0f8;background:#fafbff;margin:0;direction:rtl;text-align:right}
 .tab-btn[data-tab="insight"].active{background:#7b5ea7}
+.tab-btn[data-tab="seasonal"].active{background:#2a9a6e}
+
+/* ══ WEATHER WIDGET ══ */
+.weather-card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:1.1rem 1.2rem 1rem;margin-bottom:1.2rem;direction:rtl;position:relative;overflow:hidden}
+.weather-temp{font-size:3rem;font-weight:900;line-height:1}
+.weather-desc{font-size:.92rem;color:var(--muted);font-weight:700;margin-top:.15rem}
+.weather-guidelines{display:grid;gap:.55rem;margin-top:1rem}
+.wg-row{border-radius:12px;padding:.65rem .9rem;font-size:.84rem;line-height:1.6;direction:rtl}
+.wg-animal{font-weight:700;font-size:.88rem}
+
+/* ══ SEASONAL CALENDAR ══ */
+.season-cal{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.75rem;margin-top:.8rem}
+.season-month{border-radius:14px;padding:.7rem .8rem;text-align:center;border:2px solid transparent;cursor:default;transition:transform .15s}
+.season-month.current{transform:scale(1.06);border-color:var(--green)}
+.season-month .sm-name{font-weight:900;font-size:.82rem;margin-bottom:.25rem}
+.season-month .sm-fruits{font-size:.75rem;line-height:1.5;color:var(--muted)}
+.season-month .sm-cur-label{font-size:.65rem;font-weight:700;color:var(--green);margin-top:.2rem}
+body.dark .weather-card{background:var(--card)}
+body.dark .wg-row{background:var(--card) !important}
 /* ══ INSIGHT ISLANDS ══ */
 .insight-islands{display:flex;flex-direction:column;gap:2rem;max-width:860px;margin:0 auto}
 .insight-island{border-radius:20px;padding:1.2rem 1.2rem 1.4rem;direction:rtl}
@@ -720,6 +739,7 @@ body.dark .safety .insight-links{background:#2a1a10;border-right-color:#e08050}
   .tabs{padding:.6rem .7rem .3rem}
   .tab-btn{padding:.4rem .7rem;font-size:.86rem}
   .my-grid{grid-template-columns:repeat(3,1fr)}
+  #tab-seasonal > div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important}
 }
 @keyframes starPulse{0%,100%{transform:scale(1) rotate(0deg);opacity:.5}50%{transform:scale(1.4) rotate(15deg);opacity:1}}
 /* LIGHTBOX */
@@ -947,6 +967,18 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 
 
 
+
+
+<!-- ═══ SEASONAL TOAST — נעלם בלחיצה, לא חוזר עד ביקור הבא ═══ -->
+<div id="seasonalToast" style="display:none;max-width:1000px;margin:.5rem auto .2rem;padding:0 1rem">
+  <div id="seasonalToastInner" style="border-radius:14px;padding:.55rem 1rem;display:flex;align-items:center;gap:.6rem;font-size:.88rem;font-weight:700;box-shadow:0 2px 10px rgba(0,0,0,.08)">
+    <span id="seasonalToastEmoji" style="font-size:1.3rem;cursor:pointer" onclick="openFoodModal(window._seasonalFoodId)"></span>
+    <span id="seasonalToastText" style="flex:1;cursor:pointer" onclick="openFoodModal(window._seasonalFoodId)"></span>
+    <span onclick="switchTab('seasonal')" style="font-size:.72rem;opacity:.6;cursor:pointer;white-space:nowrap;text-decoration:underline dotted">מידע עונתי ←</span>
+    <button onclick="dismissSeasonalToast()" style="background:none;border:none;cursor:pointer;font-size:.9rem;opacity:.4;padding:.1rem .3rem;line-height:1;flex-shrink:0" title="סגור">✕</button>
+  </div>
+</div>
+
 <div class="tabs">
   <button class="tab-btn active" data-tab="quickguide" onclick="switchTab('quickguide')">📝 בקיצור <span onclick="event.stopPropagation();speakText('בקיצור. רשימת קניות מהירה.',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .15rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
   <button class="tab-btn" data-tab="search" onclick="switchTab('search')">🔍 חיפוש מורחב <span onclick="event.stopPropagation();speakText('חיפוש מורחב. מזון, חיה, קטגוריה.',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .15rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
@@ -958,6 +990,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 
   <button class="tab-btn" data-tab="dailymenu" onclick="switchTab('dailymenu')">🥗 תפריט יומי <span onclick="event.stopPropagation();speakText('תפריט יומי. בנה תפריט מותאם לכל חיה לפי מה שקיבלת היום.',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .15rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
   <button class="tab-btn" data-tab="insight" onclick="switchTab('insight')">💡 מבט מעמיק <span onclick="event.stopPropagation();speakText('מבט מעמיק. מאמרים על פינת החי, רגש, תזונה ובטיחות.',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .15rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
+  <button class="tab-btn" data-tab="seasonal" onclick="switchTab('seasonal')">🗓️ מידע עונתי</button>
   <button class="tab-btn" data-tab="deploy" onclick="switchTab('deploy')">✉️ יצירת קשר <span onclick="event.stopPropagation();speakText('יצירת קשר. שאלות, הצעות, או סתם שלום.',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0 0 0 .15rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
 </div>
 
@@ -1032,6 +1065,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
             <span class="qg-chip qg-yes" onclick="openFoodModal('artichoke')" style="cursor:pointer">🌿 ארטישוק <button onclick="event.stopPropagation();speakText('ארטישוק',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('pineapple')" style="cursor:pointer">🍍 אננס 🥗 <button onclick="event.stopPropagation();speakText('אננס',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('raspberry')" style="cursor:pointer">🍒 פטל 🥗 <button onclick="event.stopPropagation();speakText('פטל',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+            <span class="qg-chip qg-lim" onclick="openFoodModal('cherry')" style="cursor:pointer">🍒 דובדבן ⚠️ <button onclick="event.stopPropagation();speakText('דובדבן',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('asparagus')" style="cursor:pointer">🥦 אספרגוס 🥗 <button onclick="event.stopPropagation();speakText('אספרגוס',this)" style="background:none;border:none;cursor:pointer;font-size:.75rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
           </div>
         </div>
@@ -1133,6 +1167,17 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 
 
   </div>
+
+  <!-- ── פירות בעונה (סגיר) ── -->
+  <div id="qgSeasonalStrip" style="margin-top:.9rem;border-radius:14px;overflow:hidden;border:1.5px solid #d0e8d8">
+    <div style="background:linear-gradient(to left,#e8f7ee,#f0faf2);padding:.5rem .85rem;display:flex;align-items:center;gap:.5rem">
+      <span style="font-size:1.1rem">🍓</span>
+      <span style="font-weight:800;font-size:.85rem;color:#1a6a38;flex:1" id="qgSeasonalTitle">פירות בעונה עכשיו</span>
+      <button onclick="document.getElementById('qgSeasonalStrip').style.display='none'" style="background:none;border:none;cursor:pointer;font-size:1rem;color:#777;line-height:1;padding:0 .1rem" title="סגור">✕</button>
+    </div>
+    <div id="qgSeasonalFruits" style="background:#f8fdf9;padding:.5rem .85rem .65rem;display:flex;flex-wrap:wrap;gap:.35rem"></div>
+  </div>
+
 </div>
 
 <div class="tab-panel" id="tab-search">
@@ -1263,7 +1308,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     <button onclick="speakText('מים נקיים תמיד! לכל החיות בפינה, יש לוודא שיש מים טריים ונקיים בכל עת, ללא קשר למזון.',this)" title="הקראה" style="background:#c8e8ff;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.8rem;flex-shrink:0">🔊</button>
   </div>
   <div class="ba-chips" id="baChips"></div>
-  <div id="baResults"><div class="empty"><span class="big">🐾</span>בחרי חיה!</div></div>
+  <div id="baResults"><div class="empty"><span class="big">🐾</span>בחירת חיה!</div></div>
 </div>
 
 <div class="tab-panel" id="tab-mycorner">
@@ -1822,6 +1867,258 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 
     </div><!-- end islands -->
 </div><!-- end tab-insight -->
+
+<div class="tab-panel" id="tab-seasonal">
+  <div class="section-hero"><span class="hero-emoji">🗓️</span><h2>מידע עונתי</h2><p>מזג אוויר, פירות העונה והנחיות טיפול</p></div>
+
+  <!-- ══ שני טורים ראשיים ══ -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.1rem;align-items:start">
+
+    <!-- טור ימין: מזג אוויר + הנחיות לפי טמפרטורה -->
+    <div>
+
+      <!-- כרטיס מזג אוויר קומפקטי -->
+      <div class="weather-card" id="weatherCard" style="margin-bottom:.8rem;padding:.9rem 1rem">
+        <div style="font-size:.7rem;font-weight:700;color:var(--muted);margin-bottom:.5rem">🌡️ באר שבע, עכשיו</div>
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.5rem">
+          <div>
+            <div style="display:flex;align-items:center;gap:.3rem;line-height:1">
+              <span class="weather-temp" id="wTemp" style="font-size:2.2rem;font-weight:900;line-height:1">...</span>
+              <span id="wIcon" style="font-size:1.6rem">⏳</span>
+            </div>
+            <div id="wDesc" style="font-size:.82rem;font-weight:700;color:var(--text);margin-top:.15rem">טוען...</div>
+            <div id="wExtra" style="font-size:.68rem;color:var(--muted);margin-top:.05rem"></div>
+          </div>
+          <div style="flex:1;text-align:right;direction:rtl">
+            <div style="font-size:.65rem;font-weight:700;color:var(--muted);margin-bottom:.2rem">📅 תחזית</div>
+            <div id="wForecast" style="font-size:.76rem;line-height:1.7;color:var(--text)">טוען...</div>
+          </div>
+        </div>
+        <div id="thermometerBar" style="margin-bottom:.6rem"></div>
+        <div id="wWeekendNote" style="display:none;background:#fff8e0;border-radius:8px;border-right:3px solid #f0c030;padding:.4rem .7rem;font-size:.76rem;font-weight:700;color:#7a5500;margin-bottom:.6rem">
+          ⚠️ יום חמישי: לא חוזרים עד יום ראשון! לבצע כל הבדיקות לפני יציאה.
+        </div>
+        <div style="border-top:1.5px dashed #e8ede8;padding-top:.6rem">
+          <div id="wRangeLabel" style="font-weight:800;font-size:.8rem;color:var(--text);margin-bottom:.4rem">📋 הנחיות לפינת החי, היום</div>
+          <div id="wGuidelines">
+            <div style="background:#f5f5f5;border-radius:8px;padding:.5rem .75rem;font-size:.78rem;color:#999">טוען נתוני מזג אוויר...</div>
+          </div>
+        </div>
+        <div id="wUpdated" style="font-size:.6rem;color:var(--muted);margin-top:.4rem;text-align:left"></div>
+      </div>
+
+      <!-- הנחיות לכל טמפרטורה -->
+      <div style="background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:.9rem 1rem 1rem;direction:rtl">
+        <div style="font-weight:800;font-size:.88rem;margin-bottom:.6rem">🌡️ הנחיות לכל טמפרטורה</div>
+        <div style="display:grid;gap:.4rem">
+
+          <details style="border-radius:10px;overflow:hidden">
+            <summary style="cursor:pointer;background:linear-gradient(to left,#c8dfff,#daeeff);padding:.55rem .85rem;font-weight:800;font-size:.82rem;color:#1a3080;list-style:none;display:flex;align-items:center;gap:.4rem;user-select:none">
+              <span>❄️ מתחת ל-15°, קר מאוד</span>
+              <span style="margin-right:auto;font-size:.65rem;opacity:.55">▼</span>
+            </summary>
+            <div style="background:#f4f8ff;padding:.65rem .9rem .5rem;font-size:.8rem;line-height:1.75;direction:rtl;border-radius:0 0 10px 10px">
+              <p>🌡️ <strong>חימום החדר:</strong> להפעיל מזגן על חימום ולכוון ל-22–24°. זהו הטווח ששומר על בריאות כל החיות.</p>
+              <p>🐢 <strong>דונה הצבה הסודנית נשארת בפנים:</strong> אסור להוציאה. לוודא שמנורת החימום פועלת והמתחם מגיע ל-28° לפחות.</p>
+              <p>🦎 <strong>זאוס החרדון המזוקן נשאר בטרריום:</strong> אין להוציאו לשמש. לוודא שמנורות החימום והקרינה פועלות.</p>
+              <p>🦜 <strong>קיקו הג'אקו וקוקטיילים:</strong> לוודא שכל חלונות החדר סגורים היטב. מערכת הנשימה של התוכים רגישה מאוד לשינויי טמפרטורה פתאומיים.</p>
+              <p>🐹 <strong>מכרסמים:</strong> להוסיף קש או נייר גרוס לאוגרים ולשרקנים, כדי שיוכלו לחפור ולהתחממות.</p>
+            </div>
+          </details>
+
+          <details style="border-radius:10px;overflow:hidden">
+            <summary style="cursor:pointer;background:linear-gradient(to left,#c8f0dd,#dafaee);padding:.55rem .85rem;font-weight:800;font-size:.82rem;color:#1a5c35;list-style:none;display:flex;align-items:center;gap:.4rem;user-select:none">
+              <span>🌤️ 15–22°, טמפרטורה מתונה</span>
+              <span style="margin-right:auto;font-size:.65rem;opacity:.55">▼</span>
+            </summary>
+            <div style="background:#f2fcf6;padding:.65rem .9rem .5rem;font-size:.8rem;line-height:1.75;direction:rtl;border-radius:0 0 10px 10px">
+              <p>🐢🦎 <strong>זמן חשיפה לשמש:</strong> הזמן המתאים ביותר להוציא את דונה הצבה ואת זאוס החרדון. קרינת שמש חיונית לעצמות ולשריון. להחזירם פנימה אם מתחילה לנשב רוח קרה.</p>
+              <p>🐹 <strong>ארנבונים וצ'ינצ'ילות:</strong> בטמפרטורות אלו הם מרגישים במיטבם, מלאי אנרגיה וחיוניות.</p>
+              <p>🐢 <strong>תחזוקת מתחם דונה הצבה:</strong> לוודא שמנורת החימום דולקת והאזור המחומם מגיע ל-28° לפחות.</p>
+              <p>🪟 <strong>אוורור זהיר:</strong> ניתן לפתוח חלונות לאוויר נקי, לוודא שכלובי התוכים אינם בנתיב ישיר של הרוח.</p>
+            </div>
+          </details>
+
+          <details style="border-radius:10px;overflow:hidden">
+            <summary style="cursor:pointer;background:linear-gradient(to left,#ffe8a0,#fff8d0);padding:.55rem .85rem;font-weight:800;font-size:.82rem;color:#7a5000;list-style:none;display:flex;align-items:center;gap:.4rem;user-select:none">
+              <span>☀️ 23–27°, מתחיל להיות חם</span>
+              <span style="margin-right:auto;font-size:.65rem;opacity:.55">▼</span>
+            </summary>
+            <div style="background:#fffbf0;padding:.65rem .9rem .5rem;font-size:.8rem;line-height:1.75;direction:rtl;border-radius:0 0 10px 10px">
+              <p>🐢🦎 <strong>יציאה בזהירות:</strong> ניתן להוציא את דונה ואת זאוס, אך חובה לספק אזור מוצל. אסור להשאיר בשמש ישירה ללא השגחה.</p>
+              <p>🐹 <strong>צ'ינצ'ילות וארנבונים:</strong> אם הטמפרטורה בחדר עולה מעל 24°, חובה מזגן על קירור.</p>
+              <p>🪲 <strong>מקלונים ותיקנים:</strong> החום מייבש את האוויר, לרסס יותר מים בטרריום כדי לשמור על לחות.</p>
+              <p>🦜 <strong>קיקו הג'אקו וקוקטיילים:</strong> ניתן להציע קערת מים רדודה להשתכשכות בתוך הכלוב.</p>
+            </div>
+          </details>
+
+          <details style="border-radius:10px;overflow:hidden">
+            <summary style="cursor:pointer;background:linear-gradient(to left,#ffb070,#ffd0a0);padding:.55rem .85rem;font-weight:800;font-size:.82rem;color:#7a1a00;list-style:none;display:flex;align-items:center;gap:.4rem;user-select:none">
+              <span>🔥 מעל 28°, חם מאוד</span>
+              <span style="margin-right:auto;font-size:.65rem;opacity:.55">▼</span>
+            </summary>
+            <div style="background:#fff8f4;padding:.65rem .9rem .5rem;font-size:.8rem;line-height:1.75;direction:rtl;border-radius:0 0 10px 10px">
+              <p>🚫 <strong>איסור יציאה בשעות החמות:</strong> האדמה לוהטת ועלולה לגרום כוויות בבטן. להוציא את דונה ואת זאוס רק בשעות הבוקר המוקדמות ובאזורים מוצלים בלבד.</p>
+              <p>❄️ <strong>מזגן קירור, חובה:</strong> לכוון ל-22–24°. חום גבוה מסוכן מאוד לארנבונים ולצ'ינצ'ילות.</p>
+              <p>💧 <strong>בדיקת מים:</strong> לוודא שכלי המים של כל החיות מלאים ושהמים לא חמים. להחליף אם צריך.</p>
+              <p>🐟 <strong>אקווריום הדגים:</strong> לוודא שהמים בטווח 20–27°. מים חמים מזה מקשים על הדגים לנשום.</p>
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- טור שמאל: עכשיו בעונה + לוח עונתי -->
+    <div>
+      <!-- עכשיו בעונה -->
+      <div style="background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:.9rem 1rem 1rem;margin-bottom:.8rem;direction:rtl">
+        <div style="font-weight:800;font-size:.88rem;margin-bottom:.45rem">🍓 עכשיו בעונה (לחצו לפרטים)</div>
+        <div id="currentSeasonFoods" style="display:flex;flex-wrap:wrap;gap:.4rem"></div>
+      </div>
+
+      <!-- לוח פירות עונתיים -->
+      <div style="background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:.9rem 1rem 1rem;direction:rtl">
+        <div style="font-weight:800;font-size:.88rem;margin-bottom:.15rem">📅 לוח פירות עונתיים</div>
+        <div style="font-size:.72rem;color:var(--muted);margin-bottom:.65rem">לחצו על פרי לפרטים. החודש הנוכחי מסומן בירוק.</div>
+        <div class="season-cal" id="seasonCal"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ כללים ליציאה לחצר + הנחיות קבועות ══ -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.1rem">
+
+    <!-- כללים ליציאה לחצר -->
+    <div style="background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:1rem 1.1rem;direction:rtl">
+      <div style="font-weight:800;font-size:.93rem;margin-bottom:.6rem;color:var(--green)">🌿 כללים ליציאה לחצר</div>
+      <div style="display:grid;gap:.45rem;font-size:.8rem;line-height:1.65">
+
+        <details style="border-radius:9px;overflow:hidden">
+          <summary style="cursor:pointer;background:#f0fff8;border-right:2.5px solid #3aaa6e;padding:.45rem .7rem;list-style:none;display:flex;align-items:center;gap:.4rem;user-select:none;font-weight:700">
+            <span>🏜️ בחירת המשטח לטיול</span>
+            <span style="margin-right:auto;font-size:.65rem;opacity:.5">▼</span>
+          </summary>
+          <div style="background:#f8fffc;padding:.5rem .8rem;border-right:2.5px solid #3aaa6e;font-size:.79rem;line-height:1.7">
+            כשמוציאים את דונה הצבה הסודנית או את זאוס החרדון המזוקן לשמש, יש להעדיף חול נקי או אדמה טבעית. משטחים כמו אספלט, בטון או דשא סינתטי עלולים להתלהט ולגרום לכוויות בבטן שלהם.
+          </div>
+        </details>
+
+        <details style="border-radius:9px;overflow:hidden">
+          <summary style="cursor:pointer;background:#f0fff8;border-right:2.5px solid #3aaa6e;padding:.45rem .7rem;list-style:none;display:flex;align-items:center;gap:.4rem;user-select:none;font-weight:700">
+            <span>🌡️ בדיקת חום המשטח</span>
+            <span style="margin-right:auto;font-size:.65rem;opacity:.5">▼</span>
+          </summary>
+          <div style="background:#f8fffc;padding:.5rem .8rem;border-right:2.5px solid #3aaa6e;font-size:.79rem;line-height:1.7">
+            לפני שמניחים חיה על הקרקע בחוץ, יש להניח עליה את גב היד למשך עשר שניות. אם המשטח חם מדי ליד שלכם, הוא חם ומסוכן מדי גם עבור בעלי החיים.
+          </div>
+        </details>
+
+        <details style="border-radius:9px;overflow:hidden">
+          <summary style="cursor:pointer;background:#f0fff8;border-right:2.5px solid #3aaa6e;padding:.45rem .7rem;list-style:none;display:flex;align-items:center;gap:.4rem;user-select:none;font-weight:700">
+            <span>🌿 אכילת עשבים שוטים</span>
+            <span style="margin-right:auto;font-size:.65rem;opacity:.5">▼</span>
+          </summary>
+          <div style="background:#f8fffc;padding:.5rem .8rem;border-right:2.5px solid #3aaa6e;font-size:.79rem;line-height:1.7">
+            דונה הצבה יכולה לאכול עשבים שוטים שצומחים בחצר, כמו חובזה. חל איסור מוחלט לתת לחיות לאכול דשא סינתטי, משום שבליעת פלסטיק מסוכנת להן מאוד.
+          </div>
+        </details>
+
+      </div>
+    </div>
+
+    <!-- הנחיות קבועות -->
+    <div style="background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:1rem 1.1rem;direction:rtl">
+      <div style="font-weight:800;font-size:.93rem;margin-bottom:.6rem;color:#c09000">📋 הנחיות קבועות</div>
+
+      <div style="display:grid;gap:.4rem;font-size:.8rem;line-height:1.65">
+
+        <details style="border-radius:9px;overflow:hidden">
+          <summary style="cursor:pointer;background:#fff8e0;border-right:2.5px solid #f0c030;padding:.45rem .7rem;list-style:none;display:flex;align-items:center;gap:.4rem;user-select:none;font-weight:700">
+            <span>🥬 שטיפת ירקות</span>
+            <span style="margin-right:auto;font-size:.65rem;opacity:.5">▼</span>
+          </summary>
+          <div style="background:#fffcf0;padding:.5rem .8rem;border-right:2.5px solid #f0c030;font-size:.79rem;line-height:1.7">
+            ירקות כמו חסה או פטרוזיליה הם מזון מצוין, אך חובה לשטוף אותם היטב מלכלוך ומחומרי הדברה לפני ההגשה.
+          </div>
+        </details>
+
+        <details style="border-radius:9px;overflow:hidden">
+          <summary style="cursor:pointer;background:#fff8e0;border-right:2.5px solid #f0c030;padding:.45rem .7rem;list-style:none;display:flex;align-items:center;gap:.4rem;user-select:none;font-weight:700">
+            <span>🗑️ פינוי שאריות מזון</span>
+            <span style="margin-right:auto;font-size:.65rem;opacity:.5">▼</span>
+          </summary>
+          <div style="background:#fffcf0;padding:.5rem .8rem;border-right:2.5px solid #f0c030;font-size:.79rem;line-height:1.7">
+            יש להוציא מהכלובים שאריות של אוכל רטוב או ירקות שלא נאכלו. בתוך חדר סגור האוכל עלול להרקיב במהירות ולמשוך מזיקים.
+          </div>
+        </details>
+
+        <details style="border-radius:9px;overflow:hidden">
+          <summary style="cursor:pointer;background:#fff8e0;border-right:2.5px solid #f0c030;padding:.45rem .7rem;list-style:none;display:flex;align-items:center;gap:.4rem;user-select:none;font-weight:700">
+            <span>🐚 סידן לזוחלים</span>
+            <span style="margin-right:auto;font-size:.65rem;opacity:.5">▼</span>
+          </summary>
+          <div style="background:#fffcf0;padding:.5rem .8rem;border-right:2.5px solid #f0c030;font-size:.79rem;line-height:1.7">
+            כדי שהשריון של דונה הצבה יישאר חזק ובריא, ניתן להוסיף לה סבידה (עצם דיונון) לכרסום במתחם שלה. גם זאוס החרדון המזוקן וסויה השממית המנומרת זקוקים לסידן, ניתן לאבקם עליו את האוכל שלהם או את החרקים שהם אוכלים.
+          </div>
+        </details>
+
+        <details style="border-radius:9px;overflow:hidden">
+          <summary style="cursor:pointer;background:#fff8e0;border-right:2.5px solid #f0c030;padding:.45rem .7rem;list-style:none;display:flex;align-items:center;gap:.4rem;user-select:none;font-weight:700">
+            <span>🦷 שיוף שיניים למכרסמים</span>
+            <span style="margin-right:auto;font-size:.65rem;opacity:.5">▼</span>
+          </summary>
+          <div style="background:#fffcf0;padding:.5rem .8rem;border-right:2.5px solid #f0c030;font-size:.79rem;line-height:1.7">
+            השיניים של הארנבונים והאוגרים צומחות לאורך כל חייהם. יש לספק להם ענפי עץ נקיים כמו ענפי זית ללעיסה, כדי שיוכלו לשייף את שיניהם באופן טבעי.
+          </div>
+        </details>
+
+        <details style="border-radius:9px;overflow:hidden">
+          <summary style="cursor:pointer;background:#fff8e0;border-right:2.5px solid #f0c030;padding:.45rem .7rem;list-style:none;display:flex;align-items:center;gap:.4rem;user-select:none;font-weight:700">
+            <span>🚫 שמירה על אוויר נקי</span>
+            <span style="margin-right:auto;font-size:.65rem;opacity:.5">▼</span>
+          </summary>
+          <div style="background:#fffcf0;padding:.5rem .8rem;border-right:2.5px solid #f0c030;font-size:.79rem;line-height:1.7">
+            הריאות של התוכים והציפורים רגישות מאוד. חל איסור מוחלט להשתמש בחדר בתרסיסי ריח, בשמים או חומרי ניקוי חריפים כמו אקונומיקה. לניקוי משטחים: מים וחומץ בלבד.
+          </div>
+        </details>
+
+        <details style="border-radius:9px;overflow:hidden">
+          <summary style="cursor:pointer;background:#fff8e0;border-right:2.5px solid #f0c030;padding:.45rem .7rem;list-style:none;display:flex;align-items:center;gap:.4rem;user-select:none;font-weight:700">
+            <span>🔇 שמירה על השקט</span>
+            <span style="margin-right:auto;font-size:.65rem;opacity:.5">▼</span>
+          </summary>
+          <div style="background:#fffcf0;padding:.5rem .8rem;border-right:2.5px solid #f0c030;font-size:.79rem;line-height:1.7">
+            חיות בחדר סגור נבהלות בקלות מרעשים חזקים. יש לדבר בלחש ולהימנע מטריקת דלתות או תנועות פתאומיות ליד הכלובים.
+          </div>
+        </details>
+
+        <details style="border-radius:9px;overflow:hidden">
+          <summary style="cursor:pointer;background:#fff8e0;border-right:2.5px solid #f0c030;padding:.45rem .7rem;list-style:none;display:flex;align-items:center;gap:.4rem;user-select:none;font-weight:700">
+            <span>🤲 שטיפת ידיים</span>
+            <span style="margin-right:auto;font-size:.65rem;opacity:.5">▼</span>
+          </summary>
+          <div style="background:#fffcf0;padding:.5rem .8rem;border-right:2.5px solid #f0c030;font-size:.79rem;line-height:1.7">
+            חובה לשטוף ידיים לפני המגע בחיות כדי להגן עליהן מזיהומים, וגם מיד לאחר הטיפול בהן כדי לשמור על הבריאות שלנו.
+          </div>
+        </details>
+
+        <details style="border-radius:9px;overflow:hidden">
+          <summary style="cursor:pointer;background:#fff8e0;border-right:2.5px solid #f0c030;padding:.45rem .7rem;list-style:none;display:flex;align-items:center;gap:.4rem;user-select:none;font-weight:700">
+            <span>💧 בדיקת מים יומיומית</span>
+            <span style="margin-right:auto;font-size:.65rem;opacity:.5">▼</span>
+          </summary>
+          <div style="background:#fffcf0;padding:.5rem .8rem;border-right:2.5px solid #f0c030;font-size:.79rem;line-height:1.7">
+            יש לוודא בכל יום שכלי המים של כל החיות מלאים עד הסוף. אם המים נראים מלוכלכים או מרגישים חמים, יש להחליף אותם במים טריים ונעימים לשתייה.
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </div>
+
+</div>
 
 <div class="tab-panel" id="tab-deploy">
   <div class="section-hero"><span class="hero-emoji">✉️</span><h2>יצירת קשר</h2><p>שאלות, הצעות, או סתם שלום 👋</p><button onclick="speakTabAll('tab-deploy',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.78rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
@@ -3194,7 +3491,7 @@ const DEFAULT_FOODS = [
 {id:'dried_fruit',name:'פירות יבשים',emoji:'🍇',cookStatus:'na',category:'זרעים, גרעינים ואגוזים',aliases:['צימוקים','משמש מיובש','תמרים'],
  why:'פירות יבשים מכילים ריכוז של ויטמינים ומינרלים, אך גם ריכוז גבוה מאוד של סוכר. יש לתת כמות זעירה בלבד ורק מדי פעם. יש לבדוק שאינם מכילים סוכר מוסף, שמן או חומרים משמרים.',
  whyNot:'צימוקים ואשכוליות יבשות - רעילים לכלבים! סוכר גבוה מסוכן לרוב החיות. לא לתת.',
- parts:[{name:'פרי יבש (ללא סוכר מוסף)',rawOk:'lim',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},{name:'צימוקים',rawOk:'no',cookNote:'רעיל לכלבים!',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},{name:'פרי מסוכר',rawOk:'no',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}}],
+ parts:[{name:'פרי יבש (ללא סוכר מוסף)',rawOk:'lim',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},{name:'תאנה מיובשת',rawOk:'lim',cookNote:'⚠️ ייבוש טבעי בלבד, ללא גופרית או סוכר מוסף',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'lim','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'ok','hissingcockroach':'ok'}},{name:'צימוקים',rawOk:'no',cookNote:'רעיל לכלבים!',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},{name:'פרי מסוכר',rawOk:'no',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}}],
  animals:{jacko:{s:'lim',a:'פרוסה אחת',f:'לעיתים נדירות',leopardgecko:{s:'no',rabbit:{s:'no',sharkhan:{s:'no',jacko:{s:'no',beardie:{s:'no',syrianhamster:{s:'no',gerbil:{s:'no',mealworms:{s:'lim',a:'פרוסה אחת',f:'לעיתים',hissingcockroach:{s:'lim',a:'פרוסה אחת',f:'לעיתים',mouse:{s:'no',n:'סוכר מרוכז מדי',rat:{s:'no',n:'סוכר מרוכז',budgie:{s:'no',n:'סוכר מרוכז',hamster_gen:{s:'no',n:'סוכר מרוכז',degu:{s:'no',n:'סוכר מרוכז',iguana:{s:'no',n:'סוכר מרוכז',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'no',n:'סוכר מרוכז',quail:{s:'no',n:'סוכר מרוכז'},hamster_gen:{s:'no',n:'סוכר מרוכז',degu:{s:'no',n:'סוכר מרוכז',iguana:{s:'no',n:'סוכר מרוכז',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},lovebird:{s:'no'},cockatiel:{s:'no'}}}},vietstick:{s:'no'},chinchilla:{s:'no'}},lovebird:{s:'lim',a:'פרוסה אחת',f:'לעיתים נדירות'},sibhamster:{s:'lim',a:'כפית',f:'לעיתים נדירות'},sulcata:{s:'lim',a:'2-3 פרוסות',f:'לעיתים נדירות'},vietstick:{s:'no'},beardie:{s:'lim',a:'פרוסה אחת',f:'לעיתים נדירות'},chinchilla:{s:'no',n:'סוכר גבוה מדי'},leopardgecko:{s:'no',n:'אוכלת חרקים חיים בלבד (זחלי קמח, צרצרים)'},rabbit:{s:'no',n:'סוכר'},syrianhamster:{s:'lim',a:'פרוסה אחת',f:'לעיתים נדירות'},sharkhan:{s:'no'},gerbil:{s:'lim',a:'כפית',f:'לעיתים נדירות'},cockatiel:{s:'lim',a:'פרוסה אחת',f:'לעיתים נדירות'},mealworms:{s:'lim',a:'פרוסה אחת',f:'לעיתים',n:'סוכר גבוה'},hissingcockroach:{s:'no'},fish:{s:'nr'},dog:{s:'no',n:'⚠️ צימוקים - רעל!'},quail:{s:'no',n:'סוכר מרוכז',quail:{s:'no',n:'סוכר מרוכז'},hamster_gen:{s:'no',n:'סוכר מרוכז',degu:{s:'no',n:'סוכר מרוכז',iguana:{s:'no',n:'סוכר מרוכז',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
 
 
@@ -3256,6 +3553,282 @@ const DEFAULT_FOODS = [
    {name:'גבעול',rawOk:'ok',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sulcata':'ok','beardie':'lim','rabbit':'ok','sharkhan':'lim','sibhamster':'no','syrianhamster':'no','gerbil':'no','chinchilla':'no','mealworms':'ok'}},
  ],
  animals:{jacko:{s:'ok',a:'פרוסה אחת',f:'כמה פעמים בשבוע',leopardgecko:{s:'no',rabbit:{s:'lim',a:'2-3 פרוסות',f:'לעיתים',n:'סוכר גבוה',sharkhan:{s:'lim',a:'פרוסה אחת',f:'לעיתים',n:'סוכר גבוה',jacko:{s:'lim',a:'פרוסה אחת',f:'לעיתים',n:'סוכר גבוה',beardie:{s:'lim',a:'פרוסה אחת',f:'לעיתים',n:'סוכר גבוה',syrianhamster:{s:'lim',a:'פרוסה אחת',f:'לעיתים',n:'סוכר גבוה',gerbil:{s:'lim',a:'כפית',f:'לעיתים',n:'סוכר גבוה',mealworms:{s:'ok',a:'פרוסה אחת',f:'לעיתים',hissingcockroach:{s:'ok',a:'פרוסה אחת',f:'לעיתים',mouse:{s:'lim',a:'כפית',f:'לעיתים נדירות',n:'סוכר גבוה',rat:{s:'ok',a:'פרי שלם אחד',f:'לעיתים נדירות',budgie:{s:'lim',a:'פרי שלם אחד',f:'לעיתים נדירות',hamster_gen:{s:'lim',a:'כפית',f:'לעיתים נדירות',degu:{s:'no',n:'סוכר גבוה',iguana:{s:'lim',a:'פרי שלם אחד',f:'לעיתים נדירות',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'lim',a:'פרוסה אחת',f:'לעיתים נדירות',quail:{s:'lim',a:'פרי שלם אחד',f:'לעיתים נדירות'},hamster_gen:{s:'lim',a:'כפית',f:'לעיתים נדירות',degu:{s:'no',n:'סוכר גבוה',iguana:{s:'lim',a:'פרי שלם אחד',f:'לעיתים נדירות',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},lovebird:{s:'lim',a:'פרוסה אחת',f:'לעיתים',n:'סוכר גבוה'},cockatiel:{s:'lim',a:'פרוסה אחת',f:'לעיתים',n:'סוכר גבוה'}}}},vietstick:{s:'no'},sulcata:{s:'lim',a:'2-3 פרוסות',f:'לעיתים נדירות',n:'פחות מ-5% מהתזונה'},chinchilla:{s:'no'},mealworms:{s:'lim',a:'פרוסה אחת',f:'לעיתים'},hissingcockroach:{s:'lim',a:'פרוסה אחת',f:'לעיתים'},sibhamster:{s:'lim',a:'כפית',f:'לעיתים'},syrianhamster:{s:'lim',a:'פרוסה אחת',f:'לעיתים'},gerbil:{s:'lim',a:'כפית',f:'לעיתים'}},lovebird:{s:'ok',a:'פרוסה אחת',f:'כמה פעמים בשבוע'},sibhamster:{s:'lim',a:'כפית',f:'פעם בשבוע'},sulcata:{s:'lim',a:'2-3 פרוסות',f:'פעם בחודש'},vietstick:{s:'no'},beardie:{s:'lim',a:'פרוסה אחת',f:'לעיתים'},chinchilla:{s:'lim',a:'פרוסה אחת',f:'לעיתים'},leopardgecko:{s:'no',n:'אוכלת חרקים חיים בלבד (זחלי קמח, צרצרים)'},rabbit:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע'},syrianhamster:{s:'lim',a:'פרוסה אחת',f:'פעם בשבוע'},sharkhan:{s:'ok',a:'פרוסה אחת',f:'כמה פעמים בשבוע'},gerbil:{s:'lim',a:'כפית',f:'לעיתים'},cockatiel:{s:'ok',a:'פרוסה אחת',f:'כמה פעמים בשבוע'},mealworms:{s:'ok',a:'פרוסה אחת',f:'לעיתים'},hissingcockroach:{s:'ok',a:'פרוסה אחת',f:'כמה פעמים בשבוע'},fish:{s:'nr'},dog:{s:'ok',a:'2-3 פרוסות',f:'לעיתים'},quail:{s:'lim',a:'פרי שלם אחד',f:'לעיתים נדירות',quail:{s:'lim',a:'פרי שלם אחד',f:'לעיתים נדירות'},hamster_gen:{s:'lim',a:'כפית',f:'לעיתים נדירות',degu:{s:'no',n:'סוכר גבוה',iguana:{s:'lim',a:'פרי שלם אחד',f:'לעיתים נדירות',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
+
+
+// ── פירות הדר ──────────────────────────────────────────────────
+{id:'fig',name:'תאנה',emoji:'🍑',cookStatus:'raw',category:'פרי',aliases:['תאנים','תאנה יבשה','תאנה מיובשת'],
+ why:'תאנה מכילה סידן, אשלגן, מגנזיום וסיבים תזונתיים. יחס הסידן-זרחן שלה מצוין לזוחלים. הפרי, הקליפה והזרעים הקטנים בטוחים לאכילה. השרף הלבן (לטקס) שנמצא בענפים ובעלים הטריים רעיל ומגרה — יש להימנע מהם לרוב החיות.',
+ whyNot:'⚠️ ענפים ועלים: השרף הלבן (לטקס) של עץ התאנה מגרה את הפה, העור ומערכת העיכול ועלול להיות רעיל. הפרי עצמו מכיל סוכר גבוה — לתת בכמות מוגבלת בלבד.',
+ parts:[
+   {name:'פרי וזרעים',rawOk:'ok',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'lim','sulcata':'lim','vietstick':'no','beardie':'lim','chinchilla':'no','leopardgecko':'no','rabbit':'lim','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}},
+   {name:'קליפה',rawOk:'ok',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'lim','sulcata':'lim','vietstick':'no','beardie':'lim','chinchilla':'no','leopardgecko':'no','rabbit':'lim','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}},
+   {name:'ענפים ועלים',rawOk:'no',cookNote:'⚠️ שרף לבן (לטקס) — מגרה ועלול להיות רעיל!',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'lim','vietstick':'no','beardie':'lim','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},
+ ],
+ animals:{
+   jacko:{s:'lim',a:'חתיכה אחת קטנה',f:'לעיתים',n:'ללא ענפים ועלים — שרף רעיל'},
+   lovebird:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'ללא ענפים ועלים'},
+   cockatiel:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'ללא ענפים ועלים'},
+   sulcata:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'עלים — כן (ללא שרף). פרי בכמות קטנה בלבד'},
+   beardie:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'יחס סידן-זרחן מצוין'},
+   rabbit:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'עודף סוכר גורם לשלשולים'},
+   sharkhan:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'עודף סוכר גורם לשלשולים'},
+   syrianhamster:{s:'lim',a:'חתיכה בגודל עדשה',f:'פעם בשבוע לכל היותר',n:'סוכר גבוה'},
+   sibhamster:{s:'lim',a:'חתיכה בגודל עדשה',f:'פעם בשבוע לכל היותר',n:'סיביריים רגישים לסוכרת'},
+   gerbil:{s:'lim',a:'חתיכה קטנה מאוד',f:'פעם בשבוע לכל היותר',n:'סוכר גבוה'},
+   chinchilla:{s:'no',n:'מערכת העיכול לא מסוגלת להתמודד עם רמת הסוכר'},
+   vietstick:{s:'no',n:'אוכל עלים ספציפיים בלבד'},
+   leopardgecko:{s:'no',n:'אוכלת חרקים חיים בלבד (זחלי קמח, צרצרים)'},
+   mealworms:{s:'ok',a:'חתיכה קטנה',f:'לעיתים',n:'מקור מצוין לנוזלים'},
+   hissingcockroach:{s:'ok',a:'חתיכה קטנה',f:'לעיתים',n:'מקור מצוין לנוזלים'},
+   dog:{s:'lim',a:'1-2 תאנים',f:'לעיתים',n:'ללא ענפים ועלים'},
+   quail:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'סוכר גבוה'},
+   fish:{s:'nr'}
+ }
+},
+
+{id:'cherry',name:'דובדבן',emoji:'🍒',cookStatus:'raw',category:'פרי',aliases:['דובדבנים','גלעין דובדבן'],
+ why:'דובדבן מכיל ויטמינים ונוגדי חמצון, אך גם סוכר גבוה מאוד. חשוב מאוד: הגלעין, הגבעול והעלים מכילים ציאניד ועלולים לגרום להרעלה קשה ואף למוות. יש להגיש רק את בשר הפרי, ללא גלעין ובלי גבעול.',
+ whyNot:'⚠️ הגלעין, הגבעול והעלים של הדובדבן מכילים ציאניד — רעיל קשה לכל החיות. גם בשר הפרי עצמו הוא "פצצת סוכר" ואסור לחיות הרגישות לסוכרת ולמערכת עיכול עדינה.',
+ parts:[
+   {name:'בשר הפרי בלבד (ללא גלעין)',rawOk:'lim',cookNote:'⚠️ ללא גלעין, ללא גבעול, ללא עלים!',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'lim','beardie':'ok','rabbit':'ok','sharkhan':'ok','syrianhamster':'lim','gerbil':'lim','chinchilla':'lim','mealworms':'lim','hissingcockroach':'lim','vietstick':'no','leopardgecko':'no'}},
+   {name:'גלעין',rawOk:'no',cookNote:'⚠️ מכיל ציאניד — אסור לכל החיות!',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},
+   {name:'גבעול ועלים',rawOk:'no',cookNote:'⚠️ מכיל ציאניד — אסור!',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},
+ ],
+ animals:{jacko:{s:'ok',a:'דובדבן אחד-שניים',f:'לעיתים',n:'ללא גלעין וגבעול!'},lovebird:{s:'ok',a:'דובדבן אחד',f:'לעיתים',n:'ללא גלעין!'},cockatiel:{s:'ok',a:'דובדבן אחד',f:'לעיתים',n:'ללא גלעין!'},rabbit:{s:'ok',a:'דובדבן אחד-שניים',f:'לעיתים',n:'ללא גלעין וגבעול'},sharkhan:{s:'ok',a:'דובדבן אחד',f:'לעיתים',n:'ללא גלעין'},beardie:{s:'ok',a:'דובדבן אחד',f:'לעיתים',n:'ללא גלעין'},sulcata:{s:'lim',a:'חתיכה קטנה',f:'לעיתים נדירות',n:'סוכר גבוה — נדיר בלבד'},syrianhamster:{s:'lim',a:'חתיכה בגודל עדשה',f:'פעם בשבוע לכל היותר',n:'פצצת סוכר — סכנת סוכרת'},sibhamster:{s:'lim',a:'חתיכה בגודל עדשה',f:'פעם בשבוע לכל היותר',n:'סיביריים נוטים לסוכרת — זהירות'},gerbil:{s:'lim',a:'חתיכה קטנה מאוד',f:'פעם בשבוע לכל היותר',n:'סוכר גבוה'},chinchilla:{s:'lim',a:'חתיכה קטנה מאוד',f:'לעיתים נדירות ביותר',n:'מערכת עיכול עדינה — סכנת שלשול. עדיף מיובש ללא סוכר'},mealworms:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'להוציא שאריות תוך שעה-שעתיים — עובש מהיר'},hissingcockroach:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'להוציא שאריות מהר'},vietstick:{s:'no',n:'אוכל עלים ספציפיים בלבד, פרי פוגע במערכת העיכול'},leopardgecko:{s:'no',n:'אוכלת חרקים חיים בלבד (זחלי קמח, צרצרים)'},dog:{s:'ok',a:'כמה דובדבנים',f:'לעיתים',n:'ללא גלעין — סכנת חנק!'},fish:{s:'nr'}}},
+
+
+// ── פירות עונתיים חדשים ──────────────────────────────────────────
+{id:'loquat',name:'שסק',emoji:'🟠',cookStatus:'raw',category:'פרי',aliases:['שסקים'],
+ why:'השסק מעניק זריקת ויטמין A וויטמין C משמעותית עם בוא האביב. הוא חיוני לשמירה על חיוניות הנוצות בציפורים ובריאות הרקמות הריריות, ותורם לחיזוק המערכת החיסונית לאחר החורף.',
+ whyNot:'⚠️ הגלעין מכיל חומרים ציאנוגניים רעילים — אסור לכל החיות. גם הקליפה והבשר מכילים סוכר ויש להגיש בכמות מוגבלת בלבד.',
+ parts:[
+   {name:'פרי וקליפה (ללא גלעין)',rawOk:'lim',cookNote:'⚠️ ללא גלעין בשום אופן!',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'lim','sulcata':'lim','vietstick':'no','beardie':'lim','chinchilla':'no','leopardgecko':'no','rabbit':'lim','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}},
+   {name:'עלים (יבשים או טריים)',rawOk:'lim',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'ok','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'lim','sharkhan':'lim','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},
+   {name:'גלעין',rawOk:'no',cookNote:'⚠️ מכיל חומרים ציאנוגניים — אסור לכולם!',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},
+ ],
+ animals:{
+   jacko:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'ללא גלעין'},
+   lovebird:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'ללא גלעין'},
+   cockatiel:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'ללא גלעין'},
+   rabbit:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'סוכר — בכמות מוגבלת'},
+   sharkhan:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'סוכר — בכמות מוגבלת'},
+   beardie:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'ללא גלעין'},
+   sulcata:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'פוגע בפלורת המעי — בנדירות'},
+   syrianhamster:{s:'lim',a:'חתיכה בגודל עדשה',f:'פעם בשבוע לכל היותר',n:'סוכר'},
+   sibhamster:{s:'lim',a:'חתיכה בגודל עדשה',f:'פעם בשבוע לכל היותר',n:'סיביריים רגישים לסוכרת'},
+   gerbil:{s:'lim',a:'חתיכה קטנה מאוד',f:'לעיתים',n:'סוכר'},
+   vietstick:{s:'ok',a:'עלים בלבד',f:'כל יום',n:'עלים בלבד — הפרי אסור'},
+   chinchilla:{s:'no',n:'עודף סוכר'},
+   leopardgecko:{s:'no',n:'אוכלת חרקים חיים בלבד'},
+   mealworms:{s:'ok',a:'חתיכה קטנה',f:'לעיתים',n:'מקור טוב לנוזלים'},
+   hissingcockroach:{s:'ok',a:'חתיכה קטנה',f:'לעיתים'},
+   quail:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'ללא גלעין'},
+   dog:{s:'ok',a:'2-3 שסקים',f:'לעיתים',n:'ללא גלעין'},
+   fish:{s:'nr'}
+ }
+},
+
+{id:'persimmon',name:'אפרסמון',emoji:'🟠',cookStatus:'raw',category:'פרי',aliases:['אפרסמונים','כאקי'],
+ why:'עשיר בסיבים תזונתיים ובנוגדי חמצון המגנים על התאים. בפינת החי הוא משמש כמקור אנרגיה מתוק בסוף הסתיו, אך מחייב זהירות בגלל רמת הטאנינים בפרי לא בשל.',
+ whyNot:'⚠️ חובה שהפרי יהיה בשל לחלוטין — פרי לא בשל מכיל ריכוז גבוה של טאנינים הגורמים לעצירות חמורה. עלי ראש הפרי אסורים לכולם.',
+ parts:[
+   {name:'פרי וקליפה (בשל בלבד)',rawOk:'lim',cookNote:'⚠️ בשל לחלוטין בלבד — פרי קשה אסור!',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'no','sulcata':'lim','vietstick':'no','beardie':'lim','chinchilla':'no','leopardgecko':'no','rabbit':'lim','sharkhan':'lim','syrianhamster':'no','gerbil':'no','mealworms':'ok','hissingcockroach':'ok'}},
+   {name:'עלים (ראש הפרי)',rawOk:'no',cookNote:'⚠️ אסור לכולם',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},
+ ],
+ animals:{
+   jacko:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'בשל בלבד'},
+   lovebird:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'בשל בלבד'},
+   cockatiel:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'בשל בלבד'},
+   rabbit:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'חשש לעצירות — בנדירות'},
+   sharkhan:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'בשל בלבד'},
+   beardie:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'בשל בלבד'},
+   sulcata:{s:'lim',a:'חתיכה קטנה',f:'לעיתים נדירות',n:'בנדירות בלבד'},
+   syrianhamster:{s:'no',n:'עודף סוכר וטאנינים'},
+   sibhamster:{s:'no',n:'עודף סוכר וטאנינים'},
+   gerbil:{s:'no',n:'עודף סוכר'},
+   chinchilla:{s:'no',n:'מערכת עיכול לא מתאימה'},
+   vietstick:{s:'no',n:'אוכל עלים ספציפיים בלבד'},
+   leopardgecko:{s:'no',n:'אוכלת חרקים חיים בלבד'},
+   mealworms:{s:'ok',a:'חתיכה קטנה',f:'לעיתים'},
+   hissingcockroach:{s:'ok',a:'חתיכה קטנה',f:'לעיתים'},
+   quail:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'בשל בלבד'},
+   dog:{s:'lim',a:'2-3 פרוסות',f:'לעיתים',n:'ללא זרעים, בשל בלבד'},
+   fish:{s:'nr'}
+ }
+},
+
+{id:'lychee',name:'ליצ\'י',emoji:'💖',cookStatus:'raw',category:'פרי',aliases:['ליצ\'י','לוקוסיה'],
+ why:'מספק כמות גבוהה של אשלגן וויטמין C. בפינת החי הוא נחשב לצ\'ופר עסיסי המעודד צריכת נוזלים, אך רמת הסוכר הגבוהה מחייבת הגבלה קפדנית.',
+ whyNot:'⚠️ הגלעין של הליצ\'י רעיל מאוד ואסור בהחלט — יש להסיר לחלוטין לפני ההגשה. גם הקליפה אסורה. רק החלק הלבן הפנימי מותר, ובכמות מוגבלת.',
+ parts:[
+   {name:'פרי (החלק הלבן בלבד)',rawOk:'lim',cookNote:'⚠️ ללא קליפה וללא גלעין — הגלעין רעיל מאוד!',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'lim','sulcata':'no','vietstick':'no','beardie':'lim','chinchilla':'no','leopardgecko':'no','rabbit':'lim','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'lim','hissingcockroach':'lim'}},
+   {name:'קליפה וגלעין',rawOk:'no',cookNote:'⚠️ הגלעין רעיל מאוד — אסור לחלוטין!',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},
+ ],
+ animals:{
+   jacko:{s:'lim',a:'ליצ\'י אחד',f:'לעיתים',n:'ללא קליפה וגלעין'},
+   lovebird:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'ללא קליפה וגלעין'},
+   cockatiel:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'ללא קליפה וגלעין'},
+   rabbit:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'סוכר גבוה'},
+   sharkhan:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'סוכר גבוה'},
+   beardie:{s:'lim',a:'חתיכה קטנה',f:'לעיתים נדירות',n:'סוכר גבוה'},
+   syrianhamster:{s:'lim',a:'חתיכה בגודל עדשה',f:'פעם בשבוע לכל היותר',n:'סוכר גבוה מאוד'},
+   sibhamster:{s:'lim',a:'חתיכה בגודל עדשה',f:'פעם בשבוע לכל היותר',n:'סיביריים רגישים לסוכרת'},
+   gerbil:{s:'lim',a:'חתיכה קטנה מאוד',f:'לעיתים',n:'סוכר גבוה'},
+   sulcata:{s:'no',n:'סוכר גבוה מדי לצב'},
+   chinchilla:{s:'no',n:'מערכת עיכול עדינה, סוכר גבוה מדי'},
+   vietstick:{s:'no',n:'אוכל עלים ספציפיים בלבד'},
+   leopardgecko:{s:'no',n:'אוכלת חרקים חיים בלבד'},
+   mealworms:{s:'lim',a:'חתיכה קטנה',f:'לעיתים'},
+   hissingcockroach:{s:'lim',a:'חתיכה קטנה',f:'לעיתים'},
+   quail:{s:'no',n:'סוכר גבוה מדי לשלו'},
+   dog:{s:'lim',a:'2-3 ליצ\'יים',f:'לעיתים',n:'ללא קליפה וגלעין'},
+   fish:{s:'nr'}
+ }
+},
+
+{id:'sabra',name:'סברס',emoji:'🌵',cookStatus:'raw',category:'פרי',aliases:['צבר','פרי צבר','תפוח קוצני'],
+ why:'מזון טבעי ומצוין לזוחלים בזכות יחס סידן-זרחן מעולה. הוא מסייע בבניית שריון הצבים ועצמות החרדונים ומספק נוזלים וסיבים רבים. חובה לנקות את הקוצים לפני ההגשה.',
+ whyNot:'⚠️ חובה לנקות את הקוצים לחלוטין לפני ההגשה — הם עלולים לפצוע את פה החיה ואת מערכת העיכול. יש להשרות את הפרי במים ולשפשף היטב.',
+ parts:[
+   {name:'פרי וזרעים (נקי מקוצים)',rawOk:'ok',cookNote:'⚠️ חובה להסיר קוצים לפני ההגשה!',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'ok','vietstick':'no','beardie':'ok','chinchilla':'no','leopardgecko':'no','rabbit':'lim','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}},
+   {name:'קליפה (נקייה מקוצים)',rawOk:'ok',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'ok','vietstick':'no','beardie':'ok','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},
+ ],
+ animals:{
+   jacko:{s:'ok',a:'חתיכה קטנה',f:'לעיתים',n:'נקי מקוצים'},
+   lovebird:{s:'ok',a:'חתיכה קטנה',f:'לעיתים',n:'נקי מקוצים'},
+   cockatiel:{s:'ok',a:'חתיכה קטנה',f:'לעיתים',n:'נקי מקוצים'},
+   sulcata:{s:'ok',a:'חתיכה גדולה',f:'מספר פעמים בשבוע',n:'מקור מצוין לסידן ונוזלים — כולל קליפה'},
+   beardie:{s:'ok',a:'חתיכה בינונית',f:'לעיתים',n:'יחס סידן-זרחן מצוין'},
+   rabbit:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'זרעים עלולים לגרום לעצירות'},
+   sharkhan:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'נקי מקוצים'},
+   syrianhamster:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'סוכר — בנדירות'},
+   sibhamster:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'סוכר — בנדירות'},
+   gerbil:{s:'lim',a:'חתיכה קטנה מאוד',f:'לעיתים',n:'נקי מקוצים'},
+   chinchilla:{s:'no',n:'מערכת עיכול לא מתאימה'},
+   vietstick:{s:'no',n:'אוכל עלים ספציפיים בלבד'},
+   leopardgecko:{s:'no',n:'אוכלת חרקים חיים בלבד'},
+   mealworms:{s:'ok',a:'חתיכה קטנה',f:'לעיתים'},
+   hissingcockroach:{s:'ok',a:'חתיכה קטנה',f:'לעיתים'},
+   quail:{s:'ok',a:'חתיכה קטנה',f:'לעיתים',n:'נקי מקוצים'},
+   dog:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'זרעים עלולים לגרום לעצירות'},
+   fish:{s:'nr'}
+ }
+},
+
+{id:'guava',name:'גויאבה',emoji:'🍏',cookStatus:'raw',category:'פרי',aliases:['גויאבות','פסידיום'],
+ why:'מקור יוצא דופן לויטמין C, החיוני במיוחד לשרקנים שאינם יכולים לייצרו בעצמם ועלולים לפתח סקורבוט. הריח החזק מעודד חיות בעלות תיאבון ירוד לאכול, והעלים משמשים כבסיס תזונתי לחרקים.',
+ whyNot:'⚠️ אוגר סיבירי רגיש לסוכר — אסור. שממית מנומרת ודגים אינם אוכלים פרי.',
+ parts:[
+   {name:'פרי וזרעים',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'no','sulcata':'lim','vietstick':'no','beardie':'lim','chinchilla':'lim','leopardgecko':'no','rabbit':'lim','sharkhan':'ok','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}},
+   {name:'עלים',rawOk:'ok',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'ok','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'ok','sharkhan':'ok','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},
+ ],
+ animals:{
+   jacko:{s:'ok',a:'חתיכה בינונית',f:'לעיתים'},
+   lovebird:{s:'ok',a:'חתיכה קטנה',f:'לעיתים'},
+   cockatiel:{s:'ok',a:'חתיכה קטנה',f:'לעיתים'},
+   sharkhan:{s:'ok',a:'חתיכה בינונית',f:'לעיתים',n:'מסייע למניעת סקורבוט — מקור ויטמין C מצוין'},
+   rabbit:{s:'lim',a:'חתיכה קטנה',f:'לעיתים'},
+   sulcata:{s:'lim',a:'חתיכה קטנה',f:'לעיתים'},
+   beardie:{s:'lim',a:'חתיכה קטנה',f:'לעיתים'},
+   syrianhamster:{s:'lim',a:'חתיכה קטנה',f:'לעיתים'},
+   gerbil:{s:'lim',a:'חתיכה קטנה מאוד',f:'לעיתים'},
+   chinchilla:{s:'lim',a:'חתיכה קטנה מאוד',f:'לעיתים נדירות'},
+   vietstick:{s:'ok',a:'עלים בלבד',f:'כל יום',n:'עלים בלבד — מזון מועדף'},
+   sibhamster:{s:'no',n:'רגישות לסוכר'},
+   leopardgecko:{s:'no',n:'אוכלת חרקים חיים בלבד'},
+   mealworms:{s:'ok',a:'חתיכה קטנה',f:'לעיתים'},
+   hissingcockroach:{s:'ok',a:'חתיכה קטנה',f:'לעיתים'},
+   quail:{s:'ok',a:'חתיכה קטנה',f:'לעיתים'},
+   dog:{s:'ok',a:'חתיכה בינונית',f:'לעיתים'},
+   fish:{s:'nr'}
+ }
+},
+
+{id:'blueberry',name:'אוכמניות',emoji:'🫐',cookStatus:'raw',category:'פרי',aliases:['אוכמניה','בלוברי'],
+ why:'נחשבות למזון-על בפינת החי בזכות האנתוציאנינים (נוגדי חמצון). הן תומכות בתפקוד מוחי וקוגניטיבי ומחזקות את כלי הדם, וכל זאת עם השפעה מתונה יחסית על רמת הסוכר.',
+ whyNot:'⚠️ מקלון ויאטנמי ושממית מנומרת אינם אוכלים פרי. דגים אינם מותאמים לפירות.',
+ parts:[
+   {name:'פרי שלם',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'ok','sulcata':'lim','vietstick':'no','beardie':'lim','chinchilla':'ok','leopardgecko':'no','rabbit':'ok','sharkhan':'ok','syrianhamster':'ok','gerbil':'ok','mealworms':'ok','hissingcockroach':'ok'}},
+ ],
+ animals:{
+   jacko:{s:'ok',a:'2-3 אוכמניות',f:'מספר פעמים בשבוע'},
+   lovebird:{s:'ok',a:'1-2 אוכמניות',f:'מספר פעמים בשבוע'},
+   cockatiel:{s:'ok',a:'1-2 אוכמניות',f:'מספר פעמים בשבוע'},
+   rabbit:{s:'ok',a:'2-3 אוכמניות',f:'מספר פעמים בשבוע'},
+   sharkhan:{s:'ok',a:'2-3 אוכמניות',f:'מספר פעמים בשבוע'},
+   syrianhamster:{s:'ok',a:'אוכמנייה אחת',f:'מספר פעמים בשבוע'},
+   sibhamster:{s:'ok',a:'אוכמנייה אחת',f:'מספר פעמים בשבוע'},
+   gerbil:{s:'ok',a:'אוכמנייה אחת',f:'מספר פעמים בשבוע'},
+   chinchilla:{s:'ok',a:'אוכמנייה אחת',f:'מספר פעמים בשבוע'},
+   sulcata:{s:'lim',a:'2-3 אוכמניות',f:'לעיתים',n:'סוכר — בכמות מוגבלת'},
+   beardie:{s:'lim',a:'2-3 אוכמניות',f:'לעיתים'},
+   vietstick:{s:'no',n:'אוכל עלים ספציפיים בלבד'},
+   leopardgecko:{s:'no',n:'אוכלת חרקים חיים בלבד'},
+   mealworms:{s:'ok',a:'חתיכה קטנה',f:'לעיתים'},
+   hissingcockroach:{s:'ok',a:'חתיכה קטנה',f:'לעיתים'},
+   quail:{s:'ok',a:'1-2 אוכמניות',f:'לעיתים'},
+   dog:{s:'ok',a:'קומץ',f:'לעיתים'},
+   fish:{s:'nr'}
+ }
+},
+
+{id:'pomegranate',name:'רימון',emoji:'🍎',cookStatus:'raw',category:'פרי',aliases:['רימונים','גרגרי רימון'],
+ why:'מעבר לערכים התזונתיים של נוגדי החמצון, הרימון הוא כלי העשרה מנטלי ראשון במעלה בפינת החי. הפירוק של הפרי מעסיק את הציפורים והמכרסמים ומפחית שעמום.',
+ whyNot:'⚠️ הקליפה והציפה הלבנה מכילות טאנינים בריכוז רעיל ואסורות לכולם. כלבים — הגרגרים גורמים לבעיות עיכול והקאות.',
+ parts:[
+   {name:'גרגרים (אדומים עם הזרע)',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'lim','vietstick':'no','beardie':'lim','chinchilla':'lim','leopardgecko':'no','rabbit':'lim','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}},
+   {name:'קליפה וציפה לבנה',rawOk:'no',cookNote:'⚠️ טאנינים בריכוז רעיל — אסור לכולם!',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},
+ ],
+ animals:{
+   jacko:{s:'ok',a:'מספר גרגרים',f:'לעיתים'},
+   lovebird:{s:'ok',a:'מספר גרגרים',f:'לעיתים'},
+   cockatiel:{s:'ok',a:'מספר גרגרים',f:'לעיתים'},
+   rabbit:{s:'lim',a:'3-4 גרגרים',f:'לעיתים'},
+   sharkhan:{s:'lim',a:'3-4 גרגרים',f:'לעיתים'},
+   chinchilla:{s:'lim',a:'2-3 גרגרים',f:'לעיתים'},
+   beardie:{s:'lim',a:'מספר גרגרים',f:'לעיתים'},
+   sulcata:{s:'lim',a:'מספר גרגרים',f:'לעיתים'},
+   syrianhamster:{s:'lim',a:'2-3 גרגרים',f:'לעיתים'},
+   sibhamster:{s:'lim',a:'גרגר אחד-שניים',f:'לעיתים'},
+   gerbil:{s:'lim',a:'גרגר אחד-שניים',f:'לעיתים'},
+   vietstick:{s:'no',n:'אוכל עלים ספציפיים בלבד'},
+   leopardgecko:{s:'no',n:'אוכלת חרקים חיים בלבד'},
+   mealworms:{s:'ok',a:'מספר גרגרים',f:'לעיתים'},
+   hissingcockroach:{s:'ok',a:'מספר גרגרים',f:'לעיתים'},
+   quail:{s:'ok',a:'מספר גרגרים',f:'לעיתים'},
+   dog:{s:'no',n:'גורם לבעיות עיכול והקאות'},
+   fish:{s:'nr'}
+ }
+},
+
+{id:'apricot',name:'משמש',emoji:'🍑',cookStatus:'raw',category:'פרי',aliases:['משמשים','אפריקות'],
+ why:'עשיר בבטא-קרוטן (ויטמין A) וברזל. הוא מסייע בשמירה על ראייה תקינה ובריאות העור והפרווה בחיות פינת החי.',
+ whyNot:'⚠️ הגלעין מכיל ציאניד ורעיל מאוד — אסור בהחלט לכל החיות. אוגר סיבירי וצב סודני — אסור גם הפרי עצמו.',
+ parts:[
+   {name:'פרי וקליפה (ללא גלעין)',rawOk:'lim',cookNote:'⚠️ ללא גלעין — מכיל ציאניד!',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'lim','chinchilla':'lim','leopardgecko':'no','rabbit':'lim','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}},
+   {name:'גלעין',rawOk:'no',cookNote:'⚠️ מכיל ציאניד — רעיל מאוד, אסור לכולם!',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},
+ ],
+ animals:{
+   jacko:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'ללא גלעין'},
+   lovebird:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'ללא גלעין'},
+   cockatiel:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'ללא גלעין'},
+   rabbit:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'ללא גלעין'},
+   sharkhan:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'ללא גלעין'},
+   syrianhamster:{s:'lim',a:'חתיכה בגודל עדשה',f:'לעיתים',n:'סוכר'},
+   gerbil:{s:'lim',a:'חתיכה קטנה מאוד',f:'לעיתים',n:'סוכר'},
+   chinchilla:{s:'lim',a:'חתיכה קטנה מאוד',f:'לעיתים נדירות',n:'מערכת עיכול עדינה'},
+   beardie:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'ללא גלעין'},
+   sibhamster:{s:'no',n:'אוגרים סיביריים רגישים מאוד'},
+   sulcata:{s:'no',n:'סוכר גבוה מדי לצב'},
+   vietstick:{s:'no',n:'אוכל עלים ספציפיים בלבד'},
+   leopardgecko:{s:'no',n:'אוכלת חרקים חיים בלבד'},
+   mealworms:{s:'ok',a:'חתיכה קטנה',f:'לעיתים'},
+   hissingcockroach:{s:'ok',a:'חתיכה קטנה',f:'לעיתים'},
+   quail:{s:'ok',a:'חתיכה קטנה',f:'לעיתים',n:'ללא גלעין'},
+   dog:{s:'ok',a:'1-2 משמשים',f:'לעיתים',n:'ללא גלעין'},
+   fish:{s:'nr'}
+ }
+},
 
 
 // ── פירות הדר ──────────────────────────────────────────────────
@@ -4452,6 +5025,10 @@ function switchTab(tabId){
   if(btn) btn.classList.add('active');
   if(panel) panel.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
+  // הצג/הסתר טוסט עונתי בדפים מסוימים
+  if(typeof window._showSeasonalToast === 'function') window._showSeasonalToast(tabId);
+  // טען מזג אוויר בכניסה ללשונית עונתית
+  if(tabId === 'seasonal' && typeof window._triggerWeatherLoad === 'function') window._triggerWeatherLoad();
 }
 
 
@@ -5333,7 +5910,7 @@ function filterAllFoodsTable(val) {
 
 // מיפוי מזונות לקטגוריות החדשות
 const FOOD_CAT_MAP = {
-  fruit:    ['watermelon','pear','pineapple','peach','banana','melon','mango','grapes','pomelo','raspberry','kiwi','clementine','strawberry','orange','apple'],
+  fruit:    ['watermelon','pear','pineapple','peach','banana','melon','mango','grapes','pomelo','raspberry','kiwi','clementine','strawberry','orange','apple','cherry'],
   veg:      ['asparagus','peas','artichoke','sweetpotato','broccoli','carrot','pumpkin','cauliflower','beetroot','tomato','sweet_pepper','radish','zucchini','fennel','potato','brussels_sprouts'],
   greens:   ['lettuce_romaine','cilantro','cabbage','sprouts_alfalfa','sprouts_sunflower','sprouts_mung','mint','celery','babyleaves','parsley','kale','dill','spinach','chard','arugula'],
   wild:     ['hibiscus','rose_leaves','mallow','grapeleaves','mulberry_leaves'],
@@ -5773,66 +6350,80 @@ function startVoiceSearch(targetId, btn) {
 // ============================================================
 
 const DM_FOODS = [
-  {id:'lettuce_romaine', name:'חסה', emoji:'🥬', category:'ירק'},
-  {id:'celery',          name:'סלרי', emoji:'🌱', category:'ירק'},
-  {id:'apple',           name:'תפוח', emoji:'🍎', category:'פרי'},
-  {id:'cucumber',        name:'מלפפון', emoji:'🥒', category:'ירק'},
-  {id:'sweetpotato',     name:'בטטה', emoji:'🍠', category:'ירק'},
-  {id:'sweet_pepper',    name:'פלפל', emoji:'🌶️', category:'ירק'},
-  {id:'carrot',          name:'גזר', emoji:'🥕', category:'ירק'},
-  {id:'broccoli',        name:'ברוקולי', emoji:'🥦', category:'ירק'},
-  {id:'cauliflower',     name:'כרובית', emoji:'🥬', category:'ירק'},
-  {id:'zucchini',        name:'קישוא', emoji:'🥒', category:'ירק'},
-  {id:'peas',            name:'אפונה', emoji:'💚', category:'ירק'},
-  {id:'pumpkin',         name:'דלעת', emoji:'🎃', category:'ירק'},
-  {id:'turnip',          name:'לפת', emoji:'🥬', category:'ירק'},
-  {id:'radish',          name:'צנונית', emoji:'🥬', category:'ירק'},
-  {id:'asparagus',       name:'אספרגוס', emoji:'🥦', category:'ירק'},
-  {id:'mango',           name:'מנגו', emoji:'🥭', category:'פרי'},
-  {id:'watermelon',      name:'אבטיח', emoji:'🍉', category:'פרי'},
-  {id:'melon',           name:'מלון', emoji:'🍈', category:'פרי'},
-  {id:'pear',            name:'אגס', emoji:'🍐', category:'פרי'},
-  {id:'peach',           name:'אפרסק', emoji:'🍑', category:'פרי'},
-  {id:'strawberry',      name:'תות שדה', emoji:'🍓', category:'פרי'},
-  {id:'kiwi',            name:'קיווי', emoji:'🥝', category:'פרי'},
-  {id:'pineapple',       name:'אננס', emoji:'🍍', category:'פרי'},
-  {id:'raspberry',       name:'פטל', emoji:'🍒', category:'פרי'},
-  {id:'grapes',          name:'ענבים', emoji:'🍇', category:'פרי'},
-  {id:'cilantro',        name:'כוסברה', emoji:'🌿', category:'עשב'},
-  {id:'parsley',         name:'פטרוזיליה', emoji:'🌿', category:'עשב'},
-  {id:'dill',            name:'שמיר', emoji:'🌿', category:'עשב'},
-  {id:'mint',            name:'נענע', emoji:'🌿', category:'עשב'},
-  {id:'babyleaves',      name:'עלי בייבי', emoji:'🥬', category:'עשב'},
-  {id:'fennel',          name:'שומר', emoji:'🌱', category:'עשב'},
-  {id:'sprouts_mung',    name:'נבטים סיניים', emoji:'🌱', category:'עשב'},
-  {id:'sprouts_alfalfa', name:'נבטי אלפלפא', emoji:'🌱', category:'עשב'},
-  {id:'sprouts_sunflower',name:'נבטי חמנייה', emoji:'🌻', category:'עשב'},
-  {id:'hibiscus',        name:'היביסקוס', emoji:'🌺', category:'עשב'},
-  {id:'rose_leaves',     name:'ורד - עלים', emoji:'🌹', category:'עשב'},
-  {id:'mallow',          name:'חובזה', emoji:'🌿', category:'עשב'},
-  {id:'mulberry_leaves', name:'עלי תות עץ', emoji:'🍃', category:'עשב'},
-  {id:'grapeleaves',     name:'עלי גפן', emoji:'🍇', category:'עשב'},
-  {id:'kale',            name:'קייל', emoji:'🥬', category:'עשב'},
-  {id:'boiled_egg',      name:'ביצה קשה', emoji:'🥚', category:'אחר'},
-  {id:'pumpkin_seeds',   name:'גרעיני דלעת', emoji:'🎃', category:'אחר'},
-  {id:'sunflower_seeds', name:'גרעיני חמנייה', emoji:'🌻', category:'אחר'},
-  {id:'banana',          name:'בננה', emoji:'🍌', category:'פרי'},
-    {id:'corn',            name:'תירס',           emoji:'🌽', category:'ירק'},
-  {id:'cabbage',         name:'כרוב', emoji:'🥬', category:'ירק'},
-  {id:'beetroot',        name:'סלק', emoji:'🫚', category:'ירק'},
-  {id:'spinach',         name:'תרד', emoji:'🥬', category:'עשב'},
-  {id:'clementine',      name:'קלמנטינה', emoji:'🍊', category:'פרי', separate:true},
-  {id:'pomelo',          name:'פומלה', emoji:'🍈', category:'פרי', separate:true},
-  {id:'tomato',          name:'עגבנייה', emoji:'🍅', category:'ירק', separate:true},
-  {id:'orange',          name:'תפוז',           emoji:'🍊', category:'פרי', separate:true},
+  // ── ירקות ──
+  {id:'lettuce_romaine', name:'חסה',           emoji:'🥬', category:'ירק'},
+  {id:'celery',          name:'סלרי',           emoji:'🌱', category:'ירק'},
+  {id:'cucumber',        name:'מלפפון',         emoji:'🥒', category:'ירק'},
+  {id:'sweetpotato',     name:'בטטה',           emoji:'🍠', category:'ירק'},
+  {id:'sweet_pepper',    name:'פלפל',           emoji:'🌶️', category:'ירק'},
+  {id:'carrot',          name:'גזר',             emoji:'🥕', category:'ירק'},
+  {id:'broccoli',        name:'ברוקולי',         emoji:'🥦', category:'ירק'},
+  {id:'cauliflower',     name:'כרובית',         emoji:'🥬', category:'ירק'},
+  {id:'zucchini',        name:'קישוא',           emoji:'🥒', category:'ירק'},
+  {id:'peas',            name:'אפונה',           emoji:'💚', category:'ירק'},
+  {id:'pumpkin',         name:'דלעת',           emoji:'🎃', category:'ירק'},
+  {id:'turnip',          name:'לפת',             emoji:'🥬', category:'ירק'},
+  {id:'radish',          name:'צנונית',         emoji:'🥬', category:'ירק'},
+  {id:'asparagus',       name:'אספרגוס',         emoji:'🥦', category:'ירק'},
+  {id:'corn',            name:'תירס',           emoji:'🌽', category:'ירק'},
+  {id:'cabbage',         name:'כרוב',           emoji:'🥬', category:'ירק'},
+  {id:'beetroot',        name:'סלק',             emoji:'🫚', category:'ירק'},
   {id:'brussels_sprouts',name:'כרוב ניצנים',   emoji:'🥦', category:'ירק'},
   {id:'artichoke',       name:'ארטישוק',         emoji:'🌿', category:'ירק'},
+  {id:'tomato',          name:'עגבנייה',         emoji:'🍅', category:'ירק', separate:true},
+  // ── פירות ──
+  {id:'apple',           name:'תפוח',           emoji:'🍎', category:'פרי'},
+  {id:'banana',          name:'בננה',           emoji:'🍌', category:'פרי'},
+  {id:'mango',           name:'מנגו',           emoji:'🥭', category:'פרי'},
+  {id:'watermelon',      name:'אבטיח',          emoji:'🍉', category:'פרי'},
+  {id:'melon',           name:'מלון',           emoji:'🍈', category:'פרי'},
+  {id:'pear',            name:'אגס',             emoji:'🍐', category:'פרי'},
+  {id:'peach',           name:'אפרסק',          emoji:'🍑', category:'פרי'},
+  {id:'strawberry',      name:'תות שדה',         emoji:'🍓', category:'פרי'},
+  {id:'blueberry',       name:'אוכמניות',        emoji:'🫐', category:'פרי'},
+  {id:'loquat',          name:'שסק',            emoji:'🟠', category:'פרי'},
+  {id:'apricot',         name:'משמש',           emoji:'🍑', category:'פרי'},
+  {id:'cherry',          name:'דובדבן ⚠️',     emoji:'🍒', category:'פרי'},
+  {id:'lychee',          name:'ליצ\'י',         emoji:'💖', category:'פרי'},
+  {id:'sabra',           name:'סברס',           emoji:'🌵', category:'פרי'},
+  {id:'grapes',          name:'ענבים',          emoji:'🍇', category:'פרי'},
+  {id:'fig',             name:'תאנה',           emoji:'🍑', category:'פרי'},
+  {id:'pomegranate',     name:'רימון',          emoji:'🍎', category:'פרי'},
+  {id:'guava',           name:'גויאבה',         emoji:'🍏', category:'פרי'},
+  {id:'persimmon',       name:'אפרסמון',        emoji:'🟠', category:'פרי'},
+  {id:'kiwi',            name:'קיווי',          emoji:'🥝', category:'פרי'},
+  {id:'pineapple',       name:'אננס',           emoji:'🍍', category:'פרי'},
+  {id:'raspberry',       name:'פטל',             emoji:'🍒', category:'פרי'},
+  {id:'orange',          name:'תפוז',           emoji:'🍊', category:'פרי', separate:true},
+  {id:'clementine',      name:'קלמנטינה',       emoji:'🍊', category:'פרי', separate:true},
+  {id:'pomelo',          name:'פומלה',          emoji:'🍈', category:'פרי', separate:true},
+  // ── עשבים ועלים ──
+  {id:'cilantro',        name:'כוסברה',         emoji:'🌿', category:'עשב'},
+  {id:'parsley',         name:'פטרוזיליה',       emoji:'🌿', category:'עשב'},
+  {id:'dill',            name:'שמיר',           emoji:'🌿', category:'עשב'},
+  {id:'mint',            name:'נענע',           emoji:'🌿', category:'עשב'},
+  {id:'babyleaves',      name:'עלי בייבי',       emoji:'🥬', category:'עשב'},
+  {id:'fennel',          name:'שומר',           emoji:'🌱', category:'עשב'},
+  {id:'spinach',         name:'תרד',             emoji:'🥬', category:'עשב'},
   {id:'chard',           name:'עלי מנגולד',      emoji:'🥬', category:'עשב'},
-  {id:'arugula',         name:'רוקט',            emoji:'🥬', category:'עשב'},
-  {id:'hay',             name:'חציר',              emoji:'🌾', category:'עשב'},
-  {id:'grass',           name:'גזם דשא',         emoji:'🌿', category:'עשב'},
-  {id:'walnuts',         name:'אגוז מלך',        emoji:'🌰', category:'אחר'},
-  {id:'peanuts',         name:'בוטנים',          emoji:'🥜', category:'אחר'},
+  {id:'arugula',         name:'רוקט',           emoji:'🥬', category:'עשב'},
+  {id:'kale',            name:'קייל',           emoji:'🥬', category:'עשב'},
+  {id:'sprouts_mung',    name:'נבטים סיניים',   emoji:'🌱', category:'עשב'},
+  {id:'sprouts_alfalfa', name:'נבטי אלפלפא',   emoji:'🌱', category:'עשב'},
+  {id:'sprouts_sunflower',name:'נבטי חמנייה',  emoji:'🌻', category:'עשב'},
+  {id:'hibiscus',        name:'היביסקוס',       emoji:'🌺', category:'עשב'},
+  {id:'rose_leaves',     name:'ורד - עלים',     emoji:'🌹', category:'עשב'},
+  {id:'mallow',          name:'חובזה',          emoji:'🌿', category:'עשב'},
+  {id:'mulberry_leaves', name:'עלי תות עץ',    emoji:'🍃', category:'עשב'},
+  {id:'grapeleaves',     name:'עלי גפן',        emoji:'🍇', category:'עשב'},
+  {id:'hay',             name:'חציר',           emoji:'🌾', category:'עשב'},
+  {id:'grass',           name:'גזם דשא',        emoji:'🌿', category:'עשב'},
+  // ── אחר ──
+  {id:'boiled_egg',      name:'ביצה קשה',       emoji:'🥚', category:'אחר'},
+  {id:'pumpkin_seeds',   name:'גרעיני דלעת',   emoji:'🎃', category:'אחר'},
+  {id:'sunflower_seeds', name:'גרעיני חמנייה', emoji:'🌻', category:'אחר'},
+  {id:'walnuts',         name:'אגוז מלך',       emoji:'🌰', category:'אחר'},
+  {id:'peanuts',         name:'בוטנים',         emoji:'🥜', category:'אחר'},
 ];
 
 // כמות גסה → יחידות לכל חיה
@@ -8504,6 +9095,419 @@ function pwaInstall(){
 
   window._nightLayerStart = startNight;
   window._nightLayerStop  = stopNight;
+})();
+// ────────────────────────────────────────────────────────────
+</script>
+
+<script>
+// ============================================================
+// 🗓️ SEASONAL SYSTEM — לשונית עונתית + טוסט שניתן לסגור
+// ============================================================
+(function(){
+  const SEASONAL = [
+    { id:'strawberry',  emoji:'🍓', text:'עכשיו עונת תות השדה! מותר לתת לחיות?',  months:[11,0,1,2,3,4],  bg:'#ffeef2', color:'#b02040' },
+    { id:'blueberry',   emoji:'🫐', text:'עכשיו עונת האוכמניות! מותר לתת לחיות?', months:[2,3,4,5,6],     bg:'#f0eeff', color:'#4a2080' },
+    { id:'loquat',      emoji:'🟠', text:'עכשיו עונת השסק! מותר לתת לחיות?',       months:[3,4],           bg:'#fff3e0', color:'#a05000' },
+    { id:'apricot',     emoji:'🍑', text:'עכשיו עונת המשמש! מותר לתת לחיות?',      months:[4,5],           bg:'#ffe8d0', color:'#8a3800' },
+    { id:'cherry',      emoji:'🍒', text:'עונת הדובדבנים! ⚠️ זהירות — הוציאו את הגלעין', months:[4,5],   bg:'#fff0f0', color:'#8b0000' },
+    { id:'peach',       emoji:'🍑', text:'עכשיו עונת האפרסק! מותר לתת לחיות?',     months:[5,6,7],        bg:'#fff4e0', color:'#9a4a00' },
+    { id:'watermelon',  emoji:'🍉', text:'עכשיו עונת האבטיח! מותר לתת לחיות?',     months:[5,6,7],        bg:'#e8fce8', color:'#1a6a1a' },
+    { id:'melon',       emoji:'🍈', text:'עכשיו עונת המלון! מותר לתת לחיות?',      months:[5,6,7],        bg:'#fffbe0', color:'#7a6000' },
+    { id:'mango',       emoji:'🥭', text:'עכשיו עונת המנגו! מותר לתת לחיות?',      months:[6,7],          bg:'#fff3e0', color:'#8a4000' },
+    { id:'lychee',      emoji:'💖', text:'עכשיו עונת הליצ\'י! מותר לתת לחיות?',   months:[6,7],           bg:'#ffe8f0', color:'#a02060' },
+    { id:'sabra',       emoji:'🌵', text:'עכשיו עונת הסברס! מותר לתת לחיות?',      months:[6,7],          bg:'#f0ffe0', color:'#3a7000' },
+    { id:'grapes',      emoji:'🍇', text:'עכשיו עונת הענבים! מותר לתת לחיות?',     months:[6,7,8],        bg:'#f5eeff', color:'#5a2080' },
+    { id:'fig',         emoji:'🍑', text:'עכשיו עונת התאנים! מותר לתת לחיות?',     months:[7,8],          bg:'#fff0e8', color:'#7a3a00' },
+    { id:'pomegranate', emoji:'🍎', text:'עכשיו עונת הרימון! מותר לתת לחיות?',     months:[8,9],          bg:'#ffe8e8', color:'#8b0030' },
+    { id:'guava',       emoji:'🍏', text:'עכשיו עונת הגויאבה! מותר לתת לחיות?',    months:[8,9,10],       bg:'#e8ffe8', color:'#1a5a20' },
+    { id:'persimmon',   emoji:'🟠', text:'עכשיו עונת האפרסמון! מותר לתת לחיות?',   months:[9,10,11],      bg:'#fff0d8', color:'#8a3800' },
+    { id:'orange',      emoji:'🍊', text:'עכשיו עונת התפוזים! מותר לתת לחיות?',    months:[10,11,0,1,2],  bg:'#fff3e0', color:'#8a4000' },
+  ];
+
+  window._SEASONAL_ALL = SEASONAL;
+  const month = new Date().getMonth();
+  const inSeason = SEASONAL.filter(s => s.months.includes(month));
+  window._seasonalInSeason = inSeason;
+  window._seasonalFoodId = inSeason[0]?.id;
+
+  // ── טוסט שניתן לסגור (מופיע רק בדפים מסוימים) ──
+  const TOAST_TABS = ['seasonal'];
+  const DISMISSED_KEY = 'seasonalToastDismissed_v1';
+
+  function shouldShowToast(){
+    if(!inSeason.length) return false;
+    try {
+      const d = sessionStorage.getItem(DISMISSED_KEY);
+      return !d;
+    } catch(e){ return true; }
+  }
+
+  window.dismissSeasonalToast = function(){
+    document.getElementById('seasonalToast').style.display = 'none';
+    try { sessionStorage.setItem(DISMISSED_KEY, '1'); } catch(e){}
+  };
+
+  function applyToastDark(){
+    const inner = document.getElementById('seasonalToastInner');
+    if(!inner || !inSeason[0]) return;
+    const pick = inSeason[0];
+    if(document.body.classList.contains('dark')){
+      inner.style.background = '#252621';
+      inner.style.border = '1.5px solid ' + pick.color + '88';
+    } else {
+      inner.style.background = pick.bg;
+      inner.style.border = '1.5px solid ' + pick.color + '33';
+    }
+  }
+
+  window._showSeasonalToast = function(tabId){
+    const toast = document.getElementById('seasonalToast');
+    if(!toast) return;
+    if(TOAST_TABS.includes(tabId) && shouldShowToast() && inSeason.length){
+      const pick = inSeason[0];
+      document.getElementById('seasonalToastEmoji').textContent = pick.emoji;
+      const textEl = document.getElementById('seasonalToastText');
+      // הצג שם פרי + כפתור פרטים + קישור למידע עונתי
+      textEl.innerHTML = `${pick.emoji} <strong>${pick.text.replace('! מותר לתת לחיות?','').replace('! ⚠️ זהירות — הוציאו את הגלעין','').replace('עכשיו עונת ','').replace('עונת ','').trim()}</strong> בעונה! <span onclick="event.stopPropagation();openFoodModal('${pick.id}')" style="text-decoration:underline;cursor:pointer">מותר לחיות? ←</span>`;
+      textEl.onclick = null; // override the default onclick
+      applyToastDark();
+      toast.style.display = 'block';
+    } else {
+      toast.style.display = 'none';
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const obs = new MutationObserver(applyToastDark);
+    obs.observe(document.body, {attributeFilter:['class']});
+    // הצג בטעינה ראשונה אם בלשונית בקיצור
+    const activeTab = document.querySelector('.tab-btn.active')?.dataset?.tab;
+    if(activeTab) window._showSeasonalToast(activeTab);
+  });
+})();
+// ────────────────────────────────────────────────────────────
+</script>
+
+<script>
+// ============================================================
+// 🌡️ WEATHER + SEASONAL TAB — מזג אוויר ולוח שנה עונתי
+// ============================================================
+(function(){
+
+  // ── הנחיות לפי טמפרטורה ──
+  function getGuidelines(temp){
+    if(temp < 15){
+      return {
+        range: 'מתחת ל-15 מעלות, קר מאוד ❄️',
+        bg: '#e8f0ff', color: '#2030a0',
+        items:[
+          {emoji:'🌡️', text:'<strong>חימום החדר:</strong> חובה להפעיל מזגן על חימום ולכוון ל-22–24°. זהו הטווח ששומר על בריאות כל החיות.'},
+          {emoji:'🐢', text:'<strong>דונה, הצבה הסודנית, נשארת בפנים:</strong> אסור להוציאה החוצה. לוודא שמנורת החימום במתחם פועלת ושמגיעה ל-28° לפחות.'},
+          {emoji:'🦎', text:'<strong>זאוס (חרדון מזוקן), נשאר בטרריום:</strong> אין להוציאו לשמש. לוודא שמנורות החימום והקרינה פועלות בתוך החדר.'},
+          {emoji:'🦜', text:'<strong>קיקו (ג\'אקו) וקוקטיילים, הגנה מרוח:</strong> רגישים מאוד לשינויי טמפרטורה. לוודא שכל חלונות החדר סגורים היטב.'},
+          {emoji:'🐹', text:'<strong>מכרסמים, תוספת מצע:</strong> זמן מתאים להוסיף קש או נייר גרוס לאוגרים ולשרקנים, כדי שיוכלו לחפור ולהתכרבל.'},
+        ]
+      };
+    } else if(temp <= 22){
+      return {
+        range: '15–22 מעלות, טמפרטורה מתונה 🌤️',
+        bg: '#e8fff5', color: '#1a6a40',
+        items:[
+          {emoji:'🐢', text:'<strong>דונה וזאוס, זמן חשיפה לשמש:</strong> זהו הזמן המתאים ביותר! קרינת שמש חיונית לעצמות ושריון. להחזירם אם מתחילה לנשב רוח קרה.'},
+          {emoji:'🐹', text:'<strong>ארנבונים וצ\'ינצ\'ילות:</strong> בטמפרטורות אלו הם מרגישים במיטבם, מלאי אנרגיה וחיוניות.'},
+          {emoji:'🌡️', text:'<strong>תחזוקת מתחם הצבה:</strong> לוודא שמנורת החימום דולקת ושהאזור המחומם מגיע ל-28° לפחות.'},
+          {emoji:'🪟', text:'<strong>אוורור זהיר:</strong> ניתן לפתוח חלונות לאוויר נקי, לוודא שכלובי התוכים אינם בנתיב ישיר של הרוח.'},
+        ]
+      };
+    } else if(temp <= 27){
+      return {
+        range: '23–27 מעלות, מתחיל להיות חם 🌤️',
+        bg: '#fffce0', color: '#7a6000',
+        items:[
+          {emoji:'🐢', text:'<strong>דונה וזאוס, יציאה בזהירות:</strong> ניתן להוציאם, אך חובה לספק אזור מוצל. אין להשאיר בשמש ישירה ללא השגחה.'},
+          {emoji:'🐹', text:'<strong>צ\'ינצ\'ילות וארנבונים:</strong> אם הטמפרטורה בחדר עולה מעל 24°, חובה מזגן על קירור.'},
+          {emoji:'🪲', text:'<strong>מקלוניים ותיקנים:</strong> החום מייבש את האוויר, לרסס יותר מים בטרריום כדי לשמור על לחות.'},
+          {emoji:'🦜', text:'<strong>קיקו וקוקטיילים:</strong> ניתן להציע קערת מים רדודה להשתכשכות בתוך הכלוב.'},
+        ]
+      };
+    } else if(temp <= 40){
+      return {
+        range: 'מעל 28 מעלות, חם מאוד 🔥',
+        bg: '#fff0e0', color: '#9a3000',
+        items:[
+          {emoji:'🚫', text:'<strong>איסור יציאה בשעות החמות:</strong> אין להוציא חרדון וצבה כשהטמפרטורה גבוהה, האדמה לוהטת ועלולה לגרום כוויות בבטן. יציאה רק בשעות הבוקר המוקדמות ובאזורים מוצלים.'},
+          {emoji:'❄️', text:'<strong>מזגן חובה:</strong> המזגן חייב לפעול ולהיות מכוון ל-22–24°. חום גבוה מסוכן מאוד לארנבונים ולצ\'ינצ\'ילות.'},
+          {emoji:'💧', text:'<strong>בדיקת מים:</strong> לוודא שכלי המים מלאים עד הסוף ושהמים לא חמים. להחליף אם צריך.'},
+          {emoji:'🐟', text:'<strong>אקווריום הדגים:</strong> לוודא שמים בטווח 20–27°. מים חמים מזה מקשים על הדגים לנשום.'},
+        ]
+      };
+    } else {
+      return {
+        range: 'מעל 35 מעלות, חום קיצוני 🚨',
+        bg: '#fde8e8', color: '#b02020',
+        items:[
+          {emoji:'🚨', text:'<strong>מצב חירום ליונקים:</strong> כל המכרסמים והארנבונים, חדר ממוזג בלבד. חשיפה ללא מיזוג עלולה להיות קטלנית!'},
+          {emoji:'🦜', text:'<strong>קיקו ותוכיים:</strong> לעקוב אחרי כנפיים פרושות או מקור פתוח, סימני מצוקה. ניתן להתיז רסיסי מים בעדינות.'},
+          {emoji:'🐢', text:'<strong>דונה, זאוס וסויה:</strong> אמבטיית מים רדודה לטבילה. חובה אזור קריר ומוצל בתוך הטרריום/מתחם.'},
+          {emoji:'🌡️', text:'<strong>מזגן על 22–24°, ללא פשרות.</strong> לבדוק מים לכל החיות כמה פעמים ביום.'},
+        ]
+      };
+    }
+  }
+
+  // ── מדחום חזותי ──
+  function buildThermometer(temp){
+    const wrap = document.getElementById('thermometerBar');
+    if(!wrap) return;
+    const totalRange = 47; // -5 to 42
+    const clampedTemp = Math.max(-5, Math.min(temp ?? 22, 42));
+    const pct = ((clampedTemp + 5) / totalRange * 100).toFixed(1);
+
+    // גרדיאנט חלק מכחול לאדום
+    let html = `
+    <div style="position:relative;height:44px;border-radius:22px;overflow:visible;direction:ltr;margin:.3rem 0">
+      <!-- בסיס גרדיאנט -->
+      <div style="position:absolute;inset:0;border-radius:22px;background:linear-gradient(to right,
+        #3388ff 0%,
+        #44cc88 35%,
+        #ffcc22 55%,
+        #ff7733 72%,
+        #dd2200 100%
+      );opacity:.88;box-shadow:0 2px 10px rgba(0,0,0,.15)"></div>
+
+      <!-- תוויות טמפרטורה -->
+      <div style="position:absolute;inset:0;display:flex;align-items:center;direction:ltr;padding:0 .6rem;pointer-events:none">
+        <span style="font-size:.6rem;font-weight:800;color:rgba(255,255,255,.9);flex:20">❄️ &lt;15°</span>
+        <span style="font-size:.6rem;font-weight:800;color:rgba(255,255,255,.9);flex:7;text-align:center">🌤️ 15–22°</span>
+        <span style="font-size:.6rem;font-weight:800;color:rgba(255,255,255,.9);flex:5;text-align:center">☀️ 23–27°</span>
+        <span style="font-size:.6rem;font-weight:800;color:rgba(255,255,255,.9);flex:15;text-align:left">🔥 &gt;28°</span>
+      </div>
+
+      <!-- חץ הטמפרטורה -->
+      ${temp !== undefined ? `
+      <div style="position:absolute;top:-6px;bottom:-6px;left:${pct}%;transform:translateX(-50%);width:4px;background:#111;border-radius:2px;z-index:2;box-shadow:0 0 6px rgba(0,0,0,.4)"></div>
+      <div style="position:absolute;top:50%;transform:translate(-50%,-50%);left:${pct}%;background:#111;color:#fff;border-radius:50px;padding:.1rem .45rem;font-size:.78rem;font-weight:900;white-space:nowrap;z-index:3;box-shadow:0 2px 8px rgba(0,0,0,.35)">${temp}°</div>
+      ` : ''}
+    </div>`;
+
+    wrap.innerHTML = html;
+  }
+  function weatherIcon(code){
+    if(code>=200&&code<300) return '⛈️';
+    if(code>=300&&code<400) return '🌦️';
+    if(code>=500&&code<600) return '🌧️';
+    if(code>=600&&code<700) return '❄️';
+    if(code>=700&&code<800) return '🌫️';
+    if(code===800) return '☀️';
+    if(code===801) return '🌤️';
+    if(code===802) return '⛅';
+    if(code>=803) return '☁️';
+    return '🌡️';
+  }
+
+  async function loadWeather(){
+    const card = document.getElementById('weatherCard');
+    if(!card) return;
+
+    function applyWeatherData(temp, minT, maxT, desc, icon){
+      document.getElementById('wTemp').textContent = temp + '°';
+      document.getElementById('wIcon').textContent = icon;
+      document.getElementById('wDesc').textContent = desc;
+      document.getElementById('wExtra').textContent = 'מינימום ' + minT + '° / מקסימום ' + maxT + '°';
+      const dayName = ['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'][new Date().getDay()];
+      document.getElementById('wForecast').innerHTML =
+        '<strong>היום (' + dayName + '):</strong> ' + minT + '°–' + maxT + '°';
+      buildThermometer(temp);
+      const g = getGuidelines(maxT);
+      const rangeLabel = document.getElementById('wRangeLabel');
+      if(rangeLabel) rangeLabel.textContent = '📋 הנחיות להיום, ' + g.range;
+      document.getElementById('wGuidelines').innerHTML = g.items.map(item=>
+        '<div style="background:#fafbff;border-radius:8px;padding:.4rem .7rem;display:flex;gap:.5rem;align-items:flex-start;font-size:.78rem;line-height:1.55">' +
+        '<span style="font-size:1rem;flex-shrink:0">' + item.emoji + '</span>' +
+        '<span>' + item.text + '</span></div>'
+      ).join('');
+      if(new Date().getDay() === 4){
+        document.getElementById('wWeekendNote').style.display = 'block';
+      }
+      document.getElementById('wUpdated').textContent = 'עודכן: ' + new Date().toLocaleTimeString('he-IL', {hour:'2-digit',minute:'2-digit'});
+    }
+
+    function showWeatherError(){
+      document.getElementById('wTemp').textContent = '?';
+      document.getElementById('wDesc').textContent = 'לא ניתן לטעון';
+      document.getElementById('wIcon').textContent = '🌡️';
+      document.getElementById('wForecast').textContent = '';
+      buildThermometer(undefined);
+      const g = getGuidelines(26);
+      const rangeLabel = document.getElementById('wRangeLabel');
+      if(rangeLabel) rangeLabel.textContent = '📋 הנחיות לעונה הנוכחית';
+      document.getElementById('wGuidelines').innerHTML =
+        '<div style="background:#fff8e0;border-radius:8px;padding:.4rem .7rem;font-size:.76rem;color:#7a5500;margin-bottom:.35rem">⚠️ לא ניתן לטעון נתוני מזג אוויר.</div>' +
+        g.items.map(i=>'<div style="background:#fafbff;border-radius:8px;padding:.4rem .7rem;display:flex;gap:.5rem;font-size:.78rem"><span>' + i.emoji + '</span><span>' + i.text + '</span></div>').join('');
+    }
+
+    // ניסיון ראשון: Open-Meteo
+    try {
+      const url = 'https://api.open-meteo.com/v1/forecast?latitude=31.252&longitude=34.791&hourly=temperature_2m,weather_code&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=Asia%2FJerusalem&forecast_days=1';
+      const controller = new AbortController();
+      const timeout = setTimeout(()=>controller.abort(), 5000);
+      const res = await fetch(url, {signal: controller.signal});
+      clearTimeout(timeout);
+      if(!res.ok) throw new Error('HTTP ' + res.status);
+      const d = await res.json();
+      const nowH = new Date().getHours();
+      const hourlyCode = d.hourly.weather_code || d.hourly.weathercode;
+      const temp = Math.round(d.hourly.temperature_2m[nowH]);
+      const code = hourlyCode ? hourlyCode[nowH] : 0;
+      const maxT = Math.round(d.daily.temperature_2m_max[0]);
+      const minT = Math.round(d.daily.temperature_2m_min[0]);
+      const descs = {0:'שמיים בהירים',1:'בהיר בעיקר',2:'מעונן חלקית',3:'מעונן',45:'ערפל',51:'ממטר קל',61:'גשם',80:'מקלחות גשם',95:'סופת רעמים',96:'ברד'};
+      const roundCode = code <= 3 ? code : Math.round(code/10)*10;
+      const desc = descs[roundCode] || descs[code] || '';
+      const icon = weatherIcon(code);
+      applyWeatherData(temp, minT, maxT, desc, icon);
+      return;
+    } catch(e){ console.warn('Open-Meteo failed, trying backup:', e); }
+
+    // ניסיון שני: wttr.in (CORS-free JSON)
+    try {
+      const url2 = 'https://wttr.in/Beer+Sheva?format=j1';
+      const controller2 = new AbortController();
+      const timeout2 = setTimeout(()=>controller2.abort(), 5000);
+      const res2 = await fetch(url2, {signal: controller2.signal});
+      clearTimeout(timeout2);
+      if(!res2.ok) throw new Error('HTTP ' + res2.status);
+      const d2 = await res2.json();
+      const cur = d2.current_condition[0];
+      const today = d2.weather[0];
+      const temp = parseInt(cur.temp_C);
+      const maxT = parseInt(today.maxtempC);
+      const minT = parseInt(today.mintempC);
+      const wCode = parseInt(cur.weatherCode);
+      // wttr weather codes → עברית
+      const wttrDesc = (c)=>{
+        if(c===113) return 'שמיים בהירים';
+        if(c===116) return 'מעונן חלקית';
+        if(c===119||c===122) return 'מעונן';
+        if(c===143||c===248||c===260) return 'ערפל';
+        if(c>=176&&c<=185) return 'ממטר קל';
+        if(c>=200&&c<=230) return 'גשם';
+        if(c>=263&&c<=296) return 'גשם';
+        if(c>=302&&c<=314) return 'גשם חזק';
+        if(c>=320&&c<=377) return 'שלג';
+        if(c>=386&&c<=395) return 'סופת רעמים';
+        return '';
+      };
+      const wttrIcon = (c)=>{
+        if(c===113) return '☀️';
+        if(c===116) return '🌤️';
+        if(c===119||c===122) return '☁️';
+        if(c>=143&&c<=260) return '🌫️';
+        if(c>=176&&c<=296) return '🌧️';
+        if(c>=302&&c<=395) return '⛈️';
+        return '🌡️';
+      };
+      applyWeatherData(temp, minT, maxT, wttrDesc(wCode), wttrIcon(wCode));
+      return;
+    } catch(e){ console.warn('wttr.in also failed:', e); }
+
+    showWeatherError();
+  }
+
+  // ── לוח שנה עונתי ──
+  const SEASON_DATA = [
+    { m:0,  name:'ינואר',   items:[{label:'🍓 תות שדה',id:'strawberry'},{label:'🍊 תפוז',id:'orange'},{label:'🍊 קלמנטינה',id:'clementine'}] },
+    { m:1,  name:'פברואר',  items:[{label:'🍓 תות שדה',id:'strawberry'},{label:'🍊 תפוז',id:'orange'},{label:'🍊 קלמנטינה',id:'clementine'}] },
+    { m:2,  name:'מרץ',     items:[{label:'🍓 תות שדה',id:'strawberry'},{label:'🫐 אוכמניות',id:'blueberry'}] },
+    { m:3,  name:'אפריל',   items:[{label:'🍓 תות שדה',id:'strawberry'},{label:'🟠 שסק',id:'loquat'},{label:'🫐 אוכמניות',id:'blueberry'}] },
+    { m:4,  name:'מאי',     items:[{label:'🍓 תות שדה',id:'strawberry'},{label:'🍒 דובדבן',id:'cherry'},{label:'🟠 שסק',id:'loquat'},{label:'🍑 משמש',id:'apricot'},{label:'🫐 אוכמניות',id:'blueberry'}] },
+    { m:5,  name:'יוני',    items:[{label:'🍒 דובדבן',id:'cherry'},{label:'🍑 אפרסק',id:'peach'},{label:'🍉 אבטיח',id:'watermelon'},{label:'🍈 מלון',id:'melon'},{label:'🍑 משמש',id:'apricot'},{label:'🫐 אוכמניות',id:'blueberry'}] },
+    { m:6,  name:'יולי',    items:[{label:'🍑 אפרסק',id:'peach'},{label:'🍉 אבטיח',id:'watermelon'},{label:'🍈 מלון',id:'melon'},{label:'🥭 מנגו',id:'mango'},{label:'🍇 ענבים',id:'grapes'},{label:'💖 ליצ\'י',id:'lychee'},{label:'🌵 סברס',id:'sabra'},{label:'🫐 אוכמניות',id:'blueberry'}] },
+    { m:7,  name:'אוגוסט',  items:[{label:'🍉 אבטיח',id:'watermelon'},{label:'🥭 מנגו',id:'mango'},{label:'🍇 ענבים',id:'grapes'},{label:'תאנה',id:'fig'},{label:'💖 ליצ\'י',id:'lychee'},{label:'🌵 סברס',id:'sabra'}] },
+    { m:8,  name:'ספטמבר',  items:[{label:'🍇 ענבים',id:'grapes'},{label:'תאנה',id:'fig'},{label:'🍎 רימון',id:'pomegranate'},{label:'🍏 גויאבה',id:'guava'}] },
+    { m:9,  name:'אוקטובר', items:[{label:'🍎 רימון',id:'pomegranate'},{label:'🟠 אפרסמון',id:'persimmon'},{label:'🍏 גויאבה',id:'guava'}] },
+    { m:10, name:'נובמבר',  items:[{label:'🍊 תפוז',id:'orange'},{label:'🍊 קלמנטינה',id:'clementine'},{label:'🟠 אפרסמון',id:'persimmon'},{label:'🍏 גויאבה',id:'guava'}] },
+    { m:11, name:'דצמבר',   items:[{label:'🍓 תות שדה',id:'strawberry'},{label:'🍊 תפוז',id:'orange'},{label:'🍊 קלמנטינה',id:'clementine'},{label:'🟠 אפרסמון',id:'persimmon'}] },
+  ];
+
+  const MONTH_COLORS = [
+    '#fff0f8','#ffe8f0','#fff0e8','#fff8e0','#f8ffe0','#e8ffe8',
+    '#e8fff8','#e8f8ff','#f0e8ff','#ffe8e8','#fff0e0','#e8f0ff'
+  ];
+
+  function buildSeasonalCalendar(){
+    const cal = document.getElementById('seasonCal');
+    if(!cal) return;
+    const currentM = new Date().getMonth();
+    cal.innerHTML = SEASON_DATA.map(({m,name,items})=>{
+      const isCurrent = m === currentM;
+      const fruitsHtml = items.map(item=>
+        item.id
+          ? `<span onclick="if(typeof FOODS!=='undefined'&&FOODS.find(f=>f.id==='${item.id}')){openFoodModal('${item.id}')}else{alert('דף מזון זה טרם נוצר')}" style="cursor:pointer;text-decoration:underline dotted;color:inherit">${item.label}</span>`
+          : `<span>${item.label}</span>`
+      ).join('<br>');
+      return `<div class="season-month" style="background:${MONTH_COLORS[m]};${isCurrent?'box-shadow:0 0 0 2.5px #3aaa6e':''}">
+        <div class="sm-name">${name}</div>
+        <div class="sm-fruits">${fruitsHtml}</div>
+        ${isCurrent?'<div class="sm-cur-label">← עכשיו</div>':''}
+      </div>`;
+    }).join('');
+  }
+
+  // ── פירות עכשיו בעונה ──
+  function buildCurrentSeasonFoods(){
+    const el = document.getElementById('currentSeasonFoods');
+    if(!el || !window._SEASONAL_ALL) return;
+    const month = new Date().getMonth();
+    const inSeason = window._SEASONAL_ALL.filter(s=>s.months.includes(month));
+    if(!inSeason.length){
+      el.innerHTML = '<div style="color:var(--muted);font-size:.85rem">אין פירות עונתיים מיוחדים עכשיו.</div>';
+      return;
+    }
+    el.innerHTML = inSeason.map(s=>
+      `<button onclick="openFoodModal('${s.id}')" style="background:${s.bg};color:${s.color};border:1.5px solid ${s.color}33;border-radius:50px;padding:.4rem .9rem;font-size:.88rem;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:.35rem">
+        <span>${s.emoji}</span> ${s.text.replace('! מותר לתת לחיות?','').replace('! ⚠️ זהירות — הוציאו את הגלעין','').replace('עכשיו עונת ','').replace('עונת ','').trim()}
+        <span style="font-size:.72rem;opacity:.7">← פרטים</span>
+      </button>`
+    ).join('');
+  }
+
+  // ── הפעלת פס פירות בעונה ב-quickguide ──
+  function buildQgSeasonalStrip(){
+    const strip = document.getElementById('qgSeasonalStrip');
+    const fruitsEl = document.getElementById('qgSeasonalFruits');
+    const titleEl = document.getElementById('qgSeasonalTitle');
+    if(!strip || !fruitsEl || !window._SEASONAL_ALL) return;
+    const month = new Date().getMonth();
+    const inSeason = window._SEASONAL_ALL.filter(s=>s.months.includes(month));
+    if(!inSeason.length){ strip.style.display='none'; return; }
+    if(titleEl) titleEl.textContent = 'פירות בעונה עכשיו (' + new Date().toLocaleDateString('he-IL',{month:'long'}) + ')';
+    fruitsEl.innerHTML = inSeason.map(s=>
+      `<button onclick="openFoodModal('${s.id}')" style="background:${s.bg};color:${s.color};border:1.5px solid ${s.color}33;border-radius:50px;padding:.3rem .8rem;font-size:.84rem;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:.3rem">
+        <span>${s.emoji}</span>
+        <span>${s.text.replace('! מותר לתת לחיות?','').replace('! ⚠️ זהירות — הוציאו את הגלעין','').replace('עכשיו עונת ','').replace('עונת ','').trim()}</span>
+        <span style="font-size:.7rem;opacity:.65">← פרטים</span>
+      </button>`
+    ).join('');
+  }
+
+  // ── הפעלה ──
+  document.addEventListener('DOMContentLoaded', ()=>{
+    buildSeasonalCalendar();
+    buildCurrentSeasonFoods();
+    // ממתינים מעט כדי ש-_SEASONAL_ALL יהיה זמין
+    setTimeout(buildQgSeasonalStrip, 100);
+  });
+
+  // טוען מזג אוויר כשנכנסים ללשונית
+  window._loadWeatherOnce = false;
+  window._triggerWeatherLoad = function(){
+    if(!window._loadWeatherOnce){
+      window._loadWeatherOnce = true;
+      loadWeather();
+    }
+  };
+
 })();
 // ────────────────────────────────────────────────────────────
 </script>
