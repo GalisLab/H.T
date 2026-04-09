@@ -557,7 +557,13 @@ body.dark .island-header{border-bottom-color:rgba(255,255,255,.1)}
 body.dark .island-title{color:#e0e4f0}
 .island-subtitle{font-size:.85rem;color:#777;font-weight:600;margin-top:.1rem}
 body.dark .island-subtitle{color:#9a9890}
-/* ── מידע עונתי — dark mode ── */
+/* ── מידע שוטף — dark mode ── */
+body.dark #qgSeasonalStrip{border-color:#2a5a3a !important}
+body.dark #qgSeasonalStrip > div:first-child{background:#1a2e22 !important}
+body.dark #qgSeasonalTitle{color:#70d090 !important}
+body.dark #qgSeasonalStrip > div:first-child span[onclick]{color:#70d090 !important}
+body.dark #qgSeasonalFruits{background:#152018 !important}
+body.dark #qgSeasonalFruits button{background:var(--card) !important;color:var(--text) !important;border-color:rgba(255,255,255,.2) !important}
 body.dark #tempGrp summary,
 body.dark #outdoorGrp summary,
 body.dark #fixedGrp summary{background:#2a2e38 !important;color:var(--text) !important}
@@ -988,14 +994,6 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 
 
 <!-- ═══ SEASONAL TOAST, נעלם בלחיצה, לא חוזר עד ביקור הבא ═══ -->
-<div id="seasonalToast" style="display:none;max-width:1000px;margin:.5rem auto .2rem;padding:0 1rem">
-  <div id="seasonalToastInner" style="border-radius:14px;padding:.55rem 1rem;display:flex;align-items:center;gap:.6rem;font-size:.95rem;font-weight:700;box-shadow:0 2px 10px rgba(0,0,0,.08)">
-    <span id="seasonalToastEmoji" style="font-size:1.3rem;cursor:pointer" onclick="openFoodModal(window._seasonalFoodId)"></span>
-    <span id="seasonalToastText" style="flex:1;cursor:pointer" onclick="openFoodModal(window._seasonalFoodId)"></span>
-    <span onclick="switchTab('seasonal')" style="font-size:.79rem;opacity:.6;cursor:pointer;white-space:nowrap;text-decoration:underline dotted">מידע עונתי ←</span>
-    <button onclick="dismissSeasonalToast()" style="background:none;border:none;cursor:pointer;font-size:.97rem;opacity:.4;padding:.1rem .3rem;line-height:1;flex-shrink:0" title="סגור">✕</button>
-  </div>
-</div>
 
 <div class="tabs">
   <button class="tab-btn active" data-tab="quickguide" onclick="switchTab('quickguide')">📝 בקיצור <span onclick="event.stopPropagation();speakText('בקיצור. רשימת קניות מהירה.',this)" style="background:none;border:none;cursor:pointer;font-size:.55rem;padding:0 0 0 .1rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
@@ -1008,7 +1006,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 
   <button class="tab-btn" data-tab="dailymenu" onclick="switchTab('dailymenu')">🥗 תפריט יומי <span onclick="event.stopPropagation();speakText('תפריט יומי. בנה תפריט מותאם לכל חיה לפי מה שקיבלת היום.',this)" style="background:none;border:none;cursor:pointer;font-size:.55rem;padding:0 0 0 .1rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
   <button class="tab-btn" data-tab="insight" onclick="switchTab('insight')">💡 מבט מעמיק <span onclick="event.stopPropagation();speakText('מבט מעמיק. מאמרים על פינת החי, רגש, תזונה ובטיחות.',this)" style="background:none;border:none;cursor:pointer;font-size:.55rem;padding:0 0 0 .1rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
-  <button class="tab-btn" data-tab="seasonal" onclick="switchTab('seasonal')" style="white-space:nowrap">🗓️ מידע עונתי <span onclick="event.stopPropagation();speakText('מידע עונתי. לוח עונות, מזג אוויר ופירות בעונה.',this)" style="background:none;border:none;cursor:pointer;font-size:.55rem;padding:0 0 0 .1rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
+  <button class="tab-btn" data-tab="seasonal" onclick="switchTab('seasonal')" style="white-space:nowrap">🗓️ מידע שוטף <span onclick="event.stopPropagation();speakText('מידע שוטף. הנחיות טיפול, מזג אוויר ופירות בעונה.',this)" style="background:none;border:none;cursor:pointer;font-size:.55rem;padding:0 0 0 .1rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
   <button class="tab-btn" data-tab="deploy" onclick="switchTab('deploy')">✉️ יצירת קשר <span onclick="event.stopPropagation();speakText('יצירת קשר. שאלות, הצעות, או סתם שלום.',this)" style="background:none;border:none;cursor:pointer;font-size:.55rem;padding:0 0 0 .1rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
 </div>
 
@@ -1027,6 +1025,17 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 
 <div class="tab-panel active" id="tab-quickguide">
   <div class="section-hero"><span class="hero-emoji">📝</span><h2>בקיצור</h2><p>רשימת קניות מהירה - מה להביא ומה לא</p><button onclick="speakTabAll('tab-quickguide',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
+
+  <!-- ── פירות בעונה ── -->
+  <div id="qgSeasonalStrip" style="border-radius:14px;overflow:hidden;border:2px solid #b8e8cc;margin-bottom:.6rem">
+    <div style="background:linear-gradient(to left,#d4f0e4,#e8f9f0);padding:.55rem .9rem;display:flex;align-items:center;gap:.5rem">
+      <span style="font-size:1.25rem">🍓</span>
+      <span style="font-weight:900;font-size:.95rem;color:#1a5c35;flex:1" id="qgSeasonalTitle">פירות בעונה עכשיו</span>
+      <span onclick="switchTab('seasonal')" style="font-size:.77rem;color:#2a8a50;cursor:pointer;text-decoration:underline dotted;white-space:nowrap">לפרטים ←</span>
+    </div>
+    <div id="qgSeasonalFruits" style="background:#f0fbf4;padding:.55rem .9rem .7rem;display:flex;flex-wrap:wrap;gap:.4rem"></div>
+  </div>
+
   <!-- חיפוש מהיר בבקיצור -->
   <div style="position:relative;margin-bottom:.6rem">
     <input id="qgSearchInput" type="text"
@@ -1085,6 +1094,15 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
             <span class="qg-chip qg-yes" onclick="openFoodModal('raspberry')" style="cursor:pointer">🍒 פטל 🥗 <button onclick="event.stopPropagation();speakText('פטל',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('cherry')" style="cursor:pointer">🍒 דובדבן 🥗 <button onclick="event.stopPropagation();speakText('דובדבן',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('asparagus')" style="cursor:pointer">🥦 אספרגוס 🥗 <button onclick="event.stopPropagation();speakText('אספרגוס',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+            <span class="qg-chip qg-yes" onclick="openFoodModal('blueberry')" style="cursor:pointer">🍇 אוכמניות 🥗 <button onclick="event.stopPropagation();speakText('אוכמניות',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+            <span class="qg-chip qg-yes" onclick="openFoodModal('apricot')" style="cursor:pointer">🍑 משמש 🥗 <button onclick="event.stopPropagation();speakText('משמש',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+            <span class="qg-chip qg-yes" onclick="openFoodModal('loquat')" style="cursor:pointer">🟠 שסק 🥗 <button onclick="event.stopPropagation();speakText('שסק',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+            <span class="qg-chip qg-yes" onclick="openFoodModal('fig')" style="cursor:pointer">🌿 תאנה 🥗 <button onclick="event.stopPropagation();speakText('תאנה',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+            <span class="qg-chip qg-yes" onclick="openFoodModal('guava')" style="cursor:pointer">🍏 גויאבה 🥗 <button onclick="event.stopPropagation();speakText('גויאבה',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+            <span class="qg-chip qg-yes" onclick="openFoodModal('sabra')" style="cursor:pointer">🌵 סברס 🥗 <button onclick="event.stopPropagation();speakText('סברס',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+            <span class="qg-chip qg-yes" onclick="openFoodModal('pomegranate')" style="cursor:pointer">🍎 רימון 🥗 <button onclick="event.stopPropagation();speakText('רימון',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+            <span class="qg-chip qg-yes" onclick="openFoodModal('persimmon')" style="cursor:pointer">🟠 אפרסמון 🥗 <button onclick="event.stopPropagation();speakText('אפרסמון',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+            <span class="qg-chip qg-yes" onclick="openFoodModal('lychee')" style="cursor:pointer">💖 ליצ'י 🥗 <button onclick="event.stopPropagation();speakText('ליצ'י',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
           </div>
         </div>
         <div id="qg-green">
@@ -1122,7 +1140,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       <div class="qg-sep-header" style="background:#fff8e0;padding:.7rem 1rem;border-bottom:2px solid #f0d860;display:flex;align-items:center;gap:.5rem">
         <span style="font-size:1.4rem">⚠️</span>
         <div class="qg-sep-title" style="font-weight:900;font-size:1.02rem;color:#7a5500;flex:1">רק שלמים או מופרדים לגמרי</div>
-        <button onclick="speakText('רק שלמים בשקית נפרדת: תפוח אדמה, פירות הדר, עגבנייה.',this)" title="הקראה" class="qg-sep-speak" style="background:#fff8e0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.87rem;flex-shrink:0">🔊</button>
+        <button onclick="speakText('רק שלמים בשקית נפרדת: תפוח אדמה, פירות הדר כולל קלמנטינה, עגבנייה, אגוז מלך ובוטנים, כרוב ניצנים.',this)" title="הקראה" class="qg-sep-speak" style="background:#fff8e0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.87rem;flex-shrink:0">🔊</button>
       </div>
       <div style="padding:.7rem 1rem">
         <div class="qg-sep-desc" style="font-size:.85rem;color:#555;margin-bottom:.6rem">אלה מותרים לחלק מהחיות אבל לא לאחרות - להביא שלמים או בשקית נפרדת מהשאר - ונמיין אנחנו.</div>
@@ -1184,16 +1202,6 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     </div>
 
 
-  </div>
-
-  <!-- ── פירות בעונה (סגיר) ── -->
-  <div id="qgSeasonalStrip" style="margin-top:.9rem;border-radius:14px;overflow:hidden;border:1.5px solid #d0e8d8">
-    <div style="background:linear-gradient(to left,#e8f7ee,#f0faf2);padding:.5rem .85rem;display:flex;align-items:center;gap:.5rem">
-      <span style="font-size:1.2rem">🍓</span>
-      <span style="font-weight:800;font-size:.92rem;color:#1a6a38;flex:1" id="qgSeasonalTitle">פירות בעונה עכשיו</span>
-      <button onclick="document.getElementById('qgSeasonalStrip').style.display='none'" style="background:none;border:none;cursor:pointer;font-size:1.1rem;color:#777;line-height:1;padding:0 .1rem" title="סגור">✕</button>
-    </div>
-    <div id="qgSeasonalFruits" style="background:#f8fdf9;padding:.5rem .85rem .65rem;display:flex;flex-wrap:wrap;gap:.35rem"></div>
   </div>
 
 </div>
@@ -1887,7 +1895,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 </div><!-- end tab-insight -->
 
 <div class="tab-panel" id="tab-seasonal">
-  <div class="section-hero"><span class="hero-emoji">🗓️</span><h2>מידע עונתי <button onclick="speakText('מידע עונתי',this)" title="הקרא כותרת" style="background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa;padding:0;vertical-align:middle;line-height:1">🔊</button></h2><p>מזג אוויר, פירות העונה והנחיות טיפול</p><button onclick="speakTabAll('tab-seasonal',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
+  <div class="section-hero"><span class="hero-emoji">🗓️</span><h2>מידע שוטף <button onclick="speakText('מידע שוטף',this)" title="הקרא כותרת" style="background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa;padding:0;vertical-align:middle;line-height:1">🔊</button></h2><p>הנחיות טיפול, מזג אוויר ורשימות עבודה</p><button onclick="speakTabAll('tab-seasonal',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
 
   <!-- ══ שני טורים ראשיים ══ -->
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.1rem;align-items:start">
@@ -3715,30 +3723,30 @@ const DEFAULT_FOODS = [
 },
 
 {id:'lychee',name:'ליצ\'י',emoji:'💖',cookStatus:'raw',category:'פרי',aliases:['ליצ\'י','לוקוסיה'],
- why:'מספק כמות גבוהה של אשלגן וויטמין C. בפינת החי הוא נחשב לצ\'ופר עסיסי המעודד צריכת נוזלים, אך רמת הסוכר הגבוהה מחייבת הגבלה קפדנית.',
- whyNot:'⚠️ הגלעין של הליצ\'י רעיל מאוד ואסור בהחלט, יש להסיר לחלוטין לפני ההגשה. גם הקליפה אסורה. רק החלק הלבן הפנימי מותר, ובכמות מוגבלת.',
+ why:'ליצ\'י עשיר באשלגן וויטמין C ונחשב לצ\'ופר עסיסי. עם זאת, רמת הסוכר שלו גבוהה מאוד ומחייבת הגבלה קפדנית לכל החיות. מגישים רק את החלק הלבן הפנימי, שטוף היטב, ללא גלעין וללא קליפה, ובכמות שלא תעלה על גודל הציפורן של החיה.',
+ whyNot:'⚠️ הגלעין מכיל חומרים (HGA) הגורמים לירידה מסוכנת ברמת הסוכר בדם ופגיעה במערכות הגוף — רעיל לכל החיות. הקליפה קשיחה, עלולה להכיל חומרי הדברה ומהווה סכנת חנק. עודף בשר הפרי גורם לתסיסה ובעיות עיכול בבעלי חיים עם מעי רגיש.',
  parts:[
-   {name:'פרי (החלק הלבן בלבד)',rawOk:'lim',cookNote:'⚠️ ללא קליפה וללא גלעין, הגלעין רעיל מאוד!',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'lim','sulcata':'no','vietstick':'no','beardie':'lim','chinchilla':'no','leopardgecko':'no','rabbit':'lim','sharkhan':'lim','syrianhamster':'lim','gerbil':'lim','mealworms':'lim','hissingcockroach':'lim'}},
-   {name:'קליפה וגלעין',rawOk:'no',cookNote:'⚠️ הגלעין רעיל מאוד, אסור לחלוטין!',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},
+   {name:'פרי (החלק הלבן בלבד)',rawOk:'lim',cookNote:'⚠️ ללא קליפה וללא גלעין — הגלעין רעיל מאוד! כמות שלא תעלה על גודל ציפורן',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'lim','sulcata':'no','vietstick':'no','beardie':'lim','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'lim','gerbil':'lim','mealworms':'lim','hissingcockroach':'no'}},
+   {name:'קליפה וגלעין',rawOk:'no',cookNote:'⚠️ הגלעין רעיל — מכיל HGA. הקליפה סכנת חנק. אסור לכולם!',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},
  ],
  animals:{
-   jacko:{s:'lim',a:'ליצ\'י אחד',f:'לעיתים',n:'ללא קליפה וגלעין'},
-   lovebird:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'ללא קליפה וגלעין'},
-   cockatiel:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'ללא קליפה וגלעין'},
-   rabbit:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'סוכר גבוה'},
-   sharkhan:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'סוכר גבוה'},
-   beardie:{s:'lim',a:'חתיכה קטנה',f:'לעיתים נדירות',n:'סוכר גבוה'},
-   syrianhamster:{s:'lim',a:'חתיכה בגודל עדשה',f:'פעם בשבוע לכל היותר',n:'סוכר גבוה מאוד'},
-   sibhamster:{s:'lim',a:'חתיכה בגודל עדשה',f:'פעם בשבוע לכל היותר',n:'סיביריים רגישים לסוכרת'},
+   jacko:{s:'lim',a:'חתיכה קטנה (גודל ציפורן)',f:'לעיתים',n:'ללא קליפה וגלעין'},
+   lovebird:{s:'lim',a:'חתיכה קטנה מאוד',f:'לעיתים',n:'ללא קליפה וגלעין'},
+   cockatiel:{s:'lim',a:'חתיכה קטנה מאוד',f:'לעיתים',n:'ללא קליפה וגלעין'},
+   rabbit:{s:'no',n:'מערכת עיכול רגישה לסוכרים פשוטים, סכנת תסיסה'},
+   sharkhan:{s:'no',n:'מערכת עיכול רגישה לסוכרים פשוטים, סכנת תסיסה'},
+   beardie:{s:'lim',a:'חתיכה זעירה',f:'פעם בחודש',n:'סוכר גבוה מאוד, נדיר בלבד'},
+   syrianhamster:{s:'lim',a:'חתיכה בגודל עדשה',f:'פעם בשבוע לכל היותר',n:'סוכר גבוה, סכנת סוכרת'},
+   sibhamster:{s:'lim',a:'חתיכה בגודל עדשה',f:'פעם בשבוע לכל היותר',n:'סיביריים נוטים לסוכרת, זהירות כפולה'},
    gerbil:{s:'lim',a:'חתיכה קטנה מאוד',f:'לעיתים',n:'סוכר גבוה'},
-   sulcata:{s:'no',n:'סוכר גבוה מדי לצב'},
-   chinchilla:{s:'no',n:'מערכת עיכול עדינה, סוכר גבוה מדי'},
-   vietstick:{s:'no',n:'אוכל עלים ספציפיים בלבד'},
+   sulcata:{s:'no',n:'פירות עתירי סוכר פוגעים במיקרוביום המעי'},
+   chinchilla:{s:'no',n:'מערכת עיכול עדינה מאוד, סוכר גבוה מדי'},
+   vietstick:{s:'no',n:'ניזון מעלים ספציפיים בלבד, פרי רטוב גורם לעובש'},
    leopardgecko:{s:'no',n:'אוכלת חרקים חיים בלבד'},
-   mealworms:{s:'lim',a:'חתיכה קטנה',f:'לעיתים'},
-   hissingcockroach:{s:'lim',a:'חתיכה קטנה',f:'לעיתים'},
-   quail:{s:'no',n:'סוכר גבוה מדי לשלו'},
-   dog:{s:'lim',a:'2-3 ליצ\'יים',f:'לעיתים',n:'ללא קליפה וגלעין'},
+   mealworms:{s:'lim',a:'חתיכה קטנה',f:'לעיתים',n:'להוציא שאריות מהר'},
+   hissingcockroach:{s:'no',n:'פרי עשיר בסוכר עלול לגרום לעובש ותמותה'},
+   quail:{s:'lim',a:'חתיכות קטנות מאוד',f:'לעיתים',n:'ללא קליפה וגלעין, כצ\'ופר בלבד'},
+   dog:{s:'lim',a:'2-3 ליצ\'יים',f:'לעיתים',n:'ללא קליפה וגלעין. אם בלע גלעין, לפנות לווטרינר'},
    fish:{s:'nr'}
  }
 },
@@ -5097,7 +5105,7 @@ function switchTab(tabId){
   if(panel) panel.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
   // הצג/הסתר טוסט עונתי בדפים מסוימים
-  if(typeof window._showSeasonalToast === 'function') window._showSeasonalToast(tabId);
+
   // טען מזג אוויר בכניסה ללשונית עונתית
   if(tabId === 'seasonal' && typeof window._triggerWeatherLoad === 'function') window._triggerWeatherLoad();
 }
@@ -8321,8 +8329,8 @@ function cancelRevealWarning(i) {
 
 // --- 🔍 חיפוש מהיר בבקיצור ---
 // מיפוי מזונות לפי קטגוריות הבקיצור
-const QG_YES_IDS = ['carrot','cucumber','tomato','sweet_pepper','broccoli','cauliflower','zucchini','sweetpotato','turnip','radish','asparagus','apple','mango','peach','pear','strawberry','watermelon','melon','pineapple','kiwi','peas','pumpkin','raspberry','banana','grapes','corn','celery','cilantro','parsley','dill','mint','lettuce_romaine','babyleaves','fennel','sprouts_mung','sprouts_alfalfa','sprouts_sunflower','hibiscus','rose_leaves','mallow','mulberry_leaves','grapeleaves','boiled_egg','pumpkin_seeds','kale','spinach','cabbage','sunflower_seeds','beetroot','artichoke','arugula'];
-const QG_SEP_IDS = ['potato','orange','tomato','walnuts','brussels_sprouts','chard','grass','peanuts'];
+const QG_YES_IDS = ['carrot','cucumber','tomato','sweet_pepper','broccoli','cauliflower','zucchini','sweetpotato','turnip','radish','asparagus','apple','mango','peach','pear','strawberry','watermelon','melon','pineapple','kiwi','peas','pumpkin','raspberry','banana','grapes','corn','celery','cilantro','parsley','dill','mint','lettuce_romaine','babyleaves','fennel','sprouts_mung','sprouts_alfalfa','sprouts_sunflower','hibiscus','rose_leaves','mallow','mulberry_leaves','grapeleaves','boiled_egg','pumpkin_seeds','kale','spinach','cabbage','sunflower_seeds','beetroot','artichoke','arugula','blueberry','guava','sabra','pomegranate','fig','apricot','loquat','cherry','persimmon','lychee'];
+const QG_SEP_IDS = ['potato','orange','clementine','tomato','walnuts','brussels_sprouts','chard','grass','peanuts'];
 const QG_NO_IDS  = ['onion','green_onion','garlic','avocado','chocolate','chips','eggplant','lemon','dairy','mushroom'];
 
 function qgSearch(val) {
@@ -9201,59 +9209,10 @@ function pwaInstall(){
   window._seasonalInSeason = inSeason;
   window._seasonalFoodId = inSeason[0]?.id;
 
-  // ── טוסט שניתן לסגור (מופיע רק בדפים מסוימים) ──
-  const TOAST_TABS = ['seasonal'];
-  const DISMISSED_KEY = 'seasonalToastDismissed_v1';
-
-  function shouldShowToast(){
-    if(!inSeason.length) return false;
-    try {
-      const d = sessionStorage.getItem(DISMISSED_KEY);
-      return !d;
-    } catch(e){ return true; }
-  }
-
-  window.dismissSeasonalToast = function(){
-    document.getElementById('seasonalToast').style.display = 'none';
-    try { sessionStorage.setItem(DISMISSED_KEY, '1'); } catch(e){}
-  };
-
-  function applyToastDark(){
-    const inner = document.getElementById('seasonalToastInner');
-    if(!inner || !inSeason[0]) return;
-    const pick = inSeason[0];
-    if(document.body.classList.contains('dark')){
-      inner.style.background = '#252621';
-      inner.style.border = '1.5px solid ' + pick.color + '88';
-    } else {
-      inner.style.background = pick.bg;
-      inner.style.border = '1.5px solid ' + pick.color + '33';
-    }
-  }
-
-  window._showSeasonalToast = function(tabId){
-    const toast = document.getElementById('seasonalToast');
-    if(!toast) return;
-    if(TOAST_TABS.includes(tabId) && shouldShowToast() && inSeason.length){
-      const pick = inSeason[0];
-      document.getElementById('seasonalToastEmoji').textContent = pick.emoji;
-      const textEl = document.getElementById('seasonalToastText');
-      // הצג שם פרי + כפתור פרטים + קישור למידע עונתי
-      textEl.innerHTML = `${pick.emoji} <strong>${pick.text.replace('! מותר לתת לחיות?','').replace('! ⚠️ זהירות, הוציאו את הגלעין','').replace('עכשיו עונת ','').replace('עונת ','').trim()}</strong> בעונה! <span onclick="event.stopPropagation();openFoodModal('${pick.id}')" style="text-decoration:underline;cursor:pointer">מותר לחיות? ←</span>`;
-      textEl.onclick = null; // override the default onclick
-      applyToastDark();
-      toast.style.display = 'block';
-    } else {
-      toast.style.display = 'none';
-    }
-  };
-
   document.addEventListener('DOMContentLoaded', ()=>{
-    const obs = new MutationObserver(applyToastDark);
-    obs.observe(document.body, {attributeFilter:['class']});
     // הצג בטעינה ראשונה אם בלשונית בקיצור
     const activeTab = document.querySelector('.tab-btn.active')?.dataset?.tab;
-    if(activeTab) window._showSeasonalToast(activeTab);
+
   });
 })();
 // ────────────────────────────────────────────────────────────
