@@ -1922,7 +1922,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
         </div>
         <div id="thermometerBar" style="margin-bottom:.6rem"></div>
         <div id="wWeekendNote" style="display:none;background:#fff8e0;border-radius:8px;border-right:3px solid #f0c030;padding:.4rem .7rem;font-size:.83rem;font-weight:700;color:#7a5500;margin-bottom:.6rem">
-          ⚠️ יום חמישי: לא חוזרים עד יום ראשון! לבצע כל הבדיקות לפני יציאה.
+          ⚠️ יום חמישי: לא חוזרים עד יום ראשון! לבצע את כל הבדיקות לפני יציאה.
         </div>
         <div style="border-top:1.5px dashed #e8ede8;padding-top:.6rem">
           <div id="wRangeLabel" style="font-weight:800;font-size:.87rem;color:var(--text);margin-bottom:.4rem">📋 הנחיות לפינת החי, היום</div>
@@ -1931,6 +1931,19 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
           </div>
         </div>
         <div id="wUpdated" style="font-size:.67rem;color:var(--muted);margin-top:.4rem;text-align:left"></div>
+      </div>
+
+      <!-- ❄️ כרטיס המזגן לטווח ארוך -->
+      <div class="weather-card" id="acCard" style="margin-bottom:.8rem;padding:.9rem 1rem;border-right:4px solid #4090d0">
+        <div style="font-size:.77rem;font-weight:700;color:var(--muted);margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem">
+          כיוון המזגן עד הפעם הבאה 🌙
+          <button onclick="speakText(document.getElementById('acCardContent').innerText, this)" title="הקרא המלצת מזגן" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#aaa;padding:0;line-height:1">🔊</button>
+          <span id="acUntilLabel" style="margin-right:auto;font-size:.72rem;color:var(--muted)">טוען...</span>
+        </div>
+        <div id="acCardContent">
+          <div style="background:#f5f5f5;border-radius:8px;padding:.5rem .75rem;font-size:.85rem;color:#999">טוען תחזית...</div>
+        </div>
+        <div id="acForecastRange" style="font-size:.72rem;color:var(--muted);margin-top:.45rem;direction:rtl"></div>
       </div>
 
       <!-- הנחיות לכל טמפרטורה -->
@@ -1943,8 +1956,8 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
               <span>❄️ מתחת ל-15°, קר מאוד</span><button onclick="speakText('❄️ מתחת ל-15°, קר מאוד',this)" title="הקרא כותרת" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#888;padding:0 .2rem;line-height:1;flex-shrink:0">🔊</button>
               <span style="margin-right:auto;font-size:.72rem;opacity:.55">▼</span>
             </summary>
-            <div style="background:#f4f8ff;padding:.65rem .9rem .5rem;font-size:.87rem;line-height:1.75;direction:rtl;border-radius:0 0 10px 10px"><button onclick="speakText('🌡️ חימום החדר: להפעיל מזגן על חימום ולכוון ל-22–24°. זהו הטווח ששומר על בריאות כל החיות. 🐢 דונה הצבה הסודנית נשארת בפנים: אסור להוציאה. לוודא שמנורת החימום פועלת והמתחם מגיע ל-28° לפחות. 🦎 זאוס החרדון המזוקן נשאר בטרריום: אין להוציאו לשמש. לוודא שמנורות החימום והקרינה פועלות. 🦜 קיקו הג\'אקו וקוקטייל',this)" title="הקרא קטע" style="background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa;padding:0;margin-bottom:.3rem;display:block">🔊 הקרא הכל</button>
-              <p>🌡️ <strong>חימום החדר:</strong> להפעיל מזגן על חימום ולכוון ל-22–24°. זהו הטווח ששומר על בריאות כל החיות.</p>
+            <div style="background:#f4f8ff;padding:.65rem .9rem .5rem;font-size:.87rem;line-height:1.75;direction:rtl;border-radius:0 0 10px 10px"><button onclick="speakText('🌡️ חימום החדר: להפעיל מזגן על חימום ולכוון ל-22-24°. זהו הטווח ששומר על בריאות כל החיות. 🐢 דונה הצבה הסודנית נשארת בפנים: אסור להוציאה. לוודא שמנורת החימום פועלת והמתחם מגיע ל-28° לפחות. 🦎 זאוס החרדון המזוקן נשאר בטרריום: אין להוציאו לשמש. לוודא שמנורות החימום והקרינה פועלות. 🦜 קיקו הג\'אקו וקוקטייל',this)" title="הקרא קטע" style="background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa;padding:0;margin-bottom:.3rem;display:block">🔊 הקרא הכל</button>
+              <p>🌡️ <strong>חימום החדר:</strong> להפעיל מזגן על חימום ולכוון ל-22-24°. זהו הטווח ששומר על בריאות כל החיות.</p>
               <p>🐢 <strong>דונה הצבה הסודנית נשארת בפנים:</strong> אסור להוציאה. לוודא שמנורת החימום פועלת והמתחם מגיע ל-28° לפחות.</p>
               <p>🦎 <strong>זאוס החרדון המזוקן נשאר בטרריום:</strong> אין להוציאו לשמש. לוודא שמנורות החימום והקרינה פועלות.</p>
               <p>🦜 <strong>קיקו הג'אקו וקוקטיילים:</strong> לוודא שכל חלונות החדר סגורים היטב. מערכת הנשימה של התוכים רגישה מאוד לשינויי טמפרטורה פתאומיים.</p>
@@ -1954,7 +1967,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 
           <details style="border-radius:10px;overflow:hidden">
             <summary style="cursor:pointer;background:linear-gradient(to left,#c8f0dd,#dafaee);padding:.55rem .85rem;font-weight:800;font-size:.89rem;color:#1a5c35;list-style:none;display:flex;align-items:center;gap:.4rem;user-select:none">
-              <span>🌤️ 15–22°, טמפרטורה מתונה</span><button onclick="speakText('🌤️ 15–22°, טמפרטורה מתונה',this)" title="הקרא כותרת" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#888;padding:0 .2rem;line-height:1;flex-shrink:0">🔊</button>
+              <span>🌤️ 15-22°, טמפרטורה מתונה</span><button onclick="speakText('🌤️ 15-22°, טמפרטורה מתונה',this)" title="הקרא כותרת" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#888;padding:0 .2rem;line-height:1;flex-shrink:0">🔊</button>
               <span style="margin-right:auto;font-size:.72rem;opacity:.55">▼</span>
             </summary>
             <div style="background:#f2fcf6;padding:.65rem .9rem .5rem;font-size:.87rem;line-height:1.75;direction:rtl;border-radius:0 0 10px 10px"><button onclick="speakText('🐢🦎 זמן חשיפה לשמש: הזמן המתאים ביותר להוציא את דונה הצבה ואת זאוס החרדון. קרינת שמש חיונית לעצמות ולשריון. להחזירם פנימה אם מתחילה לנשב רוח קרה. 🐹 ארנבונים וצ\'ינצ\'ילות: בטמפרטורות אלו הם מרגישים במיטבם, מלאי אנרגיה וחיוניות. 🐢 תחזוקת מתחם דונה הצבה: לוודא שמנורת החימום דולקת והאזור המחומם מגיע ל-2',this)" title="הקרא קטע" style="background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa;padding:0;margin-bottom:.3rem;display:block">🔊 הקרא הכל</button>
@@ -1967,13 +1980,13 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 
           <details style="border-radius:10px;overflow:hidden">
             <summary style="cursor:pointer;background:linear-gradient(to left,#ffe8a0,#fff8d0);padding:.55rem .85rem;font-weight:800;font-size:.89rem;color:#7a5000;list-style:none;display:flex;align-items:center;gap:.4rem;user-select:none">
-              <span>☀️ 23–27°, מתחיל להיות חם</span><button onclick="speakText('☀️ 23–27°, מתחיל להיות חם',this)" title="הקרא כותרת" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#888;padding:0 .2rem;line-height:1;flex-shrink:0">🔊</button>
+              <span>☀️ 23-27°, מתחיל להיות חם</span><button onclick="speakText('☀️ 23-27°, מתחיל להיות חם',this)" title="הקרא כותרת" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#888;padding:0 .2rem;line-height:1;flex-shrink:0">🔊</button>
               <span style="margin-right:auto;font-size:.72rem;opacity:.55">▼</span>
             </summary>
-            <div style="background:#fffbf0;padding:.65rem .9rem .5rem;font-size:.87rem;line-height:1.75;direction:rtl;border-radius:0 0 10px 10px"><button onclick="speakText('🐢🦎 יציאה בזהירות: ניתן להוציא את דונה ואת זאוס, אך חובה לספק אזור מוצל. אסור להשאיר בשמש ישירה ללא השגחה. 🐹 צ\'ינצ\'ילות וארנבונים: אם הטמפרטורה בחדר עולה מעל 24°, חובה מזגן על קירור. 🪲 מקלונים ותיקנים: החום מייבש את האוויר, לרסס יותר מים בטרריום כדי לשמור על לחות. 🦜 קיקו הג\'אקו וקוקטיילים: ניתן לה',this)" title="הקרא קטע" style="background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa;padding:0;margin-bottom:.3rem;display:block">🔊 הקרא הכל</button>
+            <div style="background:#fffbf0;padding:.65rem .9rem .5rem;font-size:.87rem;line-height:1.75;direction:rtl;border-radius:0 0 10px 10px"><button onclick="speakText('🐢🦎 יציאה בזהירות: ניתן להוציא את דונה ואת זאוס, אך חובה לספק אזור מוצל. אסור להשאיר בשמש ישירה ללא השגחה. 🐹 צ\'ינצ\'ילות וארנבונים: אם הטמפרטורה בחדר עולה מעל 24°, חובה מזגן על קירור. 🦗 מקלונים ותיקנים: החום מייבש את האוויר, לרסס יותר מים בטרריום כדי לשמור על לחות. 🦜 קיקו הג\'אקו וקוקטיילים: ניתן לה',this)" title="הקרא קטע" style="background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa;padding:0;margin-bottom:.3rem;display:block">🔊 הקרא הכל</button>
               <p>🐢🦎 <strong>יציאה בזהירות:</strong> ניתן להוציא את דונה ואת זאוס, אך חובה לספק אזור מוצל. אסור להשאיר בשמש ישירה ללא השגחה.</p>
               <p>🐹 <strong>צ'ינצ'ילות וארנבונים:</strong> אם הטמפרטורה בחדר עולה מעל 24°, חובה מזגן על קירור.</p>
-              <p>🪲 <strong>מקלונים ותיקנים:</strong> החום מייבש את האוויר, לרסס יותר מים בטרריום כדי לשמור על לחות.</p>
+              <p>🦗 <strong>מקלונים ותיקנים:</strong> החום מייבש את האוויר, לרסס יותר מים בטרריום כדי לשמור על לחות.</p>
               <p>🦜 <strong>קיקו הג'אקו וקוקטיילים:</strong> ניתן להציע קערת מים רדודה להשתכשכות בתוך הכלוב.</p>
             </div>
           </details>
@@ -1983,11 +1996,11 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
               <span>🔥 מעל 28°, חם מאוד</span><button onclick="speakText('🔥 מעל 28°, חם מאוד',this)" title="הקרא כותרת" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#888;padding:0 .2rem;line-height:1;flex-shrink:0">🔊</button>
               <span style="margin-right:auto;font-size:.72rem;opacity:.55">▼</span>
             </summary>
-            <div style="background:#fff8f4;padding:.65rem .9rem .5rem;font-size:.87rem;line-height:1.75;direction:rtl;border-radius:0 0 10px 10px"><button onclick="speakText('🚫 איסור יציאה בשעות החמות: האדמה לוהטת ועלולה לגרום כוויות בבטן. להוציא את דונה ואת זאוס רק בשעות הבוקר המוקדמות ובאזורים מוצלים בלבד. ❄️ מזגן קירור, חובה: לכוון ל-22–24°. חום גבוה מסוכן מאוד לארנבונים ולצ\'ינצ\'ילות. 💧 בדיקת מים: לוודא שכלי המים של כל החיות מלאים ושהמים לא חמים. להחליף אם צריך. 🐟 א',this)" title="הקרא קטע" style="background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa;padding:0;margin-bottom:.3rem;display:block">🔊 הקרא הכל</button>
+            <div style="background:#fff8f4;padding:.65rem .9rem .5rem;font-size:.87rem;line-height:1.75;direction:rtl;border-radius:0 0 10px 10px"><button onclick="speakText('🚫 איסור יציאה בשעות החמות: האדמה לוהטת ועלולה לגרום כוויות בבטן. להוציא את דונה ואת זאוס רק בשעות הבוקר המוקדמות ובאזורים מוצלים בלבד. ❄️ מזגן קירור, חובה: לכוון ל-22-24°. חום גבוה מסוכן מאוד לארנבונים ולצ\'ינצ\'ילות. 💧 בדיקת מים: לוודא שכלי המים של כל החיות מלאים ושהמים לא חמים. להחליף אם צריך. 🐟 א',this)" title="הקרא קטע" style="background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa;padding:0;margin-bottom:.3rem;display:block">🔊 הקרא הכל</button>
               <p>🚫 <strong>איסור יציאה בשעות החמות:</strong> האדמה לוהטת ועלולה לגרום כוויות בבטן. להוציא את דונה ואת זאוס רק בשעות הבוקר המוקדמות ובאזורים מוצלים בלבד.</p>
-              <p>❄️ <strong>מזגן קירור, חובה:</strong> לכוון ל-22–24°. חום גבוה מסוכן מאוד לארנבונים ולצ'ינצ'ילות.</p>
+              <p>❄️ <strong>מזגן קירור, חובה:</strong> לכוון ל-22-24°. חום גבוה מסוכן מאוד לארנבונים ולצ'ינצ'ילות.</p>
               <p>💧 <strong>בדיקת מים:</strong> לוודא שכלי המים של כל החיות מלאים ושהמים לא חמים. להחליף אם צריך.</p>
-              <p>🐟 <strong>אקווריום הדגים:</strong> לוודא שהמים בטווח 20–27°. מים חמים מזה מקשים על הדגים לנשום.</p>
+              <p>🐟 <strong>אקווריום הדגים:</strong> לוודא שהמים בטווח 20-27°. מים חמים מזה מקשים על הדגים לנשום.</p>
             </div>
           </details>
 
@@ -2176,7 +2189,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       <label style="display:flex;align-items:center;gap:.7rem;cursor:pointer;padding:.42rem .6rem;border-radius:9px;transition:background .15s" onmouseover="this.style.background='var(--mint)'" onmouseout="this.style.background=''"><input type="checkbox" onchange="exitCheckUpdate()" style="width:1.1rem;height:1.1rem;accent-color:var(--green);flex-shrink:0;cursor:pointer"><span style="font-size:.87rem;color:var(--text)">🪣 הרצפה נקייה <span style="font-size:.77rem;color:var(--muted)">(הכיסאות מורמים בימי שטיפה)</span></span></label>
     </div>
     <div id="exitCheckDone" style="display:none;margin-top:.9rem;padding:.6rem 1rem;background:#e8f7ef;border-radius:12px;border-right:3px solid var(--green);font-weight:800;font-size:.92rem;color:#1a6640;direction:rtl">
-      ✅ מעולה! מכבים אורות, נועלים את הדלתות — <span style="font-weight:400">להתראות! 👋</span>
+      ✅ מעולה! מכבים אורות, נועלים את הדלתות. <span style="font-weight:400">להתראות! 👋</span>
     </div>
     <div style="display:flex;justify-content:flex-start;margin-top:.7rem">
       <button onclick="document.querySelectorAll('#exitChecklist input[type=checkbox]').forEach(c=>c.checked=false);document.getElementById('exitCheckDone').style.display='none'" style="background:none;border:1px solid #ccc;border-radius:50px;padding:.22rem .75rem;font-size:.77rem;color:var(--muted);cursor:pointer;font-family:inherit">↺ איפוס</button>
@@ -3724,10 +3737,10 @@ const DEFAULT_FOODS = [
 
 {id:'lychee',name:'ליצ\'י',emoji:'💖',cookStatus:'raw',category:'פרי',aliases:['ליצ\'י','לוקוסיה'],
  why:'ליצ\'י עשיר באשלגן וויטמין C ונחשב לצ\'ופר עסיסי. עם זאת, רמת הסוכר שלו גבוהה מאוד ומחייבת הגבלה קפדנית לכל החיות. מגישים רק את החלק הלבן הפנימי, שטוף היטב, ללא גלעין וללא קליפה, ובכמות שלא תעלה על גודל הציפורן של החיה.',
- whyNot:'⚠️ הגלעין מכיל חומרים (HGA) הגורמים לירידה מסוכנת ברמת הסוכר בדם ופגיעה במערכות הגוף — רעיל לכל החיות. הקליפה קשיחה, עלולה להכיל חומרי הדברה ומהווה סכנת חנק. עודף בשר הפרי גורם לתסיסה ובעיות עיכול בבעלי חיים עם מעי רגיש.',
+ whyNot:'⚠️ הגלעין מכיל חומרים (HGA) הגורמים לירידה מסוכנת ברמת הסוכר בדם ופגיעה במערכות הגוף, רעיל לכל החיות. הקליפה קשיחה, עלולה להכיל חומרי הדברה ומהווה סכנת חנק. עודף בשר הפרי גורם לתסיסה ובעיות עיכול בבעלי חיים עם מעי רגיש.',
  parts:[
-   {name:'פרי (החלק הלבן בלבד)',rawOk:'lim',cookNote:'⚠️ ללא קליפה וללא גלעין — הגלעין רעיל מאוד! כמות שלא תעלה על גודל ציפורן',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'lim','sulcata':'no','vietstick':'no','beardie':'lim','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'lim','gerbil':'lim','mealworms':'lim','hissingcockroach':'no'}},
-   {name:'קליפה וגלעין',rawOk:'no',cookNote:'⚠️ הגלעין רעיל — מכיל HGA. הקליפה סכנת חנק. אסור לכולם!',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},
+   {name:'פרי (החלק הלבן בלבד)',rawOk:'lim',cookNote:'⚠️ ללא קליפה וללא גלעין, הגלעין רעיל מאוד! כמות שלא תעלה על גודל ציפורן',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'lim','sulcata':'no','vietstick':'no','beardie':'lim','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'lim','gerbil':'lim','mealworms':'lim','hissingcockroach':'no'}},
+   {name:'קליפה וגלעין',rawOk:'no',cookNote:'⚠️ הגלעין רעיל, מכיל HGA. הקליפה סכנת חנק. אסור לכולם!',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},
  ],
  animals:{
    jacko:{s:'lim',a:'חתיכה קטנה (גודל ציפורן)',f:'לעיתים',n:'ללא קליפה וגלעין'},
@@ -9007,7 +9020,7 @@ function pwaInstall(){
     _moonEl.textContent = MOON_PHASES[_moonPhaseIdx];
     el.appendChild(_moonEl);
 
-    // עננים צמודים לירח, 2–3 עננים קטנים מסביבו
+    // עננים צמודים לירח, 2-3 עננים קטנים מסביבו
     const cloudDefs = [
       {top:'18%', left:'2%',  fs:'1.4rem', dur:'11s', mcx:'6px',  mcy:'-5px'},
       {top:'52%', left:'10%', fs:'1.1rem', dur:'8s',  mcx:'-5px', mcy:'4px'},
@@ -9231,7 +9244,7 @@ function pwaInstall(){
         range: 'מתחת ל-15 מעלות, קר מאוד ❄️',
         bg: '#e8f0ff', color: '#2030a0',
         items:[
-          {emoji:'🌡️', text:'<strong>חימום החדר:</strong> חובה להפעיל מזגן על חימום ולכוון ל-22–24°. זהו הטווח ששומר על בריאות כל החיות.'},
+          {emoji:'🌡️', text:'<strong>חימום החדר:</strong> חובה להפעיל מזגן על חימום ולכוון ל-22-24°. זהו הטווח ששומר על בריאות כל החיות.'},
           {emoji:'🐢', text:'<strong>דונה, הצבה הסודנית, נשארת בפנים:</strong> אסור להוציאה החוצה. לוודא שמנורת החימום במתחם פועלת ושמגיעה ל-28° לפחות.'},
           {emoji:'🦎', text:'<strong>זאוס (חרדון מזוקן), נשאר בטרריום:</strong> אין להוציאו לשמש. לוודא שמנורות החימום והקרינה פועלות בתוך החדר.'},
           {emoji:'🦜', text:'<strong>קיקו (ג\'אקו) וקוקטיילים, הגנה מרוח:</strong> רגישים מאוד לשינויי טמפרטורה. לוודא שכל חלונות החדר סגורים היטב.'},
@@ -9240,7 +9253,7 @@ function pwaInstall(){
       };
     } else if(temp <= 22){
       return {
-        range: '15–22 מעלות, טמפרטורה מתונה 🌤️',
+        range: '15-22 מעלות, טמפרטורה מתונה 🌤️',
         bg: '#e8fff5', color: '#1a6a40',
         items:[
           {emoji:'🐢', text:'<strong>דונה וזאוס, זמן חשיפה לשמש:</strong> זהו הזמן המתאים ביותר! קרינת שמש חיונית לעצמות ושריון. להחזירם אם מתחילה לנשב רוח קרה.'},
@@ -9251,12 +9264,12 @@ function pwaInstall(){
       };
     } else if(temp <= 27){
       return {
-        range: '23–27 מעלות, מתחיל להיות חם 🌤️',
+        range: '23-27 מעלות, מתחיל להיות חם 🌤️',
         bg: '#fffce0', color: '#7a6000',
         items:[
           {emoji:'🐢', text:'<strong>דונה וזאוס, יציאה בזהירות:</strong> ניתן להוציאם, אך חובה לספק אזור מוצל. אין להשאיר בשמש ישירה ללא השגחה.'},
           {emoji:'🐹', text:'<strong>צ\'ינצ\'ילות וארנבונים:</strong> אם הטמפרטורה בחדר עולה מעל 24°, חובה מזגן על קירור.'},
-          {emoji:'🪲', text:'<strong>מקלונים ותיקנים:</strong> החום מייבש את האוויר, לרסס יותר מים בטרריום כדי לשמור על לחות.'},
+          {emoji:'🦗', text:'<strong>מקלונים ותיקנים:</strong> החום מייבש את האוויר, לרסס יותר מים בטרריום כדי לשמור על לחות.'},
           {emoji:'🦜', text:'<strong>קיקו וקוקטיילים:</strong> ניתן להציע קערת מים רדודה להשתכשכות בתוך הכלוב.'},
         ]
       };
@@ -9266,9 +9279,9 @@ function pwaInstall(){
         bg: '#fff0e0', color: '#9a3000',
         items:[
           {emoji:'🚫', text:'<strong>איסור יציאה בשעות החמות:</strong> אין להוציא חרדון וצבה כשהטמפרטורה גבוהה, האדמה לוהטת ועלולה לגרום כוויות בבטן. יציאה רק בשעות הבוקר המוקדמות ובאזורים מוצלים.'},
-          {emoji:'❄️', text:'<strong>מזגן חובה:</strong> המזגן חייב לפעול ולהיות מכוון ל-22–24°. חום גבוה מסוכן מאוד לארנבונים ולצ\'ינצ\'ילות.'},
+          {emoji:'❄️', text:'<strong>מזגן חובה:</strong> המזגן חייב לפעול ולהיות מכוון ל-22-24°. חום גבוה מסוכן מאוד לארנבונים ולצ\'ינצ\'ילות.'},
           {emoji:'💧', text:'<strong>בדיקת מים:</strong> לוודא שכלי המים מלאים עד הסוף ושהמים לא חמים. להחליף אם צריך.'},
-          {emoji:'🐟', text:'<strong>אקווריום הדגים:</strong> לוודא שמים בטווח 20–27°. מים חמים מזה מקשים על הדגים לנשום.'},
+          {emoji:'🐟', text:'<strong>אקווריום הדגים:</strong> לוודא שמים בטווח 20-27°. מים חמים מזה מקשים על הדגים לנשום.'},
         ]
       };
     } else {
@@ -9279,13 +9292,147 @@ function pwaInstall(){
           {emoji:'🚨', text:'<strong>מצב חירום ליונקים:</strong> כל המכרסמים והארנבונים, חדר ממוזג בלבד. חשיפה ללא מיזוג עלולה להיות קטלנית!'},
           {emoji:'🦜', text:'<strong>קיקו ותוכיים:</strong> לעקוב אחרי כנפיים פרושות או מקור פתוח, סימני מצוקה. ניתן להתיז רסיסי מים בעדינות.'},
           {emoji:'🐢', text:'<strong>דונה, זאוס וסויה:</strong> אמבטיית מים רדודה לטבילה. חובה אזור קריר ומוצל בתוך הטרריום/מתחם.'},
-          {emoji:'🌡️', text:'<strong>מזגן על 22–24°, ללא פשרות.</strong> לבדוק מים לכל החיות כמה פעמים ביום.'},
+          {emoji:'🌡️', text:'<strong>מזגן על 22-24°, ללא פשרות.</strong> לבדוק מים לכל החיות כמה פעמים ביום.'},
         ]
       };
     }
   }
 
-  // ── מדחום חזותי ──
+  // ── המלצת מזגן לטווח ארוך ──
+  function getAcRecommendation(minT, maxT){
+    const EXTREME_HOT  = 30;  // מעל זה → קירור
+    const EXTREME_COLD = 12;  // מתחת לזה → חימום
+    const TARGET_TEMP  = 23;  // טמפ' מומלצת (אמצע 22-24)
+
+    let mode, tempRec, reason;
+
+    if(maxT >= EXTREME_HOT && minT <= EXTREME_COLD){
+      // גם חום וגם קור: עדיפות לקירור (מסוכן יותר לחיות)
+      mode    = 'cool';
+      tempRec = TARGET_TEMP;
+      reason  = `צפוי טווח רחב מאוד: מינימום ${minT}° עד מקסימום ${maxT}°. חום קיצוני מסוכן יותר לחיות, לכן קירור גובר.`;
+    } else if(maxT >= EXTREME_HOT){
+      mode    = 'cool';
+      tempRec = TARGET_TEMP;
+      reason  = `צפויה טמפרטורה של עד ${maxT}°, חום קיצוני. הקירור הכרחי להגנה על הארנבונים, הצ'ינצ'ילות וכל המכרסמים.`;
+    } else if(minT <= EXTREME_COLD){
+      mode    = 'heat';
+      tempRec = TARGET_TEMP;
+      reason  = `הלילה צפוי לרדת ל-${minT}°, קור קיצוני. החימום ימנע שינוי טמפרטורה חד דרך החלונות הפתוחים.`;
+    } else {
+      // אין קיצון — בחירה לפי מגמה
+      const mid = (minT + maxT) / 2;
+      if(mid <= 18){
+        mode    = 'heat';
+        tempRec = TARGET_TEMP;
+        reason  = `ממוצע תחזית ${Math.round(mid)}°, נטייה לקור. החימום ישמור על 22-24° יציב.`;
+      } else if(mid >= 24){
+        mode    = 'cool';
+        tempRec = TARGET_TEMP;
+        reason  = `ממוצע תחזית ${Math.round(mid)}°, נטייה לחום. הקירור ימנע עלייה מסוכנת בטמפרטורה.`;
+      } else {
+        mode    = 'normal';
+        tempRec = TARGET_TEMP;
+        reason  = `תחזית מתונה (${minT}° עד ${maxT}°). מצב נורמלי מספיק, לכוון ל-22-24° ולהשאיר על "אוטומטי" אם קיים.`;
+      }
+    }
+
+    return { mode, tempRec, reason };
+  }
+
+  function renderAcCard(minT, maxT, untilLabel, forecastText){
+    const { mode, tempRec, reason } = getAcRecommendation(minT, maxT);
+
+    const MODES = {
+      cool:   { icon:'❄️', label:'קירור', bg:'#e8f4ff', border:'#4090d0', color:'#1a4a80',
+                setting:'כוון לטמפרטורה {{T}}° במצב קירור' },
+      heat:   { icon:'🔥', label:'חימום', bg:'#fff3e8', border:'#f07030', color:'#7a2000',
+                setting:'כוון לטמפרטורה {{T}}° במצב חימום' },
+      normal: { icon:'🌿', label:'רגיל / אוטומטי', bg:'#f0faf0', border:'#3aaa6e', color:'#1a5a30',
+                setting:'כוון לטמפרטורה {{T}}° במצב אוטומטי' },
+    };
+
+    const m = MODES[mode];
+    const setting = m.setting.replace('{{T}}', tempRec);
+
+    document.getElementById('acUntilLabel').textContent = untilLabel;
+    document.getElementById('acForecastRange').textContent = forecastText;
+
+    document.getElementById('acCardContent').innerHTML = `
+      <div style="background:${m.bg};border-radius:12px;border:2px solid ${m.border};padding:.65rem .9rem;margin-bottom:.5rem">
+        <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.35rem">
+          <span style="font-size:2rem;line-height:1">${m.icon}</span>
+          <div>
+            <div style="font-size:1.05rem;font-weight:900;color:${m.color}">${m.label}</div>
+            <div style="font-size:.88rem;font-weight:700;color:${m.color};opacity:.85">${tempRec}°C</div>
+          </div>
+        </div>
+        <div style="font-size:.84rem;font-weight:700;color:${m.color};background:rgba(255,255,255,.6);border-radius:8px;padding:.35rem .6rem">
+          🎛️ ${setting}
+        </div>
+      </div>
+      <div style="font-size:.82rem;line-height:1.6;color:var(--text);padding:0 .1rem">
+        <span style="font-weight:700">למה?</span> ${reason}
+      </div>
+    `;
+  }
+
+  async function loadAcForecast(){
+    const card = document.getElementById('acCard');
+    if(!card) return;
+
+    // קובע מתי "הפעם הבאה" — מחר 08:00, או ראשון 08:00 אם היום חמישי
+    const now     = new Date();
+    const todayDay = now.getDay(); // 0=ראשון … 4=חמישי
+    const daysAhead = (todayDay === 4) ? 3 : 1; // חמישי → +3 = ראשון
+    const until     = new Date(now);
+    until.setDate(until.getDate() + daysAhead);
+    until.setHours(8, 0, 0, 0);
+
+    const dayNames = ['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
+    const untilLabel  = `עד יום ${dayNames[until.getDay()]} 08:00`;
+    const forecastDays = daysAhead + 1; // מספיק ימים לכסות את הטווח
+
+    try {
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=31.252&longitude=34.791` +
+        `&hourly=temperature_2m&timezone=Asia%2FJerusalem&forecast_days=${forecastDays}`;
+      const controller = new AbortController();
+      const timeout = setTimeout(()=>controller.abort(), 6000);
+      const res = await fetch(url, {signal: controller.signal});
+      clearTimeout(timeout);
+      if(!res.ok) throw new Error('HTTP ' + res.status);
+      const d = await res.json();
+
+      // מסנן שעות מהרגע הנוכחי ועד until
+      const nowMs   = now.getTime();
+      const untilMs = until.getTime();
+      let temps = [];
+      d.hourly.time.forEach((t, i) => {
+        const ts = new Date(t).getTime();
+        if(ts >= nowMs && ts <= untilMs){
+          temps.push(d.hourly.temperature_2m[i]);
+        }
+      });
+
+      if(!temps.length){
+        // fallback: אם אין שעות בטווח, קח את ה-daily
+        temps = d.hourly.temperature_2m.slice(0, 24 * daysAhead);
+      }
+
+      const minT = Math.round(Math.min(...temps));
+      const maxT = Math.round(Math.max(...temps));
+      const forecastText = `תחזית ${untilLabel}: ${minT}° עד ${maxT}°`;
+
+      renderAcCard(minT, maxT, untilLabel, forecastText);
+    } catch(e){
+      console.warn('AC forecast failed:', e);
+      document.getElementById('acCardContent').innerHTML =
+        '<div style="background:#fff8e0;border-radius:8px;padding:.45rem .7rem;font-size:.83rem;color:#7a5500">⚠️ לא ניתן לטעון תחזית מזגן. בדוק חיבור לאינטרנט.</div>';
+      document.getElementById('acUntilLabel').textContent = '';
+    }
+  }
+
+
   function buildThermometer(temp){
     const wrap = document.getElementById('thermometerBar');
     if(!wrap) return;
@@ -9308,8 +9455,8 @@ function pwaInstall(){
       <!-- תוויות טמפרטורה -->
       <div style="position:absolute;inset:0;display:flex;align-items:center;direction:ltr;padding:0 .6rem;pointer-events:none">
         <span style="font-size:.67rem;font-weight:800;color:rgba(255,255,255,.9);flex:20">❄️ &lt;15°</span>
-        <span style="font-size:.67rem;font-weight:800;color:rgba(255,255,255,.9);flex:7;text-align:center">🌤️ 15–22°</span>
-        <span style="font-size:.67rem;font-weight:800;color:rgba(255,255,255,.9);flex:5;text-align:center">☀️ 23–27°</span>
+        <span style="font-size:.67rem;font-weight:800;color:rgba(255,255,255,.9);flex:7;text-align:center">🌤️ 15-22°</span>
+        <span style="font-size:.67rem;font-weight:800;color:rgba(255,255,255,.9);flex:5;text-align:center">☀️ 23-27°</span>
         <span style="font-size:.67rem;font-weight:800;color:rgba(255,255,255,.9);flex:15;text-align:left">🔥 &gt;28°</span>
       </div>
 
@@ -9346,7 +9493,7 @@ function pwaInstall(){
       document.getElementById('wExtra').textContent = 'מינימום ' + minT + '° / מקסימום ' + maxT + '°';
       const dayName = ['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'][new Date().getDay()];
       document.getElementById('wForecast').innerHTML =
-        '<strong>היום (' + dayName + '):</strong> ' + minT + '°–' + maxT + '°';
+        '<strong>היום (' + dayName + '):</strong> ' + minT + '°-' + maxT + '°';
       buildThermometer(temp);
       const g = getGuidelines(maxT);
       const rangeLabel = document.getElementById('wRangeLabel');
@@ -9529,6 +9676,8 @@ function pwaInstall(){
     setTimeout(buildQgSeasonalStrip, 100);
     // טוען מזג אוויר מיד בטעינת הדף
     setTimeout(loadWeather, 500);
+    // טוען המלצת מזגן לטווח ארוך
+    setTimeout(loadAcForecast, 700);
   });
 
   // טוען מזג אוויר כשנכנסים ללשונית
@@ -9537,6 +9686,7 @@ function pwaInstall(){
     if(!window._loadWeatherOnce){
       window._loadWeatherOnce = true;
       loadWeather();
+      loadAcForecast();
     }
   };
 
