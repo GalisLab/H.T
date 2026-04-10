@@ -3,6 +3,7 @@
   "short_name": "פינת החי",
   "description": "המדריך המלא לפינת החי של בית ספר שז\"ר באר שבע",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#f4f8ff",
   "theme_color": "#3aaa6e",
