@@ -2,6 +2,9 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://galislab.github.io/H.T/">
+<meta property="og:url" content="https://galislab.github.io/H.T/">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#3aaa6e">
@@ -63,7 +66,7 @@ body.dark div[style*="background: linear-gradient"]{
   background:var(--card) !important;
 }
 /* חריגים: כפתורים, אלמנטים שצריך את הצבע שלהם */
-body.dark button[style*="background"],
+body.dark button[style*="background"]:not([title="הקרא את כל הדף"]):not([title="הקראת כל הרשימה"]),
 body.dark a[style*="background"],
 body.dark span[style*="background"],
 body.dark .fc-expand-bar,
@@ -86,6 +89,11 @@ body.dark .badge.b-no{background:#3a1a1a !important;color:#f07070 !important}
 body.dark .badge.b-lim{background:#3a2800 !important;color:#f5cc60 !important}
 body.dark .ac-ours-badge{background:var(--green) !important}
 body.dark .fc-expand-bar{background:var(--blue) !important;color:#fff !important}
+/* ── התראות מזג אוויר מיוחדות ── */
+body.dark #wGuidelines [style*="background:#fff3cd"]{background:#3a2800 !important}
+body.dark #wGuidelines [style*="background:#dbeafe"]{background:#1a2a40 !important}
+body.dark #wGuidelines [style*="background:#f0f0f0"]{background:#2a2a2a !important}
+body.dark #wGuidelines [style*="background:#fafbff"]{background:#1e2028 !important}
 
 /* ── 3. כל inline text כהה, בהיר ── */
 /* צבעים כהים שנבלעים על רקע --card */
@@ -129,7 +137,7 @@ body.dark header p{color:#c0bcb4}
 /* ── 5. אלמנטים ייחודיים ── */
 body.dark .search-wrap input{background:#1e1f1b;color:var(--text);border-color:#3a3d35}
 body.dark .tab-btn{background:#1e1f1b !important;color:var(--muted)}
-body.dark .tab-btn.active{color:white !important}
+body.dark .tab-btn.active{color:white !important;filter:brightness(1.25) !important;background:unset !important}
 body.dark .chip,body.dark .cat-chip,body.dark .part-chip,body.dark .ba-chip{background:#1e1f1b;color:var(--text);border-color:#3a3d35}
 body.dark .funfact,body.dark .note-box{background:#2a2010 !important;color:#f0cc58;border-color:#8a6820}
 body.dark .part-detail{background:#1e2520 !important;border-color:var(--blue)}
@@ -137,6 +145,8 @@ body.dark #darkModeBtn{background:rgba(255,255,255,.18) !important}
 body.dark .arow{border-bottom-color:#35362f}
 body.dark .aname{color:var(--text)}
 body.dark .fc-seo{color:var(--muted) !important;background:#1e1f1b !important;border-top-color:#35362f}
+body.dark #manifesto-box{background:var(--card) !important;border-color:#2d5a3a !important}
+body.dark #manifesto-box p,body.dark #manifesto-box strong{color:var(--text) !important}
 body.dark .cook-note{color:#a8a49a !important;background:#1e1f1b !important}
 body.dark .don-note{color:var(--muted) !important}
 body.dark .af-table th{background:#1e2530 !important;color:#aab8cc;border-bottom-color:#2a3545}
@@ -148,10 +158,25 @@ body.dark .af-table td[style*="#fff0f0"]{background:#2a0d0d !important;color:#d0
 body.dark .af-table tr td[colspan]{background:#1a1e2e !important;color:#8898cc !important}
 body.dark .af-table tr[style*="#f8f8fc"] td{background:#181c28 !important;color:#7788aa !important}
 body.dark .loader{color:var(--text);background:rgba(17,17,16,.97) !important}
+body.dark #globalSearchResult div{color:var(--text) !important}
+body.dark #globalSearchResult strong{color:var(--text) !important}
+/* שמור צבעים סמנטיים בתוצאות חיפוש */
+body.dark #globalSearchResult [style*="color:#1a7a40"],
+body.dark #globalSearchResult [style*="color:#1a6640"]{color:#70d090 !important}
+body.dark #globalSearchResult [style*="color:#b02020"],
+body.dark #globalSearchResult [style*="color:#8b1c1c"]{color:#f07070 !important}
+body.dark #globalSearchResult [style*="color:#7a5500"],
+body.dark #globalSearchResult [style*="color:#6a5600"]{color:#f5cc60 !important}
+body.dark #globalSearchResult [style*="color:#3aaa6e"]{color:#70d090 !important}
+body.dark #globalSearchResult [style*="color:#888"],
+body.dark #globalSearchResult [style*="color:#666"],
+body.dark #globalSearchResult [style*="color:#999"]{color:#aaa !important}
 body.dark .island-expand-all{border-color:rgba(255,255,255,.2);color:var(--muted)}
 body.dark .island-expand-all:hover{border-color:rgba(255,255,255,.4);color:var(--text)}
 body.dark button[title="הקרא את כל הדף"],
 body.dark button[title="הקראת כל הרשימה"]{background:#2a3a4a !important;color:#c8e0ff !important}
+body.dark button[title="הקרא את כל הדף"][style],
+body.dark button[title="הקראת כל הרשימה"][style]{background:#2a3a4a !important;color:#c8e0ff !important}
 body.dark button[onclick="dmClearAll()"]{background:#3a2800 !important;color:#f5cc80 !important}
 body.dark .am-close-btn{border-color:#4a4a40;color:var(--muted)}
 body.dark .am-close-btn:hover{border-color:#888;color:var(--text)}
@@ -433,6 +458,7 @@ body.rainbow .animal-card:nth-child(5n+5){border-top:3px solid #cc5de8}
 body.rainbow .insight-island.emotional{background:rgba(255,230,255,.7);border-color:#e0a0ff}
 body.rainbow .insight-island.nutrition{background:rgba(220,255,220,.7);border-color:#80e080}
 body.rainbow .insight-island.safety{background:rgba(255,240,220,.7);border-color:#ffa060}
+body.rainbow #manifesto-island{background:rgba(255,255,255,.82) !important;border-color:#c0a0e8 !important}
 body.rainbow #darkModeBtn{background:rgba(255,255,255,.55)}
 body.rainbow .modal-overlay{position:fixed !important;inset:0 !important;top:0 !important;align-items:flex-start !important;padding-top:.5rem !important;z-index:99999 !important}
 body.rainbow .modal-overlay{position:fixed !important;inset:0 !important;top:0 !important;align-items:flex-start !important;padding-top:.5rem !important;z-index:99999 !important}
@@ -462,8 +488,8 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
 .food-count{display:inline-block;background:var(--card);border-radius:50px;padding:.18rem .9rem;font-size:.89rem;font-weight:700;color:var(--green);box-shadow:0 2px 8px rgba(0,0,0,.1);margin-top:.4rem}
 
 /* TABS */
-.tabs{display:flex;gap:.35rem;padding:.8rem 1rem .4rem;flex-wrap:wrap;max-width:1000px;margin:0 auto;justify-content:space-evenly}
-.tab-btn{padding:.5rem .55rem;border-radius:50px;border:2px solid transparent;cursor:pointer;font-family:'Varela Round',sans-serif;font-size:1.02rem;font-weight:700;transition:all .18s;background:var(--card);color:#555;box-shadow:var(--shadow)}
+.tabs{display:flex;gap:.28rem;padding:.6rem .8rem .3rem;flex-wrap:wrap;max-width:1000px;margin:0 auto;justify-content:space-evenly}
+.tab-btn{padding:.35rem .45rem;border-radius:50px;border:2px solid transparent;cursor:pointer;font-family:'Varela Round',sans-serif;font-size:.87rem;font-weight:700;transition:all .18s;background:var(--card);color:#555;box-shadow:var(--shadow)}
 .tab-btn:hover{transform:translateY(-2px)}
 .tab-btn.active{color:white!important}
 .tab-btn[data-tab="quickguide"].active{background:#3aaa6e}
@@ -488,6 +514,7 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 .section-hero h2{font-size:1.7rem;font-weight:900;margin-top:.35rem}
 .section-hero p{color:#888;font-size:.93rem;margin-top:.15rem}
+.section-hero p.hero-desc-justify{text-align:justify;text-align-last:center;max-width:780px;margin-left:auto;margin-right:auto;color:#555}
 
 /* SEARCH */
 .search-wrap{position:relative;margin-bottom:.8rem}
@@ -522,7 +549,8 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
 .fc-expand-bar:hover{background:#2a7ac0}
 .fc-seo{padding:.6rem .95rem .75rem;font-size:.86rem;color:#555;line-height:1.7;border-top:1px solid #eef0f8;background:#fafbff;margin:0;direction:rtl;text-align:right}
 .tab-btn[data-tab="insight"].active{background:#7b5ea7}
-.tab-btn[data-tab="seasonal"].active{background:#2a9a6e}
+.tab-btn[data-tab="seasonal"].active{background:#2a7ab0}
+.tab-btn[data-tab="guidelines"].active{background:#d08a00}
 
 /* ══ WEATHER WIDGET ══ */
 .weather-card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:1.1rem 1.2rem 1rem;margin-bottom:1.2rem;direction:rtl;position:relative;overflow:hidden}
@@ -557,7 +585,7 @@ body.dark .island-header{border-bottom-color:rgba(255,255,255,.1)}
 body.dark .island-title{color:#e0e4f0}
 .island-subtitle{font-size:.85rem;color:#777;font-weight:600;margin-top:.1rem}
 body.dark .island-subtitle{color:#9a9890}
-/* ── מידע שוטף — dark mode ── */
+/* ── מידע עונתי — dark mode ── */
 body.dark #qgSeasonalStrip{border-color:#2a5a3a !important}
 body.dark #qgSeasonalStrip > div:first-child{background:#1a2e22 !important}
 body.dark #qgSeasonalTitle{color:#70d090 !important}
@@ -574,12 +602,20 @@ body.dark #tab-seasonal summary span{color:var(--text) !important}
 body.dark #tab-seasonal details > div{color:var(--text) !important}
 body.dark #tab-seasonal details > div p{color:var(--text) !important}
 body.dark #tab-seasonal details > div strong{color:var(--text) !important}
+body.dark #tab-guidelines summary{color:var(--text) !important}
+body.dark #tab-guidelines summary span{color:var(--text) !important}
+body.dark #tab-guidelines details > div{color:var(--text) !important}
+body.dark #tab-guidelines details > div p{color:var(--text) !important}
+body.dark #tab-guidelines details > div strong{color:var(--text) !important}
 body.dark .season-month{background:var(--card) !important}
 body.dark .sm-name{color:var(--text) !important}
 body.dark .sm-fruits{color:var(--muted) !important}
 body.dark #tab-seasonal button[style*="color:#1a6a38"],
 body.dark #tab-seasonal button[style*="color:#8a6000"],
 body.dark #tab-seasonal button[style*="color:#3060a0"]{color:var(--text) !important;background:var(--card) !important;border-color:rgba(255,255,255,.2) !important}
+body.dark #tab-guidelines button[style*="color:#1a6a38"],
+body.dark #tab-guidelines button[style*="color:#8a6000"],
+body.dark #tab-guidelines button[style*="color:#3060a0"]{color:var(--text) !important;background:var(--card) !important;border-color:rgba(255,255,255,.2) !important}
 body.dark #currentSeasonFoods button{background:var(--card) !important;color:var(--text) !important;border-color:rgba(255,255,255,.2) !important}
 .island-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:.9rem}
 /* ── Article Cards ── */
@@ -760,10 +796,11 @@ body.dark .safety .insight-links{background:#2a1a10;border-right-color:#e08050}
   header h1{font-size:1.45rem}
   header p{font-size:1.1rem}
   .grid,.animal-grid{grid-template-columns:1fr}
-  .tabs{padding:.6rem .7rem .3rem}
-  .tab-btn{padding:.4rem .45rem;font-size:.93rem}
+  .tabs{padding:.5rem .6rem .25rem;gap:.2rem}
+  .tab-btn{padding:.3rem .4rem;font-size:.8rem}
   .my-grid{grid-template-columns:repeat(3,1fr)}
   #tab-seasonal > div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important}
+  #tab-guidelines > div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important}
 }
 @keyframes starPulse{0%,100%{transform:scale(1) rotate(0deg);opacity:.5}50%{transform:scale(1.4) rotate(15deg);opacity:1}}
 /* LIGHTBOX */
@@ -951,7 +988,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   <canvas id="rainbowCanvas"></canvas>
   <div id="rainbowBubbles"></div>
   <div class="ticker" onclick="spawnPawTrail()" style="cursor:pointer" title="🐾">🦜🐹🐢🦎🐛🐰🐕🐟🦎🐱🐹🐰🦜🐢🐛🐕🐟🦜🐹🐢🦎🐛🐰🐕🐟🦎🐱🐹🐰🦜🐢🐛🐕🐟</div>
-  <div style="font-size:.82rem;color:#557;font-weight:700;margin-bottom:.2rem">🏫 בית ספר שז"ר - פינת החי</div>
+  <div style="font-size:.88rem;font-weight:800;margin-bottom:.25rem;letter-spacing:.01em"><a onclick="switchTab('insight');setTimeout(()=>document.getElementById('manifesto-island').scrollIntoView({behavior:'smooth',block:'start'}),120);return false;" href="#" style="color:#2a6a40;text-decoration:none;border-bottom:1.5px dotted #3aaa6e;padding-bottom:.05rem;cursor:pointer" title="למידע על פינת החי הטיפולית ←">🐾 פינת החי הטיפולית של בית ספר שז"ר 🐾</a></div>
   <h1>🌿 מה אוכלים היום בפינת החי?</h1>
   <p>המדריך לכל מה שצריך! <span style="position:relative;display:inline-block;vertical-align:middle">
     <span id="secretStar" onclick="openSecretsPopup();dismissStarTooltip()" title="סודות והפתעות 🌟" style="cursor:pointer;font-size:.9em;display:inline-block;animation:starPulse 2.2s ease-in-out infinite">✨</span>
@@ -1001,12 +1038,12 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   <button class="tab-btn" data-tab="byanimal" onclick="switchTab('byanimal')">🐾 מה אוכלת כל חיה? <span onclick="event.stopPropagation();speakText('מה אוכלת כל חיה? בחרי חיה וראי מה מותר ומה אסור.',this)" style="background:none;border:none;cursor:pointer;font-size:.55rem;padding:0 0 0 .1rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
   <button class="tab-btn" data-tab="allfoods" onclick="switchTab('allfoods')">📋 כל המזונות <span onclick="event.stopPropagation();speakText('כל המזונות. רשימה מלאה של מה מותר לכל חיה.',this)" style="background:none;border:none;cursor:pointer;font-size:.55rem;padding:0 0 0 .1rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
   <button class="tab-btn" data-tab="animals" onclick="switchTab('animals')">🐾 מידע על החיות <span onclick="event.stopPropagation();speakText('מידע על החיות. מידע על כל החיות בפינת החי.',this)" style="background:none;border:none;cursor:pointer;font-size:.55rem;padding:0 0 0 .1rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
-  <button class="tab-btn" data-tab="donate" onclick="switchTab('donate')">🎁 לתרום <span onclick="event.stopPropagation();speakText('לתרום. דברים מהמטבח ומהבית שמאוד עוזרים לנו.',this)" style="background:none;border:none;cursor:pointer;font-size:.55rem;padding:0 0 0 .1rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
   <button class="tab-btn" data-tab="mycorner" onclick="switchTab('mycorner')">🌟 פינת החי שלנו <span onclick="event.stopPropagation();speakText('פינת החי שלנו.',this)" style="background:none;border:none;cursor:pointer;font-size:.55rem;padding:0 0 0 .1rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
-
   <button class="tab-btn" data-tab="dailymenu" onclick="switchTab('dailymenu')">🥗 תפריט יומי <span onclick="event.stopPropagation();speakText('תפריט יומי. בנה תפריט מותאם לכל חיה לפי מה שקיבלת היום.',this)" style="background:none;border:none;cursor:pointer;font-size:.55rem;padding:0 0 0 .1rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
   <button class="tab-btn" data-tab="insight" onclick="switchTab('insight')">💡 מבט מעמיק <span onclick="event.stopPropagation();speakText('מבט מעמיק. מאמרים על פינת החי, רגש, תזונה ובטיחות.',this)" style="background:none;border:none;cursor:pointer;font-size:.55rem;padding:0 0 0 .1rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
-  <button class="tab-btn" data-tab="seasonal" onclick="switchTab('seasonal')" style="white-space:nowrap">🗓️ מידע שוטף <span onclick="event.stopPropagation();speakText('מידע שוטף. הנחיות טיפול, מזג אוויר ופירות בעונה.',this)" style="background:none;border:none;cursor:pointer;font-size:.55rem;padding:0 0 0 .1rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
+  <button class="tab-btn" data-tab="seasonal" onclick="switchTab('seasonal')" style="white-space:nowrap">🌡️ מידע עונתי <span onclick="event.stopPropagation();speakText('מידע עונתי. מזג אוויר ופירות בעונה.',this)" style="background:none;border:none;cursor:pointer;font-size:.55rem;padding:0 0 0 .1rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
+  <button class="tab-btn" data-tab="guidelines" onclick="switchTab('guidelines')" style="white-space:nowrap">📋 הנחיות <span onclick="event.stopPropagation();speakText('הנחיות. הנחיות טיפול קבועות ורשימת בדיקה.',this)" style="background:none;border:none;cursor:pointer;font-size:.55rem;padding:0 0 0 .1rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
+  <button class="tab-btn" data-tab="donate" onclick="switchTab('donate')">🎁 לתרום <span onclick="event.stopPropagation();speakText('לתרום. דברים מהמטבח ומהבית שמאוד עוזרים לנו.',this)" style="background:none;border:none;cursor:pointer;font-size:.55rem;padding:0 0 0 .1rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
   <button class="tab-btn" data-tab="deploy" onclick="switchTab('deploy')">✉️ יצירת קשר <span onclick="event.stopPropagation();speakText('יצירת קשר. שאלות, הצעות, או סתם שלום.',this)" style="background:none;border:none;cursor:pointer;font-size:.55rem;padding:0 0 0 .1rem;line-height:1;display:inline" title="הקראה" role="button" tabindex="0">🔊</span></button>
 </div>
 
@@ -1027,13 +1064,16 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   <div class="section-hero"><span class="hero-emoji">📝</span><h2>בקיצור</h2><p>רשימת קניות מהירה - מה להביא ומה לא</p><button onclick="speakTabAll('tab-quickguide',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
 
   <!-- ── פירות בעונה ── -->
-  <div id="qgSeasonalStrip" style="border-radius:14px;overflow:hidden;border:2px solid #b8e8cc;margin-bottom:.6rem">
-    <div style="background:linear-gradient(to left,#d4f0e4,#e8f9f0);padding:.55rem .9rem;display:flex;align-items:center;gap:.5rem">
-      <span style="font-size:1.25rem">🍓</span>
-      <span style="font-weight:900;font-size:.95rem;color:#1a5c35;flex:1" id="qgSeasonalTitle">פירות בעונה עכשיו</span>
-      <span onclick="switchTab('seasonal')" style="font-size:.77rem;color:#2a8a50;cursor:pointer;text-decoration:underline dotted;white-space:nowrap">לפרטים ←</span>
+  <div id="qgSeasonalStrip" style="border-radius:16px;overflow:hidden;border:2px solid #b8e8cc;margin-bottom:.7rem;box-shadow:0 2px 10px rgba(58,170,110,.10)">
+    <div style="background:linear-gradient(to left,#c8edda,#dff7ec);padding:.65rem 1rem;display:flex;align-items:center;gap:.6rem">
+      <span style="font-size:1.5rem">🌿</span>
+      <div style="flex:1">
+        <div style="font-weight:900;font-size:1.0rem;color:#1a5c35" id="qgSeasonalTitle">פירות בעונה</div>
+        <div style="font-size:.77rem;color:#2a7a48;margin-top:.05rem">האם מותר לתת לחיות שלנו? לחצו על פרי לפרטים</div>
+      </div>
+      <span onclick="switchTab('seasonal')" style="font-size:.78rem;color:#1a6640;cursor:pointer;text-decoration:underline dotted;white-space:nowrap;font-weight:700">מידע עונתי ←</span>
     </div>
-    <div id="qgSeasonalFruits" style="background:#f0fbf4;padding:.55rem .9rem .7rem;display:flex;flex-wrap:wrap;gap:.4rem"></div>
+    <div id="qgSeasonalFruits" style="background:#f0fbf4;padding:.6rem 1rem .75rem;display:flex;flex-wrap:wrap;gap:.45rem"></div>
   </div>
 
   <!-- חיפוש מהיר בבקיצור -->
@@ -1065,7 +1105,6 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
           <div style="font-size:.77rem;font-weight:800;color:#2a7a50;margin-bottom:.3rem;letter-spacing:.04em">🥦🍎 ירקות ופירות</div>
           <div id="qg-vegfruits-chips" style="display:flex;flex-wrap:wrap;gap:.28rem">
             <span class="qg-chip qg-yes" onclick="openFoodModal('cucumber')" style="cursor:pointer">🥒 מלפפון 🥗 <button onclick="event.stopPropagation();speakText('מלפפון',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
-            <span class="qg-chip qg-yes" onclick="openFoodModal('tomato')" style="cursor:pointer">🍅 עגבנייה 🥗 <button onclick="event.stopPropagation();speakText('עגבנייה',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('sweet_pepper')" style="cursor:pointer">🌶️ פלפל מתוק 🥗 <button onclick="event.stopPropagation();speakText('פלפל מתוק',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="spawnCarrots(event.clientX,event.clientY);setTimeout(()=>openFoodModal('carrot'),300)" style="cursor:pointer">🥕 גזר 🥗 <button onclick="event.stopPropagation();speakText('גזר',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('apple')" style="cursor:pointer">🍎 תפוח 🥗 <button onclick="event.stopPropagation();speakText('תפוח',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
@@ -1075,7 +1114,6 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
             <span class="qg-chip qg-yes" onclick="openFoodModal('corn')" style="cursor:pointer">🌽 תירס 🔄 <button onclick="event.stopPropagation();speakText('תירס',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('cabbage')" style="cursor:pointer">🥬 כרוב 🥗 <button onclick="event.stopPropagation();speakText('כרוב',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('beetroot')" style="cursor:pointer">🟣 סלק <button onclick="event.stopPropagation();speakText('סלק',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
-            <span class="qg-chip qg-yes" onclick="openFoodModal('grapes')" style="cursor:pointer">🍇 ענבים 🥗 <button onclick="event.stopPropagation();speakText('ענבים',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('watermelon')" style="cursor:pointer">🍉 אבטיח 🥗 <button onclick="event.stopPropagation();speakText('אבטיח',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('melon')" style="cursor:pointer">🍈 מלון 🥗 <button onclick="event.stopPropagation();speakText('מלון',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('peach')" style="cursor:pointer">🍑 אפרסק 🥗 <button onclick="event.stopPropagation();speakText('אפרסק',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
@@ -1086,11 +1124,6 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
             <span class="qg-chip qg-yes" onclick="openFoodModal('peas')" style="cursor:pointer">💚 אפונה 🥗 <button onclick="event.stopPropagation();speakText('אפונה',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('mango')" style="cursor:pointer">🥭 מנגו 🥗 <button onclick="event.stopPropagation();speakText('מנגו',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('strawberry')" style="cursor:pointer">🍓 תות שדה 🥗 <button onclick="event.stopPropagation();speakText('תות שדה',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
-            <span class="qg-chip qg-yes" onclick="openFoodModal('kiwi')" style="cursor:pointer">🥝 קיווי 🥗 <button onclick="event.stopPropagation();speakText('קיווי',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
-            <span class="qg-chip qg-yes" onclick="openFoodModal('radish')" style="cursor:pointer">🥬 צנונית 🥗 <button onclick="event.stopPropagation();speakText('צנונית',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
-            <span class="qg-chip qg-yes" onclick="openFoodModal('turnip')" style="cursor:pointer">🥬 לפת 🥗 <button onclick="event.stopPropagation();speakText('לפת',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
-            <span class="qg-chip qg-yes" onclick="openFoodModal('artichoke')" style="cursor:pointer">🌿 ארטישוק <button onclick="event.stopPropagation();speakText('ארטישוק',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
-            <span class="qg-chip qg-yes" onclick="openFoodModal('pineapple')" style="cursor:pointer">🍍 אננס 🥗 <button onclick="event.stopPropagation();speakText('אננס',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('raspberry')" style="cursor:pointer">🍒 פטל 🥗 <button onclick="event.stopPropagation();speakText('פטל',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('cherry')" style="cursor:pointer">🍒 דובדבן 🥗 <button onclick="event.stopPropagation();speakText('דובדבן',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('asparagus')" style="cursor:pointer">🥦 אספרגוס 🥗 <button onclick="event.stopPropagation();speakText('אספרגוס',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
@@ -1114,17 +1147,12 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
             <span class="qg-chip qg-yes" onclick="openFoodModal('mint')" style="cursor:pointer">🌿 נענע 🥗 <button onclick="event.stopPropagation();speakText('נענע',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('dill')" style="cursor:pointer">🌿 שמיר 🥗 <button onclick="event.stopPropagation();speakText('שמיר',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('celery')" style="cursor:pointer">🌱 סלרי / כרפס 🥗 <button onclick="event.stopPropagation();speakText('סלרי כרפס',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
-            <span class="qg-chip qg-yes" onclick="openFoodModal('spinach')" style="cursor:pointer">🥬 תרד 🥗 <button onclick="event.stopPropagation();speakText('תרד',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('babyleaves')" style="cursor:pointer">🥬 עלי בייבי 🥗 <button onclick="event.stopPropagation();speakText('עלי בייבי',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
-            <span class="qg-chip qg-yes" onclick="openFoodModal('boiled_egg')" style="cursor:pointer">🥚 ביצה קשה 🍳 <button onclick="event.stopPropagation();speakText('ביצה קשה',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
-            <span class="qg-chip qg-yes" onclick="openFoodModal('sunflower_seeds')" style="cursor:pointer">🌻 גרעיני חמנייה 🥗 <button onclick="event.stopPropagation();speakText('גרעיני חמנייה',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
-            <span class="qg-chip qg-yes" onclick="openFoodModal('pumpkin_seeds')" style="cursor:pointer">🎃 גרעיני דלעת 🥗 <button onclick="event.stopPropagation();speakText('גרעיני דלעת',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('fennel')" style="cursor:pointer">🌱 שומר 🥗 <button onclick="event.stopPropagation();speakText('שומר',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('kale')" style="cursor:pointer">🥬 קייל 🥗 <button onclick="event.stopPropagation();speakText('קייל',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('sprouts_mung')" style="cursor:pointer">🌱 נבטים סיניים 🥗 <button onclick="event.stopPropagation();speakText('נבטים סיניים',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('sprouts_alfalfa')" style="cursor:pointer">🌱 נבטי אלפלפא 🥗 <button onclick="event.stopPropagation();speakText('נבטי אלפלפא',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('sprouts_sunflower')" style="cursor:pointer">🌻 נבטי חמנייה 🥗 <button onclick="event.stopPropagation();speakText('נבטי חמנייה',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
-            <span class="qg-chip qg-yes" onclick="openFoodModal('grapeleaves')" style="cursor:pointer">🍇 עלי גפן 🥗 <button onclick="event.stopPropagation();speakText('עלי גפן',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('mallow')" style="cursor:pointer">🌿 חובזה 🥗 <button onclick="event.stopPropagation();speakText('חובזה',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('mulberry_leaves')" style="cursor:pointer">🍃 עלי תות עץ 🥗 <button onclick="event.stopPropagation();speakText('עלי תות עץ',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('hibiscus')" style="cursor:pointer">🌺 היביסקוס 🥗 <button onclick="event.stopPropagation();speakText('היביסקוס',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
@@ -1140,16 +1168,23 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       <div class="qg-sep-header" style="background:#fff8e0;padding:.7rem 1rem;border-bottom:2px solid #f0d860;display:flex;align-items:center;gap:.5rem">
         <span style="font-size:1.4rem">⚠️</span>
         <div class="qg-sep-title" style="font-weight:900;font-size:1.02rem;color:#7a5500;flex:1">רק שלמים או מופרדים לגמרי</div>
-        <button onclick="speakText('רק שלמים בשקית נפרדת: תפוח אדמה, פירות הדר כולל קלמנטינה, עגבנייה, אגוז מלך ובוטנים, כרוב ניצנים.',this)" title="הקראה" class="qg-sep-speak" style="background:#fff8e0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.87rem;flex-shrink:0">🔊</button>
+        <button onclick="speakText('רק שלמים בשקית נפרדת: תפוח אדמה, פירות הדר כולל קלמנטינה, אגוז מלך ובוטנים, כרוב ניצנים, ענבים, ביצה קשה, גרעיני דלעת, גרעיני חמנייה, תרד, אננס, קיווי, עלי גפן.',this)" title="הקראה" class="qg-sep-speak" style="background:#fff8e0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.87rem;flex-shrink:0">🔊</button>
       </div>
       <div style="padding:.7rem 1rem">
-        <div class="qg-sep-desc" style="font-size:.85rem;color:#555;margin-bottom:.6rem">אלה מותרים לחלק מהחיות אבל לא לאחרות - להביא שלמים או בשקית נפרדת מהשאר - ונמיין אנחנו.</div>
+        <div class="qg-sep-desc" style="font-size:.85rem;color:#555;margin-bottom:.6rem">המזונות האלה טובים לחלק מהחיות אך עלולים להזיק לאחרות. נשמח שתביאו אותם שלמים או בשקית נפרדת כדי שנוכל לזהות כל פריט ולתת אותו רק למי שמותר. כשהמזון מגיע חתוך ומעורבב קשה לדעת מה יש בפנים ולא ניתן להפריד.</div>
         <div id="qg-sep" style="display:flex;flex-wrap:wrap;gap:.3rem">
           <span class="qg-chip qg-warn" onclick="openFoodModal('potato',[])" style="cursor:pointer">🥔 תפוח אדמה</span>
           <span class="qg-chip qg-warn" onclick="openFoodModal('orange',[])" style="cursor:pointer">🍊 פירות הדר</span>
-          <span class="qg-chip qg-warn" onclick="openFoodModal('tomato',[])" style="cursor:pointer">🍅 עגבנייה</span>
           <span class="qg-chip qg-warn" onclick="openFoodModal('walnuts',[])" style="cursor:pointer">🌰 אגוז מלך (ובוטנים)</span>
           <span class="qg-chip qg-warn" onclick="openFoodModal('brussels_sprouts',[])" style="cursor:pointer">🥦 כרוב ניצנים</span>
+          <span class="qg-chip qg-warn" onclick="openFoodModal('grapes',[])" style="cursor:pointer">🍇 ענבים</span>
+          <span class="qg-chip qg-warn" onclick="openFoodModal('boiled_egg',[])" style="cursor:pointer">🥚 ביצה קשה</span>
+          <span class="qg-chip qg-warn" onclick="openFoodModal('pumpkin_seeds',[])" style="cursor:pointer">🎃 גרעיני דלעת</span>
+          <span class="qg-chip qg-warn" onclick="openFoodModal('sunflower_seeds',[])" style="cursor:pointer">🌻 גרעיני חמנייה</span>
+          <span class="qg-chip qg-warn" onclick="openFoodModal('spinach',[])" style="cursor:pointer">🥬 תרד</span>
+          <span class="qg-chip qg-warn" onclick="openFoodModal('pineapple',[])" style="cursor:pointer">🍍 אננס</span>
+          <span class="qg-chip qg-warn" onclick="openFoodModal('kiwi',[])" style="cursor:pointer">🥝 קיווי</span>
+          <span class="qg-chip qg-warn" onclick="openFoodModal('grapeleaves',[])" style="cursor:pointer">🍇 עלי גפן</span>
         </div>
       </div>
     </div>
@@ -1159,7 +1194,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       <div style="background:#fde8e8;padding:.7rem 1rem;border-bottom:2px solid #f0b8b8;display:flex;align-items:center;gap:.5rem">
         <span style="font-size:1.4rem">❌</span>
         <div style="font-weight:900;font-size:1.02rem;color:#8b1c1c;flex:1">אין צורך להביא</div>
-        <button onclick="speakText('אין צורך להביא, אלו רעילים לחיות: בצל, בצל ירוק, שום, אבוקדו, שוקולד, חטיפים מלוחים, חטיפים מתוקים, חציל, לימון, מוצרי חלב, פטריות.',this)" title="הקראה" style="background:#fde8e8;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.87rem;flex-shrink:0">🔊</button>
+        <button onclick="speakText('אין צורך להביא, אלו רעילים לחיות: בצל, בצל ירוק, שום, אבוקדו, שוקולד, חטיפים מלוחים, חטיפים מתוקים, חציל, עגבנייה, לימון, מוצרי חלב, פטריות.',this)" title="הקראה" style="background:#fde8e8;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.87rem;flex-shrink:0">🔊</button>
       </div>
       <div style="padding:.7rem 1rem">
         <div style="font-size:.85rem;color:#555;margin-bottom:.6rem">תודה רבה! אין צורך להביא, אלו רעילים ועלולים לפגוע בחיות שלנו 🙏</div>
@@ -1170,6 +1205,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
           <span class="qg-chip qg-no" onclick="openFoodModal('chocolate',[])" style="cursor:pointer">🍫 שוקולד</span>
           <span class="qg-chip qg-no" onclick="openFoodModal('chips',[])" style="cursor:pointer">🍟🍬 חטיפים מלוחים ומתוקים</span>
           <span class="qg-chip qg-no" onclick="openFoodModal('eggplant',[])" style="cursor:pointer">🍆 חציל</span>
+          <span class="qg-chip qg-no" onclick="openFoodModal('tomato',[])" style="cursor:pointer">🍅 עגבנייה</span>
           <span class="qg-chip qg-no" onclick="openFoodModal('lemon',[])" style="cursor:pointer">🍋 לימון</span>
           <span class="qg-chip qg-no" onclick="openFoodModal('dairy',[])" style="cursor:pointer">🥛 מוצרי חלב</span>
           <span class="qg-chip qg-no" onclick="openFoodModal('mushroom',[])" style="cursor:pointer">🍄 פטריות</span>
@@ -1272,7 +1308,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   </div>
   <div style="position:relative;margin-bottom:.6rem">
     <input id="allFoodsSearch" type="text"
-      placeholder="חפש מזון או חיה: גזר, ביצה קשה, אוגר..."
+      placeholder="חיפוש מזון או חיה: גזר, ביצה קשה, אוגר..."
       oninput="filterAllFoodsTable(this.value)"
       style="width:100%;box-sizing:border-box;padding:.5rem 2.2rem .5rem .7rem;border:2px solid #dde;border-radius:50px;font-size:.92rem;font-family:inherit;outline:none;transition:border-color .15s"
       onfocus="this.style.borderColor='#3aaa6e'"
@@ -1299,7 +1335,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     <button class="expand-all-btn" onclick="expandAllAnimals()" id="expandAllAnimalsBtn">📖 פתח הכל</button>
   </div>
   <div style="margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem">
-    <button onclick="switchTab('search')" style="background:#f0f7ff;border:2px solid #c0d8f0;border-radius:50px;padding:.4rem 1rem;font-size:.92rem;font-weight:700;cursor:pointer;color:#2a5a8a;font-family:'Varela Round',sans-serif">🔍 חיפוש חיה בדף החיפוש המורחב</button>
+    <button onclick="switchTab('search')" style="background:var(--sky);border:2px solid #c0d8f0;border-radius:50px;padding:.4rem 1rem;font-size:.92rem;font-weight:700;cursor:pointer;color:var(--blue);font-family:'Varela Round',sans-serif">🔍 חיפוש חיה בדף החיפוש המורחב</button>
   </div>
   <div style="margin-bottom:.6rem">
     <button class="btn-s" id="showOursBtn" onclick="setAnimalView('ours')" style="font-size:.89rem;padding:.35rem .85rem;background:var(--green);color:white;border-radius:50px;border:none;cursor:pointer;font-weight:700">🏠 החיות שלנו</button>
@@ -1556,12 +1592,64 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 </div>
 
 <div class="tab-panel" id="tab-insight">
-  <div class="section-hero"><span class="hero-emoji">💡</span><h2>מבט מעמיק <span onclick="event.stopPropagation();speakText('מבט מעמיק. בין הבית לפינת החי. המפגש שלנו עם בעלי החיים ועם עצמנו.',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0" aria-label="הקרא בקול">🔊</span></h2><p>בין הבית לפינת החי: המפגש שלנו עם בעלי החיים ועם עצמנו</p><button onclick="speakInsightAll(this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
+
+  <div class="section-hero"><span class="hero-emoji">💡</span><h2>מבט מעמיק <span onclick="event.stopPropagation();speakText('מבט מעמיק.',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0" aria-label="הקרא בקול">🔊</span></h2><p class="hero-desc-justify">קטעי קריאה קצרים המרחיבים על ה"למה" שמאחורי העשייה בפינת החי. העמקה בהיגיון התזונתי והבטיחותי של המקום, בשותפות שבין הבית לפינת החי, ובמהות התהליכים המתרחשים במסגרת טיפול רגשי בעזרת בעלי חיים, המפגש והיחסים הנרקמים בינינו לבין בעלי החיים.</p><button onclick="speakInsightAll(this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
   <div style="text-align:center;margin:.5rem 0 .2rem">
     <button id="insightExpandAllBtn" onclick="expandAllInsights()" style="background:none;border:1.5px solid rgba(0,0,0,.18);border-radius:50px;padding:.32rem 1.1rem;font-size:.87rem;font-weight:700;cursor:pointer;font-family:inherit;color:#666;transition:all .15s;direction:rtl">📖 פתח את כל הקטעים בכל הקטגוריות</button>
   </div>
 
   <div class="insight-islands">
+
+    <!-- ══ קוביית תפיסת העולם ══ -->
+    <section class="insight-island emotional" id="manifesto-island">
+      <div class="island-header">
+        <span class="island-emoji island-emoji-pop" onclick="popIslandEmoji(this)">🐾</span>
+        <div>
+          <div class="island-title">יסודות וערכים: התפיסה המקצועית שלנו <span onclick="event.stopPropagation();speakText('יסודות וערכים: התפיסה המקצועית שלנו. הרציונל והפילוסופיה המעצבים את זהות המקום.',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0" aria-label="הקרא בקול">🔊</span></div>
+          <div class="island-subtitle">הרציונל והפילוסופיה המעצבים את זהות המקום</div>
+        </div>
+      </div>
+
+      <!-- תוכן הקוביה: מלבן מלא -->
+      <div style="display:grid;grid-template-columns:1fr;gap:.9rem">
+        <div class="insight-card" style="cursor:default">
+          <div class="insight-card-top" style="padding-bottom:.2rem">
+            <span class="insight-card-tag">יסודות וערכים</span>
+            <div class="insight-card-title" style="margin:.4rem 0 .2rem">
+              🧭 תפיסת העולם של פינת החי הטיפולית
+              <span onclick="speakInsightBody('insight-body-manifesto',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0" aria-label="הקרא בקול">🔊</span>
+            </div>
+          </div>
+          <div class="insight-body" id="insight-body-manifesto" style="display:block;border-top:1px solid rgba(0,0,0,.07);padding-top:.7rem">
+            <!-- גרסה קצרה -->
+            <div id="manifesto-short">
+              <p>פינת החי שלנו היא <strong>פינת חי טיפולית</strong>, מרחב שמתקיימת בו עבודה רגשית, חברתית והתפתחותית דרך הקשר עם בעלי החיים. בעלי החיים כאן אינם אמצעי אלא <strong>שותפים לדרך</strong>: הם מגיבים למה שאנחנו מביאים, ודרכם אנחנו לומדים לזהות דפוסים, לווסת רגשות וליצור קשר בטוח.</p>
+              <p>המרחב פועל מתוך שלושה עקרונות: <strong>כבוד הדדי</strong>, בחירת בעל החיים להתרחק מכובדת תמיד; <strong>אחריות ורווחה</strong>, רווחת החיות קודמת לכל פעילות; <strong>נוכחות אמיתית</strong>, הקשר נוצר דרך הקשבה, לא רק מילים.</p>
+              <button onclick="document.getElementById('manifesto-short').style.display='none';document.getElementById('manifesto-full').style.display='block'" style="background:none;border:1.5px solid #7c5cbf;border-radius:50px;padding:.3rem 1rem;font-size:.86rem;font-weight:700;color:#5a3d8a;cursor:pointer;font-family:inherit;transition:all .15s" onmouseover="this.style.background='#7c5cbf';this.style.color='#fff'" onmouseout="this.style.background='none';this.style.color='#5a3d8a'">📖 קראו את הטקסט המלא ←</button>
+            </div>
+
+            <!-- גרסה מלאה -->
+            <div id="manifesto-full" style="display:none">
+              <p>פינת החי שלנו היא פינת חי טיפולית, מרחב שמתקיימת בו עבודה רגשית, חברתית והתפתחותית באמצעות הקשר עם בעלי החיים, לצד היכרות, למידה וטיפול יומיומי בהם. הגישה הטיפולית נוכחת באופן שבו המקום פועל ובאופן שבו מתקיימים המפגשים בו, נוצרת שפה נוספת שאינה נשענת רק על מילים אלא על נוכחות, הקשבה וקשר ישיר. במרחב הזה אנחנו נפגשים מתוך כבוד הדדי והכרה בכך שלכל אחד מאיתנו יש צרכים, קצב וגבולות.</p>
+              <h3>מה זה טיפול בעזרת בעלי חיים?</h3>
+              <p>טיפול בעזרת בעלי חיים הוא תחום שבו הקשר עם בעלי החיים מהווה את ציר העבודה הרגשית. בעלי החיים הם שותפים מלאים בתהליך שמוחזק ומכוון באופן מקצועי, תוך הקשבה רגישה לכל מה שעולה בתוך הקשר.</p>
+              <h3>מה קורה בינינו לבין בעלי החיים?</h3>
+              <p>בעלי החיים אינם שופטים ואינם מבקרים, אך הם מגיבים למה שאנחנו מביאים, לקרבה או לריחוק, לקצב, למתח או לרוגע. דרך התגובות האלה אנחנו מתבוננים בעצמנו בזמן אמת, מזהים דפוסים בתקשורת ומבינים כיצד אנחנו יוצרים קשר. לא כל מפגש מתפתח באותה צורה, יש גם היסוס, תסכול ורגעים שהקשר אינו נוצר מיד, וגם אלו חלק מהתהליך.</p>
+              <h3>אתיקה, שותפות והדדיות</h3>
+              <p>בעלי החיים אינם אמצעי אלא שותפים לדרך. אנחנו מתייחסים לכל בעל חיים כסובייקט, כיצור חי עם עולם פנימי, רצונות וגבולות משלו. כאשר בעל חיים בוחר להתרחק, הבחירה הזו מכובדת כעיקרון יסוד. כך אנחנו לומדים יחד מהו כבוד אמיתי והדדיות.</p>
+              <h3>אחריות, רווחה ומשמעות</h3>
+              <p>רווחת בעלי החיים עומדת במרכז העשייה שלנו. התזונה, הבריאות ותנאי המחיה שלהם קודמים לכל פעילות אחרת. דרך אחריות יומיומית אנחנו מתנסים במחויבות, מפתחים חמלה ולומדים שקשר משמעותי מתקיים לאורך זמן ודורש עקביות ודאגה לאחר.</p>
+              <h3>מרחב להתנסות ולצמיחה</h3>
+              <p>פינת החי היא מרחב חי ולא צפוי. בתוכו אנחנו מתנסים במצבים אמיתיים, מנסים, טועים, מתמודדים ולעיתים גם בוחרים לעצור ולנשום. מתוך ההתנסות הזו נבנית תחושת מסוגלות, יחד עם כלים שנשארים כחלק מאיתנו גם מחוץ לפינת החי.</p>
+              <div style="margin-top:1.4rem;padding-top:.7rem;border-top:1px solid rgba(0,0,0,.07);text-align:left;font-size:.79rem;color:#bbb;font-style:italic;direction:rtl">נכתב על ידי גלי זייצ'יק</div>
+              <button onclick="document.getElementById('manifesto-full').style.display='none';document.getElementById('manifesto-short').style.display='block'" style="background:none;border:1.5px solid #aaa;border-radius:50px;padding:.3rem 1rem;font-size:.86rem;font-weight:700;color:#666;cursor:pointer;font-family:inherit;margin-top:.8rem">↑ סגור</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ══ סוף קוביית תפיסת העולם ══ -->
 
     <section class="insight-island nutrition">
       <div class="island-header">
@@ -1895,12 +1983,12 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 </div><!-- end tab-insight -->
 
 <div class="tab-panel" id="tab-seasonal">
-  <div class="section-hero"><span class="hero-emoji">🗓️</span><h2>מידע שוטף <button onclick="speakText('מידע שוטף',this)" title="הקרא כותרת" style="background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa;padding:0;vertical-align:middle;line-height:1">🔊</button></h2><p>הנחיות טיפול, מזג אוויר ורשימות עבודה</p><button onclick="speakTabAll('tab-seasonal',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
+  <div class="section-hero"><span class="hero-emoji">🌡️</span><h2>מידע עונתי <button onclick="speakText('מידע עונתי',this)" title="הקרא כותרת" style="background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa;padding:0;vertical-align:middle;line-height:1">🔊</button></h2><p>מזג האוויר ופירות בעונה</p><button onclick="speakTabAll('tab-seasonal',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
 
-  <!-- ══ שני טורים ראשיים ══ -->
+  <!-- מזג אוויר + מזגן -->
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.1rem;align-items:start">
 
-    <!-- טור ימין: מזג אוויר + הנחיות לפי טמפרטורה -->
+    <!-- טור ימין: מזג אוויר -->
     <div>
 
       <!-- כרטיס מזג אוויר קומפקטי -->
@@ -1922,7 +2010,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
         </div>
         <div id="thermometerBar" style="margin-bottom:.6rem"></div>
         <div id="wWeekendNote" style="display:none;background:#fff8e0;border-radius:8px;border-right:3px solid #f0c030;padding:.4rem .7rem;font-size:.83rem;font-weight:700;color:#7a5500;margin-bottom:.6rem">
-          ⚠️ יום חמישי: לא חוזרים עד יום ראשון! לבצע את כל הבדיקות לפני יציאה.
+          ⚠️ יום חמישי: לא חוזרים לפינת החי עד יום ראשון! חשוב לבצע את כל הבדיקות ולכוון את המזגן בהתאם!
         </div>
         <div style="border-top:1.5px dashed #e8ede8;padding-top:.6rem">
           <div id="wRangeLabel" style="font-weight:800;font-size:.87rem;color:var(--text);margin-bottom:.4rem">📋 הנחיות לפינת החי, היום</div>
@@ -1946,66 +2034,6 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
         <div id="acForecastRange" style="font-size:.72rem;color:var(--muted);margin-top:.45rem;direction:rtl"></div>
       </div>
 
-      <!-- הנחיות לכל טמפרטורה -->
-      <div style="background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:.9rem 1rem 1rem;direction:rtl">
-        <div style="font-weight:800;font-size:.95rem;margin-bottom:.6rem;display:flex;align-items:center;gap:.4rem">🌡️ הנחיות לכל טמפרטורה<button onclick="speakText('הנחיות לכל טמפרטורה',this)" title="הקרא כותרת" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#aaa;padding:0;line-height:1">🔊</button><button onclick="speakText(Array.from(document.querySelectorAll('#tempGrp details')).map(d=>d.querySelector('summary span').textContent+'. '+d.querySelector('div>button+*,div p,div').innerText).join(' '),this)" title="הקרא את כל ההנחיות" style="background:#e8f0ff;border:1px solid #c8d8f0;border-radius:50px;padding:.18rem .6rem;font-size:.79rem;cursor:pointer;color:#3060a0;font-weight:700">🔊 הקרא הכל</button><button onclick="var ds=document.querySelectorAll('#tempGrp details');var allOpen=Array.from(ds).every(d=>d.open);ds.forEach(d=>d.open=!allOpen);this.textContent=allOpen?'📂 פתח הכל':'📁 סגור הכל'" style="background:#f0f4ff;border:1px solid #c8d8f0;border-radius:50px;padding:.18rem .6rem;font-size:.79rem;cursor:pointer;color:#3060a0;font-weight:700">📂 פתח הכל</button></div>
-        <div id="tempGrp" style="display:grid;gap:.4rem">
-
-          <details style="border-radius:10px;overflow:hidden">
-            <summary style="cursor:pointer;background:linear-gradient(to left,#c8dfff,#daeeff);padding:.55rem .85rem;font-weight:800;font-size:.89rem;color:#1a3080;list-style:none;display:flex;align-items:center;gap:.4rem;user-select:none">
-              <span>❄️ מתחת ל-15°, קר מאוד</span><button onclick="speakText('❄️ מתחת ל-15°, קר מאוד',this)" title="הקרא כותרת" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#888;padding:0 .2rem;line-height:1;flex-shrink:0">🔊</button>
-              <span style="margin-right:auto;font-size:.72rem;opacity:.55">▼</span>
-            </summary>
-            <div style="background:#f4f8ff;padding:.65rem .9rem .5rem;font-size:.87rem;line-height:1.75;direction:rtl;border-radius:0 0 10px 10px"><button onclick="speakText('🌡️ חימום החדר: להפעיל מזגן על חימום ולכוון ל-22-24°. זהו הטווח ששומר על בריאות כל החיות. 🐢 דונה הצבה הסודנית נשארת בפנים: אסור להוציאה. לוודא שמנורת החימום פועלת והמתחם מגיע ל-28° לפחות. 🦎 זאוס החרדון המזוקן נשאר בטרריום: אין להוציאו לשמש. לוודא שמנורות החימום והקרינה פועלות. 🦜 קיקו הג\'אקו וקוקטייל',this)" title="הקרא קטע" style="background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa;padding:0;margin-bottom:.3rem;display:block">🔊 הקרא הכל</button>
-              <p>🌡️ <strong>חימום החדר:</strong> להפעיל מזגן על חימום ולכוון ל-22-24°. זהו הטווח ששומר על בריאות כל החיות.</p>
-              <p>🐢 <strong>דונה הצבה הסודנית נשארת בפנים:</strong> אסור להוציאה. לוודא שמנורת החימום פועלת והמתחם מגיע ל-28° לפחות.</p>
-              <p>🦎 <strong>זאוס החרדון המזוקן נשאר בטרריום:</strong> אין להוציאו לשמש. לוודא שמנורות החימום והקרינה פועלות.</p>
-              <p>🦜 <strong>קיקו הג'אקו וקוקטיילים:</strong> לוודא שכל חלונות החדר סגורים היטב. מערכת הנשימה של התוכים רגישה מאוד לשינויי טמפרטורה פתאומיים.</p>
-              <p>🐹 <strong>מכרסמים:</strong> להוסיף קש או נייר גרוס לאוגרים ולשרקנים, כדי שיוכלו לחפור ולהתחממות.</p>
-            </div>
-          </details>
-
-          <details style="border-radius:10px;overflow:hidden">
-            <summary style="cursor:pointer;background:linear-gradient(to left,#c8f0dd,#dafaee);padding:.55rem .85rem;font-weight:800;font-size:.89rem;color:#1a5c35;list-style:none;display:flex;align-items:center;gap:.4rem;user-select:none">
-              <span>🌤️ 15-22°, טמפרטורה מתונה</span><button onclick="speakText('🌤️ 15-22°, טמפרטורה מתונה',this)" title="הקרא כותרת" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#888;padding:0 .2rem;line-height:1;flex-shrink:0">🔊</button>
-              <span style="margin-right:auto;font-size:.72rem;opacity:.55">▼</span>
-            </summary>
-            <div style="background:#f2fcf6;padding:.65rem .9rem .5rem;font-size:.87rem;line-height:1.75;direction:rtl;border-radius:0 0 10px 10px"><button onclick="speakText('🐢🦎 זמן חשיפה לשמש: הזמן המתאים ביותר להוציא את דונה הצבה ואת זאוס החרדון. קרינת שמש חיונית לעצמות ולשריון. להחזירם פנימה אם מתחילה לנשב רוח קרה. 🐹 ארנבונים וצ\'ינצ\'ילות: בטמפרטורות אלו הם מרגישים במיטבם, מלאי אנרגיה וחיוניות. 🐢 תחזוקת מתחם דונה הצבה: לוודא שמנורת החימום דולקת והאזור המחומם מגיע ל-2',this)" title="הקרא קטע" style="background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa;padding:0;margin-bottom:.3rem;display:block">🔊 הקרא הכל</button>
-              <p>🐢🦎 <strong>זמן חשיפה לשמש:</strong> הזמן המתאים ביותר להוציא את דונה הצבה ואת זאוס החרדון. קרינת שמש חיונית לעצמות ולשריון. להחזירם פנימה אם מתחילה לנשב רוח קרה.</p>
-              <p>🐹 <strong>ארנבונים וצ'ינצ'ילות:</strong> בטמפרטורות אלו הם מרגישים במיטבם, מלאי אנרגיה וחיוניות.</p>
-              <p>🐢 <strong>תחזוקת מתחם דונה הצבה:</strong> לוודא שמנורת החימום דולקת והאזור המחומם מגיע ל-28° לפחות.</p>
-              <p>🪟 <strong>אוורור זהיר:</strong> ניתן לפתוח חלונות לאוויר נקי, לוודא שכלובי התוכים אינם בנתיב ישיר של הרוח.</p>
-            </div>
-          </details>
-
-          <details style="border-radius:10px;overflow:hidden">
-            <summary style="cursor:pointer;background:linear-gradient(to left,#ffe8a0,#fff8d0);padding:.55rem .85rem;font-weight:800;font-size:.89rem;color:#7a5000;list-style:none;display:flex;align-items:center;gap:.4rem;user-select:none">
-              <span>☀️ 23-27°, מתחיל להיות חם</span><button onclick="speakText('☀️ 23-27°, מתחיל להיות חם',this)" title="הקרא כותרת" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#888;padding:0 .2rem;line-height:1;flex-shrink:0">🔊</button>
-              <span style="margin-right:auto;font-size:.72rem;opacity:.55">▼</span>
-            </summary>
-            <div style="background:#fffbf0;padding:.65rem .9rem .5rem;font-size:.87rem;line-height:1.75;direction:rtl;border-radius:0 0 10px 10px"><button onclick="speakText('🐢🦎 יציאה בזהירות: ניתן להוציא את דונה ואת זאוס, אך חובה לספק אזור מוצל. אסור להשאיר בשמש ישירה ללא השגחה. 🐹 צ\'ינצ\'ילות וארנבונים: אם הטמפרטורה בחדר עולה מעל 24°, חובה מזגן על קירור. 🦗 מקלונים ותיקנים: החום מייבש את האוויר, לרסס יותר מים בטרריום כדי לשמור על לחות. 🦜 קיקו הג\'אקו וקוקטיילים: ניתן לה',this)" title="הקרא קטע" style="background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa;padding:0;margin-bottom:.3rem;display:block">🔊 הקרא הכל</button>
-              <p>🐢🦎 <strong>יציאה בזהירות:</strong> ניתן להוציא את דונה ואת זאוס, אך חובה לספק אזור מוצל. אסור להשאיר בשמש ישירה ללא השגחה.</p>
-              <p>🐹 <strong>צ'ינצ'ילות וארנבונים:</strong> אם הטמפרטורה בחדר עולה מעל 24°, חובה מזגן על קירור.</p>
-              <p>🦗 <strong>מקלונים ותיקנים:</strong> החום מייבש את האוויר, לרסס יותר מים בטרריום כדי לשמור על לחות.</p>
-              <p>🦜 <strong>קיקו הג'אקו וקוקטיילים:</strong> ניתן להציע קערת מים רדודה להשתכשכות בתוך הכלוב.</p>
-            </div>
-          </details>
-
-          <details style="border-radius:10px;overflow:hidden">
-            <summary style="cursor:pointer;background:linear-gradient(to left,#ffb070,#ffd0a0);padding:.55rem .85rem;font-weight:800;font-size:.89rem;color:#7a1a00;list-style:none;display:flex;align-items:center;gap:.4rem;user-select:none">
-              <span>🔥 מעל 28°, חם מאוד</span><button onclick="speakText('🔥 מעל 28°, חם מאוד',this)" title="הקרא כותרת" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#888;padding:0 .2rem;line-height:1;flex-shrink:0">🔊</button>
-              <span style="margin-right:auto;font-size:.72rem;opacity:.55">▼</span>
-            </summary>
-            <div style="background:#fff8f4;padding:.65rem .9rem .5rem;font-size:.87rem;line-height:1.75;direction:rtl;border-radius:0 0 10px 10px"><button onclick="speakText('🚫 איסור יציאה בשעות החמות: האדמה לוהטת ועלולה לגרום כוויות בבטן. להוציא את דונה ואת זאוס רק בשעות הבוקר המוקדמות ובאזורים מוצלים בלבד. ❄️ מזגן קירור, חובה: לכוון ל-22-24°. חום גבוה מסוכן מאוד לארנבונים ולצ\'ינצ\'ילות. 💧 בדיקת מים: לוודא שכלי המים של כל החיות מלאים ושהמים לא חמים. להחליף אם צריך. 🐟 א',this)" title="הקרא קטע" style="background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa;padding:0;margin-bottom:.3rem;display:block">🔊 הקרא הכל</button>
-              <p>🚫 <strong>איסור יציאה בשעות החמות:</strong> האדמה לוהטת ועלולה לגרום כוויות בבטן. להוציא את דונה ואת זאוס רק בשעות הבוקר המוקדמות ובאזורים מוצלים בלבד.</p>
-              <p>❄️ <strong>מזגן קירור, חובה:</strong> לכוון ל-22-24°. חום גבוה מסוכן מאוד לארנבונים ולצ'ינצ'ילות.</p>
-              <p>💧 <strong>בדיקת מים:</strong> לוודא שכלי המים של כל החיות מלאים ושהמים לא חמים. להחליף אם צריך.</p>
-              <p>🐟 <strong>אקווריום הדגים:</strong> לוודא שהמים בטווח 20-27°. מים חמים מזה מקשים על הדגים לנשום.</p>
-            </div>
-          </details>
-
-        </div>
-      </div>
     </div>
 
     <!-- טור שמאל: עכשיו בעונה + לוח עונתי -->
@@ -2025,6 +2053,11 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     </div>
 
   </div>
+
+</div>
+
+<div class="tab-panel" id="tab-guidelines">
+  <div class="section-hero"><span class="hero-emoji">📋</span><h2>הנחיות <button onclick="speakText('הנחיות',this)" title="הקרא כותרת" style="background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa;padding:0;vertical-align:middle;line-height:1">🔊</button></h2><p>כללי טיפול קבועים ורשימת בדיקה לפני יציאה</p><button onclick="speakTabAll('tab-guidelines',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
 
   <!-- ══ כללים ליציאה לחצר + הנחיות קבועות ══ -->
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.1rem">
@@ -2178,7 +2211,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     </div>
     <div id="exitChecklist" style="display:grid;gap:.38rem">
       <label style="display:flex;align-items:center;gap:.7rem;cursor:pointer;padding:.42rem .6rem;border-radius:9px;transition:background .15s" onmouseover="this.style.background='var(--mint)'" onmouseout="this.style.background=''"><input type="checkbox" onchange="exitCheckUpdate()" style="width:1.1rem;height:1.1rem;accent-color:var(--green);flex-shrink:0;cursor:pointer"><span style="font-size:.87rem;color:var(--text)">🥗 לכולם יש אוכל ומים</span></label>
-      <label style="display:flex;align-items:center;gap:.7rem;cursor:pointer;padding:.42rem .6rem;border-radius:9px;transition:background .15s" onmouseover="this.style.background='var(--mint)'" onmouseout="this.style.background=''"><input type="checkbox" onchange="exitCheckUpdate()" style="width:1.1rem;height:1.1rem;accent-color:var(--green);flex-shrink:0;cursor:pointer"><span style="font-size:.87rem;color:var(--text)">🪟 החלונות סגורים <span style="font-size:.77rem;color:var(--muted)">(משאירים פתחי אוורור)</span></span></label>
+      <label style="display:flex;align-items:center;gap:.7rem;cursor:pointer;padding:.42rem .6rem;border-radius:9px;transition:background .15s" onmouseover="this.style.background='var(--mint)'" onmouseout="this.style.background=''"><input type="checkbox" onchange="exitCheckUpdate()" style="width:1.1rem;height:1.1rem;accent-color:var(--green);flex-shrink:0;cursor:pointer"><span style="font-size:.87rem;color:var(--text)">🔲 החלונות סגורים <span style="font-size:.77rem;color:var(--muted)">(משאירים פתחי אוורור)</span></span></label>
       <label style="display:flex;align-items:center;gap:.7rem;cursor:pointer;padding:.42rem .6rem;border-radius:9px;transition:background .15s" onmouseover="this.style.background='var(--mint)'" onmouseout="this.style.background=''"><input type="checkbox" onchange="exitCheckUpdate()" style="width:1.1rem;height:1.1rem;accent-color:var(--green);flex-shrink:0;cursor:pointer"><span style="font-size:.87rem;color:var(--text)">🔒 כל הכלובים סגורים, למעלה ולמטה</span></label>
       <label style="display:flex;align-items:center;gap:.7rem;cursor:pointer;padding:.42rem .6rem;border-radius:9px;transition:background .15s" onmouseover="this.style.background='var(--mint)'" onmouseout="this.style.background=''"><input type="checkbox" onchange="exitCheckUpdate()" style="width:1.1rem;height:1.1rem;accent-color:var(--green);flex-shrink:0;cursor:pointer"><span style="font-size:.87rem;color:var(--text)">🐢 הצבה חזרה לגדרה</span></label>
       <label style="display:flex;align-items:center;gap:.7rem;cursor:pointer;padding:.42rem .6rem;border-radius:9px;transition:background .15s" onmouseover="this.style.background='var(--mint)'" onmouseout="this.style.background=''"><input type="checkbox" onchange="exitCheckUpdate()" style="width:1.1rem;height:1.1rem;accent-color:var(--green);flex-shrink:0;cursor:pointer"><span style="font-size:.87rem;color:var(--text)">🦜 קיקו בכלוב וסגור כמו שצריך <span style="font-size:.77rem;color:var(--muted)">(מכל הצדדים!)</span></span></label>
@@ -2186,7 +2219,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       <label style="display:flex;align-items:center;gap:.7rem;cursor:pointer;padding:.42rem .6rem;border-radius:9px;transition:background .15s" onmouseover="this.style.background='var(--mint)'" onmouseout="this.style.background=''"><input type="checkbox" onchange="exitCheckUpdate()" style="width:1.1rem;height:1.1rem;accent-color:var(--green);flex-shrink:0;cursor:pointer"><span style="font-size:.87rem;color:var(--text)">❄️ המזגן מכוון לפי העונה</span></label>
       <label style="display:flex;align-items:center;gap:.7rem;cursor:pointer;padding:.42rem .6rem;border-radius:9px;transition:background .15s" onmouseover="this.style.background='var(--mint)'" onmouseout="this.style.background=''"><input type="checkbox" onchange="exitCheckUpdate()" style="width:1.1rem;height:1.1rem;accent-color:var(--green);flex-shrink:0;cursor:pointer"><span style="font-size:.87rem;color:var(--text)">🗑️ כל האשפה בתוך הפח הגדול</span></label>
       <label style="display:flex;align-items:center;gap:.7rem;cursor:pointer;padding:.42rem .6rem;border-radius:9px;transition:background .15s" onmouseover="this.style.background='var(--mint)'" onmouseout="this.style.background=''"><input type="checkbox" onchange="exitCheckUpdate()" style="width:1.1rem;height:1.1rem;accent-color:var(--green);flex-shrink:0;cursor:pointer"><span style="font-size:.87rem;color:var(--text)">🧹 השולחן פנוי ונקי</span></label>
-      <label style="display:flex;align-items:center;gap:.7rem;cursor:pointer;padding:.42rem .6rem;border-radius:9px;transition:background .15s" onmouseover="this.style.background='var(--mint)'" onmouseout="this.style.background=''"><input type="checkbox" onchange="exitCheckUpdate()" style="width:1.1rem;height:1.1rem;accent-color:var(--green);flex-shrink:0;cursor:pointer"><span style="font-size:.87rem;color:var(--text)">🪣 הרצפה נקייה <span style="font-size:.77rem;color:var(--muted)">(הכיסאות מורמים בימי שטיפה)</span></span></label>
+      <label style="display:flex;align-items:center;gap:.7rem;cursor:pointer;padding:.42rem .6rem;border-radius:9px;transition:background .15s" onmouseover="this.style.background='var(--mint)'" onmouseout="this.style.background=''"><input type="checkbox" onchange="exitCheckUpdate()" style="width:1.1rem;height:1.1rem;accent-color:var(--green);flex-shrink:0;cursor:pointer"><span style="font-size:.87rem;color:var(--text)">🧺 הרצפה נקייה <span style="font-size:.77rem;color:var(--muted)">(הכיסאות מורמים בימי שטיפה)</span></span></label>
     </div>
     <div id="exitCheckDone" style="display:none;margin-top:.9rem;padding:.6rem 1rem;background:#e8f7ef;border-radius:12px;border-right:3px solid var(--green);font-weight:800;font-size:.92rem;color:#1a6640;direction:rtl">
       ✅ מעולה! מכבים אורות, נועלים את הדלתות. <span style="font-weight:400">להתראות! 👋</span>
@@ -2197,6 +2230,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   </div>
 
 </div>
+
 
 <div class="tab-panel" id="tab-deploy">
   <div class="section-hero"><span class="hero-emoji">✉️</span><h2>יצירת קשר</h2><p>שאלות, הצעות, או סתם שלום 👋</p><button onclick="speakTabAll('tab-deploy',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
@@ -2249,7 +2283,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 </div>
 
 <div class="tab-panel" id="tab-dailymenu">
-  <div class="section-hero"><span class="hero-emoji">🥗</span><h2>תפריט יומי</h2><p>סמן מה קיבלת היום, וקבל תפריט מותאם לכל מתחם וחיה</p><button onclick="dmSpeakAll()" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
+  <div class="section-hero"><span class="hero-emoji">🥗</span><h2>תפריט יומי</h2><p>סמנו מה קיבלתם היום, וקבלו תפריט מותאם לכל מתחם וחיה</p><button onclick="dmSpeakAll()" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
 
   <div style="display:grid;gap:1rem">
 
@@ -2258,11 +2292,11 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       <div style="background:#fff3e0;padding:.7rem 1rem;border-bottom:2px solid #f0c878;display:flex;align-items:center;gap:.5rem">
         <span style="font-size:1.3rem">🧺</span>
         <div style="font-weight:900;font-size:1.02rem;color:#7a4000;flex:1">שלב 1: מה קיבלנו היום?</div>
-        <button onclick="speakText('שלב אחד. מה קיבלנו היום? לחצי על שם המזון כדי להוסיף אותו לסל. לאחר מכן בחרי כמות: מעט, בינוני, או הרבה.',this)" style="background:#ffe0b0;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.92rem;flex-shrink:0">🔊</button>
+        <button onclick="speakText('שלב אחד. מה קיבלנו היום? לחצו על שם המזון כדי להוסיף אותו לסל. לאחר מכן בחרו כמות: מעט, בינוני, או הרבה.',this)" style="background:#ffe0b0;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.92rem;flex-shrink:0">🔊</button>
         <button onclick="dmClearAll()" style="background:#ffe0b0;border:none;border-radius:50px;padding:.2rem .65rem;font-size:.82rem;font-weight:700;cursor:pointer;color:#7a4000">נקה הכל</button>
       </div>
       <div style="padding:.8rem 1rem">
-        <div style="font-size:.85rem;color:#777;margin-bottom:.7rem">לחץ על מזון להוסיף, ובחר כמות</div>
+        <div style="font-size:.85rem;color:#777;margin-bottom:.7rem">לחצו על מזון להוסיף, ובחרו כמות</div>
         <div id="dm-food-grid" style="display:flex;flex-wrap:wrap;gap:.4rem"></div>
       </div>
     </div>
@@ -2295,7 +2329,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
         </div>
 
         <!-- חיות בודדות עם +/- -->
-        <div style="font-size:.77rem;font-weight:800;color:#888;margin-bottom:.5rem;letter-spacing:.05em">🐾 חיות, בחר כמה פרטים</div>
+        <div style="font-size:.77rem;font-weight:800;color:#888;margin-bottom:.5rem;letter-spacing:.05em">🐾 חיות, בחרו כמה פרטים</div>
         <div id="dm-animal-counters" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.5rem"></div>
       </div>
     </div>
@@ -2313,9 +2347,9 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       <span style="font-size:1.3rem;flex-shrink:0">⚠️</span>
       <div style="flex:1">
         <div style="font-weight:900;font-size:.95rem;color:#8b1c1c;margin-bottom:.3rem">תזכורת: אסור לתת לבעלי החיים!</div>
-        <div style="font-size:.97rem;line-height:1.7">🧅 בצל &nbsp;🧄 שום &nbsp;🥑 אבוקדו &nbsp;🍫 שוקולד &nbsp;🍟🍬 חטיפים מלוחים ומתוקים &nbsp;🍆 חציל &nbsp;🍋 לימון &nbsp;🥛 מוצרי חלב &nbsp;🍄 פטריות</div>
+        <div style="font-size:.97rem;line-height:1.7">🧅 בצל &nbsp;🧄 שום &nbsp;🥑 אבוקדו &nbsp;🍫 שוקולד &nbsp;🍟🍬 חטיפים מלוחים ומתוקים &nbsp;🍆 חציל &nbsp;🍅 עגבנייה &nbsp;🍋 לימון &nbsp;🥛 מוצרי חלב &nbsp;🍄 פטריות</div>
       </div>
-      <button onclick="speakText('תזכורת. אסור לתת לבעלי החיים: בצל, שום, אבוקדו, שוקולד, חטיפים מלוחים ומתוקים, חציל, לימון, מוצרי חלב, פטריות.',this)" style="background:#f8d0d0;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.92rem;flex-shrink:0">🔊</button>
+      <button onclick="speakText('תזכורת. אסור לתת לבעלי החיים: בצל, שום, אבוקדו, שוקולד, חטיפים מלוחים ומתוקים, חציל, עגבנייה, לימון, מוצרי חלב, פטריות.',this)" style="background:#f8d0d0;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.92rem;flex-shrink:0">🔊</button>
     </div>
 
     <!-- מקרא אמות מידה -->
@@ -2373,7 +2407,6 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     </div>
 
   </div>
-</div>
 
 <script>
 // ── Dark Mode ──────────────────────────────────────────
@@ -2944,7 +2977,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 // ============================================================
 const ANIMALS = [
 // ── שלנו ──────────────────────────────────────────────────
-{id:'jacko',ours:true,name:'תוכי ג׳אקו',en:'African Grey Parrot',sciname:'Psittacus erithacus',animalClass:'עוף',animalSubClass:'תוכאים',animalClass:'עוף',emoji:'🦜',hebrew:'אפרור אפריקאי',
+{id:'jacko',ours:true,name:'תוכי ג׳אקו',aliases:["ג'אקו","ג׳אקו",'jacko','קיקו','african grey','אפרור אפריקאי'],en:'African Grey Parrot',sciname:'Psittacus erithacus',animalClass:'עוף',animalSubClass:'תוכאים',animalClass:'עוף',emoji:'🦜',hebrew:'אפרור אפריקאי',
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Psittacus_erithacus_erithacus_sitting_4.JPG/320px-Psittacus_erithacus_erithacus_sitting_4.JPG',
  origin:'יערות גשם מרכז-מערב אפריקה',lifespan:'40-60 שנה (חלקם 70+)',
  size:'כ-33 ס"מ, 400-650 גרם',active:'יום',
@@ -3512,8 +3545,8 @@ const DEFAULT_FOODS = [
    dog:{s:'no',n:'פטריות לא מוגשות בפינת החי שלנו'}
  }}
 ,{id:'tomato',name:'עגבנייה',emoji:'🍅',cookStatus:'raw',category:'ירק',aliases:['עגבניות','שרי'],
- why:'עגבנייה מכילה ליקופן, נוגד חמצון חזק, וכן ויטמין C ואשלגן. יש לתת רק את הפרי הבשל. עלי העגבנייה, הגבעול ופרי ירוק מכילים סולנין ואסורים לכל החיות.',
- whyNot:'עלים, גבעול וחלקים ירוקים מכילים סולנין וטומטין - אלקלואידים רעילים. לא מומלץ ליונקים בכלל (אוגרים, ארנבים, צ׳ינצ׳ילה) גם אם הפרי בשל.',
+ why:'עגבנייה מכילה ויטמינים חשובים כמו C ו-K, אשלגן וליקופן, שנחשב לנוגד חמצון עוצמתי התורם למערכת החיסון.',
+ whyNot:'למרות יתרונות אלו, העגבנייה אינה מתאימה למערכות העיכול השונות בפינת החי בגלל עודף מים וחומציות ומחסור בסיבים. עבור המכרסמים והצ׳ינצ׳ילות, השילוב של מים וסוכר מוביל לשלשולים ונפיחות קטלנית, בעוד שאצל הארנבונים והשרקנים המחסור בסיבים משבש את פעילות המעיים. עבור הזוחלים שלנו, העגבנייה מסוכנת במיוחד כי היא חוסמת ספיגת סידן וגורמת לשריון ועצמות שבירות, ואילו אצל התוכים קיימת סכנת רעילות מהחלקים הירוקים לצד פגיעה בריריות העיכול. הנזק הפוטנציאלי לכל חיה גדול מהתועלת, ולכן אנו נמנעים מהגשתה.',
  parts:[{name:'בשר הפרי הבשל',rawOk:'ok',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},{name:'עלים',rawOk:'no',cookNote:'רעיל! לא לתת בשום צורה',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}},{name:'גבעול',rawOk:'no',cookNote:'רעיל! לא לתת בשום צורה',partAnimals:{'jacko':'no','lovebird':'no','cockatiel':'no','sibhamster':'no','sulcata':'no','vietstick':'no','beardie':'no','chinchilla':'no','leopardgecko':'no','rabbit':'no','sharkhan':'no','syrianhamster':'no','gerbil':'no','mealworms':'no','hissingcockroach':'no'}}],
  animals:{jacko:{s:'no',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',n:'רק הפרי הבשל!',leopardgecko:{s:'no',rabbit:{s:'no',a:'4-5 פרוסות',f:'לעיתים',n:'חומצי',sharkhan:{s:'no',a:'2-3 פרוסות',f:'לעיתים',n:'חומצי - ללא עלים',jacko:{s:'no',a:'2-3 פרוסות',f:'לעיתים',n:'ללא עלים/גבעולים!',beardie:{s:'no',a:'2-3 פרוסות',f:'לעיתים',n:'חומצי - לעיתים',syrianhamster:{s:'no',a:'פרוסה אחת',f:'לעיתים',n:'ללא עלים/גבעולים',gerbil:{s:'no',a:'חצי פרוסה',f:'לעיתים',n:'ללא עלים/גבעולים',mealworms:{s:'no',a:'פרוסה אחת',f:'לעיתים',hissingcockroach:{s:'no',a:'פרוסה אחת',f:'לעיתים',mouse:{s:'no',a:'פירור בשר בלבד',f:'לעיתים נדירות',n:'ללא עלים/גבעולים - סולנין',rat:{s:'no',a:'פרוסה אחת',f:'לעיתים נדירות',n:'ללא עלים/גבעולים',budgie:{s:'no',a:'פרוסה אחת',f:'לעיתים נדירות',n:'ללא עלים/גבעולים',hamster_gen:{s:'no',a:'כפית',f:'לעיתים נדירות',n:'ללא עלים',degu:{s:'no',n:'חומצי וסוכר',iguana:{s:'no',a:'2-3 פרוסות',f:'לעיתים נדירות',n:'חומצי - מעט מאוד',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'no',a:'פרוסה אחת',f:'לעיתים נדירות',n:'ללא עלים/גבעולים',quail:{s:'no',a:'פרוסה אחת',f:'לעיתים נדירות',n:'ללא עלים/גבעולים'},hamster_gen:{s:'no',a:'כפית',f:'לעיתים נדירות',n:'ללא עלים',degu:{s:'no',n:'חומצי וסוכר',iguana:{s:'no',a:'2-3 פרוסות',f:'לעיתים נדירות',n:'חומצי - מעט מאוד',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},lovebird:{s:'no',a:'פרוסה אחת',f:'לעיתים',n:'ללא עלים/גבעולים!'},cockatiel:{s:'no',a:'פרוסה אחת',f:'לעיתים',n:'ללא עלים/גבעולים!'}}}},vietstick:{s:'no'},sulcata:{s:'no',a:'4-5 פרוסות',f:'לעיתים'},chinchilla:{s:'no'},mealworms:{s:'no',a:'פרוסה אחת',f:'לעיתים'},hissingcockroach:{s:'no',a:'פרוסה אחת',f:'לעיתים'}},lovebird:{s:'no',a:'פרוסה אחת',f:'כמה פעמים בשבוע',n:'רק הפרי הבשל!'},sibhamster:{s:'no',n:'לא מומלץ ליונקים'},sulcata:{s:'no',a:'4-5 פרוסות',f:'לעיתים'},vietstick:{s:'no'},beardie:{s:'no',a:'2-3 פרוסות',f:'כמה פעמים בשבוע'},chinchilla:{s:'no',n:'לא מומלץ ליונקים'},leopardgecko:{s:'no',n:'אוכלת חרקים חיים בלבד (זחלי קמח, צרצרים)'},rabbit:{s:'no',n:'לא מומלץ ליונקים'},syrianhamster:{s:'no',n:'לא מומלץ ליונקים'},sharkhan:{s:'no'},gerbil:{s:'no',n:'לא מומלץ ליונקים'},cockatiel:{s:'no',a:'פרוסה אחת',f:'כמה פעמים בשבוע'},mealworms:{s:'no',a:'פרוסה אחת',f:'לעיתים'},hissingcockroach:{s:'no',a:'פרוסה אחת',f:'כמה פעמים בשבוע'},fish:{s:'nr'},dog:{s:'no',a:'4-5 פרוסות',f:'לעיתים',n:'רק הפרי הבשל'},quail:{s:'no',a:'פרוסה אחת',f:'לעיתים נדירות',n:'ללא עלים/גבעולים'}}},
 
@@ -4121,7 +4154,7 @@ const DEFAULT_FOODS = [
 // DONATIONS
 // ============================================================
 const DONATIONS = [
-{emoji:'🥬',name:'ירקות ופירות "עייפים"',sub:'הכי נחוץ ותמיד שמחים לקבל!',desc:'ירקות ופירות שלמים או חתוכים שכבר לא תעשו בהם שימוש - מושלם לחיות! גם שאריות קליפות, גבעולים וקצוות. לא רקובים בבקשה. בצלים, תפוחי אדמה וחצילים - בבקשה לא להביא לפינת החי. <a href="#" onclick="event.preventDefault();document.querySelector(\"[data-tab=quickguide]\").click()" style="color:#3aaa6e;font-weight:700;text-decoration:underline dotted;font-size:.89rem">← לרשימה המלאה של מה מותר</a>',who:['sulcata','rabbit','beardie','chinchilla','jacko','lovebird']},
+{emoji:'🥬',name:'ירקות ופירות "עייפים"',sub:'הכי נחוץ ותמיד שמחים לקבל!',desc:'ירקות ופירות שלמים או חתוכים שכבר לא תעשו בהם שימוש - מושלם לחיות! גם שאריות קליפות, גבעולים וקצוות. לא רקובים בבקשה. בצלים, תפוחי אדמה, חצילים ועגבניות - בבקשה לא להביא לפינת החי. <a href="#" onclick="event.preventDefault();document.querySelector(\"[data-tab=quickguide]\").click()" style="color:#3aaa6e;font-weight:700;text-decoration:underline dotted;font-size:.89rem">← לרשימה המלאה של מה מותר</a>',who:['sulcata','rabbit','beardie','chinchilla','jacko','lovebird']},
 {emoji:'🌱',name:'שתילים, זרעים וצמחים לגידול',sub:'גם גרעיני אבוקדו! זרעים, פקעות, שתילי עשבים',desc:'צמחים שקל לגדל בפינת החי: נענע, פטרוזיליה, כוסברה, שמיר. גם זרעים לנביטה. ילדים אוהבים לגדל אבוקדו! גרעין שלם במים = צמח יפה! ⚠️ גרעין אבוקדו אסור לאכילה לחיות, רק לגידול. <a href="https://www.youtube.com/watch?v=ZMjV7Y3nSzQ" target="_blank" rel="noopener" title="🥑 סוד..." style="text-decoration:none;opacity:.3;font-size:.82rem">🥑</a>',who:['sulcata','rabbit','vietstick','mealworms']},
 {emoji:'📦',name:'קופסאות וגלילי קרטון',sub:'בגדלים שונים',desc:'מסתורים, מנהרות ופינות מחבוא. קופסאות גדולות למכרסמים וגרביל, גלילי נייר טואלט ומגבות - מעולים לאוגרים ולציפורים.',who:['sibhamster','syrianhamster','gerbil','jacko','lovebird','cockatiel','rabbit']},
 {emoji:'🌳',name:'קרשי עץ ולוחות',sub:'עדיף עץ לא מצופה',desc:'חתיכות עץ לא מצופה - מחסומים, מדפים ומצעי טיפוס. תוכים אוהבים לנגוס בעץ ואנחנו תמיד שמחים לחומרים גולמיים! גם שאריות בנייה שלא טופלו בכימיקלים.',who:['jacko','lovebird','cockatiel','vietstick','rabbit']},
@@ -4827,7 +4860,7 @@ function speakTabAll(tabId, btn){
     },
     'tab-byanimal': ()=>{
       const a = getAnimal(selectedBA);
-      if(!a) return 'מה אוכלת כל חיה? בחרי חיה מהרשימה.';
+      if(!a) return 'מה אוכלת כל חיה? בחרו חיה מהרשימה.';
       const foods = FOODS.filter(f=>f.animals?.[a.id]?.s==='ok').map(f=>f.name);
       return 'מה אוכלת ' + a.name + '? ' + (foods.length ? 'מותר: ' + foods.join(', ') + '.' : '');
     },
@@ -5514,7 +5547,7 @@ function openFoodModal(foodId, list, autoPartIdx){
   let bannerHtml='';
   if(statuses.length>0){
     const total=statuses.length;
-    const sepFoods=new Set(['potato','clementine','orange','tomato']);
+    const sepFoods=new Set(['potato','clementine','orange']);
     if(noCount===total){
       bannerHtml=`<div style="background:#fde8e8;border-radius:12px;padding:.65rem 1rem;text-align:center;font-weight:800;font-size:1.02rem;color:#b02020;margin-bottom:.8rem">❌ אין צורך להביא לפינת החי</div>`;
     } else if(noCount===0 && limCount===0){
@@ -5827,7 +5860,7 @@ function renderByAnimal(){
     ${ok.length?`<div class="stitle">✅ מותר (${ok.length})</div><div class="pills-wrap">${ok.map(x=>pill(x,'fp-ok')).join('')}</div>`:''}
     ${lim.length?`<div class="stitle">⚠️ במידה (${lim.length})</div><div class="pills-wrap">${lim.map(x=>pill(x,'fp-lim')).join('')}</div>`:''}
     ${no.length?`<div class="stitle">❌ אסור (${no.length})</div><div class="pills-wrap">${no.map(x=>pill(x,'fp-no')).join('')}</div>`:''}
-    <div class="note-box">לחצי על מזון לפרטים מלאים 👆</div>`;
+    <div class="note-box">לחצו על מזון לפרטים מלאים 👆</div>`;
 }
 
 // ── MY CORNER ─────────────────────────────────────────────────
@@ -5861,7 +5894,7 @@ function renderMyCorner(){
     <div class="pills-wrap">${safe.map(f=>pill(f,'fp-ok')).join('')}</div>
     ${limited.length?`<div class="stitle">⚠️ במידה לחלק (${limited.length})</div><div class="pills-wrap">${limited.map(f=>pill(f,'fp-lim')).join('')}</div>`:''}
     ${danger.length?`<div class="stitle">❌ אסור לפחות לאחת (${danger.length})</div><div class="pills-wrap">${danger.map(f=>pill(f,'fp-no')).join('')}</div>`:''}
-    <div class="note-box" style="margin-top:.5rem">לחצי על לחיצה למידע לפרטים 👆</div>`;
+    <div class="note-box" style="margin-top:.5rem">לחצו על לחיצה למידע לפרטים 👆</div>`;
 }
 
 // ── ALL FOODS TABLE ──────────────────────────────────────────
@@ -6226,7 +6259,7 @@ function adminLogin(){
   const pw = document.getElementById('adminPwInput').value.trim();
   let stored = null;
   try { stored = localStorage.getItem(ADMIN_PW_KEY); } catch(e) {}
-  if(!stored){ showAdminMsg('לא הוגדרה סיסמה עדיין - לחצי "קבעי סיסמה" תחילה.','#c06000'); return; }
+  if(!stored){ showAdminMsg('לא הוגדרה סיסמה עדיין - לחצו על "קבעו סיסמה" תחילה.','#c06000'); return; }
   if(pw === stored){
     isAdmin = true;
     document.getElementById('adminBar').style.display='flex';
@@ -6246,7 +6279,7 @@ function adminLogout(){
 
 function setAdminPassword(){
   const pw = document.getElementById('adminPwInput').value.trim();
-  if(!pw){ showAdminMsg('יש להקליד סיסמה בשדה ואז לחצי "קבעי סיסמה".','#c06000'); return; }
+  if(!pw){ showAdminMsg('יש להקליד סיסמה בשדה ואז לחצו על "קבעו סיסמה".','#c06000'); return; }
   if(pw.length < 4){ showAdminMsg('הסיסמה חייבת להיות לפחות 4 תווים.','#b02020'); return; }
   try { localStorage.setItem(ADMIN_PW_KEY, pw); } catch(e) {}
   showAdminMsg('✅ הסיסמה נשמרה! רק במכשיר הזה.','#1a7a40');
@@ -6462,7 +6495,7 @@ const DM_FOODS = [
   {id:'beetroot',        name:'סלק',             emoji:'🟣', category:'ירק'},
   {id:'brussels_sprouts',name:'כרוב ניצנים',   emoji:'🥦', category:'ירק'},
   {id:'artichoke',       name:'ארטישוק',         emoji:'🌿', category:'ירק'},
-  {id:'tomato',          name:'עגבנייה',         emoji:'🍅', category:'ירק', separate:true},
+  {id:'tomato',          name:'עגבנייה',         emoji:'🍅', category:'ירק', separate:false},
   // ── פירות ──
   {id:'apple',           name:'תפוח',           emoji:'🍎', category:'פרי'},
   {id:'banana',          name:'בננה',           emoji:'🍌', category:'פרי'},
@@ -6488,6 +6521,8 @@ const DM_FOODS = [
   {id:'raspberry',       name:'פטל',             emoji:'🍒', category:'פרי'},
   {id:'orange',          name:'תפוז',           emoji:'🍊', category:'פרי', separate:true},
   {id:'clementine',      name:'קלמנטינה',       emoji:'🍊', category:'פרי', separate:true},
+  {id:'lychee',          name:"ליצ'י",          emoji:'💖', category:'פרי'},
+  {id:'lychee',          name:"ליצ'י",          emoji:'💖', category:'פרי'},
   {id:'pomelo',          name:'פומלה',          emoji:'🍈', category:'פרי', separate:true},
   // ── עשבים ועלים ──
   {id:'cilantro',        name:'כוסברה',         emoji:'🌿', category:'עשב'},
@@ -6944,12 +6979,12 @@ function dmSpeakLegend(btn) {
 function dmSpeakAll() {
   const keys = Object.keys(dmBasket);
   if (!keys.length) {
-    speakText('עדיין לא בחרת מזונות. בחרי מזונות בשלב אחד ולחצי על בנה תפריט.', null);
+    speakText('עדיין לא בחרתם מזונות. בחרו מזונות בשלב אחד ולחצו על בנה תפריט.', null);
     return;
   }
   const resultEl = document.getElementById('dm-result');
   if (!resultEl || resultEl.style.display === 'none') {
-    speakText('לחצי על כפתור בנה תפריט כדי לייצר את התפריט לפני הקראה.', null);
+    speakText('לחצו על כפתור בנה תפריט כדי לייצר את התפריט לפני הקראה.', null);
     return;
   }
   const parts = [];
@@ -7340,25 +7375,25 @@ function findInRedirectList(word) {
 function renderRedirectResult(entry) {
   const oursAnimals = entry.ours.map(id => ANIMALS.find(a=>a.id===id)).filter(Boolean);
   const extraAnimals = entry.extra.map(id => ANIMALS.find(a=>a.id===id)).filter(Boolean);
-  let html = `<div style="background:#f0f8ff;border-radius:12px;padding:.55rem .85rem;display:grid;gap:.4rem">
-    <div style="font-size:.92rem;font-weight:700;color:#3050a0">${entry.msg}</div>`;
+  let html = `<div style="background:var(--card);border:1px solid var(--border,#d8e8d8);border-radius:12px;padding:.55rem .85rem;display:grid;gap:.4rem">
+    <div style="font-size:.92rem;font-weight:700;color:var(--blue)">${entry.msg}</div>`;
   if (oursAnimals.length) {
     html += `<div style="display:flex;flex-wrap:wrap;gap:.35rem">`;
     oursAnimals.forEach(a => {
-      html += `<a href="#" onclick="event.preventDefault();openAnimalModal('${a.id}')" style="background:#e8f4ff;border-radius:50px;padding:.25rem .7rem;font-size:.89rem;font-weight:700;color:#3050a0;text-decoration:none">${a.emoji} ${a.name} ✅</a>`;
+      html += `<a href="#" onclick="event.preventDefault();openAnimalModal('${a.id}')" style="background:var(--sky);border-radius:50px;padding:.25rem .7rem;font-size:.89rem;font-weight:700;color:var(--blue);text-decoration:none">${a.emoji} ${a.name} ✅</a>`;
     });
     html += `</div>`;
   }
   if (extraAnimals.length) {
-    html += `<div style="font-size:.85rem;color:#888;margin-top:.1rem">חיות נוספות (לא אצלנו בפינה):</div>`;
+    html += `<div style="font-size:.85rem;color:var(--muted);margin-top:.1rem">חיות נוספות (לא אצלנו בפינה):</div>`;
     html += `<div style="display:flex;flex-wrap:wrap;gap:.35rem">`;
     extraAnimals.forEach(a => {
-      html += `<a href="#" onclick="event.preventDefault();switchTab('animals')" style="background:#f0f0f8;border-radius:50px;padding:.25rem .7rem;font-size:.89rem;font-weight:700;color:#666;text-decoration:none">${a.emoji} ${a.name}</a>`;
+      html += `<a href="#" onclick="event.preventDefault();switchTab('animals')" style="background:var(--sky);border-radius:50px;padding:.25rem .7rem;font-size:.89rem;font-weight:700;color:var(--muted);text-decoration:none">${a.emoji} ${a.name}</a>`;
     });
     html += `</div>`;
   }
   if (entry.funnyNote) {
-    html += `<div style="font-size:.85rem;color:#999;margin-top:.3rem;font-style:italic">${entry.funnyNote}</div>`;
+    html += `<div style="font-size:.85rem;color:var(--muted);margin-top:.3rem;font-style:italic">${entry.funnyNote}</div>`;
   }
   html += `</div>`;
   return html;
@@ -7467,7 +7502,7 @@ function _handleGlobalSearchCore(val, res) {
         else if(status==='no'){badge='❌ אסור';color='#b02020';bg='#ffe8e8';}
         else if(status==='nr'){badge='➖ לא רלוונטי';color='#888';bg='#f4f4f4';}
         else{badge='❓ אין מידע';color='#888';bg='#f4f4f4';}
-        parts.push(`<div style="background:${bg};border-radius:10px;padding:.45rem .75rem;display:flex;align-items:center;gap:.45rem;flex-wrap:wrap"><span>${food.emoji} <strong>${food.name}</strong></span><span style="color:#bbb">+</span><span>${animal.emoji} <strong>${animal.name}</strong></span><span style="font-weight:900;color:${color}">${badge}</span>${amt?`<span style="font-size:.82rem;color:#666">${amt}</span>`:''}${note?`<span style="font-size:.82rem;color:#888;font-style:italic">${note}</span>`:''}<a href="#" onclick="event.preventDefault();openFoodModal('${food.id}')" style="font-size:.79rem;color:#3aaa6e;text-decoration:underline dotted">פרטים ←</a></div>`);
+        parts.push(`<div style="background:${bg};border-radius:10px;padding:.45rem .75rem;display:flex;align-items:center;gap:.45rem;flex-wrap:wrap"><span>${food.emoji} <strong>${food.name}</strong></span><span style="color:var(--muted)">+</span><span>${animal.emoji} <strong>${animal.name}</strong></span><span style="font-weight:900;color:${color}">${badge}</span>${amt?`<span style="font-size:.82rem;color:var(--muted)">${amt}</span>`:''}${note?`<span style="font-size:.82rem;color:var(--muted);font-style:italic">${note}</span>`:''}<a href="#" onclick="event.preventDefault();openFoodModal('${food.id}')" style="font-size:.79rem;color:#3aaa6e;text-decoration:underline dotted">פרטים ←</a></div>`);
       }
     }
     if (notOursParts.length) parts.push(...notOursParts);
@@ -7477,7 +7512,7 @@ function _handleGlobalSearchCore(val, res) {
   if (foundAnimals.length && !foundFoods.length) {
     for (const a of foundAnimals) {
       const notInCorner=!a.ours;
-      parts.push(`<div style="background:${notInCorner?'#fafafa':'#f0f4ff'};border-radius:10px;padding:.4rem .75rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap"><span>${a.emoji} <strong>${a.name}</strong></span>${notInCorner?`<span style="font-size:.77rem;background:${limBadgeBg()};color:${limColor()};border-radius:50px;padding:.05rem .4rem;font-weight:700">לא בפינת החי שלנו</span>`:''}${!notInCorner?`<a href="#" onclick="event.preventDefault();switchTab('byanimal');setTimeout(()=>selectByAnimal('${a.id}'),100)" style="font-size:.82rem;color:#3aaa6e;text-decoration:underline dotted">רשימת מזון ←</a>`:''}<a href="#" onclick="event.preventDefault();openAnimalModal('${a.id}')" style="font-size:.82rem;color:#5060a0;text-decoration:underline dotted">מידע ←</a></div>`);
+      parts.push(`<div style="background:var(--card);border:1px solid var(--border,#d8e8d8);border-radius:10px;padding:.4rem .75rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap"><span>${a.emoji} <strong>${a.name}</strong></span>${notInCorner?`<span style="font-size:.77rem;background:${limBadgeBg()};color:${limColor()};border-radius:50px;padding:.05rem .4rem;font-weight:700">לא בפינת החי שלנו</span>`:''}${!notInCorner?`<a href="#" onclick="event.preventDefault();switchTab('byanimal');setTimeout(()=>selectByAnimal('${a.id}'),100)" style="font-size:.82rem;color:#3aaa6e;text-decoration:underline dotted">רשימת מזון ←</a>`:''}<a href="#" onclick="event.preventDefault();openAnimalModal('${a.id}')" style="font-size:.82rem;color:#3aaa6e;text-decoration:underline dotted">מידע ←</a></div>`);
     }
     if (notOursParts.length) parts.push(...notOursParts);
     res.innerHTML = `<div style="display:grid;gap:.35rem">${parts.join('')}</div>`;
@@ -7485,7 +7520,7 @@ function _handleGlobalSearchCore(val, res) {
   }
   if (foundFoods.length && !foundAnimals.length) {
     for (const f of foundFoods) {
-      parts.push(`<div style="background:#f4fff8;border-radius:10px;padding:.4rem .75rem;display:flex;align-items:center;gap:.4rem"><span>${f.emoji} <strong>${f.name}</strong></span><a href="#" onclick="event.preventDefault();openFoodModal('${f.id}')" style="font-size:.82rem;color:#3aaa6e;text-decoration:underline dotted">מה אומרת כל חיה ←</a></div>`);
+      parts.push(`<div style="background:var(--card);border:1px solid var(--border,#d8e8d8);border-radius:10px;padding:.4rem .75rem;display:flex;align-items:center;gap:.4rem"><span>${f.emoji} <strong>${f.name}</strong></span><a href="#" onclick="event.preventDefault();openFoodModal('${f.id}')" style="font-size:.82rem;color:#3aaa6e;text-decoration:underline dotted">מה אומרת כל חיה ←</a></div>`);
     }
     if (notOursParts.length) parts.push(...notOursParts);
     res.innerHTML = `<div style="display:grid;gap:.35rem">${parts.join('')}</div>`;
@@ -7721,19 +7756,19 @@ function handleGlobalSearch(val) {
         ? `<span style="font-size:.77rem;background:${limBadgeBg()};color:${limColor()};border-radius:50px;padding:.05rem .4rem;font-weight:700">לא בפינת החי שלנו</span>`
         : '';
       parts.push(`
-        <div style="background:${notInCorner?'#fafafa':'#f0f4ff'};border-radius:10px;padding:.4rem .75rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap">
+        <div style="background:var(--card);border:1px solid var(--border,#d8e8d8);border-radius:10px;padding:.4rem .75rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap">
           <span>${a.emoji} <strong>${a.name}</strong></span>
           ${notInCornerBadge}
           <a href="#" onclick="event.preventDefault();switchTab('animals');setTimeout(()=>{const el=document.getElementById('acard_${a.id}');if(el)el.scrollIntoView({behavior:'smooth',block:'center'})},200)" style="font-size:.82rem;color:#3aaa6e;text-decoration:underline dotted">כרטיסיית מידע ←</a>
           ${!notInCorner?`<a href="#" onclick="event.preventDefault();switchTab('byanimal');setTimeout(()=>selectByAnimal('${a.id}'),100)" style="font-size:.82rem;color:#3aaa6e;text-decoration:underline dotted">רשימת מזון ←</a>`:''}
-          <a href="#" onclick="event.preventDefault();openAnimalModal('${a.id}')" style="font-size:.82rem;color:#5060a0;text-decoration:underline dotted">מידע ←</a>
+          <a href="#" onclick="event.preventDefault();openAnimalModal('${a.id}')" style="font-size:.82rem;color:#3aaa6e;text-decoration:underline dotted">מידע ←</a>
         </div>`);
     }
   } else if (foundFoods.length) {
     // רק מזונות
     for (const f of foundFoods) {
       parts.push(`
-        <div style="background:#f4fff8;border-radius:10px;padding:.4rem .75rem;display:flex;align-items:center;gap:.4rem">
+        <div style="background:var(--card);border:1px solid var(--border,#d8e8d8);border-radius:10px;padding:.4rem .75rem;display:flex;align-items:center;gap:.4rem">
           <span>${f.emoji} <strong>${f.name}</strong></span>
           <a href="#" onclick="event.preventDefault();openFoodModal('${f.id}')" style="font-size:.82rem;color:#3aaa6e;text-decoration:underline dotted">מי אוכל את זה? ←</a>
         </div>`);
@@ -7968,7 +8003,6 @@ function openWelcomeGuide() {
       short:'הדרך המהירה ביותר למצוא מידע. פשוט מקלידים ומקבלים תשובה.',
       long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.87rem;color:#444;line-height:1.7">
         <li>מקלידים שם מזון, חיה, או גם וגם ביחד (למשל: "גרביל בטטה") ומקבלים תשובה מיידית.</li>
-        
         <li>בכל מקום שמופיע 🎤 אפשר ללחוץ לחיפוש קולי.</li>
         <li>שורת החיפוש נמצאת ממש בראש הדף.</li>
       </ul>`,
@@ -8009,7 +8043,8 @@ function openWelcomeGuide() {
       short:'הרשימה המלאה. עשרות מזונות עם יתרונות, סיכונים, ואזהרות חשובות.',
       long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.87rem;color:#444;line-height:1.7">
         <li>אפשר לסנן לפי קבוצות: פירות, ירקות, עלים, צמחי בר, כל השאר, או רשימת האסורים.</li>
-        <li        <li>אפשר לחפש לפי שם מזון, שם חיה, או שניהם ביחד. למשל \"בטטה אוגר סורי\" או \"קליפה תפוח ארנבון\".</li>\n>כפתור "מידע מורחב" מתחת לטבלה פותח את כל הפרטים על כל מזון ברצף.</li>
+        <li>אפשר לחפש לפי שם מזון, שם חיה, או שניהם ביחד. למשל "בטטה אוגר סורי" או "קליפה תפוח ארנבון".</li>
+        <li>כפתור "מידע מורחב" מתחת לטבלה פותח את כל הפרטים על כל מזון ברצף.</li>
         <li>אפשר גם להעתיק רשימת שמות להדבקה במקום אחר.</li>
       </ul>`,
       tab:'allfoods'
@@ -8020,24 +8055,14 @@ function openWelcomeGuide() {
       long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.87rem;color:#444;line-height:1.7">
         <li>מידע מקצועי על מאפייני כל חיה, עם המלצות לגידול נכון.</li>
         <li>לחיצה על כרטיסיית חיה פותחת מידע מלא: מוצא, תוחלת חיים, מגורים, צרכים מיוחדים ועוד.</li>
-        <li>אפשר לסנן בין \"החיות שלנו\" לבין \"כל החיות\", כולל חיות נפוצות בפינות חי אחרות שאין אצלנו.</li>
+        <li>אפשר לסנן בין "החיות שלנו" לבין "כל החיות".</li>
       </ul>`,
       tab:'animals'
-    },
-    {
-      emoji:'🎁', title:'לתרום', color:'#c06000', bg:'#fff3e0',
-      short:'דברים שפינת החי צריכה ונשמח לקבל מכם.',
-      long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.87rem;color:#444;line-height:1.7">
-        <li>מעבר לאוכל: פינת החי זקוקה גם לציוד ודברים נוספים.</li>
-        <li>הרשימה מחולקת לפי סוג הפריט, עם הסבר למה כל דבר שימושי.</li>\n          <li>בונוס: חוץ מזה שזה עוזר לנו, זה יכול לעזור גם לכם לסדר את הבית! 😊</li>
-      </ul>`,
-      tab:'donate'
     },
     {
       emoji:'🌟', title:'פינת החי שלנו', color:'#b07000', bg:'#fff8e0',
       short:'הכירו מקרוב את הדיירים שלנו.',
       long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.87rem;color:#444;line-height:1.7">
-        <li>זאת טעימה מפינת החי שלנו 🙂</li>
         <li>סיפורים קצרים ואנקדוטות על חלק מהחברים שחיים אצלנו בפינת החי.</li>
         <li>תמונות, שמות, ודברים מפתיעים על כל אחת.</li>
       </ul>`,
@@ -8053,21 +8078,53 @@ function openWelcomeGuide() {
       tab:'dailymenu'
     },
     {
+      emoji:'💡', title:'מבט מעמיק', color:'#7b5ea7', bg:'#f0e8ff',
+      short:'קטעי קריאה קצרים על ה"למה" שמאחורי הפינה הטיפולית שלנו.',
+      long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.87rem;color:#444;line-height:1.7">
+        <li>ההיגיון התזונתי והבטיחותי, הרחבה על עקרונות הטיפול בבעלי החיים.</li>
+        <li>השותפות שבין הבית לפינת החי, איך תרומות הבית הופכות לחלק ממעגל הטיפול.</li>
+        <li>מהות תהליכי הטיפול הרגשי בעזרת בעלי חיים, המפגש והיחסים הנרקמים בינינו לבין בעלי החיים.</li>
+      </ul>`,
+      tab:'insight'
+    },
+    {
+      emoji:'🌡️', title:'מידע עונתי', color:'#2a7ab0', bg:'#e4f2ff',
+      short:'מזג האוויר הנוכחי בבאר שבע, המלצת מזגן, הנחיות לפי טמפרטורה, ופירות שבעונה.',
+      long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.87rem;color:#444;line-height:1.7">
+        <li>טמפרטורה בזמן אמת ותחזית לאותו יום.</li>
+        <li>המלצה מחושבת לכיוון המזגן עד הפעם הבאה.</li>
+        <li>הנחיות לכל טווח טמפרטורה: מה מותר, מה אסור, ומה כדאי לבדוק.</li>
+        <li>פירות שבעונה עכשיו ולוח פירות עונתיים לכל השנה.</li>
+      </ul>`,
+      tab:'seasonal'
+    },
+    {
+      emoji:'📋', title:'הנחיות', color:'#d08a00', bg:'#fff8e0',
+      short:'כללי טיפול קבועים, יציאה לחצר, היגיינה, ורשימת בדיקה לפני יציאה.',
+      long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.87rem;color:#444;line-height:1.7">
+        <li>כללים ליציאה לחצר: נשיאה בטוחה, בחירת משטח, השגחה ואכילת עשבים.</li>
+        <li>הנחיות קבועות: שטיפת ירקות, פינוי שאריות, סידן לזוחלים, שיוף שיניים ועוד.</li>
+        <li>רשימת בדיקה לפני יציאה, להבטיח שכל החיות בסדר לפני שנועלים את הדלת.</li>
+      </ul>`,
+      tab:'guidelines'
+    },
+    {
+      emoji:'🎁', title:'לתרום', color:'#c06000', bg:'#fff3e0',
+      short:'דברים שפינת החי צריכה ונשמח לקבל מכם.',
+      long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.87rem;color:#444;line-height:1.7">
+        <li>מעבר לאוכל: פינת החי זקוקה גם לציוד ודברים נוספים.</li>
+        <li>הרשימה מחולקת לפי סוג הפריט, עם הסבר למה כל דבר שימושי.</li>
+        <li>בונוס: חוץ מזה שזה עוזר לנו, זה יכול לעזור גם לכם לסדר את הבית! 😊</li>
+      </ul>`,
+      tab:'donate'
+    },
+    {
       emoji:'✉️', title:'יצירת קשר', color:'#555', bg:'#f4f4f4',
       short:'מצאתם טעות? יש לכם הצעה? אנחנו כאן.',
       long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.87rem;color:#444;line-height:1.7">
         <li>שלחו לנו הודעה ונענה בהקדם.</li>
       </ul>`,
       tab:'deploy'
-    },
-    {
-      emoji:'🌙', title:'מצב כהה / מצב בהיר', color:'#444', bg:'#f0f0f8',
-      short:'הכפתור העגול בפינה הימנית העליונה מחליף בין מצב בהיר לכהה.',
-      long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.87rem;color:#444;line-height:1.7">
-        <li>מתאים לשימוש בחושך או לפי העדפה אישית.</li>
-        <li>האתר זוכר את הבחירה שלכם גם בפעם הבאה.</li>
-      </ul>`,
-      action: ()=>{ closeModal(); toggleDark(); }
     },
     {
       emoji:'🌙', title:'מצב כהה / מצב בהיר', color:'#444', bg:'#f0f0f8',
@@ -8091,14 +8148,12 @@ function openWelcomeGuide() {
       emoji:'✨', title:'סודות והפתעות', color:'#5a3a9a', bg:'#f8f0ff',
       short:'האתר מלא בפינות נסתרות. לחצו בכל מקום ותגלו.',
       long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.87rem;color:#444;line-height:1.7">
-        
         <li>יש אימוג'ים שמסתירים סרטונים, משחקים ואפקטים מיוחדים.</li>
         <li>מסתובב באתר חבר שמחזיק מפת אוצר. מצאתם אותו? 🗺️</li>
       </ul>`,
       action: ()=>{ closeModal(); openSecretsPopup(); }
     },
   ];
-
   const speakText_welcome = () => {
     const text = sections.map(s=>s.emoji+' '+s.title+': '+s.short).join('. ');
     speakText(text, document.getElementById('welcomeSpeak'));
@@ -8342,8 +8397,8 @@ function cancelRevealWarning(i) {
 
 // --- 🔍 חיפוש מהיר בבקיצור ---
 // מיפוי מזונות לפי קטגוריות הבקיצור
-const QG_YES_IDS = ['carrot','cucumber','tomato','sweet_pepper','broccoli','cauliflower','zucchini','sweetpotato','turnip','radish','asparagus','apple','mango','peach','pear','strawberry','watermelon','melon','pineapple','kiwi','peas','pumpkin','raspberry','banana','grapes','corn','celery','cilantro','parsley','dill','mint','lettuce_romaine','babyleaves','fennel','sprouts_mung','sprouts_alfalfa','sprouts_sunflower','hibiscus','rose_leaves','mallow','mulberry_leaves','grapeleaves','boiled_egg','pumpkin_seeds','kale','spinach','cabbage','sunflower_seeds','beetroot','artichoke','arugula','blueberry','guava','sabra','pomegranate','fig','apricot','loquat','cherry','persimmon','lychee'];
-const QG_SEP_IDS = ['potato','orange','clementine','tomato','walnuts','brussels_sprouts','chard','grass','peanuts'];
+const QG_YES_IDS = ['carrot','cucumber','sweet_pepper','broccoli','cauliflower','zucchini','sweetpotato','turnip','radish','asparagus','apple','mango','peach','pear','strawberry','watermelon','melon','peas','pumpkin','raspberry','banana','corn','celery','cilantro','parsley','dill','mint','lettuce_romaine','babyleaves','fennel','sprouts_mung','sprouts_alfalfa','sprouts_sunflower','hibiscus','rose_leaves','mallow','mulberry_leaves','kale','cabbage','beetroot','artichoke','arugula','blueberry','guava','sabra','pomegranate','fig','apricot','loquat','cherry','persimmon','lychee'];
+const QG_SEP_IDS = ['potato','orange','clementine','walnuts','brussels_sprouts','chard','grass','peanuts','grapes','boiled_egg','pumpkin_seeds','spinach','sunflower_seeds','pineapple','kiwi','grapeleaves'];
 const QG_NO_IDS  = ['onion','green_onion','garlic','avocado','chocolate','chips','eggplant','lemon','dairy','mushroom'];
 
 function qgSearch(val) {
@@ -9292,7 +9347,7 @@ function pwaInstall(){
           {emoji:'🚨', text:'<strong>מצב חירום ליונקים:</strong> כל המכרסמים והארנבונים, חדר ממוזג בלבד. חשיפה ללא מיזוג עלולה להיות קטלנית!'},
           {emoji:'🦜', text:'<strong>קיקו ותוכיים:</strong> לעקוב אחרי כנפיים פרושות או מקור פתוח, סימני מצוקה. ניתן להתיז רסיסי מים בעדינות.'},
           {emoji:'🐢', text:'<strong>דונה, זאוס וסויה:</strong> אמבטיית מים רדודה לטבילה. חובה אזור קריר ומוצל בתוך הטרריום/מתחם.'},
-          {emoji:'🌡️', text:'<strong>מזגן על 22-24°, ללא פשרות.</strong> לבדוק מים לכל החיות כמה פעמים ביום.'},
+          {emoji:'🌡️', text:'<strong>מזגן על 22-24°, ללא פשרות.</strong> לבדוק את המים לכל החיות כמה פעמים ביום.'},
         ]
       };
     }
@@ -9345,11 +9400,11 @@ function pwaInstall(){
 
     const MODES = {
       cool:   { icon:'❄️', label:'קירור', bg:'#e8f4ff', border:'#4090d0', color:'#1a4a80',
-                setting:'כוון לטמפרטורה {{T}}° במצב קירור' },
+                setting:'כוונו לטמפרטורה {{T}}° במצב קירור' },
       heat:   { icon:'🔥', label:'חימום', bg:'#fff3e8', border:'#f07030', color:'#7a2000',
-                setting:'כוון לטמפרטורה {{T}}° במצב חימום' },
+                setting:'כוונו לטמפרטורה {{T}}° במצב חימום' },
       normal: { icon:'🌿', label:'רגיל / אוטומטי', bg:'#f0faf0', border:'#3aaa6e', color:'#1a5a30',
-                setting:'כוון לטמפרטורה {{T}}° במצב אוטומטי' },
+                setting:'כוונו לטמפרטורה {{T}}° במצב אוטומטי' },
     };
 
     const m = MODES[mode];
@@ -9358,16 +9413,20 @@ function pwaInstall(){
     document.getElementById('acUntilLabel').textContent = untilLabel;
     document.getElementById('acForecastRange').textContent = forecastText;
 
+    const isDark = document.body.classList.contains('dark');
+    const settingBg = isDark ? '#1e2520' : 'rgba(255,255,255,.6)';
+    const settingColor = isDark ? 'var(--text)' : m.color;
+    const cardBg = isDark ? 'var(--card)' : m.bg;
     document.getElementById('acCardContent').innerHTML = `
-      <div style="background:${m.bg};border-radius:12px;border:2px solid ${m.border};padding:.65rem .9rem;margin-bottom:.5rem">
+      <div style="background:${cardBg};border-radius:12px;border:2px solid ${m.border};padding:.65rem .9rem;margin-bottom:.5rem">
         <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.35rem">
           <span style="font-size:2rem;line-height:1">${m.icon}</span>
           <div>
-            <div style="font-size:1.05rem;font-weight:900;color:${m.color}">${m.label}</div>
-            <div style="font-size:.88rem;font-weight:700;color:${m.color};opacity:.85">${tempRec}°C</div>
+            <div style="font-size:1.05rem;font-weight:900;color:${isDark ? 'var(--text)' : m.color}">${m.label}</div>
+            <div style="font-size:.88rem;font-weight:700;color:${isDark ? 'var(--text)' : m.color};opacity:.85">${tempRec}°C</div>
           </div>
         </div>
-        <div style="font-size:.84rem;font-weight:700;color:${m.color};background:rgba(255,255,255,.6);border-radius:8px;padding:.35rem .6rem">
+        <div style="font-size:.84rem;font-weight:700;color:${settingColor};background:${settingBg};border-radius:8px;padding:.35rem .6rem">
           🎛️ ${setting}
         </div>
       </div>
@@ -9427,7 +9486,7 @@ function pwaInstall(){
     } catch(e){
       console.warn('AC forecast failed:', e);
       document.getElementById('acCardContent').innerHTML =
-        '<div style="background:#fff8e0;border-radius:8px;padding:.45rem .7rem;font-size:.83rem;color:#7a5500">⚠️ לא ניתן לטעון תחזית מזגן. בדוק חיבור לאינטרנט.</div>';
+        '<div style="background:#fff8e0;border-radius:8px;padding:.45rem .7rem;font-size:.83rem;color:#7a5500">⚠️ לא ניתן לטעון תחזית מזגן. בדקו חיבור לאינטרנט.</div>';
       document.getElementById('acUntilLabel').textContent = '';
     }
   }
@@ -9486,7 +9545,14 @@ function pwaInstall(){
     const card = document.getElementById('weatherCard');
     if(!card) return;
 
-    function applyWeatherData(temp, minT, maxT, desc, icon){
+    function applyWeatherData(temp, minT, maxT, desc, icon, conditions){
+      conditions = conditions || {};
+      const precipitation = conditions.precipitation || 0;
+      const windSpeed     = conditions.windSpeed     || 0;
+      const visibility    = conditions.visibility    !== undefined ? conditions.visibility : 99999;
+      const dailyPrecip   = conditions.dailyPrecip   || 0;
+      const wCode         = conditions.code          || 0;
+
       document.getElementById('wTemp').textContent = temp + '°';
       document.getElementById('wIcon').textContent = icon;
       document.getElementById('wDesc').textContent = desc;
@@ -9495,14 +9561,67 @@ function pwaInstall(){
       document.getElementById('wForecast').innerHTML =
         '<strong>היום (' + dayName + '):</strong> ' + minT + '°-' + maxT + '°';
       buildThermometer(temp);
+
+      // ── זיהוי תנאים מיוחדים ──
+      // גשם: קוד WMO 51,61,63,65,80,81,82 / wttr 176-296, או precipitation > 0.1
+      const isRain = precipitation > 0.1 || dailyPrecip > 0.5 ||
+                     (wCode >= 51 && wCode <= 82) ||
+                     (wCode >= 176 && wCode <= 296);
+      // אובך / סופת אבק: visibility מתחת ל-2000 מ', קוד WMO 45,48 (ערפל) או wttr 143,248,260
+      const isDust = visibility < 2000 ||
+                     wCode === 45 || wCode === 48 ||
+                     wCode === 143 || wCode === 248 || wCode === 260;
+      // רוח חזקה: מעל 40 קמ"ש
+      const isStrong = windSpeed > 40;
+
+      // ── בניית התראות מזג אוויר מיוחדות ──
+      let weatherAlerts = '';
+
+      if(isDust){
+        weatherAlerts += `
+          <div style="background:#fff3cd;border-radius:10px;border-right:4px solid #e0a800;padding:.55rem .8rem;margin-bottom:.45rem;font-size:.84rem;line-height:1.6">
+            <div style="font-weight:900;font-size:.9rem;color:#7a5000;margin-bottom:.2rem">🌫️ אובך / סופת אבק</div>
+            <div style="color:#5a3a00">לסגור את דלתות פינת החי. להשאיר רק חרכים קטנטנים בחלונות לאוורור, כי אוויר חייבים בכל מקרה, אבל לא יותר מזה. לא להוציא את דונה וזאוס החוצה.</div>
+          </div>`;
+      }
+
+      if(isRain){
+        // לוגיקת קירור חכמה: גשם + חם = קירור עדיין; גשם + מתון = אפשר להפחית
+        let rainAcNote = '';
+        if(maxT >= 28){
+          rainAcNote = 'הטמפרטורה עדיין גבוהה למרות הגשם, המזגן על קירור נשאר הכרחי.';
+        } else if(maxT <= 25){
+          rainAcNote = 'מקסימום מתחת ל-25°, ניתן להפחית את עוצמת הקירור או לעבור למצב אוטומטי.';
+        } else {
+          rainAcNote = 'טמפרטורה בינונית בגשם, כדאי לבדוק את תחושת הטמפרטורה בפנים ולהתאים את המזגן בהתאם.';
+        }
+        weatherAlerts += `
+          <div style="background:#dbeafe;border-radius:10px;border-right:4px solid #4090d0;padding:.55rem .8rem;margin-bottom:.45rem;font-size:.84rem;line-height:1.6">
+            <div style="font-weight:900;font-size:.9rem;color:#1a4a80;margin-bottom:.2rem">🌧️ גשם</div>
+            <div style="color:#1a3a60">לא להוציא את דונה וזאוס בגשם. ${rainAcNote}</div>
+          </div>`;
+      }
+
+      if(isStrong && !isDust){
+        weatherAlerts += `
+          <div style="background:#f0f0f0;border-radius:10px;border-right:4px solid #888;padding:.55rem .8rem;margin-bottom:.45rem;font-size:.84rem;line-height:1.6">
+            <div style="font-weight:900;font-size:.9rem;color:#333;margin-bottom:.2rem">💨 רוח חזקה (${Math.round(windSpeed)} קמ"ש)</div>
+            <div style="color:#444">להחזיר את דונה וזאוס פנימה אם מנשבת רוח. לוודא שחלונות ודלתות לא נפתחים לפתע.</div>
+          </div>`;
+      }
+
+      // הוספת ההתראות לפני הנחיות הטמפרטורה
       const g = getGuidelines(maxT);
       const rangeLabel = document.getElementById('wRangeLabel');
       if(rangeLabel) rangeLabel.textContent = '📋 הנחיות להיום, ' + g.range;
-      document.getElementById('wGuidelines').innerHTML = g.items.map(item=>
-        '<div style="background:#fafbff;border-radius:8px;padding:.4rem .7rem;display:flex;gap:.5rem;align-items:flex-start;font-size:.85rem;line-height:1.55">' +
-        '<span style="font-size:1.1rem;flex-shrink:0">' + item.emoji + '</span>' +
-        '<span>' + item.text + '</span></div>'
-      ).join('');
+      document.getElementById('wGuidelines').innerHTML =
+        weatherAlerts +
+        g.items.map(item=>
+          '<div style="background:#fafbff;border-radius:8px;padding:.4rem .7rem;display:flex;gap:.5rem;align-items:flex-start;font-size:.85rem;line-height:1.55">' +
+          '<span style="font-size:1.1rem;flex-shrink:0">' + item.emoji + '</span>' +
+          '<span>' + item.text + '</span></div>'
+        ).join('');
+
       if(new Date().getDay() === 4){
         document.getElementById('wWeekendNote').style.display = 'block';
       }
@@ -9525,7 +9644,7 @@ function pwaInstall(){
 
     // ניסיון ראשון: Open-Meteo
     try {
-      const url = 'https://api.open-meteo.com/v1/forecast?latitude=31.252&longitude=34.791&hourly=temperature_2m,weather_code&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=Asia%2FJerusalem&forecast_days=1';
+      const url = 'https://api.open-meteo.com/v1/forecast?latitude=31.252&longitude=34.791&hourly=temperature_2m,weather_code,precipitation,wind_speed_10m,visibility&daily=temperature_2m_max,temperature_2m_min,weather_code,precipitation_sum&timezone=Asia%2FJerusalem&forecast_days=1';
       const controller = new AbortController();
       const timeout = setTimeout(()=>controller.abort(), 5000);
       const res = await fetch(url, {signal: controller.signal});
@@ -9538,11 +9657,15 @@ function pwaInstall(){
       const code = hourlyCode ? hourlyCode[nowH] : 0;
       const maxT = Math.round(d.daily.temperature_2m_max[0]);
       const minT = Math.round(d.daily.temperature_2m_min[0]);
+      const precipitation = d.hourly.precipitation ? d.hourly.precipitation[nowH] : 0;
+      const windSpeed = d.hourly.wind_speed_10m ? d.hourly.wind_speed_10m[nowH] : 0;
+      const visibility = d.hourly.visibility ? d.hourly.visibility[nowH] : 99999;
+      const dailyPrecip = d.daily.precipitation_sum ? d.daily.precipitation_sum[0] : 0;
       const descs = {0:'שמיים בהירים',1:'בהיר בעיקר',2:'מעונן חלקית',3:'מעונן',45:'ערפל',51:'ממטר קל',61:'גשם',80:'מקלחות גשם',95:'סופת רעמים',96:'ברד'};
       const roundCode = code <= 3 ? code : Math.round(code/10)*10;
       const desc = descs[roundCode] || descs[code] || '';
       const icon = weatherIcon(code);
-      applyWeatherData(temp, minT, maxT, desc, icon);
+      applyWeatherData(temp, minT, maxT, desc, icon, { code, precipitation, windSpeed, visibility, dailyPrecip });
       return;
     } catch(e){ console.warn('Open-Meteo failed, trying backup:', e); }
 
@@ -9584,7 +9707,7 @@ function pwaInstall(){
         if(c>=302&&c<=395) return '⛈️';
         return '🌡️';
       };
-      applyWeatherData(temp, minT, maxT, wttrDesc(wCode), wttrIcon(wCode));
+      applyWeatherData(temp, minT, maxT, wttrDesc(wCode), wttrIcon(wCode), { code: wCode, precipitation: wCode>=176&&wCode<=296 ? 2 : 0, windSpeed: parseInt(cur.windspeedKmph||'0'), visibility: parseInt(cur.visibility||'10')*1000, dailyPrecip: wCode>=176&&wCode<=296 ? 5 : 0 });
       return;
     } catch(e){ console.warn('wttr.in also failed:', e); }
 
@@ -9658,14 +9781,19 @@ function pwaInstall(){
     const month = new Date().getMonth();
     const inSeason = window._SEASONAL_ALL.filter(s=>s.months.includes(month));
     if(!inSeason.length){ strip.style.display='none'; return; }
-    if(titleEl) titleEl.textContent = 'פירות בעונה עכשיו (' + new Date().toLocaleDateString('he-IL',{month:'long'}) + ')';
-    fruitsEl.innerHTML = inSeason.map(s=>
-      `<button onclick="openFoodModal('${s.id}')" style="background:${s.bg};color:${s.color};border:1.5px solid ${s.color}33;border-radius:50px;padding:.3rem .8rem;font-size:.91rem;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:.3rem">
-        <span>${s.emoji}</span>
-        <span>${s.text.replace('! מותר לתת לחיות?','').replace('! ⚠️ זהירות, הוציאו את הגלעין','').replace('עכשיו עונת ','').replace('עונת ','').trim()}</span>
-        <span style="font-size:.77rem;opacity:.65">← פרטים</span>
-      </button>`
-    ).join('');
+    const monthName = new Date().toLocaleDateString('he-IL',{month:'long'});
+    if(titleEl) titleEl.innerHTML = 'פירות העונה של חודש <strong style="color:#1a5c35;font-size:1.05em">' + monthName + '</strong>';
+    fruitsEl.innerHTML = inSeason.map(s=>{
+      const name = s.text.replace('! מותר לתת לחיות?','').replace('! ⚠️ זהירות, הוציאו את הגלעין','').replace('עכשיו עונת ','').replace('עונת ','').trim();
+      const isWarn = s.text.includes('⚠️') || s.text.includes('זהירות');
+      return `<button onclick="openFoodModal('${s.id}')" title="לחצו לפרטים על ${name}" style="background:${s.bg};color:${s.color};border:1.5px solid ${s.color}44;border-radius:12px;padding:.45rem .75rem;font-size:.88rem;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:.35rem;transition:transform .12s" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform=''">
+        <span style="font-size:1.1rem">${s.emoji}</span>
+        <div style="text-align:right">
+          <div>${name}${isWarn ? ' <span style="font-size:.72rem">⚠️</span>' : ''}</div>
+          <div style="font-size:.72rem;opacity:.7;font-weight:600">האם מותר לחיות? ←</div>
+        </div>
+      </button>`;
+    }).join('');
   }
 
   // ── הפעלה ──
