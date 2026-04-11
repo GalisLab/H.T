@@ -503,6 +503,21 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
 .tab-btn[data-tab="dailymenu"].active{background:#e07820}
 
 .tab-panel{display:none;max-width:1000px;margin:0 auto;padding:.8rem 1rem 2rem}
+.tab-panel.active::after{
+  content:'🌿 נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים';
+  display:block;
+  text-align:center;
+  font-size:.72rem;
+  color:rgba(100,100,100,0.45);
+  padding:1.5rem 0 .5rem;
+  font-family:'Varela Round',sans-serif;
+}
+body.dark .tab-panel.active::after{
+  color:rgba(200,200,200,0.35);
+}
+body.rainbow .tab-panel.active::after{
+  color:rgba(80,80,80,0.5);
+}
 .tab-panel.active{display:block}
 
 /* SECTION HERO */
@@ -1007,7 +1022,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   <div style="position:relative;max-width:600px;margin:0 auto">
     <span style="position:absolute;right:.75rem;top:50%;transform:translateY(-50%);font-size:1.2rem;pointer-events:none">🔍</span>
     <input id="globalSearchInput" type="text"
-      placeholder="כתבו שם חיה, מזון, או שניהם ביחד, למשל: גרביל בטטה"
+      placeholder="חפשו חיה, מזון, נושא, או כל מילה מהאתר... למשל: פינת חי טיפולית, אובך, גרביל"
       oninput="handleGlobalSearch(this.value)"
       style="width:100%;box-sizing:border-box;padding:.55rem 2.4rem .55rem 2.4rem;border:2px solid #c8e0c8;border-radius:50px;font-size:.95rem;font-family:inherit;outline:none;transition:border-color .15s;background:#fafff8"
       onfocus="this.style.borderColor='#3aaa6e'"
@@ -1062,14 +1077,14 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 </div>
 
 <div class="tab-panel active" id="tab-quickguide">
-  <div class="section-hero"><span class="hero-emoji">📝</span><h2>בקיצור</h2><p>רשימת קניות מהירה - מה להביא ומה לא</p><button onclick="speakTabAll('tab-quickguide',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
+  <div class="section-hero"><span class="hero-emoji">📝</span><h2>בקיצור</h2><p>רשימת קניות מהירה: מה להביא ומה לא</p><button onclick="speakTabAll('tab-quickguide',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
 
   <!-- ── פירות בעונה ── -->
   <div id="qgSeasonalStrip" style="border-radius:16px;overflow:hidden;border:2px solid #b8e8cc;margin-bottom:.7rem;box-shadow:0 2px 10px rgba(58,170,110,.10)">
     <div style="background:linear-gradient(to left,#c8edda,#dff7ec);padding:.65rem 1rem;display:flex;align-items:center;gap:.6rem">
       <span style="font-size:1.5rem">🌿</span>
       <div style="flex:1">
-        <div style="font-weight:900;font-size:1.0rem;color:#1a5c35" id="qgSeasonalTitle">פירות בעונה</div>
+        <div style="font-weight:900;font-size:1.0rem;color:#1a5c35;display:flex;align-items:center;gap:.35rem"><span id="qgSeasonalTitle">פירות בעונה</span><button onclick="speakText(Array.from(document.getElementById('qgSeasonalFruits').querySelectorAll('button')).map(b=>b.innerText).join(', '),this)" title="הקרא פירות עונה" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#2a7a48;padding:0;line-height:1">🔊</button></div>
         <div style="font-size:.77rem;color:#2a7a48;margin-top:.05rem">האם מותר לתת לחיות שלנו? לחצו על פרי לפרטים</div>
       </div>
       <span onclick="switchTab('seasonal')" style="font-size:.78rem;color:#1a6640;cursor:pointer;text-decoration:underline dotted;white-space:nowrap;font-weight:700">מידע עונתי ←</span>
@@ -1095,7 +1110,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     <div style="background:var(--card);border-radius:14px;box-shadow:var(--shadow);overflow:hidden">
       <div style="background:#e8f7ef;padding:.7rem 1rem;border-bottom:2px solid #b8e8cc;display:flex;align-items:center;gap:.5rem">
         <span style="font-size:1.4rem">✅</span>
-        <div style="font-weight:900;font-size:1.02rem;color:#1a6640">כן להביא - יתקבלו בברכה!</div>
+        <div style="font-weight:900;font-size:1.02rem;color:#1a6640">כן, נשמח לקבל! <button onclick="event.stopPropagation();speakText('כן, נשמח לקבל!',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0">🔊</button></div>
       </div>
       <div style="padding:.75rem 1rem;display:grid;gap:.65rem">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:.5rem">
@@ -1147,7 +1162,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
             <span class="qg-chip qg-yes" onclick="openFoodModal('cilantro')" style="cursor:pointer">🌿 כוסברה 🥗 <button onclick="event.stopPropagation();speakText('כוסברה',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('mint')" style="cursor:pointer">🌿 נענע 🥗 <button onclick="event.stopPropagation();speakText('נענע',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('dill')" style="cursor:pointer">🌿 שמיר 🥗 <button onclick="event.stopPropagation();speakText('שמיר',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
-            <span class="qg-chip qg-yes" onclick="openFoodModal('celery')" style="cursor:pointer">🌱 סלרי / כרפס 🥗 <button onclick="event.stopPropagation();speakText('סלרי כרפס',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+            <span class="qg-chip qg-yes" onclick="openFoodModal('celery')" style="cursor:pointer">🌱 סלרי 🥗 <button onclick="event.stopPropagation();speakText('סלרי',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('babyleaves')" style="cursor:pointer">🥬 עלי בייבי 🥗 <button onclick="event.stopPropagation();speakText('עלי בייבי',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('fennel')" style="cursor:pointer">🌱 שומר 🥗 <button onclick="event.stopPropagation();speakText('שומר',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
             <span class="qg-chip qg-yes" onclick="openFoodModal('kale')" style="cursor:pointer">🥬 קייל 🥗 <button onclick="event.stopPropagation();speakText('קייל',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
@@ -1168,7 +1183,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     <div style="background:var(--card);border-radius:14px;box-shadow:var(--shadow);overflow:hidden">
       <div class="qg-sep-header" style="background:#fff8e0;padding:.7rem 1rem;border-bottom:2px solid #f0d860;display:flex;align-items:center;gap:.5rem">
         <span style="font-size:1.4rem">⚠️</span>
-        <div class="qg-sep-title" style="font-weight:900;font-size:1.02rem;color:#7a5500;flex:1">רק שלמים או מופרדים לגמרי</div>
+        <div class="qg-sep-title" style="font-weight:900;font-size:1.02rem;color:#7a5500;flex:1">⚠️ רק שלמים או מופרדים לגמרי</div>
         <button onclick="speakText('רק שלמים בשקית נפרדת: תפוח אדמה, פירות הדר כולל קלמנטינה, אגוז מלך ובוטנים, כרוב ניצנים, ענבים, ביצה קשה, גרעיני דלעת, גרעיני חמנייה, תרד, אננס, קיווי, עלי גפן.',this)" title="הקראה" class="qg-sep-speak" style="background:#fff8e0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.87rem;flex-shrink:0">🔊</button>
       </div>
       <div style="padding:.7rem 1rem">
@@ -1194,8 +1209,8 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     <div style="background:var(--card);border-radius:14px;box-shadow:var(--shadow);overflow:hidden">
       <div style="background:#fde8e8;padding:.7rem 1rem;border-bottom:2px solid #f0b8b8;display:flex;align-items:center;gap:.5rem">
         <span style="font-size:1.4rem">❌</span>
-        <div style="font-weight:900;font-size:1.02rem;color:#8b1c1c;flex:1">אין צורך להביא</div>
-        <button onclick="speakText('אין צורך להביא, אלו רעילים לחיות: בצל, בצל ירוק, שום, אבוקדו, שוקולד, חטיפים מלוחים, חטיפים מתוקים, חציל, עגבנייה, לימון, מוצרי חלב, פטריות.',this)" title="הקראה" style="background:#fde8e8;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.87rem;flex-shrink:0">🔊</button>
+        <div style="font-weight:900;font-size:1.02rem;color:#8b1c1c;flex:1">❌ לא להביא (מסוכן!)</div>
+        <button onclick="speakText('לא להביא, מסוכן! אלו רעילים לחיות: בצל, בצל ירוק, שום, אבוקדו, שוקולד, חטיפים מלוחים, חטיפים מתוקים, חציל, עגבנייה, לימון, מוצרי חלב, פטריות.',this)" title="הקראה" style="background:#fde8e8;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.87rem;flex-shrink:0">🔊</button>
       </div>
       <div style="padding:.7rem 1rem">
         <div style="font-size:.85rem;color:#555;margin-bottom:.6rem">תודה רבה! אין צורך להביא, אלו רעילים ועלולים לפגוע בחיות שלנו 🙏</div>
@@ -1248,17 +1263,26 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     <button class="expand-all-btn" onclick="expandAllFoods()" id="expandAllFoodsBtn">📖 פתח הכל</button>
   </div>
   <div style="background:#f0f8ff;border-radius:12px;border-right:4px solid #4a90d9;padding:.6rem .9rem;margin-bottom:.7rem;font-size:.89rem;color:#1a3a6a;line-height:1.65">
-    <strong>💡 מה שונה כאן מהחיפוש בראש הדף?</strong><br>
-    אותה לוגיקה חכמה בדיוק, רק שהתוצאות מוצגות כ<strong>כרטיסי מזון מלאים</strong> עם כל הפרטים. בנוסף: סינון לפי קטגוריה (כל הירקות, כל הפירות...) וחיפוש גם בתרומות ובפינת החי שלנו.
+    <strong>💡 מה אפשר לעשות כאן?</strong><br>
+    לחפש מזון לפי שם, לסנן לפי קטגוריה או חיה, ולגלות נושאים בלחיצה אחת בלי להקליד כלום.
   </div>
   <div id="smartSearchResult" style="margin-bottom:.5rem;font-size:.92rem"></div>
   <div class="search-wrap"><span class="search-icon">🔍</span><input type="text" id="searchInput" placeholder="גזר, ארנבון, פרי, שוקולד, קרטון, גרביים..." oninput="doSearch()"><button id="searchClearBtn" onclick="document.getElementById('searchInput').value='';doSearch()" style="display:none;background:none;border:none;cursor:pointer;font-size:.92rem;color:#999;padding:.2rem .4rem;position:absolute;left:2rem">✕</button><button onclick="startVoiceSearch('searchInput',this)" title="חיפוש קולי" style="background:none;border:none;cursor:pointer;font-size:1.2rem;padding:.2rem .4rem;position:absolute;left:.2rem;color:#666">🎤</button></div>
   <div class="filter-row" id="catBar"></div>
   <div class="filter-row" id="animalFilterRow"><span style="font-size:.77rem;color:#999;align-self:center">סינון לפי חיה:</span></div>
+  <div style="margin-top:.9rem;margin-bottom:.3rem;display:flex;align-items:center;gap:.6rem">
+    <div style="flex:1;height:1px;background:var(--border,#e0e8e0)"></div>
+    <span style="font-size:.78rem;color:#aaa;font-weight:700;white-space:nowrap">נושאים נוספים</span>
+    <div style="flex:1;height:1px;background:var(--border,#e0e8e0)"></div>
+    <button onclick="openWelcomeGuide()" style="background:none;border:none;cursor:pointer;font-size:.74rem;color:#bbb;padding:0;font-family:inherit;white-space:nowrap" title="מדריך מהיר לאתר">🗺️ מדריך</button>
+  </div>
+  <div id="topicsBar" style="margin-top:.2rem"></div>
+  <div id="topicResultCard" style="display:none;background:var(--card);border:1.5px solid var(--border,#d8e8d8);border-radius:12px;padding:.6rem .9rem;margin-bottom:.5rem;font-size:.88rem;line-height:1.65"></div>
   <div id="donationSearchResults" style="margin-bottom:.5rem"></div>
   <div id="cornerSearchResults" style="margin-bottom:.5rem"></div>
   <div id="animalSearchResults" style="margin-bottom:.5rem"></div>
   <div class="grid" id="searchResults"></div>
+  <div id="siteTextResults" style="margin-top:.5rem;margin-bottom:.5rem"></div>
   <details style="margin-top:.8rem;font-size:.82rem;color:#777;cursor:pointer;text-align:right">
     <summary style="font-weight:700;color:#555">📏 מקרא כמויות</summary>
     <div style="background:#f8f8f8;border-radius:8px;padding:.6rem .8rem;margin-top:.3rem;line-height:1.9;text-align:right;font-size:.83rem">
@@ -1380,7 +1404,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   <div style="display:grid;gap:1rem">
 
     <!-- קיקו -->
-    <div style="background:linear-gradient(135deg,#fff8e1,#fff3e0);border-radius:16px;box-shadow:0 3px 12px rgba(0,0,0,.09);padding:1.1rem 1.2rem;position:relative;overflow:hidden">
+    <div id="mycorner-kiko" style="background:linear-gradient(135deg,#fff8e1,#fff3e0);border-radius:16px;box-shadow:0 3px 12px rgba(0,0,0,.09);padding:1.1rem 1.2rem;position:relative;overflow:hidden">
       <div style="position:absolute;top:-8px;left:-8px;font-size:5rem;opacity:.07">🦜</div>
       <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.5rem">
         <span style="font-size:2.2rem">🦜</span>
@@ -1412,7 +1436,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     </div>
 
     <!-- סויה -->
-    <div style="background:linear-gradient(135deg,#e8f5e9,#f1f8e9);border-radius:16px;box-shadow:0 3px 12px rgba(0,0,0,.09);padding:1.1rem 1.2rem;position:relative;overflow:hidden">
+    <div id="mycorner-soya" style="background:linear-gradient(135deg,#e8f5e9,#f1f8e9);border-radius:16px;box-shadow:0 3px 12px rgba(0,0,0,.09);padding:1.1rem 1.2rem;position:relative;overflow:hidden">
       <div style="position:absolute;top:-8px;left:-8px;font-size:5rem;opacity:.07">🦎</div>
       <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.5rem">
         <span style="font-size:2.2rem">🦎</span>
@@ -1452,7 +1476,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     </div>
 
     <!-- זאוס -->
-    <div style="background:linear-gradient(135deg,#fce4ec,#fce4ec);border-radius:16px;box-shadow:0 3px 12px rgba(0,0,0,.09);padding:1.1rem 1.2rem;position:relative;overflow:hidden">
+    <div id="mycorner-zeus" style="background:linear-gradient(135deg,#fce4ec,#fce4ec);border-radius:16px;box-shadow:0 3px 12px rgba(0,0,0,.09);padding:1.1rem 1.2rem;position:relative;overflow:hidden">
       <div style="position:absolute;top:-8px;left:-8px;font-size:5rem;opacity:.07">🐉</div>
       <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.5rem">
         <span style="font-size:2.2rem">🐉</span>
@@ -1498,7 +1522,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     </div>
 
     <!-- יוגי -->
-    <div style="background:linear-gradient(135deg,#fff9e6,#fffde7);border-radius:16px;box-shadow:0 3px 12px rgba(0,0,0,.09);padding:1.1rem 1.2rem;position:relative;overflow:hidden">
+    <div id="mycorner-yogi" style="background:linear-gradient(135deg,#fff9e6,#fffde7);border-radius:16px;box-shadow:0 3px 12px rgba(0,0,0,.09);padding:1.1rem 1.2rem;position:relative;overflow:hidden">
       <div style="position:absolute;top:-8px;left:-8px;font-size:5rem;opacity:.07">🐿️</div>
       <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.5rem">
         <span style="font-size:2.2rem">🐿️</span>
@@ -1540,7 +1564,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   </div>
 
     <!-- כוכב -->
-    <div style="background:linear-gradient(135deg,#f0fff8,#e8f5e9);border-radius:16px;box-shadow:0 3px 12px rgba(0,0,0,.09);padding:1.1rem 1.2rem;position:relative;overflow:hidden">
+    <div id="mycorner-kochav" style="background:linear-gradient(135deg,#f0fff8,#e8f5e9);border-radius:16px;box-shadow:0 3px 12px rgba(0,0,0,.09);padding:1.1rem 1.2rem;position:relative;overflow:hidden">
       <div style="position:absolute;top:-8px;left:-8px;font-size:5rem;opacity:.07">🐰</div>
       <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.5rem">
         <span style="font-size:2.2rem">🐰</span>
@@ -1652,7 +1676,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     </section>
     <!-- ══ סוף קוביית תפיסת העולם ══ -->
 
-    <section class="insight-island nutrition">
+    <section class="insight-island nutrition" id="insight-nutrition">
       <div class="island-header">
         <span class="island-emoji island-emoji-pop" onclick="popIslandEmoji(this)">🥗</span>
         <div>
@@ -1708,7 +1732,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       <div class="insight-card-top">
         <span class="insight-card-tag">תזונה ואחריות</span>
         <div class="insight-card-title" itemprop="name">♻️ מהמטבח שלנו לקערה שלהם: השאריות שיוצרות גשר בין הבית לפינת החי <span onclick="event.stopPropagation();speakText('מהמטבח שלנו לקערה שלהם: השאריות שיוצרות גשר בין הבית לפינת החי',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0" aria-label="הקרא בקול">🔊</span></div>
-        <div class="insight-card-preview">מה שבמטבח הביתי נחשב לפסולת, כמו קליפות גזר, גבעולי ברוקולי או עלים חיצוניים של חסה, הופך אצלנו לארוחה מזינה וחלק בלתי נפרד מהקשר שבין הבית לבית הספר.</div>
+        <div class="insight-card-preview">מה שבמטבח הביתי נחשב לפסולת, כמו קליפות גזר, גבעולי ברוקולי ועלים חיצוניים של חסה, הופך אצלנו לארוחה מזינה וחלק בלתי נפרד מהקשר שבין הבית לבית הספר.</div>
       </div>
       <div class="insight-card-footer">
         <a class="insight-card-cta" href="?article=7" onclick="event.preventDefault();event.stopPropagation();toggleInsightCard('insight-body-7', this.closest('.insight-card'), event)" title="קראו עוד">קראו עוד ←</a>
@@ -1717,7 +1741,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       <div class="insight-body" id="insight-body-7" itemprop="articleBody">
         <div style="text-align:left;margin-bottom:.3rem"><button onclick="event.stopPropagation();speakInsightBody('insight-body-7',this)" title="הקראת המאמר" style="background:#f5f0ff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.82rem;font-weight:700;cursor:pointer;color:#7b5ea7;font-family:inherit">🔊 הקרא מאמר</button></div>
         <h2 style="display:none">מהמטבח שלנו לקערה שלהם: השאריות שיוצרות גשר בין הבית לפינת החי</h2>
-        <p>בפינת החי אנחנו רואים בשאריות ירקות הזדמנות ליצור מעגל של נתינה. מה שבמטבח הביתי נחשב לפסולת, כמו קליפות גזר, גבעולי ברוקולי או עלים חיצוניים של חסה, הופך אצלנו לארוחה מזינה וחלק בלתי נפרד מהקשר שבין הבית לבית הספר. התפיסה הזו מאפשרת לנו להפוך את המטבח הביתי לשלוחה ישירה של הטיפול בבעלי החיים וליצור מעגל שבו כל חלק מהצמח מקבל משמעות חדשה. כשאנחנו בוחרים להביא את השאריות הללו לפינת החי, אנחנו לא רק חוסכים בפסולת אלא מעודדים חשיבה על קיימות ועל הדרך שבה הטבע פועל, שבו אין באמת "פסולת" אלא רק משאבים שעוברים מיד ליד ומזינים חיים אחרים.</p>
+        <p>בפינת החי אנחנו רואים בשאריות ירקות הזדמנות ליצור מעגל של נתינה. מה שבמטבח הביתי נחשב לפסולת, כמו קליפות גזר, גבעולי ברוקולי ועלים חיצוניים של חסה, הופך אצלנו לארוחה מזינה וחלק בלתי נפרד מהקשר שבין הבית לבית הספר. התפיסה הזו מאפשרת לנו להפוך את המטבח הביתי לשלוחה ישירה של הטיפול בבעלי החיים וליצור מעגל שבו כל חלק מהצמח מקבל משמעות חדשה. כשאנחנו בוחרים להביא את השאריות הללו לפינת החי, אנחנו לא רק חוסכים בפסולת אלא מעודדים חשיבה על קיימות ועל הדרך שבה הטבע פועל, שבו אין באמת "פסולת" אלא רק משאבים שעוברים מיד ליד ומזינים חיים אחרים.</p>
 
         <h3>למה הקליפות והגבעולים הם החלקים הכי טובים</h3>
         <p>לפעמים אנחנו נוטים לזרוק דווקא את החלקים הכי טובים. הקליפות והגבעולים עשירים בסיבים תזונתיים ובמינרלים שחיוניים למערכת העיכול של המכרסמים והזוחלים שלנו. השימוש בהם הוא לא חיסכון אלא הענקה של תזונה מגוונת וקרובה יותר למה שהם היו מוצאים בטבע. בעלי חיים רבים בפינה זקוקים לסיבים הגסים שנמצאים דווקא בקליפה החיצונית או בליבה של הירק, אותם חלקים שאנו נוטים להסיר כשאנחנו מכינים סלט לעצמנו. דרך ההבנה הזו אנחנו לומדים להעריך את הירק כולו על כל שכבותיו ומגלים שמה שנתפס בעינינו כפחות אסתטי הוא לעיתים המרכיב החשוב ביותר בתזונה המאוזנת של בעלי החיים.</p>
@@ -1740,7 +1764,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       </div>
     </section>
 
-    <section class="insight-island safety">
+    <section class="insight-island safety" id="insight-safety">
       <div class="island-header">
         <span class="island-emoji island-emoji-pop" onclick="popIslandEmoji(this)">🛡️</span>
         <div>
@@ -1825,7 +1849,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       </div>
     </section>
 
-    <section class="insight-island emotional">
+    <section class="insight-island emotional" id="insight-emotional2">
       <div class="island-header">
         <span class="island-emoji island-emoji-pop" onclick="popIslandEmoji(this)">🌱</span>
         <div>
@@ -2281,6 +2305,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     </div>
 
   </div>
+
 </div>
 
 <div class="tab-panel" id="tab-dailymenu">
@@ -3502,7 +3527,7 @@ const DEFAULT_FOODS = [
  animals:{jacko:{s:'lim',a:'2-3 פרוסות',f:'לעיתים',leopardgecko:{s:'no',rabbit:{s:'lim',a:'4-5 פרוסות',f:'לעיתים',n:'סוכר',sharkhan:{s:'lim',a:'2-3 פרוסות',f:'לעיתים',n:'סוכר גבוה',jacko:{s:'lim',a:'2-3 פרוסות',f:'לעיתים',n:'סוכר גבוה',beardie:{s:'lim',a:'2-3 פרוסות',f:'לעיתים',n:'סוכר גבוה',syrianhamster:{s:'lim',a:'פרוסה אחת',f:'לעיתים',n:'סוכר גבוה',gerbil:{s:'lim',a:'חצי פרוסה',f:'לעיתים',n:'סוכר',mealworms:{s:'ok',a:'פרוסה אחת',f:'לעיתים',hissingcockroach:{s:'ok',a:'פרוסה אחת',f:'לעיתים',mouse:{s:'lim',a:'כפית',f:'לעיתים נדירות',n:'אוקסלאטים וסוכר גבוה',rat:{s:'lim',a:'פרוסה אחת',f:'לעיתים נדירות',n:'אוקסלאטים',budgie:{s:'lim',a:'פרוסה אחת',f:'לעיתים נדירות',hamster_gen:{s:'lim',a:'כפית',f:'לעיתים נדירות',n:'אוקסלאטים וסוכר',degu:{s:'no',n:'סוכר גבוה',iguana:{s:'lim',a:'2-3 פרוסות',f:'לעיתים נדירות',n:'אוקסלאטים',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'lim',a:'פרוסה אחת',f:'לעיתים נדירות',quail:{s:'lim',a:'פרוסה אחת',f:'לעיתים נדירות'},hamster_gen:{s:'lim',a:'כפית',f:'לעיתים נדירות',n:'אוקסלאטים וסוכר',degu:{s:'no',n:'סוכר גבוה',iguana:{s:'lim',a:'2-3 פרוסות',f:'לעיתים נדירות',n:'אוקסלאטים',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},lovebird:{s:'lim',a:'פרוסה אחת',f:'לעיתים',n:'סוכר גבוה'},cockatiel:{s:'lim',a:'פרוסה אחת',f:'לעיתים',n:'סוכר גבוה'}}}},vietstick:{s:'no'},sulcata:{s:'lim',a:'4-5 פרוסות',f:'לעיתים'},chinchilla:{s:'no'},mealworms:{s:'ok',a:'פרוסה אחת',f:'לעיתים'},hissingcockroach:{s:'ok',a:'פרוסה אחת',f:'לעיתים'},sibhamster:{s:'ok',a:'חצי פרוסה',f:'לעיתים'},syrianhamster:{s:'ok',a:'פרוסה אחת',f:'לעיתים'},gerbil:{s:'ok',a:'חצי פרוסה',f:'לעיתים'}},lovebird:{s:'lim',a:'פרוסה אחת',f:'לעיתים'},sibhamster:{s:'lim',a:'חצי פרוסה',f:'לעיתים',n:'סוכר גבוה'},sulcata:{s:'ok',a:'4-5 פרוסות',f:'כמה פעמים בשבוע',n:'⭐ עלים מצוינים!'},vietstick:{s:'no'},beardie:{s:'lim',a:'2-3 פרוסות',f:'לעיתים'},chinchilla:{s:'lim',a:'פרוסה אחת',f:'לעיתים',n:'אוקסלאטים'},leopardgecko:{s:'no',n:'אוכלת חרקים חיים בלבד (זחלי קמח, צרצרים)'},rabbit:{s:'lim',a:'4-5 פרוסות',f:'לעיתים',n:'אוקסלאטים - לא הרבה'},syrianhamster:{s:'lim',a:'פרוסה אחת',f:'לעיתים'},sharkhan:{s:'lim',a:'2-3 פרוסות',f:'לעיתים'},gerbil:{s:'lim',a:'חצי פרוסה',f:'לעיתים'},cockatiel:{s:'lim',a:'פרוסה אחת',f:'לעיתים'},mealworms:{s:'ok',a:'פרוסה אחת',f:'לעיתים'},hissingcockroach:{s:'ok',a:'פרוסה אחת',f:'לעיתים'},fish:{s:'nr'},dog:{s:'lim',a:'4-5 פרוסות',f:'לעיתים',n:'לא בכמות גדולה'},quail:{s:'lim',a:'פרוסה אחת',f:'לעיתים נדירות',quail:{s:'lim',a:'פרוסה אחת',f:'לעיתים נדירות'},hamster_gen:{s:'lim',a:'כפית',f:'לעיתים נדירות',n:'אוקסלאטים וסוכר',degu:{s:'no',n:'סוכר גבוה',iguana:{s:'lim',a:'2-3 פרוסות',f:'לעיתים נדירות',n:'אוקסלאטים',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
 
 
-{id:'celery',name:'סלרי / כרפס',emoji:'🌱',cookStatus:'raw',category:'עלים ועשבי תיבול',aliases:['סלרי','כרפס','עלי סלרי'],
+{id:'celery',name:'סלרי',emoji:'🌱',cookStatus:'raw',category:'עלים ועשבי תיבול',aliases:['סלרי','עלי סלרי'],
  why:'סלרי נמוך בקלוריות ועשיר במים. הוא מכיל ויטמין K ואשלגן. לפני הגשה לארנבונים, יש להסיר את החוטים הסיביים מהגבעול שעלולים להסתבך במערכת העיכול.',
  parts:[{name:'גבעול',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'ok','vietstick':'no','beardie':'ok','chinchilla':'lim','leopardgecko':'no','rabbit':'ok','sharkhan':'ok','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}},{name:'עלים',rawOk:'ok',partAnimals:{'jacko':'ok','lovebird':'ok','cockatiel':'ok','sibhamster':'lim','sulcata':'ok','vietstick':'no','beardie':'ok','chinchilla':'lim','leopardgecko':'no','rabbit':'ok','sharkhan':'ok','syrianhamster':'lim','gerbil':'lim','mealworms':'ok','hissingcockroach':'ok'}},{name:'שורש',rawOk:'ok',partAnimals:{'jacko':'lim','lovebird':'lim','cockatiel':'lim','sibhamster':'no','sulcata':'lim','vietstick':'no','beardie':'lim','chinchilla':'no','leopardgecko':'no','rabbit':'lim','sharkhan':'lim','syrianhamster':'no','gerbil':'no','mealworms':'lim','hissingcockroach':'lim'}}],
  animals:{jacko:{s:'ok',a:'רבע כוס',f:'לעיתים',leopardgecko:{s:'no',rabbit:{s:'ok',a:'כוס',f:'לעיתים',sharkhan:{s:'ok',a:'רבע כוס',f:'לעיתים',jacko:{s:'lim',a:'רבע כוס',f:'לעיתים',n:'הסר סיבים',beardie:{s:'lim',a:'רבע כוס',f:'לעיתים',n:'מים בלבד',syrianhamster:{s:'ok',a:'2-3 יחידות',f:'לעיתים',gerbil:{s:'ok',a:'יחידה אחת',f:'לעיתים',mealworms:{s:'ok',a:'2-3 יחידות',f:'לעיתים',hissingcockroach:{s:'ok',a:'2-3 יחידות',f:'לעיתים',mouse:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',rat:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',budgie:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',hamster_gen:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}},japanese_quail:{s:'ok',a:'2-3 יחידות',f:'כמה פעמים בשבוע',quail:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע'},hamster_gen:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}}}}}}}},lovebird:{s:'lim',a:'2-3 יחידות',f:'לעיתים',n:'הסר סיבים'},cockatiel:{s:'lim',a:'2-3 יחידות',f:'לעיתים',n:'הסר סיבים'}}}},vietstick:{s:'no'},sulcata:{s:'ok',a:'כוס',f:'כמה פעמים בשבוע'},chinchilla:{s:'no'},mealworms:{s:'ok',a:'2-3 יחידות',f:'לעיתים'},hissingcockroach:{s:'ok',a:'2-3 יחידות',f:'לעיתים'},sibhamster:{s:'ok',a:'יחידה אחת',f:'לעיתים'},syrianhamster:{s:'ok',a:'2-3 יחידות',f:'לעיתים'},gerbil:{s:'ok',a:'יחידה אחת',f:'לעיתים'}},lovebird:{s:'ok',a:'2-3 יחידות',f:'לעיתים'},sibhamster:{s:'lim',a:'יחידה אחת',f:'לעיתים'},sulcata:{s:'ok',a:'כוס',f:'לעיתים'},vietstick:{s:'no'},beardie:{s:'ok',a:'רבע כוס',f:'לעיתים'},chinchilla:{s:'lim',a:'2-3 יחידות',f:'לעיתים'},leopardgecko:{s:'no',n:'אוכלת חרקים חיים בלבד (זחלי קמח, צרצרים)'},rabbit:{s:'ok',a:'כוס',f:'לעיתים',n:'להסיר חוטים'},syrianhamster:{s:'lim',a:'2-3 יחידות',f:'לעיתים'},sharkhan:{s:'ok',a:'רבע כוס',f:'כמה פעמים בשבוע'},gerbil:{s:'lim',a:'יחידה אחת',f:'לעיתים'},cockatiel:{s:'ok',a:'2-3 יחידות',f:'לעיתים'},mealworms:{s:'ok',a:'2-3 יחידות',f:'לעיתים'},hissingcockroach:{s:'ok',a:'2-3 יחידות',f:'לעיתים'},fish:{s:'nr'},dog:{s:'ok',a:'כוס',f:'לעיתים'},quail:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',quail:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע'},hamster_gen:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',degu:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',iguana:{s:'ok',a:'2-3 פרוסות',f:'כמה פעמים בשבוע',cornsnake:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.',ball_python:{s:'no',n:'נחש - ניזון ממזון חי/קפוא בלבד (עכברים, חולדות). לא אוכל ירקות.'}}}}}}}},
@@ -3798,7 +3823,7 @@ const DEFAULT_FOODS = [
  }
 },
 
-{id:'sabra',name:'סברס',emoji:'🌵',cookStatus:'raw',category:'פרי',aliases:['צבר','פרי צבר','תפוח קוצני'],
+{id:'sabra',name:'סברס',emoji:'🌵',cookStatus:'raw',category:'פרי',aliases:['צבר','פרי צבר','צבר קוצני'],
  why:'מזון טבעי ומצוין לזוחלים בזכות יחס סידן-זרחן מעולה. הוא מסייע בבניית שריון הצבים ועצמות החרדונים ומספק נוזלים וסיבים רבים. חובה לנקות את הקוצים לפני ההגשה.',
  whyNot:'⚠️ חובה לנקות את הקוצים לחלוטין לפני ההגשה, הם עלולים לפצוע את פה החיה ואת מערכת העיכול. יש להשרות את הפרי במים ולשפשף היטב.',
  parts:[
@@ -4321,23 +4346,124 @@ function renderFoodCard(food, filterIds, listIds, autoPartIdx){
 
 // ── SEARCH ────────────────────────────────────────────────────
 function initCatBar(){
-  const cats=[...new Set(FOODS.map(f=>f.category).filter(Boolean))];
+  const CAT_LABELS=[
+    {key:'fruit',    label:'🍎 פירות'},
+    {key:'veg',      label:'🥕 ירקות'},
+    {key:'greens',   label:'🥬 עלים ועשבים'},
+    {key:'wild',     label:'🌿 צמחי בר ופרחים'},
+    {key:'other',    label:'🌾 כל השאר'},
+    {key:'forbidden',label:'🚫 אסורים'},
+  ];
   const c=document.getElementById('catBar');
   c.innerHTML='<span style="font-size:.83rem;color:#999;align-self:center">קטגוריה:</span>';
-  cats.forEach(cat=>{
+  CAT_LABELS.forEach(({key,label})=>{
     const ch=document.createElement('span');
-    ch.className='cat-chip'+(activeCatFilters.includes(cat)?' sel':'');
-    ch.textContent=cat;
-    ch.onclick=()=>{ch.classList.toggle('sel');const i=activeCatFilters.indexOf(cat);i>=0?activeCatFilters.splice(i,1):activeCatFilters.push(cat);doSearch();};
+    ch.className='cat-chip'+(activeCatFilters.includes(key)?' sel':'');
+    ch.textContent=label;
+    ch.onclick=()=>{
+      const i=activeCatFilters.indexOf(key);
+      i>=0?activeCatFilters.splice(i,1):activeCatFilters.push(key);
+      initCatBar();doSearch();
+    };
     c.appendChild(ch);
   });
-  // כפתור איפוס
   const clr=document.createElement('span');
   clr.id='catClearBtn';
   clr.innerHTML='✕ נקה';
   clr.style.cssText='font-size:.79rem;color:#c03030;cursor:pointer;padding:.14rem .5rem;border-radius:50px;border:1.5px solid #e8b0b0;background:#fff5f5;font-weight:700;display:'+(activeCatFilters.length?'inline-flex':'none');
   clr.onclick=()=>{activeCatFilters.length=0;initCatBar();doSearch();};
   c.appendChild(clr);
+}
+
+
+// ── תגיות נושאים ──
+const TOPICS_DATA = [
+  { group: '🥬 מה להביא', chips: [
+    { label: '✅ כן, נשמח לקבל', section: 'בקיצור: כן, נשמח לקבל!' },
+    { label: '❌ מה אסור', section: 'בקיצור: ❌ לא להביא (מסוכן!)' },
+    { label: '⚠️ שלמים בלבד', section: 'בקיצור: ⚠️ רק שלמים או מופרדים' },
+  ]},
+  { group: '📋 הנחיות', chips: [
+    { label: '🌳 יציאה לחצר', section: 'הנחיות: יציאה לחצר' },
+    { label: '📌 הנחיות קבועות', section: 'הנחיות: הנחיות קבועות' },
+    { label: "✅ צ'ק ליסט לפני יציאה", section: "הנחיות: צ'ק ליסט לפני יציאה מפינת החי" },
+  ]},
+  { group: '🌤️ מזג האוויר', chips: [
+    { label: '☀️ היום', section: 'מידע עונתי: מזג האוויר היום' },
+    { label: '📅 בימים הקרובים', section: 'מידע עונתי: תחזית לימים הקרובים' },
+    { label: '🌫️ אובך וסופות אבק', section: 'מידע עונתי: אובך וסגירת חלונות' },
+    { label: '🌧️ גשם', section: 'מידע עונתי: גשם' },
+    { label: '💨 רוח חזקה', section: 'מידע עונתי: רוח חזקה' },
+  ]},
+  { group: '💡 מבט מעמיק', chips: [
+    { label: '🧠 תפיסת העולם שלנו', section: 'מבט מעמיק: תפיסת העולם שלנו' },
+    { label: '🥗 תזונה וטיפול', section: 'מבט מעמיק: תזונה וטיפול' },
+    { label: '🛡️ מוגנות ובטיחות', section: 'מבט מעמיק: מוגנות ובטיחות' },
+    { label: '🤝 קשר, רגש וגילוי', section: 'מבט מעמיק: קשר, רגש וגילוי' },
+  ]},
+  { group: '🐾 החיות שלנו', chips: [
+    { label: '🦜 קיקו', section: "פינת החי שלנו: קיקו (ג'אקו)" },
+    { label: '🦎 סויה', section: 'פינת החי שלנו: סויה (שממית מנומרת)' },
+    { label: '🐉 זאוס', section: 'פינת החי שלנו: זאוס (חרדון מזוקן)' },
+    { label: "🐿️ הצ'ינצ'ילות", section: "פינת החי שלנו: הצ'ינצ'ילות" },
+    { label: '🦜 להקת התוכים', section: 'פינת החי שלנו: להקת התוכים' },
+    { label: '🐰 הגדרה', section: 'פינת החי שלנו: הגדרה' },
+    { label: '🐹 המכרסמים הקטנים', section: 'פינת החי שלנו: המכרסמים הקטנים' },
+  ]},
+  { group: '🔗 עוד דברים שכדאי לדעת', chips: [
+    { label: '🍓 פירות עונתיים', section: 'עוד דברים: פירות עונתיים' },
+    { label: '🥗 איך לחלק את הירקות', section: 'עוד דברים: איך לחלק את הירקות' },
+    { label: '🎁 מה אנחנו צריכים', section: 'עוד דברים: מה אנחנו צריכים' },
+    { label: '✉️ דברו איתנו', section: 'עוד דברים: דברו איתנו' },
+    { label: '🐾 חיות נפוצות שאין לנו', section: 'עוד דברים: חיות נפוצות שאין לנו' },
+  ]},
+];
+
+function showTopicsBar() {
+  var bar = document.getElementById('topicsBar');
+  if (!bar) return;
+  bar.innerHTML = '';
+  TOPICS_DATA.forEach(function(grp) {
+    var groupEl = document.createElement('div');
+    groupEl.style.cssText = 'display:flex;flex-wrap:wrap;align-items:center;gap:.3rem;margin-bottom:.3rem';
+    var lbl = document.createElement('span');
+    lbl.textContent = grp.group;
+    lbl.style.cssText = 'font-size:.77rem;color:#888;font-weight:700;flex-shrink:0';
+    groupEl.appendChild(lbl);
+    grp.chips.forEach(function(chip) {
+      var entry = SITE_TEXT_INDEX.find(function(e) { return e.section === chip.section; });
+      if (!entry) return;
+      var ch = document.createElement('span');
+      ch.className = 'cat-chip';
+      ch.textContent = chip.label;
+      ch.style.cssText = 'font-size:.79rem;padding:.22rem .6rem';
+      ch.setAttribute('data-section', chip.section);
+      ch.onclick = function() { toggleTopicResult(entry, ch); };
+      groupEl.appendChild(ch);
+    });
+    bar.appendChild(groupEl);
+  });
+}
+
+function toggleTopicResult(entry, chipEl) {
+  var card = document.getElementById('topicResultCard');
+  if (!card) return;
+  var isOpen = card.style.display !== 'none' && card.getAttribute('data-section') === entry.section;
+  document.querySelectorAll('#topicsBar .cat-chip').forEach(function(c) { c.classList.remove('sel'); });
+  if (isOpen) {
+    card.style.display = 'none';
+    card.removeAttribute('data-section');
+    return;
+  }
+  chipEl.classList.add('sel');
+  card.setAttribute('data-section', entry.section);
+  card.style.display = 'block';
+  card.innerHTML =
+    '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.3rem">'
+    + '<span style="font-size:.75rem;font-weight:700;color:#3aaa6e">' + entry.section + '</span>'
+    + '<a href="#" onclick="event.preventDefault();' + entry.action + ';document.getElementById(\'topicResultCard\').style.display=\'none\'" style="font-size:.75rem;color:#3aaa6e;font-weight:700;text-decoration:underline dotted;white-space:nowrap">למידע נוסף ←</a>'
+    + '</div>'
+    + '<div style="color:var(--text)">' + entry.text.slice(0, 250) + (entry.text.length > 250 ? '...' : '') + '</div>';
 }
 
 function initAnimalFilterRow(){
@@ -4602,12 +4728,47 @@ function doSearch(){
   }
 
   // לא מציגים תוצאות אם אין שאלה ואין פילטרים פעילים
+  // הצג/הסתר תגיות נושאים
+  var _tbar=document.getElementById('topicsBar');
+  var _tcard=document.getElementById('topicResultCard');
+  if(!q&&!activeCatFilters.length&&!activeAnimalFilters.length){
+    if(_tbar){_tbar.style.display='';showTopicsBar();}
+  } else {
+    if(_tbar) _tbar.style.display='none';
+    if(_tcard){_tcard.style.display='none';_tcard.removeAttribute('data-section');}
+    document.querySelectorAll('#topicsBar .cat-chip').forEach(function(c){c.classList.remove('sel');});
+  }
   if(!q && !activeCatFilters.length && !activeAnimalFilters.length){
     foodDiv.innerHTML='';
+    const siteDiv=document.getElementById('siteTextResults');
+    if(siteDiv) siteDiv.innerHTML='';
     return;
   }
+
+  // ── חיפוש בתוכן האתר (מאמרים, הנחיות, כותרות) ──
+  const siteDiv=document.getElementById('siteTextResults');
+  if(siteDiv && q && q.length>=2){
+    const textResults = searchSiteText(q);
+    if(textResults.length){
+      const siteHtml = textResults.map(function(r){
+        return '<div style="background:var(--card);border:1px solid var(--border,#d8e8d8);border-radius:10px;padding:.45rem .85rem;font-size:.86rem;line-height:1.55;cursor:pointer" onclick="'+r.action+'">'
+          +'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.15rem">'
+          +'<span style="font-size:.74rem;font-weight:700;color:#3aaa6e">'+r.section+'</span>'
+          +'<span style="font-size:.74rem;color:#3aaa6e;font-weight:700">למידע נוסף ←</span>'
+          +'</div>'
+          +'<div style="color:var(--text);font-size:.83rem">'+r.snippet+'</div>'
+          +'</div>';
+      }).join('');
+      siteDiv.innerHTML='<div style="margin-bottom:.4rem;font-size:.78rem;font-weight:700;color:#888;padding:0 .2rem">📄 נמצא גם בתוכן האתר:</div>'
+        +'<div style="display:grid;gap:.35rem;margin-bottom:.6rem">'+siteHtml+'</div>';
+    } else {
+      siteDiv.innerHTML='';
+    }
+  } else if(siteDiv){
+    siteDiv.innerHTML='';
+  }
   let matches=FOODS.filter(f=>{
-    if(activeCatFilters.length&&!activeCatFilters.includes(f.category)) return false;
+    if(activeCatFilters.length&&!activeCatFilters.some(key=>FOOD_CAT_MAP[key]&&FOOD_CAT_MAP[key].includes(f.id))) return false;
     if(!q) return true;
     // אם זיהינו חיפוש חלק, סנן לפי חלק (+ שם מזון אופציונלי)
     if (partQuery) {
@@ -4771,7 +4932,7 @@ function showAnimalsListOnly() {
 function expandAllFoods(){
   const q=document.getElementById('searchInput')?.value.trim().toLowerCase()||'';
   let matches=FOODS.filter(f=>{
-    if(activeCatFilters.length&&!activeCatFilters.includes(f.category)) return false;
+    if(activeCatFilters.length&&!activeCatFilters.some(key=>FOOD_CAT_MAP[key]&&FOOD_CAT_MAP[key].includes(f.id))) return false;
     if(!q) return true;
     return searchMatchName(f.name, q)||(f.aliases||[]).some(a=>searchMatchName(a, q));
   });
@@ -4846,7 +5007,7 @@ function speakTabAll(tabId, btn){
         .map(c=>stripEmoji(c.textContent).trim()).filter(Boolean);
       return [
         'בקיצור. רשימת קניות מהירה.',
-        chips.length ? 'כן להביא: ' + chips.join(', ') + '. פטריות שמפיניון.' : '',
+        chips.length ? 'כן, נשמח לקבל: ' + chips.join(', ') + '. פטריות שמפיניון.' : '',
         warn.length ? 'להביא שלמים או בנפרד: ' + warn.join(', ') + '.' : '',
         no.length ? 'אין להביא, רעיל לחיות: ' + no.join(', ') + '.' : '',
         'עייף זה מעולה! ירק רך קצת, שעבר את שיאו - החיות לא מפחדות ממנו. שאריות חיתוך, קליפות, גבעולים - יתקבלו בברכה.',
@@ -6398,7 +6559,7 @@ function initQuickGuide(){
 }
 
 function initAll(){
-  initCatBar(); initAnimalFilterRow(); doSearch();
+  initCatBar(); initAnimalFilterRow(); showTopicsBar(); doSearch();
   initAllFoodsTab();
   renderAnimalGrid(); initAnimalCardEvents(); initByAnimal(); initMyCorner(); initDonate();
   setAnimalView('ours');
@@ -7540,9 +7701,124 @@ function _handleGlobalSearchCore(val, res) {
     return;
   }
   if (notOursParts.length) { res.innerHTML=`<div style="display:grid;gap:.35rem">${notOursParts.join('')}</div>`; return; }
+
+  // ── חיפוש טקסט חופשי בכל תוכן האתר ──
+  const textResults = searchSiteText(q);
+  if (textResults.length) {
+    const txtHtml = textResults.map(function(r){
+      return '<div style="background:var(--card);border:1px solid var(--border,#d8e8d8);border-radius:10px;padding:.5rem .85rem;font-size:.88rem;line-height:1.6;cursor:pointer" onclick="'+r.action+'">'
+        +'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.2rem">'
+        +'<span style="font-size:.75rem;font-weight:700;color:#3aaa6e">'+r.section+'</span>'
+        +'<span style="font-size:.75rem;color:#3aaa6e;font-weight:700;white-space:nowrap">למידע נוסף ←</span>'
+        +'</div>'
+        +'<div style="color:var(--text);font-size:.84rem">'+r.snippet+'</div>'
+        +'</div>';
+    }).join('');
+    res.innerHTML = '<div style="display:grid;gap:.4rem">'+txtHtml+'</div>';
+    return;
+  }
   res.innerHTML = '';
 }
 
+
+// ── אינדקס תוכן האתר לחיפוש טקסט חופשי ──
+const SITE_TEXT_INDEX = [
+  // מבט מעמיק
+  { tab:'insight', section:'מבט מעמיק: תפיסת העולם שלנו', action:"switchTab('insight');setTimeout(()=>{const el=document.getElementById('manifesto-island');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)", text:'היסודות והערכים שלנו. מה הרציונל מאחורי פינת החי? איזו פילוסופיה עיצבה את זהות המקום? פינת החי שלנו היא פינת חי טיפולית, מרחב שמתקיימת בו עבודה רגשית, חברתית והתפתחותית דרך הקשר עם בעלי החיים. בעלי החיים כאן אינם אמצעי אלא שותפים לדרך.' },
+  { tab:'insight', section:'מבט מעמיק: תזונה וטיפול', action:"switchTab('insight');setTimeout(()=>{const el=document.getElementById('insight-nutrition');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)", text:'איך מה שקורה במטבח הביתי הופך למעגל של נתינה ובריאות בפינת החי? למה גיוון בתפריט כל כך חשוב? איך שאריות המטבח שלכם יוצרות בינינו גשר? גזר, ברוקולי, קליפות, גבעולים, תפוח, בטטה, שמיר, פטרוזיליה, כרוב.' },
+  
+  { tab:'insight', section:'מבט מעמיק: מוגנות ובטיחות', action:"switchTab('insight');setTimeout(()=>{const el=document.getElementById('insight-safety');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)", text:'על האחריות שלנו לשמור על שלומם של בעלי החיים ועל המרחב הבטוח שלהם. מה אסור להביא לפינת החי? מה קורה כשמביאים מזון לא מתאים? אבוקדו, בצל, שום, שוקולד, חטיפים, חציל, עגבנייה, לימון, מוצרי חלב, פטריות.' },
+  { tab:'insight', section:'מבט מעמיק: קשר, רגש וגילוי', action:"switchTab('insight');setTimeout(()=>{const el=document.getElementById('insight-emotional2');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)", text:'איך השהייה בפינת החי והכנות של בעלי החיים עוזרות לנו להכיר את עצמנו? איך בעלי החיים עוזרים לנו לדבר על עצמנו? למה בעלי חיים הם החברים הכי כנים שלנו? הקסם של השהייה החופשית בפינת החי. קשר, רגש, אמפתיה, ויסות רגשי.' },
+  
+  // מידע עונתי
+  { tab:'seasonal', section:'מידע עונתי: אובך', action:"switchTab('seasonal')", text:'אובך סופת אבק מזג אוויר חום קור גשם רוח מזגן טמפרטורה תחזית עונתי עונה קיץ חורף אביב סתיו. לסגור היטב את דלתות פינת החי. להשאיר בחלונות חרכים קטנטנים בלבד לאוורור. לא להוציא בעלי חיים החוצה בזמן אובך. מחזור אוויר פנימי.' },
+  { tab:'seasonal', section:'מידע עונתי: תחזית מזגן', action:"switchTab('seasonal')", text:'כוונו מזגן קירור חימום אוטומטי מצב מזגן תחזית טמפרטורה. ביום חמישי לא חוזרים לפינת החי עד יום ראשון. חשוב לבצע את כל הבדיקות ולכוון את המזגן בהתאם. קרקע חמה מסוכנת לבעלי חיים.' },
+  { tab:'seasonal', section:'מידע עונתי: פירות עונה', action:"switchTab('seasonal')", text:'פירות בעונה עונתי עכשיו בעונה ירקות עונה. מה מותר לתת לחיות שלנו? פרי עונה יטרי תזונה.' },
+  // הנחיות
+  { tab:'guidelines', section:'הנחיות: יציאה לחצר', action:"switchTab('guidelines')", text:'לשאת בצורה בטוחה אך ורק בתוך קופסה. להניח רק על משטח אדמה או חול אחרי שבדקנו שהטמפרטורה מתאימה. לוודא שהחיה לא אוכלת משהו שאסור לה. להשגיח כל הזמן ולשמור על קשר עין רציף. יציאה לחצר חצר כלובי נשיאה השגחה בטיחות.' },
+  { tab:'guidelines', section:'הנחיות: הנחיות קבועות', action:"switchTab('guidelines')", text:'לשטוף את המזון שבעלי החיים מקבלים. לפנות שאריות מזון בזמן. לדאוג לסידן לזוחלים ולחומרי שיוף לשיניים של המכרסמים. לשמור על שקט ואוויר נקי. לוודא שלכולם יש מים נקיים וקרירים בשפע. לכוון מזגן ולא לשכוח לשטוף ידיים בתחילת וסיום הפעילות.' },
+  { tab:'guidelines', section:"הנחיות: צ'ק ליסט לפני יציאה מפינת החי", action:"switchTab('guidelines')", text:'אוכל ומים לכולם, סגירת חלונות, נעילת כלובים, בדיקה שכל החיות חזרו הביתה, הרצפה והשולחנות נקיים, האשפה בפח, כיבוי אורות ונעילת דלתות.' },
+  // בקיצור
+  { tab:'quickguide', section:'בקיצור: מה להביא', action:"switchTab('quickguide')", text:'כן נשמח לקבל ירקות ופירות שלמים או חתוכים שכבר לא תעשו בהם שימוש. גם שאריות חיתוך: קליפות, גבעולים, קצוות. אנחנו נמיין בעצמנו מה מגיע לאיזו חיה. מלפפון, פלפל מתוק, גזר, תפוח, בננה, בטטה, קישוא, תירס, כרוב, סלק, אבטיח, מלון, ברוקולי, כרובית, חסה, פטרוזיליה, סלרי, שומר, קייל.' },
+  { tab:'quickguide', section:'בקיצור: מה לא להביא', action:"switchTab('quickguide')", text:'לא להביא מסוכן רעיל לחיות: בצל, בצל ירוק, שום, אבוקדו, שוקולד, חטיפים מלוחים ומתוקים, חציל, עגבנייה, לימון, מוצרי חלב, פטריות. אסור רעיל סכנה.' },
+  { tab:'quickguide', section:'בקיצור: שלמים בלבד', action:"switchTab('quickguide')", text:'רק שלמים בשקית נפרדת: תפוח אדמה, פירות הדר, אגוז מלך, בוטנים, כרוב ניצנים, ענבים, ביצה קשה, גרעיני דלעת, גרעיני חמנייה, תרד, אננס, קיווי, עלי גפן. מופרדים לזהות כל פריט.' },
+  // תרומות
+  { tab:'donate', section:'תרומות: מה הפינה צריכה', action:"switchTab('donate')", text:'לתרום תרומה מה הפינה צריכה מה נשמח לקבל ציוד. דברים שפינת החי צריכה ונשמח לקבל מכם. ציוד טיפול מזון חיות.' },
+  // פינת החי שלנו
+  { tab:'mycorner', section:'פינת החי שלנו: החיות שלנו', action:"switchTab('mycorner')", text:'קיקו ג\'אקו תוכי בן 18 אוהב לשיר ולרקוד. סויה שממית מנומרת אוהבת אמבטיה חמימה. זאוס חרדון מזוקן אוהב לנמנם מתחת למנורת החימום. יוגי צ\'ינצ\'ילה הוותיק פעם ברח לכביש. כוכב ואלזה הארנבוניות. דונה הצבה הסודנית. פיטנגו ומנטה השרקניות. להקת התוכים: גשם, וניל, ששי, נור, טאקו וקשת.' },
+  // מידע עונתי - תחזית ומזגן
+  { tab:'seasonal', section:'מידע עונתי: מזג האוויר היום', action:"switchTab('seasonal');setTimeout(()=>{const el=document.getElementById('weatherCard');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)", text:'תחזית מזג האוויר היום בבאר שבע, טמפרטורה, תחזית, הנחיות לפינת החי להיום.' },
+  { tab:'seasonal', section:'מידע עונתי: תחזית לימים הקרובים', action:"switchTab('seasonal');setTimeout(()=>{const el=document.getElementById('acCard');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)", text:'תחזית מזג אוויר לימים הקרובים, המלצות כיוון מזגן, הנחיות פעולה לפינת החי. שבוע קרוב ימים הבאים.' },
+  { tab:'seasonal', section:'מידע עונתי: אובך וסגירת חלונות', action:"switchTab('seasonal')", text:'כשצפוי אובך או סופת אבק, סגרו חלונות ודלתות, כוונו מזגן למחזור אוויר פנימי. וודאו שלא שכחנו שום דבר בחצר.' },
+  { tab:'seasonal', section:'מידע עונתי: גשם', action:"switchTab('seasonal')", text:'כשצפוי גשם, הקפידו לא להוציא בעלי חיים החוצה או להחזיר אותם לפינת החי. שימו לב להמלצות כיוון המזגן.' },
+  { tab:'seasonal', section:'מידע עונתי: רוח חזקה', action:"switchTab('seasonal')", text:'כשצפויה רוח חזקה, לא נוציא בעלי חיים החוצה או נחזיר אותם לפינת החי. נוודא שהחלונות סגורים כמעט עד הסוף ושלא שכחנו שום דבר בחצר.' },
+  // מבט מעמיק - ערכים נוספים
+  { tab:'insight', section:'מבט מעמיק: פינת חי טיפולית', action:"switchTab('insight')", text:'פינת חי טיפולית טיפול בעזרת בעלי חיים עבודה רגשית חברתית התפתחותית ויסות רגשות קשר עמוק שותפים לדרך כבוד הדדי אחריות ורווחה נוכחות אמיתית תפיסת עולם.' },
+  { tab:'insight', section:'מבט מעמיק: מה קורה כשמביאים מזון לא מתאים', action:"switchTab('insight')", text:'כוונה טובה תוצאה לא טובה מזון לא מתאים רוב הסיפורים לא מתחילים מרשלנות אלא מרגש חיובי של אהבה ורצון לשמח שוקולד ארנבון ציפורים מלח סוכר אבוקדו רעלן. מה קורה בגוף של החיה כשהיא אוכלת מזון לא מתאים. חיות קטנות אוגרים גרבילים ציפורים מערכות עיכול רגישות.' },
+  { tab:'insight', section:'מבט מעמיק: מוגנות ובטיחות', action:"switchTab('insight')", text:'מוגנות ובטיחות מה אסור להביא לפינת החי בצל שום אבוקדו שוקולד חטיפים מלוחים מתוקים חציל עגבנייה לימון מוצרי חלב פטריות רעיל מסוכן אסור להביא.' },
+  // הנחיות - תוכן מפורט
+  
+  
+  // חיפוש מורחב
+  { tab:'search', section:'חיפוש מורחב: מזון', action:"switchTab('search')", text:'חיפוש מזון ירק פרי מותר אסור לחיה חיפוש מורחב מזון קטגוריה.' },
+  // כל המזונות  
+  { tab:'allfoods', section:'כל המזונות', action:"switchTab('allfoods')", text:'כל המזונות רשימה מלאה מזונות מותרים אסורים מוגבלים לפי קטגוריה ירקות פירות עשבי תיבול דגנים חלבונים.' },
+  // כותרות וסקשנים לחיפוש מהיר מהבקיצור
+  { tab:'quickguide', section:'בקיצור: כן, נשמח לקבל!', action:"switchTab('quickguide')", text:'אנחנו שמחים לקבל ירקות ופירות שלמים או חתוכים שכבר לא תעשו בהם שימוש, וגם שאריות חיתוך כמו קליפות, גבעולים וקצוות. אנחנו נמיין בעצמנו מה מגיע לאיזו חיה. גזר, מלפפון, פלפל מתוק, תפוח, בננה, בטטה, קישוא, תירס, כרוב, סלק, אבטיח, מלון, ברוקולי, כרובית, חסה, פטרוזיליה, סלרי, שומר, קייל.' },
+  { tab:'quickguide', section:'בקיצור: ❌ לא להביא (מסוכן!)', action:"switchTab('quickguide')", text:'לא כל מה שטבעי בטוח לבעלי חיים. אסור להביא לפינת החי: בצל, בצל ירוק, שום, אבוקדו, שוקולד, חטיפים מלוחים ומתוקים, חציל, עגבנייה, לימון, מוצרי חלב, פטריות.' },
+  { tab:'quickguide', section:'בקיצור: ⚠️ רק שלמים או מופרדים', action:"switchTab('quickguide')", text:'אלה נשמח לקבל, אבל רק שלמים ובשקית נפרדת כדי שנוכל לזהות כל פריט. תפוח אדמה, פירות הדר, קלמנטינה, אגוז מלך, בוטנים, כרוב ניצנים, ענבים, ביצה קשה, גרעיני דלעת, גרעיני חמנייה, תרד, אננס, קיווי, עלי גפן.' },
+  // פינת החי שלנו - פרטי חיות
+  { tab:"mycorner", section:"פינת החי שלנו: קיקו (ג'אקו)", action:"switchTab('mycorner');setTimeout(()=>{const el=document.getElementById('mycorner-kiko');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)", text:"קיקו, תוכי הג'אקו שלנו, כבר בן 18. אוהב לשיר ולרקוד." },
+  { tab:"mycorner", section:"פינת החי שלנו: סויה (שממית מנומרת)", action:"switchTab('mycorner');setTimeout(()=>{const el=document.getElementById('mycorner-soya');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)", text:"סויה, השממית המנומרת שלנו, אוהבת אמבטיה חמימה." },
+  
+  { tab:"mycorner", section:"פינת החי שלנו: זאוס (חרדון מזוקן)", action:"switchTab('mycorner');setTimeout(()=>{const el=document.getElementById('mycorner-zeus');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)", text:"זאוס, החרדון המזוקן, אוהב לנמנם מתחת למנורת החימום." },
+  { tab:"mycorner", section:"פינת החי שלנו: יוגי וצ'יטה (צ'ינצ'ילה)", action:"switchTab('mycorner')", text:"יוגי צ'ינצ'ילה הוותיק פעם ברח לכביש צ'יטה בן של יוגי שובב מתחבא על הרשת" },
+  { tab:"mycorner", section:"פינת החי שלנו: המכרסמים הקטנים", action:"switchTab('mycorner')", text:"בפינת החי שלנו חיים מכרסמים קטנים: אוגרים סיביריים, אוגרים סורים וגרבילים. רוצים להכיר יותר את אורז ושוקו? את בוב ומארלי? את הפנסיונרים שלנו? בואו לפינת החי!" },
+  { tab:"mycorner", section:"פינת החי שלנו: הגדרה", action:"switchTab('mycorner');setTimeout(()=>{const el=document.getElementById('mycorner-kochav');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)", text:"כוכב ואלזה הארנבוניות, דונה הצבה הסודנית, ושתי השרקניות שלנו, פיטנגו ומנטה." },
+  { tab:"mycorner", section:"פינת החי שלנו: להקת התוכים", action:"switchTab('mycorner')", text:"להקת התוכים שלנו מורכבת מגשם, וניל, ששי, נור וטאקו הקוקטיילים, וקשת ציפור האהבה." },
+  // עוד דברים שכדאי לדעת
+  { tab:'seasonal', section:'עוד דברים: פירות עונתיים', action:"switchTab('seasonal');setTimeout(()=>{const el=document.getElementById('currentSeasonFoods');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)", text:'פירות שעכשיו בעונה ומה מותר לתת לחיות שלנו. עונה עונתי פרי תזונה בריאות.' },
+  { tab:'dailymenu', section:'עוד דברים: איך לחלק את הירקות', action:"switchTab('dailymenu')", text:'תפריט יומי, איך לחלק ירקות ופירות בין החיות השונות. מה מגיע לאיזו חיה היום. ירקות תפריט חלוקה.' },
+  { tab:'donate', section:'עוד דברים: מה אנחנו צריכים', action:"switchTab('donate')", text:'דברים שפינת החי צריכה ונשמח לקבל. ציוד, מזון, חפצים לתרומה.' },
+  { tab:'deploy', section:'עוד דברים: דברו איתנו', action:"switchTab('deploy')", text:'יצירת קשר, שאלות, הצעות, משוב. שלחו לנו הודעה.' },
+  { tab:'animals', section:'עוד דברים: חיות נפוצות שאין לנו', action:"switchTab('animals')", text:'רוצה להכיר חיות נפוצות שיש בפינות חי אחרות אבל אצלנו אין, לפחות כרגע? מידע על חיות רבות נוספות.' },
+  { tab:"mycorner", section:"פינת החי שלנו: הצ'ינצ'ילות", action:"switchTab('mycorner');setTimeout(()=>{const el=document.getElementById('mycorner-yogi');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)", text:"משפחה של צ'ינצ'ילות: יוגי, צ'יטה וצ'יטוס." },
+];
+
+function searchSiteText(q) {
+  const qNorm = q.toLowerCase();
+  const words = qNorm.split(/\s+/).filter(w => w.length >= 2);
+  const results = [];
+
+  for (const entry of SITE_TEXT_INDEX) {
+    const textNorm = entry.text.toLowerCase();
+    const allMatch = words.every(w => textNorm.includes(w));
+    if (!allMatch) continue;
+
+    // מצא את המיקום הטוב ביותר (הופעה ראשונה של מילת החיפוש)
+    let bestIdx = -1;
+    for (const w of words) {
+      const idx = textNorm.indexOf(w);
+      if (idx >= 0 && (bestIdx < 0 || idx < bestIdx)) bestIdx = idx;
+    }
+    if (bestIdx < 0) bestIdx = 0;
+
+    // שורה אחת - מתחיל לפני המילה, מסתיים אחריה
+    const start = Math.max(0, bestIdx - 20);
+    const end   = Math.min(entry.text.length, bestIdx + 90);
+    let snippet = (start > 0 ? '...' : '') + entry.text.slice(start, end) + (end < entry.text.length ? '...' : '');
+
+    // הדגשת מילות חיפוש
+    words.forEach(w => {
+      const re = new RegExp(w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+      snippet = snippet.replace(re, m => `<mark style="background:#fff3a0;border-radius:3px;padding:0 2px;font-weight:700">${m}</mark>`);
+    });
+
+    results.push({ section: entry.section, action: entry.action, tab: entry.tab, snippet });
+    if (results.length >= 6) break;
+  }
+  return results;
+}
 
 function handleGlobalSearch(val) {
   const q = val.trim();
@@ -7799,6 +8075,22 @@ function handleGlobalSearch(val) {
     return;
   }
 
+  // ── חיפוש בתוכן האתר (מאמרים, הנחיות, כותרות) ──
+  const siteResults = searchSiteText(q.toLowerCase());
+  if (siteResults.length) {
+    const siteHtml2 = siteResults.map(function(r){
+      return '<div style="background:var(--card);border:1px solid var(--border,#d8e8d8);border-radius:10px;padding:.45rem .85rem;font-size:.88rem;line-height:1.55;cursor:pointer" onclick="'+r.action+'">'
+        +'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.15rem">'
+        +'<span style="font-size:.74rem;font-weight:700;color:#3aaa6e">'+r.section+'</span>'
+        +'<span style="font-size:.74rem;color:#3aaa6e;font-weight:700">למידע נוסף ←</span>'
+        +'</div>'
+        +'<div style="color:var(--text);font-size:.83rem">'+r.snippet+'</div>'
+        +'</div>';
+    }).join('');
+    res.innerHTML = '<div style="display:grid;gap:.35rem">'+siteHtml2+'</div>';
+    return;
+  }
+
   // לא נמצא כלום
   res.innerHTML = `
     <div style="color:#888;font-size:.89rem">
@@ -8033,11 +8325,11 @@ function openWelcomeGuide() {
     },
     {
       emoji:'🔍', title:'חיפוש מורחב', color:'#5060a0', bg:'#eef0ff',
-      short:'כמו החיפוש הראשי, רק עם כרטיסי מזון מלאים, אפשרות סינון לפי קטגוריה, וחיפוש גם בתרומות ובפינת החי.',
+      short:'לחפש מזון לפי שם, לסנן לפי קטגוריה או חיה, ולגלות נושאים בלחיצה אחת בלי להקליד כלום.',
       long:`<ul style="margin:.3rem 0 0 1rem;padding:0;font-size:.87rem;color:#444;line-height:1.7">
-        <li>כרטיסי מזון מלאים: יתרונות, סיכונים, ואזהרות לכל מזון.</li>
-        <li>סינון לפי קבוצות: כל הירקות, כל הפירות, כל הדברים האסורים וכו'.</li>
-        <li>ממצא גם בתוך דפי התרומות ופינת החי שלנו.</li>
+        <li>כרטיסי מזון מלאים עם יתרונות, סיכונים ואזהרות לכל מזון.</li>
+        <li>סינון לפי קבוצות: כל הירקות, כל הפירות, כל האסורים וכו'.</li>
+        <li>תגיות נושאים לגילוי מהיר, כמו הנחיות, מזג האוויר, החיות שלנו ועוד.</li>
         <li>גם כאן יש חיפוש קולי 🎤.</li>
       </ul>`,
       tab:'search'
@@ -8681,7 +8973,6 @@ function spawnHeartConfetti() {
 }
 
 </script>
-<footer style="text-align:center;font-size:10px;color:rgba(128,128,128,0.3);padding:.5rem;margin-top:1rem">נבנה באהבה עבור פינת החי של בית ספר שז"ר, באר שבע</footer>
 <div id="updateBtn" style="display:none;text-align:center;padding:.6rem 1rem 1.5rem">
   <a href="https://galislab.github.io/H.T/" style="display:inline-flex;align-items:center;gap:.4rem;background:none;border:1.5px solid #ccd;border-radius:50px;padding:.35rem 1rem;font-size:.85rem;font-weight:700;color:#888;text-decoration:none;font-family:'Varela Round',sans-serif;transition:all .18s" onmouseover="this.style.borderColor='#3aaa6e';this.style.color='#3aaa6e'" onmouseout="this.style.borderColor='#ccd';this.style.color='#888'">🔄 התקנת הגרסה העדכנית</a>
 </div>
@@ -9520,8 +9811,11 @@ function pwaInstall(){
 
           // בדיקת אובך: visibility < 2000m או weather_code 45/48
           const hasFog = dayVis.some(v => v < 2000) || dayCodes.some(c => c===45||c===48);
+          // בדיקת רוח: weather_code של סופה/רוחות (קודים 61+ עם רוח, או visibility + wind)
+          const hasFogWind = hasFog && dayCodes.some(c => c===51||c===53||c===55||c===61||c===63||c===65||c===80||c===81||c===82||c===95||c===96||c===99);
+          const fogWindText = hasFogWind ? ' ורוחות' : '';
           const fogAlert = hasFog
-            ? `<div style="margin-top:.4rem;background:#fff8e0;border-radius:8px;padding:.3rem .6rem;font-size:.81rem;color:#7a5500;font-weight:700">🌫️ צפוי אובך — סגרו חלונות ודלתות, כוונו מזגן למצב מחזור אוויר פנימי</div>`
+            ? `<div style="margin-top:.4rem;background:#fff8e0;border-radius:8px;padding:.3rem .6rem;font-size:.81rem;color:#7a5500;font-weight:700">🌫️ צפוי אובך${fogWindText}: סגרו חלונות ודלתות, כוונו מזגן למחזור אוויר פנימי. וודאו שלא שכחנו שום דבר בחצר.</div>`
             : '';
 
           const modeColors = {cool:'#4090d0', heat:'#f07030', normal:'#3aaa6e'};
@@ -9537,7 +9831,7 @@ function pwaInstall(){
             </div>`;
         });
 
-        document.getElementById('acUntilLabel').textContent = 'חמישי – שבת';
+        document.getElementById('acUntilLabel').textContent = 'חמישי עד שבת';
         document.getElementById('acForecastRange').textContent = 'תחזית מלאה לסוף השבוע';
         document.getElementById('acCardContent').innerHTML = multiHtml ||
           '<div style="color:var(--muted);font-size:.85rem">לא נמצאו נתונים</div>';
@@ -9577,8 +9871,10 @@ function pwaInstall(){
         const { mode, tempRec, reason } = getAcRecommendation(dMin, dMax);
 
         const hasFogDay = dayVis.some(v => v < 2000) || dayCodes.some(c => c===45||c===48);
+        const hasFogDayWind = hasFogDay && dayCodes.some(c => c===51||c===53||c===55||c===61||c===63||c===65||c===80||c===81||c===82||c===95||c===96||c===99);
+        const fogWindDayText = hasFogDayWind ? ' ורוחות' : '';
         const fogAlert = hasFogDay
-          ? `<div style="margin-top:.4rem;background:#fff8e0;border-radius:8px;padding:.3rem .6rem;font-size:.81rem;color:#7a5500;font-weight:700">🌫️ צפוי אובך — סגרו חלונות ודלתות, כוונו מזגן למחזור אוויר פנימי</div>`
+          ? `<div style="margin-top:.4rem;background:#fff8e0;border-radius:8px;padding:.3rem .6rem;font-size:.81rem;color:#7a5500;font-weight:700">🌫️ צפוי אובך${fogWindDayText}: סגרו חלונות ודלתות, כוונו מזגן למחזור אוויר פנימי. וודאו שלא שכחנו שום דבר בחצר.</div>`
           : '';
 
         const modeColors = {cool:'#4090d0', heat:'#f07030', normal:'#3aaa6e'};
@@ -9702,7 +9998,7 @@ function pwaInstall(){
         weatherAlerts += `
           <div style="background:#fff3cd;border-radius:10px;border-right:4px solid #e0a800;padding:.55rem .8rem;margin-bottom:.45rem;font-size:.84rem;line-height:1.6">
             <div style="font-weight:900;font-size:.9rem;color:#7a5000;margin-bottom:.2rem">🌫️ אובך / סופת אבק</div>
-            <div style="color:#5a3a00">לסגור את דלתות פינת החי. להשאיר רק חרכים קטנטנים בחלונות לאוורור, כי אוויר חייבים בכל מקרה, אבל לא יותר מזה. לא להוציא את דונה וזאוס החוצה.</div>
+            <div style="color:#5a3a00">לסגור היטב את דלתות פינת החי. להשאיר בחלונות חרכים קטנטנים בלבד לאוורור. לא להוציא בעלי חיים החוצה. לוודא שלא שכחנו שום דבר בחצר.</div>
           </div>`;
       }
 
@@ -9727,7 +10023,7 @@ function pwaInstall(){
         weatherAlerts += `
           <div style="background:#f0f0f0;border-radius:10px;border-right:4px solid #888;padding:.55rem .8rem;margin-bottom:.45rem;font-size:.84rem;line-height:1.6">
             <div style="font-weight:900;font-size:.9rem;color:#333;margin-bottom:.2rem">💨 רוח חזקה (${Math.round(windSpeed)} קמ"ש)</div>
-            <div style="color:#444">להחזיר את דונה וזאוס פנימה אם מנשבת רוח. לוודא שחלונות ודלתות לא נפתחים לפתע.</div>
+            <div style="color:#444">להחזיר את כל בעלי החיים פנימה אם מנשבת רוח חזקה. לוודא שהכל סגור בחוץ כמו שצריך ולא שכחנו שום דבר בחצר.</div>
           </div>`;
       }
 
