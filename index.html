@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<!--
+  פינת החי - מרכז המידע של פינת החי הטיפולית בבית ספר שז"ר, באר שבע
+  © גלי זייצ'יק, כל הזכויות שמורות
+  אין להעתיק, לשכפל או להשתמש בתוכן ללא אישור מפורש בכתב.
+-->
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -503,10 +508,10 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
 .tab-btn[data-tab="dailymenu"].active{background:#e07820}
 
 .tab-panel{display:none;max-width:1000px;margin:0 auto;padding:.8rem 1rem 2rem}
-.credit-footer{text-align:center;font-size:.72rem;color:rgba(100,100,100,0.5);padding:1.5rem 0 .5rem;font-family:'Varela Round',sans-serif}
+.tab-panel.active{display:block}
+.credit-footer{text-align:center;font-size:.72rem;color:rgba(100,100,100,0.5);padding:1.5rem 0 .5rem;font-family:'Varela Round',sans-serif;user-select:text}
 body.dark .credit-footer{color:rgba(200,200,200,0.35)}
 body.rainbow .credit-footer{color:rgba(60,60,60,0.5)}
-.tab-panel.active{display:block}
 
 /* SECTION HERO */
 .section-hero{text-align:center;padding:1rem 1rem .7rem}
@@ -1002,7 +1007,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   <div id="pwaInstallWrap" style="display:none;margin-top:.45rem">
     <button id="pwaInstallBtn" onclick="pwaInstall()" style="background:var(--card);border:1.5px solid #b8e0cc;border-radius:50px;padding:.22rem .9rem;font-size:.85rem;font-weight:700;color:#2a7a50;cursor:pointer;font-family:inherit;box-shadow:0 1px 6px rgba(0,0,0,.08)">📲 הורדה כאפליקציה</button>
   </div>
-  <div class="credit-line" style="font-size:.72rem;color:#889;margin-top:.3rem">נוצר ע"י גלי 💚</div>
+  <div class="credit-line" style="font-size:.72rem;color:#667;margin-top:.3rem">נוצר ע"י גלי זייצ'יק</div>
 </header>
 
 <!-- חיפוש גלובלי -->
@@ -1068,16 +1073,10 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   <div class="section-hero"><span class="hero-emoji">📝</span><h2>בקיצור</h2><p>רשימת קניות מהירה: מה להביא ומה לא</p><button onclick="speakTabAll('tab-quickguide',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
 
   <!-- ── פירות בעונה ── -->
-  <div id="qgSeasonalStrip" style="border-radius:16px;overflow:hidden;border:2px solid #b8e8cc;margin-bottom:.7rem;box-shadow:0 2px 10px rgba(58,170,110,.10)">
-    <div style="background:linear-gradient(to left,#c8edda,#dff7ec);padding:.65rem 1rem;display:flex;align-items:center;gap:.6rem">
-      <span style="font-size:1.5rem">🌿</span>
-      <div style="flex:1">
-        <div style="font-weight:900;font-size:1.0rem;color:#1a5c35;display:flex;align-items:center;gap:.35rem"><span id="qgSeasonalTitle">פירות בעונה</span><button onclick="speakText(Array.from(document.getElementById('qgSeasonalFruits').querySelectorAll('button')).map(b=>b.innerText).join(', '),this)" title="הקרא פירות עונה" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#2a7a48;padding:0;line-height:1">🔊</button></div>
-        <div style="font-size:.77rem;color:#2a7a48;margin-top:.05rem">האם מותר לתת לחיות שלנו? לחצו על פרי לפרטים</div>
-      </div>
-      <span onclick="switchTab('seasonal')" style="font-size:.78rem;color:#1a6640;cursor:pointer;text-decoration:underline dotted;white-space:nowrap;font-weight:700">מידע עונתי ←</span>
-    </div>
-    <div id="qgSeasonalFruits" style="background:#f0fbf4;padding:.6rem 1rem .75rem;display:flex;flex-wrap:wrap;gap:.45rem"></div>
+  <div id="qgSeasonalStrip" style="background:#f0fbf4;border-radius:10px;border:1.5px solid #b8e8cc;padding:.4rem .85rem;margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
+    <span style="font-size:.85rem;font-weight:700;color:#1a5c35;white-space:nowrap">🌿 <span id="qgSeasonalTitle">עכשיו בעונה:</span></span>
+    <div id="qgSeasonalFruits" style="display:flex;flex-wrap:wrap;gap:.3rem;flex:1"></div>
+    <span onclick="switchTab('seasonal')" style="font-size:.75rem;color:#1a6640;cursor:pointer;text-decoration:underline dotted;white-space:nowrap;font-weight:700">למידע עונתי ←</span>
   </div>
 
   <!-- חיפוש מהיר בבקיצור -->
@@ -1243,9 +1242,8 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 
 
   </div>
+<p class="credit-footer">נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
 
-
-<p class="credit-footer">🌿 נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
 </div>
 
 <div class="tab-panel" id="tab-search">
@@ -1259,38 +1257,27 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   <div id="smartSearchResult" style="margin-bottom:.5rem;font-size:.92rem"></div>
   <div class="search-wrap"><span class="search-icon">🔍</span><input type="text" id="searchInput" placeholder="גזר, ארנבון, פרי, שוקולד, קרטון, גרביים..." oninput="doSearch()"><button id="searchClearBtn" onclick="document.getElementById('searchInput').value='';doSearch()" style="display:none;background:none;border:none;cursor:pointer;font-size:.92rem;color:#999;padding:.2rem .4rem;position:absolute;left:2rem">✕</button><button onclick="startVoiceSearch('searchInput',this)" title="חיפוש קולי" style="background:none;border:none;cursor:pointer;font-size:1.2rem;padding:.2rem .4rem;position:absolute;left:.2rem;color:#666">🎤</button></div>
   <div class="filter-row" id="catBar"></div>
-  <div class="filter-row" id="animalFilterRow"><span style="font-size:.77rem;color:#999;align-self:center">סינון לפי חיה:</span></div>
-  <div style="margin-top:.9rem;margin-bottom:.3rem;display:flex;align-items:center;gap:.6rem">
-    <div style="flex:1;height:1px;background:var(--border,#e0e8e0)"></div>
-    <span style="font-size:.78rem;color:#aaa;font-weight:700;white-space:nowrap">נושאים נוספים</span>
-    <div style="flex:1;height:1px;background:var(--border,#e0e8e0)"></div>
-    <button onclick="openWelcomeGuide()" style="background:none;border:none;cursor:pointer;font-size:.74rem;color:#bbb;padding:0;font-family:inherit;white-space:nowrap" title="מדריך מהיר לאתר">🗺️ מדריך</button>
+  <div class="filter-row" id="animalFilterRow"><span style="font-size:.77rem;color:#666;font-weight:700;align-self:center">סינון לפי חיה:</span></div>
+  <div style="margin-top:1rem;margin-bottom:.5rem">
+    <div style="height:1px;background:var(--border,#e0e8e0);margin-bottom:.6rem"></div>
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:.8rem;flex-wrap:wrap">
+      <div style="font-size:.81rem;color:#888;line-height:1.55;flex:1;min-width:180px">
+        <strong style="color:#444">נושאים נוספים באתר</strong><br>
+        לחצו על תגית כדי לקרוא תקציר ולעבור לתוכן המלא.
+      </div>
+
+    </div>
+    <div style="font-size:.77rem;color:#777;margin-top:.3rem">רוצים לגלות עוד תכנים ועמודים? המדריך המהיר יסביר מה עוד יש כאן. <button onclick="openWelcomeGuide()" style="background:none;border:none;cursor:pointer;font-size:.77rem;color:#3aaa6e;padding:0;font-family:inherit;text-decoration:underline dotted;font-weight:700">🗺️ לחצו כאן</button></div>
   </div>
-  <div id="topicsBar" style="margin-top:.2rem"></div>
+  <div id="topicsBar" style="margin-top:.3rem"></div>
   <div id="topicResultCard" style="display:none;background:var(--card);border:1.5px solid var(--border,#d8e8d8);border-radius:12px;padding:.6rem .9rem;margin-bottom:.5rem;font-size:.88rem;line-height:1.65"></div>
   <div id="donationSearchResults" style="margin-bottom:.5rem"></div>
   <div id="cornerSearchResults" style="margin-bottom:.5rem"></div>
   <div id="animalSearchResults" style="margin-bottom:.5rem"></div>
   <div class="grid" id="searchResults"></div>
   <div id="siteTextResults" style="margin-top:.5rem;margin-bottom:.5rem"></div>
-  <details style="margin-top:.8rem;font-size:.82rem;color:#777;cursor:pointer;text-align:right">
-    <summary style="font-weight:700;color:#555">📏 מקרא כמויות</summary>
-    <div style="background:#f8f8f8;border-radius:8px;padding:.6rem .8rem;margin-top:.3rem;line-height:1.9;text-align:right;font-size:.83rem">
-      <strong>חצי פרוסה</strong> = חצי עיגול בעובי אצבע ·
-      <strong>פרוסה אחת</strong> = עיגול בעובי אצבע ·
-      <strong>2-3 פרוסות</strong> = שתיים-שלוש פרוסות ·
-      <strong>4-5 פרוסות</strong> = ארבע-חמש פרוסות ·
-      <strong>פלח אחד</strong> = משולש בגודל כף יד (לאבטיח, מלון וכו') ·
-      <strong>כפית</strong> = גודל ציפורן ·
-      <strong>כף</strong> = שלוש כפיות ·
-      <strong>יחידה אחת</strong> = עלה / פרי קטן אחד ·
-      <strong>2-3 יחידות</strong> = שתיים-שלוש ·
-      <strong>רבע כוס / חצי כוס / כוס</strong> = כוס רגילה 240 מ"ל ·
-      💡 פירות מתוקים תמיד ברמה אחת פחות מירקות
-    </div>
-  </details>
+<p class="credit-footer">נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
 
-<p class="credit-footer">🌿 נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
 </div>
 
 <div class="tab-panel" id="tab-allfoods">
@@ -1345,8 +1332,8 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     <span class="water-reminder" style="flex:1;cursor:pointer" onclick="spawnWaterBubbles(this)" title="💧">💧 <strong>מים נקיים תמיד!</strong> לכל החיות בפינה, יש לוודא שיש מים טריים ונקיים בכל עת, ללא קשר למזון.</span>
     <button onclick="speakText('מים נקיים תמיד! לכל החיות בפינה, יש לוודא שיש מים טריים ונקיים בכל עת, ללא קשר למזון.',this)" title="הקראה" style="background:#c8e8ff;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.87rem;flex-shrink:0">🔊</button>
   </div>
+<p class="credit-footer">נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
 
-<p class="credit-footer">🌿 נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
 </div>
 
 <div class="tab-panel" id="tab-animals">
@@ -1365,8 +1352,8 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   <div style="margin-top:1.2rem;text-align:center;opacity:.3" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='.3'">
     <button onclick="showAnimalsListOnly()" style="background:none;border:1px solid #ccc;border-radius:50px;padding:.2rem .7rem;font-size:.79rem;cursor:pointer;font-family:inherit;color:#888">🐾 רשימת החיות בפינת החי</button>
   </div>
+<p class="credit-footer">נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
 
-<p class="credit-footer">🌿 נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
 </div>
 
 <div class="tab-panel" id="tab-byanimal">
@@ -1392,8 +1379,8 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   </div>
   <div class="ba-chips" id="baChips"></div>
   <div id="baResults"><div class="empty"><span class="big">🐾</span>בחירת חיה!</div></div>
+<p class="credit-footer">נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
 
-<p class="credit-footer">🌿 נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
 </div>
 
 <div class="tab-panel" id="tab-mycorner">
@@ -1414,7 +1401,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
           </div>
         </div>
       </div>
-      <div style="font-size:.95rem;color:#5a3800;line-height:1.65">כבר <strong>בן 18!</strong> תמיד יש לו משהו מעניין להגיד, אוהב לשיר ולרקוד.
+      <div style="font-size:.95rem;color:#5a3800;line-height:1.65"><a href="https://www.youtube.com/watch?v=A6_eyVpgfEc" onclick="event.preventDefault();window.open('https://www.youtube.com/watch?v=A6_eyVpgfEc','_blank','noopener')" style="color:#5a3800;text-decoration:underline dotted;cursor:pointer"><strong>כבר בן 18!</strong></a> תמיד יש לו משהו מעניין להגיד, אוהב לשיר ולרקוד.
         <a href="https://www.youtube.com/watch?v=jXOdHfNpFgI&ab_channel=%D7%96%D7%9C%D7%9E%D7%9F" target="_blank" style="color:#bbb;text-decoration:none;margin-right:.4rem" title="שיר שכתבנו לקיקו">🎵</a>
       </div>
       <div style="text-align:center;margin-top:.8rem;font-size:1.3rem">🦜✨</div>
@@ -1587,9 +1574,9 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     <div class="visit-banner-title" style="font-weight:900;font-size:1.15rem;color:#7a5000;margin-bottom:.25rem">ויש עוד הרבה! בואו לבקר 🐾</div>
     <div class="visit-banner-sub" style="font-size:.89rem;color:#9a6800">עוד חיות, עוד סיפורים, מחכים לך! 💚</div>
   </div>
+<p class="credit-footer">נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
 
 
-<p class="credit-footer">🌿 נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
 </div>
 
 <div class="tab-panel" id="tab-donate">
@@ -1614,8 +1601,8 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   </div>
 
   <div class="grid" id="donateGrid"></div>
+<p class="credit-footer">נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
 
-<p class="credit-footer">🌿 נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
 </div>
 
 <div class="tab-panel" id="tab-insight">
@@ -2008,7 +1995,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 
     </div><!-- end islands -->
 
-<p class="credit-footer">🌿 נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
+<p class="credit-footer">נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
 </div><!-- end tab-insight -->
 
 <div class="tab-panel" id="tab-seasonal">
@@ -2082,9 +2069,9 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     </div>
 
   </div>
+<p class="credit-footer">נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
 
 
-<p class="credit-footer">🌿 נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
 </div>
 
 <div class="tab-panel" id="tab-guidelines">
@@ -2260,8 +2247,25 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     </div>
   </div>
 
+  <details style="margin-top:.9rem;font-size:.82rem;color:#777;cursor:pointer;text-align:right">
+    <summary style="font-weight:700;color:#555">📏 מקרא כמויות</summary>
+    <div style="background:#f8f8f8;border-radius:8px;padding:.7rem .9rem;margin-top:.4rem;line-height:2.1;text-align:right;font-size:.83rem;direction:rtl">
+      <strong>חצי פרוסה</strong> = חצי עיגול בעובי אצבע,<br>
+      <strong>פרוסה אחת</strong> = עיגול בעובי אצבע,<br>
+      <strong>2-3 פרוסות</strong> = שתיים-שלוש פרוסות,<br>
+      <strong>4-5 פרוסות</strong> = ארבע-חמש פרוסות,<br>
+      <strong>פלח אחד</strong> = משולש בגודל כף יד (לאבטיח, מלון וכו'),<br>
+      <strong>כפית</strong> = גודל ציפורן,<br>
+      <strong>כף</strong> = שלוש כפיות,<br>
+      <strong>יחידה אחת</strong> = עלה / פרי קטן אחד,<br>
+      <strong>2-3 יחידות</strong> = שתיים-שלוש,<br>
+      <strong>רבע כוס / חצי כוס / כוס</strong> = כוס רגילה 240 מ"ל,<br>
+      💡 פירות מתוקים תמיד ברמה אחת פחות מירקות
+    </div>
+  </details>
+<p class="credit-footer">נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
 
-<p class="credit-footer">🌿 נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
+
 </div>
 
 
@@ -2313,9 +2317,8 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     </div>
 
   </div>
+<p class="credit-footer">נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
 
-
-<p class="credit-footer">🌿 נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
 </div>
 
 <div class="tab-panel" id="tab-dailymenu">
@@ -2443,8 +2446,6 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     </div>
 
   </div>
-
-<p class="credit-footer">🌿 נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
 
 <script>
 // ── Dark Mode ──────────────────────────────────────────
@@ -4275,6 +4276,7 @@ function loadFoods(){
     }
   });
   try{ updateCount(); initAll(); } catch(e){ console.error(e); } finally { if(loader) loader.style.display='none'; }
+  setTimeout(()=>{ const l=document.getElementById('loader'); if(l) l.style.display='none'; }, 1000);
 }
 
 function saveFoods(){
@@ -4367,10 +4369,11 @@ function initCatBar(){
     {key:'forbidden',label:'🚫 אסורים'},
   ];
   const c=document.getElementById('catBar');
-  c.innerHTML='<span style="font-size:.83rem;color:#999;align-self:center">קטגוריה:</span>';
+  c.innerHTML='<span style="font-size:.77rem;color:#666;font-weight:700;align-self:center">קטגוריה:</span>';
   CAT_LABELS.forEach(({key,label})=>{
     const ch=document.createElement('span');
     ch.className='cat-chip'+(activeCatFilters.includes(key)?' sel':'');
+    ch.style.fontSize='.79rem';
     ch.textContent=label;
     ch.onclick=()=>{
       const i=activeCatFilters.indexOf(key);
@@ -4399,6 +4402,7 @@ const TOPICS_DATA = [
     { label: '🌳 יציאה לחצר', section: 'הנחיות: יציאה לחצר' },
     { label: '📌 הנחיות קבועות', section: 'הנחיות: הנחיות קבועות' },
     { label: "✅ צ'ק ליסט לפני יציאה", section: "הנחיות: צ'ק ליסט לפני יציאה מפינת החי" },
+    { label: '📏 מקרא כמויות', section: 'הנחיות: מקרא כמויות' },
   ]},
   { group: '🌤️ מזג האוויר', chips: [
     { label: '☀️ היום', section: 'מידע עונתי: מזג האוויר היום' },
@@ -4485,6 +4489,7 @@ function initAnimalFilterRow(){
   ANIMALS.filter(a=>a.ours).forEach(a=>{
     const ch=document.createElement('span');
     ch.className='chip'+(activeAnimalFilters.includes(a.id)?' sel':'');
+    ch.style.fontSize='.79rem';
     ch.innerHTML=a.photo?`<img src="${a.photo}" style="width:18px;height:18px;border-radius:50%;object-fit:cover" onerror="this.style.display='none'"> ${a.name}`:`${a.emoji} ${a.name}`;
     ch.onclick=()=>{ch.classList.toggle('sel');const i=activeAnimalFilters.indexOf(a.id);i>=0?activeAnimalFilters.splice(i,1):activeAnimalFilters.push(a.id);initAnimalFilterRow();doSearch();};
     c.appendChild(ch);
@@ -7749,6 +7754,7 @@ const SITE_TEXT_INDEX = [
   // הנחיות
   { tab:'guidelines', section:'הנחיות: יציאה לחצר', action:"switchTab('guidelines')", text:'לשאת בצורה בטוחה אך ורק בתוך קופסה. להניח רק על משטח אדמה או חול אחרי שבדקנו שהטמפרטורה מתאימה. לוודא שהחיה לא אוכלת משהו שאסור לה. להשגיח כל הזמן ולשמור על קשר עין רציף. יציאה לחצר חצר כלובי נשיאה השגחה בטיחות.' },
   { tab:'guidelines', section:'הנחיות: הנחיות קבועות', action:"switchTab('guidelines')", text:'לשטוף את המזון שבעלי החיים מקבלים. לפנות שאריות מזון בזמן. לדאוג לסידן לזוחלים ולחומרי שיוף לשיניים של המכרסמים. לשמור על שקט ואוויר נקי. לוודא שלכולם יש מים נקיים וקרירים בשפע. לכוון מזגן ולא לשכוח לשטוף ידיים בתחילת וסיום הפעילות.' },
+  { tab:'guidelines', section:'הנחיות: מקרא כמויות', action:"switchTab('guidelines')", text:'חצי פרוסה = חצי עיגול בעובי אצבע, פרוסה אחת = עיגול בעובי אצבע, 2-3 פרוסות = שתיים-שלוש פרוסות, 4-5 פרוסות = ארבע-חמש פרוסות, פלח אחד = משולש בגודל כף יד (לאבטיח מלון וכו), כפית = גודל ציפורן, כף = שלוש כפיות, יחידה אחת = עלה / פרי קטן אחד, 2-3 יחידות = שתיים-שלוש, רבע כוס / חצי כוס / כוס = כוס רגילה 240 מ״ל. 💡 פירות מתוקים תמיד ברמה אחת פחות מירקות.' },
   { tab:'guidelines', section:"הנחיות: צ'ק ליסט לפני יציאה מפינת החי", action:"switchTab('guidelines')", text:'אוכל ומים לכולם, סגירת חלונות, נעילת כלובים, בדיקה שכל החיות חזרו הביתה, הרצפה והשולחנות נקיים, האשפה בפח, כיבוי אורות ונעילת דלתות.' },
   // בקיצור
   { tab:'quickguide', section:'בקיצור: מה להביא', action:"switchTab('quickguide')", text:'כן נשמח לקבל ירקות ופירות שלמים או חתוכים שכבר לא תעשו בהם שימוש. גם שאריות חיתוך: קליפות, גבעולים, קצוות. אנחנו נמיין בעצמנו מה מגיע לאיזו חיה. מלפפון, פלפל מתוק, גזר, תפוח, בננה, בטטה, קישוא, תירס, כרוב, סלק, אבטיח, מלון, ברוקולי, כרובית, חסה, פטרוזיליה, סלרי, שומר, קייל.' },
@@ -8985,6 +8991,7 @@ function spawnHeartConfetti() {
 }
 
 </script>
+<footer style="text-align:center;font-size:10px;color:rgba(128,128,128,0.3);padding:.5rem;margin-top:1rem">נבנה באהבה עבור פינת החי של בית ספר שז"ר, באר שבע</footer>
 <div id="updateBtn" style="display:none;text-align:center;padding:.6rem 1rem 1.5rem">
   <a href="https://galislab.github.io/H.T/" style="display:inline-flex;align-items:center;gap:.4rem;background:none;border:1.5px solid #ccd;border-radius:50px;padding:.35rem 1rem;font-size:.85rem;font-weight:700;color:#888;text-decoration:none;font-family:'Varela Round',sans-serif;transition:all .18s" onmouseover="this.style.borderColor='#3aaa6e';this.style.color='#3aaa6e'" onmouseout="this.style.borderColor='#ccd';this.style.color='#888'">🔄 התקנת הגרסה העדכנית</a>
 </div>
@@ -10211,17 +10218,11 @@ function pwaInstall(){
     const inSeason = window._SEASONAL_ALL.filter(s=>s.months.includes(month));
     if(!inSeason.length){ strip.style.display='none'; return; }
     const monthName = new Date().toLocaleDateString('he-IL',{month:'long'});
-    if(titleEl) titleEl.innerHTML = 'פירות העונה של חודש <strong style="color:#1a5c35;font-size:1.05em">' + monthName + '</strong>';
+    if(titleEl) titleEl.textContent = 'עכשיו בעונה:';
     fruitsEl.innerHTML = inSeason.map(s=>{
       const name = s.text.replace('! מותר לתת לחיות?','').replace('! ⚠️ זהירות, הוציאו את הגלעין','').replace('עכשיו עונת ','').replace('עונת ','').trim();
       const isWarn = s.text.includes('⚠️') || s.text.includes('זהירות');
-      return `<button onclick="openFoodModal('${s.id}')" title="לחצו לפרטים על ${name}" style="background:${s.bg};color:${s.color};border:1.5px solid ${s.color}44;border-radius:12px;padding:.45rem .75rem;font-size:.88rem;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:.35rem;transition:transform .12s" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform=''">
-        <span style="font-size:1.1rem">${s.emoji}</span>
-        <div style="text-align:right">
-          <div>${name}${isWarn ? ' <span style="font-size:.72rem">⚠️</span>' : ''}</div>
-          <div style="font-size:.72rem;opacity:.7;font-weight:600">האם מותר לחיות? ←</div>
-        </div>
-      </button>`;
+      return `<button onclick="openFoodModal('${s.id}')" title="לחצו לפרטים על ${name}" style="background:${s.bg};color:${s.color};border:1.5px solid ${s.color}44;border-radius:50px;padding:.22rem .65rem;font-size:.83rem;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:.25rem">${s.emoji} ${name}${isWarn?' ⚠️':''}</button>`;
     }).join('');
   }
 
