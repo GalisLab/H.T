@@ -19,8 +19,23 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>🌿 מה אוכלים היום בפינת החי?</title>
 <meta name="description" content="המדריך המלא לפינת החי של בית ספר שז&quot;ר באר שבע. מה מותר לתת לחיות, תפריט יומי לפי מה שהתרמתם, ומידע על כל בעלי החיים שלנו.">
-<meta name="keywords" content="פינת חי שז&quot;ר, בית ספר שז&quot;ר באר שבע, שז&quot;ר חיות, שז&quot;ר בעלי חיים, פינת החי בית ספר, פינת חי באר שבע, מה לתת לחיות, האכלת בעלי חיים, ארנבון שרקן תוכי קוקטייל ציפור אהבה צ&apos;ינצ&apos;ילה אוגר גרביל צב חרדון שממית, גלי זייצ&apos;יק, גלי זייציק, גלי זיצ&apos;יק, גלי חיות, גלי מטפלת בעלי חיים, gali zaychik, gali zaichik, טיפול בעזרת בעלי חיים, פינת חי בית ספר">
+<meta name="keywords" content="פינת חי שז&quot;ר, בית ספר שז&quot;ר באר שבע, שז&quot;ר חיות, שז&quot;ר בעלי חיים, פינת החי בית ספר, פינת חי באר שבע, מה לתת לחיות, האכלת בעלי חיים, ארנבון שרקן תוכי קוקטייל ציפור אהבה צ&apos;ינצ&apos;ילה אוגר גרביל צב חרדון שממית, גלי זייצ&apos;יק, גלי זייציק, גלי זיצ&apos;יק, גאלי זייצ&apos;יק, גאלי זייציק, גלי זאיציק, גלי זאייציק, גלי חיות, גלי מטפלת בעלי חיים, gali zaichik, gali zaychik, gali zaitzik, gali zaitzyk, galy zaichik, galy zaychik, gali zaitchik, gali zaichyk, טיפול בעזרת בעלי חיים, פינת חי בית ספר">
 <meta name="author" content="גלי זייצ&apos;יק, פינת החי בית ספר שז&quot;ר">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "פינת החי – בית ספר שז\"ר באר שבע",
+  "url": "https://galislab.github.io/H.T/",
+  "author": {
+    "@type": "Person",
+    "name": "גלי זייצ'יק",
+    "alternateName": "Gali Zaichik",
+    "jobTitle": "מטפלת בעזרת בעלי חיים",
+    "url": "https://galislab.github.io/H.T/"
+  }
+}
+</script>
 <meta property="og:title" content="🌿 מה אוכלים היום בפינת החי?">
 <meta property="og:description" content="מדריך מזון לחיות, תפריט יומי חכם, ומידע על כל בעלי החיים שלנו.">
 <meta property="og:type" content="website">
@@ -507,11 +522,14 @@ header p{color:#555;margin-top:.3rem;font-size:1.25rem;font-weight:800}
 .tab-btn[data-tab="deploy"].active{background:var(--green)}
 .tab-btn[data-tab="dailymenu"].active{background:#e07820}
 
-.tab-panel{display:none;max-width:1000px;margin:0 auto;padding:.8rem 1rem 2rem}
-.tab-panel.active{display:block}
-.credit-footer{text-align:center;font-size:.72rem;color:rgba(100,100,100,0.5);padding:1.5rem 0 .5rem;font-family:'Varela Round',sans-serif;user-select:text}
-body.dark .credit-footer{color:rgba(200,200,200,0.35)}
-body.rainbow .credit-footer{color:rgba(60,60,60,0.5)}
+.tab-panel{visibility:hidden;height:0;overflow:hidden;max-width:1000px;margin:0 auto;padding:0 1rem}
+.tab-panel.active{visibility:visible;height:auto;overflow:visible;padding:.8rem 1rem 2rem}
+.credit-footer{text-align:center;font-size:.72rem;color:rgba(130,130,130,0.55);padding:1.8rem 0 .4rem;font-family:'Varela Round',sans-serif;user-select:text}
+body.dark .credit-footer{color:rgba(200,200,200,0.25)}
+body.rainbow .credit-footer{color:rgba(60,60,60,0.4)}
+.tab-intro-text{font-size:.85rem;text-align:justify;line-height:1.72;color:#666;margin:.5rem 0 .9rem;padding:0 .2rem}
+body.dark .tab-intro-text{color:var(--muted)}
+body.rainbow .tab-intro-text{color:#333}
 
 /* SECTION HERO */
 .section-hero{text-align:center;padding:1rem 1rem .7rem}
@@ -555,7 +573,7 @@ body.rainbow .credit-footer{color:rgba(60,60,60,0.5)}
 .anote{font-size:.77rem;color:#c06000;width:100%}
 .fc-expand-bar{display:flex;align-items:center;justify-content:center;gap:.25rem;padding:.42rem;font-size:.85rem;font-weight:700;color:white;background:var(--blue);border-top:1px solid #ddeeff;cursor:pointer;transition:background .15s}
 .fc-expand-bar:hover{background:#2a7ac0}
-.fc-seo{padding:.6rem .95rem .75rem;font-size:.86rem;color:#555;line-height:1.7;border-top:1px solid #eef0f8;background:#fafbff;margin:0;direction:rtl;text-align:right}
+.fc-seo{font-size:.87rem;color:#555;line-height:1.75;direction:rtl;text-align:right;margin:.5rem 0 .3rem}
 .tab-btn[data-tab="insight"].active{background:#7b5ea7}
 .tab-btn[data-tab="seasonal"].active{background:#2a7ab0}
 .tab-btn[data-tab="guidelines"].active{background:#d08a00}
@@ -812,6 +830,7 @@ body.dark .safety .insight-links{background:#2a1a10;border-right-color:#e08050}
   .island-grid{grid-template-columns:1fr !important}
 }
 @keyframes starPulse{0%,100%{transform:scale(1) rotate(0deg);opacity:.5}50%{transform:scale(1.4) rotate(15deg);opacity:1}}
+.tab-intro-text-unused-legacy{font-size:1.05rem;line-height:1.6;color:#444;margin:15px auto 25px auto;max-width:800px;text-align:center}
 /* LIGHTBOX */
 #lightbox-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .22s;padding:1rem}
 #lightbox-overlay.open{opacity:1;pointer-events:all}
@@ -1007,7 +1026,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   <div id="pwaInstallWrap" style="display:none;margin-top:.45rem">
     <button id="pwaInstallBtn" onclick="pwaInstall()" style="background:var(--card);border:1.5px solid #b8e0cc;border-radius:50px;padding:.22rem .9rem;font-size:.85rem;font-weight:700;color:#2a7a50;cursor:pointer;font-family:inherit;box-shadow:0 1px 6px rgba(0,0,0,.08)">📲 הורדה כאפליקציה</button>
   </div>
-  <div class="credit-line" style="font-size:.72rem;color:#667;margin-top:.3rem">נוצר ע"י גלי זייצ'יק</div>
+  <div class="credit-line" style="font-size:.72rem;color:#667;margin-top:.3rem">נוצר ע"י גלי 💚</div>
 </header>
 
 <!-- חיפוש גלובלי -->
@@ -1070,7 +1089,9 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 </div>
 
 <div class="tab-panel active" id="tab-quickguide">
-  <div class="section-hero"><span class="hero-emoji">📝</span><h2>בקיצור</h2><p>רשימת קניות מהירה: מה להביא ומה לא</p><button onclick="speakTabAll('tab-quickguide',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
+    <div class="section-hero"><span class="hero-emoji">📝</span><h2>בקיצור</h2><p>רשימת קניות מהירה: מה להביא ומה לא</p></div>
+  <p class="tab-intro-text">כאן תמצאו את רשימת הקניות המהירה של המזונות לפינת החי. מה מומלץ להביא, מה כדאי להפריד ומה אסור להביא בשום אופן. בין אם מדובר בירקות טריים כמו חסה וגזר, בעלים ובעשבי תיבול או בפירות, כאן תדעו בדיוק מה לשים בסל כדי לשמור על החיות שלנו.</p>
+  <div style="text-align:center;margin-bottom:.6rem"><button onclick="speakTabAll('tab-quickguide',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button></div>
 
   <!-- ── פירות בעונה ── -->
   <div id="qgSeasonalStrip" style="background:#f0fbf4;border-radius:10px;border:1.5px solid #b8e8cc;padding:.4rem .85rem;margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
@@ -1169,7 +1190,6 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     <!-- שלמים בלבד -->
     <div style="background:var(--card);border-radius:14px;box-shadow:var(--shadow);overflow:hidden">
       <div class="qg-sep-header" style="background:#fff8e0;padding:.7rem 1rem;border-bottom:2px solid #f0d860;display:flex;align-items:center;gap:.5rem">
-        <span style="font-size:1.4rem">⚠️</span>
         <div class="qg-sep-title" style="font-weight:900;font-size:1.02rem;color:#7a5500;flex:1">⚠️ רק שלמים או מופרדים לגמרי</div>
         <button onclick="speakText('רק שלמים בשקית נפרדת: תפוח אדמה, פירות הדר כולל קלמנטינה, אגוז מלך ובוטנים, כרוב ניצנים, ענבים, ביצה קשה, גרעיני דלעת, גרעיני חמנייה, תרד, אננס, קיווי, עלי גפן.',this)" title="הקראה" class="qg-sep-speak" style="background:#fff8e0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.87rem;flex-shrink:0">🔊</button>
       </div>
@@ -1195,7 +1215,6 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     <!-- אין צורך להביא -->
     <div style="background:var(--card);border-radius:14px;box-shadow:var(--shadow);overflow:hidden">
       <div style="background:#fde8e8;padding:.7rem 1rem;border-bottom:2px solid #f0b8b8;display:flex;align-items:center;gap:.5rem">
-        <span style="font-size:1.4rem">❌</span>
         <div style="font-weight:900;font-size:1.02rem;color:#8b1c1c;flex:1">❌ לא להביא (מסוכן!)</div>
         <button onclick="speakText('לא להביא, מסוכן! אלו רעילים לחיות: בצל, בצל ירוק, שום, אבוקדו, שוקולד, חטיפים מלוחים, חטיפים מתוקים, חציל, עגבנייה, לימון, מוצרי חלב, פטריות.',this)" title="הקראה" style="background:#fde8e8;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.87rem;flex-shrink:0">🔊</button>
       </div>
@@ -1242,18 +1261,14 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 
 
   </div>
-<p class="credit-footer">נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
+<p class="credit-footer">האתר נבנה ע"י גלי זייצ'יק, מטפלת בעזרת בעלי חיים</p>
 
 </div>
 
 <div class="tab-panel" id="tab-search">
-  <div class="section-hero"><span class="hero-emoji">🔍</span><h2>חיפוש מורחב</h2><p>מזון, חיה, קטגוריה - הכל בחיפוש אחד</p><button onclick="speakTabAll('tab-search',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button>
-    <button class="expand-all-btn" onclick="expandAllFoods()" id="expandAllFoodsBtn">📖 פתח הכל</button>
-  </div>
-  <div style="background:#f0f8ff;border-radius:12px;border-right:4px solid #4a90d9;padding:.6rem .9rem;margin-bottom:.7rem;font-size:.89rem;color:#1a3a6a;line-height:1.65">
-    <strong>💡 מה אפשר לעשות כאן?</strong><br>
-    לחפש מזון לפי שם, לסנן לפי קטגוריה או חיה, ולגלות נושאים בלחיצה אחת בלי להקליד כלום.
-  </div>
+    <div class="section-hero"><span class="hero-emoji">🔍</span><h2>חיפוש מורחב</h2><p>מזון, חיה, קטגוריה - הכל בחיפוש אחד</p></div>
+  <p class="tab-intro-text">צריכים תשובה מהירה? כאן אפשר לבצע חיפוש מורחב בעזרת כרטיסי מזון מלאים. ניתן לחפש לפי שם, לסנן לפי קטגוריה או לגלות נושאים בלחיצה אחת בלי להקליד כלום. פשוט בוחרים קטגוריה או מקלידים שם של חיה ומקבלים את כל המידע מיד.</p>
+  <div style="text-align:center;margin-bottom:.6rem;display:flex;justify-content:center;gap:.4rem;flex-wrap:wrap"><button onclick="speakTabAll('tab-search',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button><button class="expand-all-btn" onclick="expandAllFoods()" id="expandAllFoodsBtn">📖 פתח הכל</button></div>
   <div id="smartSearchResult" style="margin-bottom:.5rem;font-size:.92rem"></div>
   <div class="search-wrap"><span class="search-icon">🔍</span><input type="text" id="searchInput" placeholder="גזר, ארנבון, פרי, שוקולד, קרטון, גרביים..." oninput="doSearch()"><button id="searchClearBtn" onclick="document.getElementById('searchInput').value='';doSearch()" style="display:none;background:none;border:none;cursor:pointer;font-size:.92rem;color:#999;padding:.2rem .4rem;position:absolute;left:2rem">✕</button><button onclick="startVoiceSearch('searchInput',this)" title="חיפוש קולי" style="background:none;border:none;cursor:pointer;font-size:1.2rem;padding:.2rem .4rem;position:absolute;left:.2rem;color:#666">🎤</button></div>
   <div class="filter-row" id="catBar"></div>
@@ -1276,15 +1291,38 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   <div id="animalSearchResults" style="margin-bottom:.5rem"></div>
   <div class="grid" id="searchResults"></div>
   <div id="siteTextResults" style="margin-top:.5rem;margin-bottom:.5rem"></div>
-<p class="credit-footer">נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
+<p class="credit-footer">האתר נבנה ע"י גלי זייצ'יק, מטפלת בעזרת בעלי חיים</p>
 
 </div>
 
 <div class="tab-panel" id="tab-allfoods">
-  <div class="section-hero"><span class="hero-emoji">📋</span><h2>כל המזונות</h2><p>רשימה מלאה - לחיצה על שורה לפרטים · <span style="color:#1a7a40;font-weight:700">כן</span> / <span style="color:#8a5500;font-weight:700">מעט</span> / <span style="color:#c02020;font-weight:700">לא</span></p>
-    <details style="margin-top:.4rem;font-size:.82rem;color:#777;cursor:pointer;text-align:right">
-      <summary style="font-weight:700;color:#555">📏 מקרא כמויות</summary>
-      <div style="background:#f8f8f8;border-radius:8px;padding:.6rem .8rem;margin-top:.3rem;line-height:1.9;text-align:right;font-size:.83rem">
+    <div class="section-hero"><span class="hero-emoji">📋</span><h2>כל המזונות</h2><p>רשימה מלאה - לחיצה על שורה לפרטים · <span style="color:#1a7a40;font-weight:700">כן</span> / <span style="color:#8a5500;font-weight:700">מעט</span> / <span style="color:#c02020;font-weight:700">לא</span></p>
+  </div>
+  <p class="tab-intro-text">הרשימה המלאה והמפורטת של עשרות סוגי מזונות. כאן תוכלו לקרוא על היתרונות של כל פרי וירק, להכיר את הסיכונים וללמוד אזהרות חשובות. זהו מאגר הידע המלא שיעזור לכם להבין את הסיבות מאחורי כל המלצת האכלה.</p>
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center;margin-bottom:.6rem">
+    <button onclick="speakTabAll('tab-allfoods',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button>
+  </div>
+  <div class="filter-row" id="allCatBar"></div>
+  <!-- חיפוש מרובה מזונות -->
+  <div style="font-size:.83rem;color:#888;margin-bottom:.35rem;line-height:1.6;padding:0 .2rem">
+    🔍 אפשר לחפש לפי <strong>שם מזון</strong>, <strong>שם חיה</strong>, או שניהם ביחד.
+    למשל: <span style="color:#3aaa6e;cursor:pointer" onclick="document.getElementById('allFoodsSearch').value='בטטה אוגר סורי';filterAllFoodsTable('בטטה אוגר סורי')">בטטה אוגר סורי</span> ·
+    <span style="color:#3aaa6e;cursor:pointer" onclick="document.getElementById('allFoodsSearch').value='קליפה תפוח ארנבון';filterAllFoodsTable('קליפה תפוח ארנבון')">קליפה תפוח ארנבון</span> ·
+    <span style="color:#3aaa6e;cursor:pointer" onclick="document.getElementById('allFoodsSearch').value='גרגרים תירס ציפור אהבה';filterAllFoodsTable('גרגרים תירס ציפור אהבה')">גרגרים תירס ציפור אהבה</span>
+  </div>
+  <div style="display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.6rem;flex-wrap:wrap">
+    <div style="position:relative;flex:1;min-width:180px">
+      <input id="allFoodsSearch" type="text"
+        placeholder="חיפוש מזון או חיה: גזר, ביצה קשה, אוגר..."
+        oninput="filterAllFoodsTable(this.value)"
+        style="width:100%;box-sizing:border-box;padding:.45rem 2rem .45rem .7rem;border:2px solid #dde;border-radius:50px;font-size:.88rem;font-family:inherit;outline:none;transition:border-color .15s"
+        onfocus="this.style.borderColor='#3aaa6e'"
+        onblur="this.style.borderColor='#dde'">
+      <button onclick="document.getElementById('allFoodsSearch').value='';filterAllFoodsTable('')" style="position:absolute;left:.6rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa">✕</button>
+    </div>
+    <details style="font-size:.80rem;color:#777;cursor:pointer;text-align:right;flex-shrink:0;align-self:center">
+      <summary style="font-weight:700;color:#555;white-space:nowrap">📏 מקרא כמויות</summary>
+      <div style="background:#f8f8f8;border-radius:8px;padding:.6rem .8rem;margin-top:.3rem;line-height:1.9;text-align:right;font-size:.83rem;position:absolute;z-index:10;max-width:340px;box-shadow:0 4px 16px rgba(0,0,0,.12)">
         <strong>חצי פרוסה</strong> = חצי עיגול בעובי אצבע ·
         <strong>פרוסה אחת</strong> = עיגול בעובי אצבע ·
         <strong>2-3 פרוסות</strong> = שתיים-שלוש פרוסות ·
@@ -1298,26 +1336,6 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
         💡 פירות מתוקים תמיד ברמה אחת פחות מירקות
       </div>
     </details>
-    <div style="display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center;margin-top:.35rem">
-      <button onclick="speakTabAll('tab-allfoods',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button>
-    </div>
-  </div>
-  <div class="filter-row" id="allCatBar"></div>
-  <!-- חיפוש מרובה מזונות -->
-  <div style="font-size:.83rem;color:#888;margin-bottom:.35rem;line-height:1.6;padding:0 .2rem">
-    🔍 אפשר לחפש לפי <strong>שם מזון</strong>, <strong>שם חיה</strong>, או שניהם ביחד.
-    למשל: <span style="color:#3aaa6e;cursor:pointer" onclick="document.getElementById('allFoodsSearch').value='בטטה אוגר סורי';filterAllFoodsTable('בטטה אוגר סורי')">בטטה אוגר סורי</span> ·
-    <span style="color:#3aaa6e;cursor:pointer" onclick="document.getElementById('allFoodsSearch').value='קליפה תפוח ארנבון';filterAllFoodsTable('קליפה תפוח ארנבון')">קליפה תפוח ארנבון</span> ·
-    <span style="color:#3aaa6e;cursor:pointer" onclick="document.getElementById('allFoodsSearch').value='גרגרים תירס ציפור אהבה';filterAllFoodsTable('גרגרים תירס ציפור אהבה')">גרגרים תירס ציפור אהבה</span>
-  </div>
-  <div style="position:relative;margin-bottom:.6rem">
-    <input id="allFoodsSearch" type="text"
-      placeholder="חיפוש מזון או חיה: גזר, ביצה קשה, אוגר..."
-      oninput="filterAllFoodsTable(this.value)"
-      style="width:100%;box-sizing:border-box;padding:.5rem 2.2rem .5rem .7rem;border:2px solid #dde;border-radius:50px;font-size:.92rem;font-family:inherit;outline:none;transition:border-color .15s"
-      onfocus="this.style.borderColor='#3aaa6e'"
-      onblur="this.style.borderColor='#dde'">
-    <button onclick="document.getElementById('allFoodsSearch').value='';filterAllFoodsTable('')" style="position:absolute;left:.6rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa">✕</button>
   </div>
   <div id="allFoodsTable"></div>
 
@@ -1332,14 +1350,14 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     <span class="water-reminder" style="flex:1;cursor:pointer" onclick="spawnWaterBubbles(this)" title="💧">💧 <strong>מים נקיים תמיד!</strong> לכל החיות בפינה, יש לוודא שיש מים טריים ונקיים בכל עת, ללא קשר למזון.</span>
     <button onclick="speakText('מים נקיים תמיד! לכל החיות בפינה, יש לוודא שיש מים טריים ונקיים בכל עת, ללא קשר למזון.',this)" title="הקראה" style="background:#c8e8ff;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.87rem;flex-shrink:0">🔊</button>
   </div>
-<p class="credit-footer">נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
+<p class="credit-footer">האתר נבנה ע"י גלי זייצ'יק, מטפלת בעזרת בעלי חיים</p>
 
 </div>
 
 <div class="tab-panel" id="tab-animals">
-  <div class="section-hero"><span class="hero-emoji">🐾</span><h2>מידע על החיות</h2><p>לחיצה על כרטיסייה = מידע מלא על החיה</p><button onclick="speakTabAll('tab-animals',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button>
-    <button class="expand-all-btn" onclick="expandAllAnimals()" id="expandAllAnimalsBtn">📖 פתח הכל</button>
-  </div>
+    <div class="section-hero"><span class="hero-emoji">🐾</span><h2>מידע על החיות</h2><p>לחיצה על כרטיסייה = מידע מלא על החיה</p></div>
+  <p class="tab-intro-text">רוצים ללמוד עוד על הטבע? כאן תוכלו להכיר מקרוב את בעלי החיים שאנחנו מגדלים דרך מאפיינים ביולוגיים, עובדות שימושיות ודגשים על הצרכים המיוחדים שלהם. תוכלו ללמוד על הזיכרון של הצב, על היכולת של האוגר להחליף פרווה ועל עוד עשרות מינים.</p>
+  <div style="text-align:center;margin-bottom:.6rem;display:flex;justify-content:center;gap:.4rem;flex-wrap:wrap"><button onclick="speakTabAll('tab-animals',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button><button class="expand-all-btn" onclick="expandAllAnimals()" id="expandAllAnimalsBtn">📖 פתח הכל</button></div>
   <div style="margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem">
     <button onclick="switchTab('search')" style="background:var(--sky);border:2px solid #c0d8f0;border-radius:50px;padding:.4rem 1rem;font-size:.92rem;font-weight:700;cursor:pointer;color:var(--blue);font-family:'Varela Round',sans-serif">🔍 חיפוש חיה בדף החיפוש המורחב</button>
   </div>
@@ -1352,13 +1370,25 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   <div style="margin-top:1.2rem;text-align:center;opacity:.3" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='.3'">
     <button onclick="showAnimalsListOnly()" style="background:none;border:1px solid #ccc;border-radius:50px;padding:.2rem .7rem;font-size:.79rem;cursor:pointer;font-family:inherit;color:#888">🐾 רשימת החיות בפינת החי</button>
   </div>
-<p class="credit-footer">נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
+<p class="credit-footer">האתר נבנה ע"י גלי זייצ'יק, מטפלת בעזרת בעלי חיים</p>
 
 </div>
 
 <div class="tab-panel" id="tab-byanimal">
-  <div class="section-hero"><span class="hero-emoji">🥗</span><h2>מה אוכלת כל חיה?</h2><p>בחרי חיה, וראי מה מותר, מוגבל ואסור</p>
-  <details style="margin-top:.4rem;font-size:.82rem;color:#777;cursor:pointer;text-align:right;max-width:600px;margin-right:auto;margin-left:auto">
+    <div class="section-hero"><span class="hero-emoji">🐾</span><h2>מה אוכלת כל חיה?</h2><p>בחרי חיה, וראי מה מותר, מוגבל ואסור</p></div>
+  <p class="tab-intro-text">התפריט המותאם אישית לכל חיה בפינת החי שלנו. כאן תוכלו לגלות מה מותר לתת לארנבון לאכול. ומה אוכלים האוגר, השרקן, תוכי הקוקטייל או הג'אקו? תלמדו אילו מזונות מתאימים לצב, לצ'ינצ'ילה או לחרדון, כדי להבטיח לכל חיה תזונה בריאה ומאוזנת.</p>
+  <div style="text-align:center;margin-bottom:.6rem"><button onclick="speakTabAll('tab-byanimal',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button></div>
+  <div style="background:#e8f4ff;border-right:4px solid #4a90d9;border-radius:10px;padding:.5rem .85rem;font-size:.89rem;color:#1a4a7a;margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem">
+    <span class="water-reminder" style="flex:1;cursor:pointer" onclick="spawnWaterBubbles(this)" title="💧">💧 <strong>מים נקיים תמיד!</strong> לכל החיות בפינה, יש לוודא שיש מים טריים ונקיים בכל עת, ללא קשר למזון.</span>
+    <button onclick="speakText('מים נקיים תמיד! לכל החיות בפינה, יש לוודא שיש מים טריים ונקיים בכל עת, ללא קשר למזון.',this)" title="הקראה" style="background:#c8e8ff;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.87rem;flex-shrink:0">🔊</button>
+  </div>
+  <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;flex-wrap:wrap">
+    <span style="font-size:1.1rem">🐾</span>
+    <button id="baClearBtn" onclick="clearBASelection()" style="display:none;background:#f5f5f5;border:1.5px solid #ddd;border-radius:50px;padding:.2rem .65rem;font-size:.82rem;font-weight:700;cursor:pointer;font-family:inherit;color:#888">❌ ניקוי בחירה</button>
+  </div>
+  <div class="ba-chips" id="baChips"></div>
+  <div id="baResults"><div class="empty"><span class="big">🐾</span></div></div>
+  <details style="margin-top:1.2rem;font-size:.82rem;color:#777;cursor:pointer;text-align:right;max-width:600px">
     <summary style="font-weight:700;color:#555">📏 מקרא כמויות</summary>
     <div style="background:#f8f8f8;border-radius:8px;padding:.6rem .8rem;margin-top:.3rem;line-height:1.9;text-align:right">
       <strong>חצי פרוסה</strong> = חצי עיגול בעובי אצבע ·
@@ -1372,19 +1402,15 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       <strong>רבע/חצי/כוס שלמה</strong> = כוס 240 מ"ל ·
       💡 פירות מתוקים תמיד ברמה אחת פחות
     </div>
-  </details><button onclick="speakTabAll('tab-byanimal',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
-  <div style="background:#e8f4ff;border-right:4px solid #4a90d9;border-radius:10px;padding:.5rem .85rem;font-size:.89rem;color:#1a4a7a;margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem">
-    <span class="water-reminder" style="flex:1;cursor:pointer" onclick="spawnWaterBubbles(this)" title="💧">💧 <strong>מים נקיים תמיד!</strong> לכל החיות בפינה, יש לוודא שיש מים טריים ונקיים בכל עת, ללא קשר למזון.</span>
-    <button onclick="speakText('מים נקיים תמיד! לכל החיות בפינה, יש לוודא שיש מים טריים ונקיים בכל עת, ללא קשר למזון.',this)" title="הקראה" style="background:#c8e8ff;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.87rem;flex-shrink:0">🔊</button>
-  </div>
-  <div class="ba-chips" id="baChips"></div>
-  <div id="baResults"><div class="empty"><span class="big">🐾</span>בחירת חיה!</div></div>
-<p class="credit-footer">נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
+  </details>
+<p class="credit-footer">האתר נבנה ע"י גלי זייצ'יק, מטפלת בעזרת בעלי חיים</p>
 
 </div>
 
 <div class="tab-panel" id="tab-mycorner">
-  <div class="section-hero"><span class="hero-emoji">🐾</span><h2>💛 פינת החי שלנו 💛</h2><p>שז"ר לא יבין זאת! 😄</p><button onclick="speakTabAll('tab-mycorner',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
+    <div class="section-hero"><span class="hero-emoji">🐾</span><h2>💛 פינת החי שלנו 💛</h2><p>שז"ר לא יבין זאת! 😄</p></div>
+  <p class="tab-intro-text">בואו להכיר מקרוב את הדיירים המיוחדים שלנו. כאן אנחנו משתפים בסיפורים האישיים של קיקו הג'אקו, דונה הצבה, זאוס החרדון ושאר החברים שחיים איתנו. תוכלו לגלות את האופי המיוחד של כל חיה ואת מערכות היחסים הייחודיות שנרקמות בינינו לבין בעלי החיים בפינת החי.</p>
+  <div style="text-align:center;margin-bottom:.6rem"><button onclick="speakTabAll('tab-mycorner',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button></div>
 
   <div style="display:grid;gap:1rem">
 
@@ -1574,13 +1600,15 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     <div class="visit-banner-title" style="font-weight:900;font-size:1.15rem;color:#7a5000;margin-bottom:.25rem">ויש עוד הרבה! בואו לבקר 🐾</div>
     <div class="visit-banner-sub" style="font-size:.89rem;color:#9a6800">עוד חיות, עוד סיפורים, מחכים לך! 💚</div>
   </div>
-<p class="credit-footer">נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
+<p class="credit-footer">האתר נבנה ע"י גלי זייצ'יק, מטפלת בעזרת בעלי חיים</p>
 
 
 </div>
 
 <div class="tab-panel" id="tab-donate">
-  <div class="section-hero"><span class="hero-emoji">🎁</span><h2>מה אפשר לתרום?</h2><p>דברים מהמטבח ומהבית שמאוד עוזרים לנו!</p><button onclick="speakTabAll('tab-donate',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
+    <div class="section-hero"><span class="hero-emoji">🎁</span><h2>מה אפשר לתרום?</h2><p>דברים מהמטבח ומהבית שמאוד עוזרים לנו!</p></div>
+  <p class="tab-intro-text">איך אתם יכולים לעזור לנו? כאן תמצאו רשימה של דברים מהמטבח ומהבית שמאוד עוזרים לנו בפינת החי. מירקות "עייפים" ועד קופסאות קרטון, אנחנו מעודדים שימוש חוזר והופכים כל תרומה שלכם לעולם ומלואו עבור בעלי החיים.</p>
+  <div style="text-align:center;margin-bottom:.6rem"><button onclick="speakTabAll('tab-donate',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button></div>
   <div style="background:linear-gradient(135deg,#f0eaff,#ede0ff);border-radius:12px;border:2px solid #c9a8f0;padding:.75rem 1rem;display:flex;gap:.6rem;align-items:center;margin-bottom:.5rem;cursor:pointer" onclick="spawnRecycleEffect(this)">
     <span id="recycleEmoji" style="font-size:1.4rem;flex-shrink:0;transition:transform .6s ease">♻️</span>
     <div style="font-size:.89rem;color:#1b3a6e;line-height:1.55;flex:1"><strong>פינת החי מעודדת שימוש חוזר!</strong> לפני שנזרוק - נחשוב על פינת החי. קרטון, עץ, בד, כלים ישנים - אצלנו הם מקבלים חיים חדשים 💙</div>
@@ -1601,16 +1629,14 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   </div>
 
   <div class="grid" id="donateGrid"></div>
-<p class="credit-footer">נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
+<p class="credit-footer">האתר נבנה ע"י גלי זייצ'יק, מטפלת בעזרת בעלי חיים</p>
 
 </div>
 
 <div class="tab-panel" id="tab-insight">
-
-  <div class="section-hero"><span class="hero-emoji">💡</span><h2>מבט מעמיק <span onclick="event.stopPropagation();speakText('מבט מעמיק.',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0" aria-label="הקרא בקול">🔊</span></h2><p class="hero-desc-justify">קטעי קריאה קצרים המרחיבים על ה"למה" שמאחורי העשייה בפינת החי. העמקה בהיגיון התזונתי והבטיחותי של המקום, בשותפות שבין הבית לפינת החי, ובמהות התהליכים המתרחשים במסגרת טיפול רגשי בעזרת בעלי חיים, המפגש והיחסים הנרקמים בינינו לבין בעלי החיים.</p><button onclick="speakInsightAll(this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
-  <div style="text-align:center;margin:.5rem 0 .2rem">
-    <button id="insightExpandAllBtn" onclick="expandAllInsights()" style="background:none;border:1.5px solid rgba(0,0,0,.18);border-radius:50px;padding:.32rem 1.1rem;font-size:.87rem;font-weight:700;cursor:pointer;font-family:inherit;color:#666;transition:all .15s;direction:rtl">📖 פתח את כל הקטעים בכל הקטגוריות</button>
-  </div>
+    <div class="section-hero"><span class="hero-emoji">💡</span><h2>מבט מעמיק <span onclick="event.stopPropagation();speakText('מבט מעמיק.',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0" aria-label="הקרא בקול">🔊</span></h2><p>קטעי קריאה קצרים על ה"למה" שמאחורי העשייה בפינת החי</p></div>
+  <p class="tab-intro-text">מבט טיפולי וחינוכי על משמעות פינת החי והטיפול בעזרת בעלי חיים. כאן אנחנו מעמיקים ב"למה" שמאחורי העשייה ומסבירים את הגישה שלנו דרך סיפורים ומחשבות מאחורי הקלעים של המרחב ללמידה רגשית.</p>
+  <div style="text-align:center;margin-bottom:.6rem;display:flex;justify-content:center;gap:.4rem;flex-wrap:wrap"><button onclick="speakInsightAll(this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button><button id="insightExpandAllBtn" onclick="expandAllInsights()" style="background:none;border:1.5px solid rgba(0,0,0,.18);border-radius:50px;padding:.32rem 1.1rem;font-size:.87rem;font-weight:700;cursor:pointer;font-family:inherit;color:#666;transition:all .15s;direction:rtl">📖 פתח הכל</button></div>
 
   <div class="insight-islands">
 
@@ -1995,11 +2021,13 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 
     </div><!-- end islands -->
 
-<p class="credit-footer">נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
+<p class="credit-footer">האתר נבנה ע"י גלי זייצ'יק, מטפלת בעזרת בעלי חיים</p>
 </div><!-- end tab-insight -->
 
 <div class="tab-panel" id="tab-seasonal">
-  <div class="section-hero"><span class="hero-emoji">🌡️</span><h2>מידע עונתי <button onclick="speakText('מידע עונתי',this)" title="הקרא כותרת" style="background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa;padding:0;vertical-align:middle;line-height:1">🔊</button></h2><p>מזג האוויר ופירות בעונה</p><button onclick="speakTabAll('tab-seasonal',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
+    <div class="section-hero"><span class="hero-emoji">🌡️</span><h2>מידע עונתי <button onclick="speakText('מידע עונתי',this)" title="הקרא כותרת" style="background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa;padding:0;vertical-align:middle;line-height:1">🔊</button></h2><p>מזג האוויר ופירות בעונה</p></div>
+  <p class="tab-intro-text">איך מזג האוויר בבאר שבע משפיע על החיות שלנו היום? כאן תמצאו עדכונים על הטמפרטורה והנחיות מפורטות להתמודדות עם גשם, אובך או חום קיצוני. המדריך כולל המלצות לשימוש נכון במזגן בפינת החי ולוח שנה מעודכן של פירות העונה.</p>
+  <div style="text-align:center;margin-bottom:.6rem"><button onclick="speakTabAll('tab-seasonal',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button></div>
 
   <!-- מזג אוויר + מזגן -->
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.1rem;align-items:start">
@@ -2069,13 +2097,15 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     </div>
 
   </div>
-<p class="credit-footer">נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
+<p class="credit-footer">האתר נבנה ע"י גלי זייצ'יק, מטפלת בעזרת בעלי חיים</p>
 
 
 </div>
 
 <div class="tab-panel" id="tab-guidelines">
-  <div class="section-hero"><span class="hero-emoji">📋</span><h2>הנחיות <button onclick="speakText('הנחיות',this)" title="הקרא כותרת" style="background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa;padding:0;vertical-align:middle;line-height:1">🔊</button></h2><p>כללי טיפול קבועים ורשימת בדיקה לפני יציאה</p><button onclick="speakTabAll('tab-guidelines',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
+    <div class="section-hero"><span class="hero-emoji">📋</span><h2>הנחיות <button onclick="speakText('הנחיות',this)" title="הקרא כותרת" style="background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa;padding:0;vertical-align:middle;line-height:1">🔊</button></h2><p>כללי טיפול קבועים ורשימת בדיקה לפני יציאה</p></div>
+  <p class="tab-intro-text">מהם כללי הטיפול הקבועים בפינת החי שלנו? כאן ריכזנו את כל המידע שצריך לדעת כדי לשמור על סדר, בטיחות והיגיינה. המדריך כולל הנחיות ליציאה נכונה לחצר, כללי טיפול יומיומיים ורשימת בדיקה מפורטת לפני היציאה מהפינה.</p>
+  <div style="text-align:center;margin-bottom:.6rem"><button onclick="speakTabAll('tab-guidelines',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button></div>
 
   <!-- ══ כללים ליציאה לחצר + הנחיות קבועות ══ -->
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.1rem">
@@ -2263,14 +2293,16 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       💡 פירות מתוקים תמיד ברמה אחת פחות מירקות
     </div>
   </details>
-<p class="credit-footer">נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
+<p class="credit-footer">האתר נבנה ע"י גלי זייצ'יק, מטפלת בעזרת בעלי חיים</p>
 
 
 </div>
 
 
 <div class="tab-panel" id="tab-deploy">
-  <div class="section-hero"><span class="hero-emoji">✉️</span><h2>יצירת קשר</h2><p>שאלות, הצעות, או סתם שלום 👋</p><button onclick="speakTabAll('tab-deploy',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
+    <div class="section-hero"><span class="hero-emoji">✉️</span><h2>יצירת קשר</h2><p>שאלות, הצעות, או סתם שלום 👋</p></div>
+  <p class="tab-intro-text">אנחנו כאן לכל שאלה או הצעה. מצאתם טעות באתר? רוצים להתייעץ לגבי טיפול בחיה? דברו איתנו. הקשר איתכם חשוב לנו מאוד כדי להמשיך ולשפר את המידע ואת הטיפול בחיות שלנו.</p>
+  <div style="text-align:center;margin-bottom:.6rem"><button onclick="speakTabAll('tab-deploy',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button></div>
 
   <div style="max-width:520px;margin:0 auto;display:grid;gap:.9rem">
 
@@ -2317,12 +2349,14 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     </div>
 
   </div>
-<p class="credit-footer">נוצר ע״י גלי זייצ׳יק, מטפלת בעזרת בעלי חיים</p>
+<p class="credit-footer">האתר נבנה ע"י גלי זייצ'יק, מטפלת בעזרת בעלי חיים</p>
 
 </div>
 
 <div class="tab-panel" id="tab-dailymenu">
-  <div class="section-hero"><span class="hero-emoji">🥗</span><h2>תפריט יומי</h2><p>סמנו מה קיבלתם היום, וקבלו תפריט מותאם לכל מתחם וחיה</p><button onclick="dmSpeakAll()" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444;margin-top:.35rem">🔊 הקרא הכל</button></div>
+    <div class="section-hero"><span class="hero-emoji">🥗</span><h2>תפריט יומי</h2><p>סמנו מה קיבלתם היום, וקבלו תפריט מותאם לכל מתחם וחיה</p></div>
+  <p class="tab-intro-text">מה וכמה להגיש היום מהמזון שקיבלנו? כאן אנחנו בונים את הארוחות בהתאם למלאי הקיים ומקפידים על כמויות נכונות כדי לשמור על בריאותן של החיות. המחשבון עוזר לנו להתאים את התפריט לכל מתחם וחיה, תוך שמירה על איזון תזונתי מדויק לאורך היום.</p>
+  <div style="text-align:center;margin-bottom:.6rem"><button onclick="dmSpeakAll()" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button></div>
 
   <div style="display:grid;gap:1rem">
 
@@ -4351,7 +4385,7 @@ function renderFoodCard(food, filterIds, listIds, autoPartIdx){
       <span style="width:9px;height:9px;border-radius:50%;background:${dot};flex-shrink:0;margin-top:.3rem"></span>
     </div>
     <div class="fc-body">${rows||'<span style="color:#ccc;font-size:.86rem">אין נתונים</span>'}</div>
-    ${food.why?`<p class="fc-seo">${food.why}</p>`:''}
+    ${food.why?`<p>${food.why}</p>`:''}
     <div class="fc-expand-bar" onclick="event.stopPropagation();${openModal}">🔍 יתרונות, חסרונות ופרטים לפי חיה</div>
     ${isCustom?`<button onclick="event.stopPropagation();deleteFood('${food.id}')" class="btn-r" style="margin:.3rem .8rem .5rem;width:calc(100% - 1.6rem)">🗑️ מחיקה</button>`:''}
     ${isAdmin?`<button onclick="event.stopPropagation();openEditModal('${food.id}')" class="edit-btn" style="display:block;width:calc(100% - 1.6rem)">✏️ ערכי</button>`:''}
@@ -5928,7 +5962,18 @@ function initByAnimal(){
     ch.className='ba-chip'+(selectedBA===a.id?' sel':'');
     const imgH=a.photo?`<img src="${a.photo}" onerror="this.style.display='none'">`:`<span>${a.emoji}</span>`;
     ch.innerHTML=`${imgH} ${a.pastAnimal?'<span class="past-badge">היו לנו</span>':''} ${a.name}`;
-    ch.onclick=()=>{document.querySelectorAll('.ba-chip').forEach(x=>x.classList.remove('sel'));ch.classList.add('sel');selectedBA=a.id;renderByAnimal();};
+    ch.onclick=()=>{
+      const alreadySel = selectedBA===a.id;
+      document.querySelectorAll('.ba-chip').forEach(x=>x.classList.remove('sel'));
+      if(alreadySel){
+        selectedBA=null;
+        document.getElementById('baResults').innerHTML='<div class="empty"><span class="big">🐾</span></div>';
+        const cb=document.getElementById('baClearBtn'); if(cb) cb.style.display='none';
+      } else {
+        ch.classList.add('sel');selectedBA=a.id;renderByAnimal();
+        const cb=document.getElementById('baClearBtn'); if(cb) cb.style.display='';
+      }
+    };
     c.appendChild(ch);
   };
 
@@ -5941,6 +5986,13 @@ function initByAnimal(){
     c.appendChild(sep);
     others.forEach(addChip);
   }
+}
+
+function clearBASelection(){
+  selectedBA=null;
+  document.querySelectorAll('.ba-chip').forEach(x=>x.classList.remove('sel'));
+  document.getElementById('baResults').innerHTML='<div class="empty"><span class="big">🐾</span></div>';
+  const cb=document.getElementById('baClearBtn'); if(cb) cb.style.display='none';
 }
 
 function renderByAnimal(){
@@ -8991,7 +9043,7 @@ function spawnHeartConfetti() {
 }
 
 </script>
-<footer style="text-align:center;font-size:10px;color:rgba(128,128,128,0.3);padding:.5rem;margin-top:1rem">נבנה באהבה עבור פינת החי של בית ספר שז"ר, באר שבע</footer>
+<footer style="text-align:center;font-size:10px;color:rgba(128,128,128,0.3);padding:.5rem;margin-top:1rem">האתר נבנה ע"י גלי זייצ'יק, מטפלת בעזרת בעלי חיים</footer>
 <div id="updateBtn" style="display:none;text-align:center;padding:.6rem 1rem 1.5rem">
   <a href="https://galislab.github.io/H.T/" style="display:inline-flex;align-items:center;gap:.4rem;background:none;border:1.5px solid #ccd;border-radius:50px;padding:.35rem 1rem;font-size:.85rem;font-weight:700;color:#888;text-decoration:none;font-family:'Varela Round',sans-serif;transition:all .18s" onmouseover="this.style.borderColor='#3aaa6e';this.style.color='#3aaa6e'" onmouseout="this.style.borderColor='#ccd';this.style.color='#888'">🔄 התקנת הגרסה העדכנית</a>
 </div>
