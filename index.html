@@ -9763,7 +9763,7 @@ function pwaInstall(){
       } else {
         mode    = 'normal';
         tempRec = TARGET_TEMP;
-        reason  = `תחזית מתונה (${minT}° עד ${maxT}°). מצב נורמלי מספיק, לכוון ל-22-24° ולהשאיר על "אוטומטי" אם קיים.`;
+        reason  = `תחזית מאוזנת (${minT}° עד ${maxT}°). אין צורך בקירור או חימום אינטנסיביים. ניתן לכבות את המזגן או להפעיל על אוורור בלבד.`;
       }
     }
 
@@ -9778,12 +9778,12 @@ function pwaInstall(){
                 setting:'כוונו לטמפרטורה {{T}}° במצב קירור' },
       heat:   { icon:'🔥', label:'חימום', bg:'#fff3e8', border:'#f07030', color:'#7a2000',
                 setting:'כוונו לטמפרטורה {{T}}° במצב חימום' },
-      normal: { icon:'🌿', label:'רגיל / אוטומטי', bg:'#f0faf0', border:'#3aaa6e', color:'#1a5a30',
-                setting:'כוונו לטמפרטורה {{T}}° במצב אוטומטי' },
+      normal: { icon:'🌿', label:'רגיל / אוורור', bg:'#f0faf0', border:'#3aaa6e', color:'#1a5a30',
+                setting:'כבו את המזגן או הפעילו על אוורור בלבד' },
     };
 
     const m = MODES[mode];
-    const setting = m.setting.replace('{{T}}', tempRec);
+    const setting = m.setting.replace('{{T}}', tempRec).replace(' {{T}}°C', '');
 
     document.getElementById('acUntilLabel').textContent = untilLabel;
     document.getElementById('acForecastRange').textContent = forecastText;
@@ -9885,8 +9885,9 @@ function pwaInstall(){
           // בדיקת רוח: weather_code של סופה/רוחות (קודים 61+ עם רוח, או visibility + wind)
           const hasFogWind = hasFog && dayCodes.some(c => c===51||c===53||c===55||c===61||c===63||c===65||c===80||c===81||c===82||c===95||c===96||c===99);
           const fogWindText = hasFogWind ? ' ורוחות' : '';
+          const acInFog = mode === 'cool' ? 'על קירור' : mode === 'heat' ? 'על חימום' : 'על אוורור בלבד';
           const fogAlert = hasFog
-            ? `<div style="margin-top:.4rem;background:#fff8e0;border-radius:8px;padding:.3rem .6rem;font-size:.81rem;color:#7a5500;font-weight:700">🌫️ צפוי אובך${fogWindText}: סגרו חלונות ודלתות, כוונו מזגן למחזור אוויר פנימי. וודאו שלא שכחנו שום דבר בחצר.</div>`
+            ? `<div style="margin-top:.4rem;background:#fff8e0;border-radius:8px;padding:.3rem .6rem;font-size:.81rem;color:#7a5500;font-weight:700">🌫️ צפוי אובך${fogWindText}: סגרו את פתחי האוורור. הפעילו את המזגן על מחזור אוויר פנימי אם קיים, אחרת הפעילו אותו ${acInFog}. אם המזגן לא עובד, השאירו פתח אוורור קטן.</div>`
             : '';
 
           const modeColors = {cool:'#4090d0', heat:'#f07030', normal:'#3aaa6e'};
@@ -9944,8 +9945,9 @@ function pwaInstall(){
         const hasFogDay = dayVis.some(v => v < 2000) || dayCodes.some(c => c===45||c===48);
         const hasFogDayWind = hasFogDay && dayCodes.some(c => c===51||c===53||c===55||c===61||c===63||c===65||c===80||c===81||c===82||c===95||c===96||c===99);
         const fogWindDayText = hasFogDayWind ? ' ורוחות' : '';
+        const acInFogDay = mode === 'cool' ? 'על קירור' : mode === 'heat' ? 'על חימום' : 'על אוורור בלבד';
         const fogAlert = hasFogDay
-          ? `<div style="margin-top:.4rem;background:#fff8e0;border-radius:8px;padding:.3rem .6rem;font-size:.81rem;color:#7a5500;font-weight:700">🌫️ צפוי אובך${fogWindDayText}: סגרו חלונות ודלתות, כוונו מזגן למחזור אוויר פנימי. וודאו שלא שכחנו שום דבר בחצר.</div>`
+          ? `<div style="margin-top:.4rem;background:#fff8e0;border-radius:8px;padding:.3rem .6rem;font-size:.81rem;color:#7a5500;font-weight:700">🌫️ צפוי אובך${fogWindDayText}: סגרו את פתחי האוורור. הפעילו את המזגן על מחזור אוויר פנימי אם קיים, אחרת הפעילו אותו ${acInFogDay}. אם המזגן לא עובד, השאירו פתח אוורור קטן.</div>`
           : '';
 
         const modeColors = {cool:'#4090d0', heat:'#f07030', normal:'#3aaa6e'};
@@ -10069,7 +10071,7 @@ function pwaInstall(){
         weatherAlerts += `
           <div style="background:#fff3cd;border-radius:10px;border-right:4px solid #e0a800;padding:.55rem .8rem;margin-bottom:.45rem;font-size:.84rem;line-height:1.6">
             <div style="font-weight:900;font-size:.9rem;color:#7a5000;margin-bottom:.2rem">🌫️ אובך / סופת אבק</div>
-            <div style="color:#5a3a00">לסגור היטב את דלתות פינת החי. להשאיר בחלונות חרכים קטנטנים בלבד לאוורור. לא להוציא בעלי חיים החוצה. לוודא שלא שכחנו שום דבר בחצר.</div>
+            <div style="color:#5a3a00">סגרו את פתחי האוורור. הפעילו את המזגן על מחזור אוויר פנימי אם קיים, אחרת הפעילו אותו כרגיל. לא להוציא בעלי חיים החוצה. לוודא שלא שכחנו שום דבר בחצר.</div>
           </div>`;
       }
 
@@ -10079,14 +10081,14 @@ function pwaInstall(){
         if(maxT >= 28){
           rainAcNote = 'הטמפרטורה עדיין גבוהה למרות הגשם, המזגן על קירור נשאר הכרחי.';
         } else if(maxT <= 25){
-          rainAcNote = 'מקסימום מתחת ל-25°, ניתן להפחית את עוצמת הקירור או לעבור למצב אוטומטי.';
+          rainAcNote = 'מקסימום מתחת ל-25°, ניתן לכבות את המזגן או להעביר לאוורור בלבד.';
         } else {
-          rainAcNote = 'טמפרטורה בינונית בגשם, כדאי לבדוק את תחושת הטמפרטורה בפנים ולהתאים את המזגן בהתאם.';
+          rainAcNote = 'טמפרטורה בינונית בגשם, ניתן לכבות את המזגן או להעביר לאוורור בלבד.';
         }
         weatherAlerts += `
           <div style="background:#dbeafe;border-radius:10px;border-right:4px solid #4090d0;padding:.55rem .8rem;margin-bottom:.45rem;font-size:.84rem;line-height:1.6">
             <div style="font-weight:900;font-size:.9rem;color:#1a4a80;margin-bottom:.2rem">🌧️ גשם</div>
-            <div style="color:#1a3a60">לא להוציא את דונה וזאוס בגשם. ${rainAcNote}</div>
+            <div style="color:#1a3a60">אין צורך להשקות את הגינה. לא להוציא את דונה וזאוס בגשם. ${rainAcNote}</div>
           </div>`;
       }
 
@@ -10094,7 +10096,7 @@ function pwaInstall(){
         weatherAlerts += `
           <div style="background:#f0f0f0;border-radius:10px;border-right:4px solid #888;padding:.55rem .8rem;margin-bottom:.45rem;font-size:.84rem;line-height:1.6">
             <div style="font-weight:900;font-size:.9rem;color:#333;margin-bottom:.2rem">💨 רוח חזקה (${Math.round(windSpeed)} קמ"ש)</div>
-            <div style="color:#444">להחזיר את כל בעלי החיים פנימה אם מנשבת רוח חזקה. לוודא שהכל סגור בחוץ כמו שצריך ולא שכחנו שום דבר בחצר.</div>
+            <div style="color:#444">להחזיר את כל בעלי החיים לתוך פינת החי אם נושבת רוח חזקה. לנעול את הדלתות כדי שלא יטרקו. לוודא שלא שכחנו שום דבר בחצר שעלול לעוף ברוח.</div>
           </div>`;
       }
 
