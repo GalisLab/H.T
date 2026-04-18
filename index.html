@@ -114,6 +114,12 @@ body.dark #wGuidelines [style*="background:#fff3cd"]{background:#3a2800 !importa
 body.dark #wGuidelines [style*="background:#dbeafe"]{background:#1a2a40 !important}
 body.dark #wGuidelines [style*="background:#f0f0f0"]{background:#2a2a2a !important}
 body.dark #wGuidelines [style*="background:#fafbff"]{background:#1e2028 !important}
+body.dark #historyCard{border-color:#6a5820 !important}
+body.dark #historyCard .weather-card{background:var(--card)}
+body.dark #dailyChecklistItems label{background:var(--card) !important;border-color:rgba(255,255,255,.12) !important}
+body.dark #animalCareGuide details{border-color:rgba(255,255,255,.12) !important}
+body.dark #animalCareGuide summary{background:var(--card) !important}
+body.dark #animalCareGuide .ac-body{background:var(--card) !important}
 
 /* ── 3. כל inline text כהה, בהיר ── */
 /* צבעים כהים שנבלעים על רקע --card */
@@ -612,10 +618,9 @@ body.dark .island-title{color:#e0e4f0}
 .island-subtitle{font-size:.85rem;color:#777;font-weight:600;margin-top:.1rem}
 body.dark .island-subtitle{color:#9a9890}
 /* ── מידע עונתי — dark mode ── */
-body.dark #qgSeasonalStrip{border-color:#2a5a3a !important}
-body.dark #qgSeasonalStrip > div:first-child{background:#1a2e22 !important}
-body.dark #qgSeasonalTitle{color:#70d090 !important}
-body.dark #qgSeasonalStrip > div:first-child span[onclick]{color:#70d090 !important}
+body.dark #qgSeasonalStrip > div{background:var(--card) !important;border-color:#2a4a3a !important}
+body.dark #qgMonthLinkLabel{color:#70d090 !important}
+body.dark #qgWeatherTemp{color:#90e0a0 !important}
 body.dark #qgSeasonalFruits{background:#152018 !important}
 body.dark #qgSeasonalFruits button{background:var(--card) !important;color:var(--text) !important;border-color:rgba(255,255,255,.2) !important}
 body.dark #tempGrp summary,
@@ -633,6 +638,23 @@ body.dark #tab-guidelines summary span{color:var(--text) !important}
 body.dark #tab-guidelines details > div{color:var(--text) !important}
 body.dark #tab-guidelines details > div p{color:var(--text) !important}
 body.dark #tab-guidelines details > div strong{color:var(--text) !important}
+/* dark mode: 10 rules - details backgrounds */
+body.dark #tenRulesContent details > summary{background:var(--card) !important}
+body.dark #tenRulesContent details > div{background:var(--card) !important}
+body.dark #tenRulesContent details{border-color:rgba(255,255,255,.12) !important}
+/* dark mode: textarea in modal */
+body.dark textarea{background:#1e1f1b !important;color:var(--text) !important;border-color:#3a3d35 !important}
+/* dark mode: monthly guide fruit tags */
+body.dark #monthlyGuideContent span[style*="background:#fff8e8"],
+body.dark #monthlyGuideAll span[style*="background:#fff8e8"]{background:#2a2a1a !important;border-color:#5a5030 !important;color:var(--text) !important}
+/* dark mode: emergency summary headers */
+body.dark #monthlyGuideContent details summary,
+body.dark #monthlyGuideAll details summary{color:var(--text) !important}
+body.dark #monthlyGuideContent details[open] > div,
+body.dark #monthlyGuideAll details[open] > div{color:var(--text) !important}
+/* absence warning badge — works in all modes */
+.absence-warn{display:inline-block;margin-top:.25rem;font-size:.76rem;border-radius:7px;padding:.15rem .5rem;font-weight:800;background:#f0874a;color:#fff}
+body.dark .absence-warn{background:#c05820;color:#fff}
 body.dark .season-month{background:var(--card) !important}
 body.dark .sm-name{color:var(--text) !important}
 body.dark .sm-fruits{color:var(--muted) !important}
@@ -1093,11 +1115,36 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   <p class="tab-intro-text">כאן תמצאו את רשימת הקניות המהירה של המזונות לפינת החי. מה מומלץ להביא, מה כדאי להפריד ומה אסור להביא בשום אופן. בין אם מדובר בירקות טריים כמו חסה וגזר, בעלים ובעשבי תיבול או בפירות, כאן תדעו בדיוק מה לשים בסל כדי לשמור על החיות שלנו.</p>
   <div style="text-align:center;margin-bottom:.6rem"><button onclick="speakTabAll('tab-quickguide',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button></div>
 
-  <!-- ── פירות בעונה ── -->
-  <div id="qgSeasonalStrip" style="background:#f0fbf4;border-radius:10px;border:1.5px solid #b8e8cc;padding:.4rem .85rem;margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
-    <span style="font-size:.85rem;font-weight:700;color:#1a5c35;white-space:nowrap">🌿 <span id="qgSeasonalTitle">עכשיו בעונה:</span></span>
-    <div id="qgSeasonalFruits" style="display:flex;flex-wrap:wrap;gap:.3rem;flex:1"></div>
-    <span onclick="switchTab('seasonal')" style="font-size:.75rem;color:#1a6640;cursor:pointer;text-decoration:underline dotted;white-space:nowrap;font-weight:700">למידע עונתי ←</span>
+  <!-- ── 3 quick-link cards ── -->
+  <div id="qgSeasonalStrip" style="display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem;margin-bottom:.7rem">
+
+    <!-- כרטיס 1: מידע חודשי -->
+    <div onclick="switchTab('seasonal');setTimeout(()=>{const e=document.getElementById('monthlyGuideCard');if(e)e.scrollIntoView({behavior:'smooth',block:'start'});},250)"
+         style="background:#f0fbf4;border:1.5px solid #b8e8cc;border-radius:10px;padding:.5rem .6rem;cursor:pointer;text-align:center;transition:box-shadow .15s"
+         onmouseover="this.style.boxShadow='0 2px 8px rgba(58,170,110,.18)'" onmouseout="this.style.boxShadow='none'">
+      <div style="font-size:1.1rem;margin-bottom:.15rem">🗓️</div>
+      <div style="font-size:.72rem;font-weight:800;color:#1a5c35;line-height:1.3" id="qgMonthLinkLabel">מידע חודשי</div>
+      <div style="font-size:.65rem;color:#3aaa6e;margin-top:.1rem;font-weight:700">← פרטי החודש</div>
+    </div>
+
+    <!-- כרטיס 2: מזג אוויר + מזגן -->
+    <div onclick="switchTab('seasonal');setTimeout(()=>{const e=document.getElementById('acCard');if(e)e.scrollIntoView({behavior:'smooth',block:'start'});},250)"
+         style="background:#f0f6ff;border:1.5px solid #b8d0f0;border-radius:10px;padding:.5rem .6rem;cursor:pointer;text-align:center;transition:box-shadow .15s"
+         onmouseover="this.style.boxShadow='0 2px 8px rgba(64,144,208,.18)'" onmouseout="this.style.boxShadow='none'">
+      <div style="font-size:1.1rem;margin-bottom:.15rem">🌡️</div>
+      <div id="qgWeatherTemp" style="font-size:.72rem;font-weight:800;color:#1a3a6a;line-height:1.3">טוען...</div>
+      <div id="qgWeatherAc" style="font-size:.65rem;color:var(--blue);margin-top:.1rem;font-weight:700">← פרטי מזגן</div>
+    </div>
+
+    <!-- כרטיס 3: כללי פינת החי -->
+    <div onclick="switchTab('guidelines')"
+         style="background:#fff8f0;border:1.5px solid #f0d8b8;border-radius:10px;padding:.5rem .6rem;cursor:pointer;text-align:center;transition:box-shadow .15s"
+         onmouseover="this.style.boxShadow='0 2px 8px rgba(240,135,74,.18)'" onmouseout="this.style.boxShadow='none'">
+      <div style="font-size:1.1rem;margin-bottom:.15rem">📋</div>
+      <div style="font-size:.72rem;font-weight:800;color:#7a4000;line-height:1.3">כללי פינת החי</div>
+      <div style="font-size:.65rem;color:var(--orange);margin-top:.1rem;font-weight:700">← עשרת הכללים</div>
+    </div>
+
   </div>
 
   <!-- חיפוש מהיר בבקיצור -->
@@ -1110,7 +1157,9 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       onblur="this.style.borderColor='#dde'">
     <button onclick="document.getElementById('qgSearchInput').value='';qgSearch('')" style="position:absolute;left:.6rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa">✕</button>
   </div>
-  <div id="qgSearchResult" style="margin-bottom:.5rem;font-size:.92rem"></div>
+  <div style="display:flex;align-items:center;gap:.5rem;margin-top:-.2rem;margin-bottom:.35rem">
+    <div id="qgSearchResult" style="font-size:.92rem;flex:1"></div>
+  </div>
 
   <div style="display:grid;gap:1rem;padding:.2rem">
 
@@ -2078,22 +2127,70 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
         <div id="acForecastRange" style="font-size:.72rem;color:var(--muted);margin-top:.45rem;direction:rtl"></div>
       </div>
 
+      <!-- 📅 תחזית 3 ימים קדימה + הנחיות מזגן -->
+      <div class="weather-card" id="forecastCard" style="margin-bottom:.8rem;padding:.9rem 1rem;border-right:4px solid #7c5cbf">
+        <div style="font-size:.77rem;font-weight:700;color:var(--muted);margin-bottom:.55rem;display:flex;align-items:center;gap:.4rem">
+          📅 תחזית 3 ימים קדימה + הנחיות מזגן
+          <button onclick="speakText(document.getElementById('forecastCardContent').innerText, this)" title="הקרא תחזית" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#aaa;padding:0;line-height:1">🔊</button>
+        </div>
+        <div id="forecastCardContent">
+          <div style="background:#f5f5f5;border-radius:8px;padding:.5rem .75rem;font-size:.85rem;color:#999">טוען תחזית...</div>
+        </div>
+      </div>
+
+      <!-- 🕰️ מזג אוויר 3 ימים אחורה -->
+      <div class="weather-card" id="historyCard" style="margin-bottom:.8rem;padding:.9rem 1rem;border-right:4px solid #a08040">
+        <div style="font-size:.77rem;font-weight:700;color:var(--muted);margin-bottom:.4rem;display:flex;align-items:center;gap:.4rem">
+          🕰️ 3 ימים אחורה — מה היה?
+          <button onclick="speakText(document.getElementById('historyCardContent').innerText,this)" title="הקרא" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#aaa;padding:0;line-height:1">🔊</button>
+          <button id="historyLoadBtn" onclick="loadWeatherHistory()" style="margin-right:auto;font-size:.76rem;background:#f5f0e8;border:1.5px solid #c8a860;border-radius:50px;padding:.2rem .7rem;cursor:pointer;font-weight:700;color:#7a5500;font-family:inherit">📂 טען נתונים</button>
+        </div>
+        <div id="historyCardContent" style="font-size:.83rem;color:var(--muted)">לחצו "טען נתונים" לצפייה בנתוני מזג האוויר ב-3 הימים שחלפו.</div>
+      </div>
+
     </div>
 
-    <!-- טור שמאל: עכשיו בעונה + לוח עונתי -->
+    <!-- טור שמאל: מדריך חודשי + חופשות -->
     <div>
-      <!-- עכשיו בעונה -->
-      <div style="background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:.9rem 1rem 1rem;margin-bottom:.8rem;direction:rtl">
-        <div style="font-weight:800;font-size:.95rem;margin-bottom:.45rem;display:flex;align-items:center;gap:.4rem">🍓 עכשיו בעונה (לחצו לפרטים)<button onclick="speakText('עכשיו בעונה: ' + Array.from(document.getElementById('currentSeasonFoods').querySelectorAll('button')).map(b=>b.innerText).join(', '),this)" title="הקרא" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#aaa;padding:0;line-height:1">🔊</button></div>
-        <div id="currentSeasonFoods" style="display:flex;flex-wrap:wrap;gap:.4rem"></div>
+
+      <!-- 🗓️ מדריך חודשי -->
+      <div style="background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:.9rem 1rem 1rem;margin-bottom:.8rem;direction:rtl" id="monthlyGuideCard">
+        <div style="font-weight:800;font-size:.95rem;margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem">
+          🗓️ <span id="monthlyGuideTitle">מדריך חודשי</span>
+          <button onclick="speakText(document.getElementById('monthlyGuideContent').innerText,this)" title="הקרא" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#aaa;padding:0;line-height:1">🔊</button>
+          <div style="margin-right:auto;display:flex;align-items:center;gap:.3rem">
+            <button onclick="monthlyGuideNav(-1)" style="background:none;border:1.5px solid var(--muted);border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.9rem;color:var(--muted);display:flex;align-items:center;justify-content:center;line-height:1">‹</button>
+            <button onclick="monthlyGuideNav(1)"  style="background:none;border:1.5px solid var(--muted);border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.9rem;color:var(--muted);display:flex;align-items:center;justify-content:center;line-height:1">›</button>
+          </div>
+        </div>
+        <div id="monthlyGuideContent"></div>
+        <!-- לוח שנה מלא -->
+        <div id="monthlyGuideAllToggle" style="margin-top:.6rem">
+          <button onclick="toggleMonthlyAll()" style="font-size:.79rem;color:var(--muted);background:none;border:none;cursor:pointer;text-decoration:underline dotted;padding:0">📋 הצג את כל השנה ▾</button>
+        </div>
+        <div id="monthlyGuideAll" style="display:none;margin-top:.6rem"></div>
       </div>
 
-      <!-- לוח פירות עונתיים -->
-      <div style="background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:.9rem 1rem 1rem;direction:rtl">
-        <div style="font-weight:800;font-size:.95rem;margin-bottom:.15rem;display:flex;align-items:center;gap:.4rem">📅 לוח פירות עונתיים<button onclick="speakText('לוח פירות עונתיים',this)" title="הקרא כותרת" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#aaa;padding:0;line-height:1">🔊</button></div>
-        <div style="font-size:.79rem;color:var(--muted);margin-bottom:.65rem">לחצו על פרי לפרטים. החודש הנוכחי מסומן בירוק.</div>
-        <div class="season-cal" id="seasonCal"></div>
+      <!-- 🏖️ לוח חופשות -->
+      <div style="background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:.9rem 1rem 1rem;direction:rtl" id="holidayCard">
+        <div style="font-weight:800;font-size:.95rem;margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem">
+          🏖️ חופשות ולוח שנת הלימודים
+          <button onclick="speakText(document.getElementById('holidayCardContent').innerText,this)" title="הקרא" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#aaa;padding:0;line-height:1">🔊</button>
+          <div style="margin-right:auto;display:flex;align-items:center;gap:.3rem">
+            <button onclick="holidayNav(-1)" id="holidayPrev" style="background:none;border:1.5px solid var(--muted);border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.9rem;color:var(--muted);display:flex;align-items:center;justify-content:center;line-height:1">‹</button>
+            <button onclick="holidayNav(1)"  id="holidayNext" style="background:none;border:1.5px solid var(--muted);border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.9rem;color:var(--muted);display:flex;align-items:center;justify-content:center;line-height:1">›</button>
+          </div>
+        </div>
+        <!-- ספירה לאחור -->
+        <div id="holidayCountdown" style="background:linear-gradient(135deg,#e8f4ff,#f0e8ff);border-radius:12px;padding:.6rem .85rem;margin-bottom:.6rem;text-align:center"></div>
+        <div id="holidayCardContent"></div>
+        <div id="holidayAcAnalysis" style="margin-top:.3rem"></div>
+        <div style="margin-top:.5rem;text-align:center">
+          <button onclick="toggleHolidayAll()" style="font-size:.79rem;color:var(--muted);background:none;border:none;cursor:pointer;text-decoration:underline dotted;padding:0">📋 הצג את כל החופשות ▾</button>
+        </div>
+        <div id="holidayAllContent" style="display:none;margin-top:.5rem"></div>
       </div>
+
     </div>
 
   </div>
@@ -2107,7 +2204,149 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   <p class="tab-intro-text">מהם כללי הטיפול הקבועים בפינת החי שלנו? כאן ריכזנו את כל המידע שצריך לדעת כדי לשמור על סדר, בטיחות והיגיינה. המדריך כולל הנחיות ליציאה נכונה לחצר, כללי טיפול יומיומיים ורשימת בדיקה מפורטת לפני היציאה מהפינה.</p>
   <div style="text-align:center;margin-bottom:.6rem"><button onclick="speakTabAll('tab-guidelines',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button></div>
 
-  <!-- ══ כללים ליציאה לחצר + הנחיות קבועות ══ -->
+  <!-- ══ גריד: עשרת כללים + עמודת עזר ══ -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.1rem;align-items:start">
+
+  <!-- עמודה ימנית: עשרת כללי פינת החי -->
+  <div style="background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:1rem 1.1rem;direction:rtl">
+    <div style="font-weight:800;font-size:1.05rem;margin-bottom:.2rem;color:var(--green);display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
+      🐾 עשרת כללי פינת החי
+      <button onclick="(function(){var txt=Array.from(document.querySelectorAll('#tenRulesContent details')).map(function(d){var spans=d.querySelectorAll('summary span');var title='';for(var s of spans){if(s.style&&s.style.flex)title=s.textContent.trim();}var divs=d.querySelectorAll('div');var body=divs.length?divs[divs.length-1].textContent.trim():'';return title+'. '+body;}).join('  ')+'  אנחנו אורחים בבית שלהם. בואו נהיה אורחים למופת!';speakText(txt,this);})()" title="הקראת כל הכללים" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#aaa;padding:0;line-height:1">🔊</button>
+      <button onclick="(function(){var ds=document.querySelectorAll('#tenRulesContent details');var allOpen=Array.from(ds).every(d=>d.open);ds.forEach(d=>d.open=!allOpen);var btn=document.getElementById('tenRulesToggleBtn');btn.textContent=allOpen?'📂 פתיחת הכל':'📁 סגירת הכל'})()" id="tenRulesToggleBtn" style="background:#f0fff4;border:1px solid #a0d8b8;border-radius:50px;padding:.18rem .6rem;font-size:.79rem;cursor:pointer;color:#1a6a38;font-weight:700;margin-right:auto">📂 פתיחת הכל</button>
+    </div>
+    <p style="font-size:.8rem;color:var(--muted);margin:.1rem 0 .75rem">לחצו על כל כלל כדי לקרוא אותו.</p>
+    <div id="tenRulesContent" style="display:grid;gap:.4rem;font-size:.86rem">
+
+      <details style="border-radius:12px;overflow:hidden;border:1.5px solid #d0edd8">
+        <summary style="cursor:pointer;padding:.6rem .85rem;background:linear-gradient(135deg,#f0faf4,#e8f8ee);display:flex;align-items:center;gap:.6rem;list-style:none;font-weight:800;color:var(--text)">
+          <span style="font-size:1.45rem;flex-shrink:0">🤫</span>
+          <span style="flex:1">1. שקט ורוגע</span>
+          <button onclick="event.stopPropagation();speakText('שקט ורוגע. הכניסה לפינת החי צריכה להיות שקטה ואיטית. בתוך פינת החי מדברים בנחת, לא רצים ונמנעים מתנועות פתאומיות כדי לא להבהיל את החיות.',this)" style="background:none;border:none;cursor:pointer;font-size:.95rem;color:#aaa;padding:0;line-height:1;flex-shrink:0">🔊</button>
+        </summary>
+        <div style="padding:.6rem .85rem .75rem;background:#f8fdf9;font-size:.84rem;line-height:1.7;color:var(--text)">הכניסה לפינת החי צריכה להיות שקטה ואיטית. בתוך פינת החי מדברים בנחת, לא רצים ונמנעים מתנועות פתאומיות כדי לא להבהיל את החיות.</div>
+      </details>
+
+      <details style="border-radius:12px;overflow:hidden;border:1.5px solid #c8e6f8">
+        <summary style="cursor:pointer;padding:.6rem .85rem;background:linear-gradient(135deg,#eef7ff,#e3f2fd);display:flex;align-items:center;gap:.6rem;list-style:none;font-weight:800;color:var(--text)">
+          <span style="font-size:1.45rem;flex-shrink:0">🙋</span>
+          <span style="flex:1">2. לבקש רשות</span>
+          <button onclick="event.stopPropagation();speakText('לבקש רשות. תמיד מבקשים רשות מהאחראים לפני שניגשים לחיה. אולי היא חולה, אולי היא תוקפנית או פשוט לא אוהבת שנוגעים בה באותו רגע? אם לא בטוחים במשהו, שואלים.',this)" style="background:none;border:none;cursor:pointer;font-size:.95rem;color:#aaa;padding:0;line-height:1;flex-shrink:0">🔊</button>
+        </summary>
+        <div style="padding:.6rem .85rem .75rem;background:#f5fbff;font-size:.84rem;line-height:1.7;color:var(--text)">תמיד מבקשים רשות מהאחראים לפני שניגשים לחיה. אולי היא חולה, אולי היא תוקפנית או פשוט לא אוהבת שנוגעים בה באותו רגע? אם לא בטוחים במשהו, שואלים.</div>
+      </details>
+
+      <details style="border-radius:12px;overflow:hidden;border:1.5px solid #fdd8b0">
+        <summary style="cursor:pointer;padding:.6rem .85rem;background:linear-gradient(135deg,#fff8f0,#fff0e0);display:flex;align-items:center;gap:.6rem;list-style:none;font-weight:800;color:var(--text)">
+          <span style="font-size:1.45rem;flex-shrink:0">📦</span>
+          <span style="flex:1">3. מעברים בטוחים</span>
+          <button onclick="event.stopPropagation();speakText('מעברים בטוחים. כדי להעביר חיה ממקום למקום, משתמשים בקופסה בגובה ובגודל שמתאימים לה. לא הולכים עם חיה בידיים, חוץ מתוכים.',this)" style="background:none;border:none;cursor:pointer;font-size:.95rem;color:#aaa;padding:0;line-height:1;flex-shrink:0">🔊</button>
+        </summary>
+        <div style="padding:.6rem .85rem .75rem;background:#fffbf5;font-size:.84rem;line-height:1.7;color:var(--text)">כדי להעביר חיה ממקום למקום, משתמשים בקופסה בגובה ובגודל שמתאימים לה. לא הולכים עם חיה בידיים (חוץ מתוכים).</div>
+      </details>
+
+      <details style="border-radius:12px;overflow:hidden;border:1.5px solid #d8d0f0">
+        <summary style="cursor:pointer;padding:.6rem .85rem;background:linear-gradient(135deg,#f5f0ff,#ede8ff);display:flex;align-items:center;gap:.6rem;list-style:none;font-weight:800;color:var(--text)">
+          <span style="font-size:1.45rem;flex-shrink:0">🪑</span>
+          <span style="flex:1">4. מפגשים בישיבה</span>
+          <button onclick="event.stopPropagation();speakText('מפגשים בישיבה. כשנמצאים עם חיה, תמיד יושבים על הרצפה, על פוף, על שרפרף או על כיסא. לעולם לא עומדים או הולכים עם חיה בידיים. צ\'ינצ\'ילות וחיות שעלולות לקפוץ מחזיקים תמיד בשתי ידיים או בתוך קופסה עם מכסה סגור.',this)" style="background:none;border:none;cursor:pointer;font-size:.95rem;color:#aaa;padding:0;line-height:1;flex-shrink:0">🔊</button>
+        </summary>
+        <div style="padding:.6rem .85rem .75rem;background:#faf8ff;font-size:.84rem;line-height:1.7;color:var(--text)">כשנמצאים עם חיה, תמיד יושבים על הרצפה, על פוף, על שרפרף או על כיסא. לעולם לא עומדים או הולכים עם חיה בידיים. צ'ינצ'ילות וחיות שעלולות לקפוץ מחזיקים תמיד בשתי ידיים או בתוך קופסה עם מכסה סגור.</div>
+      </details>
+
+      <details style="border-radius:12px;overflow:hidden;border:1.5px solid #f0d0d8">
+        <summary style="cursor:pointer;padding:.6rem .85rem;background:linear-gradient(135deg,#fff0f4,#ffe8ee);display:flex;align-items:center;gap:.6rem;list-style:none;font-weight:800;color:var(--text)">
+          <span style="font-size:1.45rem;flex-shrink:0">👁️</span>
+          <span style="flex:1">5. השגחה מתמדת</span>
+          <button onclick="event.stopPropagation();speakText('השגחה מתמדת. לא משאירים בעלי חיים לבד בזמן המפגש. צריך להשגיח עליהם היטב לאורך כל הזמן שהם מחוץ לבית שלהם.',this)" style="background:none;border:none;cursor:pointer;font-size:.95rem;color:#aaa;padding:0;line-height:1;flex-shrink:0">🔊</button>
+        </summary>
+        <div style="padding:.6rem .85rem .75rem;background:#fff8fa;font-size:.84rem;line-height:1.7;color:var(--text)">לא משאירים בעלי חיים לבד בזמן המפגש. צריך להשגיח עליהם היטב לאורך כל הזמן שהם מחוץ לבית שלהם.</div>
+      </details>
+
+      <details style="border-radius:12px;overflow:hidden;border:1.5px solid #d8e8c8">
+        <summary style="cursor:pointer;padding:.6rem .85rem;background:linear-gradient(135deg,#f0f8e8,#e8f4e0);display:flex;align-items:center;gap:.6rem;list-style:none;font-weight:800;color:var(--text)">
+          <span style="font-size:1.45rem;flex-shrink:0">🤝</span>
+          <span style="flex:1">6. הסכמה וכבוד</span>
+          <button onclick="event.stopPropagation();speakText('הסכמה וכבוד. לא מוציאים אף אחד מהבית שלו בכוח ולא כופים מגע. כל מגע נעשה בעדינות ובהקשבה, ולא חייבים לגעת בכלל. אם חיה בוחרת להתרחק, מכבדים את זה.',this)" style="background:none;border:none;cursor:pointer;font-size:.95rem;color:#aaa;padding:0;line-height:1;flex-shrink:0">🔊</button>
+        </summary>
+        <div style="padding:.6rem .85rem .75rem;background:#f7fbf2;font-size:.84rem;line-height:1.7;color:var(--text)">לא מוציאים אף אחד מהבית שלו בכוח ולא כופים מגע. כל מגע נעשה בעדינות ובהקשבה, ולא חייבים לגעת בכלל. אם חיה בוחרת להתרחק, מכבדים את זה.</div>
+      </details>
+
+      <details style="border-radius:12px;overflow:hidden;border:1.5px solid #fce8c0">
+        <summary style="cursor:pointer;padding:.6rem .85rem;background:linear-gradient(135deg,#fffbea,#fff8e0);display:flex;align-items:center;gap:.6rem;list-style:none;font-weight:800;color:var(--text)">
+          <span style="font-size:1.45rem;flex-shrink:0">🚧</span>
+          <span style="flex:1">7. הפרדה</span>
+          <button onclick="event.stopPropagation();speakText('הפרדה. לא מערבבים חיות שלא חיות יחד באותו הכלוב. כל אחד נשאר רק עם השותפים הקבועים שלו.',this)" style="background:none;border:none;cursor:pointer;font-size:.95rem;color:#aaa;padding:0;line-height:1;flex-shrink:0">🔊</button>
+        </summary>
+        <div style="padding:.6rem .85rem .75rem;background:#fffef5;font-size:.84rem;line-height:1.7;color:var(--text)">לא מערבבים חיות שלא חיות יחד באותו הכלוב. כל אחד נשאר רק עם השותפים הקבועים שלו.</div>
+      </details>
+
+      <details style="border-radius:12px;overflow:hidden;border:1.5px solid #c0ddf0">
+        <summary style="cursor:pointer;padding:.6rem .85rem;background:linear-gradient(135deg,#eaf5ff,#e0f0ff);display:flex;align-items:center;gap:.6rem;list-style:none;font-weight:800;color:var(--text)">
+          <span style="font-size:1.45rem;flex-shrink:0">🔒</span>
+          <span style="flex:1">8. סוגרים שערים</span>
+          <button onclick="event.stopPropagation();speakText('סוגרים שערים. מקפידים לסגור היטב כל דלת, שער או כלוב מיד אחרי שנכנסים או יוצאים.',this)" style="background:none;border:none;cursor:pointer;font-size:.95rem;color:#aaa;padding:0;line-height:1;flex-shrink:0">🔊</button>
+        </summary>
+        <div style="padding:.6rem .85rem .75rem;background:#f5faff;font-size:.84rem;line-height:1.7;color:var(--text)">מקפידים לסגור היטב כל דלת, שער או כלוב מיד אחרי שנכנסים או יוצאים.</div>
+      </details>
+
+      <details style="border-radius:12px;overflow:hidden;border:1.5px solid #f0c8c8">
+        <summary style="cursor:pointer;padding:.6rem .85rem;background:linear-gradient(135deg,#fff0ee,#ffe8e5);display:flex;align-items:center;gap:.6rem;list-style:none;font-weight:800;color:var(--text)">
+          <span style="font-size:1.45rem;flex-shrink:0">🥗</span>
+          <span style="flex:1">9. אוכל ובריאות</span>
+          <button onclick="event.stopPropagation();speakText('אוכל ובריאות. לא מאכילים את החיות בלי אישור. אוכל לא מתאים עלול לגרום להן לכאב בטן ולנזק.',this)" style="background:none;border:none;cursor:pointer;font-size:.95rem;color:#aaa;padding:0;line-height:1;flex-shrink:0">🔊</button>
+        </summary>
+        <div style="padding:.6rem .85rem .75rem;background:#fff8f7;font-size:.84rem;line-height:1.7;color:var(--text)">לא מאכילים את החיות בלי אישור. אוכל לא מתאים עלול לגרום להן לכאב בטן ולנזק.</div>
+      </details>
+
+      <details style="border-radius:12px;overflow:hidden;border:1.5px solid #c8e0d8">
+        <summary style="cursor:pointer;padding:.6rem .85rem;background:linear-gradient(135deg,#eef8f4,#e5f5ef);display:flex;align-items:center;gap:.6rem;list-style:none;font-weight:800;color:var(--text)">
+          <span style="font-size:1.45rem;flex-shrink:0">🧼</span>
+          <span style="flex:1">10. סדר והיגיינה</span>
+          <button onclick="event.stopPropagation();speakText('סדר והיגיינה. לפני שיוצאים מפינת החי, מחזירים את כל הציוד למקום ושוטפים ידיים היטב עם סבון.',this)" style="background:none;border:none;cursor:pointer;font-size:.95rem;color:#aaa;padding:0;line-height:1;flex-shrink:0">🔊</button>
+        </summary>
+        <div style="padding:.6rem .85rem .75rem;background:#f5faf7;font-size:.84rem;line-height:1.7;color:var(--text)">לפני שיוצאים מפינת החי, מחזירים את כל הציוד למקום ושוטפים ידיים היטב עם סבון.</div>
+      </details>
+
+      <div style="background:linear-gradient(135deg,#e8f8ee,#eaf0ff);border-radius:12px;padding:.65rem .85rem;text-align:center;font-weight:800;color:var(--green);font-size:.92rem;margin-top:.3rem;border:1.5px solid #b8e0c8">
+        🌿 אנחנו אורחים בבית שלהם. בואו נהיה אורחים למופת!
+      </div>
+
+    </div>
+  </div><!-- סוף עמודה ימנית -->
+
+  <!-- עמודה שמאלית: צ'קליסט + מדריך טיפול -->
+  <div style="display:flex;flex-direction:column;gap:.8rem">
+
+    <!-- ══ צ'קליסט יומי ══ -->
+    <div style="background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:1rem 1.1rem;direction:rtl">
+      <div style="font-weight:800;font-size:1.0rem;margin-bottom:.55rem;color:#3060a0;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap">
+        📋 משימות יומיות
+        <button onclick="speakText(Array.from(document.querySelectorAll('#dailyChecklistItems label')).map(l=>l.textContent.trim()).join('. '),this)" title="הקרא הכל" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#aaa;padding:0;line-height:1">🔊</button>
+        <button onclick="(function(){var all=document.querySelectorAll('#dailyChecklistItems input[type=checkbox]');var allChecked=Array.from(all).every(c=>c.checked);all.forEach(c=>{c.checked=!allChecked;c.closest('label').style.opacity=allChecked?'1':'.55';c.closest('label').querySelector('.cl-check').style.background=allChecked?'#eee':'var(--green)';c.closest('label').querySelector('.cl-check').textContent=allChecked?'':'✓';})})()" style="background:#eef4ff;border:1px solid #a8c0e8;border-radius:50px;padding:.18rem .6rem;font-size:.79rem;cursor:pointer;color:#3060a0;font-weight:700;margin-right:auto">✓ סמן הכל</button>
+        <button onclick="(function(){var all=document.querySelectorAll('#dailyChecklistItems input[type=checkbox]');all.forEach(c=>{c.checked=false;c.closest('label').style.opacity='1';c.closest('label').querySelector('.cl-check').style.background='#eee';c.closest('label').querySelector('.cl-check').textContent='';});})()" style="background:#f0f0f0;border:1px solid #ccc;border-radius:50px;padding:.18rem .6rem;font-size:.79rem;cursor:pointer;color:#666;font-weight:700">↺ אפס</button>
+      </div>
+      <div id="dailyChecklistItems" style="display:grid;gap:.32rem;font-size:.85rem">
+        <!-- פריטי צ'קליסט -->
+      </div>
+    </div>
+
+    <!-- ══ מדריך טיפול לפי חיה ══ -->
+    <div style="background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:1rem 1.1rem;direction:rtl">
+      <div style="font-weight:800;font-size:1.0rem;margin-bottom:.4rem;color:var(--purple);display:flex;align-items:center;gap:.4rem;flex-wrap:wrap">
+        🐾 טיפול לפי חיה
+        <button onclick="speakText(Array.from(document.querySelectorAll('#animalCareGuide details')).map(d=>{const s=d.querySelector('summary span');const b=d.querySelector('.ac-body');return (s?s.textContent:'')+'. '+(b?b.textContent:'');}).join('  '),this)" title="הקרא הכל" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#aaa;padding:0;line-height:1">🔊</button>
+        <button onclick="(function(){var ds=document.querySelectorAll('#animalCareGuide details');var allOpen=Array.from(ds).every(d=>d.open);ds.forEach(d=>d.open=!allOpen);this.textContent=allOpen?'📂 פתח הכל':'📁 סגור הכל'})()" style="background:#f5f0ff;border:1px solid #c0a8e8;border-radius:50px;padding:.18rem .6rem;font-size:.79rem;cursor:pointer;color:#5a30a0;font-weight:700;margin-right:auto">📂 פתח הכל</button>
+      </div>
+      <p style="font-size:.77rem;color:var(--muted);margin:.0rem 0 .6rem">לחצו על כל חיה לפרטי הטיפול היומי.</p>
+      <div id="animalCareGuide" style="display:grid;gap:.35rem;font-size:.84rem">
+        <!-- פריטי מדריך יימולאו ב-JS -->
+      </div>
+    </div>
+
+  </div><!-- סוף עמודה שמאלית -->
+
+  </div><!-- סוף גריד כללים+עזר -->
+
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.1rem">
 
     <!-- כללים ליציאה לחצר -->
@@ -2277,9 +2516,39 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     </div>
   </div>
 
-  <details style="margin-top:.9rem;font-size:.82rem;color:#777;cursor:pointer;text-align:right">
-    <summary style="font-weight:700;color:#555">📏 מקרא כמויות</summary>
-    <div style="background:#f8f8f8;border-radius:8px;padding:.7rem .9rem;margin-top:.4rem;line-height:2.1;text-align:right;font-size:.83rem;direction:rtl">
+  <!-- הנחיות חירום: הפסקת חשמל/תקלת מזגן -->
+  <div style="margin-top:1.2rem" id="emergencyGuidelinesSection">
+    <div style="font-weight:900;font-size:1rem;margin-bottom:.6rem;color:var(--text);display:flex;align-items:center;gap:.5rem">
+      🚨 הנחיות חירום
+      <button onclick="speakText(document.getElementById('emergencyGuidelinesSection').innerText,this)" title="הקראת הנחיות חירום" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#aaa;padding:0;line-height:1">🔊</button>
+    </div>
+    <div style="background:#fde8e8;border:1.5px solid #e05252;border-radius:12px;padding:.7rem .95rem;margin-bottom:.55rem">
+      <div style="font-weight:900;font-size:.92rem;color:#8b1c1c;margin-bottom:.4rem">תקלת מזגן או הפסקת חשמל בקיץ (חום קיצוני)</div>
+      <ol style="margin:0;padding-right:1.2rem;font-size:.84rem;line-height:1.7;color:var(--text)">
+        <li>מזיזים את כלוב הג'אקו מהחלון למקום מוצל בחדר.</li>
+        <li>שמים בקבוקי מים קפואים עטופים בגרב בתוך הכלוב של הצ'ינצ'ילות ושל הארנבונים.</li>
+        <li>פותחים את פתח האוורור הקטן שליד התוכים ואת החלונות כדי שייכנס אוויר.</li>
+        <li>מוסיפים עוד כלי מים קרירים לכל החיות.</li>
+      </ol>
+    </div>
+    <div style="background:#dbeafe;border:1.5px solid #4090d0;border-radius:12px;padding:.7rem .95rem">
+      <div style="font-weight:900;font-size:.92rem;color:#1a3060;margin-bottom:.4rem">תקלת מזגן או הפסקת חשמל בחורף (קור קיצוני)</div>
+      <ol style="margin:0;padding-right:1.2rem;font-size:.84rem;line-height:1.7;color:var(--text)">
+        <li>בודקים שכל החלונות סגורים היטב. אם נכנסת רוח קרה מהחלון, מזיזים את הג'אקו למרכז החדר.</li>
+        <li>מכסים את כלובי התוכים בבדים עבים כדי לשמור על החום שלהם.</li>
+        <li>לזוחלים (החרדון, השממית והצב) שמים בקבוקים עם מים חמימים בטמפרטורה של 38 עד 40 מעלות עטופים במגבת בתוך הבית שלהם.</li>
+        <li>מוודאים שלמכרסמים בקופסאות הפלסטיק יש הרבה מצע וגרביים להתחמם בתוכם. לא מכסים את הרשת בשמיכות כדי שיהיה להם אוויר לנשימה.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- מקרא כמויות — הכי למטה -->
+  <details style="margin-top:1.1rem;font-size:.82rem;color:var(--muted);cursor:pointer;text-align:right" id="measureLegend">
+    <summary style="font-weight:700;color:var(--text);display:flex;align-items:center;gap:.45rem;list-style:none">
+      📏 מקרא כמויות
+      <button onclick="event.stopPropagation();speakText(document.getElementById('measureLegendContent').innerText,this)" title="הקראת מקרא כמויות" style="background:none;border:none;cursor:pointer;font-size:.95rem;color:#aaa;padding:0;line-height:1">🔊</button>
+    </summary>
+    <div id="measureLegendContent" style="background:var(--card);border:1px solid rgba(128,128,128,.15);border-radius:10px;padding:.7rem .9rem;margin-top:.4rem;line-height:2.1;text-align:right;font-size:.83rem;direction:rtl;color:var(--text)">
       <strong>חצי פרוסה</strong> = חצי עיגול בעובי אצבע,<br>
       <strong>פרוסה אחת</strong> = עיגול בעובי אצבע,<br>
       <strong>2-3 פרוסות</strong> = שתיים-שלוש פרוסות,<br>
@@ -2293,6 +2562,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       💡 פירות מתוקים תמיד ברמה אחת פחות מירקות
     </div>
   </details>
+
 <p class="credit-footer">האתר נבנה ע"י גלי זייצ'יק, מטפלת בעזרת בעלי חיים</p>
 
 
@@ -4973,8 +5243,8 @@ function showAnimalsListOnly() {
   document.getElementById('modalTitle').textContent = '🐾 חיות בפינת החי (להעתקה)';
   document.getElementById('modalBody').innerHTML = `
     <div style="padding:.5rem">
-      <textarea readonly style="width:100%;height:280px;font-family:inherit;font-size:.92rem;border:1px solid #dde;border-radius:8px;padding:.5rem;box-sizing:border-box;direction:rtl;resize:vertical">${lines}</textarea>
-      <div style="font-size:.82rem;color:#aaa;margin-top:.3rem;text-align:center">בחרו הכל (Ctrl+A) והעתיקו</div>
+      <textarea readonly style="width:100%;height:280px;font-family:inherit;font-size:.92rem;border:1px solid #dde;border-radius:8px;padding:.5rem;box-sizing:border-box;direction:rtl;resize:vertical;background:var(--card);color:var(--text)">${lines}</textarea>
+      <div style="font-size:.82rem;color:var(--muted);margin-top:.3rem;text-align:center">בחרו הכל (Ctrl+A) והעתיקו</div>
     </div>`;
   document.getElementById('modalOverlay').classList.add('open');
   document.body.style.overflow='hidden';
@@ -7827,9 +8097,18 @@ const SITE_TEXT_INDEX = [
   { tab:'insight', section:'מבט מעמיק: מה קורה כשמביאים מזון לא מתאים', action:"switchTab('insight')", text:'כוונה טובה תוצאה לא טובה מזון לא מתאים רוב הסיפורים לא מתחילים מרשלנות אלא מרגש חיובי של אהבה ורצון לשמח שוקולד ארנבון ציפורים מלח סוכר אבוקדו רעלן. מה קורה בגוף של החיה כשהיא אוכלת מזון לא מתאים. חיות קטנות אוגרים גרבילים ציפורים מערכות עיכול רגישות.' },
   { tab:'insight', section:'מבט מעמיק: מוגנות ובטיחות', action:"switchTab('insight')", text:'מוגנות ובטיחות מה אסור להביא לפינת החי בצל שום אבוקדו שוקולד חטיפים מלוחים מתוקים חציל עגבנייה לימון מוצרי חלב פטריות רעיל מסוכן אסור להביא.' },
   // הנחיות - תוכן מפורט
-  
-  
-  // חיפוש מורחב
+  { tab:'guidelines', section:'הנחיות: עשרת הכללים', action:"switchTab('guidelines');setTimeout(()=>{const el=document.getElementById('tenRulesContent');if(el)el.closest('.tab-panel')&&el.scrollIntoView({behavior:'smooth',block:'start'});},250)", text:'כללים עשרת כללי פינת החי שקט ורוגע לבקש רשות מעברים בטוחים מפגשים בישיבה השגחה מתמדת הסכמה וכבוד הפרדה סוגרים שערים אוכל בריאות סדר היגיינה ידיים כניסה לפינת החי התנהגות נכונה.' },
+  { tab:'guidelines', section:'הנחיות: כניסה לפינת החי', action:"switchTab('guidelines')", text:'כיצד להיכנס לפינת החי בצורה נכונה. שקט ורוגע, לא לרוץ, לא לצעוק, לדבר בנחת, לא לזרוק דברים, תנועות איטיות, לא להבהיל את החיות.' },
+  { tab:'guidelines', section:'הנחיות: נשיאת חיות', action:"switchTab('guidelines')", text:'נשיאת חיות בטוחה קופסת נשיאה העברה ממקום למקום לא לנשות בידיים חוץ מתוכים קופסה מכסה סגור צ\'ינצ\'ילה ישיבה על הרצפה.' },
+  { tab:'guidelines', section:'הנחיות: אוכל לחיות', action:"switchTab('guidelines')", text:'אוכל לחיות בפינת החי לא לתת אוכל בלי אישור בריאות כאב בטן נזק מזון לא מתאים. כל שאלה על אוכל מזון ירק פרי לשאול את האחראים.' },
+  { tab:'guidelines', section:'הנחיות: חירום חום קר', action:"switchTab('guidelines');setTimeout(()=>{const el=document.getElementById('emergencyGuidelinesSection');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)", text:'חירום תקלת מזגן הפסקת חשמל חום קיצוני קור קיצוני בקבוקי קרח קרמיקה אריחים קרים מים קרים חמים קיץ חורף מצב חירום.' },
+  // מידע עונתי - פירוט
+  { tab:'seasonal', section:'מידע עונתי: מדריך חודשי', action:"switchTab('seasonal');setTimeout(()=>{const el=document.getElementById('monthlyGuideCard');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)", text:'מדריך חודשי ינואר פברואר מרץ אפריל מאי יוני יולי אוגוסט ספטמבר אוקטובר נובמבר דצמבר קיץ חורף אביב סתיו ביולוגיה העשרה בטיחות פירות בעונה.' },
+  { tab:'seasonal', section:'מידע עונתי: חופשות ולוח שנה', action:"switchTab('seasonal');setTimeout(()=>{const el=document.getElementById('holidayCard');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)", text:'חופשות לוח שנת לימודים חנוכה פסח פורים שבועות ראש השנה סוכות יום כיפור יום עצמאות קייטנה ספירה לאחור חופשה הבאה סיום שנה.' },
+  { tab:'seasonal', section:'מידע עונתי: מזגן כיוון הוראות', action:"switchTab('seasonal');setTimeout(()=>{const el=document.getElementById('acCard');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)", text:'מזגן כיוון הוראות קירור חימום אוורור כיבוי הנחיות מזגן לפני יציאה בשעות היום חמישי שישי שבת ראשון מחר סוף שבוע.' },
+  { tab:'seasonal', section:'מידע עונתי: הנחיות חום וקור', action:"switchTab('seasonal')", text:'חום גבוה חום קיצוני קור קר קור קיצוני 35 מעלות 30 מעלות 8 מעלות מים קרים בקבוקי קרח ארנבון צ\'ינצ\'ילה מזגן חובה.' },
+  { tab:'seasonal', section:'מידע עונתי: חירום הפסקת חשמל', action:"switchTab('seasonal')", text:'הפסקת חשמל תקלת מזגן קיץ חורף חום קיצוני קור קיצוני בקבוקי קרח בקבוקי מים חמים כיסוי כלובים סגירת חלונות מחזור אוויר.' },
+
   { tab:'search', section:'חיפוש מורחב: מזון', action:"switchTab('search')", text:'חיפוש מזון ירק פרי מותר אסור לחיה חיפוש מורחב מזון קטגוריה.' },
   // כל המזונות  
   { tab:'allfoods', section:'כל המזונות', action:"switchTab('allfoods')", text:'כל המזונות רשימה מלאה מזונות מותרים אסורים מוגבלים לפי קטגוריה ירקות פירות עשבי תיבול דגנים חלבונים.' },
@@ -9708,7 +9987,7 @@ function pwaInstall(){
         range: 'מעל 28 מעלות, חם מאוד 🔥',
         bg: '#fff0e0', color: '#9a3000',
         items:[
-          {emoji:'🚫', text:'<strong>איסור יציאה בשעות החמות:</strong> אין להוציא חרדון וצבה כשהטמפרטורה גבוהה, האדמה לוהטת ועלולה לגרום כוויות בבטן. יציאה רק בשעות הבוקר המוקדמות ובאזורים מוצלים.'},
+          {emoji:'🚫', text:'<strong>איסור יציאה בשעות החמות:</strong> אין להוציא את החרדון ואת הצבה כשהטמפרטורה גבוהה, האדמה לוהטת ועלולה לגרום כוויות בבטן. יציאה רק בשעות הבוקר המוקדמות ובאזורים מוצלים.'},
           {emoji:'❄️', text:'<strong>מזגן חובה:</strong> המזגן חייב לפעול ולהיות מכוון ל-22-24°. חום גבוה מסוכן מאוד לארנבונים ולצ\'ינצ\'ילות.'},
           {emoji:'💧', text:'<strong>בדיקת מים:</strong> לוודא שכלי המים מלאים עד הסוף ושהמים לא חמים. להחליף אם צריך.'},
           {emoji:'🐟', text:'<strong>אקווריום הדגים:</strong> לוודא שמים בטווח 20-27°. מים חמים מזה מקשים על הדגים לנשום.'},
@@ -9811,33 +10090,110 @@ function pwaInstall(){
     `;
   }
 
+  // ────────────────────────────────────────────────
+  // עזר: שולף נתוני טמפ', אובך וקודים לטווח שעות
+  // ────────────────────────────────────────────────
+  function _extractHourly(d, fromMs, toMs){
+    let temps = [], vis = [], codes = [];
+    d.hourly.time.forEach((t, i) => {
+      const ts = new Date(t).getTime();
+      if(ts >= fromMs && ts <= toMs){
+        temps.push(d.hourly.temperature_2m[i]);
+        if(d.hourly.visibility)   vis.push(d.hourly.visibility[i]);
+        if(d.hourly.weather_code) codes.push(d.hourly.weather_code[i]);
+      }
+    });
+    return { temps, vis, codes };
+  }
+
+  // ────────────────────────────────────────────────
+  // עזר: בונה HTML לכרטיסיית יחידה אחת של מזגן
+  // ────────────────────────────────────────────────
+  function _acUnitHtml(label, sublabel, minT, maxT, vis, codes, extraNote){
+    const { mode, tempRec, reason } = getAcRecommendation(minT, maxT);
+    const modeColors = {cool:'#4090d0', heat:'#f07030', normal:'#3aaa6e'};
+    const modeIcons  = {cool:'❄️', heat:'🔥', normal:'🌿'};
+    const modeLabels = {cool:'קירור', heat:'חימום', normal:'רגיל'};
+    const modeSettings = {cool:`כוונו ל-${tempRec}° קירור`, heat:`כוונו ל-${tempRec}° חימום`, normal:'כבו / אוורור בלבד'};
+
+    const hasFog = vis.some(v => v < 2000) || codes.some(c => c===45||c===48);
+    const hasFogWind = hasFog && codes.some(c => [51,53,55,61,63,65,80,81,82,95,96,99].includes(c));
+
+    // ── הוראות חלונות ──
+    let windowInstruction = '';
+    if(hasFog){
+      windowInstruction = `<div style="margin-top:.35rem;background:#fff8e0;border-radius:7px;padding:.28rem .6rem;font-size:.79rem;color:#7a5500;font-weight:700">🪟 חלונות: <strong>סגרו לגמרי</strong> — אובך${hasFogWind?'/רוחות':''}. הפעילו מחזור אוויר פנימי.</div>`;
+    } else if(mode === 'cool' && maxT >= 35){
+      windowInstruction = `<div style="margin-top:.35rem;background:#e8f4ff;border-radius:7px;padding:.28rem .6rem;font-size:.79rem;color:#1a4a80;font-weight:700">🪟 חלונות: <strong>סגרו עד הסוף</strong> — חום קיצוני. המזגן צריך לעבוד עם חדר אטום.</div>`;
+    } else if(mode === 'cool'){
+      windowInstruction = `<div style="margin-top:.35rem;background:#e8f4ff;border-radius:7px;padding:.28rem .6rem;font-size:.79rem;color:#1a4a80;font-weight:700">🪟 חלונות: <strong>חרצי אוורור בינוניים</strong> — מספיק לאוורור, המזגן על קירור.</div>`;
+    } else if(mode === 'heat' && minT <= 8){
+      windowInstruction = `<div style="margin-top:.35rem;background:#fff3e8;border-radius:7px;padding:.28rem .6rem;font-size:.79rem;color:#7a2000;font-weight:700">🪟 חלונות: <strong>סגרו לגמרי</strong> — קור חריף. השאירו רק חריץ קטן מאוד.</div>`;
+    } else if(mode === 'heat'){
+      windowInstruction = `<div style="margin-top:.35rem;background:#fff3e8;border-radius:7px;padding:.28rem .6rem;font-size:.79rem;color:#7a2000;font-weight:700">🪟 חלונות: <strong>חרצי אוורור קטנים</strong> — המזגן על חימום, לא לפתוח יותר מדי.</div>`;
+    } else {
+      // מצב רגיל / אוורור
+      const maxForNight = maxT;
+      if(maxForNight >= 22){
+        windowInstruction = `<div style="margin-top:.35rem;background:#f0faf0;border-radius:7px;padding:.28rem .6rem;font-size:.79rem;color:#1a5a30;font-weight:700">🪟 חלונות: <strong>פתחי אוורור בינוניים-גדולים</strong> — טמפרטורה נוחה, אפשר לאוורר.</div>`;
+      } else {
+        windowInstruction = `<div style="margin-top:.35rem;background:#f0faf0;border-radius:7px;padding:.28rem .6rem;font-size:.79rem;color:#1a5a30;font-weight:700">🪟 חלונות: <strong>חרצי אוורור בינוניים</strong> — מצב רגיל, לא לפתוח לגמרי.</div>`;
+      }
+    }
+
+    const fogAlert = hasFog
+      ? `<div style="margin-top:.4rem;background:#fff8e0;border-radius:7px;padding:.28rem .55rem;font-size:.79rem;color:#7a5500;font-weight:700">🌫️ צפוי אובך${hasFogWind?' ורוחות':''}: הפעילו מחזור אוויר פנימי אם קיים, אחרת ${modeSettings[mode]}.</div>`
+      : '';
+
+    const extraHtml = extraNote
+      ? `<div style="margin-top:.4rem;background:${extraNote.bg||'#fde8e8'};border-radius:7px;padding:.28rem .55rem;font-size:.79rem;color:${extraNote.color||'#b02020'};font-weight:700">${extraNote.text}</div>`
+      : '';
+
+    return `
+      <div style="background:var(--card);border-radius:12px;border:2px solid ${modeColors[mode]};padding:.6rem .85rem;margin-bottom:.55rem">
+        <div style="font-weight:900;font-size:.96rem;margin-bottom:.1rem">${label}</div>
+        ${sublabel ? `<div style="font-size:.79rem;color:var(--muted);margin-bottom:.25rem">${sublabel}</div>` : ''}
+        <div style="font-size:.85rem;color:var(--muted);margin-bottom:.28rem">${minT}°–${maxT}° · ${modeIcons[mode]} <strong>${modeLabels[mode]}</strong></div>
+        <div style="background:${modeColors[mode]}18;border-radius:7px;padding:.3rem .55rem;font-size:.84rem;font-weight:800;color:${modeColors[mode]};margin-bottom:.3rem">
+          🎛️ ${modeSettings[mode]}
+        </div>
+        ${windowInstruction}
+        <div style="font-size:.80rem;line-height:1.55;color:var(--text);margin-top:.35rem">${reason}</div>
+        ${fogAlert}${extraHtml}
+      </div>`;
+  }
+
+  // ────────────────────────────────────────────────
+  // בודק אם שתי תקופות דורשות הוראות שונות (סכנת תנודה)
+  // ────────────────────────────────────────────────
+  function _modeMismatch(minA, maxA, minB, maxB){
+    const { mode: mA } = getAcRecommendation(minA, maxA);
+    const { mode: mB } = getAcRecommendation(minB, maxB);
+    return mA !== mB;
+  }
+
   async function loadAcForecast(){
     const card = document.getElementById('acCard');
     if(!card) return;
 
     const now      = new Date();
-    const todayDay = now.getDay(); // 0=ראשון … 4=חמישי … 6=שבת
+    const todayDay = now.getDay(); // 0=ראשון…4=חמישי…6=שבת
     const dayNames = ['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
 
-    // ביום חמישי: מציגים תחזית לחמישי+שישי+שבת (עד ראשון 08:00)
-    // ביום שישי: עד שבת סוף יום
-    // אחר: עד מחר 08:00
     const isThursday = (todayDay === 4);
     const isFriday   = (todayDay === 5);
-    const daysAhead  = isThursday ? 3 : isFriday ? 2 : 1;
+    const isSaturday = (todayDay === 6);
+    const isSunday   = (todayDay === 0);
+    // ימי שבוע רגילים שנמצאים בפינת החי (ראשון–רביעי)
+    const isRegularWorkday = (todayDay >= 0 && todayDay <= 3);
 
-    const until = new Date(now);
-    until.setDate(until.getDate() + daysAhead);
-    until.setHours(8, 0, 0, 0);
-
-    const untilLabel   = `עד יום ${dayNames[until.getDay()]} 08:00`;
-    const forecastDays = daysAhead + 1;
+    // כמה ימים קדימה צריך לטעון
+    const daysToFetch = isThursday ? 4 : isFriday ? 3 : 3;
 
     try {
-      // מבקשים גם weather_code וגם visibility כדי לזהות אובך
       const url = `https://api.open-meteo.com/v1/forecast?latitude=31.252&longitude=34.791` +
-        `&hourly=temperature_2m,weather_code,visibility&daily=weather_code,temperature_2m_max,temperature_2m_min` +
-        `&timezone=Asia%2FJerusalem&forecast_days=${forecastDays}`;
+        `&hourly=temperature_2m,weather_code,visibility` +
+        `&timezone=Asia%2FJerusalem&forecast_days=${daysToFetch}`;
       const controller = new AbortController();
       const timeout = setTimeout(()=>controller.abort(), 6000);
       const res = await fetch(url, {signal: controller.signal});
@@ -9845,132 +10201,238 @@ function pwaInstall(){
       if(!res.ok) throw new Error('HTTP ' + res.status);
       const d = await res.json();
 
-      const nowMs   = now.getTime();
-      const untilMs = until.getTime();
+      const nowMs = now.getTime();
 
-      // ── ביום חמישי: בנה כרטיסייה לכל יום (חמישי, שישי, שבת) ──
-      if(isThursday){
-        // בנה מסקנה לכל יום בנפרד
-        const futureDays = [
-          { offset: 0, label: 'היום (חמישי)' },
-          { offset: 1, label: 'מחר (שישי)' },
-          { offset: 2, label: 'שבת' },
-        ];
-
-        let multiHtml = '';
-        futureDays.forEach(({offset, label}) => {
-          const dayStart = new Date(now);
-          dayStart.setDate(dayStart.getDate() + offset);
-          dayStart.setHours(0,0,0,0);
-          const dayEnd = new Date(dayStart);
-          dayEnd.setHours(23,59,59,0);
-
-          let dayTemps = [], dayVis = [], dayCodes = [];
-          d.hourly.time.forEach((t, i) => {
-            const ts = new Date(t).getTime();
-            if(ts >= dayStart.getTime() && ts <= dayEnd.getTime()){
-              dayTemps.push(d.hourly.temperature_2m[i]);
-              if(d.hourly.visibility) dayVis.push(d.hourly.visibility[i]);
-              if(d.hourly.weather_code) dayCodes.push(d.hourly.weather_code[i]);
-            }
-          });
-
-          if(!dayTemps.length) return;
-          const minT = Math.round(Math.min(...dayTemps));
-          const maxT = Math.round(Math.max(...dayTemps));
-          const { mode, tempRec, reason } = getAcRecommendation(minT, maxT);
-
-          // בדיקת אובך: visibility < 2000m או weather_code 45/48
-          const hasFog = dayVis.some(v => v < 2000) || dayCodes.some(c => c===45||c===48);
-          // בדיקת רוח: weather_code של סופה/רוחות (קודים 61+ עם רוח, או visibility + wind)
-          const hasFogWind = hasFog && dayCodes.some(c => c===51||c===53||c===55||c===61||c===63||c===65||c===80||c===81||c===82||c===95||c===96||c===99);
-          const fogWindText = hasFogWind ? ' ורוחות' : '';
-          const acInFog = mode === 'cool' ? 'על קירור' : mode === 'heat' ? 'על חימום' : 'על אוורור בלבד';
-          const fogAlert = hasFog
-            ? `<div style="margin-top:.4rem;background:#fff8e0;border-radius:8px;padding:.3rem .6rem;font-size:.81rem;color:#7a5500;font-weight:700">🌫️ צפוי אובך${fogWindText}: סגרו את פתחי האוורור. הפעילו את המזגן על מחזור אוויר פנימי אם קיים, אחרת הפעילו אותו ${acInFog}. אם המזגן לא עובד, השאירו פתח אוורור קטן.</div>`
-            : '';
-
-          const modeColors = {cool:'#4090d0', heat:'#f07030', normal:'#3aaa6e'};
-          const modeIcons  = {cool:'❄️', heat:'🔥', normal:'🌿'};
-          const modeLabels = {cool:'קירור', heat:'חימום', normal:'רגיל'};
-
-          multiHtml += `
-            <div style="background:var(--card);border-radius:12px;border:1.5px solid ${modeColors[mode]};padding:.6rem .85rem;margin-bottom:.55rem">
-              <div style="font-weight:900;font-size:.95rem;margin-bottom:.2rem">${label}</div>
-              <div style="font-size:.85rem;color:var(--muted);margin-bottom:.3rem">${minT}° – ${maxT}° · ${modeIcons[mode]} ${modeLabels[mode]} ${tempRec}°</div>
-              <div style="font-size:.81rem;line-height:1.5;color:var(--text)">${reason}</div>
-              ${fogAlert}
-            </div>`;
-        });
-
-        document.getElementById('acUntilLabel').textContent = 'חמישי עד שבת';
-        document.getElementById('acForecastRange').textContent = 'תחזית מלאה לסוף השבוע';
-        document.getElementById('acCardContent').innerHTML = multiHtml ||
-          '<div style="color:var(--muted);font-size:.85rem">לא נמצאו נתונים</div>';
-        return;
+      // ── עזר: חישוב ms של תחילת יום + offset ──
+      function dayRangeMs(offset, startHour=0, endHour=23){
+        const s = new Date(now); s.setDate(s.getDate()+offset); s.setHours(startHour,0,0,0);
+        const e = new Date(now); e.setDate(e.getDate()+offset); e.setHours(endHour,59,59,0);
+        return { from: s.getTime(), to: e.getTime(), dayObj: s };
       }
 
-      // ── ימים רגילים: בנה כרטיסייה ליום הנוכחי + מחר + מחרתיים ──
-      // קבע כמה ימים נציג (עד 3, תמיד כולל היום)
-      const daysToShow = Math.min(3, forecastDays);
-      const dayLabels  = ['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
+      let html = '';
+      let untilLabel = '';
+      let forecastText = '';
 
-      // בנה כרטיסייה לכל יום
-      let multiHtml = '';
-      for(let offset = 0; offset < daysToShow; offset++){
-        const dayStart = new Date(now);
-        dayStart.setDate(dayStart.getDate() + offset);
-        dayStart.setHours(0,0,0,0);
-        const dayEnd = new Date(dayStart);
-        dayEnd.setHours(23,59,59,0);
+      // ══════════════════════════════════════════
+      // ① ימי שבוע רגילים (ראשון–רביעי, לפני 13:00)
+      //    שתי הוראות: עכשיו/בוקר + לפני יציאה למחר
+      // ══════════════════════════════════════════
+      if(isRegularWorkday){
+        const isBeforeLeave = now.getHours() < 13; // לפני שיצאו
 
-        // ביום הנוכחי (offset=0) מתחילים מהשעה הנוכחית
-        const fromMs = offset === 0 ? nowMs : dayStart.getTime();
+        // הנחיות מזגן בשעות היום (שאר היום עד 13:00)
+        const { from: todayFrom, to: todayTo, dayObj: todayObj } = dayRangeMs(0, now.getHours(), 13);
+        const seg1 = _extractHourly(d, nowMs, Math.min(todayTo, dayRangeMs(0,23,23).to));
+        if(seg1.temps.length){
+          const mn = Math.round(Math.min(...seg1.temps)), mx = Math.round(Math.max(...seg1.temps));
+          html += _acUnitHtml(
+            `🌅 הנחיות מזגן בשעות היום (${dayNames[todayDay]})`,
+            `כוונו עכשיו בהגיעכם לפינת החי`,
+            mn, mx, seg1.vis, seg1.codes, null
+          );
+        }
 
-        let dayTemps = [], dayVis = [], dayCodes = [];
-        d.hourly.time.forEach((t, i) => {
-          const ts = new Date(t).getTime();
-          if(ts >= fromMs && ts <= dayEnd.getTime()){
-            dayTemps.push(d.hourly.temperature_2m[i]);
-            if(d.hourly.visibility) dayVis.push(d.hourly.visibility[i]);
-            if(d.hourly.weather_code) dayCodes.push(d.hourly.weather_code[i]);
+        // הנחיות מזגן לפני היציאה — לכסות את הלילה + מחר עד 08:00
+        const { from: tomorrowStart, to: tomorrowEnd, dayObj: tomorrowObj } = dayRangeMs(1, 0, 8);
+        const { from: tonightFrom } = dayRangeMs(0, 13, 23);
+        const seg2 = _extractHourly(d, tonightFrom, tomorrowEnd);
+        if(seg2.temps.length){
+          const mn = Math.round(Math.min(...seg2.temps)), mx = Math.round(Math.max(...seg2.temps));
+          const nextDayName = dayNames[tomorrowObj.getDay()];
+          html += _acUnitHtml(
+            `🌙 הנחיות מזגן לפני היציאה (~13:00)`,
+            `יחזיק עד יום ${nextDayName} 08:00`,
+            mn, mx, seg2.vis, seg2.codes, null
+          );
+        }
+
+        untilLabel = `הנחיות מזגן ל${dayNames[todayDay]}`;
+        forecastText = `בשעות היום + לפני היציאה`;
+      }
+
+      // ══════════════════════════════════════════
+      // ② יום חמישי — המורכב ביותר
+      //    שתי הוראות + אזהרות + הצעת שישי
+      // ══════════════════════════════════════════
+      else if(isThursday){
+        // הנחיות מזגן בשעות היום (חמישי 08-13)
+        const seg1 = _extractHourly(d, nowMs, dayRangeMs(0,13,13).to);
+        if(seg1.temps.length){
+          const mn = Math.round(Math.min(...seg1.temps)), mx = Math.round(Math.max(...seg1.temps));
+          html += _acUnitHtml(
+            `🌅 הנחיות מזגן בשעות היום (חמישי)`,
+            `כוונו עכשיו בהגיעכם לפינת החי`,
+            mn, mx, seg1.vis, seg1.codes, null
+          );
+        }
+
+        // הנחיות מזגן לפני היציאה — לכסות חמישי אחה"צ + שישי + שבת + עד ראשון 08:00
+        const { from: thuAfternoon } = dayRangeMs(0, 13, 23);
+        const { to: sunMorning }     = dayRangeMs(3, 0, 8); // +3 ימים = ראשון
+        const seg2 = _extractHourly(d, thuAfternoon, sunMorning);
+
+        // ניתוח לפי ימים נפרדים לאיתור תנודות
+        const friData = _extractHourly(d, dayRangeMs(1,0,23).from, dayRangeMs(1,0,23).to);
+        const satData = _extractHourly(d, dayRangeMs(2,0,23).from, dayRangeMs(2,0,23).to);
+
+        let mismatchNote = null;
+        if(friData.temps.length && satData.temps.length){
+          const friMin = Math.round(Math.min(...friData.temps)), friMax = Math.round(Math.max(...friData.temps));
+          const satMin = Math.round(Math.min(...satData.temps)), satMax = Math.round(Math.max(...satData.temps));
+          const { mode: friMode } = getAcRecommendation(friMin, friMax);
+          const { mode: satMode } = getAcRecommendation(satMin, satMax);
+
+          // בדיקת תנודה: הפרש מקס–מין בין הימים
+          const tempSwing = Math.abs(friMax - satMin) + Math.abs(satMax - friMin);
+
+          if(friMode !== satMode){
+            // מצב חירום: הגדרה שונה לחלוטין בין שישי לשבת
+            mismatchNote = {
+              bg:'#fde8e8', color:'#b02020',
+              text:`🚨 <strong>נדרשת כניסה מיוחדת ביום שישי וכניסת חירום ביום שבת!</strong><br>שישי: ${friMin}°–${friMax}° — ${friMode==='cool'?'קירור':friMode==='heat'?'חימום':'אוורור'} · שבת: ${satMin}°–${satMax}° — ${satMode==='cool'?'קירור':satMode==='heat'?'חימום':'אוורור'}.<br><strong>נדרש שינוי כיוון מזגן בין שישי לשבת.</strong>`
+            };
+            // פופאפ חירום — רק אם לא כבר הוצג היום
+            const popupKey = 'acEmergencyShown_' + new Date().toDateString();
+            if(!sessionStorage.getItem(popupKey)){
+              sessionStorage.setItem(popupKey, '1');
+              setTimeout(() => showAcEmergencyPopup(friMode, satMode, friMin, friMax, satMin, satMax), 1200);
+            }
+          } else if(tempSwing >= 10){
+            // תנודה משמעותית אבל אותו מצב — אזהרה צהובה
+            mismatchNote = {
+              bg:'#fff3cd', color:'#7a5500',
+              text:`⚠️ <strong>נדרשת כניסה מיוחדת ביום שישי.</strong> תנודה של ${Math.round(tempSwing/2)}° בין הימים: שישי ${friMin}°–${friMax}°, שבת ${satMin}°–${satMax}°. יש לכוון מחדש את המזגן בשישי בבוקר.`
+            };
           }
+        }
+
+        if(seg2.temps.length){
+          const mn = Math.round(Math.min(...seg2.temps)), mx = Math.round(Math.max(...seg2.temps));
+          html += _acUnitHtml(
+            `🌙 הנחיות מזגן לפני היציאה (~13:00 חמישי)`,
+            `יחזיק עד ראשון 08:00 · שישי + שבת כלולים`,
+            mn, mx, seg2.vis, seg2.codes, mismatchNote
+          );
+        }
+
+        // פירוט ימים נפרדים (שישי / שבת) לשקיפות
+        const futureParts = [
+          { offset:1, label:'שישי (פירוט)' },
+          { offset:2, label:'שבת (פירוט)' },
+        ];
+        let detailHtml = '';
+        futureParts.forEach(({offset, label}) => {
+          const { from, to, dayObj } = dayRangeMs(offset, 0, 23);
+          const seg = _extractHourly(d, from, to);
+          if(!seg.temps.length) return;
+          const mn = Math.round(Math.min(...seg.temps)), mx = Math.round(Math.max(...seg.temps));
+          const { mode, tempRec } = getAcRecommendation(mn, mx);
+          const mc = {cool:'#4090d0',heat:'#f07030',normal:'#3aaa6e'};
+          const mi = {cool:'❄️',heat:'🔥',normal:'🌿'};
+          detailHtml += `<div style="display:inline-flex;align-items:center;gap:.4rem;background:${mc[mode]}15;border:1px solid ${mc[mode]};border-radius:8px;padding:.25rem .6rem;font-size:.79rem;font-weight:700;color:${mc[mode]}">
+            ${mi[mode]} ${label}: ${mn}°–${mx}°</div> `;
         });
+        if(detailHtml){
+          html += `<div style="margin-bottom:.6rem;display:flex;flex-wrap:wrap;gap:.3rem">${detailHtml}</div>`;
+        }
 
-        if(!dayTemps.length) continue;
-        const dMin = Math.round(Math.min(...dayTemps));
-        const dMax = Math.round(Math.max(...dayTemps));
-        const { mode, tempRec, reason } = getAcRecommendation(dMin, dMax);
+        untilLabel = 'חמישי–שבת (עד ראשון)';
+        forecastText = 'הנחיות בשעות היום + לפני היציאה לכל סוף השבוע';
+      }
 
-        const hasFogDay = dayVis.some(v => v < 2000) || dayCodes.some(c => c===45||c===48);
-        const hasFogDayWind = hasFogDay && dayCodes.some(c => c===51||c===53||c===55||c===61||c===63||c===65||c===80||c===81||c===82||c===95||c===96||c===99);
-        const fogWindDayText = hasFogDayWind ? ' ורוחות' : '';
-        const acInFogDay = mode === 'cool' ? 'על קירור' : mode === 'heat' ? 'על חימום' : 'על אוורור בלבד';
-        const fogAlert = hasFogDay
-          ? `<div style="margin-top:.4rem;background:#fff8e0;border-radius:8px;padding:.3rem .6rem;font-size:.81rem;color:#7a5500;font-weight:700">🌫️ צפוי אובך${fogWindDayText}: סגרו את פתחי האוורור. הפעילו את המזגן על מחזור אוויר פנימי אם קיים, אחרת הפעילו אותו ${acInFogDay}. אם המזגן לא עובד, השאירו פתח אוורור קטן.</div>`
-          : '';
+      // ══════════════════════════════════════════
+      // ③ יום שישי — נכנסים רק אם מישהו ביקש
+      //    הוראה עד שבת סוף יום + עד ראשון 08:00
+      // ══════════════════════════════════════════
+      else if(isFriday){
+        const seg1 = _extractHourly(d, nowMs, dayRangeMs(0,23,23).to);
+        const seg2 = _extractHourly(d, dayRangeMs(1,0,23).from, dayRangeMs(2,0,8).to); // שבת + ראשון בוקר
 
-        const modeColors = {cool:'#4090d0', heat:'#f07030', normal:'#3aaa6e'};
-        const modeIcons  = {cool:'❄️', heat:'🔥', normal:'🌿'};
-        const modeLabels = {cool:'קירור', heat:'חימום', normal:'רגיל'};
+        if(seg1.temps.length){
+          const mn = Math.round(Math.min(...seg1.temps)), mx = Math.round(Math.max(...seg1.temps));
+          html += _acUnitHtml('🌅 הנחיות מזגן בשעות היום (שישי)', 'כוונו עכשיו', mn, mx, seg1.vis, seg1.codes, null);
+        }
+        if(seg2.temps.length){
+          const mn = Math.round(Math.min(...seg2.temps)), mx = Math.round(Math.max(...seg2.temps));
+          html += _acUnitHtml('🌙 הנחיות מזגן לפני היציאה (שישי)', 'יחזיק עד ראשון 08:00 · שבת כלול', mn, mx, seg2.vis, seg2.codes, null);
+        }
+        untilLabel = 'שישי עד ראשון 08:00';
+        forecastText = 'הנחיות בשעות היום + לפני היציאה';
+      }
 
-        const dayOfWeek = new Date(dayStart);
-        dayOfWeek.setDate(dayOfWeek.getDate());
-        const dayName = dayLabels[dayOfWeek.getDay()];
-        const label = offset === 0 ? `היום (${dayName})` : offset === 1 ? `מחר (${dayName})` : `מחרתיים (${dayName})`;
+      // ══════════════════════════════════════════
+      // ④ שבת — כניסת חירום בלבד
+      // ══════════════════════════════════════════
+      else if(isSaturday){
+        const seg = _extractHourly(d, nowMs, dayRangeMs(1,0,8).to);
+        const segYest = _extractHourly(d, dayRangeMs(-1,0,23).from, dayRangeMs(-1,0,23).to);
+        if(seg.temps.length){
+          const mn = Math.round(Math.min(...seg.temps)), mx = Math.round(Math.max(...seg.temps));
+          const { mode } = getAcRecommendation(mn, mx);
 
-        multiHtml += `
-          <div style="background:var(--card);border-radius:12px;border:1.5px solid ${modeColors[mode]};padding:.6rem .85rem;margin-bottom:.55rem">
-            <div style="font-weight:900;font-size:.95rem;margin-bottom:.2rem">${label}</div>
-            <div style="font-size:.85rem;color:var(--muted);margin-bottom:.3rem">${dMin}° – ${dMax}° · ${modeIcons[mode]} ${modeLabels[mode]} ${tempRec}°</div>
-            <div style="font-size:.81rem;line-height:1.5;color:var(--text)">${reason}</div>
-            ${fogAlert}
-          </div>`;
+          // בנה נימוק — למה בכלל צריכה כניסה? אם הכל בסדר לא אמורה להיות
+          let whyNote = '';
+          if(mode === 'cool' && mx >= 30){
+            whyNote = `הטמפרטורה היום מגיעה ל-${mx}°. חום כזה מסוכן לצ'ינצ'ילות ולארנבונים, ודרוש מזגן על קירור.`;
+          } else if(mode === 'heat' && mn <= 10){
+            whyNote = `הטמפרטורה ירדה ל-${mn}° בלילה. קור כזה עלול לפגוע בתוכים ובמכרסמים, ודרוש מזגן על חימום.`;
+          } else if(mode === 'heat'){
+            whyNote = `הטמפרטורה היום ${mn}°–${mx}° עם נטייה לקור. דרוש מזגן על חימום.`;
+          } else if(mode === 'cool'){
+            whyNote = `הטמפרטורה היום ${mn}°–${mx}° עם נטייה לחום. דרוש מזגן על קירור.`;
+          } else {
+            whyNote = `הטמפרטורה היום ${mn}°–${mx}°. ניתן להשאיר על אוורור.`;
+          }
+
+          // השוואה לשישי אם יש
+          let compareNote = '';
+          if(segYest.temps.length){
+            const yMin = Math.round(Math.min(...segYest.temps)), yMax = Math.round(Math.max(...segYest.temps));
+            const { mode: yMode } = getAcRecommendation(yMin, yMax);
+            const maxDiff = mx - yMax;
+            if(yMode !== mode){
+              const fromLabel = {cool:'קירור',heat:'חימום',normal:'אוורור'}[yMode];
+              const toLabel   = {cool:'קירור',heat:'חימום',normal:'אוורור'}[mode];
+              compareNote = ` לעומת אתמול (${yMin}°–${yMax}°, ${fromLabel}) — שינוי מהותי שדורש כיוון מחדש.`;
+            } else if(Math.abs(maxDiff) >= 6){
+              compareNote = ` ${maxDiff > 0 ? `עלייה` : `ירידה`} של ${Math.abs(maxDiff)}° לעומת אתמול (${yMin}°–${yMax}°).`;
+            }
+          }
+
+          html += _acUnitHtml(
+            '🚨 כניסת חירום: שבת',
+            'יחזיק עד ראשון 08:00',
+            mn, mx, seg.vis, seg.codes,
+            { bg:'#fde8e8', color:'#b02020',
+              text:`🚨 נדרשת כניסת חירום ביום שבת! ${whyNote}${compareNote}` }
+          );
+        }
+        untilLabel = 'עד ראשון 08:00';
+        forecastText = 'הוראת חירום: שבת';
+      }
+
+      // ══════════════════════════════════════════
+      // ⑤ ראשון — יום חזרה (הוראה לפתיחה + ליציאה)
+      // ══════════════════════════════════════════
+      else if(isSunday){
+        const seg1 = _extractHourly(d, nowMs, dayRangeMs(0,13,13).to);
+        const seg2 = _extractHourly(d, dayRangeMs(0,13,23).from, dayRangeMs(1,0,8).to);
+        if(seg1.temps.length){
+          const mn = Math.round(Math.min(...seg1.temps)), mx = Math.round(Math.max(...seg1.temps));
+          html += _acUnitHtml('🌅 הנחיות מזגן בשעות היום (ראשון)', 'כוונו בהגיעכם לפינת החי', mn, mx, seg1.vis, seg1.codes, null);
+        }
+        if(seg2.temps.length){
+          const mn = Math.round(Math.min(...seg2.temps)), mx = Math.round(Math.max(...seg2.temps));
+          html += _acUnitHtml('🌙 הנחיות מזגן לפני היציאה (~13:00)', 'יחזיק עד שני 08:00', mn, mx, seg2.vis, seg2.codes, null);
+        }
+        untilLabel = 'הנחיות מזגן לראשון';
+        forecastText = 'בשעות היום + לפני היציאה';
       }
 
       document.getElementById('acUntilLabel').textContent = untilLabel;
-      document.getElementById('acForecastRange').textContent = `תחזית ${daysToShow === 1 ? 'להיום' : daysToShow === 2 ? 'להיום ומחר' : 'לשלושת הימים הקרובים'}`;
-      document.getElementById('acCardContent').innerHTML = multiHtml ||
+      document.getElementById('acForecastRange').textContent = forecastText;
+      document.getElementById('acCardContent').innerHTML = html ||
         '<div style="color:var(--muted);font-size:.85rem">לא נמצאו נתונים</div>';
 
     } catch(e){
@@ -9981,6 +10443,328 @@ function pwaInstall(){
     }
   }
 
+
+  // ── ניתוח כניסות חירום בימי חופשה ──
+  // מחשב בלוקים של 3 ימים ומזהה מתי נדרש שינוי כיוון מזגן
+  window.buildHolidayAcAnalysis = async function buildHolidayAcAnalysis(holiday){
+    if(!holiday || !holiday.back) return null;
+    const startDate = new Date(holiday.out); startDate.setDate(startDate.getDate()+1); startDate.setHours(0,0,0,0);
+    const endDate   = new Date(holiday.back); endDate.setHours(8,0,0,0); // עד 08:00 ביום החזרה
+    const totalDays = Math.ceil((endDate - startDate) / 86400000);
+    if(totalDays <= 0) return null;
+
+    const forecastDays = Math.min(totalDays + 2, 16);
+    try {
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=31.252&longitude=34.791` +
+        `&hourly=temperature_2m,weather_code,visibility` +
+        `&timezone=Asia%2FJerusalem&forecast_days=${forecastDays}&start_date=${_isoDate(startDate)}`;
+      const res = await fetch(url);
+      if(!res.ok) return null;
+      const d = await res.json();
+
+      // חלק לבלוקים של עד 3 ימים
+      const blocks = [];
+      let cursor = new Date(startDate);
+      while(cursor < endDate){
+        const blockEnd = new Date(cursor);
+        blockEnd.setDate(blockEnd.getDate() + 3);
+        if(blockEnd > endDate) blockEnd.setTime(endDate.getTime());
+        const seg = _extractHourly(d, cursor.getTime(), blockEnd.getTime());
+        if(seg.temps.length){
+          const mn = Math.round(Math.min(...seg.temps));
+          const mx = Math.round(Math.max(...seg.temps));
+          const { mode, tempRec, reason } = getAcRecommendation(mn, mx);
+          blocks.push({ from: new Date(cursor), to: new Date(blockEnd), mn, mx, mode, tempRec, reason, seg });
+        }
+        cursor.setDate(cursor.getDate() + 3);
+      }
+      return blocks;
+    } catch(e){ return null; }
+  }
+
+  function _isoDate(d){ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+
+  // בונה HTML של ניתוח כניסות חירום לחג
+  window._buildHolidayAcHtml = function _buildHolidayAcHtml(blocks, holidayName){
+    if(!blocks || !blocks.length) return '';
+    const dayNames = ['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
+    const modeHe = { cool:'קירור ❄️', heat:'חימום 🔥', normal:'אוורור 🌿' };
+    const modeColor = { cool:'#4090d0', heat:'#f07030', normal:'#3aaa6e' };
+
+    let html = `<div style="margin-top:.7rem;border-top:1px solid rgba(128,128,128,.18);padding-top:.6rem">
+      <div style="font-weight:900;font-size:.84rem;color:var(--text);margin-bottom:.4rem">🌡️ תחזית מזגן לימי ${holidayName}</div>`;
+
+    let prevMode = null;
+    blocks.forEach((b, i) => {
+      const fromLabel = `${dayNames[b.from.getDay()]} ${b.from.getDate()}.${b.from.getMonth()+1}`;
+      const toLabel   = `${dayNames[b.to.getDay()]} ${b.to.getDate()}.${b.to.getMonth()+1}`;
+      const needsEntry = prevMode !== null && prevMode !== b.mode;
+      const entryLabel = b.from.getDay() === 6
+        ? `🚨 <strong>נדרשת כניסת חירום ביום שבת ${b.from.getDate()}.${b.from.getMonth()+1}!</strong>`
+        : `⚠️ <strong>נדרשת כניסה מיוחדת ב${dayNames[b.from.getDay()]} ${b.from.getDate()}.${b.from.getMonth()+1}</strong>`;
+      const entryColor = b.from.getDay() === 6 ? '#b02020' : '#7a5500';
+      const entryBg    = b.from.getDay() === 6 ? '#fde8e8' : '#fff8e0';
+
+      if(needsEntry){
+        html += `<div style="background:${entryBg};border-radius:8px;padding:.35rem .6rem;margin:.3rem 0;font-size:.8rem;color:${entryColor}">
+          ${entryLabel}<br>
+          <span style="font-weight:400">מעבר מ-${modeHe[prevMode]} ל-${modeHe[b.mode]} (${b.mn}°–${b.mx}°). ${b.reason}</span>
+        </div>`;
+      }
+
+      html += `<div style="display:flex;align-items:center;gap:.5rem;padding:.22rem .1rem;font-size:.79rem;border-bottom:1px solid rgba(128,128,128,.1)">
+        <span style="color:var(--muted);min-width:5.5rem">${fromLabel}</span>
+        <span style="font-weight:800;color:${modeColor[b.mode]}">${modeHe[b.mode]}</span>
+        <span style="color:var(--text);opacity:.7">${b.mn}°–${b.mx}°</span>
+        <span style="font-size:.72rem;color:var(--muted);opacity:.8">כוונו ל-${b.tempRec}°</span>
+      </div>`;
+
+      prevMode = b.mode;
+    });
+
+    html += `</div>`;
+    return html;
+  }
+
+  // ── פופאפ חירום תנודת סוף שבוע ──
+
+  function showAcEmergencyPopup(friMode, satMode, friMin, friMax, satMin, satMax){
+    const modeLabel = m => m==='cool'?'קירור ❄️':m==='heat'?'חימום 🔥':'אוורור 🌿';
+    const overlay = document.createElement('div');
+    overlay.id = 'acEmergencyOverlay';
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;display:flex;align-items:center;justify-content:center;padding:1rem';
+    overlay.innerHTML = `
+      <div style="background:var(--card);border-radius:18px;box-shadow:0 8px 40px rgba(0,0,0,.35);max-width:420px;width:100%;padding:1.4rem 1.3rem;direction:rtl;position:relative">
+        <div style="font-size:2rem;text-align:center;margin-bottom:.5rem">🚨</div>
+        <div style="font-weight:900;font-size:1.05rem;color:#b02020;text-align:center;margin-bottom:.7rem">תנודה חריפה בסוף שבוע!</div>
+        <div style="font-size:.87rem;line-height:1.7;color:var(--text);margin-bottom:.9rem">
+          <div style="display:flex;gap:.5rem;margin-bottom:.4rem">
+            <div style="flex:1;background:#e8f4ff;border-radius:10px;padding:.45rem .6rem;text-align:center">
+              <div style="font-weight:800;font-size:.82rem;color:var(--muted)">שישי</div>
+              <div style="font-weight:900;color:var(--blue)">${friMin}°–${friMax}°</div>
+              <div style="font-size:.8rem;font-weight:700">${modeLabel(friMode)}</div>
+            </div>
+            <div style="flex:1;background:#fff3e8;border-radius:10px;padding:.45rem .6rem;text-align:center">
+              <div style="font-weight:800;font-size:.82rem;color:var(--muted)">שבת</div>
+              <div style="font-weight:900;color:var(--orange)">${satMin}°–${satMax}°</div>
+              <div style="font-size:.8rem;font-weight:700">${modeLabel(satMode)}</div>
+            </div>
+          </div>
+          הגדרה אחת לא תספיק לשני הימים. יש לשקול <strong>כניסה בשישי בבוקר</strong> לכיוון מחדש של המזגן.
+        </div>
+        <div style="display:flex;gap:.6rem">
+          <button onclick="document.getElementById('acEmergencyOverlay').remove()" style="flex:1;background:#fde8e8;border:1.5px solid #e05252;border-radius:10px;padding:.6rem;font-size:.88rem;font-weight:800;color:#b02020;cursor:pointer;font-family:inherit">הבנתי, אטפל בזה</button>
+          <button onclick="document.getElementById('acEmergencyOverlay').remove()" style="flex:1;background:var(--card);border:1.5px solid var(--muted);border-radius:10px;padding:.6rem;font-size:.88rem;font-weight:700;color:var(--muted);cursor:pointer;font-family:inherit">סגור</button>
+        </div>
+      </div>`;
+    overlay.addEventListener('click', e => { if(e.target === overlay) overlay.remove(); });
+    document.body.appendChild(overlay);
+  }
+
+  // ── תחזית 3 ימים קדימה + הנחיות מזגן לכל יום ──
+  async function loadForecast3Days(){
+    const el = document.getElementById('forecastCardContent');
+    if(!el) return;
+
+    const now      = new Date();
+    const dayNames = ['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
+    const weatherDescs = {0:'שמיים בהירים',1:'בהיר בעיקר',2:'מעונן חלקית',3:'מעונן',45:'ערפל',51:'ממטר קל',61:'גשם',80:'מקלחות גשם',95:'סופת רעמים',96:'ברד'};
+    const weatherIcons = {0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',51:'🌦️',61:'🌧️',80:'🌧️',95:'⛈️',96:'⛈️'};
+
+    function wDesc(c){ const r=c<=3?c:Math.round(c/10)*10; return weatherDescs[r]||weatherDescs[c]||''; }
+    function wIcon(c){ const r=c<=3?c:Math.round(c/10)*10; return weatherIcons[r]||weatherIcons[c]||'🌡️'; }
+
+    try {
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=31.252&longitude=34.791` +
+        `&hourly=temperature_2m,weather_code,visibility` +
+        `&daily=weather_code,temperature_2m_max,temperature_2m_min` +
+        `&timezone=Asia%2FJerusalem&forecast_days=4`;
+      const ctrl = new AbortController();
+      const t = setTimeout(()=>ctrl.abort(), 6000);
+      const res = await fetch(url, {signal: ctrl.signal});
+      clearTimeout(t);
+      if(!res.ok) throw new Error('HTTP '+res.status);
+      const d = await res.json();
+
+      const nowMs = now.getTime();
+      let html = '';
+      // שמור נתוני היום הקודם להשוואה
+      let prevMn = null, prevMx = null, prevMode = null;
+
+      for(let offset = 0; offset < 3; offset++){
+        const dayStart = new Date(now);
+        dayStart.setDate(dayStart.getDate() + offset);
+        dayStart.setHours(0,0,0,0);
+        const dayEnd = new Date(dayStart);
+        dayEnd.setHours(23,59,59,0);
+
+        const fromMs = offset === 0 ? nowMs : dayStart.getTime();
+        const seg = _extractHourly(d, fromMs, dayEnd.getTime());
+        if(!seg.temps.length) continue;
+
+        const mn = Math.round(Math.min(...seg.temps));
+        const mx = Math.round(Math.max(...seg.temps));
+        const { mode, tempRec } = getAcRecommendation(mn, mx);
+
+        // קוד מזג אוויר דומיננטי לאותו יום
+        const dailyCode = d.daily && d.daily.weather_code ? d.daily.weather_code[offset] : 0;
+        const icon = wIcon(dailyCode);
+        const desc = wDesc(dailyCode);
+
+        const modeColors = {cool:'#4090d0', heat:'#f07030', normal:'#3aaa6e'};
+        const modeIcons  = {cool:'❄️', heat:'🔥', normal:'🌿'};
+        const modeLabels = {cool:'קירור', heat:'חימום', normal:'אוורור'};
+        const modeSettings = {cool:`כוונו ל-${tempRec}° קירור`, heat:`כוונו ל-${tempRec}° חימום`, normal:'כבו / אוורור בלבד'};
+
+        const dow = dayStart.getDay();
+        const dayName = dayNames[dow];
+        const label = offset === 0 ? `היום: ${dayName}` : offset === 1 ? `מחר: ${dayName}` : `מחרתיים: ${dayName}`;
+
+        // אזהרת אובך
+        const hasFog = seg.vis.some(v=>v<2000) || seg.codes.some(c=>c===45||c===48);
+        const fogNote = hasFog ? `<span style="font-size:.76rem;color:#7a5500;font-weight:700">🌫️ צפוי אובך · סגרו פתחי אוורור</span>` : '';
+
+        // השוואה ליום הקודם
+        let compareNote = '';
+        if(prevMn !== null && prevMx !== null){
+          const maxDiff = mx - prevMx;
+          const minDiff = mn - prevMn;
+          const modeChange = mode !== prevMode;
+          const tempSwing = Math.abs(maxDiff) + Math.abs(minDiff);
+
+          if(modeChange){
+            // הסבר מה גרם לשינוי
+            let reason = '';
+            if(prevMode === 'cool' && mode === 'heat'){
+              reason = `הטמפרטורה ירדה משמעותית (מ-${prevMx}° ל-${mx}°). לאור ההתקררות, פינת החי צריכה עכשיו חימום.`;
+            } else if(prevMode === 'heat' && mode === 'cool'){
+              reason = `הטמפרטורה עלתה משמעותית (מ-${prevMx}° ל-${mx}°). לאור ההתחממות, פינת החי צריכה עכשיו קירור.`;
+            } else if(prevMode === 'normal' && mode === 'cool'){
+              reason = `הטמפרטורה עלתה ל-${mx}°. לאור ההתחממות, כדאי להפעיל קירור.`;
+            } else if(prevMode === 'normal' && mode === 'heat'){
+              reason = `הטמפרטורה ירדה ל-${mn}°. לאור ההתקררות, כדאי להפעיל חימום.`;
+            } else if(mode === 'normal'){
+              reason = `הטמפרטורה חזרה לטווח מאוזן (${mn}°–${mx}°). ניתן לכבות את המזגן.`;
+            } else {
+              reason = `שינוי מהנחיה הקודמת: ${mn}°–${mx}°.`;
+            }
+            compareNote = `<span style="font-size:.74rem;background:#fde8e8;border-radius:5px;padding:.12rem .4rem;color:#b02020;font-weight:700;display:inline-block;margin-top:.15rem">⚠️ ${reason}</span>`;
+          } else if(tempSwing >= 7){
+            const dir = maxDiff > 0 ? `עלייה של ${Math.abs(maxDiff)}°` : `ירידה של ${Math.abs(maxDiff)}°`;
+            compareNote = `<span style="font-size:.74rem;background:#f0f4ff;border-radius:5px;padding:.12rem .4rem;color:#3060a0;font-weight:700;display:inline-block;margin-top:.15rem">↕ ${dir} לעומת אתמול — ${maxDiff > 0 ? 'מתחמם' : 'מתקרר'}</span>`;
+          }
+        }
+
+        html += `
+          <div style="display:flex;align-items:center;gap:.6rem;padding:.55rem .7rem;border-radius:10px;border:1.5px solid ${modeColors[mode]}22;background:${modeColors[mode]}0d;margin-bottom:.4rem">
+            <div style="font-size:1.6rem;line-height:1;flex-shrink:0">${icon}</div>
+            <div style="flex:1;min-width:0">
+              <div style="font-weight:900;font-size:.88rem;color:var(--text)">${label}</div>
+              <div style="font-size:.77rem;color:var(--muted);margin-bottom:.18rem">${desc} · ${mn}°–${mx}°</div>
+              <div style="font-size:.79rem;font-weight:800;color:${modeColors[mode]};margin-bottom:.15rem">${modeIcons[mode]} ${modeSettings[mode]}</div>
+              ${compareNote ? `<div style="margin-top:.1rem">${compareNote}</div>` : ''}
+              ${fogNote}
+            </div>
+          </div>`;
+
+        prevMn = mn; prevMx = mx; prevMode = mode;
+      }
+
+      el.innerHTML = html || '<div style="color:var(--muted);font-size:.85rem">לא נמצאו נתונים</div>';
+    } catch(e){
+      console.warn('3-day forecast failed:', e);
+      el.innerHTML = '<div style="background:#fff8e0;border-radius:8px;padding:.45rem .7rem;font-size:.83rem;color:#7a5500">⚠️ לא ניתן לטעון תחזית. בדקו חיבור לאינטרנט.</div>';
+    }
+  }
+
+  // ── 3 ימים אחורה: מזג אוויר היסטורי ──
+  window.loadWeatherHistory = async function loadWeatherHistory(){
+    const el  = document.getElementById('historyCardContent');
+    const btn = document.getElementById('historyLoadBtn');
+    if(!el) return;
+    el.innerHTML = '<div style="color:var(--muted);font-size:.84rem">⏳ טוען נתונים היסטוריים...</div>';
+    if(btn){ btn.disabled = true; btn.textContent = '⏳ טוען...'; }
+
+    const dayNames = ['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
+    const weatherDescs = {0:'שמיים בהירים',1:'בהיר בעיקר',2:'מעונן חלקית',3:'מעונן',45:'ערפל',51:'ממטר קל',61:'גשם',80:'מקלחות גשם',95:'סופת רעמים',96:'ברד'};
+    const weatherIcons = {0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',51:'🌦️',61:'🌧️',80:'🌧️',95:'⛈️',96:'⛈️'};
+    function wIcon(c){ const r=c<=3?c:Math.round(c/10)*10; return weatherIcons[r]||weatherIcons[c]||'🌡️'; }
+    function wDesc(c){ const r=c<=3?c:Math.round(c/10)*10; return weatherDescs[r]||weatherDescs[c]||''; }
+
+    const now = new Date();
+    // פורמט תאריך ל-API
+    function fmtApiDate(d){ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+    const endD = new Date(now); endD.setDate(endD.getDate()-1);
+    const startD = new Date(now); startD.setDate(startD.getDate()-3);
+    const startStr = fmtApiDate(startD);
+    const endStr   = fmtApiDate(endD);
+
+    try {
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=31.252&longitude=34.791` +
+        `&hourly=temperature_2m,weather_code,visibility` +
+        `&daily=weather_code,temperature_2m_max,temperature_2m_min` +
+        `&timezone=Asia%2FJerusalem&past_days=3&forecast_days=1`;
+      const ctrl = new AbortController();
+      const t = setTimeout(()=>ctrl.abort(), 8000);
+      const res = await fetch(url, {signal:ctrl.signal});
+      clearTimeout(t);
+      if(!res.ok) throw new Error('HTTP '+res.status);
+      const d = await res.json();
+
+      let html = '';
+      // מציגים 3 הימים האחרונים (offset -3, -2, -1 מהיום)
+      for(let offset = -3; offset <= -1; offset++){
+        const dayObj = new Date(now);
+        dayObj.setDate(dayObj.getDate() + offset);
+        dayObj.setHours(0,0,0,0);
+        const dayEnd = new Date(dayObj); dayEnd.setHours(23,59,59,0);
+
+        const seg = _extractHourly(d, dayObj.getTime(), dayEnd.getTime());
+        if(!seg.temps.length) continue;
+
+        const mn = Math.round(Math.min(...seg.temps));
+        const mx = Math.round(Math.max(...seg.temps));
+        const { mode, tempRec } = getAcRecommendation(mn, mx);
+
+        // קוד מזג יומי — מה-daily array (index = offset+3 כי past_days=3)
+        const dailyIdx = offset + 3;
+        const dailyCode = d.daily && d.daily.weather_code ? d.daily.weather_code[dailyIdx] : 0;
+        const icon = wIcon(dailyCode);
+        const desc = wDesc(dailyCode);
+
+        const modeColors = {cool:'#4090d0', heat:'#f07030', normal:'#3aaa6e'};
+        const modeIcons  = {cool:'❄️', heat:'🔥', normal:'🌿'};
+        const modeSettings = {
+          cool:`כיוון מזגן שהיה נדרש: ${tempRec}° קירור`,
+          heat:`כיוון מזגן שהיה נדרש: ${tempRec}° חימום`,
+          normal:'מזגן שהיה מספיק: כיבוי / אוורור בלבד'
+        };
+
+        const hasFog = seg.vis.some(v=>v<2000) || seg.codes.some(c=>c===45||c===48);
+        const fogNote = hasFog ? `<div style="font-size:.74rem;color:#7a5500;font-weight:700;margin-top:.15rem">🌫️ היה אובך — חלונות היו צריכים להיות סגורים</div>` : '';
+
+        const dayLabel = offset === -1 ? `אתמול (${dayNames[dayObj.getDay()]})` : offset === -2 ? `שלשום (${dayNames[dayObj.getDay()]})` : `לפני 3 ימים (${dayNames[dayObj.getDay()]})`;
+
+        html += `
+          <div style="display:flex;align-items:flex-start;gap:.6rem;padding:.55rem .7rem;border-radius:10px;border:1.5px solid ${modeColors[mode]}22;background:${modeColors[mode]}0d;margin-bottom:.4rem;opacity:.88">
+            <div style="font-size:1.5rem;line-height:1;flex-shrink:0;margin-top:.1rem">${icon}</div>
+            <div style="flex:1;min-width:0">
+              <div style="font-weight:900;font-size:.86rem;color:var(--text)">${dayLabel}</div>
+              <div style="font-size:.76rem;color:var(--muted);margin-bottom:.15rem">${desc} · ${mn}°–${mx}°</div>
+              <div style="font-size:.78rem;font-weight:800;color:${modeColors[mode]}">${modeIcons[mode]} ${modeSettings[mode]}</div>
+              ${fogNote}
+            </div>
+          </div>`;
+      }
+
+      el.innerHTML = html || '<div style="color:var(--muted);font-size:.85rem">לא נמצאו נתוני עבר</div>';
+      if(btn){ btn.textContent = '🔄 רענן'; btn.disabled = false; }
+    } catch(e){
+      console.warn('History weather failed:', e);
+      el.innerHTML = '<div style="background:#fff8e0;border-radius:8px;padding:.45rem .7rem;font-size:.83rem;color:#7a5500">⚠️ לא ניתן לטעון נתוני עבר. בדקו חיבור לאינטרנט.</div>';
+      if(btn){ btn.textContent = '📂 נסה שוב'; btn.disabled = false; }
+    }
+  };
 
   function buildThermometer(temp){
     const wrap = document.getElementById('thermometerBar');
@@ -10104,8 +10888,52 @@ function pwaInstall(){
       const g = getGuidelines(maxT);
       const rangeLabel = document.getElementById('wRangeLabel');
       if(rangeLabel) rangeLabel.textContent = '📋 הנחיות להיום, ' + g.range;
+
+      // הנחיות חירום לפי סף טמפרטורה (ללא תקלה)
+      let emergencyTipHtml = '';
+      if(maxT >= 35){
+        emergencyTipHtml = `<div style="background:#fde8e8;border:1.5px solid #e05252;border-radius:9px;padding:.45rem .7rem;margin-bottom:.4rem;font-size:.83rem">
+          <div style="font-weight:900;color:#8b1c1c;margin-bottom:.2rem">🔥 חום קיצוני (${maxT}°) — הנחיות מיוחדות</div>
+          <ul style="margin:0;padding-right:1.1rem;line-height:1.65;color:var(--text)">
+            <li>מחליפים את המים בכלי המים לפחות פעמיים ביום.</li>
+            <li>מזיזים את כלוב הג'אקו מהחלון למקום מוצל.</li>
+            <li>בקבוקי קרח עטופים בגרב בתוך הכלוב של הצ'ינצ'ילות והארנבונים.</li>
+            <li>המזגן חייב לפעול. מומלץ 22–24°.</li>
+          </ul>
+        </div>`;
+      } else if(maxT >= 30){
+        emergencyTipHtml = `<div style="background:#fff3e0;border:1.5px solid #f07030;border-radius:9px;padding:.45rem .7rem;margin-bottom:.4rem;font-size:.83rem">
+          <div style="font-weight:900;color:#7a3000;margin-bottom:.2rem">☀️ חום גבוה (${maxT}°) — כדאי לדעת</div>
+          <ul style="margin:0;padding-right:1.1rem;line-height:1.65;color:var(--text)">
+            <li>מוודאים שיש מים קרירים לכל החיות.</li>
+            <li>הצ'ינצ'ילות והארנבונים זקוקים למזגן על קירור.</li>
+            <li>לא מוציאים את החרדון ואת הצבה בשעות החמות.</li>
+          </ul>
+        </div>`;
+      } else if(minT <= 8){
+        emergencyTipHtml = `<div style="background:#dbeafe;border:1.5px solid #4090d0;border-radius:9px;padding:.45rem .7rem;margin-bottom:.4rem;font-size:.83rem">
+          <div style="font-weight:900;color:#1a3060;margin-bottom:.2rem">🧊 קור קיצוני (${minT}°) — הנחיות מיוחדות</div>
+          <ul style="margin:0;padding-right:1.1rem;line-height:1.65;color:var(--text)">
+            <li>סוגרים את כל החלונות היטב לפני שיוצאים.</li>
+            <li>מכסים את כלובי התוכים בבדים עבים בלילה.</li>
+            <li>לזוחלים שמים בקבוקי מים חמימים (38–40°) עטופים במגבת.</li>
+            <li>המזגן על חימום, 22–24°.</li>
+          </ul>
+        </div>`;
+      } else if(minT <= 12){
+        emergencyTipHtml = `<div style="background:#e8f4ff;border:1.5px solid #4090d0;border-radius:9px;padding:.45rem .7rem;margin-bottom:.4rem;font-size:.83rem">
+          <div style="font-weight:900;color:#1a3060;margin-bottom:.2rem">❄️ קר (${minT}°) — כדאי לדעת</div>
+          <ul style="margin:0;padding-right:1.1rem;line-height:1.65;color:var(--text)">
+            <li>מוודאים שכל החלונות סגורים היטב בסוף היום.</li>
+            <li>המזגן על חימום, 22°.</li>
+            <li>הזוחלים פעילים פחות — נורמלי לגמרי.</li>
+          </ul>
+        </div>`;
+      }
+
       document.getElementById('wGuidelines').innerHTML =
         weatherAlerts +
+        emergencyTipHtml +
         g.items.map(item=>
           '<div style="background:#fafbff;border-radius:8px;padding:.4rem .7rem;display:flex;gap:.5rem;align-items:flex-start;font-size:.85rem;line-height:1.55">' +
           '<span style="font-size:1.1rem;flex-shrink:0">' + item.emoji + '</span>' +
@@ -10265,19 +11093,47 @@ function pwaInstall(){
   // ── הפעלת פס פירות בעונה ב-quickguide ──
   function buildQgSeasonalStrip(){
     const strip = document.getElementById('qgSeasonalStrip');
-    const fruitsEl = document.getElementById('qgSeasonalFruits');
-    const titleEl = document.getElementById('qgSeasonalTitle');
-    if(!strip || !fruitsEl || !window._SEASONAL_ALL) return;
-    const month = new Date().getMonth();
-    const inSeason = window._SEASONAL_ALL.filter(s=>s.months.includes(month));
-    if(!inSeason.length){ strip.style.display='none'; return; }
-    const monthName = new Date().toLocaleDateString('he-IL',{month:'long'});
-    if(titleEl) titleEl.textContent = 'עכשיו בעונה:';
-    fruitsEl.innerHTML = inSeason.map(s=>{
-      const name = s.text.replace('! מותר לתת לחיות?','').replace('! ⚠️ זהירות, הוציאו את הגלעין','').replace('עכשיו עונת ','').replace('עונת ','').trim();
-      const isWarn = s.text.includes('⚠️') || s.text.includes('זהירות');
-      return `<button onclick="openFoodModal('${s.id}')" title="לחצו לפרטים על ${name}" style="background:${s.bg};color:${s.color};border:1.5px solid ${s.color}44;border-radius:50px;padding:.22rem .65rem;font-size:.83rem;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:.25rem">${s.emoji} ${name}${isWarn?' ⚠️':''}</button>`;
-    }).join('');
+    if(!strip) return;
+    // הפונקציה הזו הפכה לסטטית — הסטריפ נבנה ב-HTML עם קישור לחודש הנוכחי
+    // מאכלסים רק את שורת מזגן המיני
+    _updateQgWeatherMini();
+  }
+
+  window._updateQgWeatherMini = function _updateQgWeatherMini(){
+    const tempEl = document.getElementById('qgWeatherTemp');
+    const acEl   = document.getElementById('qgWeatherAc');
+
+    // עדכן שם חודש בכרטיס הראשון
+    const _MONTH_HE = ['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
+    const monthLbl = document.getElementById('qgMonthLinkLabel');
+    if(monthLbl){ monthLbl.textContent = _MONTH_HE[new Date().getMonth()]; }
+
+    if(!tempEl || !acEl) return;
+
+    function _setAcText(t, acContent){
+      // שורה 1: טמפרטורה
+      tempEl.textContent = `${t}° עכשיו בחוץ`;
+      // שורה 2: המלצת מזגן (קצרה)
+      if(acContent && acContent.includes('קירור'))       acEl.textContent = '❄️ מזגן על קירור';
+      else if(acContent && acContent.includes('חימום'))  acEl.textContent = '🔥 מזגן על חימום';
+      else if(acContent && (acContent.includes('אוורור') || acContent.includes('כבו'))) acEl.textContent = '🌿 אוורור בלבד';
+      else if(t >= 30)  acEl.textContent = '❄️ מזגן על קירור';
+      else if(t <= 12)  acEl.textContent = '🔥 מזגן על חימום';
+      else              acEl.textContent = '🌿 אוורור בלבד';
+    }
+
+    // ננסה לקרוא מהמזג אוויר הנוכחי שכבר נטען
+    const tempTxt = document.getElementById('tempNow');
+    const acCardTxt = document.getElementById('acCardContent');
+    if(tempTxt && tempTxt.textContent && tempTxt.textContent !== '--'){
+      const t = parseFloat(tempTxt.textContent);
+      if(!isNaN(t)){ _setAcText(Math.round(t), acCardTxt ? acCardTxt.innerText : ''); return; }
+    }
+    // fallback: טוענים ישירות
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=31.252&longitude=34.791&current=temperature_2m&timezone=Asia%2FJerusalem')
+      .then(r=>r.json())
+      .then(d=>{ _setAcText(Math.round(d.current.temperature_2m), ''); })
+      .catch(()=>{ tempEl.textContent = ''; });
   }
 
   // ── הפעלה ──
@@ -10286,10 +11142,20 @@ function pwaInstall(){
     buildCurrentSeasonFoods();
     // ממתינים מעט כדי ש-_SEASONAL_ALL יהיה זמין
     setTimeout(buildQgSeasonalStrip, 100);
+    // buildMonthlyGuide ו-buildHolidayCard חשופות כ-window.* — קריאה בטוחה
+    setTimeout(()=>{ window.buildMonthlyGuide && window.buildMonthlyGuide(); }, 80);
+    setTimeout(()=>{ window.buildHolidayCard  && window.buildHolidayCard();  }, 80);
     // טוען מזג אוויר מיד בטעינת הדף
     setTimeout(loadWeather, 500);
     // טוען המלצת מזגן לטווח ארוך
     setTimeout(loadAcForecast, 700);
+    // טוען תחזית 3 ימים קדימה
+    setTimeout(loadForecast3Days, 900);
+    // עדכן מיני מזגן בבקיצור לאחר טעינת נתונים
+    setTimeout(()=>{ window._updateQgWeatherMini && window._updateQgWeatherMini(); }, 1500);
+    // בונה צ'קליסט ומדריך טיפול
+    setTimeout(buildDailyChecklist, 120);
+    setTimeout(buildAnimalCareGuide, 150);
   });
 
   // טוען מזג אוויר כשנכנסים ללשונית
@@ -10299,10 +11165,626 @@ function pwaInstall(){
       window._loadWeatherOnce = true;
       loadWeather();
       loadAcForecast();
+      loadForecast3Days();
     }
   };
 
+  // ══════════════════════════════════════════════════
+  // מדריך חודשי — נתונים
+  // ══════════════════════════════════════════════════
+  const MONTHLY_DATA = [
+    { m:0, name:'ינואר', emoji:'❄️',
+      biology:'שיא החורף. החרדון המזוקן, השממית המנומרת והצב הסודני ישנוניים מאוד — כמעט לא יזזו ויאכלו מעט מאוד או בכלל לא.',
+      enrichment:'מוסיפים הרבה מצע וגרביים נקיים לתוך קופסאות הפלסטיק של האוגרים והגרבילים כדי שיוכלו להתחפר ולהתחמם.',
+      safety:'בודקים שטמפרטורת המים של הדגים לא יורדת מתחת ל-22°.',
+      fruits:['🍓 תות שדה','🍊 תפוז','🍊 קלמנטינה'],
+      fruitIds:['strawberry','orange','clementine']
+    },
+    { m:1, name:'פברואר', emoji:'🌨️',
+      biology:'עדיין קר בחוץ. הזוחלים עדיין ישנים רוב הזמן. שאר החיות (הציפורים והיונקים) פעילות כרגיל.',
+      enrichment:'נותנים לשרקנים ולצ\'ינצ\'ילות בדי פליז נעימים. הארנבונים והכלבים שבאים לבקר נהנים מסירוק פרוות החורף העבה.',
+      safety:'ניתן לתת לשלווים ולתוכים קצת זרעי חמנייה או דוחן לשמירת חום הגוף.',
+      fruits:['🍓 תות שדה','🍊 תפוז','🍊 קלמנטינה'],
+      fruitIds:['strawberry','orange','clementine']
+    },
+    { m:2, name:'מרץ', emoji:'🌱',
+      biology:'האביב מתחיל. התוכים (ג\'אקו, קוקטיילים וציפורי אהבה) הופכים להרבה יותר פעילים ורועשים.',
+      enrichment:'מביאים ענפים של עצי זית או הדרים לכרסום. חשוב לוודא שהענפים לא מרוססים.',
+      safety:'בבאר שבע יש עכשיו סופות אבק. כשזה קורה — סוגרים את החלונות כדי שהג\'אקו לא ינשום את האבק.',
+      fruits:['🍓 תות שדה','🍇 אוכמניות'],
+      fruitIds:['strawberry','blueberry']
+    },
+    { m:3, name:'אפריל', emoji:'🌸',
+      biology:'מתחיל להיות חם. הזוחלים מסיימים את עונת ההאטה וחוזרים לאיטם לפעילות הרגילה שלהם.',
+      enrichment:'עושים ניקוי יסודי לאקווריום כדי שיהיה נעים לדגים לקראת הקיץ.',
+      safety:'בודקים שהמזגן עובד ומקרר היטב לפני שהחום הגדול מגיע.',
+      fruits:['🍓 תות שדה','🟠 שסק','🍇 אוכמניות'],
+      fruitIds:['strawberry','loquat','blueberry']
+    },
+    { m:4, name:'מאי', emoji:'🌼',
+      biology:'השרבים מתחילים. הארנבונים והכלבים שבאים אלינו משירים המון פרווה.',
+      enrichment:'שמים אריחי קרמיקה או שיש בתוך הקופסאות של הצ\'ינצ\'ילות והאוגרים — הם אוהבים לשכב עליהם להתקרר.',
+      safety:'בודקים שזחלי הקמח ותיקני המדגסקר לא התייבשו מהחום.',
+      fruits:['🍓 תות שדה','🍒 דובדבן','🟠 שסק','🍑 משמש','🍇 אוכמניות'],
+      fruitIds:['strawberry','cherry','loquat','apricot','blueberry']
+    },
+    { m:5, name:'יוני', emoji:'☀️',
+      biology:'הקיץ כבר כאן. המקלונים הויאטנמיים סובלים כשיבש מדי בחדר.',
+      enrichment:'מכינים לתוכי הג\'אקו והקוקטיילים "ארטיקים" של פירות בתוך קוביות קרח. מרססים במים את בית המקלונים לעיתים קרובות.',
+      safety:'שומרים שהמזגן יהיה תמיד על 22–24°.',
+      fruits:['🍒 דובדבן','🍑 אפרסק','🍉 אבטיח','🍈 מלון','🍑 משמש','🍇 אוכמניות'],
+      fruitIds:['cherry','peach','watermelon','melon','apricot','blueberry']
+    },
+    { m:6, name:'יולי', emoji:'🔥',
+      biology:'חם מאוד בחוץ. הצ\'ינצ\'ילות עלולות לקבל מכת חום — צריך להשגיח עליהן היטב. בחודש זה יש בדרך כלל קייטנה בבית הספר.',
+      enrichment:'מוסיפים עוד כלי מים לכל החיות כדי שיהיו להן תמיד מים קרירים וזמינים.',
+      safety:'מזיזים את כלוב הג\'אקו הצידה מהחלון כדי שהשמש החזקה לא תחמם אותו יותר מדי.',
+      fruits:['🍑 אפרסק','🍉 אבטיח','🍈 מלון','🥭 מנגו','🍇 ענבים','💖 ליצ\'י','🌵 סברס','🍇 אוכמניות'],
+      fruitIds:['peach','watermelon','melon','mango','grapes','lychee','sabra','blueberry']
+    },
+    { m:7, name:'אוגוסט', emoji:'🌞',
+      biology:'חום כבד מאוד. החיות בתוך החדר חייבות את המזגן כדי להרגיש טוב.',
+      enrichment:'מחליפים את המים בכלי המים פעמיים ביום כדי שיישארו קרירים.',
+      safety:'בודקים כל יום שהמזגן פועל ושזחלי הקמח ותיקני המדגסקר לא התייבשו.',
+      fruits:['🍉 אבטיח','🥭 מנגו','🍇 ענבים','🌿 תאנה','💖 ליצ\'י','🌵 סברס'],
+      fruitIds:['watermelon','mango','grapes','fig','lychee','sabra']
+    },
+    { m:8, name:'ספטמבר', emoji:'🍂',
+      biology:'הסתיו מתחיל. הימים מתקצרים והזוחלים מתחילים לזוז קצת פחות.',
+      enrichment:'אוספים עלי שלכת יבשים ונקיים ושמים אותם אצל השרקנים והאוגרים להסתרה וחיפוש.',
+      safety:'שוב יש סופות אבק. זוכרים לסגור חלונות כדי להגן על התוכים.',
+      fruits:['🍇 ענבים','🌿 תאנה','🍎 רימון','🍏 גויאבה'],
+      fruitIds:['grapes','fig','pomegranate','guava']
+    },
+    { m:9, name:'אוקטובר', emoji:'🍁',
+      biology:'מזג האוויר משתנה. החרדון ואת השממית אוכלים פחות וזזים פחות.',
+      enrichment:'אפשר להחזיר את כלוב הג\'אקו למקום הרגיל ליד החלון — השמש כבר פחות חזקה.',
+      safety:'מנגבים אבק מהמדפים ומהכלובים כדי שהצב והזוחלים לא יקבלו דלקת בעיניים.',
+      fruits:['🍎 רימון','🟠 אפרסמון','🍏 גויאבה'],
+      fruitIds:['pomegranate','persimmon','guava']
+    },
+    { m:10, name:'נובמבר', emoji:'🌧️',
+      biology:'נהיה קר. הזוחלים נכנסים למצב שינה שימשך כל החורף.',
+      enrichment:'מוסיפים הרבה מצע וגרביים להתכרבלות בתוך הקופסאות של המכרסמים.',
+      safety:'מוודאים שכל החלונות סגורים היטב בסוף היום כדי שלא ייכנס קור.',
+      fruits:['🍊 תפוז','🍊 קלמנטינה','🟠 אפרסמון','🍏 גויאבה'],
+      fruitIds:['orange','clementine','persimmon','guava']
+    },
+    { m:11, name:'דצמבר', emoji:'⛄',
+      biology:'חורף. הזוחלים (החרדון, השממית והצב) ישנים כמעט כל הזמן ואוכלים מעט מאוד.',
+      enrichment:'מוסיפים ערסלים מבד פליז לצ\'ינצ\'ילות ולגרבילים.',
+      safety:'משאירים את הווילונות פתוחים כשיוצאים מהחדר כדי שהחיות יקבלו קצת אור יום טבעי.',
+      fruits:['🍓 תות שדה','🍊 תפוז','🍊 קלמנטינה','🟠 אפרסמון'],
+      fruitIds:['strawberry','orange','clementine','persimmon']
+    },
+  ];
+
+  const EMERGENCY_DATA = {
+    summer: {
+      title:'🚨 תקלת מזגן/חשמל — קיץ (חום קיצוני)',
+      bg:'#fde8e8', border:'#e05252', color:'#8b1c1c',
+      steps:[
+        'מזיזים את כלוב הג\'אקו מהחלון למקום מוצל בחדר.',
+        'שמים בקבוקי מים קפואים עטופים בגרב בתוך הכלוב של הצ\'ינצ\'ילות ושל הארנבונים.',
+        'פותחים את פתח האוורור הקטן שליד התוכים ואת החלונות כדי שייכנס אוויר.',
+        'מוסיפים עוד כלי מים קרירים לכל החיות.',
+      ]
+    },
+    winter: {
+      title:'🧊 תקלת מזגן/חשמל — חורף (קור קיצוני)',
+      bg:'#dbeafe', border:'#4090d0', color:'#1a3060',
+      steps:[
+        'בודקים שכל החלונות סגורים היטב. אם נכנסת רוח קרה — מזיזים את הג\'אקו למרכז החדר.',
+        'מכסים את כלובי התוכים בבדים עבים לשמירת החום.',
+        'לזוחלים (החרדון, השממית והצב) שמים בקבוקים עם מים חמימים (38–40°) עטופים במגבת בתוך הבית שלהם.',
+        'מוודאים שלמכרסמים בקופסאות הפלסטיק יש הרבה מצע וגרביים. לא מכסים את הרשת בשמיכות — צריך אוויר לנשימה.',
+      ]
+    }
+  };
+
+  const MONTH_BG_MG = ['#fff0f8','#ffe8f0','#fff0e8','#fff8e0','#f8ffe0','#e8ffe8','#e8fff8','#e8f8ff','#f0e8ff','#ffe8e8','#fff0e0','#e8f0ff'];
+  let _monthlyGuideIndex = new Date().getMonth();
+
+  function buildEmergencyHtml(type, compact){
+    const e = EMERGENCY_DATA[type];
+    if(!e) return '';
+    const stepsHtml = e.steps.map(s=>`<li style="margin-bottom:.2rem">${s}</li>`).join('');
+    if(compact){
+      return `<details style="margin-bottom:.35rem">
+        <summary style="cursor:pointer;font-size:.80rem;font-weight:800;color:${e.color};background:${e.bg};border-radius:8px;padding:.3rem .65rem;list-style:none;display:flex;align-items:center;gap:.35rem">
+          ${e.title} ▾
+        </summary>
+        <div style="background:${e.bg};border-radius:0 0 8px 8px;border-top:1px solid ${e.border}22;padding:.4rem .7rem;font-size:.79rem;color:var(--text)">
+          <ol style="margin:0;padding-right:1.1rem;line-height:1.6">${stepsHtml}</ol>
+        </div>
+      </details>`;
+    }
+    return `<div style="background:${e.bg};border:1.5px solid ${e.border};border-radius:10px;padding:.55rem .8rem;margin-bottom:.4rem;font-size:.80rem">
+      <div style="font-weight:900;color:${e.color};margin-bottom:.3rem">${e.title}</div>
+      <ol style="margin:0;padding-right:1.1rem;line-height:1.65;color:var(--text)">${stepsHtml}</ol>
+    </div>`;
+  }
+
+  window.buildMonthlyGuide = function buildMonthlyGuide(){
+    const titleEl   = document.getElementById('monthlyGuideTitle');
+    const contentEl = document.getElementById('monthlyGuideContent');
+    const allEl     = document.getElementById('monthlyGuideAll');
+    if(!contentEl) return;
+
+    const m = MONTHLY_DATA[_monthlyGuideIndex];
+    const isCurrentMonth = _monthlyGuideIndex === new Date().getMonth();
+    if(titleEl) titleEl.textContent = `${m.emoji} ${m.name}${isCurrentMonth ? ' (החודש הנוכחי)' : ''}`;
+
+    const fruitsHtml = m.fruits.map((f,i) => {
+      const id = m.fruitIds[i];
+      return `<span onclick="if(typeof FOODS!=='undefined'&&FOODS.find(x=>x.id==='${id}')){openFoodModal('${id}')}else{}" style="cursor:pointer;background:#fff8e8;border:1px solid #e8c87055;border-radius:20px;padding:.18rem .55rem;font-size:.8rem;font-weight:700;display:inline-flex;align-items:center;gap:.2rem">${f}</span>`;
+    }).join(' ');
+
+    const isSummer = _monthlyGuideIndex >= 5 && _monthlyGuideIndex <= 8;
+
+    contentEl.innerHTML = `
+      <div style="background:${MONTH_BG_MG[_monthlyGuideIndex]};border-radius:12px;padding:.65rem .85rem;font-size:.84rem;line-height:1.65;color:var(--text);margin-bottom:.45rem">
+        <div style="margin-bottom:.5rem"><span style="font-weight:900;color:#3aaa6e">🧬 ביולוגיה: </span>${m.biology}</div>
+        <div style="margin-bottom:.5rem"><span style="font-weight:900;color:#7c5cbf">🎪 העשרה: </span>${m.enrichment}</div>
+        <div style="margin-bottom:.5rem"><span style="font-weight:900;color:#4090d0">🛡️ בטיחות וסדר: </span>${m.safety}</div>
+        ${m.fruits.length ? `<div><span style="font-weight:900;color:#f0874a">🍓 פירות בעונה: </span>${fruitsHtml}</div>` : ''}
+      </div>`;
+
+    // בנה "כל השנה" רק פעם אחת
+    if(allEl && allEl.innerHTML === ''){
+      allEl.innerHTML = MONTHLY_DATA.map((md,i) => {
+        const fr = md.fruits.map((f,j) => {
+          const id = md.fruitIds[j];
+          return `<span onclick="if(typeof FOODS!=='undefined'&&FOODS.find(x=>x.id==='${id}')){openFoodModal('${id}')}else{}" style="cursor:pointer;background:#fff8e855;border-radius:15px;padding:.12rem .4rem;font-size:.75rem;font-weight:700">${f}</span>`;
+        }).join(' ');
+        const isCur = i === new Date().getMonth();
+        return `<div style="border:${isCur?'2px solid #3aaa6e':'1px solid #e0e8e0'};border-radius:10px;padding:.5rem .75rem;margin-bottom:.4rem;background:${MONTH_BG_MG[i]}">
+          <div style="font-weight:900;font-size:.88rem;margin-bottom:.25rem">${md.emoji} ${md.name}${isCur?' ← עכשיו':''}</div>
+          <div style="font-size:.78rem;line-height:1.55;color:var(--text)">
+            <span style="font-weight:700;color:#3aaa6e">ביולוגיה:</span> ${md.biology}<br>
+            <span style="font-weight:700;color:#7c5cbf">העשרה:</span> ${md.enrichment}<br>
+            <span style="font-weight:700;color:#4090d0">בטיחות:</span> ${md.safety}
+            ${md.fruits.length?`<br><span style="font-weight:700;color:#f0874a">פירות:</span> ${fr}`:''}
+          </div>
+        </div>`;
+      }).join('') +
+      `<div style="margin-top:.7rem;font-size:.83rem;font-weight:900;color:#555;margin-bottom:.3rem">🚨 הנחיות חירום</div>` +
+      buildEmergencyHtml('summer',false) +
+      buildEmergencyHtml('winter',false);
+    }
+  }
+
+  window.monthlyGuideNav = function(dir){
+    _monthlyGuideIndex = (_monthlyGuideIndex + dir + 12) % 12;
+    buildMonthlyGuide();
+  };
+
+  window.toggleMonthlyAll = function(){
+    const el = document.getElementById('monthlyGuideAll');
+    const btn = document.querySelector('#monthlyGuideAllToggle button');
+    if(!el) return;
+    const open = el.style.display === 'none' || el.style.display === '';
+    el.style.display = open ? 'block' : 'none';
+    if(btn) btn.textContent = open ? '📋 הסתר ▴' : '📋 הצג את כל השנה ▾';
+    if(open) buildMonthlyGuide();
+  };
+
+  // ══════════════════════════════════════════════════
+  // לוח חופשות
+  // ══════════════════════════════════════════════════
+  // HOLIDAYS כולל גם קייטנה
+  // ── עזר: פורמט תאריך בעברית ──
+  const _DAY_HE = ['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
+  function _fmtDate(d){ if(!d) return ''; return `יום ${_DAY_HE[d.getDay()]} ${d.getDate()}.${d.getMonth()+1}.${d.getFullYear()}`; }
+  function _schoolYear(d){ const yr=d.getFullYear(); return d.getMonth()>=8?`${yr}\u2013${yr+1}`:`${yr-1}\u2013${yr}`; }
+  let _holidayPage = 0;
+
+  const HOLIDAYS = [
+    // out = יום האחרון שנמצאים בפינת החי, back = יום החזרה
+    { name:'חופשת פסח',         out:new Date(2026,2,23), back:new Date(2026,3,9)   },
+    { name:'יום העצמאות',       out:new Date(2026,3,21), back:new Date(2026,3,23)  },
+    { name:'ל"ג בעומר',         out:new Date(2026,4,5),  back:new Date(2026,4,6)   },
+    { name:'חופשת שבועות',      out:new Date(2026,4,20), back:new Date(2026,4,24)  },
+    { name:'סיום שנת הלימודים', out:new Date(2026,5,30), back:null                 },
+    // קייטנה = יולי, מצב קיץ — לא היעדרות, דרוש היערכות ספציפית
+    { name:'קייטנה',            out:new Date(2026,6,1),  back:new Date(2026,7,1),  camp:true },
+    // חופש גדול = אוגוסט, היעדרות מלאה
+    { name:'חופש גדול',         out:new Date(2026,7,1),  back:new Date(2026,8,1),  summer:true },
+    { name:'ראש השנה',          out:new Date(2026,8,10), back:new Date(2026,8,14)  },
+    { name:'יום כיפור וסוכות',  out:new Date(2026,8,19), back:new Date(2026,9,4)   },
+    { name:'חופשת חנוכה',       out:new Date(2026,11,5), back:new Date(2026,11,13) },
+    { name:'חופשת פורים',       out:new Date(2027,2,22), back:new Date(2027,2,25)  },
+    { name:'חופשת פסח',         out:new Date(2027,3,12), back:new Date(2027,3,29)  },
+    { name:'יום העצמאות',       out:new Date(2027,4,11), back:new Date(2027,4,14)  },
+    { name:'חופשת שבועות',      out:new Date(2027,5,10), back:new Date(2027,5,13)  },
+    { name:'סיום שנת הלימודים', out:new Date(2027,5,30), back:null                 },
+    { name:'קייטנה',            out:new Date(2027,6,1),  back:new Date(2027,7,1),  camp:true },
+    { name:'חופש גדול',         out:new Date(2027,7,1),  back:new Date(2027,8,1),  summer:true },
+  ];
+
+  // תאריכי סוף שנה ללוח
+  const YEAR_ENDS = [
+    new Date(2026,5,30),
+    new Date(2027,5,30),
+  ];
+
+  function _schoolYear(d){
+    const yr = d.getFullYear();
+    return d.getMonth() >= 8 ? `${yr}\u2013${yr+1}` : `${yr-1}\u2013${yr}`;
+  }
+
+  function _holidayItemHtml(h, now, isHighlight, clickable){
+    // out = יום אחרון בפינת החי (יום לימודים אחרון לפני החופש)
+    // back = יום החזרה (יום הלימודים הראשון אחרי החופש)
+    const isPast = h.back ? h.back <= now : h.out < now;
+    const isActive = h.out < now && h.back && h.back > now; // עכשיו בתוך החופש
+
+    // ימי היעדרות: מיום שאחרי out עד יום לפני back
+    const absenceDays = h.back ? Math.round((h.back - h.out)/86400000) - 1 : null;
+
+    // ספירה לאחור
+    const daysLeft = (isPast || isActive) ? null : Math.ceil((h.out - now)/86400000);
+
+    // תגים
+    const campBadge = h.camp
+      ? `<span style="font-size:.73rem;background:#fff3cd;border-radius:6px;padding:.1rem .4rem;color:#7a5000;font-weight:700;margin-right:.3rem">🏕️ מצב קיץ</span>`
+      : '';
+    const summerBadge = h.summer
+      ? `<span style="font-size:.73rem;background:#fde8e8;border-radius:6px;padding:.1rem .4rem;color:#b02020;font-weight:700;margin-right:.3rem">🌞 היעדרות מלאה</span>`
+      : '';
+    const activeBadge = isActive
+      ? `<span style="font-size:.73rem;background:#e8ffe8;border-radius:6px;padding:.1rem .4rem;color:#1a6a1a;font-weight:700;margin-right:.3rem">עכשיו!</span>`
+      : '';
+    const countdownBadge = !isPast && !isActive && daysLeft !== null
+      ? `<span style="font-size:.73rem;background:var(--lavender);border-radius:6px;padding:.1rem .4rem;color:#5a3a9a;font-weight:700">${daysLeft === 0 ? 'היום!' : `עוד ${daysLeft} ימים`}</span>`
+      : '';
+
+    const acWarnText = h.camp ? '' :
+      h.summer ? '' :
+      absenceDays && absenceDays >= 1
+        ? `⚠️ ${absenceDays === 1 ? 'יום היעדרות אחד' : `${absenceDays} ימי היעדרות`} מפינת החי`
+        : '';
+    const acWarn = acWarnText
+      ? `<span class="absence-warn">${acWarnText}</span>`
+      : '';
+
+    const bg = isHighlight ? 'var(--sky)' : isActive ? '#f0fff0' : 'transparent';
+    const borderRight = isHighlight ? 'border-right:3px solid var(--blue);' : isActive ? 'border-right:3px solid #2a8a2a;' : '';
+    const clickAttr = clickable ? `style="cursor:pointer"` : '';
+
+    // שורות תאריך — עם 4 שלבים לחגים רגילים
+    let dateLines = '';
+    if(h.camp){
+      // קייטנה
+      dateLines = `<span style="opacity:.85">🏕️ יולי: ${_fmtDate(h.out)} עד ${_fmtDate(h.back)}</span><br>` +
+                  `<span style="font-size:.74rem;color:var(--text);opacity:.8">קייטנה פעילה — נדרשת היערכות ספציפית</span>`;
+    } else if(h.summer){
+      // חופש גדול
+      const summerDays = h.back ? Math.round((h.back - h.out)/86400000) : null;
+      dateLines = `<span style="opacity:.85">☀️ ${_fmtDate(h.out)} עד ${_fmtDate(h.back)}</span><br>` +
+                  `<span style="font-size:.74rem;color:#b02020;font-weight:700">נעדרים מפינת החי לאורך כל התקופה</span>` +
+                  (summerDays ? `<br><span style="font-size:.74rem;opacity:.7">📊 סה"כ ${summerDays} ימי חופש גדול</span>` : '');
+    } else if(h.back){
+      // חג רגיל — 4 שלבים
+      const holidayStart = new Date(h.out); holidayStart.setDate(holidayStart.getDate()+1);
+      const holidayEnd   = new Date(h.back); holidayEnd.setDate(holidayEnd.getDate()-1);
+      const daysAwayLine = absenceDays === 1
+        ? `📊 סה"כ יום היעדרות אחד מפינת החי`
+        : absenceDays > 1
+          ? `📊 סה"כ ${absenceDays} ימי היעדרות מפינת החי`
+          : '';
+      dateLines =
+        `<span style="opacity:.85">א. יום לימודים אחרון: <strong>${_fmtDate(h.out)}</strong></span><br>` +
+        `<span style="opacity:.85">ב. חופשה: ${_fmtDate(holidayStart)}` +
+          (absenceDays > 1 ? ` עד ${_fmtDate(holidayEnd)}` : '') + `</span><br>` +
+        `<span style="opacity:.85">ג. חזרה לבית הספר: <strong>${_fmtDate(h.back)}</strong></span>` +
+        (daysAwayLine ? `<br><span style="font-size:.74rem;opacity:.75">${daysAwayLine}</span>` : '');
+    } else {
+      // אין תאריך חזרה (סיום שנה)
+      dateLines = `<span style="opacity:.85">יום לימודים אחרון: ${_fmtDate(h.out)}</span><br>` +
+                  `<span style="opacity:.85">🌞 קיץ, חוזרים בספטמבר</span>`;
+    }
+
+    return `<div ${clickAttr} style="padding:.42rem .55rem;border-radius:9px;margin-bottom:.28rem;background:${bg};${borderRight}opacity:${isPast ? .45 : 1}">
+      <div style="display:flex;align-items:center;gap:.35rem;flex-wrap:wrap">
+        <span style="font-weight:800;font-size:.86rem;color:var(--text)">${isPast ? '✓' : isActive ? '📅' : '🏖️'} ${h.name}${isHighlight ? ' ← הבא' : ''}</span>
+        ${campBadge}${summerBadge}${activeBadge}${countdownBadge}
+      </div>
+      <div style="font-size:.77rem;color:var(--text);opacity:.75;line-height:1.55;margin-top:.1rem">
+        ${dateLines}
+        ${acWarn ? `<br>${acWarn}` : ''}
+      </div>
+    </div>`;
+  }
+
+  window.buildHolidayCard = function buildHolidayCard(){
+    const cdEl      = document.getElementById('holidayCountdown');
+    const contentEl = document.getElementById('holidayCardContent');
+    const allEl     = document.getElementById('holidayAllContent');
+    if(!contentEl) return;
+
+    const now = new Date(); now.setHours(0,0,0,0);
+    const nowMonth = now.getMonth(); // 0=ינואר ... 11=דצמבר
+
+    // קביעת מצב: קיץ (יולי–אוגוסט) vs שנת לימודים
+    // ב-1.7 עד 31.8 — מצב קיץ: ספור לחזרה ב-1.9
+    // מ-1.9 ואילך — ספור לפי שנת לימודים נוכחית בלבד
+    const isSummer = nowMonth === 6 || nowMonth === 7; // יולי=6, אוגוסט=7
+
+    // שנת לימודים נוכחית: אם אנחנו בספטמבר ואילך — השנה הנוכחית, אחרת — שנת לימודים שהתחילה בספטמבר הקודם
+    const currentSchoolYear = _schoolYear(now);
+
+    // הוראות חזרה לפי שנה
+    const SCHOOL_RESUME = [new Date(2026,8,1), new Date(2027,8,1)];
+
+    // ── מצא את החופשה הבאה ──
+    // בקיץ: אין "חופשה הבאה" — מחכים לחזרה ב-1.9
+    // בשנת לימודים: רק חופשות בתוך שנת הלימודים הנוכחית (ולא קיץ/קייטנה)
+    let next = null;
+    let nextIdx = -1;
+    if(!isSummer){
+      // חפש את החופשה הבאה בתוך שנת הלימודים הנוכחית
+      for(let i=0; i<HOLIDAYS.length; i++){
+        const h = HOLIDAYS[i];
+        if(h.camp || h.summer) continue;
+        if(_schoolYear(h.out) !== currentSchoolYear) continue;
+        if(h.out >= now || (h.back && h.back > now)){
+          next = h; nextIdx = i; break;
+        }
+      }
+    }
+
+    if(cdEl){
+      // חישוב "עד סוף שנת הלימודים" — רק עבור השנה הנוכחית
+      const thisYearEnd = YEAR_ENDS.find(d => _schoolYear(d) === currentSchoolYear) || null;
+      const daysToYearEnd = thisYearEnd && !isSummer ? Math.ceil((thisYearEnd - now)/86400000) : null;
+
+      let bottomLine = '';
+      if(isSummer){
+        const nextResume = SCHOOL_RESUME.find(d => d >= now);
+        const days = nextResume ? Math.ceil((nextResume - now)/86400000) : null;
+        if(days !== null && days > 0)
+          bottomLine = `<div style="font-size:.76rem;color:var(--text);opacity:.6;margin-top:.3rem">⏳ חזרה לבית הספר: עוד ${days} ימים</div>`;
+        else if(days === 0)
+          bottomLine = `<div style="font-size:.76rem;color:var(--green);font-weight:800;margin-top:.3rem">🎒 היום חוזרים לבית הספר!</div>`;
+      } else if(daysToYearEnd !== null && daysToYearEnd > 0){
+        bottomLine = `<div style="font-size:.76rem;color:var(--text);opacity:.6;margin-top:.3rem">עד סוף שנת הלימודים: עוד ${daysToYearEnd} ימים</div>`;
+      } else if(daysToYearEnd === 0){
+        bottomLine = `<div style="font-size:.76rem;color:var(--green);font-weight:800;margin-top:.3rem">🎉 היום סוף שנת הלימודים!</div>`;
+      }
+
+      if(isSummer){
+        // בקיץ — הצג כרטיס "חופש גדול"
+        const nextResume = SCHOOL_RESUME.find(d => d >= now);
+        const days = nextResume ? Math.ceil((nextResume - now)/86400000) : null;
+        cdEl.innerHTML = `<div style="font-size:.77rem;color:var(--text);opacity:.65;margin-bottom:.12rem">☀️ חופש גדול</div>
+          <div style="font-size:.95rem;font-weight:900;color:var(--orange)">🏖️ נהנים מהחופש!</div>
+          ${days !== null && days > 0 ? `<div style="font-size:1.0rem;font-weight:900;color:var(--purple);margin-top:.25rem">חזרה לספטמבר — עוד <span style="font-size:1.3rem">${days}</span> ימים</div>` : ''}`;
+      } else if(next){
+        const daysLeft = Math.ceil((next.out - now)/86400000);
+        const absenceDays = next.back ? Math.round((next.back - next.out)/86400000) - 1 : null;
+        const durLine = absenceDays ? ` · ${absenceDays === 1 ? 'יום היעדרות אחד' : `${absenceDays} ימי היעדרות`}` : '';
+        cdEl.innerHTML = daysLeft === 0
+          ? `<div style="font-size:1.05rem;font-weight:900;color:var(--red)">🏖️ ${next.name} — יוצאים היום!</div>${bottomLine}`
+          : `<div style="font-size:.77rem;color:var(--text);opacity:.65;margin-bottom:.12rem">החופשה הבאה:</div>
+             <div style="font-size:1rem;font-weight:900;color:var(--blue)">🗓️ ${next.name}</div>
+             <div style="font-size:.81rem;font-weight:700;color:var(--text);margin:.07rem 0">יוצאים ${_fmtDate(next.out)}</div>
+             <div style="font-size:1.1rem;font-weight:900;color:var(--purple)">עוד <span style="font-size:1.4rem">${daysLeft}</span> ימים${durLine}</div>
+             ${bottomLine}`;
+      } else {
+        // אין חופשה קרובה בשנה הנוכחית
+        cdEl.innerHTML = `<div style="font-size:.85rem;color:var(--text);opacity:.6">אין חופשות נוספות השנה</div>${bottomLine}`;
+      }
+    }
+
+    // ── רשימת החופשות בדף ──
+    // מגדירים אילו חופשות להציג בעמוד הראשי: רק של שנת הלימודים הנוכחית (בתקופת שנת לימודים)
+    // בקיץ: הצג חופשות של שנה הבאה (מ-1.9)
+    const displayYear = isSummer
+      ? _schoolYear(SCHOOL_RESUME.find(d => d >= now) || new Date(now.getFullYear(),8,1))
+      : currentSchoolYear;
+    const allHolsForPage = HOLIDAYS.filter(h => _schoolYear(h.out) === displayYear || (h.back && _schoolYear(h.back) === displayYear));
+
+    const nextForPage = allHolsForPage.findIndex(h => h.out >= now || (h.back && h.back > now));
+    const startBase = nextForPage >= 0 ? nextForPage : 0;
+    const PAGE_SIZE = 3;
+    const pageStart = Math.max(0, Math.min(startBase + _holidayPage * PAGE_SIZE, Math.max(0, allHolsForPage.length - PAGE_SIZE)));
+    const pageItems = allHolsForPage.slice(pageStart, pageStart + PAGE_SIZE);
+
+    contentEl.innerHTML = pageItems.map(h => {
+      const isHL = nextIdx >= 0 && HOLIDAYS.indexOf(h) === nextIdx;
+      return _holidayItemHtml(h, now, isHL, false);
+    }).join('') || `<div style="font-size:.85rem;color:var(--muted)">אין נתונים</div>`;
+
+    // ניתוח מזגן לחג הבא שיש לו היעדרות (לא קיץ/קייטנה)
+    const acAnalysisEl = document.getElementById('holidayAcAnalysis');
+    if(acAnalysisEl && next && !next.camp && !next.summer && next.back){
+      acAnalysisEl.innerHTML = '<div style="font-size:.76rem;color:var(--muted);padding:.3rem 0">מחשב תחזית מזגן לחופש...</div>';
+      buildHolidayAcAnalysis(next).then(blocks => {
+        if(blocks && blocks.length){
+          acAnalysisEl.innerHTML = _buildHolidayAcHtml(blocks, next.name);
+        } else {
+          acAnalysisEl.innerHTML = '';
+        }
+      });
+    } else if(acAnalysisEl){
+      acAnalysisEl.innerHTML = '';
+    }
+
+    const prevBtn = document.getElementById('holidayPrev');
+    const nextBtn = document.getElementById('holidayNext');
+    if(prevBtn) prevBtn.style.opacity = (pageStart <= 0) ? '.3' : '1';
+    if(nextBtn) nextBtn.style.opacity = (pageStart + PAGE_SIZE >= allHolsForPage.length) ? '.3' : '1';
+
+    if(allEl && allEl.innerHTML === ''){
+      let allHtml = '';
+      let lastSY = '';
+      HOLIDAYS.forEach(h => {
+        const sy = _schoolYear(h.out);
+        if(sy !== lastSY){
+          lastSY = sy;
+          const thisYearEnd = YEAR_ENDS.find(d => _schoolYear(d) === sy);
+          const daysToEnd = (thisYearEnd && !isSummer) ? Math.ceil((thisYearEnd - now)/86400000) : null;
+          const endNote = daysToEnd !== null && daysToEnd > 0
+            ? ` <span style="font-size:.72rem;opacity:.7">(עוד ${daysToEnd} ימים)</span>`
+            : daysToEnd === 0 ? ` <span style="font-size:.72rem;opacity:.7">(היום!)</span>` : '';
+          allHtml += `<div style="font-weight:900;font-size:.82rem;color:var(--muted);margin:${allHtml?'.6rem':0} 0 .25rem;${allHtml?'border-top:1px solid rgba(128,128,128,.18);padding-top:.45rem':''}">📚 שנת לימודים ${sy}${endNote}</div>`;
+        }
+        const isHL = nextIdx >= 0 && HOLIDAYS.indexOf(h) === nextIdx;
+        allHtml += _holidayItemHtml(h, now, isHL, false);
+      });
+      allEl.innerHTML = allHtml;
+    }
+  }
+
+  window.holidayNav = function(dir){
+    const now = new Date(); now.setHours(0,0,0,0);
+    const nowMonth = now.getMonth();
+    const isSummer = nowMonth === 6 || nowMonth === 7;
+    const currentSchoolYear = _schoolYear(now);
+    const SCHOOL_RESUME = [new Date(2026,8,1), new Date(2027,8,1)];
+    const displayYear = isSummer
+      ? _schoolYear(SCHOOL_RESUME.find(d => d >= now) || new Date(now.getFullYear(),8,1))
+      : currentSchoolYear;
+    const allH = HOLIDAYS.filter(h => _schoolYear(h.out) === displayYear || (h.back && _schoolYear(h.back) === displayYear));
+    const nextMainIdx = allH.findIndex(h => h.out >= now || (h.back && h.back > now));
+    const startBase = nextMainIdx >= 0 ? nextMainIdx : 0;
+    const PAGE_SIZE = 3;
+    const newPage = _holidayPage + dir;
+    const newStart = startBase + newPage * PAGE_SIZE;
+    if(newStart < 0 || newStart >= allH.length) return;
+    _holidayPage = newPage;
+    buildHolidayCard();
+  };
+
+  window.toggleHolidayAll = function(){
+    const el  = document.getElementById('holidayAllContent');
+    const btn = document.querySelector('#holidayCard button[onclick="toggleHolidayAll()"]');
+    if(!el) return;
+    const open = el.style.display === 'none' || el.style.display === '';
+    el.style.display = open ? 'block' : 'none';
+    if(btn) btn.textContent = open ? '📋 הסתר ▴' : '📋 הצג את כל החופשות ▾';
+    if(open){ el.innerHTML = ''; buildHolidayCard(); }
+  };
+
 })();
+
+// ══════════════════════════════════════════════════════════════
+// 📋 צ'קליסט יומי
+// ══════════════════════════════════════════════════════════════
+function buildDailyChecklist(){
+  const el = document.getElementById('dailyChecklistItems');
+  if(!el || el.children.length > 0) return;
+
+  const items = [
+    { emoji:'🐾', color:'#3aaa6e', bg:'#f0faf4', border:'#a8dfc0',
+      title:'בדיקת שלום החיות',
+      text:'בדיקה יסודית שכולן בריאות, פעילות ומתנהגות כרגיל.' },
+    { emoji:'💧', color:'#4090d0', bg:'#f0f6ff', border:'#a8c8f0',
+      title:'מים',
+      text:'שטיפה ומילוי מחדש של כל כלי המים. דגש מיוחד על הגדרה — הם שותים הכי הרבה!' },
+    { emoji:'🌾', color:'#c08020', bg:'#fffbf0', border:'#e8d080',
+      title:'אוכל יבש',
+      text:'מילוי מזון מותאם לכל חיה לפי הפירוט.' },
+    { emoji:'🥬', color:'#2a8a50', bg:'#f0faf4', border:'#90d0a8',
+      title:'ירקות',
+      text:'הגשת ירקות שטופים 2–3 פעמים בשבוע (למעט זאוס ודונה שאוכלים בכל יום).' },
+    { emoji:'🧹', color:'#7c5cbf', bg:'#f5f0ff', border:'#c0a8e8',
+      title:'ניקיון וטיפוח',
+      text:'הוצאת שאריות, החלפת מצע, סירוק הארנבונים והשרקנים, ניקוי שולחנות ושטיפת כלים.' },
+    { emoji:'💡', color:'#d08a00', bg:'#fffbf0', border:'#e8c840',
+      title:'חשמל אצל הזוחלים',
+      text:'חובה לוודא תקינות מנורות חימום, UV ומשטחי חימום אצל דונה, זאוס וסויה.' },
+    { emoji:'🔒', color:'#555', bg:'#f5f5f5', border:'#ccc',
+      title:'סיום וסגירה',
+      text:'טאטוא, ריקון פח, בדיקת חלונות (אוורור בלבד), נעילת כל הכלובים והשערים.' },
+  ];
+
+  function toggleItem(cb, row, check){
+    const checked = cb.checked;
+    row.style.opacity    = checked ? '.52' : '1';
+    check.style.background = checked ? 'var(--green)' : '#e8e8e8';
+    check.style.color      = checked ? '#fff' : 'transparent';
+    check.textContent      = checked ? '✓' : '';
+  }
+
+  el.innerHTML = items.map((it, i) => `
+    <label id="clRow${i}" style="display:flex;align-items:flex-start;gap:.6rem;padding:.42rem .55rem;border-radius:10px;border:1.5px solid ${it.border};background:${it.bg};cursor:pointer;transition:opacity .18s">
+      <input type="checkbox" id="cl${i}" style="display:none" onchange="(function(){var cb=this,row=document.getElementById('clRow${i}'),ch=document.getElementById('clChk${i}');row.style.opacity=cb.checked?'.52':'1';ch.style.background=cb.checked?'var(--green)':'#e8e8e8';ch.style.color=cb.checked?'#fff':'transparent';ch.textContent=cb.checked?'✓':'';}).call(this)">
+      <div id="clChk${i}" style="width:20px;height:20px;border-radius:50%;background:#e8e8e8;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:900;color:transparent;transition:all .18s;margin-top:.05rem"></div>
+      <div style="flex:1;min-width:0">
+        <div style="font-weight:800;font-size:.84rem;color:${it.color};display:flex;align-items:center;gap:.3rem">
+          ${it.emoji} ${it.title}
+          <button onclick="event.stopPropagation();speakText('${it.title}. ${it.text}',this)" style="background:none;border:none;cursor:pointer;font-size:.8rem;color:#aaa;padding:0;line-height:1;flex-shrink:0">🔊</button>
+        </div>
+        <div style="font-size:.77rem;color:var(--muted);margin-top:.1rem;line-height:1.45">${it.text}</div>
+      </div>
+    </label>`).join('');
+
+  // קליק על הrow עצמו מפעיל את הצ'קבוקס
+  items.forEach((_, i) => {
+    const row = document.getElementById('clRow' + i);
+    if(row) row.addEventListener('click', () => {
+      const cb = document.getElementById('cl' + i);
+      if(cb){ cb.checked = !cb.checked; cb.dispatchEvent(new Event('change')); }
+    });
+  });
+}
+
+// ══════════════════════════════════════════════════════════════
+// 🐾 מדריך טיפול לפי חיה
+// ══════════════════════════════════════════════════════════════
+function buildAnimalCareGuide(){
+  const el = document.getElementById('animalCareGuide');
+  if(!el || el.children.length > 0) return;
+
+  const animals = [
+    { emoji:'🦜', color:'#7c5cbf', bg:'#f5f0ff', border:'#c0a0e8',
+      name:'קיקו (ג\'אקו)',
+      care:'כופתיות בכל יום ותערובת גרעינים 3 פעמים בשבוע. להוסיף ויטמינים ולוודא מים נקיים מאוד.' },
+    { emoji:'🐦', color:'#4090d0', bg:'#f0f6ff', border:'#a8c8f0',
+      name:'תוכונים',
+      care:'מים נקיים מאוד — מאוד! שני סוגי מזון: כופתיות ותערובת. ירקות מגוונים.' },
+    { emoji:'🐢', color:'#3aaa6e', bg:'#f0faf4', border:'#90d0a8',
+      name:'דונה הצבה',
+      care:'ירקות בכל יום! ניקוי החול וכלי המים, סלט מגוון. אמבטיה מדי פעם, עצם דיונון לכרסום.' },
+    { emoji:'🦎', color:'#e07820', bg:'#fff8f0', border:'#f0c080',
+      name:'זאוס (חרדון מזוקן)',
+      care:'ירקות בכל יום. זחלים עם ויטמינים 3 פעמים בשבוע. אמבטיות מדי פעם, בדיקת כלי מים.' },
+    { emoji:'🦎', color:'#d060a0', bg:'#fff0f8', border:'#e8a0c8',
+      name:'סויה (שממית מנומרת)',
+      care:'חרקים עם ויטמינים 2 פעמים בשבוע בלבד. אמבטיות מדי פעם, בדיקת כלי מים.' },
+    { emoji:'🐇', color:'#c08020', bg:'#fffbf0', border:'#e8c860',
+      name:'בגדרה (ארנבונים + שרקנים)',
+      care:'אוכל מכרסמים. לבדוק היטב את המים — שותים המון! החלפת נסורת ב"שירותים" בלבד, חציר נקי, סירוק מדי פעם.' },
+    { emoji:'🐭', color:'#777', bg:'#f5f5f5', border:'#ccc',
+      name:'צ\'ינצ\'ילות',
+      care:'תערובת לצ\'ינצ\'ילות. חול נקי באמבטיה — חשוב מאוד! בדיקת כלי מים.' },
+    { emoji:'🐹', color:'#a05030', bg:'#fff8f4', border:'#d0a888',
+      name:'אוגרים וגרבילים',
+      care:'אוכל מכרסמים ייעודי ומים טריים. לוודא מחסה שלם וצעצועי העשרה מקרטון — להחליף אם כורסמו.' },
+    { emoji:'🌿', color:'#2a8a50', bg:'#f0faf4', border:'#90d0a8',
+      name:'מקלונים',
+      care:'עלי ורדים / היביסקוס / תות / חובזה טריים בבקבוקי מים. להחליף מים מלוכלכים ולרסס מים מעל העלים.' },
+    { emoji:'🦗', color:'#5a7a00', bg:'#f4faec', border:'#b0d060',
+      name:'תיקנים וזחלי קמח',
+      care:'החלפת ירקות ישנים בחדשים. מים רדודים מאוד — למניעת טביעה בהחלט!' },
+    { emoji:'🐟', color:'#2080c0', bg:'#f0f8ff', border:'#80c0e8',
+      name:'דגים',
+      care:'אוכל דגים בימי ראשון וחמישי בלבד. לא להאכיל בשאר הימים.' },
+  ];
+
+  el.innerHTML = animals.map((a, i) => `
+    <details style="border-radius:10px;overflow:hidden;border:1.5px solid ${a.border}">
+      <summary style="cursor:pointer;padding:.5rem .75rem;background:${a.bg};list-style:none;display:flex;align-items:center;gap:.5rem;font-weight:800;color:${a.color};font-size:.84rem">
+        <span style="font-size:1.25rem;flex-shrink:0">${a.emoji}</span>
+        <span class="ac-name" style="flex:1">${a.name}</span>
+        <button onclick="event.stopPropagation();speakText('${a.name}. ${a.care}',this)" style="background:none;border:none;cursor:pointer;font-size:.88rem;color:#aaa;padding:0;line-height:1;flex-shrink:0">🔊</button>
+        <span style="font-size:.72rem;opacity:.45;flex-shrink:0">▼</span>
+      </summary>
+      <div class="ac-body" style="padding:.5rem .75rem .6rem;background:${a.bg};font-size:.81rem;line-height:1.6;color:var(--text);border-top:1px dashed ${a.border}">${a.care}</div>
+    </details>`).join('');
+}
 // ────────────────────────────────────────────────────────────
 </script>
 
