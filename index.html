@@ -2518,31 +2518,499 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     </div>
   </div>
 
-  <!-- הנחיות חירום: הפסקת חשמל/תקלת מזגן -->
+  <!-- הנחיות חירום: עץ החלטות אינטראקטיבי -->
   <div style="margin-top:1.2rem" id="emergencyGuidelinesSection">
-    <div style="font-weight:900;font-size:1rem;margin-bottom:.6rem;color:var(--text);display:flex;align-items:center;gap:.5rem">
-      🚨 הנחיות חירום
-      <button onclick="speakText(document.getElementById('emergencyGuidelinesSection').innerText,this)" title="הקראת הנחיות חירום" style="background:none;border:none;cursor:pointer;font-size:.97rem;color:#aaa;padding:0;line-height:1">🔊</button>
+
+    <!-- כותרת -->
+    <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.5rem">
+      <div style="font-weight:900;font-size:1rem;color:var(--text);display:flex;align-items:center;gap:.4rem;flex:1;min-width:0">
+        🚨 הנחיות חירום
+        <button onclick="speakText(document.getElementById('emSpeakAll').innerText,this)" title="הקראת כל הנחיות החירום" style="background:none;border:none;cursor:pointer;font-size:.95rem;color:#aaa;padding:0;line-height:1;flex-shrink:0">🔊</button>
+      </div>
+      <button onclick="emShowAll()" id="emShowAllBtn" style="background:#f5f0ff;border:1.5px solid #c0a8e8;border-radius:50px;padding:.22rem .7rem;font-size:.78rem;font-weight:700;color:#6a3cb0;cursor:pointer;white-space:nowrap;flex-shrink:0">📖 פתח הכל</button>
     </div>
-    <div style="background:#fde8e8;border:1.5px solid #e05252;border-radius:12px;padding:.7rem .95rem;margin-bottom:.55rem">
-      <div style="font-weight:900;font-size:.92rem;color:#8b1c1c;margin-bottom:.4rem">תקלת מזגן או הפסקת חשמל בקיץ (חום קיצוני)</div>
-      <ol style="margin:0;padding-right:1.2rem;font-size:.84rem;line-height:1.7;color:var(--text)">
-        <li>מזיזים את כלוב הג'אקו מהחלון למקום מוצל בחדר.</li>
-        <li>שמים בקבוקי מים קפואים עטופים בגרב בתוך הכלוב של הצ'ינצ'ילות ושל הארנבונים.</li>
-        <li>פותחים את פתח האוורור הקטן שליד התוכים ואת החלונות כדי שייכנס אוויר.</li>
-        <li>מוסיפים עוד כלי מים קרירים לכל החיות.</li>
-      </ol>
+
+    <!-- אזהרת הפעלה -->
+    <div style="background:#fffbf0;border:1.5px solid #e0c060;border-radius:10px;padding:.5rem .75rem;margin-bottom:.6rem;font-size:.83rem;line-height:1.7;color:var(--text);display:flex;align-items:flex-start;gap:.5rem">
+      <span style="flex-shrink:0">⚠️</span>
+      <div style="flex:1"><strong style="color:#7a5500">נוהל תקלת מיזוג או הפסקת חשמל בחום קיצוני או קור קיצוני, מעל 32° או מתחת ל-12°.</strong></div>
+      <button onclick="speakText('נוהל תקלת מיזוג או הפסקת חשמל בחום קיצוני או קור קיצוני. רלוונטי כשבחוץ מעל 32 מעלות או מתחת ל-12 מעלות, ויש תקלה.',this)" style="background:none;border:none;cursor:pointer;font-size:.88rem;color:#aaa;padding:0;line-height:1;flex-shrink:0">🔊</button>
     </div>
-    <div style="background:#dbeafe;border:1.5px solid #4090d0;border-radius:12px;padding:.7rem .95rem">
-      <div style="font-weight:900;font-size:.92rem;color:#1a3060;margin-bottom:.4rem">תקלת מזגן או הפסקת חשמל בחורף (קור קיצוני)</div>
-      <ol style="margin:0;padding-right:1.2rem;font-size:.84rem;line-height:1.7;color:var(--text)">
-        <li>בודקים שכל החלונות סגורים היטב. אם נכנסת רוח קרה מהחלון, מזיזים את הג'אקו למרכז החדר.</li>
-        <li>מכסים את כלובי התוכים בבדים עבים כדי לשמור על החום שלהם.</li>
-        <li>לזוחלים (החרדון, השממית והצב) שמים בקבוקים עם מים חמימים בטמפרטורה של 38 עד 40 מעלות עטופים במגבת בתוך הבית שלהם.</li>
-        <li>מוודאים שלמכרסמים בקופסאות הפלסטיק יש הרבה מצע וגרביים להתחמם בתוכם. לא מכסים את הרשת בשמיכות כדי שיהיה להם אוויר לנשימה.</li>
-      </ol>
+
+    <!-- מיכל השאלון -->
+    <div id="emSpeakAll">
+    <div id="emFlow" style="display:flex;flex-direction:column;gap:.5rem"></div>
     </div>
+
   </div>
+
+  <script>
+  (function(){
+    var _state = { mode:null, loc:null, res:null };
+
+    // ── טקסטים עם גרשיים ──
+    var T = {
+      chinchilla:  '\u05E6\u0027\u05D9\u05E0\u05E6\u0027\u05D9\u05DC\u05D5\u05EA',  // צ'ינצ'ילות
+      heatRoomTr:  '\u05D4\u05E2\u05D1\u05D9\u05E8\u05D5 \u05DE\u05D9\u05D3 \u05D0\u05EA \u05D4\u05E6\u0027\u05D9\u05E0\u05E6\u0027\u05D9\u05DC\u05D5\u05EA \u05DC\u05D7\u05D3\u05E8 "\u05E6\u05D1\u05E2 \u05D5\u05D8\u05D1\u05E2". \u05DC\u05D0\u05D7\u05E8 \u05DE\u05DB\u05DF \u05D1\u05E6\u05E2\u05D5 \u05D0\u05EA \u05D4\u05E4\u05E2\u05D5\u05DC\u05D5\u05EA \u05D1\u05E9\u05D8\u05D7.',
+      heatWingTr:  '\u05D4\u05E2\u05D1\u05D9\u05E8\u05D5 \u05D0\u05EA \u05D4\u05E6\u0027\u05D9\u05E0\u05E6\u0027\u05D9\u05DC\u05D5\u05EA \u05DC\u05D1\u05E0\u05D9\u05D9\u05DF \u05E9\u05DC \u05D4\u05D2\u05D3\u05D5\u05DC\u05D9\u05DD. \u05DC\u05D0\u05D7\u05E8 \u05DE\u05DB\u05DF \u05D1\u05E6\u05E2\u05D5 \u05D0\u05EA \u05D4\u05E4\u05E2\u05D5\u05DC\u05D5\u05EA \u05D1\u05E9\u05D8\u05D7.',
+      heatSchoolTr:'\u05D0\u05D9\u05DF \u05D6\u05DE\u05DF \u05DC\u05D4\u05E2\u05D1\u05E8\u05D4. \u05E2\u05D1\u05E8\u05D5 \u05D9\u05E9\u05D9\u05E8\u05D5\u05EA \u05DC\u05E4\u05E2\u05D5\u05DC\u05D5\u05EA \u05D1\u05E9\u05D8\u05D7.',
+      heatYes:     '\u05E2\u05D8\u05E4\u05D5 \u05D1\u05D2\u05E8\u05D1 \u05D5\u05E9\u05D9\u05DE\u05D5 \u05D0\u05E6\u05DC \u05D4\u05D0\u05E8\u05E0\u05D1\u05D5\u05E0\u05D9\u05DD (\u05D5\u05D0\u05E6\u05DC \u05D4\u05E6\u0027\u05D9\u05E0\u05E6\u0027\u05D9\u05DC\u05D5\u05EA \u05D0\u05DD \u05DC\u05D0 \u05E4\u05D5\u05E0\u05D5).',
+      heatNo:      '\u05D4\u05E8\u05D8\u05D9\u05D1\u05D5 \u05DE\u05D2\u05D1\u05D5\u05EA \u05D5\u05EA\u05DC\u05D5 \u05DE\u05D5\u05DC \u05D6\u05E8\u05D9\u05DE\u05EA \u05D4\u05D0\u05D5\u05D5\u05D9\u05E8. \u05DC\u05D0\u05E8\u05E0\u05D1\u05D5\u05E0\u05D9\u05DD: \u05E0\u05D2\u05D1\u05D5 \u05D1\u05E2\u05D3\u05D9\u05E0\u05D5\u05EA \u05D0\u05EA \u05D2\u05D1 \u05D4\u05D0\u05D5\u05D6\u05DF (\u05D4\u05D7\u05DC\u05E7 \u05E2\u05DD \u05D4\u05E4\u05E8\u05D5\u05D5\u05D4) \u05D1\u05DE\u05D8\u05DC\u05D9\u05EA \u05DC\u05D7\u05D4 \u05D5\u05E7\u05E8\u05D9\u05E8\u05D4.',
+      heatNoWarn:  '\u26A0\uFE0F \u05D0\u05D9\u05DF \u05DC\u05D4\u05DB\u05E0\u05D9\u05E1 \u05DE\u05D9\u05DD \u05DC\u05EA\u05E2\u05DC\u05EA \u05D4\u05D0\u05D5\u05D6\u05DF \u05D1\u05E9\u05D5\u05DD \u05D0\u05D5\u05E4\u05DF.',
+      coldRoomTr:  '\u05D4\u05E2\u05D1\u05D9\u05E8\u05D5 \u05D0\u05EA \u05D6\u05D0\u05D5\u05E1, \u05E1\u05D5\u05D9\u05D4 \u05D5\u05D3\u05D5\u05E0\u05D4 \u05DC\u05D7\u05D3\u05E8 "\u05E6\u05D1\u05E2 \u05D5\u05D8\u05D1\u05E2" \u05D0\u05D5 \u05DC\u05D1\u05E0\u05D9\u05D9\u05DF \u05D4\u05D2\u05D3\u05D5\u05DC\u05D9\u05DD, \u05D9\u05D7\u05D3 \u05E2\u05DD \u05DE\u05E9\u05D8\u05D7\u05D9 \u05D4\u05D7\u05D9\u05DE\u05D5\u05DD \u05E9\u05DC\u05D4\u05DD.',
+      coldSchoolTr:'\u05D0\u05D9\u05DF \u05D6\u05DE\u05DF \u05DC\u05D4\u05E2\u05D1\u05E8\u05D4. \u05E2\u05D1\u05E8\u05D5 \u05DC\u05E4\u05E2\u05D5\u05DC\u05D5\u05EA \u05D4\u05D7\u05D9\u05DE\u05D5\u05DD \u05D1\u05E9\u05D8\u05D7.',
+      coldYes:     '\u05DE\u05DC\u05D0\u05D5 \u05D1\u05E7\u05D1\u05D5\u05E7\u05D9\u05DD \u05D1\u05DE\u05D9\u05DD \u05D7\u05DE\u05D9\u05DD (38 \u05E2\u05D3 40 \u05DE\u05E2\u05DC\u05D5\u05EA), \u05E2\u05D8\u05E4\u05D5 \u05D1\u05DE\u05D2\u05D1\u05EA \u05D5\u05E9\u05D9\u05DE\u05D5 \u05D1\u05D1\u05EA\u05D9 \u05D4\u05D2\u05D9\u05D3\u05D5\u05DC \u05E9\u05DC \u05D4\u05D6\u05D5\u05D7\u05DC\u05D9\u05DD.',
+      coldNo:      '\u05D4\u05E2\u05D1\u05D9\u05E8\u05D5 \u05D0\u05EA \u05D4\u05D6\u05D5\u05D7\u05DC\u05D9\u05DD \u05DC\u05E7\u05D5\u05E4\u05E1\u05D0\u05D5\u05EA \u05E7\u05D8\u05E0\u05D5\u05EA \u05D9\u05D5\u05EA\u05E8 \u05E2\u05DD \u05D4\u05DE\u05D5\u05DF \u05DE\u05E6\u05E2 \u05D5\u05D2\u05E8\u05D1\u05D9\u05D9\u05DD \u05DC\u05D4\u05EA\u05D7\u05E4\u05E8\u05D5\u05EA.',
+    };
+
+    var DATA = {
+      heat: {
+        locQ:    '\u05D0\u05D9\u05E4\u05D4 \u05D4\u05EA\u05E7\u05DC\u05D4?',
+        locs: [
+          { id:'room',   label:'\u05D4\u05EA\u05E7\u05DC\u05D4 \u05E8\u05E7 \u05D1\u05E4\u05D9\u05E0\u05EA \u05D4\u05D7\u05D9' },
+          { id:'wing',   label:'\u05D4\u05E4\u05E1\u05E7\u05EA \u05D7\u05E9\u05DE\u05DC \u05D1\u05DB\u05DC "\u05D4\u05DE\u05E2\u05D5\u05E3"' },
+          { id:'school', label:'\u05EA\u05E7\u05DC\u05D4 \u05D1\u05DB\u05DC \u05D1\u05D9\u05EA \u05D4\u05E1\u05E4\u05E8' },
+        ],
+        locResult: {
+          room:   { icon:'\uD83D\uDCE6', bg:'#fff3e0', brd:'#f07030', text: null, tk:'heatRoomTr' },
+          wing:   { icon:'\uD83D\uDCE6', bg:'#fff3e0', brd:'#f07030', text: null, tk:'heatWingTr' },
+          school: { icon:'\u26A1', bg:'#fde8e8', brd:'#e05252', text: null, tk:'heatSchoolTr' },
+        },
+        actTitle: '\u05E4\u05E2\u05D5\u05DC\u05D5\u05EA \u05D7\u05D5\u05D1\u05D4 \u05D1\u05E4\u05D9\u05E0\u05EA \u05D4\u05D7\u05D9',
+        actItems: [
+          '\u05E7\u05D9\u05E7\u05D5: \u05D4\u05D6\u05D9\u05D6\u05D5 \u05D0\u05EA \u05D4\u05DB\u05DC\u05D5\u05D1 \u05E9\u05DC \u05E7\u05D9\u05E7\u05D5 \u05DE\u05D4\u05D7\u05DC\u05D5\u05DF \u05DC\u05DE\u05E7\u05D5\u05DD \u05DE\u05D5\u05E6\u05DC \u05D1\u05D7\u05D3\u05E8.',
+          '\u05DE\u05D9\u05DD: \u05D4\u05D5\u05E1\u05D9\u05E4\u05D5 \u05DB\u05DC\u05D9 \u05DE\u05D9\u05DD \u05E7\u05E8\u05D9\u05E8\u05D9\u05DD \u05DC\u05DB\u05D5\u05DC\u05DD.',
+        ],
+        actCont: '\u05D4\u05DE\u05E9\u05DA: \u05E7\u05D9\u05E8\u05D5\u05E8 \u05D0\u05E7\u05D8\u05D9\u05D1\u05D9 (\u05E2\u05D3\u05D9\u05E4\u05D5\u05EA \u05E9\u05E0\u05D9\u05D9\u05D4) \u25BC',
+        resTitle:'\u05E9\u05DC\u05D1 \u05D1: \u05E2\u05D3\u05D9\u05E4\u05D5\u05EA \u05E9\u05E0\u05D9\u05D9\u05D4 (\u05DE\u05E2\u05DC 35\u00B0)',
+        resQ:    '\uD83E\uDDCA \u05D4\u05D0\u05DD \u05D9\u05E9 \u05D1\u05E7\u05D1\u05D5\u05E7\u05D9 \u05DE\u05D9\u05DD \u05E7\u05E4\u05D5\u05D0\u05D9\u05DD?',
+        resYesLabel:'\u2705 \u05DB\u05DF, \u05D9\u05E9 \u05D1\u05E7\u05D1\u05D5\u05E7\u05D9\u05DD \u05E7\u05E4\u05D5\u05D0\u05D9\u05DD',
+        resNoLabel: '\u274C \u05D0\u05D9\u05DF',
+        resYes: { bg:'#e8f7ef', brd:'#3aaa6e', tk:'heatYes' },
+        resNo:  { bg:'#fff8f0', brd:'#f0a060', tk:'heatNo', warnTk:'heatNoWarn' },
+        winTitle:'\uD83E\uDE9F \u05E0\u05D9\u05D4\u05D5\u05DC \u05D7\u05DC\u05D5\u05E0\u05D5\u05EA',
+        winText: '\u05E4\u05EA\u05D7\u05D5 \u05D7\u05DC\u05D5\u05DF \u05E8\u05E7 \u05D0\u05DD \u05D4\u05D0\u05D5\u05D5\u05D9\u05E8 \u05DE\u05D7\u05E0\u05D9\u05E7 \u05DE\u05D0\u05D5\u05D3. \u05D0\u05DD \u05D1\u05D7\u05D5\u05E5 \u05DE\u05E2\u05DC 40\u00B0 (\u05E9\u05E8\u05D1 \u05DB\u05D1\u05D3), \u05D4\u05E9\u05D0\u05D9\u05E8\u05D5 \u05D7\u05DC\u05D5\u05E0\u05D5\u05EA \u05E1\u05D2\u05D5\u05E8\u05D9\u05DD \u05DB\u05D3\u05D9 \u05DC\u05DB\u05DC\u05D5\u05D0 \u05D0\u05EA \u05D4\u05D0\u05D5\u05D5\u05D9\u05E8 \u05D4\u05E7\u05E8\u05D9\u05E8 \u05E9\u05E0\u05E9\u05D0\u05E8.',
+        bg:'#fde8e8', brd:'#e05252', col:'#8b1c1c',
+      },
+      cold: {
+        locQ:    '\u05D0\u05D9\u05E4\u05D4 \u05D4\u05EA\u05E7\u05DC\u05D4?',
+        locs: [
+          { id:'room',   label:'\u05D4\u05EA\u05E7\u05DC\u05D4 \u05D1\u05E4\u05D9\u05E0\u05EA \u05D4\u05D7\u05D9 \u05D0\u05D5 \u05D1"\u05D4\u05DE\u05E2\u05D5\u05E3"' },
+          { id:'school', label:'\u05EA\u05E7\u05DC\u05D4 \u05D1\u05DB\u05DC \u05D1\u05D9\u05EA \u05D4\u05E1\u05E4\u05E8' },
+        ],
+        locResult: {
+          room:   { icon:'\uD83D\uDCE6', bg:'#e8f4ff', brd:'#4090d0', tk:'coldRoomTr' },
+          school: { icon:'\u26A1', bg:'#dbeafe', brd:'#4090d0', tk:'coldSchoolTr' },
+        },
+        actTitle:'\u05D4\u05D0\u05DD \u05D9\u05E9 \u05DE\u05D9\u05DD \u05D7\u05DE\u05D9\u05DD?',
+        actQ:    '\uD83C\uDF21\uFE0F \u05D4\u05D0\u05DD \u05D9\u05E9 \u05DE\u05D9\u05DD \u05D7\u05DE\u05D9\u05DD?',
+        actYesLabel:'\u2705 \u05DB\u05DF, \u05D9\u05E9 \u05DE\u05D9\u05DD \u05D7\u05DE\u05D9\u05DD',
+        actNoLabel: '\u274C \u05D0\u05D9\u05DF',
+        actYes: { bg:'#e8f7ef', brd:'#3aaa6e', tk:'coldYes' },
+        actNo:  { bg:'#e8f4ff', brd:'#4090d0', tk:'coldNo' },
+        actCont: '\u05D4\u05DE\u05E9\u05DA: \u05D1\u05D9\u05D3\u05D5\u05D3 \u05E9\u05D0\u05E8 \u05D4\u05E4\u05D9\u05E0\u05D4 (\u05E2\u05D3\u05D9\u05E4\u05D5\u05EA \u05E9\u05E0\u05D9\u05D9\u05D4) \u25BC',
+        resTitle:'\u05E9\u05DC\u05D1 \u05D1: \u05E2\u05D3\u05D9\u05E4\u05D5\u05EA \u05E9\u05E0\u05D9\u05D9\u05D4 (\u05DE\u05EA\u05D7\u05EA \u05DC-8\u00B0)',
+        resItems:[
+          '\u05D0\u05D9\u05D8\u05D5\u05DD: \u05E1\u05D2\u05E8\u05D5 \u05D7\u05DC\u05D5\u05E0\u05D5\u05EA \u05D4\u05D9\u05D8\u05D1. \u05D0\u05DD \u05E0\u05DB\u05E0\u05E1\u05EA \u05E8\u05D5\u05D7 \u05E7\u05E8\u05D4, \u05D4\u05D6\u05D9\u05D6\u05D5 \u05D0\u05EA \u05E7\u05D9\u05E7\u05D5 \u05DC\u05DE\u05E8\u05DB\u05D6 \u05D4\u05D7\u05D3\u05E8.',
+          '\u05E7\u05D9\u05E7\u05D5: \u05DB\u05E1\u05D5 \u05D0\u05EA \u05D4\u05DB\u05DC\u05D5\u05D1 \u05D1\u05D1\u05D3\u05D9\u05DD \u05E2\u05D1\u05D9\u05DD.',
+          '\u05D4\u05DB\u05DC\u05D5\u05D1 \u05D4\u05E2\u05E0\u05E7: \u05DB\u05E1\u05D5 2\u20133 \u05E4\u05D0\u05D5\u05EA \u05DE\u05D4\u05DB\u05DC\u05D5\u05D1 \u05DC\u05D9\u05E6\u05D9\u05E8\u05EA "\u05DB\u05D9\u05E1 \u05D7\u05D5\u05DD" (\u05E2\u05D3\u05D9\u05E3 \u05D1\u05E4\u05D9\u05E0\u05D4 \u05E9\u05D1\u05D4 \u05D4\u05EA\u05D5\u05DB\u05D9\u05DD \u05D9\u05E9\u05E0\u05D9\u05DD).',
+          '\u05D1\u05D9\u05D3\u05D5\u05D3 \u05DE\u05D4\u05E8\u05E6\u05E4\u05D4: \u05D4\u05E8\u05D9\u05DE\u05D5 \u05D0\u05EA \u05DB\u05DC \u05D4\u05DB\u05DC\u05D5\u05D1\u05D9\u05DD \u05DC\u05E9\u05D5\u05DC\u05D7\u05E0\u05D5\u05EA \u05D0\u05D5 \u05DC\u05E7\u05E8\u05D8\u05D5\u05E0\u05D9\u05DD.',
+        ],
+        resMkWarn:'\u26A0\uFE0F \u05D0\u05D9\u05DF \u05DC\u05DB\u05E1\u05D5\u05EA \u05D0\u05EA \u05D4\u05E8\u05E9\u05EA \u05D1\u05E9\u05DE\u05D9\u05DB\u05D5\u05EA! \u05D7\u05D5\u05D1\u05D4 \u05DC\u05D4\u05E9\u05D0\u05D9\u05E8 \u05E4\u05EA\u05D7 \u05DC\u05D0\u05D5\u05D5\u05D9\u05E8 \u05DC\u05E0\u05E9\u05D9\u05DE\u05D4.',
+        bg:'#dbeafe', brd:'#4090d0', col:'#1a3060',
+      }
+    };
+
+    // ── עזרים DOM ──
+    function el(id){ return document.getElementById(id); }
+
+    function mkEl(tag, cssText, textContent){
+      var e = document.createElement(tag);
+      if(cssText)     e.style.cssText = cssText;
+      if(textContent) e.textContent   = textContent;
+      return e;
+    }
+
+    function app(parent){ // append multiple children
+      for(var i=1;i<arguments.length;i++) if(arguments[i]) parent.appendChild(arguments[i]);
+      return parent;
+    }
+
+    function mkDiv(css){ return mkEl('div',css); }
+
+    function mkTextDiv(css, text){
+      var d = mkDiv(css);
+      d.textContent = text;
+      return d;
+    }
+
+    function mkBtn(text, fn, css){
+      var b = mkEl('button', css || 'background:#f0f0f0;border:1px solid #ccc;border-radius:12px;padding:.6rem .9rem;font-weight:700;font-size:.87rem;cursor:pointer;text-align:right;font-family:inherit;width:100%;display:block;margin-bottom:.4rem');
+      b.textContent = text;
+      b.addEventListener('click', fn);
+      return b;
+    }
+
+    function mkSmall(text, fn){
+      var b = mkEl('button','background:none;border:1px solid #ccc;border-radius:50px;padding:.14rem .55rem;font-size:.75rem;color:#888;cursor:pointer;font-family:inherit;flex-shrink:0');
+      b.textContent = text;
+      b.addEventListener('click', fn);
+      return b;
+    }
+
+    function mkSpeak(text){
+      var b = mkEl('button','background:none;border:none;cursor:pointer;font-size:.85rem;color:#bbb;padding:0;line-height:1;flex-shrink:0');
+      b.textContent = '\uD83D\uDD0A';
+      b.addEventListener('click', function(){ speakText(text, b); });
+      return b;
+    }
+
+    function mkRow(){
+      var d = mkDiv('display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;margin-bottom:.4rem');
+      for(var i=0;i<arguments.length;i++) if(arguments[i]) d.appendChild(arguments[i]);
+      return d;
+    }
+
+    function mkLabel(text){ return mkTextDiv('font-size:.84rem;font-weight:900;color:var(--text)', text); }
+
+    function mkBox(bg, brd, children){
+      var d = mkDiv('background:'+bg+';border:1.5px solid '+brd+';border-radius:12px;padding:.6rem .85rem;margin-bottom:.4rem');
+      for(var i=0;i<children.length;i++) if(children[i]) d.appendChild(children[i]);
+      return d;
+    }
+
+    function mkOL(items, css){
+      var ol = mkEl('ol', css||'margin:0;padding-right:1.2rem;font-size:.83rem;line-height:2;color:var(--text)');
+      items.forEach(function(txt){
+        var li = document.createElement('li');
+        li.textContent = txt;
+        ol.appendChild(li);
+      });
+      return ol;
+    }
+
+    function mkBreadcrumb(){
+      var d = mkDiv('background:var(--card);border:1px solid rgba(128,128,128,.15);border-radius:10px;padding:.38rem .65rem;font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:.35rem;flex-wrap:wrap;margin-bottom:.4rem');
+      var mode = _state.mode, loc = _state.loc;
+      if(mode){
+        var mLabel = mode==='heat' ? '\u2600\uFE0F \u05D7\u05D5\u05DD \u05E7\u05D9\u05E6\u05D5\u05E0\u05D9' : '\u2744\uFE0F \u05E7\u05D5\u05E8 \u05E7\u05D9\u05E6\u05D5\u05E0\u05D9';
+        app(d, mkSmall('\u2190 \u05E9\u05E0\u05D4', function(){ showStep0(); }), mkTextDiv(null, mLabel));
+      }
+      if(loc){
+        var lObj = DATA[mode].locs.find(function(l){ return l.id===loc; });
+        var sep = mkTextDiv('opacity:.3', '|');
+        app(d, sep, mkSmall('\u2190 \u05E9\u05E0\u05D4', function(){ showStep1(); }), mkTextDiv(null, lObj ? lObj.label : loc));
+      }
+      return d;
+    }
+
+    function render(nodes){
+      var flow = el('emFlow');
+      while(flow.firstChild) flow.removeChild(flow.firstChild);
+      nodes.forEach(function(n){ if(n) flow.appendChild(n); });
+    }
+
+    // ─────────────────────────────────────────────
+    // שלב 0: סוג תקלה
+    // ─────────────────────────────────────────────
+    function showStep0(){
+      _state = { mode:null, loc:null, res:null };
+      el('emShowAllBtn').style.display = '';
+      render([
+        mkRow(
+          mkLabel('\u05DE\u05D4 \u05D4\u05DE\u05E6\u05D1 \u05DB\u05E8\u05D2\u05E2?'),
+          mkSpeak('\u05E9\u05D0\u05DC\u05D4: \u05DE\u05D4 \u05D4\u05DE\u05E6\u05D1 \u05DB\u05E8\u05D2\u05E2? \u05D0\u05E4\u05E9\u05E8\u05D5\u05EA 1: \u05D7\u05D5\u05DD \u05E7\u05D9\u05E6\u05D5\u05E0\u05D9. \u05D0\u05E4\u05E9\u05E8\u05D5\u05EA 2: \u05E7\u05D5\u05E8 \u05E7\u05D9\u05E6\u05D5\u05E0\u05D9.')
+        ),
+        mkBtn(
+          '\u2600\uFE0F \u05D7\u05D5\u05DD \u05E7\u05D9\u05E6\u05D5\u05E0\u05D9 (\u05EA\u05E7\u05DC\u05EA \u05DE\u05D6\u05D2\u05DF \u05D0\u05D5 \u05D4\u05E4\u05E1\u05E7\u05EA \u05D7\u05E9\u05DE\u05DC)',
+          function(){ _state.mode='heat'; showStep1(); },
+          'background:#fde8e8;border:2px solid #e05252;border-radius:12px;padding:.6rem .9rem;font-weight:800;font-size:.87rem;color:#8b1c1c;cursor:pointer;text-align:right;font-family:inherit;width:100%;display:block;margin-bottom:.4rem'
+        ),
+        mkBtn(
+          '\u2744\uFE0F \u05E7\u05D5\u05E8 \u05E7\u05D9\u05E6\u05D5\u05E0\u05D9 (\u05EA\u05E7\u05DC\u05EA \u05D7\u05D9\u05DE\u05D5\u05DD \u05D0\u05D5 \u05D4\u05E4\u05E1\u05E7\u05EA \u05D7\u05E9\u05DE\u05DC)',
+          function(){ _state.mode='cold'; showStep1(); },
+          'background:#dbeafe;border:2px solid #4090d0;border-radius:12px;padding:.6rem .9rem;font-weight:800;font-size:.87rem;color:#1a3060;cursor:pointer;text-align:right;font-family:inherit;width:100%;display:block;margin-bottom:.4rem'
+        )
+      ]);
+    }
+
+    // ─────────────────────────────────────────────
+    // שלב 1: מיקום התקלה
+    // ─────────────────────────────────────────────
+    function showStep1(){
+      _state.loc = null; _state.res = null;
+      var d = DATA[_state.mode];
+      var isHeat = _state.mode === 'heat';
+      var bg = isHeat ? '#fde8e8' : '#dbeafe';
+      var brd= isHeat ? '#e05252' : '#4090d0';
+      var col= isHeat ? '#8b1c1c' : '#1a3060';
+      var btns = d.locs.map(function(l){
+        return mkBtn(l.label, function(){ _state.loc=l.id; showStep2(); },
+          'background:'+bg+';border:2px solid '+brd+';border-radius:12px;padding:.6rem .9rem;font-weight:700;font-size:.87rem;color:'+col+';cursor:pointer;text-align:right;font-family:inherit;width:100%;display:block;margin-bottom:.4rem');
+      });
+      render([mkBreadcrumb(), mkRow(mkLabel(d.locQ), mkSpeak(d.locQ))].concat(btns));
+    }
+
+    // ─────────────────────────────────────────────
+    // שלב 2: תוצאת מיקום + פעולות עדיפות ראשונה
+    // ─────────────────────────────────────────────
+    function showStep2(){
+      _state.res = null;
+      var d = DATA[_state.mode];
+      var isHeat = _state.mode === 'heat';
+      var locR = d.locResult[_state.loc];
+      var trText = T[locR.tk];
+
+      var trBox = mkDiv('background:'+locR.bg+';border:1.5px solid '+locR.brd+';border-radius:10px;padding:.55rem .8rem;font-size:.83rem;line-height:1.75;color:var(--text);margin-bottom:.4rem');
+      var trInner = mkDiv(null);
+      var trIcon = document.createElement('strong');
+      trIcon.textContent = locR.icon + ' ';
+      trInner.appendChild(trIcon);
+      trInner.appendChild(document.createTextNode(trText));
+      trBox.appendChild(trInner);
+      trBox.appendChild(mkRow(mkSpeak('\u05E4\u05E2\u05D5\u05DC\u05D4 \u05E8\u05D0\u05E9\u05D5\u05E0\u05D4. ' + trText)));
+
+      var act1;
+      if(isHeat){
+        var boldItems = d.actItems.map(function(txt){
+          var li = document.createElement('li');
+          // first word is the label (ends with ':')
+          var colon = txt.indexOf(':');
+          if(colon > 0){
+            var strong = document.createElement('strong');
+            strong.textContent = txt.slice(0, colon+1);
+            li.appendChild(strong);
+            li.appendChild(document.createTextNode(txt.slice(colon+1)));
+          } else {
+            li.textContent = txt;
+          }
+          return li;
+        });
+        var ol = mkEl('ol','margin:0;padding-right:1.2rem;font-size:.83rem;line-height:2;color:var(--text)');
+        boldItems.forEach(function(li){ ol.appendChild(li); });
+
+        var contBtn = mkEl('button','background:#3aaa6e;color:#fff;border:none;border-radius:50px;padding:.3rem .9rem;font-size:.81rem;font-weight:700;cursor:pointer;font-family:inherit');
+        contBtn.textContent = d.actCont;
+        contBtn.addEventListener('click', showStep3);
+
+        act1 = mkBox('#fde8e8','#f0a0a0',[
+          mkRow(mkLabel(d.actTitle), mkSpeak(d.actItems.join(' '))),
+          ol,
+          mkRow(contBtn)
+        ]);
+      } else {
+        // קור: שאלת מים
+        var yBtn = mkBtn(d.actYesLabel, function(){ _state.res='yes'; showStep2b(); },
+          'background:#e8f7ef;border:2px solid #3aaa6e;border-radius:12px;padding:.55rem .9rem;font-weight:700;font-size:.87rem;color:#1a6640;cursor:pointer;text-align:right;font-family:inherit;width:100%;display:block;margin-bottom:.4rem');
+        var nBtn = mkBtn(d.actNoLabel, function(){ _state.res='no'; showStep2b(); },
+          'background:#fde8e8;border:2px solid #e05252;border-radius:12px;padding:.55rem .9rem;font-weight:700;font-size:.87rem;color:#8b1c1c;cursor:pointer;text-align:right;font-family:inherit;width:100%;display:block;margin-bottom:.4rem');
+        act1 = mkBox('#dbeafe','#90b8e0',[
+          mkRow(mkLabel(d.actQ), mkSpeak(d.actQ)),
+          yBtn, nBtn
+        ]);
+      }
+
+      render([mkBreadcrumb(), trBox, act1]);
+    }
+
+    // ─────────────────────────────────────────────
+    // שלב 2b: תשובת מים חמים (קור)
+    // ─────────────────────────────────────────────
+    function showStep2b(){
+      var d    = DATA['cold'];
+      var resD = _state.res === 'yes' ? d.actYes : d.actNo;
+      var resText = T[resD.tk];
+      var locR = d.locResult[_state.loc];
+
+      var ansBox = mkDiv('background:'+resD.bg+';border:1.5px solid '+resD.brd+';border-radius:10px;padding:.55rem .8rem;font-size:.83rem;line-height:1.75;color:var(--text);margin-bottom:.4rem');
+      ansBox.appendChild(document.createTextNode(resText));
+      ansBox.appendChild(mkRow(mkSpeak(resText)));
+
+      var backBtn2 = mkSmall('\u2190 \u05E9\u05E0\u05D4 \u05EA\u05E9\u05D5\u05D1\u05D4', function(){ _state.res=null; showStep2(); });
+      var contBtn = mkEl('button','background:#4090d0;color:#fff;border:none;border-radius:50px;padding:.3rem .9rem;font-size:.81rem;font-weight:700;cursor:pointer;font-family:inherit');
+      contBtn.textContent = d.actCont;
+      contBtn.addEventListener('click', showStep3);
+
+      var trText = T[locR.tk];
+      var trBox = mkDiv('background:'+locR.bg+';border:1.5px solid '+locR.brd+';border-radius:10px;padding:.55rem .8rem;font-size:.83rem;color:var(--text);margin-bottom:.4rem');
+      trBox.appendChild(document.createTextNode(locR.icon + ' ' + trText));
+
+      render([mkBreadcrumb(), trBox, ansBox, mkRow(backBtn2, contBtn)]);
+    }
+
+    // ─────────────────────────────────────────────
+    // שלב 3: עדיפות שנייה
+    // ─────────────────────────────────────────────
+    function showStep3(){
+      var d = DATA[_state.mode];
+      var isHeat = _state.mode === 'heat';
+
+      var hdrRow = mkRow(
+        mkLabel(d.resTitle),
+        mkSpeak(isHeat ? d.resQ : d.resTitle),
+        mkSmall('\u2190 \u05D7\u05D6\u05E8\u05D4', function(){ isHeat ? showStep2() : showStep2b(); })
+      );
+
+      var box;
+      if(isHeat){
+        var yBtn = mkBtn(d.resYesLabel, function(){ _state.res='yes'; showStep4(); },
+          'background:#e8f7ef;border:2px solid #3aaa6e;border-radius:12px;padding:.55rem .9rem;font-weight:700;font-size:.87rem;color:#1a6640;cursor:pointer;text-align:right;font-family:inherit;width:100%;display:block;margin-bottom:.4rem');
+        var nBtn = mkBtn(d.resNoLabel, function(){ _state.res='no'; showStep4(); },
+          'background:#fde8e8;border:2px solid #e05252;border-radius:12px;padding:.55rem .9rem;font-weight:700;font-size:.87rem;color:#8b1c1c;cursor:pointer;text-align:right;font-family:inherit;width:100%;display:block;margin-bottom:.4rem');
+        box = mkBox('#fde8e8','#f0a0a0',[
+          mkRow(mkLabel(d.resQ), mkSpeak(d.resQ)),
+          yBtn, nBtn
+        ]);
+      } else {
+        var ol = mkOL(d.resItems);
+        var mkWarn = mkDiv('background:#dbeafe;border:1px solid #90b8e0;border-radius:8px;padding:.4rem .65rem;margin-top:.4rem;font-size:.82rem;line-height:1.7;color:var(--text)');
+        var wLabel = document.createElement('strong');
+        wLabel.style.color = '#1a3060';
+        wLabel.textContent = '\uD83D\uDC39 \u05DE\u05DB\u05E8\u05E1\u05DE\u05D9\u05DD: ';
+        var wNote = mkDiv('font-size:.82rem;line-height:1.7');
+        wNote.appendChild(document.createTextNode('\u05D4\u05D5\u05E1\u05D9\u05E4\u05D5 \u05D4\u05DE\u05D5\u05DF \u05DE\u05E6\u05E2 \u05D5\u05D2\u05E8\u05D1\u05D9\u05D9\u05DD \u05DC\u05D4\u05EA\u05D7\u05E4\u05E8\u05D5\u05EA.'));
+        var wWarn = document.createElement('strong');
+        wWarn.style.color = '#8b1c1c';
+        wWarn.textContent = d.resMkWarn;
+        mkWarn.appendChild(wLabel);
+        mkWarn.appendChild(wNote);
+        mkWarn.appendChild(document.createElement('br'));
+        mkWarn.appendChild(wWarn);
+
+        var resetBtn = mkSmall('\u2190 \u05D4\u05EA\u05D7\u05DC \u05DE\u05D7\u05D3\u05E9', function(){ showStep0(); });
+        resetBtn.style.marginTop = '.5rem';
+
+        box = mkBox('#dbeafe','#90b8e0',[
+          mkRow(mkSpeak(d.resItems.join(' ') + ' ' + d.resMkWarn)),
+          ol, mkWarn, resetBtn
+        ]);
+      }
+
+      render([mkBreadcrumb(), hdrRow, box]);
+    }
+
+    // ─────────────────────────────────────────────
+    // שלב 4: תשובת קרח (חום)
+    // ─────────────────────────────────────────────
+    function showStep4(){
+      var d    = DATA['heat'];
+      var resD = _state.res === 'yes' ? d.resYes : d.resNo;
+      var resText = T[resD.tk];
+      var warnText = resD.warnTk ? T[resD.warnTk] : null;
+
+      var backRow = mkRow(mkSmall('\u2190 \u05E9\u05E0\u05D4 \u05EA\u05E9\u05D5\u05D1\u05D4', function(){ _state.res=null; showStep3(); }));
+
+      var ansBox = mkDiv('background:'+resD.bg+';border:1.5px solid '+resD.brd+';border-radius:10px;padding:.55rem .8rem;font-size:.83rem;line-height:1.75;color:var(--text);margin-bottom:.4rem');
+      ansBox.appendChild(document.createTextNode(resText));
+      if(warnText){
+        ansBox.appendChild(document.createElement('br'));
+        var w = document.createElement('strong');
+        w.style.color = '#8b1c1c';
+        w.textContent = warnText;
+        ansBox.appendChild(w);
+      }
+      ansBox.appendChild(mkRow(mkSpeak(resText + (warnText ? ' ' + warnText : '') + ' ' + d.winText)));
+
+      var winBox = mkDiv('background:#fff8f0;border:1.5px solid #f0c060;border-radius:10px;padding:.5rem .75rem;font-size:.83rem;line-height:1.8;color:var(--text);margin-bottom:.4rem');
+      var winLabel = document.createElement('strong');
+      winLabel.style.color = '#7a3800';
+      winLabel.textContent = d.winTitle + ': ';
+      winBox.appendChild(winLabel);
+      winBox.appendChild(document.createTextNode(d.winText));
+
+      var resetBtn = mkSmall('\u2190 \u05D4\u05EA\u05D7\u05DC \u05DE\u05D7\u05D3\u05E9', function(){ showStep0(); });
+      resetBtn.style.marginTop = '.45rem';
+
+      render([mkBreadcrumb(), backRow, ansBox, winBox, resetBtn]);
+    }
+
+    // ─────────────────────────────────────────────
+    // פתח הכל
+    // ─────────────────────────────────────────────
+    window.emShowAll = function(){
+      el('emShowAllBtn').style.display = 'none';
+      _state = { mode:null, loc:null, res:null };
+
+      var wrap = mkDiv(null);
+
+      var topRow = mkDiv('display:flex;align-items:center;gap:.5rem;margin-bottom:.45rem');
+      topRow.appendChild(mkSmall('\u2190 \u05D7\u05D6\u05D5\u05E8 \u05DC\u05E9\u05D0\u05DC\u05D5\u05DF', function(){ showStep0(); }));
+      var allSpeak = mkEl('button','background:none;border:none;cursor:pointer;font-size:.85rem;color:#bbb;padding:0;line-height:1');
+      allSpeak.textContent = '\uD83D\uDD0A \u05D4\u05E7\u05E8\u05D0 \u05D4\u05DB\u05DC';
+      topRow.appendChild(allSpeak);
+      wrap.appendChild(topRow);
+
+      var allContent = mkDiv('color:var(--text)');
+      allContent.id = 'emAllContent';
+
+      // חום
+      var hBox = mkDiv('background:#fde8e8;border:1.5px solid #e05252;border-radius:12px;padding:.65rem .9rem;margin-bottom:.5rem');
+      var hTitle = mkDiv('font-weight:900;font-size:.9rem;color:#8b1c1c;margin-bottom:.4rem');
+      hTitle.textContent = '\u2600\uFE0F \u05D7\u05D5\u05DD \u05E7\u05D9\u05E6\u05D5\u05E0\u05D9 (\u05EA\u05E7\u05DC\u05EA \u05DE\u05D6\u05D2\u05DF / \u05D4\u05E4\u05E1\u05E7\u05EA \u05D7\u05E9\u05DE\u05DC)';
+      hBox.appendChild(hTitle);
+
+      function addSection(parent, titleText, titleCol, items, isOL){
+        var t = mkTextDiv('font-size:.8rem;font-weight:800;color:'+titleCol+';margin-bottom:.2rem', titleText);
+        parent.appendChild(t);
+        var list = document.createElement(isOL ? 'ol' : 'ul');
+        list.style.cssText = 'margin:0 0 .45rem;padding-right:1.1rem;font-size:.82rem;line-height:1.85;color:var(--text)';
+        items.forEach(function(txt){
+          var li = document.createElement('li');
+          li.textContent = txt;
+          list.appendChild(li);
+        });
+        parent.appendChild(list);
+      }
+
+      addSection(hBox, '\u05E2\u05D3\u05D9\u05E4\u05D5\u05EA \u05E8\u05D0\u05E9\u05D5\u05E0\u05D4 (\u05DE\u05E2\u05DC 32\u00B0) \u2013 \u05D4\u05E2\u05D1\u05E8\u05D4 \u05DC\u05E4\u05D9 \u05DE\u05D9\u05E7\u05D5\u05DD:', '#7a3000', [
+        '\u05E4\u05D9\u05E0\u05EA \u05D4\u05D7\u05D9 \u05D1\u05DC\u05D1\u05D3: ' + T.heatRoomTr,
+        '\u05DB\u05DC "\u05D4\u05DE\u05E2\u05D5\u05E3": ' + T.heatWingTr,
+        '\u05DB\u05DC \u05D1\u05D9\u05EA \u05D4\u05E1\u05E4\u05E8: ' + T.heatSchoolTr,
+      ], false);
+      addSection(hBox, '\u05E4\u05E2\u05D5\u05DC\u05D5\u05EA \u05D7\u05D5\u05D1\u05D4 \u05D1\u05E4\u05D9\u05E0\u05EA \u05D4\u05D7\u05D9:', '#7a3000', DATA.heat.actItems, true);
+      addSection(hBox, '\u05E2\u05D3\u05D9\u05E4\u05D5\u05EA \u05E9\u05E0\u05D9\u05D9\u05D4 (\u05DE\u05E2\u05DC 35\u00B0) \u2013 \u05E7\u05D9\u05E8\u05D5\u05E8 \u05D0\u05E7\u05D8\u05D9\u05D1\u05D9:', '#7a3000', [
+        '\u05D9\u05E9 \u05D1\u05E7\u05D1\u05D5\u05E7\u05D9\u05DD \u05E7\u05E4\u05D5\u05D0\u05D9\u05DD: ' + T.heatYes,
+        '\u05D0\u05D9\u05DF \u05E7\u05E8\u05D7: ' + T.heatNo + ' ' + T.heatNoWarn,
+      ], false);
+      var winNote = mkDiv('background:#fff8f0;border:1px solid #f0c060;border-radius:8px;padding:.4rem .65rem;font-size:.82rem;line-height:1.7;color:var(--text)');
+      var winL = document.createElement('strong'); winL.style.color='#7a3800'; winL.textContent = DATA.heat.winTitle+': ';
+      winNote.appendChild(winL); winNote.appendChild(document.createTextNode(DATA.heat.winText));
+      hBox.appendChild(winNote);
+      allContent.appendChild(hBox);
+
+      // קור
+      var cBox = mkDiv('background:#dbeafe;border:1.5px solid #4090d0;border-radius:12px;padding:.65rem .9rem');
+      var cTitle = mkDiv('font-weight:900;font-size:.9rem;color:#1a3060;margin-bottom:.4rem');
+      cTitle.textContent = '\u2744\uFE0F \u05E7\u05D5\u05E8 \u05E7\u05D9\u05E6\u05D5\u05E0\u05D9 (\u05EA\u05E7\u05DC\u05EA \u05D7\u05D9\u05DE\u05D5\u05DD / \u05D4\u05E4\u05E1\u05E7\u05EA \u05D7\u05E9\u05DE\u05DC)';
+      cBox.appendChild(cTitle);
+      addSection(cBox, '\u05E2\u05D3\u05D9\u05E4\u05D5\u05EA \u05E8\u05D0\u05E9\u05D5\u05E0\u05D4 (\u05DE\u05EA\u05D7\u05EA \u05DC-12\u00B0) \u2013 \u05E4\u05D9\u05E0\u05D5\u05D9 \u05D6\u05D5\u05D7\u05DC\u05D9\u05DD:', '#1a3060', [
+        '\u05E4\u05D9\u05E0\u05EA \u05D4\u05D7\u05D9 / \u05DE\u05E2\u05D5\u05E3: ' + T.coldRoomTr,
+        '\u05DB\u05DC \u05D1\u05D9\u05EA \u05D4\u05E1\u05E4\u05E8 \u2013 \u05D9\u05E9 \u05DE\u05D9\u05DD \u05D7\u05DE\u05D9\u05DD: ' + T.coldYes,
+        '\u05DB\u05DC \u05D1\u05D9\u05EA \u05D4\u05E1\u05E4\u05E8 \u2013 \u05D0\u05D9\u05DF \u05DE\u05D9\u05DD \u05D7\u05DE\u05D9\u05DD: ' + T.coldNo,
+      ], false);
+      addSection(cBox, '\u05E2\u05D3\u05D9\u05E4\u05D5\u05EA \u05E9\u05E0\u05D9\u05D9\u05D4 (\u05DE\u05EA\u05D7\u05EA \u05DC-8\u00B0) \u2013 \u05D1\u05D9\u05D3\u05D5\u05D3 \u05E9\u05D0\u05E8 \u05D4\u05E4\u05D9\u05E0\u05D4:', '#1a3060', DATA.cold.resItems, true);
+      var mkNote = mkDiv('background:#e8f4ff;border:1px solid #90b8e0;border-radius:8px;padding:.4rem .65rem;font-size:.82rem;line-height:1.7;color:var(--text)');
+      var mkL = document.createElement('strong'); mkL.style.color='#1a3060'; mkL.textContent='\uD83D\uDC39 \u05DE\u05DB\u05E8\u05E1\u05DE\u05D9\u05DD: ';
+      var mkW = document.createElement('strong'); mkW.style.color='#8b1c1c'; mkW.textContent=DATA.cold.resMkWarn;
+      mkNote.appendChild(mkL);
+      mkNote.appendChild(document.createTextNode('\u05D4\u05D5\u05E1\u05D9\u05E4\u05D5 \u05D4\u05DE\u05D5\u05DF \u05DE\u05E6\u05E2 \u05D5\u05D2\u05E8\u05D1\u05D9\u05D9\u05DD \u05DC\u05D4\u05EA\u05D7\u05E4\u05E8\u05D5\u05EA. '));
+      mkNote.appendChild(mkW);
+      cBox.appendChild(mkNote);
+      allContent.appendChild(cBox);
+
+      wrap.appendChild(allContent);
+      allSpeak.addEventListener('click', function(){ speakText(allContent.innerText, allSpeak); });
+
+      var flow = el('emFlow');
+      while(flow.firstChild) flow.removeChild(flow.firstChild);
+      flow.appendChild(wrap);
+    };
+
+    window.emReset = function(){ showStep0(); };
+    showStep0();
+
+  })();
+  </script>
 
   <!-- מקרא כמויות - הכי למטה -->
   <details style="margin-top:1.1rem;font-size:.82rem;color:var(--muted);cursor:pointer;text-align:right" id="measureLegend">
@@ -11043,43 +11511,31 @@ function pwaInstall(){
 
       // הנחיות חירום לפי סף טמפרטורה (ללא תקלה)
       let emergencyTipHtml = '';
-      if(maxT >= 35){
+      if(maxT >= 32){
         emergencyTipHtml = `<div style="background:#fde8e8;border:1.5px solid #e05252;border-radius:9px;padding:.45rem .7rem;margin-bottom:.4rem;font-size:.83rem">
           <div style="font-weight:900;color:#8b1c1c;margin-bottom:.2rem">🔥 חום קיצוני (${maxT}°) - הנחיות מיוחדות</div>
           <ul style="margin:0;padding-right:1.1rem;line-height:1.65;color:var(--text)">
             <li>מחליפים את המים בכלי המים לפחות פעמיים ביום.</li>
-            <li>מזיזים את כלוב הג'אקו מהחלון למקום מוצל.</li>
+            <li>מזיזים את כלוב קיקו מהחלון למקום מוצל.</li>
             <li>בקבוקי קרח עטופים בגרב בתוך הכלוב של הצ'ינצ'ילות והארנבונים.</li>
             <li>המזגן חייב לפעול. מומלץ 22–24°.</li>
           </ul>
+          <div style="margin-top:.35rem;padding-top:.35rem;border-top:1px dashed #f0b8b8">
+            <button onclick="switchTab('guidelines');setTimeout(()=>{const el=document.getElementById('emergencyGuidelinesSection');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)" style="background:#e05252;color:#fff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.8rem;font-weight:800;cursor:pointer;font-family:inherit">🚨 יש תקלת מזגן? עברו להנחיות חירום</button>
+          </div>
         </div>`;
-      } else if(maxT >= 30){
-        emergencyTipHtml = `<div style="background:#fff3e0;border:1.5px solid #f07030;border-radius:9px;padding:.45rem .7rem;margin-bottom:.4rem;font-size:.83rem">
-          <div style="font-weight:900;color:#7a3000;margin-bottom:.2rem">☀️ חום גבוה (${maxT}°) - כדאי לדעת</div>
-          <ul style="margin:0;padding-right:1.1rem;line-height:1.65;color:var(--text)">
-            <li>מוודאים שיש מים קרירים לכל החיות.</li>
-            <li>הצ'ינצ'ילות והארנבונים זקוקים למזגן על קירור.</li>
-            <li>לא מוציאים את החרדון ואת הצבה בשעות החמות.</li>
-          </ul>
-        </div>`;
-      } else if(minT <= 8){
+      } else if(minT <= 12){
         emergencyTipHtml = `<div style="background:#dbeafe;border:1.5px solid #4090d0;border-radius:9px;padding:.45rem .7rem;margin-bottom:.4rem;font-size:.83rem">
-          <div style="font-weight:900;color:#1a3060;margin-bottom:.2rem">🧊 קור קיצוני (${minT}°) - הנחיות מיוחדות</div>
+          <div style="font-weight:900;color:#1a3060;margin-bottom:.2rem">❄️ קור (${minT}°) - הנחיות מיוחדות</div>
           <ul style="margin:0;padding-right:1.1rem;line-height:1.65;color:var(--text)">
             <li>סוגרים את כל החלונות היטב לפני שיוצאים.</li>
             <li>מכסים את כלובי התוכים בבדים עבים בלילה.</li>
             <li>לזוחלים שמים בקבוקי מים חמימים (38–40°) עטופים במגבת.</li>
             <li>המזגן על חימום, 22–24°.</li>
           </ul>
-        </div>`;
-      } else if(minT <= 12){
-        emergencyTipHtml = `<div style="background:#e8f4ff;border:1.5px solid #4090d0;border-radius:9px;padding:.45rem .7rem;margin-bottom:.4rem;font-size:.83rem">
-          <div style="font-weight:900;color:#1a3060;margin-bottom:.2rem">❄️ קר (${minT}°) - כדאי לדעת</div>
-          <ul style="margin:0;padding-right:1.1rem;line-height:1.65;color:var(--text)">
-            <li>מוודאים שכל החלונות סגורים היטב בסוף היום.</li>
-            <li>המזגן על חימום, 22°.</li>
-            <li>הזוחלים פעילים פחות - נורמלי לגמרי.</li>
-          </ul>
+          <div style="margin-top:.35rem;padding-top:.35rem;border-top:1px dashed #a0c0e8">
+            <button onclick="switchTab('guidelines');setTimeout(()=>{const el=document.getElementById('emergencyGuidelinesSection');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)" style="background:#4090d0;color:#fff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.8rem;font-weight:800;cursor:pointer;font-family:inherit">🚨 יש תקלת חימום? עברו להנחיות חירום</button>
+          </div>
         </div>`;
       }
 
