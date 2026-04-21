@@ -1024,6 +1024,16 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   0%,100%{margin-right:0}
   50%{margin-right:var(--sw,18px)}
 }
+@keyframes emPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(224,82,82,0)}
+  50%{box-shadow:0 0 0 6px rgba(224,82,82,.28)}
+}
+.em-choice-btn:hover{ filter:brightness(.95); }
+@keyframes emBlink{
+  0%,100%{opacity:1}
+  50%{opacity:.25}
+}
+
 </style>
 </head>
 <body>
@@ -2546,464 +2556,455 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 
   <script>
   (function(){
-    var _state = { mode:null, loc:null, res:null };
 
-    // ── טקסטים עם גרשיים ──
-    var T = {
-      chinchilla:  '\u05E6\u0027\u05D9\u05E0\u05E6\u0027\u05D9\u05DC\u05D5\u05EA',  // צ'ינצ'ילות
-      heatRoomTr:  '\u05D4\u05E2\u05D1\u05D9\u05E8\u05D5 \u05DE\u05D9\u05D3 \u05D0\u05EA \u05D4\u05E6\u0027\u05D9\u05E0\u05E6\u0027\u05D9\u05DC\u05D5\u05EA \u05DC\u05D7\u05D3\u05E8 "\u05E6\u05D1\u05E2 \u05D5\u05D8\u05D1\u05E2". \u05DC\u05D0\u05D7\u05E8 \u05DE\u05DB\u05DF \u05D1\u05E6\u05E2\u05D5 \u05D0\u05EA \u05D4\u05E4\u05E2\u05D5\u05DC\u05D5\u05EA \u05D1\u05E9\u05D8\u05D7.',
-      heatWingTr:  '\u05D4\u05E2\u05D1\u05D9\u05E8\u05D5 \u05D0\u05EA \u05D4\u05E6\u0027\u05D9\u05E0\u05E6\u0027\u05D9\u05DC\u05D5\u05EA \u05DC\u05D1\u05E0\u05D9\u05D9\u05DF \u05E9\u05DC \u05D4\u05D2\u05D3\u05D5\u05DC\u05D9\u05DD. \u05DC\u05D0\u05D7\u05E8 \u05DE\u05DB\u05DF \u05D1\u05E6\u05E2\u05D5 \u05D0\u05EA \u05D4\u05E4\u05E2\u05D5\u05DC\u05D5\u05EA \u05D1\u05E9\u05D8\u05D7.',
-      heatSchoolTr:'\u05D0\u05D9\u05DF \u05D6\u05DE\u05DF \u05DC\u05D4\u05E2\u05D1\u05E8\u05D4. \u05E2\u05D1\u05E8\u05D5 \u05D9\u05E9\u05D9\u05E8\u05D5\u05EA \u05DC\u05E4\u05E2\u05D5\u05DC\u05D5\u05EA \u05D1\u05E9\u05D8\u05D7.',
-      heatYes:     '\u05E2\u05D8\u05E4\u05D5 \u05D1\u05D2\u05E8\u05D1 \u05D5\u05E9\u05D9\u05DE\u05D5 \u05D0\u05E6\u05DC \u05D4\u05D0\u05E8\u05E0\u05D1\u05D5\u05E0\u05D9\u05DD (\u05D5\u05D0\u05E6\u05DC \u05D4\u05E6\u0027\u05D9\u05E0\u05E6\u0027\u05D9\u05DC\u05D5\u05EA \u05D0\u05DD \u05DC\u05D0 \u05E4\u05D5\u05E0\u05D5).',
-      heatNo:      '\u05D4\u05E8\u05D8\u05D9\u05D1\u05D5 \u05DE\u05D2\u05D1\u05D5\u05EA \u05D5\u05EA\u05DC\u05D5 \u05DE\u05D5\u05DC \u05D6\u05E8\u05D9\u05DE\u05EA \u05D4\u05D0\u05D5\u05D5\u05D9\u05E8. \u05DC\u05D0\u05E8\u05E0\u05D1\u05D5\u05E0\u05D9\u05DD: \u05E0\u05D2\u05D1\u05D5 \u05D1\u05E2\u05D3\u05D9\u05E0\u05D5\u05EA \u05D0\u05EA \u05D2\u05D1 \u05D4\u05D0\u05D5\u05D6\u05DF (\u05D4\u05D7\u05DC\u05E7 \u05E2\u05DD \u05D4\u05E4\u05E8\u05D5\u05D5\u05D4) \u05D1\u05DE\u05D8\u05DC\u05D9\u05EA \u05DC\u05D7\u05D4 \u05D5\u05E7\u05E8\u05D9\u05E8\u05D4.',
-      heatNoWarn:  '\u26A0\uFE0F \u05D0\u05D9\u05DF \u05DC\u05D4\u05DB\u05E0\u05D9\u05E1 \u05DE\u05D9\u05DD \u05DC\u05EA\u05E2\u05DC\u05EA \u05D4\u05D0\u05D5\u05D6\u05DF \u05D1\u05E9\u05D5\u05DD \u05D0\u05D5\u05E4\u05DF.',
-      coldRoomTr:  '\u05D4\u05E2\u05D1\u05D9\u05E8\u05D5 \u05D0\u05EA \u05D6\u05D0\u05D5\u05E1, \u05E1\u05D5\u05D9\u05D4 \u05D5\u05D3\u05D5\u05E0\u05D4 \u05DC\u05D7\u05D3\u05E8 "\u05E6\u05D1\u05E2 \u05D5\u05D8\u05D1\u05E2" \u05D0\u05D5 \u05DC\u05D1\u05E0\u05D9\u05D9\u05DF \u05D4\u05D2\u05D3\u05D5\u05DC\u05D9\u05DD, \u05D9\u05D7\u05D3 \u05E2\u05DD \u05DE\u05E9\u05D8\u05D7\u05D9 \u05D4\u05D7\u05D9\u05DE\u05D5\u05DD \u05E9\u05DC\u05D4\u05DD.',
-      coldSchoolTr:'\u05D0\u05D9\u05DF \u05D6\u05DE\u05DF \u05DC\u05D4\u05E2\u05D1\u05E8\u05D4. \u05E2\u05D1\u05E8\u05D5 \u05DC\u05E4\u05E2\u05D5\u05DC\u05D5\u05EA \u05D4\u05D7\u05D9\u05DE\u05D5\u05DD \u05D1\u05E9\u05D8\u05D7.',
-      coldYes:     '\u05DE\u05DC\u05D0\u05D5 \u05D1\u05E7\u05D1\u05D5\u05E7\u05D9\u05DD \u05D1\u05DE\u05D9\u05DD \u05D7\u05DE\u05D9\u05DD (38 \u05E2\u05D3 40 \u05DE\u05E2\u05DC\u05D5\u05EA), \u05E2\u05D8\u05E4\u05D5 \u05D1\u05DE\u05D2\u05D1\u05EA \u05D5\u05E9\u05D9\u05DE\u05D5 \u05D1\u05D1\u05EA\u05D9 \u05D4\u05D2\u05D9\u05D3\u05D5\u05DC \u05E9\u05DC \u05D4\u05D6\u05D5\u05D7\u05DC\u05D9\u05DD.',
-      coldNo:      '\u05D4\u05E2\u05D1\u05D9\u05E8\u05D5 \u05D0\u05EA \u05D4\u05D6\u05D5\u05D7\u05DC\u05D9\u05DD \u05DC\u05E7\u05D5\u05E4\u05E1\u05D0\u05D5\u05EA \u05E7\u05D8\u05E0\u05D5\u05EA \u05D9\u05D5\u05EA\u05E8 \u05E2\u05DD \u05D4\u05DE\u05D5\u05DF \u05DE\u05E6\u05E2 \u05D5\u05D2\u05E8\u05D1\u05D9\u05D9\u05DD \u05DC\u05D4\u05EA\u05D7\u05E4\u05E8\u05D5\u05EA.',
-    };
+    var _mode      = null;
+    var _evacuated = false;
+    var _lastDest  = null;
 
-    var DATA = {
-      heat: {
-        locQ:    '\u05D0\u05D9\u05E4\u05D4 \u05D4\u05EA\u05E7\u05DC\u05D4?',
-        locs: [
-          { id:'room',   label:'\u05D4\u05EA\u05E7\u05DC\u05D4 \u05E8\u05E7 \u05D1\u05E4\u05D9\u05E0\u05EA \u05D4\u05D7\u05D9' },
-          { id:'wing',   label:'\u05D4\u05E4\u05E1\u05E7\u05EA \u05D7\u05E9\u05DE\u05DC \u05D1\u05DB\u05DC "\u05D4\u05DE\u05E2\u05D5\u05E3"' },
-          { id:'school', label:'\u05EA\u05E7\u05DC\u05D4 \u05D1\u05DB\u05DC \u05D1\u05D9\u05EA \u05D4\u05E1\u05E4\u05E8' },
-        ],
-        locResult: {
-          room:   { icon:'\uD83D\uDCE6', bg:'#fff3e0', brd:'#f07030', text: null, tk:'heatRoomTr' },
-          wing:   { icon:'\uD83D\uDCE6', bg:'#fff3e0', brd:'#f07030', text: null, tk:'heatWingTr' },
-          school: { icon:'\u26A1', bg:'#fde8e8', brd:'#e05252', text: null, tk:'heatSchoolTr' },
-        },
-        actTitle: '\u05E4\u05E2\u05D5\u05DC\u05D5\u05EA \u05D7\u05D5\u05D1\u05D4 \u05D1\u05E4\u05D9\u05E0\u05EA \u05D4\u05D7\u05D9',
-        actItems: [
-          '\u05E7\u05D9\u05E7\u05D5: \u05D4\u05D6\u05D9\u05D6\u05D5 \u05D0\u05EA \u05D4\u05DB\u05DC\u05D5\u05D1 \u05E9\u05DC \u05E7\u05D9\u05E7\u05D5 \u05DE\u05D4\u05D7\u05DC\u05D5\u05DF \u05DC\u05DE\u05E7\u05D5\u05DD \u05DE\u05D5\u05E6\u05DC \u05D1\u05D7\u05D3\u05E8.',
-          '\u05DE\u05D9\u05DD: \u05D4\u05D5\u05E1\u05D9\u05E4\u05D5 \u05DB\u05DC\u05D9 \u05DE\u05D9\u05DD \u05E7\u05E8\u05D9\u05E8\u05D9\u05DD \u05DC\u05DB\u05D5\u05DC\u05DD.',
-        ],
-        actCont: '\u05D4\u05DE\u05E9\u05DA: \u05E7\u05D9\u05E8\u05D5\u05E8 \u05D0\u05E7\u05D8\u05D9\u05D1\u05D9 (\u05E2\u05D3\u05D9\u05E4\u05D5\u05EA \u05E9\u05E0\u05D9\u05D9\u05D4) \u25BC',
-        resTitle:'\u05E9\u05DC\u05D1 \u05D1: \u05E2\u05D3\u05D9\u05E4\u05D5\u05EA \u05E9\u05E0\u05D9\u05D9\u05D4 (\u05DE\u05E2\u05DC 35\u00B0)',
-        resQ:    '\uD83E\uDDCA \u05D4\u05D0\u05DD \u05D9\u05E9 \u05D1\u05E7\u05D1\u05D5\u05E7\u05D9 \u05DE\u05D9\u05DD \u05E7\u05E4\u05D5\u05D0\u05D9\u05DD?',
-        resYesLabel:'\u2705 \u05DB\u05DF, \u05D9\u05E9 \u05D1\u05E7\u05D1\u05D5\u05E7\u05D9\u05DD \u05E7\u05E4\u05D5\u05D0\u05D9\u05DD',
-        resNoLabel: '\u274C \u05D0\u05D9\u05DF',
-        resYes: { bg:'#e8f7ef', brd:'#3aaa6e', tk:'heatYes' },
-        resNo:  { bg:'#fff8f0', brd:'#f0a060', tk:'heatNo', warnTk:'heatNoWarn' },
-        winTitle:'\uD83E\uDE9F \u05E0\u05D9\u05D4\u05D5\u05DC \u05D7\u05DC\u05D5\u05E0\u05D5\u05EA',
-        winText: '\u05E4\u05EA\u05D7\u05D5 \u05D7\u05DC\u05D5\u05DF \u05E8\u05E7 \u05D0\u05DD \u05D4\u05D0\u05D5\u05D5\u05D9\u05E8 \u05DE\u05D7\u05E0\u05D9\u05E7 \u05DE\u05D0\u05D5\u05D3. \u05D0\u05DD \u05D1\u05D7\u05D5\u05E5 \u05DE\u05E2\u05DC 40\u00B0 (\u05E9\u05E8\u05D1 \u05DB\u05D1\u05D3), \u05D4\u05E9\u05D0\u05D9\u05E8\u05D5 \u05D7\u05DC\u05D5\u05E0\u05D5\u05EA \u05E1\u05D2\u05D5\u05E8\u05D9\u05DD \u05DB\u05D3\u05D9 \u05DC\u05DB\u05DC\u05D5\u05D0 \u05D0\u05EA \u05D4\u05D0\u05D5\u05D5\u05D9\u05E8 \u05D4\u05E7\u05E8\u05D9\u05E8 \u05E9\u05E0\u05E9\u05D0\u05E8.',
-        bg:'#fde8e8', brd:'#e05252', col:'#8b1c1c',
-      },
-      cold: {
-        locQ:    '\u05D0\u05D9\u05E4\u05D4 \u05D4\u05EA\u05E7\u05DC\u05D4?',
-        locs: [
-          { id:'room',   label:'\u05D4\u05EA\u05E7\u05DC\u05D4 \u05D1\u05E4\u05D9\u05E0\u05EA \u05D4\u05D7\u05D9 \u05D0\u05D5 \u05D1"\u05D4\u05DE\u05E2\u05D5\u05E3"' },
-          { id:'school', label:'\u05EA\u05E7\u05DC\u05D4 \u05D1\u05DB\u05DC \u05D1\u05D9\u05EA \u05D4\u05E1\u05E4\u05E8' },
-        ],
-        locResult: {
-          room:   { icon:'\uD83D\uDCE6', bg:'#e8f4ff', brd:'#4090d0', tk:'coldRoomTr' },
-          school: { icon:'\u26A1', bg:'#dbeafe', brd:'#4090d0', tk:'coldSchoolTr' },
-        },
-        actTitle:'\u05D4\u05D0\u05DD \u05D9\u05E9 \u05DE\u05D9\u05DD \u05D7\u05DE\u05D9\u05DD?',
-        actQ:    '\uD83C\uDF21\uFE0F \u05D4\u05D0\u05DD \u05D9\u05E9 \u05DE\u05D9\u05DD \u05D7\u05DE\u05D9\u05DD?',
-        actYesLabel:'\u2705 \u05DB\u05DF, \u05D9\u05E9 \u05DE\u05D9\u05DD \u05D7\u05DE\u05D9\u05DD',
-        actNoLabel: '\u274C \u05D0\u05D9\u05DF',
-        actYes: { bg:'#e8f7ef', brd:'#3aaa6e', tk:'coldYes' },
-        actNo:  { bg:'#e8f4ff', brd:'#4090d0', tk:'coldNo' },
-        actCont: '\u05D4\u05DE\u05E9\u05DA: \u05D1\u05D9\u05D3\u05D5\u05D3 \u05E9\u05D0\u05E8 \u05D4\u05E4\u05D9\u05E0\u05D4 (\u05E2\u05D3\u05D9\u05E4\u05D5\u05EA \u05E9\u05E0\u05D9\u05D9\u05D4) \u25BC',
-        resTitle:'\u05E9\u05DC\u05D1 \u05D1: \u05E2\u05D3\u05D9\u05E4\u05D5\u05EA \u05E9\u05E0\u05D9\u05D9\u05D4 (\u05DE\u05EA\u05D7\u05EA \u05DC-8\u00B0)',
-        resItems:[
-          '\u05D0\u05D9\u05D8\u05D5\u05DD: \u05E1\u05D2\u05E8\u05D5 \u05D7\u05DC\u05D5\u05E0\u05D5\u05EA \u05D4\u05D9\u05D8\u05D1. \u05D0\u05DD \u05E0\u05DB\u05E0\u05E1\u05EA \u05E8\u05D5\u05D7 \u05E7\u05E8\u05D4, \u05D4\u05D6\u05D9\u05D6\u05D5 \u05D0\u05EA \u05E7\u05D9\u05E7\u05D5 \u05DC\u05DE\u05E8\u05DB\u05D6 \u05D4\u05D7\u05D3\u05E8.',
-          '\u05E7\u05D9\u05E7\u05D5: \u05DB\u05E1\u05D5 \u05D0\u05EA \u05D4\u05DB\u05DC\u05D5\u05D1 \u05D1\u05D1\u05D3\u05D9\u05DD \u05E2\u05D1\u05D9\u05DD.',
-          '\u05D4\u05DB\u05DC\u05D5\u05D1 \u05D4\u05E2\u05E0\u05E7: \u05DB\u05E1\u05D5 2\u20133 \u05E4\u05D0\u05D5\u05EA \u05DE\u05D4\u05DB\u05DC\u05D5\u05D1 \u05DC\u05D9\u05E6\u05D9\u05E8\u05EA "\u05DB\u05D9\u05E1 \u05D7\u05D5\u05DD" (\u05E2\u05D3\u05D9\u05E3 \u05D1\u05E4\u05D9\u05E0\u05D4 \u05E9\u05D1\u05D4 \u05D4\u05EA\u05D5\u05DB\u05D9\u05DD \u05D9\u05E9\u05E0\u05D9\u05DD).',
-          '\u05D1\u05D9\u05D3\u05D5\u05D3 \u05DE\u05D4\u05E8\u05E6\u05E4\u05D4: \u05D4\u05E8\u05D9\u05DE\u05D5 \u05D0\u05EA \u05DB\u05DC \u05D4\u05DB\u05DC\u05D5\u05D1\u05D9\u05DD \u05DC\u05E9\u05D5\u05DC\u05D7\u05E0\u05D5\u05EA \u05D0\u05D5 \u05DC\u05E7\u05E8\u05D8\u05D5\u05E0\u05D9\u05DD.',
-        ],
-        resMkWarn:'\u26A0\uFE0F \u05D0\u05D9\u05DF \u05DC\u05DB\u05E1\u05D5\u05EA \u05D0\u05EA \u05D4\u05E8\u05E9\u05EA \u05D1\u05E9\u05DE\u05D9\u05DB\u05D5\u05EA! \u05D7\u05D5\u05D1\u05D4 \u05DC\u05D4\u05E9\u05D0\u05D9\u05E8 \u05E4\u05EA\u05D7 \u05DC\u05D0\u05D5\u05D5\u05D9\u05E8 \u05DC\u05E0\u05E9\u05D9\u05DE\u05D4.',
-        bg:'#dbeafe', brd:'#4090d0', col:'#1a3060',
-      }
-    };
-
-    // ── עזרים DOM ──
     function el(id){ return document.getElementById(id); }
-
-    function mkEl(tag, cssText, textContent){
+    function mkEl(tag, css, text){
       var e = document.createElement(tag);
-      if(cssText)     e.style.cssText = cssText;
-      if(textContent) e.textContent   = textContent;
+      if(css)              e.style.cssText = css;
+      if(text !== undefined) e.textContent = text;
       return e;
     }
-
-    function app(parent){ // append multiple children
-      for(var i=1;i<arguments.length;i++) if(arguments[i]) parent.appendChild(arguments[i]);
-      return parent;
+    function mkDiv(css){ return mkEl('div', css||''); }
+    function app(p){
+      for(var i=1;i<arguments.length;i++) if(arguments[i]) p.appendChild(arguments[i]);
+      return p;
     }
-
-    function mkDiv(css){ return mkEl('div',css); }
-
-    function mkTextDiv(css, text){
-      var d = mkDiv(css);
-      d.textContent = text;
-      return d;
-    }
-
     function mkBtn(text, fn, css){
-      var b = mkEl('button', css || 'background:#f0f0f0;border:1px solid #ccc;border-radius:12px;padding:.6rem .9rem;font-weight:700;font-size:.87rem;cursor:pointer;text-align:right;font-family:inherit;width:100%;display:block;margin-bottom:.4rem');
-      b.textContent = text;
+      var b = mkEl('button', css, text);
       b.addEventListener('click', fn);
       return b;
     }
-
     function mkSmall(text, fn){
-      var b = mkEl('button','background:none;border:1px solid #ccc;border-radius:50px;padding:.14rem .55rem;font-size:.75rem;color:#888;cursor:pointer;font-family:inherit;flex-shrink:0');
-      b.textContent = text;
-      b.addEventListener('click', fn);
-      return b;
+      return mkBtn(text, fn,
+        'background:none;border:1px solid #ccc;border-radius:50px;padding:.18rem .6rem;font-size:.76rem;color:#888;cursor:pointer;font-family:inherit;flex-shrink:0');
     }
-
     function mkSpeak(text){
-      var b = mkEl('button','background:none;border:none;cursor:pointer;font-size:.85rem;color:#bbb;padding:0;line-height:1;flex-shrink:0');
-      b.textContent = '\uD83D\uDD0A';
+      var b = mkEl('button',
+        'background:none;border:none;cursor:pointer;font-size:.85rem;color:#bbb;padding:0;line-height:1;flex-shrink:0');
+      b.textContent = '🔊';
       b.addEventListener('click', function(){ speakText(text, b); });
       return b;
     }
-
     function mkRow(){
-      var d = mkDiv('display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;margin-bottom:.4rem');
+      var d = mkDiv('display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;margin-bottom:.35rem');
       for(var i=0;i<arguments.length;i++) if(arguments[i]) d.appendChild(arguments[i]);
       return d;
     }
-
-    function mkLabel(text){ return mkTextDiv('font-size:.84rem;font-weight:900;color:var(--text)', text); }
-
-    function mkBox(bg, brd, children){
-      var d = mkDiv('background:'+bg+';border:1.5px solid '+brd+';border-radius:12px;padding:.6rem .85rem;margin-bottom:.4rem');
-      for(var i=0;i<children.length;i++) if(children[i]) d.appendChild(children[i]);
-      return d;
+    function mkLabel(text){ return mkEl('div','font-size:.84rem;font-weight:900;color:var(--text)', text); }
+    function mkBox(bg, brd, r){
+      return mkDiv('background:'+bg+';border:1.5px solid '+brd+';border-radius:'+(r||'12px')+';padding:.6rem .85rem;margin-bottom:.4rem');
     }
-
-    function mkOL(items, css){
-      var ol = mkEl('ol', css||'margin:0;padding-right:1.2rem;font-size:.83rem;line-height:2;color:var(--text)');
-      items.forEach(function(txt){
+    function mkOL(items){
+      var ol = mkEl('ol','margin:.3rem 0 0;padding-right:1.3rem;font-size:.84rem;line-height:2.1;color:var(--text)');
+      items.forEach(function(item){
         var li = document.createElement('li');
-        li.textContent = txt;
+        var colon = item.indexOf(':');
+        if(colon > 0 && colon < 35){
+          var s = document.createElement('strong'); s.textContent = item.slice(0,colon+1);
+          li.appendChild(s);
+          li.appendChild(document.createTextNode(item.slice(colon+1)));
+        } else { li.textContent = item; }
         ol.appendChild(li);
       });
       return ol;
     }
+    // mkChoiceBtn: לחצן בחירה גדול עם חץ בצד שמאל
+    function mkChoiceBtn(text, fn, bg, brd, col){
+      var b = document.createElement('button');
+      b.style.cssText =
+        'background:'+bg+';border:2px solid '+brd+';border-radius:14px;'+
+        'padding:.75rem 1rem .75rem 1.1rem;font-weight:700;font-size:.92rem;color:'+col+';'+
+        'cursor:pointer;text-align:right;font-family:inherit;width:100%;display:flex;'+
+        'align-items:center;justify-content:space-between;margin-bottom:.5rem;'+
+        'box-shadow:0 2px 6px rgba(0,0,0,.07);transition:filter .12s,transform .1s';
+      b.innerHTML = '<span style="flex:1;text-align:right">'+text+'</span>'+
+                    '<span style="font-size:1rem;opacity:.45;flex-shrink:0;margin-right:.35rem">◀</span>';
+      b.addEventListener('click', fn);
+      b.addEventListener('touchstart', function(){ b.style.filter='brightness(.93)'; b.style.transform='scale(.985)'; }, {passive:true});
+      b.addEventListener('touchend',   function(){ b.style.filter=''; b.style.transform=''; }, {passive:true});
+      return b;
+    }
 
-    function mkBreadcrumb(){
-      var d = mkDiv('background:var(--card);border:1px solid rgba(128,128,128,.15);border-radius:10px;padding:.38rem .65rem;font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:.35rem;flex-wrap:wrap;margin-bottom:.4rem');
-      var mode = _state.mode, loc = _state.loc;
-      if(mode){
-        var mLabel = mode==='heat' ? '\u2600\uFE0F \u05D7\u05D5\u05DD \u05E7\u05D9\u05E6\u05D5\u05E0\u05D9' : '\u2744\uFE0F \u05E7\u05D5\u05E8 \u05E7\u05D9\u05E6\u05D5\u05E0\u05D9';
-        app(d, mkSmall('\u2190 \u05E9\u05E0\u05D4', function(){ showStep0(); }), mkTextDiv(null, mLabel));
-      }
-      if(loc){
-        var lObj = DATA[mode].locs.find(function(l){ return l.id===loc; });
-        var sep = mkTextDiv('opacity:.3', '|');
-        app(d, sep, mkSmall('\u2190 \u05E9\u05E0\u05D4', function(){ showStep1(); }), mkTextDiv(null, lObj ? lObj.label : loc));
+    // הנחייה מעל קבוצת כפתורים
+    function mkChoicePrompt(text){
+      return mkEl('div',
+        'font-size:.8rem;color:var(--muted);font-weight:700;margin-bottom:.3rem;margin-top:.1rem',
+        text || 'בחרו את המצב המתאים:');
+    }
+
+    // כפתור חזרה בולט + תווית מצב נוכחי
+    function mkBackBar(backFn, backLabel, statusText){
+      var d = mkDiv('display:flex;align-items:center;gap:.55rem;margin-bottom:.55rem;flex-wrap:wrap');
+      var backBtn = mkBtn((backLabel||'← חזרה'), backFn,
+        'background:var(--card);border:1.5px solid rgba(128,128,128,.3);border-radius:50px;'+
+        'padding:.45rem 1.1rem;font-size:.88rem;font-weight:700;color:var(--text);'+
+        'cursor:pointer;font-family:inherit;flex-shrink:0;'+
+        'box-shadow:0 1px 6px rgba(0,0,0,.1)');
+      d.appendChild(backBtn);
+      if(statusText){
+        var s = mkEl('span','font-size:.8rem;color:var(--muted);opacity:.8', statusText);
+        d.appendChild(s);
       }
       return d;
     }
+    // שמור גם mkCrumb לתאימות אחורה (לא בשימוש עיקרי)
+    function mkCrumb(){ return mkDiv(''); }
 
     function render(nodes){
-      var flow = el('emFlow');
-      while(flow.firstChild) flow.removeChild(flow.firstChild);
-      nodes.forEach(function(n){ if(n) flow.appendChild(n); });
+      var f = el('emFlow');
+      while(f.firstChild) f.removeChild(f.firstChild);
+      nodes.forEach(function(n){ if(n) f.appendChild(n); });
     }
 
-    // ─────────────────────────────────────────────
-    // שלב 0: סוג תקלה
-    // ─────────────────────────────────────────────
+    // ────────────────────────────────────────────
+    // שלב 0: בחירת סוג תקלה
+    // ────────────────────────────────────────────
     function showStep0(){
-      _state = { mode:null, loc:null, res:null };
+      _mode = null; _evacuated = false; _lastDest = null;
       el('emShowAllBtn').style.display = '';
       render([
-        mkRow(
-          mkLabel('\u05DE\u05D4 \u05D4\u05DE\u05E6\u05D1 \u05DB\u05E8\u05D2\u05E2?'),
-          mkSpeak('\u05E9\u05D0\u05DC\u05D4: \u05DE\u05D4 \u05D4\u05DE\u05E6\u05D1 \u05DB\u05E8\u05D2\u05E2? \u05D0\u05E4\u05E9\u05E8\u05D5\u05EA 1: \u05D7\u05D5\u05DD \u05E7\u05D9\u05E6\u05D5\u05E0\u05D9. \u05D0\u05E4\u05E9\u05E8\u05D5\u05EA 2: \u05E7\u05D5\u05E8 \u05E7\u05D9\u05E6\u05D5\u05E0\u05D9.')
-        ),
-        mkBtn(
-          '\u2600\uFE0F \u05D7\u05D5\u05DD \u05E7\u05D9\u05E6\u05D5\u05E0\u05D9 (\u05EA\u05E7\u05DC\u05EA \u05DE\u05D6\u05D2\u05DF \u05D0\u05D5 \u05D4\u05E4\u05E1\u05E7\u05EA \u05D7\u05E9\u05DE\u05DC)',
-          function(){ _state.mode='heat'; showStep1(); },
-          'background:#fde8e8;border:2px solid #e05252;border-radius:12px;padding:.6rem .9rem;font-weight:800;font-size:.87rem;color:#8b1c1c;cursor:pointer;text-align:right;font-family:inherit;width:100%;display:block;margin-bottom:.4rem'
-        ),
-        mkBtn(
-          '\u2744\uFE0F \u05E7\u05D5\u05E8 \u05E7\u05D9\u05E6\u05D5\u05E0\u05D9 (\u05EA\u05E7\u05DC\u05EA \u05D7\u05D9\u05DE\u05D5\u05DD \u05D0\u05D5 \u05D4\u05E4\u05E1\u05E7\u05EA \u05D7\u05E9\u05DE\u05DC)',
-          function(){ _state.mode='cold'; showStep1(); },
-          'background:#dbeafe;border:2px solid #4090d0;border-radius:12px;padding:.6rem .9rem;font-weight:800;font-size:.87rem;color:#1a3060;cursor:pointer;text-align:right;font-family:inherit;width:100%;display:block;margin-bottom:.4rem'
-        )
+        mkRow(mkLabel('מה המצב כרגע?'), mkSpeak('שאלה: מה המצב כרגע? אפשרות 1: חום קיצוני. אפשרות 2: קור קיצוני.')),
+        mkChoicePrompt('בחרו את סוג התקלה:'),
+        mkChoiceBtn('☀️ חום קיצוני (תקלת מזגן או הפסקת חשמל)',
+          function(){ _mode='heat'; showStep1(); }, '#fde8e8','#e05252','#8b1c1c'),
+        mkChoiceBtn('❄️ קור קיצוני (תקלת חימום או הפסקת חשמל)',
+          function(){ _mode='cold'; showStep1(); }, '#dbeafe','#4090d0','#1a3060')
       ]);
     }
 
-    // ─────────────────────────────────────────────
-    // שלב 1: מיקום התקלה
-    // ─────────────────────────────────────────────
+    // ────────────────────────────────────────────
+    // שלב 1: האם יש לאן לפנות?
+    // ────────────────────────────────────────────
     function showStep1(){
-      _state.loc = null; _state.res = null;
-      var d = DATA[_state.mode];
-      var isHeat = _state.mode === 'heat';
-      var bg = isHeat ? '#fde8e8' : '#dbeafe';
-      var brd= isHeat ? '#e05252' : '#4090d0';
-      var col= isHeat ? '#8b1c1c' : '#1a3060';
-      var btns = d.locs.map(function(l){
-        return mkBtn(l.label, function(){ _state.loc=l.id; showStep2(); },
-          'background:'+bg+';border:2px solid '+brd+';border-radius:12px;padding:.6rem .9rem;font-weight:700;font-size:.87rem;color:'+col+';cursor:pointer;text-align:right;font-family:inherit;width:100%;display:block;margin-bottom:.4rem');
-      });
-      render([mkBreadcrumb(), mkRow(mkLabel(d.locQ), mkSpeak(d.locQ))].concat(btns));
+      _evacuated = false;
+      var isHeat = _mode==='heat';
+      var qText = isHeat
+        ? 'האם אפשר לפנות את הצ\'ינצ\'ילות עכשיו למקום ממוזג?'
+        : 'האם אפשר לפנות את הזוחלים עכשיו למקום מחומם?';
+      var noLabel = isHeat ? '❌ אין מיזוג זמין עכשיו' : '❌ אין חימום זמין עכשיו';
+      var noFn = isHeat ? showHeatStep2 : showColdStep2;
+
+      var noteBox = mkBox('#fff8e0','#e0c060','9px');
+      noteBox.style.fontSize = '.82rem';
+      noteBox.style.lineHeight = '1.7';
+      noteBox.style.marginBottom = '.5rem';
+      var ns = mkEl('strong','color:#7a5500','בניין הגדולים: ');
+      noteBox.appendChild(ns);
+      noteBox.appendChild(document.createTextNode('דורש אישור ומפתח. אם אין אישור מיידי שיאפשר כניסה תוך דקות, בחרו באפשרות "אין ' + (isHeat ? 'מיזוג' : 'חימום') + ' זמין", פעלו לפי ההנחיות, ונסו לתאם מחדש לאחר שייצב המצב.'));
+
+      render([
+        mkBackBar(showStep0, '← שנה סוג תקלה', _mode==='heat' ? '☀️ חום קיצוני' : '❄️ קור קיצוני'),
+        mkRow(mkLabel(qText), mkSpeak(qText)),
+        noteBox,
+        mkChoicePrompt('בחרו את המצב שמתאים לכם עכשיו:'),
+        mkChoiceBtn(isHeat
+          ? '✅ כן, המיזוג בחדר "צבע וטבע" פועל ונכנסים מיד'
+          : '✅ כן, החימום בחדר "צבע וטבע" פועל ונכנסים מיד',
+          function(){ _evacuated=true; showEvacuated('teva'); }, '#e8f7ef','#3aaa6e','#1a6640'),
+        mkChoiceBtn(isHeat
+          ? '✅ המיזוג בבניין הגדול פועל, תיאמנו מעבר וקיבלנו מפתח לחדר פנוי'
+          : '✅ החימום בבניין הגדול פועל, תיאמנו מעבר וקיבלנו מפתח לחדר פנוי',
+          function(){ _evacuated=true; showEvacuated('gdolim'); }, '#e8f7ef','#3aaa6e','#1a6640'),
+        mkChoiceBtn(noLabel, noFn, '#fde8e8','#e05252','#8b1c1c')
+      ]);
     }
 
-    // ─────────────────────────────────────────────
-    // שלב 2: תוצאת מיקום + פעולות עדיפות ראשונה
-    // ─────────────────────────────────────────────
-    function showStep2(){
-      _state.res = null;
-      var d = DATA[_state.mode];
-      var isHeat = _state.mode === 'heat';
-      var locR = d.locResult[_state.loc];
-      var trText = T[locR.tk];
+    // ────────────────────────────────────────────
+    // הוראת פינוי + כפתור המשך
+    // ────────────────────────────────────────────
+    function showEvacuated(dest){
+      _lastDest = dest;
+      var isHeat = _mode==='heat';
+      var place = dest==='teva' ? 'לחדר "צבע וטבע"' : 'לבניין הגדולים';
+      var what  = isHeat
+        ? 'את הצ\'ינצ\'ילות'
+        : 'את זאוס, סויה ודונה יחד עם משטחי החימום שלהם';
+      var check = isHeat ? ' ודאו שיש להן מים ואוכל.' : '';
+      var safeWord = isHeat ? 'הן בטוחות' : 'הם בטוחים';
+      var instrText = 'פנו מיד ' + what + ' ' + place + '.' + check + ' ' + safeWord + '. חזרו מיד לפינת החי לטיפול בשאר החיות.';
+      var checkTitle = isHeat ? '✅ הצ\'ינצ\'ילות בטוחות' : '✅ הזוחלים בטוחים';
+      var contFn = isHeat ? showHeatStep2 : showColdStep2;
 
-      var trBox = mkDiv('background:'+locR.bg+';border:1.5px solid '+locR.brd+';border-radius:10px;padding:.55rem .8rem;font-size:.83rem;line-height:1.75;color:var(--text);margin-bottom:.4rem');
-      var trInner = mkDiv(null);
-      var trIcon = document.createElement('strong');
-      trIcon.textContent = locR.icon + ' ';
-      trInner.appendChild(trIcon);
-      trInner.appendChild(document.createTextNode(trText));
-      trBox.appendChild(trInner);
-      trBox.appendChild(mkRow(mkSpeak('\u05E4\u05E2\u05D5\u05DC\u05D4 \u05E8\u05D0\u05E9\u05D5\u05E0\u05D4. ' + trText)));
+      var box = mkBox('#e8f7ef','#3aaa6e');
+      app(box,
+        mkEl('div','font-size:1rem;font-weight:900;color:#1a6640;margin-bottom:.3rem', checkTitle),
+        mkEl('div','font-size:.84rem;line-height:1.75;color:var(--text);margin-bottom:.45rem', instrText),
+        mkRow(
+          mkSpeak(instrText),
+          mkBtn('✅ סיימתי לפנות – המשך לשאר החיות ▼', contFn,
+            'background:#3aaa6e;color:#fff;border:none;border-radius:14px;padding:.7rem 1.3rem;font-size:.95rem;font-weight:800;cursor:pointer;font-family:inherit;box-shadow:0 3px 10px rgba(58,170,110,.35);width:100%;margin-top:.2rem')
+        )
+      );
+      render([mkBackBar(showStep1, '← חזרה לשאלת הפינוי'), box]);
+    }
 
-      var act1;
-      if(isHeat){
-        var boldItems = d.actItems.map(function(txt){
-          var li = document.createElement('li');
-          // first word is the label (ends with ':')
-          var colon = txt.indexOf(':');
-          if(colon > 0){
-            var strong = document.createElement('strong');
-            strong.textContent = txt.slice(0, colon+1);
-            li.appendChild(strong);
-            li.appendChild(document.createTextNode(txt.slice(colon+1)));
-          } else {
-            li.textContent = txt;
-          }
-          return li;
-        });
-        var ol = mkEl('ol','margin:0;padding-right:1.2rem;font-size:.83rem;line-height:2;color:var(--text)');
-        boldItems.forEach(function(li){ ol.appendChild(li); });
+    // ────────────────────────────────────────────
+    // חום: שלב 2 – פעולות בפינת החי
+    // ────────────────────────────────────────────
+    function showHeatStep2(){
+      var backFn2 = _evacuated ? showEvacuated.bind(null, _lastDest) : showStep1;
+      var backLabel2 = _evacuated ? '← חזרה להוראת הפינוי' : '← חזרה לשאלת הפינוי';
+      var nodes = [mkBackBar(backFn2, backLabel2)];
 
-        var contBtn = mkEl('button','background:#3aaa6e;color:#fff;border:none;border-radius:50px;padding:.3rem .9rem;font-size:.81rem;font-weight:700;cursor:pointer;font-family:inherit');
-        contBtn.textContent = d.actCont;
-        contBtn.addEventListener('click', showStep3);
-
-        act1 = mkBox('#fde8e8','#f0a0a0',[
-          mkRow(mkLabel(d.actTitle), mkSpeak(d.actItems.join(' '))),
-          ol,
-          mkRow(contBtn)
-        ]);
-      } else {
-        // קור: שאלת מים
-        var yBtn = mkBtn(d.actYesLabel, function(){ _state.res='yes'; showStep2b(); },
-          'background:#e8f7ef;border:2px solid #3aaa6e;border-radius:12px;padding:.55rem .9rem;font-weight:700;font-size:.87rem;color:#1a6640;cursor:pointer;text-align:right;font-family:inherit;width:100%;display:block;margin-bottom:.4rem');
-        var nBtn = mkBtn(d.actNoLabel, function(){ _state.res='no'; showStep2b(); },
-          'background:#fde8e8;border:2px solid #e05252;border-radius:12px;padding:.55rem .9rem;font-weight:700;font-size:.87rem;color:#8b1c1c;cursor:pointer;text-align:right;font-family:inherit;width:100%;display:block;margin-bottom:.4rem');
-        act1 = mkBox('#dbeafe','#90b8e0',[
-          mkRow(mkLabel(d.actQ), mkSpeak(d.actQ)),
-          yBtn, nBtn
-        ]);
+      if(!_evacuated){
+        var urgBox = mkBox('#fde8e8','#e05252');
+        urgBox.style.animation = 'emPulse 1.4s ease-in-out 3';
+        var urgTitle = mkEl('div','font-weight:900;font-size:1.05rem;color:#8b1c1c;margin-bottom:.3rem;display:flex;align-items:center;gap:.4rem');
+        var urgIcon = mkEl('span','font-size:1.3rem;animation:emBlink .7s ease-in-out 6','🚨');
+        var urgTitleText = mkEl('span','','דחוף: קירור הצ\'ינצ\'ילות (סכנת חיים!)');
+        app(urgTitle, urgIcon, urgTitleText);
+        var urgHeatText = 'דחוף: קירור הצ\'ינצ\'ילות. הצ\'ינצ\'ילות נשארות בפינת החי וצריכות קירור דחוף. לאחר שנעשה את כל הפעולות להוצאתן מסכנה, ננסה שוב לתאם מעבר למקום ממוזג.';
+        app(urgBox,
+          urgTitle,
+          mkEl('div','font-size:.84rem;line-height:1.75;color:var(--text)',
+            'הצ\'ינצ\'ילות נשארות בפינת החי וצריכות קירור דחוף. לאחר שנעשה את כל הפעולות להוצאתן מסכנה, ננסה שוב לתאם מעבר למקום ממוזג.'),
+          mkRow(mkSpeak(urgHeatText))
+        );
+        nodes.push(urgBox);
       }
 
-      render([mkBreadcrumb(), trBox, act1]);
+      var allItems = [
+        'קיקו: הזיזו את הכלוב מהחלון למקום המוצל ביותר בחדר.',
+        'ארנבונים: נגבו בעדינות את גב האוזן (החלק עם הפרווה) במטלית לחה וקרירה.',
+        'מים: הוסיפו כלי מים קרירים לכל החיות בפינה.',
+        'חלונות: אם בחוץ מעל 38°, השאירו חלונות סגורים וילונות מוסטים.',
+      ];
+      var allBox = mkBox('#fde8e8','#f0a8a8');
+      app(allBox,
+        mkRow(
+          mkEl('div','font-weight:900;font-size:.88rem;color:#8b1c1c','☀️ פעולות לשאר החיות'),
+          mkSpeak(allItems.join(' '))
+        ),
+        mkOL(allItems)
+      );
+      nodes.push(allBox);
+
+      // שאלת קרח
+      var iceBox = mkBox('#fff8f0','#f0a060');
+      iceBox.className = 'ice-q';
+      app(iceBox,
+        mkEl('div','font-weight:900;font-size:.87rem;color:#7a3800;margin-bottom:.4rem',
+          '🧊 יש בקבוקי מים קפואים?'),
+        mkChoicePrompt('בחרו:'),
+        mkChoiceBtn('✅ כן, יש בקבוקים קפואים', function(){ showHeatIce(true); }, '#e8f7ef','#3aaa6e','#1a6640'),
+        mkChoiceBtn('❌ אין בקבוקים קפואים', function(){ showHeatIce(false); }, '#fde8e8','#e05252','#8b1c1c'),
+        mkBackBar(showHeatStep2, '← חזרה לפעולות הפינה')
+      );
+      nodes.push(iceBox);
+
+      render(nodes);
     }
 
-    // ─────────────────────────────────────────────
-    // שלב 2b: תשובת מים חמים (קור)
-    // ─────────────────────────────────────────────
-    function showStep2b(){
-      var d    = DATA['cold'];
-      var resD = _state.res === 'yes' ? d.actYes : d.actNo;
-      var resText = T[resD.tk];
-      var locR = d.locResult[_state.loc];
+    function showHeatIce(hasIce){
+      var f = el('emFlow');
+      var old = f.querySelector('.ice-q');
 
-      var ansBox = mkDiv('background:'+resD.bg+';border:1.5px solid '+resD.brd+';border-radius:10px;padding:.55rem .8rem;font-size:.83rem;line-height:1.75;color:var(--text);margin-bottom:.4rem');
-      ansBox.appendChild(document.createTextNode(resText));
-      ansBox.appendChild(mkRow(mkSpeak(resText)));
+      var ansBox = mkBox(hasIce ? '#e8f7ef' : '#fff8f0', hasIce ? '#3aaa6e' : '#f0a060');
+      ansBox.className = 'ice-ans';
 
-      var backBtn2 = mkSmall('\u2190 \u05E9\u05E0\u05D4 \u05EA\u05E9\u05D5\u05D1\u05D4', function(){ _state.res=null; showStep2(); });
-      var contBtn = mkEl('button','background:#4090d0;color:#fff;border:none;border-radius:50px;padding:.3rem .9rem;font-size:.81rem;font-weight:700;cursor:pointer;font-family:inherit');
-      contBtn.textContent = d.actCont;
-      contBtn.addEventListener('click', showStep3);
+      var items;
+      if(hasIce){
+        items = _evacuated
+          ? ['ארנבונים: עטפו בקבוק קפוא בגרב ושימו לידם בכלוב.']
+          : [
+              'צ\'ינצ\'ילות: שימו בקבוק קפוא עטוף בגרב בתוך הכלוב.',
+              'ארנבונים: עטפו בקבוק קפוא בגרב ושימו לידם בכלוב.',
+            ];
+        ansBox.appendChild(mkOL(items));
+        ansBox.appendChild(mkEl('div','font-size:.82rem;color:#8b1c1c;font-weight:800;margin-top:.35rem',
+          '⚠️ אין להכניס מים לתעלת האוזן בשום אופן.'));
+      } else {
+        var noItems = _evacuated
+          ? ['ארנבונים: הרטיבו מגבת ופרסו סביב הכלוב (בלי לחסום אוויר). נגבו בעדינות את גב האוזן במטלית לחה וקרירה.']
+          : [
+              'צ\'ינצ\'ילות: הרטיבו מגבות ופרסו סביב הכלוב (בלי לחסום אוויר).',
+              'ארנבונים: הרטיבו מגבת ופרסו סביב הכלוב. נגבו בעדינות את גב האוזן במטלית לחה וקרירה.',
+            ];
+        ansBox.appendChild(mkOL(noItems));
+        ansBox.appendChild(mkEl('div','font-size:.82rem;color:#8b1c1c;font-weight:800;margin-top:.35rem',
+          '⚠️ אין להכניס מים לתעלת האוזן בשום אופן.'));
+      }
 
-      var trText = T[locR.tk];
-      var trBox = mkDiv('background:'+locR.bg+';border:1.5px solid '+locR.brd+';border-radius:10px;padding:.55rem .8rem;font-size:.83rem;color:var(--text);margin-bottom:.4rem');
-      trBox.appendChild(document.createTextNode(locR.icon + ' ' + trText));
+      // טקסט הקראה מלא לתשובת הקרח
+      var iceSpeakItems = ansBox.querySelectorAll('li');
+      var iceWarn = ansBox.querySelector('div[style*="color:#8b1c1c"]');
+      var iceSpeakText = Array.from(iceSpeakItems).map(function(li){ return li.textContent; }).join('. ') +
+        (iceWarn ? ' ' + iceWarn.textContent : '');
+      var iceSpeakRow = mkDiv('margin-bottom:.35rem');
+      iceSpeakRow.appendChild(mkSpeak(iceSpeakText));
+      ansBox.insertBefore(iceSpeakRow, ansBox.lastChild);
 
-      render([mkBreadcrumb(), trBox, ansBox, mkRow(backBtn2, contBtn)]);
+      var resetRowIce = mkDiv('display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem');
+      resetRowIce.appendChild(mkBtn('← שנה תשובה', function(){ showHeatStep2(); },
+        'background:none;border:1.5px solid #ccc;border-radius:50px;padding:.28rem .75rem;font-size:.82rem;font-weight:700;color:var(--text);cursor:pointer;font-family:inherit'));
+      resetRowIce.appendChild(mkBtn('← התחל מחדש', showStep0,
+        'background:none;border:1px solid #ddd;border-radius:50px;padding:.28rem .75rem;font-size:.82rem;color:var(--muted);cursor:pointer;font-family:inherit'));
+      ansBox.appendChild(resetRowIce);
+
+      if(old) f.replaceChild(ansBox, old);
+      else f.appendChild(ansBox);
     }
 
-    // ─────────────────────────────────────────────
-    // שלב 3: עדיפות שנייה
-    // ─────────────────────────────────────────────
-    function showStep3(){
-      var d = DATA[_state.mode];
-      var isHeat = _state.mode === 'heat';
+    // ────────────────────────────────────────────
+    // קור: שלב 2 – פעולות בפינת החי
+    // ────────────────────────────────────────────
+    function showColdStep2(){
+      var backFn3 = _evacuated ? showEvacuated.bind(null, _lastDest) : showStep1;
+      var backLabel3 = _evacuated ? '← חזרה להוראת הפינוי' : '← חזרה לשאלת הפינוי';
+      var nodes = [mkBackBar(backFn3, backLabel3)];
 
-      var hdrRow = mkRow(
-        mkLabel(d.resTitle),
-        mkSpeak(isHeat ? d.resQ : d.resTitle),
-        mkSmall('\u2190 \u05D7\u05D6\u05E8\u05D4', function(){ isHeat ? showStep2() : showStep2b(); })
+      if(!_evacuated){
+        var urgBox = mkBox('#dbeafe','#4090d0');
+        urgBox.style.animation = 'emPulse 1.4s ease-in-out 3';
+        var urgTitle = mkEl('div','font-weight:900;font-size:1.05rem;color:#1a3060;margin-bottom:.3rem;display:flex;align-items:center;gap:.4rem');
+        var urgIcon = mkEl('span','font-size:1.3rem;animation:emBlink .7s ease-in-out 6','🚨');
+        var urgTitleText = mkEl('span','','דחוף: חימום הזוחלים (זאוס, סויה ודונה)');
+        app(urgTitle, urgIcon, urgTitleText);
+        var urgColdText = 'דחוף: חימום הזוחלים. הזוחלים נשארים בפינת החי וצריכים חימום דחוף. לאחר שנעשה את כל הפעולות להוצאתם מסכנה, ננסה שוב לתאם מעבר למקום מחומם.';
+        app(urgBox,
+          urgTitle,
+          mkEl('div','font-size:.84rem;line-height:1.75;color:var(--text)',
+            'הזוחלים נשארים בפינת החי וצריכים חימום דחוף. לאחר שנעשה את כל הפעולות להוצאתם מסכנה, ננסה שוב לתאם מעבר למקום מחומם.'),
+          mkRow(mkSpeak(urgColdText))
+        );
+        nodes.push(urgBox);
+        nodes.push(mkColdWaterQ());
+      }
+
+      var allItems = [
+        'קיקו: כסו את הכלוב משלושה צדדים בבדים עבים. ודאו שהכלוב לא מול חלון.',
+        'התוכים הקטנים (הכלוב הענק): תלו שמיכה או בד עבה על החלק הקדמי של הכלוב כמו וילון. זה ימנע מרוח פרצים להיכנס וישמור על חום. ודאו שיש תיבות קינון להתחפרות.',
+        'ארנבונים, שרקנים וצ\'ינצ\'ילות: הוסיפו המון מצע (קש או נייר) ושימו בדים וגרביים ישנים בתוך בתי המחסה.',
+        'בידוד: סגרו חלונות היטב. הרימו את כל הכלובים מהרצפה לשולחנות או על קרטונים.',
+      ];
+      var warnText = '⚠️ אין לכסות את רשת המכרסמים בשמיכות! חובה להשאיר פתח לאוויר.';
+      var allBox = mkBox('#dbeafe','#90b8e0');
+      app(allBox,
+        mkRow(
+          mkEl('div','font-weight:900;font-size:.88rem;color:#1a3060','❄️ פעולות לשאר החיות'),
+          mkSpeak(allItems.join(' ') + ' ' + warnText)
+        ),
+        mkOL(allItems),
+        mkEl('div','font-size:.82rem;color:#8b1c1c;font-weight:800;margin-top:.4rem', warnText)
+      );
+      nodes.push(allBox);
+
+      render(nodes);
+    }
+
+    function mkColdWaterQ(){
+      var box = mkBox('#e8f4ff','#4090d0');
+      box.className = 'water-q';
+      app(box,
+        mkEl('div','font-weight:900;font-size:.87rem;color:#1a3060;margin-bottom:.4rem',
+          '🌡️ יש גישה למים חמים?'),
+        mkChoicePrompt('בחרו:'),
+        mkChoiceBtn('✅ כן, יש מים חמים', function(){ showColdWater(true); }, '#e8f7ef','#3aaa6e','#1a6640'),
+        mkChoiceBtn('❌ אין מים חמים', function(){ showColdWater(false); }, '#fde8e8','#e05252','#8b1c1c'),
+        mkBackBar(showColdStep2, '← חזרה לפעולות הפינה')
+      );
+      return box;
+    }
+
+    function showColdWater(hasWater){
+      var f = el('emFlow');
+      var old = f.querySelector('.water-q');
+
+      var txt = hasWater
+        ? 'מלאו בקבוקים במים חמים (38 עד 40 מעלות), עטפו במגבת ושימו בתוך בית הגידול של זאוס, סויה ודונה.'
+        : 'אין מים חמים. העבירו את זאוס, סויה ודונה לקופסאות קטנות ומרופדות בהמון גרביים ובדים לשמירה על חום הגוף.';
+
+      var ansBox = mkBox(hasWater ? '#e8f7ef' : '#e8f4ff', hasWater ? '#3aaa6e' : '#4090d0');
+      ansBox.className = 'water-ans';
+      app(ansBox,
+        mkEl('div','font-size:.84rem;line-height:1.75;color:var(--text);margin-bottom:.3rem', txt),
+        mkRow(mkSpeak(txt))
       );
 
-      var box;
-      if(isHeat){
-        var yBtn = mkBtn(d.resYesLabel, function(){ _state.res='yes'; showStep4(); },
-          'background:#e8f7ef;border:2px solid #3aaa6e;border-radius:12px;padding:.55rem .9rem;font-weight:700;font-size:.87rem;color:#1a6640;cursor:pointer;text-align:right;font-family:inherit;width:100%;display:block;margin-bottom:.4rem');
-        var nBtn = mkBtn(d.resNoLabel, function(){ _state.res='no'; showStep4(); },
-          'background:#fde8e8;border:2px solid #e05252;border-radius:12px;padding:.55rem .9rem;font-weight:700;font-size:.87rem;color:#8b1c1c;cursor:pointer;text-align:right;font-family:inherit;width:100%;display:block;margin-bottom:.4rem');
-        box = mkBox('#fde8e8','#f0a0a0',[
-          mkRow(mkLabel(d.resQ), mkSpeak(d.resQ)),
-          yBtn, nBtn
-        ]);
-      } else {
-        var ol = mkOL(d.resItems);
-        var mkWarn = mkDiv('background:#dbeafe;border:1px solid #90b8e0;border-radius:8px;padding:.4rem .65rem;margin-top:.4rem;font-size:.82rem;line-height:1.7;color:var(--text)');
-        var wLabel = document.createElement('strong');
-        wLabel.style.color = '#1a3060';
-        wLabel.textContent = '\uD83D\uDC39 \u05DE\u05DB\u05E8\u05E1\u05DE\u05D9\u05DD: ';
-        var wNote = mkDiv('font-size:.82rem;line-height:1.7');
-        wNote.appendChild(document.createTextNode('\u05D4\u05D5\u05E1\u05D9\u05E4\u05D5 \u05D4\u05DE\u05D5\u05DF \u05DE\u05E6\u05E2 \u05D5\u05D2\u05E8\u05D1\u05D9\u05D9\u05DD \u05DC\u05D4\u05EA\u05D7\u05E4\u05E8\u05D5\u05EA.'));
-        var wWarn = document.createElement('strong');
-        wWarn.style.color = '#8b1c1c';
-        wWarn.textContent = d.resMkWarn;
-        mkWarn.appendChild(wLabel);
-        mkWarn.appendChild(wNote);
-        mkWarn.appendChild(document.createElement('br'));
-        mkWarn.appendChild(wWarn);
+      var resetRow2 = mkDiv('display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem');
+      resetRow2.appendChild(mkBtn('← שנה תשובה', function(){ showColdStep2(); },
+        'background:none;border:1.5px solid #ccc;border-radius:50px;padding:.28rem .75rem;font-size:.82rem;font-weight:700;color:var(--text);cursor:pointer;font-family:inherit'));
+      resetRow2.appendChild(mkBtn('← התחל מחדש', showStep0,
+        'background:none;border:1px solid #ddd;border-radius:50px;padding:.28rem .75rem;font-size:.82rem;color:var(--muted);cursor:pointer;font-family:inherit'));
+      ansBox.appendChild(resetRow2);
 
-        var resetBtn = mkSmall('\u2190 \u05D4\u05EA\u05D7\u05DC \u05DE\u05D7\u05D3\u05E9', function(){ showStep0(); });
-        resetBtn.style.marginTop = '.5rem';
-
-        box = mkBox('#dbeafe','#90b8e0',[
-          mkRow(mkSpeak(d.resItems.join(' ') + ' ' + d.resMkWarn)),
-          ol, mkWarn, resetBtn
-        ]);
-      }
-
-      render([mkBreadcrumb(), hdrRow, box]);
+      if(old) f.replaceChild(ansBox, old);
+      else f.appendChild(ansBox);
     }
 
-    // ─────────────────────────────────────────────
-    // שלב 4: תשובת קרח (חום)
-    // ─────────────────────────────────────────────
-    function showStep4(){
-      var d    = DATA['heat'];
-      var resD = _state.res === 'yes' ? d.resYes : d.resNo;
-      var resText = T[resD.tk];
-      var warnText = resD.warnTk ? T[resD.warnTk] : null;
-
-      var backRow = mkRow(mkSmall('\u2190 \u05E9\u05E0\u05D4 \u05EA\u05E9\u05D5\u05D1\u05D4', function(){ _state.res=null; showStep3(); }));
-
-      var ansBox = mkDiv('background:'+resD.bg+';border:1.5px solid '+resD.brd+';border-radius:10px;padding:.55rem .8rem;font-size:.83rem;line-height:1.75;color:var(--text);margin-bottom:.4rem');
-      ansBox.appendChild(document.createTextNode(resText));
-      if(warnText){
-        ansBox.appendChild(document.createElement('br'));
-        var w = document.createElement('strong');
-        w.style.color = '#8b1c1c';
-        w.textContent = warnText;
-        ansBox.appendChild(w);
-      }
-      ansBox.appendChild(mkRow(mkSpeak(resText + (warnText ? ' ' + warnText : '') + ' ' + d.winText)));
-
-      var winBox = mkDiv('background:#fff8f0;border:1.5px solid #f0c060;border-radius:10px;padding:.5rem .75rem;font-size:.83rem;line-height:1.8;color:var(--text);margin-bottom:.4rem');
-      var winLabel = document.createElement('strong');
-      winLabel.style.color = '#7a3800';
-      winLabel.textContent = d.winTitle + ': ';
-      winBox.appendChild(winLabel);
-      winBox.appendChild(document.createTextNode(d.winText));
-
-      var resetBtn = mkSmall('\u2190 \u05D4\u05EA\u05D7\u05DC \u05DE\u05D7\u05D3\u05E9', function(){ showStep0(); });
-      resetBtn.style.marginTop = '.45rem';
-
-      render([mkBreadcrumb(), backRow, ansBox, winBox, resetBtn]);
-    }
-
-    // ─────────────────────────────────────────────
+    // ────────────────────────────────────────────
     // פתח הכל
-    // ─────────────────────────────────────────────
+    // ────────────────────────────────────────────
     window.emShowAll = function(){
       el('emShowAllBtn').style.display = 'none';
-      _state = { mode:null, loc:null, res:null };
+      _mode = null; _evacuated = false;
 
-      var wrap = mkDiv(null);
-
-      var topRow = mkDiv('display:flex;align-items:center;gap:.5rem;margin-bottom:.45rem');
-      topRow.appendChild(mkSmall('\u2190 \u05D7\u05D6\u05D5\u05E8 \u05DC\u05E9\u05D0\u05DC\u05D5\u05DF', function(){ showStep0(); }));
-      var allSpeak = mkEl('button','background:none;border:none;cursor:pointer;font-size:.85rem;color:#bbb;padding:0;line-height:1');
-      allSpeak.textContent = '\uD83D\uDD0A \u05D4\u05E7\u05E8\u05D0 \u05D4\u05DB\u05DC';
-      topRow.appendChild(allSpeak);
+      var wrap = mkDiv('');
+      var topRow = mkDiv('display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem');
+      topRow.appendChild(mkSmall('← חזור לשאלון', showStep0));
+      var speakBtn2 = mkEl('button','background:none;border:none;cursor:pointer;font-size:.85rem;color:#bbb;padding:0');
+      speakBtn2.textContent = '🔊 הקרא הכל';
+      topRow.appendChild(speakBtn2);
       wrap.appendChild(topRow);
 
-      var allContent = mkDiv('color:var(--text)');
-      allContent.id = 'emAllContent';
+      var all = mkDiv('color:var(--text)');
+      all.id = 'emAllContent';
 
-      // חום
-      var hBox = mkDiv('background:#fde8e8;border:1.5px solid #e05252;border-radius:12px;padding:.65rem .9rem;margin-bottom:.5rem');
-      var hTitle = mkDiv('font-weight:900;font-size:.9rem;color:#8b1c1c;margin-bottom:.4rem');
-      hTitle.textContent = '\u2600\uFE0F \u05D7\u05D5\u05DD \u05E7\u05D9\u05E6\u05D5\u05E0\u05D9 (\u05EA\u05E7\u05DC\u05EA \u05DE\u05D6\u05D2\u05DF / \u05D4\u05E4\u05E1\u05E7\u05EA \u05D7\u05E9\u05DE\u05DC)';
-      hBox.appendChild(hTitle);
-
-      function addSection(parent, titleText, titleCol, items, isOL){
-        var t = mkTextDiv('font-size:.8rem;font-weight:800;color:'+titleCol+';margin-bottom:.2rem', titleText);
-        parent.appendChild(t);
-        var list = document.createElement(isOL ? 'ol' : 'ul');
-        list.style.cssText = 'margin:0 0 .45rem;padding-right:1.1rem;font-size:.82rem;line-height:1.85;color:var(--text)';
-        items.forEach(function(txt){
-          var li = document.createElement('li');
-          li.textContent = txt;
-          list.appendChild(li);
+      function addSec(parent, bg, brd, titleText, col, secs){
+        var box = mkDiv('background:'+bg+';border:1.5px solid '+brd+';border-radius:12px;padding:.65rem .9rem;margin-bottom:.5rem');
+        box.appendChild(mkEl('div','font-weight:900;font-size:.9rem;color:'+col+';margin-bottom:.4rem', titleText));
+        secs.forEach(function(s){
+          box.appendChild(mkEl('div','font-size:.8rem;font-weight:800;color:'+col+';margin:.4rem 0 .15rem', s.title));
+          var ul = mkEl('ul','margin:0 0 .3rem;padding-right:1.1rem;font-size:.82rem;line-height:1.85;color:var(--text)');
+          s.items.forEach(function(t){ var li=document.createElement('li'); li.textContent=t; ul.appendChild(li); });
+          box.appendChild(ul);
+          if(s.warn){
+            box.appendChild(mkEl('div','font-size:.81rem;color:#8b1c1c;font-weight:800;margin-top:.25rem', s.warn));
+          }
         });
-        parent.appendChild(list);
+        parent.appendChild(box);
       }
 
-      addSection(hBox, '\u05E2\u05D3\u05D9\u05E4\u05D5\u05EA \u05E8\u05D0\u05E9\u05D5\u05E0\u05D4 (\u05DE\u05E2\u05DC 32\u00B0) \u2013 \u05D4\u05E2\u05D1\u05E8\u05D4 \u05DC\u05E4\u05D9 \u05DE\u05D9\u05E7\u05D5\u05DD:', '#7a3000', [
-        '\u05E4\u05D9\u05E0\u05EA \u05D4\u05D7\u05D9 \u05D1\u05DC\u05D1\u05D3: ' + T.heatRoomTr,
-        '\u05DB\u05DC "\u05D4\u05DE\u05E2\u05D5\u05E3": ' + T.heatWingTr,
-        '\u05DB\u05DC \u05D1\u05D9\u05EA \u05D4\u05E1\u05E4\u05E8: ' + T.heatSchoolTr,
-      ], false);
-      addSection(hBox, '\u05E4\u05E2\u05D5\u05DC\u05D5\u05EA \u05D7\u05D5\u05D1\u05D4 \u05D1\u05E4\u05D9\u05E0\u05EA \u05D4\u05D7\u05D9:', '#7a3000', DATA.heat.actItems, true);
-      addSection(hBox, '\u05E2\u05D3\u05D9\u05E4\u05D5\u05EA \u05E9\u05E0\u05D9\u05D9\u05D4 (\u05DE\u05E2\u05DC 35\u00B0) \u2013 \u05E7\u05D9\u05E8\u05D5\u05E8 \u05D0\u05E7\u05D8\u05D9\u05D1\u05D9:', '#7a3000', [
-        '\u05D9\u05E9 \u05D1\u05E7\u05D1\u05D5\u05E7\u05D9\u05DD \u05E7\u05E4\u05D5\u05D0\u05D9\u05DD: ' + T.heatYes,
-        '\u05D0\u05D9\u05DF \u05E7\u05E8\u05D7: ' + T.heatNo + ' ' + T.heatNoWarn,
-      ], false);
-      var winNote = mkDiv('background:#fff8f0;border:1px solid #f0c060;border-radius:8px;padding:.4rem .65rem;font-size:.82rem;line-height:1.7;color:var(--text)');
-      var winL = document.createElement('strong'); winL.style.color='#7a3800'; winL.textContent = DATA.heat.winTitle+': ';
-      winNote.appendChild(winL); winNote.appendChild(document.createTextNode(DATA.heat.winText));
-      hBox.appendChild(winNote);
-      allContent.appendChild(hBox);
+      addSec(all,'#fde8e8','#e05252','☀️ חום קיצוני (תקלת מזגן / הפסקת חשמל)','#8b1c1c',[
+        { title:'עדיפות ראשונה (מעל 35°) – פינוי הצ\'ינצ\'ילות:', items:[
+          'חדר "צבע וטבע" פתוח: פנו מיד, ודאו מים ואוכל, וחזרו לפינת החי.',
+          'בניין הגדולים: ודאו שיש אישור ומפתח, פנו וחזרו.',
+          'אין מיזוג זמין: עברו ישירות לפעולות ההצלה ונסו לתאם פינוי לאחר מכן.',
+        ]},
+        { title:'עדיפות שנייה (מעל 38°) – פעולות לשאר החיות:', items:[
+          'קיקו: הזיזו למקום המוצל ביותר בחדר.',
+          'ארנבונים: נגבו בעדינות את גב האוזן במטלית לחה וקרירה.',
+          'יש קרח: עטפו בגרב ושימו לידם (ולצ\'ינצ\'ילות אם לא פונו).',
+          'אין קרח: הרטיבו מגבות ופרסו סביב הכלובים (בלי לחסום אוויר).',
+          'מים: הוסיפו כלי מים קרירים לכל החיות.',
+          'חלונות: אם מעל 38°, השאירו סגורים וילונות מוסטים.',
+        ], warn:'⚠️ אין להכניס מים לתעלת האוזן בשום אופן.'},
+      ]);
 
-      // קור
-      var cBox = mkDiv('background:#dbeafe;border:1.5px solid #4090d0;border-radius:12px;padding:.65rem .9rem');
-      var cTitle = mkDiv('font-weight:900;font-size:.9rem;color:#1a3060;margin-bottom:.4rem');
-      cTitle.textContent = '\u2744\uFE0F \u05E7\u05D5\u05E8 \u05E7\u05D9\u05E6\u05D5\u05E0\u05D9 (\u05EA\u05E7\u05DC\u05EA \u05D7\u05D9\u05DE\u05D5\u05DD / \u05D4\u05E4\u05E1\u05E7\u05EA \u05D7\u05E9\u05DE\u05DC)';
-      cBox.appendChild(cTitle);
-      addSection(cBox, '\u05E2\u05D3\u05D9\u05E4\u05D5\u05EA \u05E8\u05D0\u05E9\u05D5\u05E0\u05D4 (\u05DE\u05EA\u05D7\u05EA \u05DC-12\u00B0) \u2013 \u05E4\u05D9\u05E0\u05D5\u05D9 \u05D6\u05D5\u05D7\u05DC\u05D9\u05DD:', '#1a3060', [
-        '\u05E4\u05D9\u05E0\u05EA \u05D4\u05D7\u05D9 / \u05DE\u05E2\u05D5\u05E3: ' + T.coldRoomTr,
-        '\u05DB\u05DC \u05D1\u05D9\u05EA \u05D4\u05E1\u05E4\u05E8 \u2013 \u05D9\u05E9 \u05DE\u05D9\u05DD \u05D7\u05DE\u05D9\u05DD: ' + T.coldYes,
-        '\u05DB\u05DC \u05D1\u05D9\u05EA \u05D4\u05E1\u05E4\u05E8 \u2013 \u05D0\u05D9\u05DF \u05DE\u05D9\u05DD \u05D7\u05DE\u05D9\u05DD: ' + T.coldNo,
-      ], false);
-      addSection(cBox, '\u05E2\u05D3\u05D9\u05E4\u05D5\u05EA \u05E9\u05E0\u05D9\u05D9\u05D4 (\u05DE\u05EA\u05D7\u05EA \u05DC-8\u00B0) \u2013 \u05D1\u05D9\u05D3\u05D5\u05D3 \u05E9\u05D0\u05E8 \u05D4\u05E4\u05D9\u05E0\u05D4:', '#1a3060', DATA.cold.resItems, true);
-      var mkNote = mkDiv('background:#e8f4ff;border:1px solid #90b8e0;border-radius:8px;padding:.4rem .65rem;font-size:.82rem;line-height:1.7;color:var(--text)');
-      var mkL = document.createElement('strong'); mkL.style.color='#1a3060'; mkL.textContent='\uD83D\uDC39 \u05DE\u05DB\u05E8\u05E1\u05DE\u05D9\u05DD: ';
-      var mkW = document.createElement('strong'); mkW.style.color='#8b1c1c'; mkW.textContent=DATA.cold.resMkWarn;
-      mkNote.appendChild(mkL);
-      mkNote.appendChild(document.createTextNode('\u05D4\u05D5\u05E1\u05D9\u05E4\u05D5 \u05D4\u05DE\u05D5\u05DF \u05DE\u05E6\u05E2 \u05D5\u05D2\u05E8\u05D1\u05D9\u05D9\u05DD \u05DC\u05D4\u05EA\u05D7\u05E4\u05E8\u05D5\u05EA. '));
-      mkNote.appendChild(mkW);
-      cBox.appendChild(mkNote);
-      allContent.appendChild(cBox);
+      addSec(all,'#dbeafe','#4090d0','❄️ קור קיצוני (תקלת חימום / הפסקת חשמל)','#1a3060',[
+        { title:'עדיפות ראשונה (מתחת ל-8°) – פינוי הזוחלים:', items:[
+          'חדר "צבע וטבע" או בניין הגדולים זמינים: פנו את זאוס, סויה ודונה עם משטחי החימום וחזרו.',
+          'יש מים חמים: מלאו בקבוקים (38-40°), עטפו במגבת, שימו בבית הגידול.',
+          'אין מים חמים ואין לאן לפנות: קופסאות קטנות ומרופדות בגרביים ובדים.',
+        ]},
+        { title:'עדיפות שנייה (מתחת ל-5°) – פעולות לשאר החיות:', items:[
+          'קיקו: כסו משלושה צדדים בבדים עבים. לא מול חלון.',
+          'התוכים הקטנים: תלו שמיכה או בד עבה על החלק הקדמי של הכלוב כמו וילון, למניעת רוח פרצים. ודאו שיש תיבות קינון.',
+          'ארנבונים, שרקנים וצ\'ינצ\'ילות: המון מצע ובדים ישנים בתוך בתי המחסה.',
+          'בידוד: סגרו חלונות. הרימו כלובים מהרצפה לשולחנות או קרטונים.',
+        ], warn:'⚠️ אין לכסות את רשת המכרסמים בשמיכות! חובה להשאיר פתח לאוויר.'},
+      ]);
 
-      wrap.appendChild(allContent);
-      allSpeak.addEventListener('click', function(){ speakText(allContent.innerText, allSpeak); });
+      wrap.appendChild(all);
+      speakBtn2.addEventListener('click', function(){ speakText(all.innerText, speakBtn2); });
 
-      var flow = el('emFlow');
-      while(flow.firstChild) flow.removeChild(flow.firstChild);
-      flow.appendChild(wrap);
+      var f = el('emFlow');
+      while(f.firstChild) f.removeChild(f.firstChild);
+      f.appendChild(wrap);
     };
 
     window.emReset = function(){ showStep0(); };
