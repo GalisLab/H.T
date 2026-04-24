@@ -2124,6 +2124,9 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
         <div id="wUpdated" style="font-size:.67rem;color:var(--muted);margin-top:.4rem;text-align:left"></div>
       </div>
 
+      <!-- 🚨 באנר חירום סוף שבוע -->
+      <div id="weekendEmergencyBanner" style="display:none;margin-bottom:.8rem"></div>
+
       <!-- ❄️ כרטיס המזגן לטווח ארוך -->
       <div class="weather-card" id="acCard" style="margin-bottom:.8rem;padding:.9rem 1rem;border-right:4px solid #4090d0">
         <div style="font-size:.77rem;font-weight:700;color:var(--muted);margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem">
@@ -2136,6 +2139,65 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
         </div>
         <div id="acForecastRange" style="font-size:.72rem;color:var(--muted);margin-top:.45rem;direction:rtl"></div>
       </div>
+
+      <!-- 🚨 כפתור הנחיות חירום מהיר -->
+      <details id="quickEmergencyDetails" style="margin-bottom:.8rem;direction:rtl">
+        <summary style="background:#fff3f3;border:1.5px solid #e05252;border-radius:12px;padding:.6rem 1rem;font-size:.84rem;font-weight:800;color:#b02020;cursor:pointer;list-style:none;display:flex;align-items:center;gap:.5rem">
+          <span style="font-size:1rem">🚨</span>
+          <span style="flex:1">במקרה של הפסקת חשמל או תקלה במזגן — לחצו כאן להנחיות חירום</span>
+          <span class="details-arrow" style="font-size:.8rem;color:#b02020;transition:transform .2s">▼</span>
+        </summary>
+        <div style="border:1.5px solid #e05252;border-top:none;border-radius:0 0 12px 12px;padding:.8rem 1rem;background:var(--card)">
+          <div style="font-size:.82rem;color:#7a5500;background:#fffbf0;border:1.5px solid #e0c060;border-radius:9px;padding:.45rem .7rem;margin-bottom:.7rem">
+            ⚠️ <strong>נוהל תקלת מיזוג או הפסקת חשמל</strong> בחום קיצוני (מעל 32°) או קור קיצוני (מתחת ל-10°).
+          </div>
+          <div style="margin-bottom:.8rem">
+            <div style="font-size:.83rem;font-weight:900;color:#8b1c1c;background:#fde8e8;border:1.5px solid #e05252;border-radius:10px;padding:.5rem .75rem;margin-bottom:.4rem">☀️ חום קיצוני (תקלת מזגן / הפסקת חשמל)</div>
+            <ol style="margin:.3rem 0 0;padding-right:1.3rem;font-size:.83rem;line-height:2;color:var(--text)">
+              <li><strong>עדיפות ראשונה (מעל 35°) — פינוי הצ'ינצ'ילות:</strong>
+                <ul style="padding-right:1.1rem;line-height:1.9;margin:.2rem 0">
+                  <li>חדר "צבע וטבע" פתוח: פנו מיד, ודאו מים ואוכל, וחזרו לפינת החי.</li>
+                  <li>בניין הגדולים: ודאו שיש אישור ומפתח, פנו וחזרו.</li>
+                  <li>אין מיזוג זמין: עברו ישירות לפעולות ההצלה ונסו לתאם פינוי לאחר מכן.</li>
+                </ul>
+              </li>
+              <li><strong>עדיפות שנייה (מעל 38°) — פעולות לשאר החיות:</strong>
+                <ul style="padding-right:1.1rem;line-height:1.9;margin:.2rem 0">
+                  <li>קיקו: הזיזו למקום המוצל ביותר בחדר.</li>
+                  <li>ארנבונים: נגבו בעדינות את גב האוזן במטלית לחה וקרירה.</li>
+                  <li>יש קרח: עטפו בגרב ושימו לידם (ולצ'ינצ'ילות אם לא פונו).</li>
+                  <li>אין קרח: הרטיבו מגבות ופרסו סביב הכלובים (בלי לחסום אוויר).</li>
+                  <li>מים: הוסיפו כלי מים קרירים לכל החיות.</li>
+                  <li>חלונות: אם מעל 38°, השאירו סגורים וילונות מוסטים.</li>
+                </ul>
+                <div style="font-size:.79rem;color:#b02020;font-weight:700;margin-top:.2rem">⚠️ אין להכניס מים לתעלת האוזן בשום אופן.</div>
+              </li>
+            </ol>
+          </div>
+          <div>
+            <div style="font-size:.83rem;font-weight:900;color:#1a3060;background:#dbeafe;border:1.5px solid #4090d0;border-radius:10px;padding:.5rem .75rem;margin-bottom:.4rem">❄️ קור קיצוני (תקלת חימום / הפסקת חשמל)</div>
+            <ol style="margin:.3rem 0 0;padding-right:1.3rem;font-size:.83rem;line-height:2;color:var(--text)">
+              <li><strong>עדיפות ראשונה (מתחת ל-8°) — פינוי הזוחלים:</strong>
+                <ul style="padding-right:1.1rem;line-height:1.9;margin:.2rem 0">
+                  <li>חדר "צבע וטבע" או בניין הגדולים זמינים: פנו את זאוס, סויה, דונה והצבה עם משטחי החימום וחזרו.</li>
+                  <li>יש מים חמים: מלאו בקבוקים (38-40°), עטפו במגבת, שימו בבית הגידול.</li>
+                  <li>אין מים חמים ואין לאן לפנות: קופסאות קטנות ומרופדות בגרביים ובדים.</li>
+                </ul>
+              </li>
+              <li><strong>עדיפות שנייה (מתחת ל-5°) — פעולות לשאר החיות:</strong>
+                <ul style="padding-right:1.1rem;line-height:1.9;margin:.2rem 0">
+                  <li>קיקו: כסו משלושה צדדים בבדים עבים. לא מול חלון.</li>
+                  <li>התוכים הקטנים: תלו שמיכה או בד עבה על החלק הקדמי של הכלוב כמו וילון, למניעת רוח פרצים. ודאו שיש תיבות קינון.</li>
+                  <li>ארנבונים, שרקנים וצ'ינצ'ילות: המון מצע ובדים ישנים בתוך בתי המחסה.</li>
+                  <li>בידוד: סגרו חלונות. הרימו כלובים מהרצפה לשולחנות או קרטונים.</li>
+                </ul>
+                <div style="font-size:.79rem;color:#1a3060;font-weight:700;margin-top:.2rem">⚠️ אין לכסות את רשת המכרסמים בשמיכות! חובה להשאיר פתח לאוויר.</div>
+              </li>
+            </ol>
+          </div>
+          <button onclick="switchTab('guidelines');setTimeout(()=>{const el=document.getElementById('emergencyGuidelinesSection');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)" style="margin-top:.7rem;width:100%;background:#f5f0ff;border:1.5px solid #c0a8e8;border-radius:10px;padding:.5rem;font-size:.82rem;font-weight:800;color:#6a3cb0;cursor:pointer;font-family:inherit">📖 לעץ ההחלטות המלא בלשונית ההנחיות</button>
+        </div>
+      </details>
 
       <!-- 📅 תחזית 3 ימים קדימה + הנחיות מזגן -->
       <div class="weather-card" id="forecastCard" style="margin-bottom:.8rem;padding:.9rem 1rem;border-right:4px solid #7c5cbf">
@@ -10917,12 +10979,18 @@ function pwaInstall(){
               sessionStorage.setItem(popupKey, '1');
               setTimeout(() => showAcEmergencyPopup(friMode, satMode, friMin, friMax, satMin, satMax), 1200);
             }
+            // שמור את ההחלטה לשימוש בתחזית 3 ימים
+            window.__weekendAcDecision = { needsFri: true, needsSat: false, friMode, satMode, satRec: satRec||23, friRec: friRec||23 };
+            // באנר קבוע - מוצג כל עוד הדף פתוח
+            // כניסה מיוחדת בשישי = לכוון עבור שבת. אין כניסת חירום נפרדת בשבת.
+            showWeekendEmergencyBanner({ days:'fri_for_sat', friMode, satMode, friMin, friMax, satMin, satMax });
           } else if(tempSwing >= 10){
             // תנודה משמעותית אבל אותו מצב - אזהרה צהובה
             mismatchNote = {
               bg:'#fff3cd', color:'#7a5500',
               text:`⚠️ <strong>נדרשת כניסה מיוחדת ביום שישי.</strong> תנודה של ${Math.round(tempSwing/2)}° בין הימים: שישי ${friMin}°–${friMax}°, שבת ${satMin}°–${satMax}°. יש לכוון מחדש את המזגן בשישי בבוקר.`
             };
+            showWeekendEmergencyBanner({ days:'fri', friMode, satMode:friMode, friMin, friMax, satMin, satMax });
           }
         }
 
@@ -10966,70 +11034,111 @@ function pwaInstall(){
       //    הוראה עד שבת סוף יום + עד ראשון 08:00
       // ══════════════════════════════════════════
       else if(isFriday){
-        const seg1 = _extractHourly(d, nowMs, dayRangeMs(0,23,23).to);
-        const seg2 = _extractHourly(d, dayRangeMs(1,0,23).from, dayRangeMs(2,0,8).to); // שבת + ראשון בוקר
+        // כיוון המזגן נקבע ביום חמישי - בודקים אם נדרשת כניסה מיוחדת היום
+        const friData = _extractHourly(d, dayRangeMs(0,0,23).from, dayRangeMs(0,23,59).to);
+        const satData = _extractHourly(d, dayRangeMs(1,0,0).from,  dayRangeMs(1,23,59).to);
 
-        if(seg1.temps.length){
-          const mn = Math.round(Math.min(...seg1.temps)), mx = Math.round(Math.max(...seg1.temps));
-          html += _acUnitHtml('🌅 הנחיות מזגן בשעות היום (שישי)', 'כוונו עכשיו', mn, mx, seg1.vis, seg1.codes, null);
+        if(friData.temps.length && satData.temps.length){
+          const friMin = Math.round(Math.min(...friData.temps)), friMax = Math.round(Math.max(...friData.temps));
+          const satMin = Math.round(Math.min(...satData.temps)), satMax = Math.round(Math.max(...satData.temps));
+          const { mode: friMode, tempRec: friRec } = getAcRecommendation(friMin, friMax);
+          const { mode: satMode, tempRec: satRec } = getAcRecommendation(satMin, satMax);
+          const modeLabel = m => m==='cool'?'קירור ❄️':m==='heat'?'חימום 🔥':'אוורור 🌿';
+          const modeColor = {cool:'#4090d0',heat:'#f07030',normal:'#3aaa6e'};
+
+          if(friMode !== satMode){
+            // נדרשת כניסה מיוחדת היום (שישי) לפני 11:30
+            html += `<div style="background:#fff8e8;border-right:3px solid #e0a020;border-radius:10px;padding:.55rem .75rem;margin-bottom:.5rem;font-size:.84rem;line-height:1.7">
+              ⚠️ <strong>נדרשת כניסה מיוחדת היום לפני 11:30</strong><br>
+              שישי: ${friMin}°–${friMax}° · <span style="color:${modeColor[friMode]};font-weight:800">${modeLabel(friMode)} ${friRec}°</span><br>
+              שבת: ${satMin}°–${satMax}° · <span style="color:${modeColor[satMode]};font-weight:800">${modeLabel(satMode)} ${satRec}°</span>
+            </div>`;
+            // שמור את ההחלטה לשימוש בתחזית 3 ימים
+            window.__weekendAcDecision = { needsFri: true, needsSat: false, friMode, satMode, satRec: satRec||23, friRec: friRec||23 };
+            // כניסה מיוחדת בשישי = לכוון עבור שבת. אין כניסת חירום נפרדת בשבת.
+            showWeekendEmergencyBanner({ days:'fri_for_sat', friMode, satMode, friMin, friMax, satMin, satMax });
+            const popupKey = 'acEmergencyShown_' + new Date().toDateString();
+            if(!sessionStorage.getItem(popupKey)){
+              sessionStorage.setItem(popupKey, '1');
+              setTimeout(() => showAcEmergencyPopup(friMode, satMode, friMin, friMax, satMin, satMax), 1200);
+            }
+          } else {
+            // אותו כיוון — המזגן שנקבע ביום חמישי מספיק
+            const thuData = _extractHourly(d, dayRangeMs(-1,13,23).from, dayRangeMs(1,23,59).to);
+            const thuMn = thuData.temps.length ? Math.round(Math.min(...thuData.temps)) : friMin;
+            const thuMx = thuData.temps.length ? Math.round(Math.max(...thuData.temps)) : friMax;
+            const { mode: thuMode, tempRec: thuRec } = getAcRecommendation(thuMn, thuMx);
+            window.__weekendAcDecision = { needsFri: false, needsSat: false, friMode: thuMode, satMode: thuMode, satRec: thuRec, friRec: thuRec };
+            html += `<div style="background:${modeColor[thuMode]}11;border-right:3px solid ${modeColor[thuMode]};border-radius:10px;padding:.55rem .75rem;margin-bottom:.5rem;font-size:.84rem;line-height:1.7">
+              ✅ <strong>כיוון המזגן נקבע אתמול (חמישי)</strong><br>
+              <span style="color:${modeColor[thuMode]};font-weight:800">${modeLabel(thuMode)} ${thuRec}°</span> — יחזיק עד ראשון בבוקר · שישי ושבת כלולים
+            </div>`;
+          }
         }
-        if(seg2.temps.length){
-          const mn = Math.round(Math.min(...seg2.temps)), mx = Math.round(Math.max(...seg2.temps));
-          html += _acUnitHtml('🌙 הנחיות מזגן לפני היציאה (שישי)', 'יחזיק עד ראשון 08:00 · שבת כלול', mn, mx, seg2.vis, seg2.codes, null);
-        }
-        untilLabel = 'שישי עד ראשון 08:00';
-        forecastText = 'הנחיות בשעות היום + לפני היציאה';
+        untilLabel = 'עד ראשון 08:00';
+        forecastText = 'כיוון נקבע בחמישי';
       }
 
       // ══════════════════════════════════════════
-      // ④ שבת - כניסת חירום בלבד
+      // ④ שבת - כניסת חירום רק אם צריך
       // ══════════════════════════════════════════
       else if(isSaturday){
-        const seg = _extractHourly(d, nowMs, dayRangeMs(1,0,8).to);
-        const segYest = _extractHourly(d, dayRangeMs(-1,0,23).from, dayRangeMs(-1,0,23).to);
-        if(seg.temps.length){
-          const mn = Math.round(Math.min(...seg.temps)), mx = Math.round(Math.max(...seg.temps));
-          const { mode } = getAcRecommendation(mn, mx);
+        const satSeg = _extractHourly(d, nowMs, dayRangeMs(1,0,8).to);
+        const friSeg  = _extractHourly(d, dayRangeMs(-1,0,23).from, dayRangeMs(-1,0,23).to);
 
-          // בנה נימוק - למה בכלל צריכה כניסה? אם הכל בסדר לא אמורה להיות
-          let whyNote = '';
-          if(mode === 'cool' && mx >= 30){
-            whyNote = `הטמפרטורה היום מגיעה ל-${mx}°. חום כזה מסוכן לצ'ינצ'ילות ולארנבונים, ודרוש מזגן על קירור.`;
-          } else if(mode === 'heat' && mn <= 10){
-            whyNote = `הטמפרטורה ירדה ל-${mn}° בלילה. קור כזה עלול לפגוע בתוכים ובמכרסמים, ודרוש מזגן על חימום.`;
-          } else if(mode === 'heat'){
-            whyNote = `הטמפרטורה היום ${mn}°–${mx}° עם נטייה לקור. דרוש מזגן על חימום.`;
-          } else if(mode === 'cool'){
-            whyNote = `הטמפרטורה היום ${mn}°–${mx}° עם נטייה לחום. דרוש מזגן על קירור.`;
-          } else {
-            whyNote = `הטמפרטורה היום ${mn}°–${mx}°. ניתן להשאיר על אוורור.`;
-          }
+        if(satSeg.temps.length){
+          const mn = Math.round(Math.min(...satSeg.temps)), mx = Math.round(Math.max(...satSeg.temps));
+          const { mode, tempRec } = getAcRecommendation(mn, mx);
 
-          // השוואה לשישי אם יש
-          let compareNote = '';
-          if(segYest.temps.length){
-            const yMin = Math.round(Math.min(...segYest.temps)), yMax = Math.round(Math.max(...segYest.temps));
-            const { mode: yMode } = getAcRecommendation(yMin, yMax);
-            const maxDiff = mx - yMax;
-            if(yMode !== mode){
-              const fromLabel = {cool:'קירור',heat:'חימום',normal:'אוורור'}[yMode];
-              const toLabel   = {cool:'קירור',heat:'חימום',normal:'אוורור'}[mode];
-              compareNote = ` לעומת אתמול (${yMin}°–${yMax}°, ${fromLabel}) - שינוי מהותי שדורש כיוון מחדש.`;
-            } else if(Math.abs(maxDiff) >= 6){
-              compareNote = ` ${maxDiff > 0 ? `עלייה` : `ירידה`} של ${Math.abs(maxDiff)}° לעומת אתמול (${yMin}°–${yMax}°).`;
+          // מה כוון ביום שישי (= מה שנקבע ביום חמישי)?
+          const friMn = friSeg.temps.length ? Math.round(Math.min(...friSeg.temps)) : mn;
+          const friMx = friSeg.temps.length ? Math.round(Math.max(...friSeg.temps)) : mx;
+          const { mode: friMode, tempRec: friRec } = getAcRecommendation(friMn, friMx);
+
+          const modeLabel = m => m==='cool'?'קירור ❄️':m==='heat'?'חימום 🔥':'אוורור 🌿';
+          const modeColor = {cool:'#4090d0',heat:'#f07030',normal:'#3aaa6e'};
+
+          if(mode !== friMode){
+            // כניסת חירום נדרשת — הכיוון שנקבע בחמישי לא מתאים לשבת
+            let whyNote = '';
+            if(mode === 'cool' && mx >= 30){
+              whyNote = `הטמפרטורה מגיעה ל-${mx}°. חום כזה מסוכן לבעלי החיים — דרוש קירור.`;
+            } else if(mode === 'heat' && mn <= 10){
+              whyNote = `הטמפרטורה יורדת ל-${mn}°. קור כזה עלול לפגוע בבעלי החיים — דרוש חימום.`;
+            } else {
+              whyNote = `שינוי מצב מ-${modeLabel(friMode)} (שנקבע בחמישי) ל-${modeLabel(mode)} — יש לכוון מחדש.`;
             }
+            // שעת כניסה מיטבית לפי מצב
+            let bestTime = '';
+            if(mode === 'cool'){
+              bestTime = mx >= 32 ? 'עדיף להגיע לפני 10:00' : 'עדיף להגיע בשעות הבוקר';
+            } else if(mode === 'heat'){
+              bestTime = mn <= 8 ? 'עדיף להגיע בין 11:00 ל-15:00' : 'עדיף להגיע באמצע היום';
+            }
+            html += _acUnitHtml(
+              '🚨 כניסת חירום אפשרית: שבת',
+              'יחזיק עד ראשון 08:00',
+              mn, mx, satSeg.vis, satSeg.codes,
+              { bg:'#fde8e8', color:'#b02020',
+                text:`🚨 ${whyNote}<br>כוונו ל-${tempRec}° ${modeLabel(mode)}. ${bestTime}.` }
+            );
+            showWeekendEmergencyBanner({ days:'sat', friMode, satMode:mode, friMin:friMn, friMax:friMx, satMin:mn, satMax:mx });
+            const popupKey = 'acEmergencyShown_' + new Date().toDateString();
+            if(!sessionStorage.getItem(popupKey)){
+              sessionStorage.setItem(popupKey, '1');
+              setTimeout(() => showAcEmergencyPopup(friMode, mode, friMn, friMx, mn, mx), 1200);
+            }
+            forecastText = 'כניסת חירום נדרשת: שבת';
+          } else {
+            // אין צורך בכניסת חירום — הכיוון מחמישי עדיין תקף
+            html += `<div style="background:${modeColor[mode]}11;border-right:3px solid ${modeColor[mode]};border-radius:10px;padding:.6rem .75rem;font-size:.85rem;line-height:1.7">
+              ✅ <strong>אין צורך בכניסת חירום</strong><br>
+              הכיוון שנקבע ביום חמישי — <span style="color:${modeColor[mode]};font-weight:800">${modeLabel(mode)} ${friRec}°</span> — עדיין תקף לשבת (${mn}°–${mx}°).
+            </div>`;
+            forecastText = 'ללא כניסת חירום';
           }
-
-          html += _acUnitHtml(
-            '🚨 כניסת חירום: שבת',
-            'יחזיק עד ראשון 08:00',
-            mn, mx, seg.vis, seg.codes,
-            { bg:'#fde8e8', color:'#b02020',
-              text:`🚨 נדרשת כניסת חירום ביום שבת! ${whyNote}${compareNote}` }
-          );
         }
         untilLabel = 'עד ראשון 08:00';
-        forecastText = 'הוראת חירום: שבת';
       }
 
       // ══════════════════════════════════════════
@@ -11151,35 +11260,106 @@ function pwaInstall(){
 
   function showAcEmergencyPopup(friMode, satMode, friMin, friMax, satMin, satMax){
     const modeLabel = m => m==='cool'?'קירור ❄️':m==='heat'?'חימום 🔥':'אוורור 🌿';
+    const modeBg    = m => m==='cool'?'#e8f4ff':m==='heat'?'#fff3e8':'#f0fff4';
+    const modeColor = m => m==='cool'?'var(--blue)':m==='heat'?'var(--orange)':'var(--green)';
+    const TARGET = 23;
+    // הפופאפ מופיע מיום שישי — הכניסה בשישי מכוונת עבור שבת, ואין צורך בכניסה נוספת
+    const titleText = 'נדרשת כניסה מיוחדת לכיוון המזגן ביום שישי';
+    const instructText = `
+      <div style="margin-bottom:.3rem">📋 לבקש מצוות בית הספר לכוון ל-${TARGET}° ${modeLabel(satMode)} לפני 11:30.</div>
+      <div style="font-size:.79rem;color:#7a5500">הכיוון יחזיק לשבת. אין צורך בכניסה נוספת בשבת.</div>`;
+
     const overlay = document.createElement('div');
     overlay.id = 'acEmergencyOverlay';
     overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;display:flex;align-items:center;justify-content:center;padding:1rem';
     overlay.innerHTML = `
       <div style="background:var(--card);border-radius:18px;box-shadow:0 8px 40px rgba(0,0,0,.35);max-width:420px;width:100%;padding:1.4rem 1.3rem;direction:rtl;position:relative">
         <div style="font-size:2rem;text-align:center;margin-bottom:.5rem">🚨</div>
-        <div style="font-weight:900;font-size:1.05rem;color:#b02020;text-align:center;margin-bottom:.7rem">תנודה חריפה בסוף שבוע!</div>
+        <div style="font-weight:900;font-size:1rem;color:#b02020;text-align:center;margin-bottom:.7rem">${titleText}</div>
         <div style="font-size:.87rem;line-height:1.7;color:var(--text);margin-bottom:.9rem">
-          <div style="display:flex;gap:.5rem;margin-bottom:.4rem">
-            <div style="flex:1;background:#e8f4ff;border-radius:10px;padding:.45rem .6rem;text-align:center">
+          <div style="display:flex;gap:.5rem;margin-bottom:.75rem">
+            <div style="flex:1;background:${modeBg(friMode)};border-radius:10px;padding:.5rem .6rem;text-align:center">
               <div style="font-weight:800;font-size:.82rem;color:var(--muted)">שישי</div>
-              <div style="font-weight:900;color:var(--blue)">${friMin}°–${friMax}°</div>
+              <div style="font-weight:900;color:${modeColor(friMode)}">${friMin}°–${friMax}°</div>
               <div style="font-size:.8rem;font-weight:700">${modeLabel(friMode)}</div>
+              <div style="font-size:.78rem;font-weight:900;margin-top:.2rem;color:${modeColor(friMode)}">כוון ל-${TARGET}°</div>
             </div>
-            <div style="flex:1;background:#fff3e8;border-radius:10px;padding:.45rem .6rem;text-align:center">
+            <div style="flex:1;background:${modeBg(satMode)};border-radius:10px;padding:.5rem .6rem;text-align:center">
               <div style="font-weight:800;font-size:.82rem;color:var(--muted)">שבת</div>
-              <div style="font-weight:900;color:var(--orange)">${satMin}°–${satMax}°</div>
+              <div style="font-weight:900;color:${modeColor(satMode)}">${satMin}°–${satMax}°</div>
               <div style="font-size:.8rem;font-weight:700">${modeLabel(satMode)}</div>
+              <div style="font-size:.78rem;font-weight:900;margin-top:.2rem;color:${modeColor(satMode)}">כוון ל-${TARGET}°</div>
             </div>
           </div>
-          הגדרה אחת לא תספיק לשני הימים. יש לשקול <strong>כניסה בשישי בבוקר</strong> לכיוון מחדש של המזגן.
+          <div style="background:#fff8e8;border-radius:10px;padding:.55rem .7rem;border-right:3px solid #e0a020;font-size:.84rem;line-height:1.8">
+            ${instructText}
+          </div>
         </div>
-        <div style="display:flex;gap:.6rem">
-          <button onclick="document.getElementById('acEmergencyOverlay').remove()" style="flex:1;background:#fde8e8;border:1.5px solid #e05252;border-radius:10px;padding:.6rem;font-size:.88rem;font-weight:800;color:#b02020;cursor:pointer;font-family:inherit">הבנתי, אטפל בזה</button>
-          <button onclick="document.getElementById('acEmergencyOverlay').remove()" style="flex:1;background:var(--card);border:1.5px solid var(--muted);border-radius:10px;padding:.6rem;font-size:.88rem;font-weight:700;color:var(--muted);cursor:pointer;font-family:inherit">סגור</button>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button onclick="document.getElementById('acEmergencyOverlay').remove();switchTab('seasonal');setTimeout(()=>{const el=document.getElementById('acCard');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)" style="flex:1;min-width:120px;background:#e8f0fe;border:1.5px solid #4070c0;border-radius:10px;padding:.55rem .4rem;font-size:.82rem;font-weight:800;color:#3060b0;cursor:pointer;font-family:inherit">🌡️ תחזית וכיוון מזגן</button>
+          <button onclick="document.getElementById('acEmergencyOverlay').remove();switchTab('guidelines');setTimeout(()=>{const el=document.getElementById('emergencyGuidelinesSection');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)" style="flex:1;min-width:120px;background:#fde8e8;border:1.5px solid #e05252;border-radius:10px;padding:.55rem .4rem;font-size:.82rem;font-weight:800;color:#b02020;cursor:pointer;font-family:inherit">📋 הנחיות חירום</button>
+          <button onclick="document.getElementById('acEmergencyOverlay').remove()" style="flex:1;min-width:80px;background:var(--card);border:1.5px solid var(--muted);border-radius:10px;padding:.55rem .4rem;font-size:.82rem;font-weight:700;color:var(--muted);cursor:pointer;font-family:inherit">סגור</button>
         </div>
       </div>`;
     overlay.addEventListener('click', e => { if(e.target === overlay) overlay.remove(); });
     document.body.appendChild(overlay);
+  }
+
+  // ── באנר חירום קבוע לסוף שבוע ──
+  function showWeekendEmergencyBanner(scenario){
+    const el = document.getElementById('weekendEmergencyBanner');
+    if(!el) return;
+    const modeLabel = m => m==='cool'?'קירור ❄️':m==='heat'?'חימום 🔥':'אוורור 🌿';
+    const modeBg    = m => m==='cool'?'#e8f4ff':m==='heat'?'#fff3e8':'#f0fff4';
+    const modeColor = m => m==='cool'?'#2060a0':m==='heat'?'#c05010':'#1a7040';
+    const TARGET = 23;
+    let daysHtml = '';
+    const showFri = scenario.days === 'fri' || scenario.days === 'fri_for_sat';
+    const showSat = scenario.days === 'sat' || scenario.days === 'fri_for_sat';
+    if(showFri){
+      daysHtml += `<div style="flex:1;background:${modeBg(scenario.friMode)};border-radius:10px;padding:.5rem .65rem;text-align:center;min-width:110px"><div style="font-weight:800;font-size:.8rem;color:#666">שישי</div><div style="font-weight:900;font-size:1rem;color:${modeColor(scenario.friMode)}">${scenario.friMin}°–${scenario.friMax}°</div><div style="font-size:.78rem;font-weight:800;color:${modeColor(scenario.friMode)}">${modeLabel(scenario.friMode)}</div><div style="font-size:.75rem;font-weight:900;margin-top:.15rem;color:${modeColor(scenario.friMode)}">כוון ל-${TARGET}°</div></div>`;
+    }
+    if(showSat){
+      daysHtml += `<div style="flex:1;background:${modeBg(scenario.satMode)};border-radius:10px;padding:.5rem .65rem;text-align:center;min-width:110px"><div style="font-weight:800;font-size:.8rem;color:#666">שבת</div><div style="font-weight:900;font-size:1rem;color:${modeColor(scenario.satMode)}">${scenario.satMin}°–${scenario.satMax}°</div><div style="font-size:.78rem;font-weight:800;color:${modeColor(scenario.satMode)}">${modeLabel(scenario.satMode)}</div><div style="font-size:.75rem;font-weight:900;margin-top:.15rem;color:${modeColor(scenario.satMode)}">כוון ל-${TARGET}°</div></div>`;
+    }
+
+    // חשב שעת כניסה מיטבית לשבת לפי מצב
+    function bestSatTime(mode, mn, mx){
+      if(mode === 'cool'){
+        // חום — להגיע לפני שהחום מגיע לשיא
+        if(mx >= 32) return 'עדיף להגיע לפני 10:00';
+        return 'עדיף להגיע בשעות הבוקר';
+      } else if(mode === 'heat'){
+        // קור — להגיע בשעות החמות של היום
+        if(mn <= 8) return 'עדיף להגיע בין 11:00 ל-15:00';
+        return 'עדיף להגיע באמצע היום';
+      }
+      return 'ניתן להגיע בכל שעה';
+    }
+
+    let instructionHtml = '';
+    if(scenario.days === 'fri_for_sat'){
+      // כניסה בשישי = לכוון עבור שבת. אחרי הכניסה בשישי אין צורך בכניסת חירום בשבת.
+      instructionHtml = `<div style="margin-top:.6rem;background:#fff8e8;border-radius:9px;padding:.5rem .65rem;border-right:3px solid #e0a020;font-size:.82rem;line-height:1.8">
+        <div style="margin-bottom:.3rem">📋 <strong>שישי לפני 11:30:</strong> לבקש מצוות בית הספר לכוון ל-${TARGET}° ${modeLabel(scenario.satMode)} עבור שבת.</div>
+        <div style="font-size:.79rem;color:#666">אחרי הכניסה בשישי אין צורך בכניסה נוספת בשבת.</div>
+      </div>`;
+    } else if(scenario.days === 'fri'){
+      instructionHtml = `<div style="margin-top:.6rem;background:#fff8e8;border-radius:9px;padding:.5rem .65rem;border-right:3px solid #e0a020;font-size:.82rem;line-height:1.6">📋 לבקש מצוות בית הספר לכוון ל-${TARGET}° ${modeLabel(scenario.friMode)} לפני 11:30.</div>`;
+    } else if(scenario.days === 'sat'){
+      const timing = bestSatTime(scenario.satMode, scenario.satMin, scenario.satMax);
+      instructionHtml = `<div style="margin-top:.6rem;background:#fde8e8;border-radius:9px;padding:.5rem .65rem;border-right:3px solid #e05252;font-size:.82rem;line-height:1.8">
+        <div style="margin-bottom:.25rem">🚨 נדרשת כניסת חירום לכיוון ל-${TARGET}° ${modeLabel(scenario.satMode)}.</div>
+        <div style="font-size:.79rem;color:#7a2020">${timing} (${scenario.satMin}°–${scenario.satMax}°).</div>
+      </div>`;
+    }
+    const bannerTitle = scenario.days === 'fri_for_sat'
+      ? 'נדרשת כניסה מיוחדת לכיוון המזגן ביום שישי'
+      : scenario.days === 'fri'
+        ? 'נדרשת כניסה מיוחדת לכיוון המזגן ביום שישי'
+        : 'נדרשת כניסת חירום לכיוון המזגן ביום שבת';
+    el.style.display = 'block';
+    el.innerHTML = `<div style="background:#fde8e8;border:2px solid #e05252;border-radius:14px;padding:1rem 1rem .85rem;direction:rtl"><div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem"><span style="font-size:1.3rem">🚨</span><span style="font-weight:900;font-size:.95rem;color:#b02020">${bannerTitle}</span><button onclick="document.getElementById('weekendEmergencyBanner').style.display='none'" style="margin-right:auto;background:none;border:none;cursor:pointer;font-size:1rem;color:#aaa;padding:0;line-height:1" title="הסתר">✕</button></div><div style="display:flex;gap:.5rem;flex-wrap:wrap">${daysHtml}</div>${instructionHtml}</div>`;
   }
 
   // ── תחזית 3 ימים קדימה + הנחיות מזגן לכל יום ──
@@ -11245,16 +11425,20 @@ function pwaInstall(){
         const hasFog = seg.vis.some(v=>v<2000) || seg.codes.some(c=>c===45||c===48);
         const fogNote = hasFog ? `<span style="font-size:.76rem;color:#7a5500;font-weight:700">🌫️ צפוי אובך · סגרו פתחי אוורור</span>` : '';
 
-        // השוואה ליום הקודם
+        // שישי/שבת — לא נמצאים שם, המזגן נקבע ביום חמישי
+        const isFriDay = (dow === 5);
+        const isSatDay = (dow === 6);
+        const isWeekendDay = isFriDay || isSatDay;
+
+        // השוואה ליום הקודם (רק לימי חול)
         let compareNote = '';
-        if(prevMn !== null && prevMx !== null){
+        if(!isWeekendDay && prevMn !== null && prevMx !== null){
           const maxDiff = mx - prevMx;
           const minDiff = mn - prevMn;
           const modeChange = mode !== prevMode;
           const tempSwing = Math.abs(maxDiff) + Math.abs(minDiff);
 
           if(modeChange){
-            // הסבר מה גרם לשינוי
             let reason = '';
             if(prevMode === 'cool' && mode === 'heat'){
               reason = `הטמפרטורה ירדה משמעותית (מ-${prevMx}° ל-${mx}°). לאור ההתקררות, פינת החי צריכה עכשיו חימום.`;
@@ -11276,14 +11460,31 @@ function pwaInstall(){
           }
         }
 
+        // בנה את שורת הכיוון — שונה לשישי/שבת
+        let acLine = '';
+        if(isWeekendDay){
+          // השתמש בהחלטה המשותפת מכרטיס המזגן
+          const dec = window.__weekendAcDecision;
+          const wMode = isSatDay ? (dec ? dec.satMode : mode) : (dec ? dec.friMode : mode);
+          const wRec  = isSatDay ? (dec ? dec.satRec  : tempRec) : (dec ? dec.friRec : tempRec);
+          const wModeColors = {cool:'#4090d0',heat:'#f07030',normal:'#3aaa6e'};
+          const wModeIcons  = {cool:'❄️',heat:'🔥',normal:'🌿'};
+          const wModeLabels = {cool:'קירור',heat:'חימום',normal:'אוורור'};
+          const wNeedsEntry = dec && ((isFriDay && dec.needsFri) || (isSatDay && dec.needsSat));
+          const wPrefix = wNeedsEntry ? '🚨 כיוון כניסה מיוחדת' : '🔒 כיוון שנקבע בחמישי';
+          acLine = `<div style="font-size:.78rem;color:${wModeColors[wMode]};font-weight:800">${wModeIcons[wMode]} ${wPrefix}: ${wRec}° ${wModeLabels[wMode]}</div>`;
+        } else {
+          acLine = `<div style="font-size:.79rem;font-weight:800;color:${modeColors[mode]};margin-bottom:.15rem">${modeIcons[mode]} ${modeSettings[mode]}</div>`;
+        }
+
         html += `
           <div style="display:flex;align-items:center;gap:.6rem;padding:.55rem .7rem;border-radius:10px;border:1.5px solid ${modeColors[mode]}22;background:${modeColors[mode]}0d;margin-bottom:.4rem">
             <div style="font-size:1.6rem;line-height:1;flex-shrink:0">${icon}</div>
             <div style="flex:1;min-width:0">
               <div style="font-weight:900;font-size:.88rem;color:var(--text)">${label}</div>
               <div style="font-size:.77rem;color:var(--muted);margin-bottom:.18rem">${desc} · ${mn}°–${mx}°</div>
-              <div style="font-size:.79rem;font-weight:800;color:${modeColors[mode]};margin-bottom:.15rem">${modeIcons[mode]} ${modeSettings[mode]}</div>
-              ${compareNote ? `<div style="margin-top:.1rem">${compareNote}</div>` : ''}
+              ${acLine}
+              ${!isWeekendDay && compareNote ? `<div style="margin-top:.1rem">${compareNote}</div>` : ''}
               ${fogNote}
             </div>
           </div>`;
@@ -11513,30 +11714,14 @@ function pwaInstall(){
       // הנחיות חירום לפי סף טמפרטורה (ללא תקלה)
       let emergencyTipHtml = '';
       if(maxT >= 32){
-        emergencyTipHtml = `<div style="background:#fde8e8;border:1.5px solid #e05252;border-radius:9px;padding:.45rem .7rem;margin-bottom:.4rem;font-size:.83rem">
-          <div style="font-weight:900;color:#8b1c1c;margin-bottom:.2rem">🔥 חום קיצוני (${maxT}°) - הנחיות מיוחדות</div>
-          <ul style="margin:0;padding-right:1.1rem;line-height:1.65;color:var(--text)">
-            <li>מחליפים את המים בכלי המים לפחות פעמיים ביום.</li>
-            <li>מזיזים את כלוב קיקו מהחלון למקום מוצל.</li>
-            <li>בקבוקי קרח עטופים בגרב בתוך הכלוב של הצ'ינצ'ילות והארנבונים.</li>
-            <li>המזגן חייב לפעול. מומלץ 22–24°.</li>
-          </ul>
-          <div style="margin-top:.35rem;padding-top:.35rem;border-top:1px dashed #f0b8b8">
-            <button onclick="switchTab('guidelines');setTimeout(()=>{const el=document.getElementById('emergencyGuidelinesSection');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)" style="background:#e05252;color:#fff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.8rem;font-weight:800;cursor:pointer;font-family:inherit">🚨 יש תקלת מזגן? עברו להנחיות חירום</button>
-          </div>
+        emergencyTipHtml = `<div style="background:#fde8e8;border:1.5px solid #e05252;border-radius:9px;padding:.45rem .7rem;margin-bottom:.4rem;font-size:.83rem;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap">
+          <div style="font-weight:800;color:#8b1c1c;font-size:.82rem;flex:1;min-width:160px">🔥 חום קיצוני צפוי (${maxT}°) — המזגן על קירור</div>
+          <button onclick="switchTab('guidelines');setTimeout(()=>{const el=document.getElementById('emergencyGuidelinesSection');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)" style="background:#e05252;color:#fff;border:none;border-radius:50px;padding:.28rem .8rem;font-size:.8rem;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap">🚨 יש תקלה? לחצו כאן</button>
         </div>`;
-      } else if(minT <= 12){
-        emergencyTipHtml = `<div style="background:#dbeafe;border:1.5px solid #4090d0;border-radius:9px;padding:.45rem .7rem;margin-bottom:.4rem;font-size:.83rem">
-          <div style="font-weight:900;color:#1a3060;margin-bottom:.2rem">❄️ קור (${minT}°) - הנחיות מיוחדות</div>
-          <ul style="margin:0;padding-right:1.1rem;line-height:1.65;color:var(--text)">
-            <li>סוגרים את כל החלונות היטב לפני שיוצאים.</li>
-            <li>מכסים את כלובי התוכים בבדים עבים בלילה.</li>
-            <li>לזוחלים שמים בקבוקי מים חמימים (38–40°) עטופים במגבת.</li>
-            <li>המזגן על חימום, 22–24°.</li>
-          </ul>
-          <div style="margin-top:.35rem;padding-top:.35rem;border-top:1px dashed #a0c0e8">
-            <button onclick="switchTab('guidelines');setTimeout(()=>{const el=document.getElementById('emergencyGuidelinesSection');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)" style="background:#4090d0;color:#fff;border:none;border-radius:50px;padding:.22rem .7rem;font-size:.8rem;font-weight:800;cursor:pointer;font-family:inherit">🚨 יש תקלת חימום? עברו להנחיות חירום</button>
-          </div>
+      } else if(minT <= 10){
+        emergencyTipHtml = `<div style="background:#dbeafe;border:1.5px solid #4090d0;border-radius:9px;padding:.45rem .7rem;margin-bottom:.4rem;font-size:.83rem;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap">
+          <div style="font-weight:800;color:#1a3060;font-size:.82rem;flex:1;min-width:160px">❄️ לילה קר צפוי (${minT}°) — המזגן על חימום</div>
+          <button onclick="switchTab('guidelines');setTimeout(()=>{const el=document.getElementById('emergencyGuidelinesSection');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)" style="background:#4090d0;color:#fff;border:none;border-radius:50px;padding:.28rem .8rem;font-size:.8rem;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap">🚨 יש תקלה? לחצו כאן</button>
         </div>`;
       }
 
@@ -12008,7 +12193,7 @@ function pwaInstall(){
     // out = יום האחרון שנמצאים בפינת החי, back = יום החזרה
     { name:'חופשת פסח',         out:new Date(2026,2,23), back:new Date(2026,3,9)   },
     { name:'יום העצמאות',       out:new Date(2026,3,21), back:new Date(2026,3,23)  },
-    { name:'ל"ג בעומר',         out:new Date(2026,4,5),  back:new Date(2026,4,6)   },
+    { name:'ל"ג בעומר',         out:new Date(2026,4,4),  back:new Date(2026,4,6)   },
     { name:'חופשת שבועות',      out:new Date(2026,4,20), back:new Date(2026,4,24)  },
     { name:'סיום שנת הלימודים', out:new Date(2026,5,30), back:null                 },
     // קייטנה = יולי, מצב קיץ - לא היעדרות, דרוש היערכות ספציפית
