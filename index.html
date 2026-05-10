@@ -1049,8 +1049,8 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   <div id="rainbowBubbles"></div>
   <div class="ticker" onclick="spawnPawTrail()" style="cursor:pointer" title="🐾">🦜🐹🐢🦎🐛🐰🐕🐟🦎🐱🐹🐰🦜🐢🐛🐕🐟🦜🐹🐢🦎🐛🐰🐕🐟🦎🐱🐹🐰🦜🐢🐛🐕🐟</div>
   <div style="font-size:.88rem;font-weight:800;margin-bottom:.25rem;letter-spacing:.01em"><a onclick="switchTab('insight');setTimeout(()=>document.getElementById('manifesto-island').scrollIntoView({behavior:'smooth',block:'start'}),120);return false;" href="#" style="color:#2a6a40;text-decoration:none;border-bottom:1.5px dotted #3aaa6e;padding-bottom:.05rem;cursor:pointer" title="למידע על פינת החי הטיפולית ←">🐾 פינת החי הטיפולית של בית ספר שז"ר 🐾</a></div>
-  <h1>🌿 מה אוכלים היום בפינת החי?</h1>
-  <p>המדריך לכל מה שצריך! <span style="position:relative;display:inline-block;vertical-align:middle">
+  <h1>🌿 מה אוכלים היום בפינת החי? <button onclick="speakFromData(this)" data-speak="מה אוכלים היום בפינת החי? המדריך לכל מה שצריך!" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.82rem;vertical-align:middle;margin-inline-start:.3rem">🔊</button></h1>
+  <p>המדריך לכל מה שצריך! <button onclick="speakFromData(this)" data-speak="המדריך לכל מה שצריך!" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.82rem;vertical-align:middle;margin-inline-start:.3rem">🔊</button><span style="position:relative;display:inline-block;vertical-align:middle">
     <span id="secretStar" onclick="openSecretsPopup();dismissStarTooltip()" title="סודות והפתעות 🌟" style="cursor:pointer;font-size:.9em;display:inline-block;animation:starPulse 2.2s ease-in-out infinite">✨</span>
     <span id="starTooltip" class="star-tooltip-bubble" style="position:absolute;top:-10%;right:120%;transform:translateY(-50%);background:#fff9e6;border:2px solid #f0d060;border-radius:50px;padding:.25rem .7rem;font-size:.79rem;font-weight:800;color:#7a5000;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,.15);font-family:'Varela Round',sans-serif;animation:starPulse 2.2s ease-in-out infinite;cursor:pointer;display:none" onclick="openSecretsPopup();dismissStarTooltip()">→ לחצו עליי!</span>
   </span></p>
@@ -1066,7 +1066,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   <div style="position:relative;max-width:600px;margin:0 auto">
     <span style="position:absolute;right:.75rem;top:50%;transform:translateY(-50%);font-size:1.2rem;pointer-events:none">🔍</span>
     <input id="globalSearchInput" type="text"
-      placeholder="חפשו חיה, מזון, נושא, או כל מילה מהאתר... למשל: פינת חי טיפולית, אובך, גרביל"
+      aria-label="שורת חיפוש - כתבו או אמרו בקול את מה שאתם מחפשים" placeholder="חפשו חיה, מזון, נושא, או כל מילה מהאתר... למשל: פינת חי טיפולית, אובך, גרביל"
       oninput="handleGlobalSearch(this.value)"
       style="width:100%;box-sizing:border-box;padding:.55rem 2.4rem .55rem 2.4rem;border:2px solid #c8e0c8;border-radius:50px;font-size:.95rem;font-family:inherit;outline:none;transition:border-color .15s;background:#fafff8"
       onfocus="this.style.borderColor='#3aaa6e'"
@@ -1076,8 +1076,8 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   </div>
   <div id="globalSearchResult" style="max-width:600px;margin:.4rem auto 0;font-size:.92rem"></div>
   <div style="text-align:center;margin-top:.3rem;display:flex;justify-content:center;gap:.3rem;flex-wrap:wrap">
-    <button onclick="openWelcomeGuide()" class="util-btn" style="background:none;border:none;cursor:pointer;font-size:.82rem;color:#555;font-family:inherit;padding:.15rem .5rem;border-radius:50px;transition:color .15s;font-weight:700" onmouseover="this.style.color='#3aaa6e'" onmouseout="this.style.color='#555'">🗺️ מדריך מהיר לאתר</button>
-    <button onclick="doSurprise()" class="util-btn" style="background:none;border:none;cursor:pointer;font-size:.82rem;color:#555;font-family:inherit;padding:.15rem .5rem;border-radius:50px;transition:color .15s;font-weight:700" onmouseover="this.style.color='#3aaa6e'" onmouseout="this.style.color='#555'">🎲 הפתיעו אותי</button>
+    <button onclick="openWelcomeGuide()" class="util-btn" style="background:none;border:none;cursor:pointer;font-size:.82rem;color:#555;font-family:inherit;padding:.15rem .5rem;border-radius:50px;transition:color .15s;font-weight:700" onmouseover="this.style.color='#3aaa6e'" onmouseout="this.style.color='#555'">🗺️ מדריך מהיר לאתר <button onclick="speakFromData(this)" data-speak="מדריך מהיר לאתר - לחצו לפתיחת המדריך" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.82rem;vertical-align:middle;margin-inline-start:.3rem">🔊</button></button>
+    <button onclick="doSurprise()" class="util-btn" style="background:none;border:none;cursor:pointer;font-size:.82rem;color:#555;font-family:inherit;padding:.15rem .5rem;border-radius:50px;transition:color .15s;font-weight:700" onmouseover="this.style.color='#3aaa6e'" onmouseout="this.style.color='#555'">🎲 הפתיעו אותי <button onclick="speakFromData(this)" data-speak="הפתיעו אותי - לחצו לקבלת הצעה אקראית" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.82rem;vertical-align:middle;margin-inline-start:.3rem">🔊</button></button>
   </div>
 
 <div id="adminBar" style="display:none" class="admin-bar">
@@ -1114,7 +1114,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       <button class="modal-nav-btn" id="modalPrev" onclick="modalNav(-1)" title="הקודם">‹</button>
       <span class="modal-top-title" id="modalTitle"></span>
       <button class="modal-nav-btn" id="modalNext" onclick="modalNav(1)" title="הבא">›</button>
-      <button class="modal-close-x" onclick="closeModal()">✕</button>
+      <button class="modal-close-x" onclick="closeModal()" aria-label="סגירה">✕</button>
     </div>
     <div class="modal-content" id="modalBody"></div>
   </div>
@@ -1122,8 +1122,8 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 
 <div class="tab-panel active" id="tab-quickguide">
     <div class="section-hero"><span class="hero-emoji">📝</span><h2>בקיצור</h2><p>רשימת קניות מהירה: מה להביא ומה לא</p></div>
-  <p class="tab-intro-text">כאן תמצאו את רשימת הקניות המהירה של המזונות לפינת החי. מה מומלץ להביא, מה כדאי להפריד ומה אסור להביא בשום אופן. בין אם מדובר בירקות טריים כמו חסה וגזר, בעלים ובעשבי תיבול או בפירות, כאן תדעו בדיוק מה לשים בסל כדי לשמור על החיות שלנו.</p>
-  <div style="text-align:center;margin-bottom:.6rem"><button onclick="speakTabAll('tab-quickguide',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button></div>
+  <p class="tab-intro-text">כאן תמצאו את רשימת הקניות המהירה של המזונות לפינת החי. מה מומלץ להביא, מה כדאי להפריד ומה אסור להביא בשום אופן. בין אם מדובר בירקות טריים כמו חסה וגזר, בעלים ובעשבי תיבול או בפירות, כאן תדעו בדיוק מה לשים בסל כדי לשמור על החיות שלנו. <button onclick="speakText('כאן תמצאו את רשימת הקניות המהירה של המזונות לפינת החי. מה מומלץ להביא, מה כדאי להפריד ומה אסור להביא בשום אופן. בין אם מדובר בירקות טריים כמו חסה וגזר, בעלים ובעשבי תיבול או בפירות, כאן תדעו בדיוק מה לשים בסל כדי לשמור על החיות שלנו.',this)" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></p>
+
 
   <!-- ── 3 quick-link cards ── -->
   <div id="qgSeasonalStrip" style="display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem;margin-bottom:.7rem">
@@ -1135,6 +1135,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       <div style="font-size:1.1rem;margin-bottom:.15rem">🗓️</div>
       <div style="font-size:.72rem;font-weight:800;color:#1a5c35;line-height:1.3" id="qgMonthLinkLabel">מידע חודשי</div>
       <div style="font-size:.65rem;color:#3aaa6e;margin-top:.1rem;font-weight:700">← פרטי החודש</div>
+      <button onclick="event.stopPropagation();speakFromData(this)" data-speak="מידע חודשי, פרטי החודש" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:20px;height:20px;cursor:pointer;font-size:.62rem;vertical-align:middle;margin-top:.2rem;display:block;margin-inline:auto">🔊</button>
     </div>
 
     <!-- כרטיס 2: מזג אוויר + מזגן -->
@@ -1144,6 +1145,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       <div style="font-size:1.1rem;margin-bottom:.15rem">🌡️</div>
       <div id="qgWeatherTemp" style="font-size:.72rem;font-weight:800;color:#1a3a6a;line-height:1.3">טוען...</div>
       <div id="qgWeatherAc" style="font-size:.65rem;color:var(--blue);margin-top:.1rem;font-weight:700">← פרטי מזגן</div>
+      <button onclick="event.stopPropagation();speakFromData(this)" id="qgWeatherSpk" data-speak="מזג אוויר, לחצו לפרטי מזגן" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:20px;height:20px;cursor:pointer;font-size:.62rem;vertical-align:middle;margin-top:.2rem;display:block;margin-inline:auto">🔊</button>
     </div>
 
     <!-- כרטיס 3: כללי פינת החי -->
@@ -1153,6 +1155,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       <div style="font-size:1.1rem;margin-bottom:.15rem">📋</div>
       <div style="font-size:.72rem;font-weight:800;color:#7a4000;line-height:1.3">כללי פינת החי</div>
       <div style="font-size:.65rem;color:var(--orange);margin-top:.1rem;font-weight:700">← עשרת הכללים</div>
+      <button onclick="event.stopPropagation();speakFromData(this)" data-speak="כללי פינת החי, עשרת הכללים" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:20px;height:20px;cursor:pointer;font-size:.62rem;vertical-align:middle;margin-top:.2rem;display:block;margin-inline:auto">🔊</button>
     </div>
 
   </div>
@@ -1325,8 +1328,8 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 </div>
 
 <div class="tab-panel" id="tab-search">
-    <div class="section-hero"><span class="hero-emoji">🔍</span><h2>חיפוש מורחב</h2><p>מזון, חיה, קטגוריה - הכל בחיפוש אחד</p></div>
-  <p class="tab-intro-text">צריכים תשובה מהירה? כאן אפשר לבצע חיפוש מורחב בעזרת כרטיסי מזון מלאים. ניתן לחפש לפי שם, לסנן לפי קטגוריה או לגלות נושאים בלחיצה אחת בלי להקליד כלום. פשוט בוחרים קטגוריה או מקלידים שם של חיה ומקבלים את כל המידע מיד.</p>
+    <div class="section-hero"><span class="hero-emoji">🔍</span><h2>חיפוש מורחב <button onclick="speakFromData(this)" data-speak="חיפוש מורחב" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></h2><p>מזון, חיה, קטגוריה - הכל בחיפוש אחד</p></div>
+  <p class="tab-intro-text">צריכים תשובה מהירה? כאן אפשר לבצע חיפוש מורחב בעזרת כרטיסי מזון מלאים. ניתן לחפש לפי שם, לסנן לפי קטגוריה או לגלות נושאים בלחיצה אחת בלי להקליד כלום. פשוט בוחרים קטגוריה או מקלידים שם של חיה ומקבלים את כל המידע מיד. <button onclick="speakText('צריכים תשובה מהירה? כאן אפשר לבצע חיפוש מורחב בעזרת כרטיסי מזון מלאים. ניתן לחפש לפי שם, לסנן לפי קטגוריה או לגלות נושאים בלחיצה אחת בלי להקליד כלום. פשוט בוחרים קטגוריה או מקלידים שם של חיה ומקבלים את כל המידע מיד.',this)" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></p>
   <div style="text-align:center;margin-bottom:.6rem;display:flex;justify-content:center;gap:.4rem;flex-wrap:wrap"><button onclick="speakTabAll('tab-search',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button><button class="expand-all-btn" onclick="expandAllFoods()" id="expandAllFoodsBtn">📖 פתח הכל</button></div>
   <div id="smartSearchResult" style="margin-bottom:.5rem;font-size:.92rem"></div>
   <div class="search-wrap"><span class="search-icon">🔍</span><input type="text" id="searchInput" placeholder="גזר, ארנבון, פרי, שוקולד, קרטון, גרביים..." oninput="doSearch()"><button id="searchClearBtn" onclick="document.getElementById('searchInput').value='';doSearch()" style="display:none;background:none;border:none;cursor:pointer;font-size:.92rem;color:#999;padding:.2rem .4rem;position:absolute;left:2rem">✕</button><button onclick="startVoiceSearch('searchInput',this)" title="חיפוש קולי" style="background:none;border:none;cursor:pointer;font-size:1.2rem;padding:.2rem .4rem;position:absolute;left:.2rem;color:#666">🎤</button></div>
@@ -1336,12 +1339,12 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     <div style="height:1px;background:var(--border,#e0e8e0);margin-bottom:.6rem"></div>
     <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:.8rem;flex-wrap:wrap">
       <div style="font-size:.81rem;color:#888;line-height:1.55;flex:1;min-width:180px">
-        <strong style="color:#444">נושאים נוספים באתר</strong><br>
-        לחצו על תגית כדי לקרוא תקציר ולעבור לתוכן המלא.
+        <strong style="color:#444">נושאים נוספים באתר</strong> <button onclick="speakFromData(this)" data-speak="נושאים נוספים באתר" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button><br>
+        לחצו על תגית כדי לקרוא תקציר ולעבור לתוכן המלא. <button onclick="speakFromData(this)" data-speak="לחצו על תגית כדי לקרוא תקציר ולעבור לתוכן המלא." aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button>
       </div>
 
     </div>
-    <div style="font-size:.77rem;color:#777;margin-top:.3rem">רוצים לגלות עוד תכנים ועמודים? המדריך המהיר יסביר מה עוד יש כאן. <button onclick="openWelcomeGuide()" style="background:none;border:none;cursor:pointer;font-size:.77rem;color:#3aaa6e;padding:0;font-family:inherit;text-decoration:underline dotted;font-weight:700">🗺️ לחצו כאן</button></div>
+    <div style="font-size:.77rem;color:#777;margin-top:.3rem">רוצים לגלות עוד תכנים ועמודים? המדריך המהיר יסביר מה עוד יש כאן. <button onclick="speakFromData(this)" data-speak="רוצים לגלות עוד תכנים ועמודים? המדריך המהיר יסביר מה עוד יש כאן." aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button> <button onclick="openWelcomeGuide()" style="background:none;border:none;cursor:pointer;font-size:.77rem;color:#3aaa6e;padding:0;font-family:inherit;text-decoration:underline dotted;font-weight:700">🗺️ לחצו כאן</button></div>
   </div>
   <div id="topicsBar" style="margin-top:.3rem"></div>
   <div id="topicResultCard" style="display:none;background:var(--card);border:1.5px solid var(--border,#d8e8d8);border-radius:12px;padding:.6rem .9rem;margin-bottom:.5rem;font-size:.88rem;line-height:1.65"></div>
@@ -1355,16 +1358,16 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 </div>
 
 <div class="tab-panel" id="tab-allfoods">
-    <div class="section-hero"><span class="hero-emoji">📋</span><h2>כל המזונות</h2><p>רשימה מלאה - לחיצה על שורה לפרטים · <span style="color:#1a7a40;font-weight:700">כן</span> / <span style="color:#8a5500;font-weight:700">מעט</span> / <span style="color:#c02020;font-weight:700">לא</span></p>
+    <div class="section-hero"><span class="hero-emoji">📋</span><h2>כל המזונות <button onclick="speakFromData(this)" data-speak="כל המזונות" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></h2><p>רשימה מלאה - לחיצה על שורה לפרטים · <span style="color:#1a7a40;font-weight:700">כן</span> / <span style="color:#8a5500;font-weight:700">מעט</span> / <span style="color:#c02020;font-weight:700">לא</span></p>
   </div>
-  <p class="tab-intro-text">הרשימה המלאה והמפורטת של עשרות סוגי מזונות. כאן תוכלו לקרוא על היתרונות של כל פרי וירק, להכיר את הסיכונים וללמוד אזהרות חשובות. זהו מאגר הידע המלא שיעזור לכם להבין את הסיבות מאחורי כל המלצת האכלה.</p>
+  <p class="tab-intro-text">הרשימה המלאה והמפורטת של עשרות סוגי מזונות. כאן תוכלו לקרוא על היתרונות של כל פרי וירק, להכיר את הסיכונים וללמוד אזהרות חשובות. זהו מאגר הידע המלא שיעזור לכם להבין את הסיבות מאחורי כל המלצת האכלה. <button onclick="speakText('הרשימה המלאה והמפורטת של עשרות סוגי מזונות. כאן תוכלו לקרוא על היתרונות של כל פרי וירק, להכיר את הסיכונים וללמוד אזהרות חשובות. זהו מאגר הידע המלא שיעזור לכם להבין את הסיבות מאחורי כל המלצת האכלה.',this)" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></p>
   <div style="display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center;margin-bottom:.6rem">
     <button onclick="speakTabAll('tab-allfoods',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button>
   </div>
   <div class="filter-row" id="allCatBar"></div>
   <!-- חיפוש מרובה מזונות -->
   <div style="font-size:.83rem;color:#888;margin-bottom:.35rem;line-height:1.6;padding:0 .2rem">
-    🔍 אפשר לחפש לפי <strong>שם מזון</strong>, <strong>שם חיה</strong>, או שניהם ביחד.
+    🔍 אפשר לחפש לפי <strong>שם מזון</strong>, <strong>שם חיה</strong>, או שניהם ביחד. <button onclick="speakFromData(this)" data-speak="אפשר לחפש לפי שם מזון, שם חיה, או שניהם ביחד. למשל: בטטה אוגר סורי, קליפה תפוח ארנבון, גרגרים תירס ציפור אהבה." aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button>
     למשל: <span style="color:#3aaa6e;cursor:pointer" onclick="document.getElementById('allFoodsSearch').value='בטטה אוגר סורי';filterAllFoodsTable('בטטה אוגר סורי')">בטטה אוגר סורי</span> ·
     <span style="color:#3aaa6e;cursor:pointer" onclick="document.getElementById('allFoodsSearch').value='קליפה תפוח ארנבון';filterAllFoodsTable('קליפה תפוח ארנבון')">קליפה תפוח ארנבון</span> ·
     <span style="color:#3aaa6e;cursor:pointer" onclick="document.getElementById('allFoodsSearch').value='גרגרים תירס ציפור אהבה';filterAllFoodsTable('גרגרים תירס ציפור אהבה')">גרגרים תירס ציפור אהבה</span>
@@ -1380,7 +1383,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       <button onclick="document.getElementById('allFoodsSearch').value='';filterAllFoodsTable('')" style="position:absolute;left:.6rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa">✕</button>
     </div>
     <details style="font-size:.80rem;color:#777;cursor:pointer;text-align:right;flex-shrink:0;align-self:center">
-      <summary style="font-weight:700;color:#555;white-space:nowrap">📏 מקרא כמויות</summary>
+      <summary style="font-weight:700;color:#555;white-space:nowrap">📏 מקרא כמויות <button onclick="speakFromData(this)" data-speak="מקרא כמויות: חצי פרוסה זה חצי עיגול בעובי אצבע. פרוסה אחת זה עיגול בעובי אצבע. 2 עד 3 פרוסות. 4 עד 5 פרוסות. פלח אחד זה משולש בגודל כף יד. כפית זה גודל ציפורן. כף זה שלוש כפיות. יחידה אחת זה עלה או פרי קטן. פירות מתוקים תמיד ברמה אחת פחות מירקות." aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></summary>
       <div style="background:#f8f8f8;border-radius:8px;padding:.6rem .8rem;margin-top:.3rem;line-height:1.9;text-align:right;font-size:.83rem;position:absolute;z-index:10;max-width:340px;box-shadow:0 4px 16px rgba(0,0,0,.12)">
         <strong>חצי פרוסה</strong> = חצי עיגול בעובי אצבע ·
         <strong>פרוסה אחת</strong> = עיגול בעובי אצבע ·
@@ -1414,8 +1417,8 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 </div>
 
 <div class="tab-panel" id="tab-animals">
-    <div class="section-hero"><span class="hero-emoji">🐾</span><h2>מידע על החיות</h2><p>לחיצה על כרטיסייה = מידע מלא על החיה</p></div>
-  <p class="tab-intro-text">רוצים ללמוד עוד על הטבע? כאן תוכלו להכיר מקרוב את בעלי החיים שאנחנו מגדלים דרך מאפיינים ביולוגיים, עובדות שימושיות ודגשים על הצרכים המיוחדים שלהם. תוכלו ללמוד על הזיכרון של הצב, על היכולת של האוגר להחליף פרווה ועל עוד עשרות מינים.</p>
+    <div class="section-hero"><span class="hero-emoji">🐾</span><h2>מידע על החיות <button onclick="speakFromData(this)" data-speak="מידע על החיות" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></h2><p>לחיצה על כרטיסייה = מידע מלא על החיה</p></div>
+  <p class="tab-intro-text">רוצים ללמוד עוד על הטבע? כאן תוכלו להכיר מקרוב את בעלי החיים שאנחנו מגדלים דרך מאפיינים ביולוגיים, עובדות שימושיות ודגשים על הצרכים המיוחדים שלהם. תוכלו ללמוד על הזיכרון של הצב, על היכולת של האוגר להחליף פרווה ועל עוד עשרות מינים. <button onclick="speakText('רוצים ללמוד עוד על הטבע? כאן תוכלו להכיר מקרוב את בעלי החיים שאנחנו מגדלים דרך מאפיינים ביולוגיים, עובדות שימושיות ודגשים על הצרכים המיוחדים שלהם. תוכלו ללמוד על הזיכרון של הצב, על היכולת של האוגר להחליף פרווה ועל עוד עשרות מינים.',this)" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></p>
   <div style="text-align:center;margin-bottom:.6rem;display:flex;justify-content:center;gap:.4rem;flex-wrap:wrap"><button onclick="speakTabAll('tab-animals',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button><button class="expand-all-btn" onclick="expandAllAnimals()" id="expandAllAnimalsBtn">📖 פתח הכל</button></div>
   <div style="margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem">
     <button onclick="switchTab('search')" style="background:var(--sky);border:2px solid #c0d8f0;border-radius:50px;padding:.4rem 1rem;font-size:.92rem;font-weight:700;cursor:pointer;color:var(--blue);font-family:'Varela Round',sans-serif">🔍 חיפוש חיה בדף החיפוש המורחב</button>
@@ -1434,8 +1437,8 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 </div>
 
 <div class="tab-panel" id="tab-byanimal">
-    <div class="section-hero"><span class="hero-emoji">🐾</span><h2>מה אוכלת כל חיה?</h2><p>בחרי חיה, וראי מה מותר, מוגבל ואסור</p></div>
-  <p class="tab-intro-text">התפריט המותאם אישית לכל חיה בפינת החי שלנו. כאן תוכלו לגלות מה מותר לתת לארנבון לאכול. ומה אוכלים האוגר, השרקן, תוכי הקוקטייל או הג'אקו? תלמדו אילו מזונות מתאימים לצב, לצ'ינצ'ילה או לחרדון, כדי להבטיח לכל חיה תזונה בריאה ומאוזנת.</p>
+    <div class="section-hero"><span class="hero-emoji">🐾</span><h2>מה אוכלת כל חיה? <button onclick="speakFromData(this)" data-speak="מה אוכלת כל חיה?" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></h2><p>בחרי חיה, וראי מה מותר, מוגבל ואסור</p></div>
+  <p class="tab-intro-text">התפריט המותאם אישית לכל חיה בפינת החי שלנו. כאן תוכלו לגלות מה מותר לתת לארנבון לאכול. ומה אוכלים האוגר, השרקן, תוכי הקוקטייל או הג'אקו? תלמדו אילו מזונות מתאימים לצב, לצ'ינצ'ילה או לחרדון, כדי להבטיח לכל חיה תזונה בריאה ומאוזנת. <button onclick="speakText('התפריט המותאם אישית לכל חיה בפינת החי שלנו. כאן תוכלו לגלות מה מותר לתת לארנבון לאכול. ומה אוכלים האוגר, השרקן, תוכי הקוקטייל או הג\'אקו? תלמדו אילו מזונות מתאימים לצב, לצ\'ינצ\'ילה או לחרדון, כדי להבטיח לכל חיה תזונה בריאה ומאוזנת.',this)" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></p>
   <div style="text-align:center;margin-bottom:.6rem"><button onclick="speakTabAll('tab-byanimal',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button></div>
   <div style="background:#e8f4ff;border-right:4px solid #4a90d9;border-radius:10px;padding:.5rem .85rem;font-size:.89rem;color:#1a4a7a;margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem">
     <span class="water-reminder" style="flex:1;cursor:pointer" onclick="spawnWaterBubbles(this)" title="💧">💧 <strong>מים נקיים תמיד!</strong> לכל החיות בפינה, יש לוודא שיש מים טריים ונקיים בכל עת, ללא קשר למזון.</span>
@@ -1448,7 +1451,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
   <div class="ba-chips" id="baChips"></div>
   <div id="baResults"><div class="empty"><span class="big">🐾</span></div></div>
   <details style="margin-top:1.2rem;font-size:.82rem;color:#777;cursor:pointer;text-align:right;max-width:600px">
-    <summary style="font-weight:700;color:#555">📏 מקרא כמויות</summary>
+    <summary style="font-weight:700;color:#555">📏 מקרא כמויות <button onclick="speakFromData(this)" data-speak="מקרא כמויות: חצי פרוסה זה חצי עיגול בעובי אצבע. פרוסה אחת זה עיגול בעובי אצבע. 2 עד 3 פרוסות. 4 עד 5 פרוסות. פלח אחד זה משולש בגודל כף יד. כפית זה גודל ציפורן. כף זה שלוש כפיות. יחידה או עלה זה יחידה אחת. פירות מתוקים תמיד ברמה אחת פחות." aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></summary>
     <div style="background:#f8f8f8;border-radius:8px;padding:.6rem .8rem;margin-top:.3rem;line-height:1.9;text-align:right">
       <strong>חצי פרוסה</strong> = חצי עיגול בעובי אצבע ·
       <strong>פרוסה אחת</strong> = עיגול בעובי אצבע ·
@@ -1467,8 +1470,8 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 </div>
 
 <div class="tab-panel" id="tab-mycorner">
-    <div class="section-hero"><span class="hero-emoji">🐾</span><h2>💛 פינת החי שלנו 💛</h2><p>שז"ר לא יבין זאת! 😄</p></div>
-  <p class="tab-intro-text">בואו להכיר מקרוב את הדיירים המיוחדים שלנו. כאן אנחנו משתפים בסיפורים האישיים של קיקו הג'אקו, דונה הצבה, זאוס החרדון ושאר החברים שחיים איתנו. תוכלו לגלות את האופי המיוחד של כל חיה ואת מערכות היחסים הייחודיות שנרקמות בינינו לבין בעלי החיים בפינת החי.</p>
+    <div class="section-hero"><span class="hero-emoji">🐾</span><h2>💛 פינת החי שלנו 💛 <button onclick="speakFromData(this)" data-speak="💛 פינת החי שלנו 💛" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></h2><p>שז"ר לא יבין זאת! 😄 <button onclick="speakFromData(this)" data-speak="שז"ר לא יבין זאת!" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></p></div>
+  <p class="tab-intro-text">בואו להכיר מקרוב את הדיירים המיוחדים שלנו. כאן אנחנו משתפים בסיפורים האישיים של קיקו הג'אקו, דונה הצבה, זאוס החרדון ושאר החברים שחיים איתנו. תוכלו לגלות את האופי המיוחד של כל חיה ואת מערכות היחסים הייחודיות שנרקמות בינינו לבין בעלי החיים בפינת החי. <button onclick="speakText('בואו להכיר מקרוב את הדיירים המיוחדים שלנו. כאן אנחנו משתפים בסיפורים האישיים של קיקו הג\'אקו, דונה הצבה, זאוס החרדון ושאר החברים שחיים איתנו. תוכלו לגלות את האופי המיוחד של כל חיה ואת מערכות היחסים הייחודיות שנרקמות בינינו לבין בעלי החיים בפינת החי.',this)" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></p>
   <div style="text-align:center;margin-bottom:.6rem"><button onclick="speakTabAll('tab-mycorner',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button></div>
 
   <div style="display:grid;gap:1rem">
@@ -1492,11 +1495,11 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       <div style="text-align:center;margin-top:.8rem;font-size:1.3rem">🦜✨</div>
       <div style="display:flex;gap:.7rem;justify-content:center;align-items:flex-start;flex-wrap:wrap;margin-top:.4rem">
         <div style="max-width:260px;margin:0 auto"><div class="rainbow-frame"><img class="zoomable" onclick="openLightbox('https://i.imgur.com/jD1QP45.jpeg')" src="https://i.imgur.com/jD1QP45.jpeg" style="width:100%;border-radius:14px;object-fit:cover;height:260px;display:block" onerror="this.parentElement.style.display='none'"></div>
-          <div style="text-align:center;margin-top:.5rem;font-size:.95rem;color:#666;font-weight:700">קיקו מקבל אורחים 🎉</div>
+          <div style="text-align:center;margin-top:.5rem;font-size:.95rem;color:#666;font-weight:700">קיקו מקבל אורחים 🎉 <button onclick="speakFromData(this)" data-speak="קיקו מקבל אורחים!" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></div>
           <a href="https://youtube.com/shorts/CAD0f4GFQOE" target="_blank" style="text-decoration:none;display:block;margin-top:.5rem">
             <div class="rainbow-frame" style="border-radius:50px">
               <div style="background:var(--card);border-radius:47px;padding:.55rem 1rem;text-align:center;font-size:.95rem;font-weight:900;color:#cc0000">
-                ❤️ רוצה לראות את קיקו רוקד? 🕺🦜
+                ❤️ רוצה לראות את קיקו רוקד? 🕺🦜 <button onclick="speakFromData(this)" data-speak="רוצה לראות את קיקו רוקד?" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button>
               </div>
             </div>
           </a>
@@ -1513,12 +1516,12 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
         <div>
           <div style="display:flex;align-items:center;gap:.3rem"><button onclick="speakText('סויה. שממית שקטה שאוהבת את הפינה שלה. כשקריר בחוץ היא נהנית מאמבטיה חמימה, ובשאר הזמן היא נחה במסתור.',this)" title="הקראה" style="background:#c8f0d0;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.89rem;flex-shrink:0">🔊</button><div style="font-size:1.25rem;font-weight:900;color:#1a5c35">סויה</div></div>
           <div style="font-size:.85rem;color:#aaa;display:flex;gap:.6rem;flex-wrap:wrap">
-            <a href="#" onclick="event.preventDefault();openAnimalModal('leopardgecko')" style="color:#2a8c50;text-decoration:underline dotted">שממיות מנומרות</a>
+            <a href="#" onclick="event.preventDefault();openAnimalModal('leopardgecko')" style="color:#2a8c50;text-decoration:underline dotted">שממית מנומרת</a>
             <a href="#" onclick="event.preventDefault();document.querySelector('[data-tab=byanimal]').click();setTimeout(()=>{const el=document.querySelector('[data-aid=leopardgecko]');if(el)el.click()},250)" style="color:#3aaa6e;text-decoration:underline dotted">🥗 העדפות מזון</a>
           </div>
         </div>
       </div>
-      <div style="font-size:.95rem;color:#1a3a20;line-height:1.65">🥗 שממית שקטה, שאוהבת את הפינה שלה. כשקריר בחוץ, היא נהנית מאמבטיה חמימה, ובשאר הזמן היא נחה במסתור. 🦎💚
+      <div style="font-size:.95rem;color:#1a3a20;line-height:1.65">🥗 שממית שקטה, שאוהבת את הפינה שלה. כשקריר בחוץ, היא נהנית מאמבטיה חמימה, ובשאר הזמן היא נחה במסתור. 🦎💚 <button onclick="speakFromData(this)" data-speak="שממית שקטה, שאוהבת את הפינה שלה. כשקריר בחוץ, היא נהנית מאמבטיה חמימה, ובשאר הזמן היא נחה במסתור." aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button>
       <div style="text-align:center;margin-top:.8rem;font-size:1.3rem">🦎💚</div>
       <div style="max-width:260px;margin:.4rem auto"><div class="rainbow-frame"><img class="zoomable" onclick="openLightbox('https://i.imgur.com/TlKdjXW.jpeg')" src="https://i.imgur.com/TlKdjXW.jpeg" style="width:100%;height:260px;border-radius:14px;object-fit:contain;display:block;background:#4caf7d" onerror="this.parentElement.style.display='none'"></div></div>
       <div onclick="spawnRainbow(this)" style="text-align:center;font-size:.95rem;color:#666;font-weight:700;margin-bottom:.3rem;cursor:pointer">סויה בספא 🦎</div>
@@ -1656,7 +1659,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     <!-- באנר סיום -->
   <div class="visit-banner" style="margin-top:1.2rem;background:linear-gradient(135deg,#fff3b0,#ffe066);border-radius:16px;padding:1.1rem 1.4rem;text-align:center;box-shadow:0 3px 12px rgba(0,0,0,.08)">
     <div style="font-size:1.6rem;margin-bottom:.35rem">🌟</div>
-    <div class="visit-banner-title" style="font-weight:900;font-size:1.15rem;color:#7a5000;margin-bottom:.25rem">ויש עוד הרבה! בואו לבקר 🐾</div>
+    <div class="visit-banner-title" style="font-weight:900;font-size:1.15rem;color:#7a5000;margin-bottom:.25rem">ויש עוד הרבה! בואו לבקר 🐾 <button onclick="speakFromData(this)" data-speak="ויש עוד הרבה! בואו לבקר!" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></div>
     <div class="visit-banner-sub" style="font-size:.89rem;color:#9a6800">עוד חיות, עוד סיפורים, מחכים לך! 💚</div>
   </div>
 <p class="credit-footer">האתר נבנה ע"י גלי זייצ'יק, מטפלת בעזרת בעלי חיים</p>
@@ -1665,8 +1668,8 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 </div>
 
 <div class="tab-panel" id="tab-donate">
-    <div class="section-hero"><span class="hero-emoji">🎁</span><h2>מה אפשר לתרום?</h2><p>דברים מהמטבח ומהבית שמאוד עוזרים לנו!</p></div>
-  <p class="tab-intro-text">איך אתם יכולים לעזור לנו? כאן תמצאו רשימה של דברים מהמטבח ומהבית שמאוד עוזרים לנו בפינת החי. מירקות "עייפים" ועד קופסאות קרטון, אנחנו מעודדים שימוש חוזר והופכים כל תרומה שלכם לעולם ומלואו עבור בעלי החיים.</p>
+    <div class="section-hero"><span class="hero-emoji">🎁</span><h2>מה אפשר לתרום? <button onclick="speakFromData(this)" data-speak="מה אפשר לתרום?" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></h2><p>דברים מהמטבח ומהבית שמאוד עוזרים לנו!</p></div>
+  <p class="tab-intro-text">איך אתם יכולים לעזור לנו? כאן תמצאו רשימה של דברים מהמטבח ומהבית שמאוד עוזרים לנו בפינת החי. מירקות "עייפים" ועד קופסאות קרטון, אנחנו מעודדים שימוש חוזר והופכים כל תרומה שלכם לעולם ומלואו עבור בעלי החיים. <button onclick="speakText('איך אתם יכולים לעזור לנו? כאן תמצאו רשימה של דברים מהמטבח ומהבית שמאוד עוזרים לנו בפינת החי. מירקות &quot;עייפים&quot; ועד קופסאות קרטון, אנחנו מעודדים שימוש חוזר והופכים כל תרומה שלכם לעולם ומלואו עבור בעלי החיים.',this)" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></p>
   <div style="text-align:center;margin-bottom:.6rem"><button onclick="speakTabAll('tab-donate',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button></div>
   <div style="background:linear-gradient(135deg,#f0eaff,#ede0ff);border-radius:12px;border:2px solid #c9a8f0;padding:.75rem 1rem;display:flex;gap:.6rem;align-items:center;margin-bottom:.5rem;cursor:pointer" onclick="spawnRecycleEffect(this)">
     <span id="recycleEmoji" style="font-size:1.4rem;flex-shrink:0;transition:transform .6s ease">♻️</span>
@@ -1694,7 +1697,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 
 <div class="tab-panel" id="tab-insight">
     <div class="section-hero"><span class="hero-emoji">💡</span><h2>מבט מעמיק <span onclick="event.stopPropagation();speakText('מבט מעמיק.',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0" aria-label="הקרא בקול">🔊</span></h2><p>קטעי קריאה קצרים על ה"למה" שמאחורי העשייה בפינת החי</p></div>
-  <p class="tab-intro-text">מבט טיפולי וחינוכי על משמעות פינת החי והטיפול בעזרת בעלי חיים. כאן אנחנו מעמיקים ב"למה" שמאחורי העשייה ומסבירים את הגישה שלנו דרך סיפורים ומחשבות מאחורי הקלעים של המרחב ללמידה רגשית.</p>
+  <p class="tab-intro-text">מבט טיפולי וחינוכי על משמעות פינת החי והטיפול בעזרת בעלי חיים. כאן אנחנו מעמיקים ב"למה" שמאחורי העשייה ומסבירים את הגישה שלנו דרך סיפורים ומחשבות מאחורי הקלעים של המרחב ללמידה רגשית. <button onclick="speakText('מבט טיפולי וחינוכי על משמעות פינת החי והטיפול בעזרת בעלי חיים. כאן אנחנו מעמיקים ב&quot;למה&quot; שמאחורי העשייה ומסבירים את הגישה שלנו דרך סיפורים ומחשבות מאחורי הקלעים של המרחב ללמידה רגשית.',this)" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></p>
   <div style="text-align:center;margin-bottom:.6rem;display:flex;justify-content:center;gap:.4rem;flex-wrap:wrap"><button onclick="speakInsightAll(this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button><button id="insightExpandAllBtn" onclick="expandAllInsights()" style="background:none;border:1.5px solid rgba(0,0,0,.18);border-radius:50px;padding:.32rem 1.1rem;font-size:.87rem;font-weight:700;cursor:pointer;font-family:inherit;color:#666;transition:all .15s;direction:rtl">📖 פתח הכל</button></div>
 
   <div class="insight-islands">
@@ -2085,7 +2088,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 
 <div class="tab-panel" id="tab-seasonal">
     <div class="section-hero"><span class="hero-emoji">🌡️</span><h2>מידע עונתי <button onclick="speakText('מידע עונתי',this)" title="הקרא כותרת" style="background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa;padding:0;vertical-align:middle;line-height:1">🔊</button></h2><p>מזג האוויר ופירות בעונה</p></div>
-  <p class="tab-intro-text">איך מזג האוויר בבאר שבע משפיע על החיות שלנו היום? כאן תמצאו עדכונים על הטמפרטורה והנחיות מפורטות להתמודדות עם גשם, אובך או חום קיצוני. המדריך כולל המלצות לשימוש נכון במזגן בפינת החי ולוח שנה מעודכן של פירות העונה.</p>
+  <p class="tab-intro-text">איך מזג האוויר בבאר שבע משפיע על החיות שלנו היום? כאן תמצאו עדכונים על הטמפרטורה והנחיות מפורטות להתמודדות עם גשם, אובך או חום קיצוני. המדריך כולל המלצות לשימוש נכון במזגן בפינת החי ולוח שנה מעודכן של פירות העונה. <button onclick="speakText('איך מזג האוויר בבאר שבע משפיע על החיות שלנו היום? כאן תמצאו עדכונים על הטמפרטורה והנחיות מפורטות להתמודדות עם גשם, אובך או חום קיצוני. המדריך כולל המלצות לשימוש נכון במזגן בפינת החי ולוח שנה מעודכן של פירות העונה.',this)" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></p>
   <div style="text-align:center;margin-bottom:.6rem"><button onclick="speakTabAll('tab-seasonal',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button></div>
 
   <!-- מזג אוויר + מזגן -->
@@ -2144,24 +2147,24 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       <details id="quickEmergencyDetails" style="margin-bottom:.8rem;direction:rtl">
         <summary style="background:#fff3f3;border:1.5px solid #e05252;border-radius:12px;padding:.6rem 1rem;font-size:.84rem;font-weight:800;color:#b02020;cursor:pointer;list-style:none;display:flex;align-items:center;gap:.5rem">
           <span style="font-size:1rem">🚨</span>
-          <span style="flex:1">במקרה של הפסקת חשמל או תקלה במזגן — לחצו כאן להנחיות חירום</span>
+          <span style="flex:1">במקרה של הפסקת חשמל או תקלה במזגן: לחצו כאן להנחיות חירום <button onclick="speakFromData(this)" data-speak="במקרה של הפסקת חשמל או תקלה במזגן: לחצו כאן להנחיות חירום" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></span>
           <span class="details-arrow" style="font-size:.8rem;color:#b02020;transition:transform .2s">▼</span>
         </summary>
         <div style="border:1.5px solid #e05252;border-top:none;border-radius:0 0 12px 12px;padding:.8rem 1rem;background:var(--card)">
           <div style="font-size:.82rem;color:#7a5500;background:#fffbf0;border:1.5px solid #e0c060;border-radius:9px;padding:.45rem .7rem;margin-bottom:.7rem">
-            ⚠️ <strong>נוהל תקלת מיזוג או הפסקת חשמל</strong> בחום קיצוני (מעל 32°) או קור קיצוני (מתחת ל-10°).
+            ⚠️ <strong>נוהל תקלת מיזוג או הפסקת חשמל</strong> בחום קיצוני (מעל 32 מעלות) או קור קיצוני (מתחת לעשר מעלות). <button onclick="speakFromData(this)" data-speak="נוהל תקלת מיזוג או הפסקת חשמל: בחום קיצוני מעל 32 מעלות או קור קיצוני מתחת לעשר מעלות." aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button>
           </div>
           <div style="margin-bottom:.8rem">
-            <div style="font-size:.83rem;font-weight:900;color:#8b1c1c;background:#fde8e8;border:1.5px solid #e05252;border-radius:10px;padding:.5rem .75rem;margin-bottom:.4rem">☀️ חום קיצוני (תקלת מזגן / הפסקת חשמל)</div>
+            <div style="font-size:.83rem;font-weight:900;color:#8b1c1c;background:#fde8e8;border:1.5px solid #e05252;border-radius:10px;padding:.5rem .75rem;margin-bottom:.4rem">☀️ חום קיצוני (תקלת מזגן / הפסקת חשמל) <button onclick="speakFromData(this)" data-speak="חום קיצוני: תקלת מזגן או הפסקת חשמל. עדיפות ראשונה מעל 35 מעלות: פינוי הצ'ינצ'ילות. עדיפות שנייה מעל 38 מעלות: פעולות לשאר החיות." aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></div>
             <ol style="margin:.3rem 0 0;padding-right:1.3rem;font-size:.83rem;line-height:2;color:var(--text)">
-              <li><strong>עדיפות ראשונה (מעל 35°) — פינוי הצ'ינצ'ילות:</strong>
+              <li><strong>עדיפות ראשונה (מעל 35°): פינוי הצ'ינצ'ילות</strong>
                 <ul style="padding-right:1.1rem;line-height:1.9;margin:.2rem 0">
                   <li>חדר "צבע וטבע" פתוח: פנו מיד, ודאו מים ואוכל, וחזרו לפינת החי.</li>
                   <li>בניין הגדולים: ודאו שיש אישור ומפתח, פנו וחזרו.</li>
                   <li>אין מיזוג זמין: עברו ישירות לפעולות ההצלה ונסו לתאם פינוי לאחר מכן.</li>
                 </ul>
               </li>
-              <li><strong>עדיפות שנייה (מעל 38°) — פעולות לשאר החיות:</strong>
+              <li><strong>עדיפות שנייה (מעל 38°): פעולות לשאר החיות</strong>
                 <ul style="padding-right:1.1rem;line-height:1.9;margin:.2rem 0">
                   <li>קיקו: הזיזו למקום המוצל ביותר בחדר.</li>
                   <li>ארנבונים: נגבו בעדינות את גב האוזן במטלית לחה וקרירה.</li>
@@ -2175,16 +2178,16 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
             </ol>
           </div>
           <div>
-            <div style="font-size:.83rem;font-weight:900;color:#1a3060;background:#dbeafe;border:1.5px solid #4090d0;border-radius:10px;padding:.5rem .75rem;margin-bottom:.4rem">❄️ קור קיצוני (תקלת חימום / הפסקת חשמל)</div>
+            <div style="font-size:.83rem;font-weight:900;color:#1a3060;background:#dbeafe;border:1.5px solid #4090d0;border-radius:10px;padding:.5rem .75rem;margin-bottom:.4rem">❄️ קור קיצוני (תקלת חימום / הפסקת חשמל) <button onclick="speakFromData(this)" data-speak="קור קיצוני: תקלת חימום או הפסקת חשמל. עדיפות ראשונה מתחת לשמונה מעלות: פינוי הזוחלים. עדיפות שנייה מתחת לחמש מעלות: פעולות לשאר החיות." aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></div>
             <ol style="margin:.3rem 0 0;padding-right:1.3rem;font-size:.83rem;line-height:2;color:var(--text)">
-              <li><strong>עדיפות ראשונה (מתחת ל-8°) — פינוי הזוחלים:</strong>
+              <li><strong>עדיפות ראשונה (מתחת ל-8°): פינוי הזוחלים</strong>
                 <ul style="padding-right:1.1rem;line-height:1.9;margin:.2rem 0">
                   <li>חדר "צבע וטבע" או בניין הגדולים זמינים: פנו את זאוס, סויה, דונה והצבה עם משטחי החימום וחזרו.</li>
                   <li>יש מים חמים: מלאו בקבוקים (38-40°), עטפו במגבת, שימו בבית הגידול.</li>
                   <li>אין מים חמים ואין לאן לפנות: קופסאות קטנות ומרופדות בגרביים ובדים.</li>
                 </ul>
               </li>
-              <li><strong>עדיפות שנייה (מתחת ל-5°) — פעולות לשאר החיות:</strong>
+              <li><strong>עדיפות שנייה (מתחת ל-5°): פעולות לשאר החיות</strong>
                 <ul style="padding-right:1.1rem;line-height:1.9;margin:.2rem 0">
                   <li>קיקו: כסו משלושה צדדים בבדים עבים. לא מול חלון.</li>
                   <li>התוכים הקטנים: תלו שמיכה או בד עבה על החלק הקדמי של הכלוב כמו וילון, למניעת רוח פרצים. ודאו שיש תיבות קינון.</li>
@@ -2276,7 +2279,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 
 <div class="tab-panel" id="tab-guidelines">
     <div class="section-hero"><span class="hero-emoji">📋</span><h2>הנחיות <button onclick="speakText('הנחיות',this)" title="הקרא כותרת" style="background:none;border:none;cursor:pointer;font-size:.92rem;color:#aaa;padding:0;vertical-align:middle;line-height:1">🔊</button></h2><p>כללי טיפול קבועים ורשימת בדיקה לפני יציאה</p></div>
-  <p class="tab-intro-text">מהם כללי הטיפול הקבועים בפינת החי שלנו? כאן ריכזנו את כל המידע שצריך לדעת כדי לשמור על סדר, בטיחות והיגיינה. המדריך כולל הנחיות ליציאה נכונה לחצר, כללי טיפול יומיומיים ורשימת בדיקה מפורטת לפני היציאה מהפינה.</p>
+  <p class="tab-intro-text">מהם כללי הטיפול הקבועים בפינת החי שלנו? כאן ריכזנו את כל המידע שצריך לדעת כדי לשמור על סדר, בטיחות והיגיינה. המדריך כולל הנחיות ליציאה נכונה לחצר, כללי טיפול יומיומיים ורשימת בדיקה מפורטת לפני היציאה מהפינה. <button onclick="speakText('מהם כללי הטיפול הקבועים בפינת החי שלנו? כאן ריכזנו את כל המידע שצריך לדעת כדי לשמור על סדר, בטיחות והיגיינה. המדריך כולל הנחיות ליציאה נכונה לחצר, כללי טיפול יומיומיים ורשימת בדיקה מפורטת לפני היציאה מהפינה.',this)" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></p>
   <div style="text-align:center;margin-bottom:.6rem"><button onclick="speakTabAll('tab-guidelines',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button></div>
 
   <!-- ══ גריד: עשרת כללים + עמודת עזר ══ -->
@@ -3103,15 +3106,15 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 
 
 <div class="tab-panel" id="tab-deploy">
-    <div class="section-hero"><span class="hero-emoji">✉️</span><h2>יצירת קשר</h2><p>שאלות, הצעות, או סתם שלום 👋</p></div>
-  <p class="tab-intro-text">אנחנו כאן לכל שאלה או הצעה. מצאתם טעות באתר? רוצים להתייעץ לגבי טיפול בחיה? דברו איתנו. הקשר איתכם חשוב לנו מאוד כדי להמשיך ולשפר את המידע ואת הטיפול בחיות שלנו.</p>
+    <div class="section-hero"><span class="hero-emoji">✉️</span><h2>יצירת קשר <button onclick="speakFromData(this)" data-speak="יצירת קשר" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></h2><p>שאלות, הצעות, או סתם שלום 👋 <button onclick="speakFromData(this)" data-speak="שאלות, הצעות, או סתם שלום!" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></p></div>
+  <p class="tab-intro-text">אנחנו כאן לכל שאלה או הצעה. מצאתם טעות באתר? רוצים להתייעץ לגבי טיפול בחיה? דברו איתנו. הקשר איתכם חשוב לנו מאוד כדי להמשיך ולשפר את המידע ואת הטיפול בחיות שלנו. <button onclick="speakText('אנחנו כאן לכל שאלה או הצעה. מצאתם טעות באתר? רוצים להתייעץ לגבי טיפול בחיה? דברו איתנו. הקשר איתכם חשוב לנו מאוד כדי להמשיך ולשפר את המידע ואת הטיפול בחיות שלנו.',this)" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></p>
   <div style="text-align:center;margin-bottom:.6rem"><button onclick="speakTabAll('tab-deploy',this)" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button></div>
 
   <div style="max-width:520px;margin:0 auto;display:grid;gap:.9rem">
 
     <!-- טופס Formspree -->
     <div style="background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.2rem">
-      <div style="font-weight:900;font-size:1.05rem;margin-bottom:.9rem;color:#333">📬 שלחו לנו הודעה</div>
+      <div style="font-weight:900;font-size:1.05rem;margin-bottom:.9rem;color:#333">📬 שלחו לנו הודעה <button onclick="speakFromData(this)" data-speak="שלחו לנו הודעה" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></div>
       <div id="contactForm" style="display:grid;gap:.65rem">
         <div>
           <label style="font-size:.89rem;font-weight:700;color:#555;display:block;margin-bottom:.3rem">שם (אופציונלי)</label>
@@ -3157,8 +3160,8 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
 </div>
 
 <div class="tab-panel" id="tab-dailymenu">
-    <div class="section-hero"><span class="hero-emoji">🥗</span><h2>תפריט יומי</h2><p>סמנו מה קיבלתם היום, וקבלו תפריט מותאם לכל מתחם וחיה</p></div>
-  <p class="tab-intro-text">מה וכמה להגיש היום מהמזון שקיבלנו? כאן אנחנו בונים את הארוחות בהתאם למלאי הקיים ומקפידים על כמויות נכונות כדי לשמור על בריאותן של החיות. המחשבון עוזר לנו להתאים את התפריט לכל מתחם וחיה, תוך שמירה על איזון תזונתי מדויק לאורך היום.</p>
+    <div class="section-hero"><span class="hero-emoji">🥗</span><h2>תפריט יומי <button onclick="speakFromData(this)" data-speak="תפריט יומי" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></h2><p>סמנו מה קיבלתם היום, וקבלו תפריט מותאם לכל מתחם וחיה <button onclick="speakFromData(this)" data-speak="סמנו מה קיבלתם היום, וקבלו תפריט מותאם לכל מתחם וחיה." aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></p></div>
+  <p class="tab-intro-text">מה וכמה להגיש היום מהמזון שקיבלנו? כאן אנחנו בונים את הארוחות בהתאם למלאי הקיים ומקפידים על כמויות נכונות כדי לשמור על בריאותן של החיות. המחשבון עוזר לנו להתאים את התפריט לכל מתחם וחיה, תוך שמירה על איזון תזונתי מדויק לאורך היום. <button onclick="speakText('מה וכמה להגיש היום מהמזון שקיבלנו? כאן אנחנו בונים את הארוחות בהתאם למלאי הקיים ומקפידים על כמויות נכונות כדי לשמור על בריאותן של החיות. המחשבון עוזר לנו להתאים את התפריט לכל מתחם וחיה, תוך שמירה על איזון תזונתי מדויק לאורך היום.',this)" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></p>
   <div style="text-align:center;margin-bottom:.6rem"><button onclick="dmSpeakAll()" title="הקרא את כל הדף" style="background:#f0f0f0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;font-weight:700;color:#444">🔊 הקרא הכל</button></div>
 
   <div style="display:grid;gap:1rem">
@@ -3167,7 +3170,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     <div style="background:var(--card);border-radius:14px;box-shadow:var(--shadow);overflow:hidden">
       <div style="background:#fff3e0;padding:.7rem 1rem;border-bottom:2px solid #f0c878;display:flex;align-items:center;gap:.5rem">
         <span style="font-size:1.3rem">🧺</span>
-        <div style="font-weight:900;font-size:1.02rem;color:#7a4000;flex:1">שלב 1: מה קיבלנו היום?</div>
+        <div style="font-weight:900;font-size:1.02rem;color:#7a4000;flex:1">שלב 1: מה קיבלנו היום? <button onclick="speakFromData(this)" data-speak="שלב 1: מה קיבלנו היום?" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></div>
         <button onclick="speakText('שלב אחד. מה קיבלנו היום? לחצו על שם המזון כדי להוסיף אותו לסל. לאחר מכן בחרו כמות: מעט, בינוני, או הרבה.',this)" style="background:#ffe0b0;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.92rem;flex-shrink:0">🔊</button>
         <button onclick="dmClearAll()" style="background:#ffe0b0;border:none;border-radius:50px;padding:.2rem .65rem;font-size:.82rem;font-weight:700;cursor:pointer;color:#7a4000">נקה הכל</button>
       </div>
@@ -3181,7 +3184,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     <div id="dm-basket-wrap" style="display:none;background:var(--card);border-radius:14px;box-shadow:var(--shadow);overflow:hidden">
       <div style="background:#e8f7ef;padding:.7rem 1rem;border-bottom:2px solid #b8e8cc;display:flex;align-items:center;gap:.5rem">
         <span style="font-size:1.3rem">✅</span>
-        <div style="font-weight:900;font-size:1.02rem;color:#1a6640;flex:1">מה בסל</div>
+        <div style="font-weight:900;font-size:1.02rem;color:#1a6640;flex:1">מה בסל <button onclick="speakFromData(this)" data-speak="מה בסל" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></div>
       </div>
       <div id="dm-basket" style="padding:.7rem 1rem;display:flex;flex-wrap:wrap;gap:.4rem"></div>
     </div>
@@ -3190,7 +3193,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     <div style="background:var(--card);border-radius:14px;box-shadow:var(--shadow);overflow:hidden">
       <div style="background:#e8f0ff;padding:.7rem 1rem;border-bottom:2px solid #c0d0f0;display:flex;align-items:center;gap:.5rem">
         <span style="font-size:1.3rem">🐾</span>
-        <div style="font-weight:900;font-size:1.02rem;color:#3050a0;flex:1">שלב 2: כמה חיות מכל סוג?</div>
+        <div style="font-weight:900;font-size:1.02rem;color:#3050a0;flex:1">שלב 2: כמה חיות מכל סוג? <button onclick="speakFromData(this)" data-speak="שלב 2: כמה חיות מכל סוג?" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></div>
         <button onclick="speakText('שלב שניים. כמה חיות מכל סוג? המתחמים הגדרה, הווילה וזוג אוגרים סיביריים קבועים. לשאר החיות אפשר לשנות את המספר עם כפתורי פלוס ומינוס.',this)" style="background:#d0d8f8;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.92rem;flex-shrink:0">🔊</button>
       </div>
       <div style="padding:.8rem 1rem">
@@ -3199,13 +3202,13 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
         <!-- מתחמים קבועים -->
         <div style="font-size:.77rem;font-weight:800;color:#888;margin-bottom:.4rem;letter-spacing:.05em">🏘️ מתחמים קבועים</div>
         <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.9rem">
-          <div style="background:#f0f4ff;border-radius:10px;padding:.4rem .75rem;font-size:.89rem;font-weight:700;color:#3050a0">🏡 הגדרה: 2 שרקנים + 2 ארנבונים</div>
-          <div style="background:#f0f4ff;border-radius:10px;padding:.4rem .75rem;font-size:.89rem;font-weight:700;color:#3050a0">🏠 הווילה: 5 קוקטיילים + ציפור אהבה</div>
-          <div style="background:#f0f4ff;border-radius:10px;padding:.4rem .75rem;font-size:.89rem;font-weight:700;color:#3050a0">🐹 זוג אוגרים סיביריים</div>
+          <div style="background:#f0f4ff;border-radius:10px;padding:.4rem .75rem;font-size:.89rem;font-weight:700;color:#3050a0">🏡 הגדרה: 2 שרקנים + 2 ארנבונים <button onclick="speakFromData(this)" data-speak="הגדרה: 2 שרקנים ו-2 ארנבונים" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></div>
+          <div style="background:#f0f4ff;border-radius:10px;padding:.4rem .75rem;font-size:.89rem;font-weight:700;color:#3050a0">🏠 הווילה: 5 קוקטיילים וציפור אהבה <button onclick="speakFromData(this)" data-speak="הווילה: 5 קוקטיילים וציפור אהבה" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></div>
+          <div style="background:#f0f4ff;border-radius:10px;padding:.4rem .75rem;font-size:.89rem;font-weight:700;color:#3050a0">🐹 זוג אוגרים סיביריים <button onclick="speakFromData(this)" data-speak="זוג אוגרים סיביריים" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></div>
         </div>
 
         <!-- חיות בודדות עם +/- -->
-        <div style="font-size:.77rem;font-weight:800;color:#888;margin-bottom:.5rem;letter-spacing:.05em">🐾 חיות, בחרו כמה פרטים</div>
+        <div style="font-size:.77rem;font-weight:800;color:#888;margin-bottom:.5rem;letter-spacing:.05em">🐾 חיות, בחרו כמה פרטים <button onclick="speakFromData(this)" data-speak="חיות, בחרו כמה פרטים" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></div>
         <div id="dm-animal-counters" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.5rem"></div>
       </div>
     </div>
@@ -3222,7 +3225,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     <div style="background:#fde8e8;border-radius:14px;border:2px solid #f0b8b8;padding:.7rem 1rem;display:flex;align-items:flex-start;gap:.6rem">
       <span style="font-size:1.3rem;flex-shrink:0">⚠️</span>
       <div style="flex:1">
-        <div style="font-weight:900;font-size:.95rem;color:#8b1c1c;margin-bottom:.3rem">תזכורת: אסור לתת לבעלי החיים!</div>
+        <div style="font-weight:900;font-size:.95rem;color:#8b1c1c;margin-bottom:.3rem">תזכורת: אסור לתת לבעלי החיים! <button onclick="speakFromData(this)" data-speak="תזכורת: אסור לתת לבעלי החיים!" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle;margin-inline-start:.2rem">🔊</button></div>
         <div style="font-size:.97rem;line-height:1.7">🧅 בצל &nbsp;🧄 שום &nbsp;🥑 אבוקדו &nbsp;🍫 שוקולד &nbsp;🍟🍬 חטיפים מלוחים ומתוקים &nbsp;🍆 חציל &nbsp;🍅 עגבנייה &nbsp;🍋 לימון &nbsp;🥛 מוצרי חלב &nbsp;🍄 פטריות</div>
       </div>
       <button onclick="speakText('תזכורת. אסור לתת לבעלי החיים: בצל, שום, אבוקדו, שוקולד, חטיפים מלוחים ומתוקים, חציל, עגבנייה, לימון, מוצרי חלב, פטריות.',this)" style="background:#f8d0d0;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.92rem;flex-shrink:0">🔊</button>
@@ -3237,7 +3240,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       </div>
       <div style="padding:.8rem 1rem;display:grid;gap:.55rem;font-size:.90rem">
 
-        <div style="font-weight:900;color:#555;margin-bottom:.1rem">🔪 ירקות קשים ופירות בינוניים (גזר, תפוח, קישוא...)</div>
+        <div style="font-weight:900;color:#555;margin-bottom:.1rem">🔪 ירקות קשים ופירות בינוניים (גזר, תפוח, קישוא...) <button onclick="speakFromData(this)" data-speak="ירקות קשים ופירות בינוניים כמו גזר, תפוח, קישוא" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:.72rem;vertical-align:middle">🔊</button></div>
         <div style="display:flex;flex-wrap:wrap;gap:.4rem .8rem;margin-bottom:.4rem">
           <span>חצי פרוסה = חצי עיגול בעובי אצבע</span>
           <span>פרוסה אחת = עיגול בעובי אצבע</span>
@@ -3245,7 +3248,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
           <span>4-5 פרוסות = ארבע-חמש כאלה</span>
         </div>
 
-        <div style="font-weight:900;color:#555;margin-bottom:.1rem">🍉 פירות גדולים (אבטיח, מלון, אננס...)</div>
+        <div style="font-weight:900;color:#555;margin-bottom:.1rem">🍉 פירות גדולים (אבטיח, מלון, אננס...) <button onclick="speakFromData(this)" data-speak="פירות גדולים כמו אבטיח, מלון, אננס" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:.72rem;vertical-align:middle">🔊</button></div>
         <div style="display:flex;flex-wrap:wrap;gap:.4rem .8rem;margin-bottom:.4rem">
           <span>כפית = נגיסה קטנה</span>
           <span>פלח אחד = משולש בגודל כף יד</span>
@@ -3253,7 +3256,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
           <span>4-5 פלחים = ארבעה-חמישה כאלה</span>
         </div>
 
-        <div style="font-weight:900;color:#555;margin-bottom:.1rem">🥬 עלים, עשבים ופירות קטנים (חסה, תות, ענב...)</div>
+        <div style="font-weight:900;color:#555;margin-bottom:.1rem">🥬 עלים, עשבים ופירות קטנים (חסה, תות, ענב...) <button onclick="speakFromData(this)" data-speak="עלים, עשבים ופירות קטנים כמו חסה, תות, ענב" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:.72rem;vertical-align:middle">🔊</button></div>
         <div style="display:flex;flex-wrap:wrap;gap:.4rem .8rem;margin-bottom:.4rem">
           <span>יחידה אחת = עלה אחד קטן / פרי אחד</span>
           <span>2-3 יחידות = שניים-שלושה</span>
@@ -3262,13 +3265,13 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
           <span>כוס = כוס שלמה (בעיקר לצב ולארנבון)</span>
         </div>
 
-        <div style="font-weight:900;color:#555;margin-bottom:.1rem">🌾 גרעינים, זרעים ומזונות יבשים</div>
+        <div style="font-weight:900;color:#555;margin-bottom:.1rem">🌾 גרעינים, זרעים ומזונות יבשים <button onclick="speakFromData(this)" data-speak="גרעינים, זרעים ומזונות יבשים" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:.72rem;vertical-align:middle">🔊</button></div>
         <div style="display:flex;flex-wrap:wrap;gap:.4rem .8rem;margin-bottom:.4rem">
           <span>כפית = כ-5 מ"ל, גודל ציפורן</span>
           <span>כף = כ-15 מ"ל, שלוש כפיות</span>
         </div>
 
-        <div style="font-weight:900;color:#555;margin-bottom:.1rem">🥚 ביצה קשה</div>
+        <div style="font-weight:900;color:#555;margin-bottom:.1rem">🥚 ביצה קשה <button onclick="speakFromData(this)" data-speak="ביצה קשה" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:.72rem;vertical-align:middle">🔊</button></div>
         <div style="display:flex;flex-wrap:wrap;gap:.4rem .8rem">
           <span>כפית = פירור קטן לחיות הקטנות</span>
           <span>רבע ביצה = חתיכה קטנה</span>
@@ -3276,7 +3279,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
         </div>
 
         <div style="margin-top:.5rem;padding-top:.5rem;border-top:1px dashed #eee;color:#888;font-size:.85rem">
-          💡 <strong>כוס = 240 מ"ל רגילה. פרוסה = עובי אצבע. פלח = משולש בגודל כף יד.</strong>
+          💡 <strong>כוס = 240 מ"ל רגילה. פרוסה = עובי אצבע. פלח = משולש בגודל כף יד.</strong> <button onclick="speakFromData(this)" data-speak="כוס זה 240 מיליליטר רגילה. פרוסה זה עובי אצבע. פלח זה משולש בגודל כף יד." aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:.72rem;vertical-align:middle">🔊</button>
           פירות מתוקים (תפוח, תות, ענב, בננה...) תמיד ברמה אחת פחות מירקות, כי יש בהם יותר סוכר.
         </div>
       </div>
@@ -3891,7 +3894,7 @@ const ANIMALS = [
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Geochelone_sulcata_%28Tortoise%29.jpg/320px-Geochelone_sulcata_%28Tortoise%29.jpg',
  origin:'שולי הסהרה, באזורי סודן וניגריה',lifespan:'60-100 שנה (נדיר: 100+)',
  size:'עד 83 ס"מ, 60-105 ק"ג בבגרות!',active:'יום',
- social:'לבד. זוג רק במתחם ענק <a href="#" onclick="event.preventDefault();event.stopPropagation();openTreasureMap()" title="🗺️ מצאתם משהו סודי!" style="text-decoration:none;font-size:.97rem;animation:bob 2s ease-in-out infinite;display:inline-block">🏴‍☠️</a>',
+ social:'לבד. זוג רק במתחם ענק <a href="#" onclick="event.preventDefault();event.stopPropagation();openTreasureMap()" title="🗺️ מצאתם משהו סודי!" aria-label="מפת האוצר הסודית" style="text-decoration:none;font-size:.97rem;animation:bob 2s ease-in-out infinite;display:inline-block">🏴‍☠️</a>',
  housing:'מתחם גדול, גדל לאחד הצבים הגדולים בעולם',temp:'28-35°C ביום, לא מתחת ל-15°C בלילה',
  special:'חייב UVB חזק ושמש ישירה. חופר מחילות עמוקות - חובה לאפשר.',
  needs:'אמבטיית מים רדודה לפחות פעם בשבוע',
@@ -3937,7 +3940,7 @@ const ANIMALS = [
  size:'18-25 ס"מ, 45-65 גרם',active:'לילה',
  social:'לבד או נקבות ביחד (זכרים - לא!)',
  housing:'טרריום 60×30 ס"מ לפחות',temp:'32-35°C בצד חם, 24-26°C בצד קריר',
- special:'⚠️ ניזונת מחרקים בלבד, שהם חרקים חיים (קמח, צרצרים, תיקנים נצמדים) + תוספי סידן. אין להאכיל בירקות, פירות או מזון צמחי.',
+ special:'⚠️ ניזונה מחרקים בלבד: חרקים חיים (זחלי קמח, צרצרים, תיקנים נצמדים) + תוספי סידן. אין להאכיל בירקות, פירות או מזון צמחי.',
  needs:'מסתורים, מצע לחפירה, תא לחות (לפני התנשלות)',
  tags:['פעיל לילה','ידידותי','מתחיל'],tagColors:['night','easy','easy'],
  funfact:'🦎 מאחסן שומן בזנב, כשרזה, הזנב דק. כששמן, הזנב עגול!'},
@@ -3945,7 +3948,7 @@ const ANIMALS = [
 {id:'rabbit',ours:true,name:'ארנבון',en:'Rabbit',sciname:'Oryctolagus cuniculus',aliases:['ארנב','ארנבת','rabbit','כוכב','אלזה'],animalClass:'יונק',animalSubClass:'ארנבאים',animalClass:'יונק',emoji:'🐰',hebrew:'ארנבון מצוי',
  photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/320px-Oryctolagus_cuniculus_Rcdo.jpg',
  origin:'מתורבת',lifespan:'8-12 שנה',
- size:'1-8 ק"ג (תלוי גזע)',active:'שחר ודמדומים (פעיל בין יום ללילה)',
+ size:'1-8 ק"ג (תלוי גזע)',active:'שחר ודמדומים — שעות המעבר בין לילה ליום',
  social:'חייב חברה, חי עם בני אותו מין',
  housing:'מתחם גדול עם מקום לריצה חופשית, כי ארנבונים צריכים לנוע הרבה',temp:'15-22°C, לא מעל 28°C',
  special:'שיני הארנבון גדלות כל החיים, חומרי השחזה חובה! גם חופר מנהרות - מצע עמוק מאפשר לו להתבטא טבעית.',
@@ -4047,7 +4050,7 @@ const ANIMALS = [
  tags:['פעיל לילה','קבוצה'],tagColors:['night','social'],funfact:'🐭 עכברים מצחקקים בתדר על-שמיעתי כשמשחקים! <a href="https://www.cbc.ca/kids/games/play/paws-and-claws" target="_blank" rel="noopener" title="🐱 סוד..." style="text-decoration:none;opacity:.3;font-size:.82rem">🐱</a>'},
 
 {id:'rat',ours:false,name:'חולדת מחמד',en:'Fancy Rat',sciname:'Rattus norvegicus',animalClass:'יונק',animalSubClass:'מכרסם',animalClass:'יונק',emoji:'🐀',photo:'',
- origin:'מתורבת',lifespan:'2-3 שנה',size:'20-27 ס"מ',active:'שחר ודמדומים (פעיל בין יום ללילה)',social:'זוגות/קבוצות, חייבות',
+ origin:'מתורבת',lifespan:'2-3 שנה',size:'20-27 ס"מ',active:'שחר ודמדומים — שעות המעבר בין לילה ליום',social:'זוגות/קבוצות, חייבות',
  housing:'כלוב גדול ורב-קומות',temp:'18-24°C',special:'אינטליגנטיות מאוד, ניתן ללמד טריקים.',needs:'חברה, גירוי, צעצועים',
  tags:['חכמות','חייבות בחברה'],tagColors:['easy','social'],funfact:'🐀 חולדות מחמד צוחקות ומשחקות ממש כמו כלבים!'},
 
@@ -4057,7 +4060,7 @@ const ANIMALS = [
  tags:['פעיל יום','גדלה ענק','זקוק לקרינת UVB'],tagColors:['day','hard','hard'],funfact:'🦎 איגואנות שוחות מעולה - בטבע קופצות למים כדי להימלט מטורפים!'},
 
 {id:'cornsnake',ours:false,name:'כרכן תירס',en:'Corn Snake',sciname:'Pantherophis guttatus',animalClass:'זוחל',animalSubClass:'קשקשאים',animalClass:'זוחל',emoji:'🐍',photo:'',
- origin:'דרום-מזרח ארה"ב',lifespan:'15-20 שנה',size:'90-150 ס"מ',active:'שחר ודמדומים (פעיל בין יום ללילה)',social:'לבד',
+ origin:'דרום-מזרח ארה"ב',lifespan:'15-20 שנה',size:'90-150 ס"מ',active:'שחר ודמדומים — שעות המעבר בין לילה ליום',social:'לבד',
  housing:'טרריום 90×45 עם מכסה',temp:'28-30°C בצד חם, 22-24°C בצד קריר',special:'אוכל עכברים מופשרים, לא חי. <a href="https://www.google.com/fbx?fbx=snake_arcade" target="_blank" rel="noopener" title="🐍 סוד..." style="text-decoration:none;opacity:.3;font-size:.82rem">🐍</a>',needs:'מסתורים, ענפים, תא לחות לפני התנשלות',
  tags:['דמדומים','מתחיל',''],tagColors:['night','easy','easy'],funfact:'🐍 כרכן התירס הוא אחד הנחשים הכי מומלצים למתחילים - רגוע וידידותי!'},
 
@@ -5212,6 +5215,18 @@ function initCatBar(){
     ch.className='cat-chip'+(activeCatFilters.includes(key)?' sel':'');
     ch.style.fontSize='.79rem';
     ch.textContent=label;
+    ch.setAttribute('aria-label', label.replace(/[🍎🥕🥬🌿🌾🚫]/g,'').trim());
+    ch.setAttribute('role','button');
+    ch.setAttribute('tabindex','0');
+    ch.onkeydown=(e)=>{ if(e.key==='Enter'||e.key===' ') ch.onclick(); };
+    // כפתור הקראה לצד התגית
+    const spkBtn=document.createElement('button');
+    spkBtn.textContent='🔊';
+    spkBtn.setAttribute('data-speak', label.replace(/[🍎🥕🥬🌿🌾🚫]/g,'').trim());
+    spkBtn.setAttribute('aria-label','הקראה');
+    spkBtn.style.cssText='background:#ffe0b0;border:none;border-radius:50%;width:18px;height:18px;cursor:pointer;font-size:.6rem;vertical-align:middle;margin-inline-start:.15rem;flex-shrink:0';
+    spkBtn.onclick=(e)=>{ e.stopPropagation(); speakFromData(spkBtn); };
+    ch.appendChild(spkBtn);
     ch.onclick=()=>{
       const i=activeCatFilters.indexOf(key);
       i>=0?activeCatFilters.splice(i,1):activeCatFilters.push(key);
@@ -5283,6 +5298,14 @@ function showTopicsBar() {
     lbl.textContent = grp.group;
     lbl.style.cssText = 'font-size:.77rem;color:#888;font-weight:700;flex-shrink:0';
     groupEl.appendChild(lbl);
+    // 🔊 כפתור הקראה לכותרת הקבוצה
+    var grpSpk = document.createElement('button');
+    grpSpk.textContent = '🔊';
+    grpSpk.setAttribute('data-speak', grp.group.replace(/[\u{1F000}-\u{1FFFF}]/gu,'').trim());
+    grpSpk.setAttribute('aria-label','הקראה');
+    grpSpk.style.cssText = 'background:#ffe0b0;border:none;border-radius:50%;width:20px;height:20px;cursor:pointer;font-size:.65rem;flex-shrink:0;vertical-align:middle';
+    grpSpk.onclick = function(e){ e.stopPropagation(); speakFromData(grpSpk); };
+    groupEl.appendChild(grpSpk);
     grp.chips.forEach(function(chip) {
       var entry = SITE_TEXT_INDEX.find(function(e) { return e.section === chip.section; });
       if (!entry) return;
@@ -5327,7 +5350,21 @@ function initAnimalFilterRow(){
     const ch=document.createElement('span');
     ch.className='chip'+(activeAnimalFilters.includes(a.id)?' sel':'');
     ch.style.fontSize='.79rem';
-    ch.innerHTML=a.photo?`<img src="${a.photo}" style="width:18px;height:18px;border-radius:50%;object-fit:cover" onerror="this.style.display='none'"> ${a.name}`:`${a.emoji} ${a.name}`;
+    const nameText = a.name;
+    const imgPart = a.photo ? `<img src="${a.photo}" style="width:18px;height:18px;border-radius:50%;object-fit:cover" onerror="this.style.display='none'">` : `${a.emoji}`;
+    ch.innerHTML = `${imgPart} ${nameText}`;
+    // כפתור הקראה
+    const aspk=document.createElement('button');
+    aspk.textContent='🔊';
+    aspk.setAttribute('data-speak', nameText);
+    aspk.setAttribute('aria-label','הקראה');
+    aspk.style.cssText='background:#ffe0b0;border:none;border-radius:50%;width:18px;height:18px;cursor:pointer;font-size:.6rem;vertical-align:middle;margin-inline-start:.15rem;flex-shrink:0';
+    aspk.onclick=(e)=>{ e.stopPropagation(); speakFromData(aspk); };
+    ch.appendChild(aspk);
+    ch.setAttribute('aria-label', nameText);
+    ch.setAttribute('role','button');
+    ch.setAttribute('tabindex','0');
+    ch.onkeydown=(e)=>{ if(e.key==='Enter'||e.key===' ') ch.click(); };
     ch.onclick=()=>{ch.classList.toggle('sel');const i=activeAnimalFilters.indexOf(a.id);i>=0?activeAnimalFilters.splice(i,1):activeAnimalFilters.push(a.id);initAnimalFilterRow();doSearch();};
     c.appendChild(ch);
   });
@@ -5931,6 +5968,20 @@ function exitCheckUpdate(){
   });
 }
 
+function speakFromData(btn){
+  const text = btn.getAttribute('data-speak');
+  if(text) speakText(text, btn);
+}
+
+// הוסף aria-label לכל כפתורי 🔊 שאין להם כזה
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('button').forEach(btn => {
+    if(btn.textContent.trim() === '🔊' && !btn.getAttribute('aria-label')){
+      btn.setAttribute('aria-label', 'הקראה');
+    }
+  });
+});
+
 function speakText(text, btn){
   if(!window.speechSynthesis) return;
   if(btn && btn.dataset.speaking==='1'){
@@ -5989,7 +6040,7 @@ function speakAnimal(id){
     a.name+'.',
     a.lifespan ? 'תוחלת חיים: '+a.lifespan+'.' : '',
     a.size ? 'גודל: '+a.size+'.' : '',
-    a.active ? 'פעיל ב'+a.active+'.' : '',
+    a.active ? 'זמן פעילות: '+a.active.replace('—','').replace('  ',' ').trim()+'.' : '',
     a.social ? a.social+'.' : '',
     a.special ? a.special : '',
     a.funfact ? a.funfact.replace(/\p{Emoji}/gu,'') : ''
@@ -6143,9 +6194,10 @@ function openAnimalModal(id, list){
     const titleEl = document.getElementById('modalTitle');
     const spk = document.createElement('button');
     spk.title = 'הקראה';
+    spk.setAttribute('aria-label', 'הקראה');
     spk.textContent = '🔊';
     spk.style.cssText = 'background:#f0f4ff;border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:.97rem;margin-right:.4rem;flex-shrink:0;vertical-align:middle';
-    const txt = [a.name+'.', a.lifespan?'תוחלת חיים: '+a.lifespan+'.':'', a.size?'גודל: '+a.size+'.':'', a.active?'פעיל ב'+a.active+'.':'', a.social?a.social+'.':'', a.special||'', a.funfact?.replace(/[\u{1F300}-\u{1FAFF}]/gu,'')||''].filter(Boolean).join(' ');
+    const txt = [a.name+'.', a.lifespan?'תוחלת חיים: '+a.lifespan+'.':'', a.size?'גודל: '+a.size+'.':'', a.active?'זמן פעילות: '+a.active.replace('—','').replace('  ',' ').trim()+'.':'', a.social?a.social+'.':'', a.special||'', a.funfact?.replace(/[\u{1F300}-\u{1FAFF}]/gu,'')||''].filter(Boolean).join(' ');
     spk.onclick = () => speakText(txt, spk);
     if(titleEl.parentElement) titleEl.parentElement.insertBefore(spk, titleEl);
   }
@@ -6259,7 +6311,10 @@ function openInsightModal(cardEl, event){
     if(island.classList.contains('safety')){ tag.style.background='#ffe0c8'; tag.style.color='#b04010'; }
   }
   // Set title (strip emoji prefix handled naturally)
-  document.getElementById('insightModalTitle').textContent = titleEl.textContent.trim();
+  const _insightTitle = titleEl.textContent.trim();
+  const _insightSpeakText = _insightTitle + '. ' + (document.getElementById('insightModalBody') ? document.getElementById('insightModalBody').innerText : '');
+  document.getElementById('insightModalTitle').innerHTML = _insightTitle +
+    ' <button onclick="speakFromData(this)" data-speak="' + _insightSpeakText.replace(/"/g, '&quot;') + '" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.82rem;vertical-align:middle;margin-inline-start:.3rem">🔊</button>';
   // Set body (clone to avoid moving DOM)
   const bodyClone = body.cloneNode(true);
   bodyClone.style.display = 'block';
@@ -6278,6 +6333,7 @@ function openInsightModal(cardEl, event){
   const modal = document.getElementById('insightModal');
   modal.style.display = 'block';
   document.body.style.overflow = 'hidden';
+  document.addEventListener('keydown', _insightModalEsc);
 }
 
 function openArticleModal(bodyId){
@@ -6304,7 +6360,10 @@ function openArticleModal(bodyId){
   }
 
   const titleEl = document.getElementById('articleModalTitle');
-  titleEl.textContent = title ? title.textContent.trim() : '';
+  const _articleTitle = title ? title.textContent.trim() : '';
+  const _articleBody = Array.from(document.getElementById('articleModalContent').querySelectorAll('p,h3')).map(e=>e.textContent).join(' ');
+  titleEl.innerHTML = _articleTitle +
+    ' <button onclick="speakFromData(this)" data-speak="' + (_articleTitle + '. ' + _articleBody).replace(/"/g, '&quot;') + '" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.82rem;vertical-align:middle;margin-inline-start:.3rem">🔊</button>';
 
   // Clone body content (minus the close button and speak button)
   const content = body.cloneNode(true);
@@ -6330,6 +6389,7 @@ function openArticleModal(bodyId){
 }
 
 function closeArticleModal(){
+  if(window.speechSynthesis) window.speechSynthesis.cancel();
   document.getElementById('articleModal').classList.remove('open');
   document.body.style.overflow = '';
   document.removeEventListener('keydown', _articleModalEsc);
@@ -6337,7 +6397,10 @@ function closeArticleModal(){
 
 function _articleModalEsc(e){ if(e.key==='Escape') closeArticleModal(); }
 
+function _insightModalEsc(e){ if(e.key==='Escape') closeInsightModal(); }
 function closeInsightModal(){
+  if(window.speechSynthesis) window.speechSynthesis.cancel();
+  document.removeEventListener('keydown', _insightModalEsc);
   document.getElementById('insightModal').style.display = 'none';
   document.body.style.overflow = '';
 }
@@ -6642,6 +6705,7 @@ function openFoodModal(foodId, list, autoPartIdx){
     const spk = document.createElement('button');
     spk.id = 'modalSpkBtn';
     spk.title = 'הקראה';
+    spk.setAttribute('aria-label', 'הקראה');
     spk.textContent = '🔊';
     spk.style.cssText = 'background:#f0f4ff;border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:.97rem;margin-right:.4rem;flex-shrink:0;vertical-align:middle';
     const speakContent = [
@@ -6728,6 +6792,7 @@ function modalNav(dir){
 
 // ── MODAL CLOSE ───────────────────────────────────────────────
 function closeModal(){
+  if(window.speechSynthesis) window.speechSynthesis.cancel();
   document.getElementById('modalOverlay').classList.remove('open');
   document.body.style.overflow='';
 }
@@ -6766,6 +6831,14 @@ function initByAnimal(){
     ch.className='ba-chip'+(selectedBA===a.id?' sel':'');
     const imgH=a.photo?`<img src="${a.photo}" onerror="this.style.display='none'">`:`<span>${a.emoji}</span>`;
     ch.innerHTML=`${imgH} ${a.pastAnimal?'<span class="past-badge">היו לנו</span>':''} ${a.name}`;
+    // 🔊 כפתור הקראה לכל כרטיס חיה
+    const baSpk=document.createElement('button');
+    baSpk.textContent='🔊';
+    baSpk.setAttribute('data-speak', a.name);
+    baSpk.setAttribute('aria-label','הקראה');
+    baSpk.style.cssText='background:#ffe0b0;border:none;border-radius:50%;width:18px;height:18px;cursor:pointer;font-size:.6rem;vertical-align:middle;margin-inline-start:.2rem;flex-shrink:0';
+    baSpk.onclick=(e)=>{ e.stopPropagation(); speakFromData(baSpk); };
+    ch.appendChild(baSpk);
     ch.onclick=()=>{
       const alreadySel = selectedBA===a.id;
       document.querySelectorAll('.ba-chip').forEach(x=>x.classList.remove('sel'));
@@ -6817,6 +6890,24 @@ function renderByAnimal(){
       <div class="note-box" style="text-align:center;font-size:.97rem;padding:1.2rem">
         🐍 ${animal.name} ניזון ממזון חי או קפוא בלבד (עכברים, חולדות).<br>
         <span style="font-size:.87rem;opacity:.8">שאריות מהמטבח אינן מתאימות לחיה זו.</span>
+      </div>`;
+    return;
+  }
+
+  // חיות עם מזון ייעודי בלבד (דגים, חיות המוצגות ע"י special message)
+  if(animal.special && (selectedBA === 'fish' || selectedBA === 'leopardgecko')){
+    const ph=animal.photo?`<img src="${animal.photo}" style="width:70px;height:70px;border-radius:var(--radius);object-fit:cover" onerror="this.style.display='none'">`:`<span style="font-size:3rem">${animal.emoji}</span>`;
+    const spkText = animal.special.replace(/[🐠🦎⚠️🌿]/gu,'').trim();
+    document.getElementById('baResults').innerHTML=`
+      <div style="background:var(--card);border-radius:var(--radius);padding:.9rem;box-shadow:var(--shadow);margin-bottom:.9rem;display:flex;align-items:center;gap:.9rem">
+        ${ph}<div><div style="font-size:1.2rem;font-weight:900"><a href="#" onclick="event.preventDefault();switchTab('animals');setTimeout(()=>{const el=document.getElementById('acard_'+selectedBA);if(el)el.scrollIntoView({behavior:'smooth',block:'center'})},200)" style="color:inherit;text-decoration:underline dotted;text-underline-offset:2px">${animal.name}</a></div>
+        <div style="font-size:.83rem;color:#999;font-style:italic">${animal.sciname}</div></div>
+      </div>
+      <div class="note-box" style="text-align:center;font-size:.97rem;padding:1.2rem;line-height:1.7">
+        ${animal.special}
+        <div style="margin-top:.7rem">
+          <button onclick="speakFromData(this)" data-speak="${spkText}" aria-label="הקראה" style="background:#ffe0b0;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;font-weight:700;color:#555">🔊 הקרא</button>
+        </div>
       </div>`;
     return;
   }
@@ -6900,14 +6991,14 @@ function renderByAnimal(){
   c.innerHTML=`
     <div style="background:var(--card);border-radius:var(--radius);padding:.9rem;box-shadow:var(--shadow);margin-bottom:.9rem;display:flex;align-items:center;gap:.9rem">
       ${ph}
-      <div><div style="font-size:1.2rem;font-weight:900">${animal.name}</div>
+      <div><div style="font-size:1.2rem;font-weight:900">${animal.name} <button onclick="speakFromData(this)" data-speak="${animal.name}" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.78rem;vertical-align:middle">🔊</button></div>
       <div style="font-size:.83rem;color:#999;font-style:italic">${animal.sciname}</div></div>
     </div>
     ${haySectionHtml}
-    ${ok.length?`<div class="stitle">✅ מותר (${ok.length})</div><div class="pills-wrap">${ok.map(x=>pill(x,'fp-ok')).join('')}</div>`:''}
-    ${lim.length?`<div class="stitle">⚠️ במידה (${lim.length})</div><div class="pills-wrap">${lim.map(x=>pill(x,'fp-lim')).join('')}</div>`:''}
-    ${no.length?`<div class="stitle">❌ אסור (${no.length})</div><div class="pills-wrap">${no.map(x=>pill(x,'fp-no')).join('')}</div>`:''}
-    <div class="note-box">לחצו על מזון לפרטים מלאים 👆</div>`;
+    ${ok.length?`<div class="stitle">✅ מותר (${ok.length}) <button onclick="speakFromData(this)" data-speak="מותר ל${animal.name}: ${ok.map(x=>x.f.name).join(', ')}" aria-label="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:.72rem;vertical-align:middle">🔊</button></div><div class="pills-wrap">${ok.map(x=>pill(x,'fp-ok')).join('')}</div>`:''}
+    ${lim.length?`<div class="stitle">⚠️ במידה (${lim.length}) <button onclick="speakFromData(this)" data-speak="במידה ל${animal.name}: ${lim.map(x=>x.f.name).join(', ')}" aria-label="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:.72rem;vertical-align:middle">🔊</button></div><div class="pills-wrap">${lim.map(x=>pill(x,'fp-lim')).join('')}</div>`:''}
+    ${no.length?`<div class="stitle">❌ אסור (${no.length}) <button onclick="speakFromData(this)" data-speak="אסור ל${animal.name}: ${no.map(x=>x.f.name).join(', ')}" aria-label="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:.72rem;vertical-align:middle">🔊</button></div><div class="pills-wrap">${no.map(x=>pill(x,'fp-no')).join('')}</div>`:''}
+    <div class="note-box">לחצו על מזון לפרטים מלאים 👆 <button onclick="speakFromData(this)" data-speak="לחצו על מזון לפרטים מלאים" aria-label="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:.72rem;vertical-align:middle">🔊</button></div>`;
 }
 
 // ── MY CORNER ─────────────────────────────────────────────────
@@ -7684,7 +7775,7 @@ function dmIsAllowed(animalId, foodId) {
 
 // חיות מיוחדות שמקבלות הערה נפרדת
 const DM_SPECIAL = [
-  {id:'leopardgecko', emoji:'🦎', label:'שממית מנומרת', note:'ניזונת מחרקים חיים בלבד (זחלי קמח, צרצרים)'},
+  {id:'leopardgecko', emoji:'🦎', label:'שממית מנומרת', note:'ניזונה מחרקים חיים בלבד (זחלי קמח, צרצרים)'},
   {id:'vietstick',    emoji:'🌿', label:'מקלון ויאטנמי', note:'אוכל רק עלי ורד טריים או עלי היביסקוס'},
   {id:'mealworms',    emoji:'🐛', label:'זחלי קמח',      note:'מקבלים ירקות לחות, שים פרוסת גזר, תפוח או קישוא בקופסה'},
   {id:'hissingcockroach',emoji:'🦗',label:'תיקן לוחש',   note:'מקבלים ירקות לחות, פרוסת גזר, תפוח, מלפפון'},
@@ -9386,51 +9477,62 @@ function openWelcomeGuide() {
 }
 function openSecretsPopup() {
   const overlay = document.getElementById('modalOverlay');
-  document.getElementById('modalTitle').innerHTML = '✨ פינות נסתרות וסודות מפתיעים';
+  document.getElementById('modalTitle').innerHTML = '✨ פינות נסתרות וסודות מפתיעים <button onclick="speakFromData(this)" data-speak="פינות נסתרות וסודות מפתיעים" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.82rem;vertical-align:middle;margin-inline-start:.3rem">🔊</button>';
   document.getElementById('modalTitle').style.fontSize = '1rem';
 
   document.getElementById('modalBody').innerHTML = `
     <div style="padding:1rem .5rem;text-align:center">
       <div style="font-size:2.5rem;margin-bottom:.7rem">🌿🐾🌟</div>
-      <p style="font-size:.97rem;color:#333;line-height:1.75;margin:0 0 1.2rem;text-align:right">
+      <p style="font-size:.97rem;color:#333;line-height:1.75;margin:0 0 .6rem;text-align:right">
         הגעתם למקום שבו הכל אפשרי! האתר שלנו מלא בפינות נסתרות וסודות מפתיעים.
         לפעמים יש דברים שנראים לגמרי רגילים, אימוג'י תמים, כיתוב קטן, תמונה של חיה,
-        אבל כשלוחצים עליהם קורים דברים לא צפויים. אנחנו מזמינים אתכם פשוט לנסות ללחוץ על כל מה שאתם רואים 🙂<br><br>
+        אבל כשלוחצים עליהם קורים דברים לא צפויים. אנחנו מזמינים אתכם פשוט לנסות ללחוץ על כל מה שאתם רואים 🙂
+        <button onclick="speakFromData(this)" data-speak="הגעתם למקום שבו הכל אפשרי! האתר שלנו מלא בפינות נסתרות וסודות מפתיעים. לפעמים יש דברים שנראים לגמרי רגילים, אימוגי תמים, כיתוב קטן, תמונה של חיה, אבל כשלוחצים עליהם קורים דברים לא צפויים. אנחנו מזמינים אתכם פשוט לנסות ללחוץ על כל מה שאתם רואים." title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.82rem;flex-shrink:0;vertical-align:middle;margin-inline-start:.3rem">🔊</button>
+      </p>
+      <p style="font-size:.97rem;color:#333;line-height:1.75;margin:0 0 1.2rem;text-align:right">
         <strong>טיפ קטן מאיתנו:</strong> מסתובב כאן באתר חבר טוב שרוצה לעזור לכם, והוא זה שמחזיק את מפת האוצר. מצאתם אותו כבר? 🗺️
+        <button onclick="speakFromData(this)" data-speak="טיפ קטן מאיתנו: מסתובב כאן באתר חבר טוב שרוצה לעזור לכם, והוא זה שמחזיק את מפת האוצר. מצאתם אותו כבר?" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.82rem;flex-shrink:0;vertical-align:middle;margin-inline-start:.3rem">🔊</button>
       </p>
       <div style="background:#f8f9ff;border-radius:16px;padding:1rem;margin-bottom:1rem;text-align:right">
-        <div style="font-size:.85rem;color:#888;margin-bottom:.8rem;text-align:center;font-weight:700">🎯 כמה דוגמאות לדברים שמחכים לכם באתר:</div>
+        <div style="font-size:.85rem;color:#888;margin-bottom:.8rem;text-align:center;font-weight:700">🎯 כמה דוגמאות לדברים שמחכים לכם באתר: <button onclick="speakFromData(this)" data-speak="כמה דוגמאות לדברים שמחכים לכם באתר" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:.79rem;vertical-align:middle">🔊</button></div>
         <div style="margin-bottom:1rem;line-height:1.8;font-size:.92rem;color:#333">
           <strong>הפתעה בתוך אימוג'י:</strong> לפעמים אימוג'י תמים מסתיר בתוכו סרטון שלם. למשל הזה, נסו ללחוץ עליו:
-          <a href="https://www.youtube.com/watch?v=Fx9NFmpx3-0" target="_blank" rel="noopener" style="text-decoration:none;font-size:1.9rem;vertical-align:middle;cursor:pointer" title="לחצו!">🍽️</a><br>
-          <span style="font-size:.83rem;color:#aaa">(ראיתם? זה סרטון חמוד של חיות אוכלות)</span>
+          <a href="https://www.youtube.com/watch?v=Fx9NFmpx3-0" target="_blank" rel="noopener" style="text-decoration:none;font-size:1.9rem;vertical-align:middle;cursor:pointer" title="לחצו!">🍽️</a>
+          <button onclick="speakFromData(this)" data-speak="הפתעה בתוך אימוגי: לפעמים אימוגי תמים מסתיר בתוכו סרטון שלם. למשל זה, נסו ללחוץ עליו. ראיתם? זה סרטון חמוד של חיות אוכלות." title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.82rem;flex-shrink:0;vertical-align:middle;margin-inline-start:.3rem">🔊</button><br>
+          <span style="font-size:.83rem;color:#aaa">(ראיתם? זה סרטון חמוד של חיות אוכלות) <button onclick="speakFromData(this)" data-speak="ראיתם? זה סרטון חמוד של חיות אוכלות" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:.75rem;vertical-align:middle">🔊</button></span>
         </div>
         <div style="margin-bottom:1rem;line-height:1.8;font-size:.92rem;color:#333">
           <strong>סודות בתוך מילים:</strong> לפעמים אלו מילים שנראות רגילות, אבל הן שער לעולם אחר. למשל, נסו ללחוץ על
-          <a href="https://www.parks.org.il/animals-60seconds/" target="_blank" rel="noopener" style="color:#3aaa6e;font-weight:700;text-decoration:underline dotted;cursor:pointer">המילים האלה</a>.<br>
-          <span style="font-size:.83rem;color:#aaa">(ראיתם כמה אפשר ללמוד תוך 60 שניות?!)</span>
+          <a href="https://www.parks.org.il/animals-60seconds/" target="_blank" rel="noopener" style="color:#3aaa6e;font-weight:700;text-decoration:underline dotted;cursor:pointer">המילים האלה</a>.
+          <button onclick="speakFromData(this)" data-speak="סודות בתוך מילים: לפעמים אלו מילים שנראות רגילות, אבל הן שער לעולם אחר. למשל, נסו ללחוץ על המילים האלה. ראיתם כמה אפשר ללמוד תוך 60 שניות?" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.82rem;flex-shrink:0;vertical-align:middle;margin-inline-start:.3rem">🔊</button><br>
+          <span style="font-size:.83rem;color:#aaa">(ראיתם כמה אפשר ללמוד תוך 60 שניות?!) <button onclick="speakFromData(this)" data-speak="ראיתם כמה אפשר ללמוד תוך 60 שניות" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:.75rem;vertical-align:middle">🔊</button></span>
         </div>
         <div style="margin-bottom:1rem;line-height:1.8;font-size:.92rem;color:#333">
           <strong>משחק חבוי:</strong> ולפעמים בלחיצה יסתתר משחק.
           <a href="https://poki.com/il/g/pocket-zoo" target="_blank" rel="noopener" style="text-decoration:none;font-size:1.9rem;vertical-align:middle;cursor:pointer" title="משחק!">🐠</a>
-          לחצו על הדג כדי לראות מה קורה.<br>
-          <span style="font-size:.83rem;color:#aaa">(ראיתם? אנחנו יוצרים חיות ימיות משלנו)</span>
+          לחצו על הדג כדי לראות מה קורה.
+          <button onclick="speakFromData(this)" data-speak="משחק חבוי: ולפעמים בלחיצה יסתתר משחק. לחצו על הדג כדי לראות מה קורה. ראיתם? אנחנו יוצרים חיות ימיות משלנו." title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.82rem;flex-shrink:0;vertical-align:middle;margin-inline-start:.3rem">🔊</button><br>
+          <span style="font-size:.83rem;color:#aaa">(ראיתם? אנחנו יוצרים חיות ימיות משלנו) <button onclick="speakFromData(this)" data-speak="ראיתם? אנחנו יוצרים חיות ימיות משלנו" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:.75rem;vertical-align:middle">🔊</button></span>
         </div>
         <div style="margin-bottom:.4rem;line-height:1.8;font-size:.92rem;color:#333">
-          <strong>קסם שקורה ממש כאן:</strong> ולפעמים זה לא קישור החוצה אלא אפקט שקורה ממש כאן בתוך האתר. כמו הצב המיוחד שלנו.<br>
+          <strong>קסם שקורה ממש כאן:</strong> ולפעמים זה לא קישור החוצה אלא אפקט שקורה ממש כאן בתוך האתר. כמו הצב המיוחד שלנו.
+          <button onclick="speakFromData(this)" data-speak="קסם שקורה ממש כאן: ולפעמים זה לא קישור החוצה אלא אפקט שקורה ממש כאן בתוך האתר. כמו הצב המיוחד שלנו. נסו ללחוץ עליו!" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.82rem;flex-shrink:0;vertical-align:middle;margin-inline-start:.3rem">🔊</button><br>
           <div style="text-align:center;margin-top:.5rem">
             <div style="font-size:.85rem;color:#666;margin-bottom:.3rem;font-weight:700">נסו ללחוץ על הצב:</div>
-            <div onclick="secretsTurtleClick(this)" style="font-size:4rem;cursor:pointer;display:inline-block;transition:transform .2s;user-select:none" title="לחצו!">🐢</div>
+            <div onclick="secretsTurtleClick(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ')secretsTurtleClick(this)" aria-label="לחצו על הצב" style="font-size:4rem;cursor:pointer;display:inline-block;transition:transform .2s;user-select:none" title="לחצו!">🐢</div>
             <div id="secretsTurtleMsg" style="font-size:.85rem;color:#5a3a9a;margin-top:.4rem;min-height:1.4em;font-weight:700"></div>
           </div>
         </div>
       </div>
-      <button onclick="closeModal()" style="background:linear-gradient(135deg,#3aaa6e,#2a8a5e);color:white;border:none;border-radius:50px;padding:.6rem 1.6rem;font-size:.97rem;font-weight:700;cursor:pointer;font-family:inherit">
-        יאללה, בואו נחקור! 🔍
-      </button>
+      <div style="display:flex;align-items:center;justify-content:center;gap:.5rem">
+        <button onclick="closeModal()" style="background:linear-gradient(135deg,#3aaa6e,#2a8a5e);color:white;border:none;border-radius:50px;padding:.6rem 1.6rem;font-size:.97rem;font-weight:700;cursor:pointer;font-family:inherit">
+          יאללה, בואו נחקור! 🔍
+        </button>
+        <button onclick="speakFromData(this)" data-speak="יאללה, בואו נחקור!" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:.85rem;flex-shrink:0">🔊</button>
+      </div>
     </div>`;
 
-  overlay.classList.add('open');
+  document.getElementById('modalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
   setTimeout(()=>{ document.getElementById('modalBody').scrollTop = 0; }, 10);
   _turtleClicks = 0;
@@ -9449,30 +9551,105 @@ function secretsTurtleClick(el) {
   _turtleClicks++;
   el.style.transform = `rotate(${_turtleClicks * 18}deg) scale(${Math.min(1 + _turtleClicks * 0.08, 1.5)})`;
   const msg = document.getElementById('secretsTurtleMsg');
-  if (msg) msg.textContent = _turtleMsgs[(_turtleClicks - 1) % _turtleMsgs.length];
+  const msgText = _turtleMsgs[(_turtleClicks - 1) % _turtleMsgs.length];
+  if (msg) {
+    msg.textContent = msgText;
+  }
   const r = el.getBoundingClientRect();
   spawnStars(r.left + r.width/2, r.top + r.height/2);
   if (_turtleClicks >= 5) {
     const msg = document.getElementById('secretsTurtleMsg');
     if (msg) msg.innerHTML = `ידעתם שהחבאתי אצלי מפת אוצר? 🗺️<br>
       <div style="margin-top:.6rem;display:flex;flex-direction:row;flex-wrap:wrap;gap:.35rem;align-items:center;justify-content:center">
-        <button onclick="showTreasureMapFull()" style="background:linear-gradient(135deg,#7c5cbf,#5a3a9a);color:white;border:none;border-radius:50px;padding:.42rem 1rem;font-size:.87rem;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 3px 10px rgba(124,92,191,.35)">🗺️ קחו אותי ישר למפת האוצר!</button>
+        <button onclick="celebrateTreasureFound();setTimeout(showTreasureMapFull,700)" style="background:linear-gradient(135deg,#7c5cbf,#5a3a9a);color:white;border:none;border-radius:50px;padding:.42rem 1rem;font-size:.87rem;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 3px 10px rgba(124,92,191,.35)">🗺️ קחו אותי ישר למפת האוצר!</button>
         <button onclick="closeModal();switchTab('animals');setTimeout(()=>{const s=document.getElementById('acard_sulcata');if(s){s.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>s.click(),400);}},400)" style="background:#f0f4ff;color:#4060b0;border:2px solid #c8d8f8;border-radius:50px;padding:.38rem 1rem;font-size:.85rem;font-weight:700;cursor:pointer;font-family:inherit">🐢 היא מסתתרת אצל הצב... מצאו אותה!</button>
         <button onclick="closeModal()" style="background:none;color:#bbb;border:1px dashed #ddd;border-radius:50px;padding:.32rem .9rem;font-size:.80rem;font-weight:600;cursor:pointer;font-family:inherit">🕵️ אני אמצא את ההפתעות לבד!</button>
       </div>`;
   }
 }
 
+function celebrateTreasureFound() {
+  // 🎉 אפקט קונפטי חגיגי
+  const emojis = ['🗺️','🐢','✨','🌟','💎','🏆','🎉','🥇','🎊','💫'];
+  const colors = ['#7c5cbf','#f0c030','#3aaa6e','#4090d0','#e05252','#f0874a','#d060a0'];
+  for (let i = 0; i < 70; i++) {
+    const el = document.createElement('div');
+    const isEmoji = Math.random() > 0.45;
+    const left = Math.random() * 100;
+    const delay = Math.random() * 0.9;
+    const dur = 1.6 + Math.random() * 1.4;
+    if (isEmoji) {
+      const size = 16 + Math.random() * 18;
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.cssText = `position:fixed;top:-40px;left:${left}vw;font-size:${size}px;z-index:10000;pointer-events:none;user-select:none;animation:confettiFall ${dur}s ${delay}s ease-in forwards;`;
+    } else {
+      const size = 7 + Math.random() * 9;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const shape = Math.random() > 0.5 ? '50%' : '2px';
+      el.style.cssText = `position:fixed;top:-20px;left:${left}vw;width:${size}px;height:${size}px;background:${color};border-radius:${shape};z-index:10000;pointer-events:none;animation:confettiFall ${dur}s ${delay}s ease-in forwards;transform:rotate(${Math.random()*360}deg);`;
+    }
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), (dur + delay) * 1000 + 300);
+  }
+
+  // 🔔 צליל חגיגי קצר (Web Audio API)
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const notes = [523, 659, 784, 1047]; // C E G C
+    notes.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, ctx.currentTime + i * 0.13);
+      gain.gain.setValueAtTime(0, ctx.currentTime + i * 0.13);
+      gain.gain.linearRampToValueAtTime(0.18, ctx.currentTime + i * 0.13 + 0.03);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.13 + 0.35);
+      osc.start(ctx.currentTime + i * 0.13);
+      osc.stop(ctx.currentTime + i * 0.13 + 0.4);
+    });
+  } catch(e) {}
+
+  // 🌟 הודעת ברכה דרמטית
+  const banner = document.createElement('div');
+  banner.id = 'treasureBanner';
+  banner.style.cssText = `
+    position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);
+    z-index:10001;pointer-events:none;
+    background:linear-gradient(135deg,#7c5cbf,#5a3a9a);
+    color:white;border-radius:24px;padding:1.2rem 2rem;text-align:center;
+    box-shadow:0 8px 40px rgba(124,92,191,.6);
+    font-family:inherit;
+    transition:transform .35s cubic-bezier(.34,1.56,.64,1), opacity .3s;
+    opacity:0;
+  `;
+  banner.innerHTML = `
+    <div style="font-size:2.4rem;margin-bottom:.3rem">🗺️</div>
+    <div style="font-size:1.1rem;font-weight:900">כל הכבוד! מצאת את מפת האוצר!</div>
+  `;
+  document.body.appendChild(banner);
+  requestAnimationFrame(() => {
+    banner.style.transform = 'translate(-50%,-50%) scale(1)';
+    banner.style.opacity = '1';
+  });
+  setTimeout(() => {
+    banner.style.transform = 'translate(-50%,-50%) scale(0.85)';
+    banner.style.opacity = '0';
+    setTimeout(() => banner.remove(), 350);
+  }, 4500);
+}
+
 function openTreasureMap() {
   // קפיצה ישירה למפה המלאה, הצב כבר מספיק חבוי בעצמו
-  showTreasureMapFull();
+  celebrateTreasureFound();
+  setTimeout(() => showTreasureMapFull(), 700);
 }
 
 function showTreasureMapFull() {
   const body = document.getElementById('modalBody');
   const title = document.getElementById('modalTitle');
 
-  title.innerHTML = '🗺️✨ מפת האוצר של הצב ה<strong style="font-size:1.15em;color:#7c5cbf;font-style:italic">סוד</strong>ני';
+  title.innerHTML = '🗺️✨ מפת האוצר של הצב ה<strong style="font-size:1.15em;color:#7c5cbf;font-style:italic">סוד</strong>ני <button onclick="speakText(\'מפת האוצר של הצב הסודני. הצב הסודני שמר על המפה הזו שנים רבות. לחצו על כל פריט, אבל קראו את האזהרה קודם!\',this)" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.82rem;vertical-align:middle;margin-inline-start:.3rem">🔊</button>';
   title.style.fontSize = '1rem';
 
   body.innerHTML = `
@@ -9486,7 +9663,7 @@ function showTreasureMapFull() {
       </div>
     </div>`;
 
-  overlay.classList.add('open');
+  document.getElementById('modalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
@@ -9511,8 +9688,12 @@ function treasureCardHTML(item, i) {
         <div style="font-size:.89rem;font-weight:700;color:#333">${item.location}</div>
         <div style="font-size:.82rem;color:#666;font-style:italic">${item.hint}</div>
       </div>
-      <button onclick="event.stopPropagation();warnTreasure(${i})"
-        style="font-size:.79rem;background:#7c5cbf;color:white;border:none;border-radius:50px;padding:.2rem .55rem;font-weight:700;cursor:pointer;flex-shrink:0">גלו ↓</button>
+      <div style="display:flex;gap:.3rem;flex-shrink:0">
+        <button onclick="event.stopPropagation();hideTreasureHint(${i})"
+          style="font-size:.79rem;background:#eee;color:#888;border:none;border-radius:50px;padding:.2rem .5rem;font-weight:700;cursor:pointer">← חזרה</button>
+        <button onclick="event.stopPropagation();warnTreasure(${i})"
+          style="font-size:.79rem;background:#7c5cbf;color:white;border:none;border-radius:50px;padding:.2rem .55rem;font-weight:700;cursor:pointer">גלו ↓</button>
+      </div>
     </div>`;
   }
   // state === 2: revealed
@@ -9576,6 +9757,13 @@ function confirmReveal(i) {
 
 function cancelRevealWarning(i) {
   // go back to hint state
+  const card = document.getElementById('treasure_' + i);
+  if (card) card.outerHTML = treasureCardHTML(TREASURE_MAP[i], i);
+}
+
+function hideTreasureHint(i) {
+  // go back to mystery state
+  treasureState[i] = 0;
   const card = document.getElementById('treasure_' + i);
   if (card) card.outerHTML = treasureCardHTML(TREASURE_MAP[i], i);
 }
@@ -10022,6 +10210,7 @@ function openLightbox(src){
   document.body.style.overflow='hidden';
 }
 function closeLightbox(){
+  if(window.speechSynthesis) window.speechSynthesis.cancel();
   document.getElementById('lightbox-overlay').classList.remove('open');
   document.body.style.overflow='';
 }
@@ -10121,7 +10310,7 @@ function pwaInstall(){
         <span id="articleModalTag"></span>
         <div id="articleModalTitle"></div>
       </div>
-      <button class="am-close-btn" onclick="closeArticleModal()" title="סגור">✕</button>
+      <button class="am-close-btn" onclick="closeArticleModal()" title="סגור" aria-label="סגירה">✕</button>
     </div>
     <div id="articleModalContent"></div>
   </div>
@@ -10135,7 +10324,7 @@ function pwaInstall(){
         <span id="insightModalTag" style="font-size:.75rem;font-weight:700;padding:.12rem .5rem;border-radius:50px;display:inline-block;margin-bottom:.2rem"></span>
         <div id="insightModalTitle" style="font-size:1.1rem;font-weight:800;color:var(--text);line-height:1.35"></div>
       </div>
-      <button onclick="closeInsightModal()" style="background:none;border:1.5px solid #ccc;border-radius:50%;width:34px;height:34px;font-size:1.1rem;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#888">✕</button>
+      <button onclick="closeInsightModal()" aria-label="סגירה" style="background:none;border:1.5px solid #ccc;border-radius:50%;width:34px;height:34px;font-size:1.1rem;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#888">✕</button>
     </div>
     <div id="insightModalBody" style="padding:1.2rem 1.4rem 1.8rem;line-height:1.85;color:var(--text);font-size:1.0rem"></div>
   </div>
@@ -10686,41 +10875,49 @@ function pwaInstall(){
 
   // ── המלצת מזגן לטווח ארוך ──
   function getAcRecommendation(minT, maxT){
-    const EXTREME_HOT  = 30;  // מעל זה → קירור
-    const EXTREME_COLD = 12;  // מתחת לזה → חימום
-    const TARGET_TEMP  = 23;  // טמפ' מומלצת (אמצע 22-24)
+    // ── ספים ──
+    const HOT_EXTREME  = 30;  // מעל זה → מיזוג 23°
+    const HOT_WARM     = 26;  // מעל זה → מיזוג 24°
+    const MILD_LOW     = 20;  // מתחת לזה → מיזוג 25° (או חום אם קר מאוד)
+    const COLD_HEAT    = 8;   // מתחת לזה → חום 22° (בנוסף למיזוג)
 
     let mode, tempRec, reason;
 
-    if(maxT >= EXTREME_HOT && minT <= EXTREME_COLD){
-      // גם חום וגם קור: עדיפות לקירור (מסוכן יותר לחיות)
+    // קיצון כפול: חם ביום וקר בלילה — עדיפות לקירור אבל ב-23° (לא קר מדי)
+    if(maxT >= HOT_EXTREME && minT < MILD_LOW){
       mode    = 'cool';
-      tempRec = TARGET_TEMP;
-      reason  = `צפוי טווח רחב מאוד: מינימום ${minT}° עד מקסימום ${maxT}°. חום קיצוני מסוכן יותר לחיות, לכן קירור גובר.`;
-    } else if(maxT >= EXTREME_HOT){
+      tempRec = 23;
+      reason  = `טווח רחב מאוד: ${minT}°–${maxT}°. קירור על 23° מגן מפני החום הקיצוני מבלי לקפוא בלילה.`;
+
+    // חום קיצוני
+    } else if(maxT >= HOT_EXTREME){
       mode    = 'cool';
-      tempRec = TARGET_TEMP;
-      reason  = `צפויה טמפרטורה של עד ${maxT}°, חום קיצוני. הקירור הכרחי להגנה על הארנבונים, הצ'ינצ'ילות וכל המכרסמים.`;
-    } else if(minT <= EXTREME_COLD){
+      tempRec = 23;
+      reason  = `צפויה טמפרטורה של עד ${maxT}°. קירור על 23° הכרחי להגנה על הארנבונים והמכרסמים.`;
+
+    // חם יחסית
+    } else if(maxT > HOT_WARM){
+      mode    = 'cool';
+      tempRec = 24;
+      reason  = `צפויה טמפרטורה של עד ${maxT}°. מיזוג על 24° ישמור על טמפרטורה נוחה לכל החיות.`;
+
+    // קר מאוד — חום (רק כשהמינימום מתחת ל-8°)
+    } else if(minT < COLD_HEAT){
       mode    = 'heat';
-      tempRec = TARGET_TEMP;
-      reason  = `הלילה צפוי לרדת ל-${minT}°, קור קיצוני. החימום ימנע שינוי טמפרטורה חד דרך החלונות הפתוחים.`;
+      tempRec = 22;
+      reason  = `הטמפרטורה צפויה לרדת ל-${minT}°. חום על 22° ישמור על חום מספיק לזוחלים ולשאר החיות.`;
+
+    // קר בינוני (מתחת ל-20°)
+    } else if(maxT <= MILD_LOW){
+      mode    = 'cool';
+      tempRec = 25;
+      reason  = `תחזית קרירה: ${minT}°–${maxT}°. מיזוג על 25° ישמור על טמפרטורה נוחה ויציבה.`;
+
+    // טמפרטורה נוחה (20°–26°) — כיבוי מזגן (בתנאים מתאימים)
     } else {
-      // אין קיצון - בחירה לפי מגמה
-      const mid = (minT + maxT) / 2;
-      if(mid <= 18){
-        mode    = 'heat';
-        tempRec = TARGET_TEMP;
-        reason  = `ממוצע תחזית ${Math.round(mid)}°, נטייה לקור. החימום ישמור על 22-24° יציב.`;
-      } else if(mid >= 24){
-        mode    = 'cool';
-        tempRec = TARGET_TEMP;
-        reason  = `ממוצע תחזית ${Math.round(mid)}°, נטייה לחום. הקירור ימנע עלייה מסוכנת בטמפרטורה.`;
-      } else {
-        mode    = 'normal';
-        tempRec = TARGET_TEMP;
-        reason  = `תחזית מאוזנת (${minT}° עד ${maxT}°). אין צורך בקירור או חימום אינטנסיביים. ניתן לכבות את המזגן או להפעיל על אוורור בלבד.`;
-      }
+      mode    = 'normal';
+      tempRec = 24;
+      reason  = (typeof _isPresenceHours==='function' && _isPresenceHours()) ? `תחזית מאוזנת (${minT}°–${maxT}°). טמפרטורה נוחה — ניתן לפתוח חלונות. זכרו לסגור לפני יציאה (חתולים!).` : `תחזית מאוזנת (${minT}°–${maxT}°). כוונו מיזוג ל-24° כשאתם עוזבים.`;
     }
 
     return { mode, tempRec, reason };
@@ -10735,7 +10932,7 @@ function pwaInstall(){
       heat:   { icon:'🔥', label:'חימום', bg:'#fff3e8', border:'#f07030', color:'#7a2000',
                 setting:'כוונו לטמפרטורה {{T}}° במצב חימום' },
       normal: { icon:'🌿', label:'רגיל / אוורור', bg:'#f0faf0', border:'#3aaa6e', color:'#1a5a30',
-                setting:'כבו את המזגן או הפעילו על אוורור בלבד' },
+                setting:'כוונו מיזוג ל-24°' },
     };
 
     const m = MODES[mode];
@@ -10791,7 +10988,7 @@ function pwaInstall(){
     const modeColors = {cool:'#4090d0', heat:'#f07030', normal:'#3aaa6e'};
     const modeIcons  = {cool:'❄️', heat:'🔥', normal:'🌿'};
     const modeLabels = {cool:'קירור', heat:'חימום', normal:'רגיל'};
-    const modeSettings = {cool:`כוונו ל-${tempRec}° קירור`, heat:`כוונו ל-${tempRec}° חימום`, normal:'כבו / אוורור בלבד'};
+    const modeSettings = {cool:`כוונו ל-${tempRec}° קירור`, heat:`כוונו ל-${tempRec}° חימום`, normal:'מיזוג 24° (טמפרטורה נוחה)'};
 
     const hasFog = vis.some(v => v < 2000) || codes.some(c => c===45||c===48);
     const hasFogWind = hasFog && codes.some(c => [51,53,55,61,63,65,80,81,82,95,96,99].includes(c));
@@ -10809,12 +11006,11 @@ function pwaInstall(){
     } else if(mode === 'heat'){
       windowInstruction = `<div style="margin-top:.35rem;background:#fff3e8;border-radius:7px;padding:.28rem .6rem;font-size:.79rem;color:#7a2000;font-weight:700">🪟 חלונות: <strong>חרצי אוורור קטנים</strong> - המזגן על חימום, לא לפתוח יותר מדי.</div>`;
     } else {
-      // מצב רגיל / אוורור
-      const maxForNight = maxT;
-      if(maxForNight >= 22){
-        windowInstruction = `<div style="margin-top:.35rem;background:#f0faf0;border-radius:7px;padding:.28rem .6rem;font-size:.79rem;color:#1a5a30;font-weight:700">🪟 חלונות: <strong>פתחי אוורור בינוניים-גדולים</strong> - טמפרטורה נוחה, אפשר לאוורר.</div>`;
+      // מצב רגיל (20°–26°) — חלונות פתוחים בשעות נוכחות, מיזוג כשלא שם
+      if(typeof _isPresenceHours === 'function' && _isPresenceHours()){
+        windowInstruction = `<div style="margin-top:.35rem;background:#f0faf0;border-radius:7px;padding:.28rem .6rem;font-size:.79rem;color:#1a5a30;font-weight:700">🪟 <strong>פתחו חלונות לאוורור טבעי</strong> — טמפרטורה מתאימה ואתם כאן. <span style="color:#b04000">⚠️ זכרו לסגור לפני היציאה (חתולים ומכרסמים)</span></div>`;
       } else {
-        windowInstruction = `<div style="margin-top:.35rem;background:#f0faf0;border-radius:7px;padding:.28rem .6rem;font-size:.79rem;color:#1a5a30;font-weight:700">🪟 חלונות: <strong>חרצי אוורור בינוניים</strong> - מצב רגיל, לא לפתוח לגמרי.</div>`;
+        windowInstruction = `<div style="margin-top:.35rem;background:#e8f4ff;border-radius:7px;padding:.28rem .6rem;font-size:.79rem;color:#1a4a80;font-weight:700">🪟 חלונות: <strong>סגרו</strong> — כוונו מיזוג ל-24° כשאתם עוזבים.</div>`;
       }
     }
 
@@ -10849,7 +11045,29 @@ function pwaInstall(){
     return mA !== mB;
   }
 
-  async function loadAcForecast(){
+  // ── עזר: האם היום חופשה (לא נמצאים בפינת החי)? ──
+  function _isSchoolHolidayToday(){
+    const today = new Date(); today.setHours(0,0,0,0);
+    for(const h of HOLIDAYS){
+      if(!h.back) continue;
+      const out  = new Date(h.out);  out.setHours(23,59,59,0);
+      const back = new Date(h.back); back.setHours(0,0,0,0);
+      if(today > out && today < back) return true;
+    }
+    return false;
+  }
+
+  // ── עזר: האם עכשיו שעות נוכחות בפינת החי? (א'-ה' 8:00-14:00, לא חופשה) ──
+  function _isPresenceHours(){
+    const now = new Date();
+    const day = now.getDay(); // 0=ראשון...4=חמישי
+    if(day === 5 || day === 6) return false; // שישי/שבת
+    if(_isSchoolHolidayToday()) return false;
+    const h = now.getHours();
+    return h >= 8 && h < 14;
+  }
+
+    async function loadAcForecast(){
     const card = document.getElementById('acCard');
     if(!card) return;
 
@@ -10893,43 +11111,41 @@ function pwaInstall(){
 
       // עזר: תאריך קצר למשל "19.4"
       function _shortDate(d){ return `${d.getDate()}.${d.getMonth()+1}`; }
+      function _isoDate(d){ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
 
       // ══════════════════════════════════════════
       // ① ימי שבוע רגילים (ראשון–רביעי, לפני 13:00)
       //    שתי הוראות: עכשיו/בוקר + לפני יציאה למחר
       // ══════════════════════════════════════════
       if(isRegularWorkday){
-        const isBeforeLeave = now.getHours() < 13; // לפני שיצאו
-
-        // הנחיות מזגן בשעות היום (שאר היום עד 13:00)
-        const { from: todayFrom, to: todayTo, dayObj: todayObj } = dayRangeMs(0, now.getHours(), 13);
-        const seg1 = _extractHourly(d, nowMs, Math.min(todayTo, dayRangeMs(0,23,23).to));
+        // כרטיס 1: 08:00 עד 13:30 (שעות השהות בפינת החי)
+        const seg1from = dayRangeMs(0, 8, 8).from;
+        const seg1to   = dayRangeMs(0, 13, 13).to + 30*60*1000; // 13:30
+        const seg1 = _extractHourly(d, Math.max(nowMs, seg1from), seg1to);
         if(seg1.temps.length){
           const mn = Math.round(Math.min(...seg1.temps)), mx = Math.round(Math.max(...seg1.temps));
           html += _acUnitHtml(
-            `🌅 הנחיות מזגן בשעות היום (${dayNames[todayDay]} ${_shortDate(now)})`,
-            `כוונו עכשיו בהגיעכם לפינת החי`,
+            `🌅 ${dayNames[todayDay]} ${_shortDate(now)} · 08:00 עד 13:30`,
+            `כוונו בהגיעכם לפינת החי`,
             mn, mx, seg1.vis, seg1.codes, null
           );
         }
 
-        // הנחיות מזגן לפני היציאה - לכסות את הלילה + מחר עד 08:00
-        const { from: tomorrowStart, to: tomorrowEnd, dayObj: tomorrowObj } = dayRangeMs(1, 0, 8);
-        const { from: tonightFrom } = dayRangeMs(0, 13, 23);
-        const seg2 = _extractHourly(d, tonightFrom, tomorrowEnd);
+        // כרטיס 2: 13:30 עד 08:00 למחרת
+        const seg2from = dayRangeMs(0, 13, 13).to + 30*60*1000; // 13:30
+        const { to: tomorrowMorning, dayObj: tomorrowObj } = dayRangeMs(1, 0, 8);
+        const seg2 = _extractHourly(d, seg2from, tomorrowMorning);
         if(seg2.temps.length){
           const mn = Math.round(Math.min(...seg2.temps)), mx = Math.round(Math.max(...seg2.temps));
-          const nextDayName = dayNames[tomorrowObj.getDay()];
-          const tomorrowShort = _shortDate(tomorrowObj);
           html += _acUnitHtml(
-            `🌙 הנחיות מזגן לפני היציאה (~13:00)`,
-            `יחזיק עד ${dayNames[tomorrowObj.getDay()]} ${tomorrowShort} בבוקר (08:00)`,
+            `🌙 ${dayNames[todayDay]} ${_shortDate(now)} · 13:30 עד מחר 08:00`,
+            `יחזיק עד ${dayNames[tomorrowObj.getDay()]} ${_shortDate(tomorrowObj)} 08:00`,
             mn, mx, seg2.vis, seg2.codes, null
           );
         }
 
         untilLabel = `הנחיות מזגן ל${dayNames[todayDay]}`;
-        forecastText = `בשעות היום + לפני היציאה`;
+        forecastText = `08:00 עד 13:30 + 13:30 עד מחר 08:00`;
       }
 
       // ══════════════════════════════════════════
@@ -10937,21 +11153,23 @@ function pwaInstall(){
       //    שתי הוראות + אזהרות + הצעת שישי
       // ══════════════════════════════════════════
       else if(isThursday){
-        // הנחיות מזגן בשעות היום (חמישי 08-13)
-        const seg1 = _extractHourly(d, nowMs, dayRangeMs(0,13,13).to);
+        // כרטיס 1: חמישי 08:00 עד 13:30
+        const thu1from = dayRangeMs(0, 8, 8).from;
+        const thu1to   = dayRangeMs(0, 13, 13).to + 30*60*1000;
+        const seg1 = _extractHourly(d, Math.max(nowMs, thu1from), thu1to);
         if(seg1.temps.length){
           const mn = Math.round(Math.min(...seg1.temps)), mx = Math.round(Math.max(...seg1.temps));
           html += _acUnitHtml(
-            `🌅 הנחיות מזגן בשעות היום (חמישי ${_shortDate(now)})`,
-            `כוונו עכשיו בהגיעכם לפינת החי`,
+            `🌅 חמישי ${_shortDate(now)} · 08:00 עד 13:30`,
+            `כוונו בהגיעכם לפינת החי`,
             mn, mx, seg1.vis, seg1.codes, null
           );
         }
 
-        // הנחיות מזגן לפני היציאה - לכסות חמישי אחה"צ + שישי + שבת + עד ראשון 08:00
-        const { from: thuAfternoon } = dayRangeMs(0, 13, 23);
+        // כרטיס 2: חמישי 13:30 עד ראשון 08:00 (כולל שישי ושבת)
+        const thuAfternoon = dayRangeMs(0, 13, 13).to + 30*60*1000;
         const { to: sunMorning }     = dayRangeMs(3, 0, 8); // +3 ימים = ראשון
-        const seg2 = _extractHourly(d, thuAfternoon, sunMorning);
+        const seg2 = _extractHourly(d, Math.max(nowMs, thuAfternoon), sunMorning);
 
         // ניתוח לפי ימים נפרדים לאיתור תנודות
         const friData = _extractHourly(d, dayRangeMs(1,0,23).from, dayRangeMs(1,0,23).to);
@@ -10973,16 +11191,16 @@ function pwaInstall(){
               bg:'#fde8e8', color:'#b02020',
               text:`🚨 <strong>נדרשת כניסה מיוחדת ביום שישי וכניסת חירום ביום שבת!</strong><br>שישי: ${friMin}°–${friMax}° - ${friMode==='cool'?'קירור':friMode==='heat'?'חימום':'אוורור'} · שבת: ${satMin}°–${satMax}° - ${satMode==='cool'?'קירור':satMode==='heat'?'חימום':'אוורור'}.<br><strong>נדרש שינוי כיוון מזגן בין שישי לשבת.</strong>`
             };
+            // שמור החלטת חמישי ב-localStorage לשימוש ביום שבת
+            const thuWeekKey = 'thuAcDecision_' + _isoDate(now);
+            localStorage.setItem(thuWeekKey, JSON.stringify({ thuMode: friMode, needsFri: true, needsSat: true, friMode, satMode, friRec: friRec||23, satRec: satRec||23, saved: now.toISOString() }));
             // פופאפ חירום - רק אם לא כבר הוצג היום
             const popupKey = 'acEmergencyShown_' + new Date().toDateString();
             if(!sessionStorage.getItem(popupKey)){
               sessionStorage.setItem(popupKey, '1');
               setTimeout(() => showAcEmergencyPopup(friMode, satMode, friMin, friMax, satMin, satMax), 1200);
             }
-            // שמור את ההחלטה לשימוש בתחזית 3 ימים
-            window.__weekendAcDecision = { needsFri: true, needsSat: false, friMode, satMode, satRec: satRec||23, friRec: friRec||23 };
-            // באנר קבוע - מוצג כל עוד הדף פתוח
-            // כניסה מיוחדת בשישי = לכוון עבור שבת. אין כניסת חירום נפרדת בשבת.
+            window.__weekendAcDecision = { needsFri: true, needsSat: true, friMode, satMode, satRec: satRec||23, friRec: friRec||23 };
             showWeekendEmergencyBanner({ days:'fri_for_sat', friMode, satMode, friMin, friMax, satMin, satMax });
           } else if(tempSwing >= 10){
             // תנודה משמעותית אבל אותו מצב - אזהרה צהובה
@@ -10998,8 +11216,8 @@ function pwaInstall(){
           const mn = Math.round(Math.min(...seg2.temps)), mx = Math.round(Math.max(...seg2.temps));
           const sunDate = new Date(now); sunDate.setDate(sunDate.getDate()+3);
           html += _acUnitHtml(
-            `🌙 הנחיות מזגן לפני היציאה (~13:00 חמישי ${_shortDate(now)})`,
-            `יחזיק עד ראשון ${_shortDate(sunDate)} בבוקר (08:00) · שישי + שבת כלולים`,
+            `🌙 חמישי ${_shortDate(now)} · 13:30 עד ראשון 08:00`,
+            `יחזיק עד ראשון ${_shortDate(sunDate)} 08:00 · שישי ושבת כלולים`,
             mn, mx, seg2.vis, seg2.codes, mismatchNote
           );
         }
@@ -11068,10 +11286,13 @@ function pwaInstall(){
             const thuMn = thuData.temps.length ? Math.round(Math.min(...thuData.temps)) : friMin;
             const thuMx = thuData.temps.length ? Math.round(Math.max(...thuData.temps)) : friMax;
             const { mode: thuMode, tempRec: thuRec } = getAcRecommendation(thuMn, thuMx);
+            // שמור החלטת חמישי ב-localStorage
+            const thuWeekKey = 'thuAcDecision_' + _isoDate(now);
+            localStorage.setItem(thuWeekKey, JSON.stringify({ thuMode, needsFri: false, needsSat: false, friMode, satMode: friMode, friRec: thuRec, satRec: thuRec, saved: now.toISOString() }));
             window.__weekendAcDecision = { needsFri: false, needsSat: false, friMode: thuMode, satMode: thuMode, satRec: thuRec, friRec: thuRec };
             html += `<div style="background:${modeColor[thuMode]}11;border-right:3px solid ${modeColor[thuMode]};border-radius:10px;padding:.55rem .75rem;margin-bottom:.5rem;font-size:.84rem;line-height:1.7">
-              ✅ <strong>כיוון המזגן נקבע אתמול (חמישי)</strong><br>
-              <span style="color:${modeColor[thuMode]};font-weight:800">${modeLabel(thuMode)} ${thuRec}°</span> — יחזיק עד ראשון בבוקר · שישי ושבת כלולים
+              ✅ <strong>אין צורך בהגעה בסוף השבוע</strong><br>
+              הכיוון מיום חמישי (${modeLabel(thuMode)} ${thuRec}°) תקף גם לשבת.
             </div>`;
           }
         }
@@ -11090,10 +11311,18 @@ function pwaInstall(){
           const mn = Math.round(Math.min(...satSeg.temps)), mx = Math.round(Math.max(...satSeg.temps));
           const { mode, tempRec } = getAcRecommendation(mn, mx);
 
-          // מה כוון ביום שישי (= מה שנקבע ביום חמישי)?
+          // קרא מה נקבע ביום חמישי (localStorage) — מדויק יותר מחישוב מחדש
+          const thuDate = new Date(now); thuDate.setDate(thuDate.getDate() - 2); // שבת - 2 = חמישי
+          const thuKey = 'thuAcDecision_' + _isoDate(thuDate);
+          let thuDecision = null;
+          try { thuDecision = JSON.parse(localStorage.getItem(thuKey)); } catch(e){}
+
+          // אם יש החלטת חמישי — השתמש בה. אחרת חשב לפי תחזית שישי
           const friMn = friSeg.temps.length ? Math.round(Math.min(...friSeg.temps)) : mn;
           const friMx = friSeg.temps.length ? Math.round(Math.max(...friSeg.temps)) : mx;
-          const { mode: friMode, tempRec: friRec } = getAcRecommendation(friMn, friMx);
+          const { mode: friMode, tempRec: friRec } = thuDecision
+            ? { mode: thuDecision.thuMode, tempRec: thuDecision.satRec || 24 }
+            : getAcRecommendation(friMn, friMx);
 
           const modeLabel = m => m==='cool'?'קירור ❄️':m==='heat'?'חימום 🔥':'אוורור 🌿';
           const modeColor = {cool:'#4090d0',heat:'#f07030',normal:'#3aaa6e'};
@@ -11102,11 +11331,11 @@ function pwaInstall(){
             // כניסת חירום נדרשת — הכיוון שנקבע בחמישי לא מתאים לשבת
             let whyNote = '';
             if(mode === 'cool' && mx >= 30){
-              whyNote = `הטמפרטורה מגיעה ל-${mx}°. חום כזה מסוכן לבעלי החיים — דרוש קירור.`;
+              whyNote = `הטמפרטורה מגיעה ל-${mx}°. חום כזה מסוכן לבעלי החיים, דרוש קירור.`;
             } else if(mode === 'heat' && mn <= 10){
-              whyNote = `הטמפרטורה יורדת ל-${mn}°. קור כזה עלול לפגוע בבעלי החיים — דרוש חימום.`;
+              whyNote = `הטמפרטורה יורדת ל-${mn}°. קור כזה עלול לפגוע בבעלי החיים, דרוש חימום.`;
             } else {
-              whyNote = `שינוי מצב מ-${modeLabel(friMode)} (שנקבע בחמישי) ל-${modeLabel(mode)} — יש לכוון מחדש.`;
+              whyNote = `שינוי מצב מ-${modeLabel(friMode)} (שנקבע בחמישי) ל-${modeLabel(mode)}, יש לכוון מחדש.`;
             }
             // שעת כניסה מיטבית לפי מצב
             let bestTime = '';
@@ -11116,11 +11345,11 @@ function pwaInstall(){
               bestTime = mn <= 8 ? 'עדיף להגיע בין 11:00 ל-15:00' : 'עדיף להגיע באמצע היום';
             }
             html += _acUnitHtml(
-              '🚨 כניסת חירום אפשרית: שבת',
+              '🚨 נדרשת כניסת חירום בשבת',
               'יחזיק עד ראשון 08:00',
               mn, mx, satSeg.vis, satSeg.codes,
               { bg:'#fde8e8', color:'#b02020',
-                text:`🚨 ${whyNote}<br>כוונו ל-${tempRec}° ${modeLabel(mode)}. ${bestTime}.` }
+                text:`🚨 <strong>נדרשת כניסת חירום בשבת</strong><br>${whyNote}<br>יש לכוון את המזגן ל-${tempRec}° (${modeLabel(mode)}). ${bestTime}.` }
             );
             showWeekendEmergencyBanner({ days:'sat', friMode, satMode:mode, friMin:friMn, friMax:friMx, satMin:mn, satMax:mx });
             const popupKey = 'acEmergencyShown_' + new Date().toDateString();
@@ -11132,8 +11361,8 @@ function pwaInstall(){
           } else {
             // אין צורך בכניסת חירום — הכיוון מחמישי עדיין תקף
             html += `<div style="background:${modeColor[mode]}11;border-right:3px solid ${modeColor[mode]};border-radius:10px;padding:.6rem .75rem;font-size:.85rem;line-height:1.7">
-              ✅ <strong>אין צורך בכניסת חירום</strong><br>
-              הכיוון שנקבע ביום חמישי — <span style="color:${modeColor[mode]};font-weight:800">${modeLabel(mode)} ${friRec}°</span> — עדיין תקף לשבת (${mn}°–${mx}°).
+              ✅ <strong>אין צורך בהגעה בסוף השבוע</strong><br>
+              הכיוון מיום חמישי (${modeLabel(mode)} ${friRec}°) תקף גם לשבת (${mn}°–${mx}°).
             </div>`;
             forecastText = 'ללא כניסת חירום';
           }
@@ -11218,7 +11447,7 @@ function pwaInstall(){
   window._buildHolidayAcHtml = function _buildHolidayAcHtml(blocks, holidayName){
     if(!blocks || !blocks.length) return '';
     const dayNames = ['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
-    const modeHe = { cool:'קירור ❄️', heat:'חימום 🔥', normal:'אוורור 🌿' };
+    const modeHe = { cool:'קירור ❄️', heat:'חימום 🔥', normal:'מיזוג 24° 🌡️' };
     const modeColor = { cool:'#4090d0', heat:'#f07030', normal:'#3aaa6e' };
 
     let html = `<div style="margin-top:.7rem;border-top:1px solid rgba(128,128,128,.18);padding-top:.6rem">
@@ -11264,10 +11493,12 @@ function pwaInstall(){
     const modeColor = m => m==='cool'?'var(--blue)':m==='heat'?'var(--orange)':'var(--green)';
     const TARGET = 23;
     // הפופאפ מופיע מיום שישי — הכניסה בשישי מכוונת עבור שבת, ואין צורך בכניסה נוספת
-    const titleText = 'נדרשת כניסה מיוחדת לכיוון המזגן ביום שישי';
+    const titleText = 'נדרשת כניסה מיוחדת בשישי';
+    const reason = buildAcReason(friMode, satMode, friMax, satMax, satMin, satMax);
     const instructText = `
-      <div style="margin-bottom:.3rem">📋 לבקש מצוות בית הספר לכוון ל-${TARGET}° ${modeLabel(satMode)} לפני 11:30.</div>
-      <div style="font-size:.79rem;color:#7a5500">הכיוון יחזיק לשבת. אין צורך בכניסה נוספת בשבת.</div>`;
+      <div style="font-size:.79rem;color:#7a5500;margin-bottom:.35rem">${reason}</div>
+      <div style="margin-bottom:.25rem">יש לבקש מצוות בית הספר לכוון ל-${TARGET}° (${modeLabel(satMode)}) לפני השעה 11:30.</div>
+      <div style="font-size:.79rem;color:#888">הכיוון יחזיק לשבת. אין צורך בהגעה נוספת בשבת.</div>`;
 
     const overlay = document.createElement('div');
     overlay.id = 'acEmergencyOverlay';
@@ -11305,6 +11536,24 @@ function pwaInstall(){
     document.body.appendChild(overlay);
   }
 
+  // ── בניית הסבר סיבת שינוי מזגן ──
+  function buildAcReason(prevMode, newMode, prevMax, newMax, newMin, newMx){
+    const modeLabel = m => m==='cool'?'קירור':m==='heat'?'חימום':'אוורור';
+    if(prevMode === 'cool' && newMode === 'heat')
+      return `הטמפרטורה ירדה מ-${prevMax}° ל-${newMx}°. לאור ההתקררות, יש לעבור לחימום.`;
+    if(prevMode === 'heat' && newMode === 'cool')
+      return `הטמפרטורה עלתה מ-${prevMax}° ל-${newMx}°. לאור ההתחממות, יש לעבור לקירור.`;
+    if(prevMode === 'normal' && newMode === 'cool')
+      return `הטמפרטורה עולה ל-${newMx}°. לאור ההתחממות, כדאי להפעיל קירור.`;
+    if(prevMode === 'normal' && newMode === 'heat')
+      return `הטמפרטורה יורדת ל-${newMin}°. לאור ההתקררות, כדאי להפעיל חימום.`;
+    if(newMode === 'cool' && newMx >= 30)
+      return `הטמפרטורה מגיעה ל-${newMx}°. חום כזה מסוכן לבעלי החיים, דרוש קירור.`;
+    if(newMode === 'heat' && newMin <= 10)
+      return `הטמפרטורה יורדת ל-${newMin}°. קור כזה עלול לפגוע בבעלי החיים, דרוש חימום.`;
+    return `שינוי מ${modeLabel(prevMode)} ל${modeLabel(newMode)}, יש לכוון מחדש.`;
+  }
+
   // ── באנר חירום קבוע לסוף שבוע ──
   function showWeekendEmergencyBanner(scenario){
     const el = document.getElementById('weekendEmergencyBanner');
@@ -11339,25 +11588,27 @@ function pwaInstall(){
 
     let instructionHtml = '';
     if(scenario.days === 'fri_for_sat'){
-      // כניסה בשישי = לכוון עבור שבת. אחרי הכניסה בשישי אין צורך בכניסת חירום בשבת.
+      const reason = buildAcReason(scenario.friMode, scenario.satMode, scenario.friMax, scenario.satMax, scenario.satMin, scenario.satMax);
       instructionHtml = `<div style="margin-top:.6rem;background:#fff8e8;border-radius:9px;padding:.5rem .65rem;border-right:3px solid #e0a020;font-size:.82rem;line-height:1.8">
-        <div style="margin-bottom:.3rem">📋 <strong>שישי לפני 11:30:</strong> לבקש מצוות בית הספר לכוון ל-${TARGET}° ${modeLabel(scenario.satMode)} עבור שבת.</div>
-        <div style="font-size:.79rem;color:#666">אחרי הכניסה בשישי אין צורך בכניסה נוספת בשבת.</div>
+        <div style="font-weight:700;margin-bottom:.25rem">🔔 נדרשת כניסה מיוחדת בשישי</div>
+        <div style="font-size:.79rem;color:#666;margin-bottom:.3rem">${reason}</div>
+        <div>יש לבקש מצוות בית הספר לכוון ל-${TARGET}° (${modeLabel(scenario.satMode)}) לפני השעה 11:30.</div>
+        <div style="font-size:.79rem;color:#888;margin-top:.2rem">אחרי הכניסה בשישי אין צורך בהגעה נוספת בשבת.</div>
       </div>`;
     } else if(scenario.days === 'fri'){
       instructionHtml = `<div style="margin-top:.6rem;background:#fff8e8;border-radius:9px;padding:.5rem .65rem;border-right:3px solid #e0a020;font-size:.82rem;line-height:1.6">📋 לבקש מצוות בית הספר לכוון ל-${TARGET}° ${modeLabel(scenario.friMode)} לפני 11:30.</div>`;
     } else if(scenario.days === 'sat'){
       const timing = bestSatTime(scenario.satMode, scenario.satMin, scenario.satMax);
+      const reason = buildAcReason(scenario.friMode, scenario.satMode, scenario.friMax, scenario.satMax, scenario.satMin, scenario.satMax);
       instructionHtml = `<div style="margin-top:.6rem;background:#fde8e8;border-radius:9px;padding:.5rem .65rem;border-right:3px solid #e05252;font-size:.82rem;line-height:1.8">
-        <div style="margin-bottom:.25rem">🚨 נדרשת כניסת חירום לכיוון ל-${TARGET}° ${modeLabel(scenario.satMode)}.</div>
-        <div style="font-size:.79rem;color:#7a2020">${timing} (${scenario.satMin}°–${scenario.satMax}°).</div>
+        <div style="font-weight:700;margin-bottom:.25rem">🚨 נדרשת כניסת חירום בשבת</div>
+        <div style="font-size:.79rem;color:#7a2020;margin-bottom:.3rem">${reason}</div>
+        <div>יש לכוון את המזגן ל-${TARGET}° (${modeLabel(scenario.satMode)}). ${timing}.</div>
       </div>`;
     }
-    const bannerTitle = scenario.days === 'fri_for_sat'
-      ? 'נדרשת כניסה מיוחדת לכיוון המזגן ביום שישי'
-      : scenario.days === 'fri'
-        ? 'נדרשת כניסה מיוחדת לכיוון המזגן ביום שישי'
-        : 'נדרשת כניסת חירום לכיוון המזגן ביום שבת';
+    const bannerTitle = (scenario.days === 'fri_for_sat' || scenario.days === 'fri')
+      ? 'נדרשת כניסה מיוחדת בשישי'
+      : 'נדרשת כניסת חירום בשבת';
     el.style.display = 'block';
     el.innerHTML = `<div style="background:#fde8e8;border:2px solid #e05252;border-radius:14px;padding:1rem 1rem .85rem;direction:rtl"><div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem"><span style="font-size:1.3rem">🚨</span><span style="font-weight:900;font-size:.95rem;color:#b02020">${bannerTitle}</span><button onclick="document.getElementById('weekendEmergencyBanner').style.display='none'" style="margin-right:auto;background:none;border:none;cursor:pointer;font-size:1rem;color:#aaa;padding:0;line-height:1" title="הסתר">✕</button></div><div style="display:flex;gap:.5rem;flex-wrap:wrap">${daysHtml}</div>${instructionHtml}</div>`;
   }
@@ -11414,8 +11665,8 @@ function pwaInstall(){
 
         const modeColors = {cool:'#4090d0', heat:'#f07030', normal:'#3aaa6e'};
         const modeIcons  = {cool:'❄️', heat:'🔥', normal:'🌿'};
-        const modeLabels = {cool:'קירור', heat:'חימום', normal:'אוורור'};
-        const modeSettings = {cool:`כוונו ל-${tempRec}° קירור`, heat:`כוונו ל-${tempRec}° חימום`, normal:'כבו / אוורור בלבד'};
+        const modeLabels = {cool:'קירור', heat:'חימום', normal:'מיזוג 24°'};
+        const modeSettings = {cool:`כוונו ל-${tempRec}° קירור`, heat:`כוונו ל-${tempRec}° חימום`, normal:'מיזוג 24° (טמפרטורה נוחה)'};
 
         const dow = dayStart.getDay();
         const dayName = dayNames[dow];
@@ -11469,7 +11720,7 @@ function pwaInstall(){
           const wRec  = isSatDay ? (dec ? dec.satRec  : tempRec) : (dec ? dec.friRec : tempRec);
           const wModeColors = {cool:'#4090d0',heat:'#f07030',normal:'#3aaa6e'};
           const wModeIcons  = {cool:'❄️',heat:'🔥',normal:'🌿'};
-          const wModeLabels = {cool:'קירור',heat:'חימום',normal:'אוורור'};
+          const wModeLabels = {cool:'קירור',heat:'חימום',normal:'מיזוג 24°'};
           const wNeedsEntry = dec && ((isFriDay && dec.needsFri) || (isSatDay && dec.needsSat));
           const wPrefix = wNeedsEntry ? '🚨 כיוון כניסה מיוחדת' : '🔒 כיוון שנקבע בחמישי';
           acLine = `<div style="font-size:.78rem;color:${wModeColors[wMode]};font-weight:800">${wModeIcons[wMode]} ${wPrefix}: ${wRec}° ${wModeLabels[wMode]}</div>`;
@@ -11559,7 +11810,7 @@ function pwaInstall(){
         const modeSettings = {
           cool:`כיוון מזגן שהיה נדרש: ${tempRec}° קירור`,
           heat:`כיוון מזגן שהיה נדרש: ${tempRec}° חימום`,
-          normal:'מזגן שהיה מספיק: כיבוי / אוורור בלבד'
+          normal:'מיזוג 24° (טמפרטורה נוחה)'
         };
 
         const hasFog = seg.vis.some(v=>v<2000) || seg.codes.some(c=>c===45||c===48);
@@ -11687,9 +11938,9 @@ function pwaInstall(){
         if(maxT >= 28){
           rainAcNote = 'הטמפרטורה עדיין גבוהה למרות הגשם, המזגן על קירור נשאר הכרחי.';
         } else if(maxT <= 25){
-          rainAcNote = 'מקסימום מתחת ל-25°, ניתן לכבות את המזגן או להעביר לאוורור בלבד.';
+          rainAcNote = 'מקסימום מתחת ל-25°, כוונו מיזוג ל-24°.';
         } else {
-          rainAcNote = 'טמפרטורה בינונית בגשם, ניתן לכבות את המזגן או להעביר לאוורור בלבד.';
+          rainAcNote = 'טמפרטורה בינונית בגשם, כוונו מיזוג ל-24°.';
         }
         weatherAlerts += `
           <div style="background:#dbeafe;border-radius:10px;border-right:4px solid #4090d0;padding:.55rem .8rem;margin-bottom:.45rem;font-size:.84rem;line-height:1.6">
@@ -11715,13 +11966,13 @@ function pwaInstall(){
       let emergencyTipHtml = '';
       if(maxT >= 32){
         emergencyTipHtml = `<div style="background:#fde8e8;border:1.5px solid #e05252;border-radius:9px;padding:.45rem .7rem;margin-bottom:.4rem;font-size:.83rem;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap">
-          <div style="font-weight:800;color:#8b1c1c;font-size:.82rem;flex:1;min-width:160px">🔥 חום קיצוני צפוי (${maxT}°) — המזגן על קירור</div>
-          <button onclick="switchTab('guidelines');setTimeout(()=>{const el=document.getElementById('emergencyGuidelinesSection');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)" style="background:#e05252;color:#fff;border:none;border-radius:50px;padding:.28rem .8rem;font-size:.8rem;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap">🚨 יש תקלה? לחצו כאן</button>
+          <div style="font-weight:800;color:#8b1c1c;font-size:.82rem;flex:1;min-width:160px">🔥 חום קיצוני צפוי (${maxT}°), המזגן על קירור</div>
+          <button onclick="switchTab('guidelines');setTimeout(()=>{const el=document.getElementById('emergencyGuidelinesSection');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)" style="background:#e05252;color:#fff;border:none;border-radius:50px;padding:.28rem .8rem;font-size:.8rem;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap">🚨 תקלה בחשמל? לחצו כאן</button>
         </div>`;
       } else if(minT <= 10){
         emergencyTipHtml = `<div style="background:#dbeafe;border:1.5px solid #4090d0;border-radius:9px;padding:.45rem .7rem;margin-bottom:.4rem;font-size:.83rem;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap">
-          <div style="font-weight:800;color:#1a3060;font-size:.82rem;flex:1;min-width:160px">❄️ לילה קר צפוי (${minT}°) — המזגן על חימום</div>
-          <button onclick="switchTab('guidelines');setTimeout(()=>{const el=document.getElementById('emergencyGuidelinesSection');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)" style="background:#4090d0;color:#fff;border:none;border-radius:50px;padding:.28rem .8rem;font-size:.8rem;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap">🚨 יש תקלה? לחצו כאן</button>
+          <div style="font-weight:800;color:#1a3060;font-size:.82rem;flex:1;min-width:160px">❄️ לילה קר צפוי (${minT}°), המזגן על חימום</div>
+          <button onclick="switchTab('guidelines');setTimeout(()=>{const el=document.getElementById('emergencyGuidelinesSection');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},250)" style="background:#4090d0;color:#fff;border:none;border-radius:50px;padding:.28rem .8rem;font-size:.8rem;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap">🚨 תקלה בחשמל? לחצו כאן</button>
         </div>`;
       }
 
@@ -11907,13 +12158,19 @@ function pwaInstall(){
     function _setAcText(t, acContent){
       // שורה 1: טמפרטורה
       tempEl.textContent = `${t}° עכשיו בחוץ`;
-      // שורה 2: המלצת מזגן (קצרה)
-      if(acContent && acContent.includes('קירור'))       acEl.textContent = '❄️ מזגן על קירור';
-      else if(acContent && acContent.includes('חימום'))  acEl.textContent = '🔥 מזגן על חימום';
-      else if(acContent && (acContent.includes('אוורור') || acContent.includes('כבו'))) acEl.textContent = '🌿 אוורור בלבד';
-      else if(t >= 30)  acEl.textContent = '❄️ מזגן על קירור';
-      else if(t <= 12)  acEl.textContent = '🔥 מזגן על חימום';
-      else              acEl.textContent = '🌿 אוורור בלבד';
+      // שורה 2: המלצת מזגן (קצרה) — לפי הספים החדשים
+      if(acContent && acContent.includes('קירור'))      { acEl.textContent = '❄️ מזגן על קירור'; }
+      else if(acContent && acContent.includes('חימום')) { acEl.textContent = '🔥 מזגן על חימום'; }
+      else if(acContent && acContent.includes('חלונות')){ acEl.textContent = (typeof _isPresenceHours==='function' && _isPresenceHours()) ? '🪟 פתחו חלונות' : '❄️ מיזוג 24°'; }
+      else if(t >= 30)  acEl.textContent = '❄️ מיזוג 23°';
+      else if(t >= 26)  acEl.textContent = '❄️ מיזוג 24°';
+      else if(t >= 20)  acEl.textContent = (typeof _isPresenceHours==='function' && _isPresenceHours()) ? '🪟 פתחו חלונות / מיזוג 24°' : '❄️ מיזוג 24°';
+      else if(t >= 15)  acEl.textContent = '❄️ מיזוג 25°';
+      else if(t >= 8)   acEl.textContent = '❄️ מיזוג 25°';
+      else              acEl.textContent = '🔥 חום 22°';
+      // עדכן data-speak בכפתור הקראה של כרטיס מזג האוויר
+      const qgSpk = document.getElementById('qgWeatherSpk');
+      if(qgSpk) qgSpk.setAttribute('data-speak', tempEl.textContent + '. ' + acEl.textContent.replace(/[🔥❄️🪟]/g,'').trim());
     }
 
     // ננסה לקרוא מהמזג אוויר הנוכחי שכבר נטען
@@ -12240,7 +12497,7 @@ function pwaInstall(){
       ? `<span style="font-size:.73rem;background:#fff3cd;border-radius:6px;padding:.1rem .4rem;color:#7a5000;font-weight:700;margin-right:.3rem">🏕️ מצב קיץ</span>`
       : '';
     const summerBadge = h.summer
-      ? `<span style="font-size:.73rem;background:#fde8e8;border-radius:6px;padding:.1rem .4rem;color:#b02020;font-weight:700;margin-right:.3rem">🌞 היעדרות מלאה</span>`
+      ? `<span style="font-size:.73rem;background:#fde8e8;border-radius:6px;padding:.1rem .4rem;color:#b02020;font-weight:700;margin-right:.3rem">🌞 סבב תורנויות</span>`
       : '';
     const activeBadge = isActive
       ? `<span style="font-size:.73rem;background:#e8ffe8;border-radius:6px;padding:.1rem .4rem;color:#1a6a1a;font-weight:700;margin-right:.3rem">עכשיו!</span>`
@@ -12299,10 +12556,24 @@ function pwaInstall(){
                   `<span style="opacity:.85">🌞 קיץ, חוזרים בספטמבר</span>`;
     }
 
+    // טקסט הקראה לכל חופשה בנפרד
+    const speakParts = [
+      h.name + (isActive ? ', עכשיו בחופשה' : daysLeft === 0 ? ', יוצאים היום' : daysLeft !== null ? `, עוד ${daysLeft} ימים` : ''),
+      h.camp ? 'קייטנה פעילה בחודש יולי' : '',
+      h.summer ? 'חופש גדול, נעדרים מפינת החי לאורך כל התקופה' : '',
+      !h.camp && !h.summer && h.back ? `יום לימודים אחרון: ${_fmtDate(h.out)}. חזרה: ${_fmtDate(h.back)}.` : '',
+      absenceDays === 0 ? 'חזרה ביום שאחרי, אין ימי היעדרות' :
+      absenceDays === 1 ? 'יום היעדרות אחד מפינת החי' :
+      absenceDays > 1 ? `${absenceDays} ימי היעדרות מפינת החי` : '',
+      acWarnText || '',
+    ].filter(Boolean).join('. ');
+    const speakBtn = `<button onclick="speakFromData(this)" data-speak="${speakParts.replace(/"/g,'&quot;')}" aria-label="הקראה" title="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:.75rem;vertical-align:middle;flex-shrink:0">🔊</button>`;
+
     return `<div ${clickAttr} style="padding:.42rem .55rem;border-radius:9px;margin-bottom:.28rem;background:${bg};${borderRight}opacity:${isPast ? .45 : 1}">
       <div style="display:flex;align-items:center;gap:.35rem;flex-wrap:wrap">
         <span style="font-weight:800;font-size:.86rem;color:var(--text)">${isPast ? '✓' : isActive ? '📅' : '🏖️'} ${h.name}${isHighlight ? ' ← הבא' : ''}</span>
         ${campBadge}${summerBadge}${activeBadge}${countdownBadge}
+        ${speakBtn}
       </div>
       <div style="font-size:.77rem;color:var(--text);opacity:.75;line-height:1.55;margin-top:.1rem">
         ${dateLines}
