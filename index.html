@@ -1184,7 +1184,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       </div>
       <div style="padding:.75rem 1rem;display:grid;gap:.65rem">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:.5rem">
-          <div style="font-size:.85rem;color:#555">ירקות ופירות שלמים או חתוכים שכבר לא תעשו בהם שימוש? מושלם! גם שאריות חיתוך: קליפות, גבעולים, קצוות. <strong>אנחנו נמיין בעצמנו מה מגיע לאיזו חיה 🙂</strong></div>
+          <div style="font-size:.85rem;color:#555">ירקות ופירות שלמים או חתוכים שכבר לא תעשו בהם שימוש? מושלם! גם שאריות חיתוך: קליפות, גבעולים, קצוות. <strong>אנחנו נמיין בעצמנו מה מגיע לאיזו חיה 🙂</strong> <button onclick="event.stopPropagation();speakText('ירקות ופירות שלמים או חתוכים שכבר לא תעשו בהם שימוש? מושלם! גם שאריות חיתוך: קליפות, גבעולים, קצוות. אנחנו נמיין בעצמנו מה מגיע לאיזו חיה.',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0">🔊</button></div>
           <button id="qgReadAllBtn" onclick="qgSpeakAll(this)" title="הקראת כל הרשימה" style="background:#e8f4ff;border:none;border-radius:50px;padding:.25rem .65rem;font-size:.85rem;cursor:pointer;white-space:nowrap;flex-shrink:0;font-weight:700;color:#1a4a7a">🔊 הקרא הכל</button>
         </div>
         <div id="qg-vegfruits">
@@ -1256,20 +1256,20 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
         <button onclick="speakText('רק שלמים בשקית נפרדת: תפוח אדמה, פירות הדר כולל קלמנטינה, אגוז מלך ובוטנים, כרוב ניצנים, ענבים, ביצה קשה, גרעיני דלעת, גרעיני חמנייה, תרד, אננס, קיווי, עלי גפן.',this)" title="הקראה" class="qg-sep-speak" style="background:#fff8e0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.87rem;flex-shrink:0">🔊</button>
       </div>
       <div style="padding:.7rem 1rem">
-        <div class="qg-sep-desc" style="font-size:.85rem;color:#555;margin-bottom:.6rem">המזונות האלה טובים לחלק מהחיות אך עלולים להזיק לאחרות. נשמח שתביאו אותם שלמים או בשקית נפרדת כדי שנוכל לזהות כל פריט ולתת אותו רק למי שמותר. כשהמזון מגיע חתוך ומעורבב קשה לדעת מה יש בפנים ולא ניתן להפריד.</div>
+        <div class="qg-sep-desc" style="font-size:.85rem;color:#555;margin-bottom:.6rem">המזונות האלה טובים לחלק מהחיות אך עלולים להזיק לאחרות. נשמח שתביאו אותם שלמים או בשקית נפרדת כדי שנוכל לזהות כל פריט ולתת אותו רק למי שמותר. כשהמזון מגיע חתוך ומעורבב קשה לדעת מה יש בפנים ולא ניתן להפריד. <button onclick="event.stopPropagation();speakText('המזונות האלה טובים לחלק מהחיות אך עלולים להזיק לאחרות. נשמח שתביאו אותם שלמים או בשקית נפרדת כדי שנוכל לזהות כל פריט ולתת אותו רק למי שמותר.',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0">🔊</button></div>
         <div id="qg-sep" style="display:flex;flex-wrap:wrap;gap:.3rem">
-          <span class="qg-chip qg-warn" onclick="openFoodModal('potato',[])" style="cursor:pointer">🥔 תפוח אדמה</span>
-          <span class="qg-chip qg-warn" onclick="openFoodModal('orange',[])" style="cursor:pointer">🍊 פירות הדר</span>
-          <span class="qg-chip qg-warn" onclick="openFoodModal('walnuts',[])" style="cursor:pointer">🌰 אגוז מלך (ובוטנים)</span>
-          <span class="qg-chip qg-warn" onclick="openFoodModal('brussels_sprouts',[])" style="cursor:pointer">🥦 כרוב ניצנים</span>
-          <span class="qg-chip qg-warn" onclick="openFoodModal('grapes',[])" style="cursor:pointer">🍇 ענבים</span>
-          <span class="qg-chip qg-warn" onclick="openFoodModal('boiled_egg',[])" style="cursor:pointer">🥚 ביצה קשה</span>
-          <span class="qg-chip qg-warn" onclick="openFoodModal('pumpkin_seeds',[])" style="cursor:pointer">🎃 גרעיני דלעת</span>
-          <span class="qg-chip qg-warn" onclick="openFoodModal('sunflower_seeds',[])" style="cursor:pointer">🌻 גרעיני חמנייה</span>
-          <span class="qg-chip qg-warn" onclick="openFoodModal('spinach',[])" style="cursor:pointer">🥬 תרד</span>
-          <span class="qg-chip qg-warn" onclick="openFoodModal('pineapple',[])" style="cursor:pointer">🍍 אננס</span>
-          <span class="qg-chip qg-warn" onclick="openFoodModal('kiwi',[])" style="cursor:pointer">🥝 קיווי</span>
-          <span class="qg-chip qg-warn" onclick="openFoodModal('grapeleaves',[])" style="cursor:pointer">🍇 עלי גפן</span>
+          <span class="qg-chip qg-warn" onclick="openFoodModal('potato',[])" style="cursor:pointer">🥔 תפוח אדמה <button onclick="event.stopPropagation();speakText('תפוח אדמה',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+          <span class="qg-chip qg-warn" onclick="openFoodModal('orange',[])" style="cursor:pointer">🍊 פירות הדר <button onclick="event.stopPropagation();speakText('פירות הדר',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+          <span class="qg-chip qg-warn" onclick="openFoodModal('walnuts',[])" style="cursor:pointer">🌰 אגוז מלך (ובוטנים) <button onclick="event.stopPropagation();speakText('אגוז מלך ובוטנים',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+          <span class="qg-chip qg-warn" onclick="openFoodModal('brussels_sprouts',[])" style="cursor:pointer">🥦 כרוב ניצנים <button onclick="event.stopPropagation();speakText('כרוב ניצנים',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+          <span class="qg-chip qg-warn" onclick="openFoodModal('grapes',[])" style="cursor:pointer">🍇 ענבים <button onclick="event.stopPropagation();speakText('ענבים',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+          <span class="qg-chip qg-warn" onclick="openFoodModal('boiled_egg',[])" style="cursor:pointer">🥚 ביצה קשה <button onclick="event.stopPropagation();speakText('ביצה קשה',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+          <span class="qg-chip qg-warn" onclick="openFoodModal('pumpkin_seeds',[])" style="cursor:pointer">🎃 גרעיני דלעת <button onclick="event.stopPropagation();speakText('גרעיני דלעת',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+          <span class="qg-chip qg-warn" onclick="openFoodModal('sunflower_seeds',[])" style="cursor:pointer">🌻 גרעיני חמנייה <button onclick="event.stopPropagation();speakText('גרעיני חמנייה',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+          <span class="qg-chip qg-warn" onclick="openFoodModal('spinach',[])" style="cursor:pointer">🥬 תרד <button onclick="event.stopPropagation();speakText('תרד',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+          <span class="qg-chip qg-warn" onclick="openFoodModal('pineapple',[])" style="cursor:pointer">🍍 אננס <button onclick="event.stopPropagation();speakText('אננס',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+          <span class="qg-chip qg-warn" onclick="openFoodModal('kiwi',[])" style="cursor:pointer">🥝 קיווי <button onclick="event.stopPropagation();speakText('קיווי',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+          <span class="qg-chip qg-warn" onclick="openFoodModal('grapeleaves',[])" style="cursor:pointer">🍇 עלי גפן <button onclick="event.stopPropagation();speakText('עלי גפן',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
         </div>
       </div>
     </div>
@@ -1277,22 +1277,22 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
     <!-- אין צורך להביא -->
     <div style="background:var(--card);border-radius:14px;box-shadow:var(--shadow);overflow:hidden">
       <div style="background:#fde8e8;padding:.7rem 1rem;border-bottom:2px solid #f0b8b8;display:flex;align-items:center;gap:.5rem">
-        <div style="font-weight:900;font-size:1.02rem;color:#8b1c1c;flex:1">❌ לא להביא (מסוכן!)</div>
+        <div style="font-weight:900;font-size:1.02rem;color:#8b1c1c;flex:1">❌ לא להביא (מסוכן!) <button onclick="event.stopPropagation();speakText('לא להביא, מסוכן!',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0">🔊</button></div>
         <button onclick="speakText('לא להביא, מסוכן! אלו רעילים לחיות: בצל, בצל ירוק, שום, אבוקדו, שוקולד, חטיפים מלוחים, חטיפים מתוקים, חציל, עגבנייה, לימון, מוצרי חלב, פטריות.',this)" title="הקראה" style="background:#fde8e8;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.87rem;flex-shrink:0">🔊</button>
       </div>
       <div style="padding:.7rem 1rem">
         <div style="font-size:.85rem;color:#555;margin-bottom:.6rem">תודה רבה! אין צורך להביא, אלו רעילים ועלולים לפגוע בחיות שלנו 🙏</div>
         <div id="qg-no" style="display:flex;flex-wrap:wrap;gap:.3rem">
-          <span class="qg-chip qg-no" onclick="openFoodModal('onion',[])" style="cursor:pointer">🧅 בצל (כולל ירוק, שאלוט ועירית)</span>
-          <span class="qg-chip qg-no" onclick="openFoodModal('garlic',[])" style="cursor:pointer">🧄 שום</span>
-          <span class="qg-chip qg-no" onclick="openFoodModal('avocado',[])" style="cursor:pointer">🥑 אבוקדו</span>
-          <span class="qg-chip qg-no" onclick="openFoodModal('chocolate',[])" style="cursor:pointer">🍫 שוקולד</span>
-          <span class="qg-chip qg-no" onclick="openFoodModal('chips',[])" style="cursor:pointer">🍟🍬 חטיפים מלוחים ומתוקים</span>
-          <span class="qg-chip qg-no" onclick="openFoodModal('eggplant',[])" style="cursor:pointer">🍆 חציל</span>
-          <span class="qg-chip qg-no" onclick="openFoodModal('tomato',[])" style="cursor:pointer">🍅 עגבנייה</span>
-          <span class="qg-chip qg-no" onclick="openFoodModal('lemon',[])" style="cursor:pointer">🍋 לימון</span>
-          <span class="qg-chip qg-no" onclick="openFoodModal('dairy',[])" style="cursor:pointer">🥛 מוצרי חלב</span>
-          <span class="qg-chip qg-no" onclick="openFoodModal('mushroom',[])" style="cursor:pointer">🍄 פטריות</span>
+          <span class="qg-chip qg-no" onclick="openFoodModal('onion',[])" style="cursor:pointer">🧅 בצל (כולל ירוק, שאלוט ועירית) <button onclick="event.stopPropagation();speakText('בצל',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+          <span class="qg-chip qg-no" onclick="openFoodModal('garlic',[])" style="cursor:pointer">🧄 שום <button onclick="event.stopPropagation();speakText('שום',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+          <span class="qg-chip qg-no" onclick="openFoodModal('avocado',[])" style="cursor:pointer">🥑 אבוקדו <button onclick="event.stopPropagation();speakText('אבוקדו',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+          <span class="qg-chip qg-no" onclick="openFoodModal('chocolate',[])" style="cursor:pointer">🍫 שוקולד <button onclick="event.stopPropagation();speakText('שוקולד',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+          <span class="qg-chip qg-no" onclick="openFoodModal('chips',[])" style="cursor:pointer">🍟🍬 חטיפים מלוחים ומתוקים <button onclick="event.stopPropagation();speakText('חטיפים מלוחים ומתוקים',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+          <span class="qg-chip qg-no" onclick="openFoodModal('eggplant',[])" style="cursor:pointer">🍆 חציל <button onclick="event.stopPropagation();speakText('חציל',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+          <span class="qg-chip qg-no" onclick="openFoodModal('tomato',[])" style="cursor:pointer">🍅 עגבנייה <button onclick="event.stopPropagation();speakText('עגבנייה',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+          <span class="qg-chip qg-no" onclick="openFoodModal('lemon',[])" style="cursor:pointer">🍋 לימון <button onclick="event.stopPropagation();speakText('לימון',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+          <span class="qg-chip qg-no" onclick="openFoodModal('dairy',[])" style="cursor:pointer">🥛 מוצרי חלב <button onclick="event.stopPropagation();speakText('מוצרי חלב',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
+          <span class="qg-chip qg-no" onclick="openFoodModal('mushroom',[])" style="cursor:pointer">🍄 פטריות <button onclick="event.stopPropagation();speakText('פטריות',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0;opacity:.6;line-height:1">🔊</button></span>
         </div>
       </div>
     </div>
@@ -1302,7 +1302,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       <span style="font-size:1.5rem;flex-shrink:0">🥦</span>
       <div style="flex:1">
         <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem">
-          <div style="font-weight:900;font-size:.97rem;color:#1a6640;flex:1">עייף = מעולה! 💚</div>
+          <div style="font-weight:900;font-size:.97rem;color:#1a6640;flex:1">עייף = מעולה! 💚 <button onclick="event.stopPropagation();speakText('עייף שווה מעולה!',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0">🔊</button></div>
           <button onclick="speakText('עייף זה מעולה! ירק קצת רך, שעבר את שיאו, שנראה עייף, החיות לא מפחדות ממנו בכלל. שאריות חיתוך, קליפות, גבעולים יתקבלו בברכה!',this)" title="הקראה" style="background:#d0f5e0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.87rem;flex-shrink:0">🔊</button>
         </div>
         <div onclick="spawnThankYouEffect(this.closest('div[style*=border-radius]'))" style="font-size:.87rem;color:#2a5535;line-height:1.6;cursor:pointer">ירק קצת רך, שעבר את שיאו, שנראה עייף, החיות לא מפחדות ממנו בכלל. שאריות חיתוך, קליפות, גבעולים יתקבלו בברכה!</div>
@@ -1314,7 +1314,7 @@ body:not(.dark):not(.rainbow) #dayLayer{display:block}
       <span style="font-size:1.5rem;flex-shrink:0">🚫</span>
       <div style="flex:1">
         <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem">
-          <div style="font-weight:900;font-size:.97rem;color:#7a4000;flex:1">רקוב או מעופש? נפרדים יפה וזורקים לפח או לקומפוסט 🗑️</div>
+          <div style="font-weight:900;font-size:.97rem;color:#7a4000;flex:1">רקוב או מעופש? נפרדים יפה וזורקים לפח או לקומפוסט 🗑️ <button onclick="event.stopPropagation();speakText('רקוב או מעופש? נפרדים יפה וזורקים לפח או לקומפוסט.',this)" style="background:none;border:none;cursor:pointer;font-size:.82rem;padding:0 0 0 .2rem;line-height:1;display:inline;vertical-align:middle;opacity:.6" title="הקראה" role="button" tabindex="0">🔊</button></div>
           <button onclick="speakText('רקוב או מעופש? נפרדים יפה וזורקים לפח או לקומפוסט. עובש מייצר רעלים שחודרים לכל הפרי, גם לחלקים שנראים בריאים. יש ספק? לא מסתכנים!',this)" title="הקראה" style="background:#ffe8c0;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:.87rem;flex-shrink:0">🔊</button>
         </div>
         <div onclick="spawnMoldEffect(this.closest('div[style*=border-radius]'))" style="font-size:.87rem;color:#8a5520;line-height:1.6;cursor:pointer">עובש מייצר רעלים (מיקוטוקסינים) שחודרים לכל הפרי, גם לחלקים שנראים בריאים. יש ספק? לא מסתכנים! 💚</div>
@@ -7260,49 +7260,66 @@ function renderAllFoodsTable(){
   }
   const sortedCats=Object.keys(bycat).filter(k=>bycat[k]&&bycat[k].length>0);
 
-  const statusCell=(s)=>{
-    if(s==='ok') return '<td style="text-align:center;color:#1a7a40;font-weight:800;font-size:.97rem;background:#edfff5;padding:.35rem .15rem">כן</td>';
-    if(s==='lim') return '<td style="text-align:center;color:#8a5500;font-weight:800;font-size:.97rem;background:#fffbe8;padding:.35rem .15rem">מעט</td>';
-    if(s==='no') return '<td style="text-align:center;color:#c02020;font-weight:800;font-size:.97rem;background:#fff0f0;padding:.35rem .15rem">לא</td>';
-    return '<td style="text-align:center;color:#ccc;font-size:.87rem;padding:.35rem .1rem">-</td>';
+  // תרגום סטטוס להקראה
+  const statusSpeak=(s)=>s==='ok'?'מותר':s==='lim'?'מעט':s==='no'?'אסור':'לא ידוע';
+
+  const statusCell=(s, foodName, animalName, foodId)=>{
+    const spk=`${animalName} — ${foodName} — ${statusSpeak(s)}`;
+    const spkAttr=spk.replace(/"/g,'&quot;');
+    const spkSafe=spk.replace(/'/g,"\'");
+    const spkBtnHtml=`<button onclick="event.stopPropagation();speakText('${spkSafe}',null)" aria-label="הקראה" title="${spkAttr}" style="background:none;border:none;cursor:pointer;font-size:.6rem;vertical-align:middle;padding:0;line-height:1;display:block;margin:.1rem auto 0">🔊</button>`;
+    if(s==='ok') return `<td onclick="openFoodModal('${foodId}',window._tableFoodIds)" style="text-align:center;color:#1a7a40;font-weight:800;font-size:.97rem;background:#edfff5;padding:.35rem .15rem;cursor:pointer">כן${spkBtnHtml}</td>`;
+    if(s==='lim') return `<td onclick="openFoodModal('${foodId}',window._tableFoodIds)" style="text-align:center;color:#8a5500;font-weight:800;font-size:.97rem;background:#fffbe8;padding:.35rem .15rem;cursor:pointer">מעט${spkBtnHtml}</td>`;
+    if(s==='no') return `<td onclick="openFoodModal('${foodId}',window._tableFoodIds)" style="text-align:center;color:#c02020;font-weight:800;font-size:.97rem;background:#fff0f0;padding:.35rem .15rem;cursor:pointer">לא${spkBtnHtml}</td>`;
+    return `<td style="text-align:center;color:#ccc;font-size:.87rem;padding:.35rem .1rem">-</td>`;
   };
 
+  const shortAnimalName=(a)=>a.name.replace('תוכי ','').replace(' מנומרת','').replace(' ויאטנמי','').replace(' לוחש (מדגסקר)','').replace(' סיבירי','').replace(' סורי','').replace(' מונגולי','').split(' ')[0];
+
   const animalHeader=(a)=>{
-    const shortName=a.name.replace('תוכי ','').replace(' מנומרת','').replace(' ויאטנמי','').replace(' לוחש (מדגסקר)','').replace(' סיבירי','').replace(' סורי','').replace(' מונגולי','').split(' ')[0];
+    const sn=shortAnimalName(a);
     return `<th style="text-align:center;font-size:.89rem;white-space:nowrap;padding:.35rem .2rem">
       <div style="font-size:1.2rem;text-align:center">${a.emoji}</div>
-      <span onclick="event.stopPropagation();openAnimalModal('${a.id}')" style="cursor:pointer;text-decoration:underline dotted;color:#446">${shortName}</span></th>`;
+      <span onclick="event.stopPropagation();openAnimalModal('${a.id}')" style="cursor:pointer;text-decoration:underline dotted;color:#446">${sn}</span>
+      <button onclick="event.stopPropagation();speakText('${a.name}',null)" aria-label="הקראה" title="הקרא שם חיה" style="background:#ffe0b0;border:none;border-radius:50%;width:16px;height:16px;cursor:pointer;font-size:.55rem;vertical-align:middle;display:block;margin:.1rem auto 0">🔊</button></th>`;
   };
 
   let html='<div style="overflow-x:auto"><table class="af-table"><thead><tr><th style="font-size:1.02rem;min-width:90px">מזון</th>';
   orderedAnimals.forEach(a=>{ html+=animalHeader(a); });
   html+='</tr></thead><tbody>';
 
-  // שמור את רשימת המזונות לניווט גלובלית (בלי JSON בתוך HTML)
   window._tableFoodIds = foods.map(f=>f.id);
 
   sortedCats.forEach(cat=>{ const catFoods=bycat[cat];
     html+=`<tr><td colspan="${orderedAnimals.length+1}" style="background:#f4f6ff;font-weight:900;font-size:.95rem;color:#5060a0;padding:.4rem .7rem">${cat}</td></tr>`;
     catFoods.forEach(food=>{
       html+=`<tr data-food-id="${food.id}" onclick="openFoodModal('${food.id}',window._tableFoodIds)" style="cursor:pointer">`;
-      html+=`<td onclick="openFoodModal('${food.id}',window._tableFoodIds)" style="padding:.38rem .5rem;cursor:pointer"><span style="font-size:1.2rem;margin-left:.3rem">${food.emoji}</span><span style="font-size:1.02rem;font-weight:700;color:#3060b0;text-decoration:underline dotted">${food.name}</span>${(()=>{const cs=food.cookStatus,l={raw:'<span style="font-size:.72rem;color:#1a6640;background:#e8f7ef;border-radius:50px;padding:.05rem .35rem;margin-right:.25rem;vertical-align:middle">🥗</span>',cooked:'<span style="font-size:.72rem;color:#7a4000;background:#fff3e0;border-radius:50px;padding:.05rem .35rem;margin-right:.25rem;vertical-align:middle">🍳</span>',both:'<span style="font-size:.72rem;color:#1a3380;background:#e8f0ff;border-radius:50px;padding:.05rem .35rem;margin-right:.25rem;vertical-align:middle">🔄</span>'};return cs&&l[cs]?l[cs]:'';})()}</td>`;
-      orderedAnimals.forEach(a=>{ html+=statusCell(food.animals?.[a.id]?.s||'no'); });
+      const foodSpkBtn=`<button onclick="event.stopPropagation();speakText('${food.name.replace(/'/g,"\'")}',null)" aria-label="הקראה" title="הקרא שם מזון" style="background:#ffe0b0;border:none;border-radius:50%;width:16px;height:16px;cursor:pointer;font-size:.55rem;vertical-align:middle;margin-inline-start:.15rem;flex-shrink:0">🔊</button>`;
+      html+=`<td onclick="openFoodModal('${food.id}',window._tableFoodIds)" style="padding:.38rem .5rem;cursor:pointer"><span style="font-size:1.2rem;margin-left:.3rem">${food.emoji}</span><span style="font-size:1.02rem;font-weight:700;color:#3060b0;text-decoration:underline dotted">${food.name}</span>${foodSpkBtn}${(()=>{const cs=food.cookStatus,l={raw:'<span style="font-size:.72rem;color:#1a6640;background:#e8f7ef;border-radius:50px;padding:.05rem .35rem;margin-right:.25rem;vertical-align:middle">🥗</span>',cooked:'<span style="font-size:.72rem;color:#7a4000;background:#fff3e0;border-radius:50px;padding:.05rem .35rem;margin-right:.25rem;vertical-align:middle">🍳</span>',both:'<span style="font-size:.72rem;color:#1a3380;background:#e8f0ff;border-radius:50px;padding:.05rem .35rem;margin-right:.25rem;vertical-align:middle">🔄</span>'};return cs&&l[cs]?l[cs]:'';})()}</td>`;
+      orderedAnimals.forEach(a=>{ html+=statusCell(food.animals?.[a.id]?.s||'no', food.name, shortAnimalName(a), food.id); });
       html+='</tr>';
     });
     // שורת חזרה לשמות חיות בתחתית כל קטגוריה
     html+=`<tr style="background:#f8f8fc"><td style="font-size:.79rem;color:#aaa;padding:.2rem .5rem">↑</td>`;
     orderedAnimals.forEach(a=>{
-      const shortName=a.name.replace('תוכי ','').replace(' מנומרת','').replace(' ויאטנמי','').replace(' לוחש (מדגסקר)','').replace(' סיבירי','').replace(' סורי','').replace(' מונגולי','').split(' ')[0];
-      html+=`<td style="text-align:center;font-size:.75rem;color:#888;padding:.2rem .1rem;white-space:nowrap"><span onclick="event.stopPropagation();openAnimalModal('${a.id}')" style="cursor:pointer;text-decoration:underline dotted">${shortName}</span></td>`;
+      const sn=shortAnimalName(a);
+      html+=`<td style="text-align:center;font-size:.75rem;color:#888;padding:.2rem .1rem;white-space:nowrap"><span onclick="event.stopPropagation();openAnimalModal('${a.id}')" style="cursor:pointer;text-decoration:underline dotted">${sn}</span><button onclick="event.stopPropagation();speakText('${a.name}',null)" aria-label="הקראה" title="הקרא שם חיה" style="background:#ffe0b0;border:none;border-radius:50%;width:14px;height:14px;cursor:pointer;font-size:.5rem;vertical-align:middle;margin-inline-start:.1rem">🔊</button></td>`;
     });
     html+='</tr>';
   });
   html+='</tbody></table></div>';
-  html+=`<div style="font-size:.89rem;color:#888;padding:.6rem .4rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center">
+  html+=`<div style="font-size:.84rem;color:#666;padding:.7rem .5rem;background:#f8f9ff;border-radius:10px;margin-top:.5rem;line-height:1.7">
+    <span style="font-weight:700;color:#444">🔊 הקראה בטבלה:</span>
+    לחיצה על <strong>שם מזון</strong> = שמיעת שם המזון ·
+    לחיצה על <strong>שם חיה</strong> = שמיעת שם החיה ·
+    לחיצה על <strong>כן / מעט / לא</strong> = שמיעת "חיה — מזון — סטטוס"
+    <button onclick="speakText('הקראה בטבלה: לחיצה על שם מזון שומעים את שם המזון. לחיצה על שם חיה שומעים את שם החיה. לחיצה על כן, מעט או לא שומעים את שם החיה, שם המזון והסטטוס.',null)" aria-label="הקראה" style="background:#ffe0b0;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:.72rem;vertical-align:middle;margin-inline-start:.3rem">🔊</button>
+  </div>
+  <div style="font-size:.89rem;color:#888;padding:.4rem .4rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center">
     <span style="color:#1a7a40;font-weight:700">כן</span> מותר ·
     <span style="color:#8a5500;font-weight:700">מעט</span> במידה ·
     <span style="color:#c02020;font-weight:700">לא</span> אסור ·
-    לחיצה על שם חיה = כרטיסייה · לחיצה על שורה = פרטי מזון
+    לחיצה על שורת מזון = פרטים מלאים
   </div>`;
   document.getElementById('allFoodsTable').innerHTML=html;
 }
